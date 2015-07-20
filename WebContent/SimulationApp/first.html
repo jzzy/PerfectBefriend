@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script  src="js/TouchSlide.1.1.js"></script>
+</head>
+
+<body>
+<div class="cont">
+   <div  id="slideBox"  class="slideBox slideBox2">
+			  <div  class="bd">
+					<div  class="tempWrap"  style="overflow:hidden; position:relative;">
+                        <ul  style="width: 3360px; position: relative; overflow: hidden; padding: 0px; margin: 0px; transition: 200ms; -webkit-transition: 200ms; -webkit-transform: translate(-1680px, 0px) translateZ(0px);">
+							<li  style="display: table-cell; vertical-align: top; width:100%;">
+								<a  class="pic"  href="#"><img  src="images/jczl_03.png" height="100%"></a>
+							</li>
+                            <li  style="display: table-cell; vertical-align: top; width:100%;">
+								<a  class="pic"  href="#"><img  src="images/xw_12.png"></a>
+							</li>
+                            <li  style="display: table-cell; vertical-align: top; width:100%;">
+								<a  class="pic"  href="#"><img  src="images/xw_12.png"></a>
+							</li>
+                            <li  style="display: table-cell; vertical-align: top; width:100%;">
+								<a  class="pic"  href="#"><img  src="images/xw_12.png"></a>
+							</li>
+                       </ul>
+                    </div>
+				</div>
+                <!--bd-->
+				<div  class="hd">
+					<ul><li  class="">1</li><li  class="">2</li><li  class="on">3</li><li  class="">4</li></ul>
+				</div>
+                <div class="button"><a href="login.html" class="login">登录</a><a href="register1.html" class="zhuce">注册</a></div>
+   </div>
+   <!--slideBox-->
+</div>
+<!--cont-->
+<script  type="text/javascript">
+				TouchSlide({ 
+					slideCell:"#slideBox",
+					titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+					mainCell:".bd ul", 
+					effect:"leftLoop", 
+					autoPage:true,//自动分页
+					autoPlay:true //自动播放
+				});
+			</script>
+</body>
+</html>

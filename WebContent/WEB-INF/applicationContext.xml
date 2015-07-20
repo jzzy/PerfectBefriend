@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor">
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdaptor">
+		</property>
+	</bean>
+
+
+	<bean id="mysqlDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<!-- 本地 -->
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/perfectbefriend?useUnicode=true&amp;characterEncoding=utf8"></property>
+		<property name="password" value="root"></property>
+		<property name="username" value="root"></property>
+		
+	
+		<!--测试服数据库 
+		
+		<property name="url" value="jdbc:mysql://123.56.45.164:3306/befriend?useUnicode=true&amp;characterEncoding=utf8"></property> 
+			<property name="username" value="root"></property> <property name="password" 
+			value="admin"></property> 
+			-->
+			 
+		
+		
+	</bean>
+	
+	
+	
+	
+	<bean id="hibernateJpaVendorAdaptor"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL"></property>
+		<property name="showSql" value="false"></property>
+	</bean>
+	<!-- 事务管理器配置, Hibernate单数据源事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory">
+		</property>
+	</bean>
+	<!-- 使用annotation定义事务 
+	"proxy-target-class" 属值被设置为 "true"，那么基于类的代理将起作用
+	proxy-target-class" 属值被设置为 "false"，那么基于接口的代理将起作用
+	-->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="false" />
+	
+	
+	
+	
+	<!-- 用户dao -->
+	<bean id="userDAO" class="com.befriend.dao.impl.UserDAOImpl"></bean>
+	<!-- 超级管理员dao -->
+	<bean id="superadminDAO" class="com.befriend.dao.impl.SuperAdminDAOImpl"></bean>
+	<!-- App更新 以及工具类dao -->
+	<bean id="appupDAO" class="com.befriend.dao.impl.ApputilDAOImpl"></bean>
+	<!-- DAO start here -->
+	<!-- 新闻dao -->
+	<bean id="newsDAO" class="com.befriend.dao.impl.NewsDAOImpl"></bean>
+	<!-- DAO start here -->
+	<!-- 新闻收藏dao -->
+	<bean id="collectDAO" class="com.befriend.dao.impl.CollectDAOImpl"></bean>
+	<!-- 新闻评论dao -->
+	<bean id="reviewDAO" class="com.befriend.dao.impl.ReviewDAOImpl"></bean>
+	<!--appdao -->
+	<bean id="appDAO" class="com.befriend.dao.impl.AppDAOImpl"></bean>
+	<!--论坛dao -->
+	<bean id="forumDAO" class="com.befriend.dao.impl.ForumDAOImpl"></bean>
+	<!--论坛收藏dao -->
+	<bean id="follectDAO" class="com.befriend.dao.impl.FollectDAOImpl"></bean>
+	<!-- 群聊dao -->
+	<bean id="groupDAO" class="com.befriend.dao.impl.GroupDAOImpl"></bean>
+	<!-- 统计用户注册数量dao -->
+	<bean id="registrationDAO" class="com.befriend.dao.impl.RegistrationDAOImpl"></bean>
+
+	<!-- Action start here -->
+	
+	
+	<!-- 超级管理员-->
+	<bean id="superadminAction" class="com.befriend.action.SuperAdminAction"
+		scope="prototype">
+		<constructor-arg ref="superadminDAO"></constructor-arg>
+	</bean>
+	
+	<!-- 论坛 -->
+	<bean id="forumAction" class="com.befriend.action.ForumAction"
+		scope="prototype">
+		<constructor-arg ref="forumDAO"></constructor-arg>
+		<constructor-arg ref="userDAO"></constructor-arg>
+		<constructor-arg ref="follectDAO"></constructor-arg>
+		
+	</bean>
+	
+	<!-- 用户 -->
+	<bean id="userAction" class="com.befriend.action.UserAction"
+		scope="prototype">
+		<constructor-arg ref="userDAO"></constructor-arg>
+			<constructor-arg ref="registrationDAO"></constructor-arg>
+			<constructor-arg ref="groupDAO"></constructor-arg>
+		<constructor-arg ref="appupDAO"></constructor-arg>
+	</bean>
+	
+	<!-- app更新 -->
+	<bean id="appupAction" class="com.befriend.action.ApputilAction"
+		scope="prototype">
+		<constructor-arg ref="appupDAO"></constructor-arg>
+		<constructor-arg ref="appDAO"></constructor-arg>
+		<constructor-arg ref="userDAO"></constructor-arg>
+
+	</bean>
+	
+	<!-- 新闻 -->
+	<bean id="newsAction" class="com.befriend.action.NewsAction"
+		scope="prototype">
+		<constructor-arg ref="newsDAO"></constructor-arg>
+		<constructor-arg ref="collectDAO"></constructor-arg>
+		<constructor-arg ref="reviewDAO"></constructor-arg>
+		<constructor-arg ref="userDAO"></constructor-arg>
+	</bean>
+	
+	<!-- 群聊 -->
+	<bean id="groupAction" class="com.befriend.action.GroupAction"
+		scope="prototype">
+		<constructor-arg ref="groupDAO"></constructor-arg>
+		<constructor-arg ref="userDAO"></constructor-arg>
+		
+	</bean>
+	<!-- 微信接口开发 -->
+	<bean id="wechatAction" class="com.befriend.action.WechatAction"
+		scope="prototype">
+		
+		
+		
+	</bean>
+	
+	<!-- 在java普通类中调用 dao-->
+	<bean id="app" class="com.befriend.util.ApplicationUtil">
+	</bean>
+	
+
+	
+
+</beans>

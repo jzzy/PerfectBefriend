@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 打开调试模式 
+	<constant name="struts.devMode" value="true" />
+	-->
+	<!-- 关闭调试模式 -->
+	<constant name="struts.devMode" value="false" />
+	
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.multipart.maxSize" value="1070109600" />
+
+	<include file="com/befriend/struts/userAction.xml"></include><!-- 用户 -->
+	<include file="com/befriend/struts/forumAction.xml"></include><!-- 论坛 -->
+	<include file="com/befriend/struts/superadminAction.xml"></include><!-- 超级管理员-->
+	<include file="com/befriend/struts/apputilAction.xml"></include><!-- app更新 家长之友更新 小功能 -->
+	<include file="com/befriend/struts/newsAction.xml"></include><!-- 新闻 -->
+	<include file="com/befriend/struts/groupAction.xml"></include><!-- 群聊 -->
+	<include file="com/befriend/struts/wechatAction.xml"></include><!-- 微信开发 -->
+	
+</struts>

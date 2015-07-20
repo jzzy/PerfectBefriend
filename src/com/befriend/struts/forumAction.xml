@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="Forum" extends="struts-default" >
+	
+	
+	
+	
+		<!-- 管理区域 -->
+		
+		
+		
+		<!-- admin删除评论 回复-->
+		<action name="webAdminRemoveForumThree" class="forumAction" method="webAdminRemoveForumThree" >
+		
+		</action>
+		<!-- admin删除评论-->
+		<action name="webAdminRemoveForumTwo" class="forumAction" method="webAdminRemoveForumTwo" >
+		
+		</action>
+		<!-- 添加论坛 -->
+		<action name="Forumonesave" class="forumAction" method="Forumonesave">
+		</action>
+		
+		<!-- 超级管理员 和论坛总管理员  通过id -->
+		<action name="ForumLook" class="forumAction" method="ForumLook">	
+		<result name="success">/SuperAdmin/AdminForum/Forumlookone.jsp</result>
+		</action>
+		
+
+		<!-- 用户理员 通过id  查看论坛 -->
+		<action name="ForumLookiduser" class="forumAction" method="ForumLookiduser">
+		<result name="success">/SuperAdmin/UserAdmin/Forum/Forumlookone.jsp</result>
+		</action>
+		
+		
+		<!-- admin管理员和论坛超级管理员查看  全部论坛 -->
+		<action name="ForumLookall" class="forumAction" method="ForumLookall">
+		<result name="success">/SuperAdmin/AdminForum/Forumlook.jsp</result>
+		</action>
+			<!-- admin管理员和论坛超级管理员查看  专家答疑论坛 -->
+		<action name="ForumLookalltype" class="forumAction" method="ForumLookalltype">
+		<result name="success">/SuperAdmin/AdminForum/Forumlook.jsp</result>
+		</action>
+		
+		<!-- 用户管理员查看 地区 全部论坛 -->
+		<action name="ForumLookuser" class="forumAction" method="ForumLookuser">
+		<result name="success">/SuperAdmin/UserAdmin/Forum/Forumlook.jsp</result>
+		</action>
+		
+		<!-- 添加论坛回复 -->
+		<action name="Forumtwosave" class="forumAction" method="Forumtwosave">
+		
+		</action>
+		
+		
+		<!-- 论坛删除客户端 -->
+		<action name="ForumRemove" class="forumAction" method="ForumRemove">
+		
+		</action>
+		
+		<!-- 添加用户回回复用户 -->
+		<action name="Forumthreesave" class="forumAction" method="Forumthreesave">
+		
+		</action>
+		
+		
+		
+		
+		
+		
+		
+		<!-- app用的 -->
+		
+		
+		<!-- 用户查看论坛 通过id-->
+		<action name="ForumLookusers" class="forumAction" method="ForumLookusers">
+		
+		</action>
+		
+		<!-- 添加用户回回复楼主-->
+		<action name="Forumtwosaveapp" class="forumAction" method="Forumtwosaveapp">
+		
+		</action>
+		<!-- 通过省市查看论坛-->
+		<action name="ForumArea" class="forumAction" method="ForumArea">
+		
+		</action>
+		<!-- 添加用户回复用户-->
+		<action name="Forumthreesappadd" class="forumAction" method="Forumthreesappadd">
+		
+		</action>
+		<!-- 通过用户id查询我的论坛-->
+		<action name="ForumoneTouseid" class="forumAction" method="ForumoneTouseid">
+		
+		</action>
+		<!-- 通过用户id 查询我评论过的 论坛-->
+		<action name="Fuseid" class="forumAction" method="Fuseid">
+		
+		</action>
+			<!-- 通过用户id 查询我搜藏过的 论坛-->
+		<action name="Folook" class="forumAction" method="Folook">
+		
+		</action>
+			<!-- 查看全部论坛 -->
+		<action name="Forumall" class="forumAction" method="Forumall">
+		
+		</action>
+			<!-- 添加搜藏论坛-->
+		<action name="Fosave" class="forumAction" method="Fosave">
+		
+		</action>
+			<!-- 是否搜藏过论坛-->
+		<action name="Folft" class="forumAction" method="Folft">
+		
+		</action>
+			<!-- 删除论坛并删除  评论及回复 收藏等-->
+		<action name="ForumAppRemove" class="forumAction" method="ForumAppRemove">
+		
+		</action>
+				<!-- 删除收藏-->
+		<action name="FolR" class="forumAction" method="FolR">
+		
+		</action>
+				<!-- 根据 类型 分页查看论坛-->
+		<action name="ForumApptype" class="forumAction" method="ForumApptype">
+		
+		</action>
+				<!-- 添加论坛-->
+		<action name="Forumonesaveapp" class="forumAction" method="Forumonesaveapp">
+		
+		</action>
+		<!-- 用户删除论坛-->
+		<action name="webUserForumRemove" class="forumAction" method="webUserForumRemove">
+		
+		</action>
+		<!-- 管理员删除论坛-->
+		<action name="webForumRemove" class="forumAction" method="webForumRemove">
+		
+		</action>
+		<!-- 管理员删除论坛-->
+		<action name="webForumRemove" class="forumAction" method="webForumRemove">
+		
+		</action>
+		<!-- 模糊查询论坛-->
+		<action name="likeTitle" class="forumAction" method="likeTitle">
+		
+		</action>
+		
+		
+		
+		
+		<!-- 模仿客户端  WEB区域  -->
+		
+		
+		
+			<!-- 按类型查看论坛-->
+		<action name="webForumApptype" class="forumAction" method="webForumApptype">
+		<result name="success">/SimulationApp/exchange.jsp</result>
+		</action>
+		
+		<!-- 通过id查看论坛-->
+		<action name="webForumLook" class="forumAction" method="webForumLook">
+		<result name="success">/SimulationApp/bbs.jsp</result>
+		</action>
+		
+		<!-- 通过userid查看我创建的论坛-->
+		<action name="webForumoneTouseid" class="forumAction" method="webForumoneTouseid" >
+		<result name="success">/SimulationApp/myPosts.jsp</result>
+		</action>
+		
+		<!-- 添加论坛-->
+		<action name="webForumonesaveapp" class="forumAction" method="webForumonesaveapp" >
+		
+		</action>
+		<!-- 回复论坛楼主-->
+		<action name="webForumtwosaveapp" class="forumAction" method="webForumtwosaveapp" >
+		
+		</action>
+		<!-- 回复论坛用户-->
+		<action name="webForumthreesappadd" class="forumAction" method="webForumthreesappadd" >
+		
+		</action>
+		
+		
+		
+		
+		
+		<!-- 专家区域 -->
+		
+		
+		
+		<!-- 专家回复用户问题-->
+		<action name="webForumtwosaveProfessor" class="forumAction" method="webForumtwosaveProfessor" >
+		
+		</action>
+
+		<!-- 专家修改评论-->
+		<action name="webProfessorUpdateForumTwo" class="forumAction" method="webProfessorUpdateForumTwo" >
+		
+		</action>
+		
+		<!-- 专家删除评论 下面的回复-->
+		<action name="webProfessorRemoveForumThree" class="forumAction" method="webProfessorRemoveForumThree" >
+		
+		</action>
+			<!-- 专家删除评论-->
+		<action name="webProfessorRemoveForumTwo" class="forumAction" method="webProfessorRemoveForumTwo" >
+		
+		</action>
+		
+		
+		
+	</package>
+</struts>

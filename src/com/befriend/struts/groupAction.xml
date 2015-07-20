@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="GroupAll" extends="struts-default">
+
+
+		<!--  同步到环信上-->
+		<action name="synchrGroup" class="groupAction" method="synchrGroup">
+		</action>
+		<!--  老师添加加群-->
+		<action name="TEdificatora" class="groupAction" method="TEdificatora">
+		</action>
+		
+		<!--   审核群进群用户 查询这个群的用户 查询被踢的用户-->
+		<action name="GroupCheck" class="groupAction" method="GroupCheck">
+		</action>
+		
+		<!--  申请进群-->
+		<action name="Jointion" class="groupAction" method="Jointion">
+		</action>
+			<!--  判断是否加入过么-->
+		<action name="Jointionok" class="groupAction" method="Jointionok">
+		</action>
+		
+		<!--  通过群号查询群-->
+		<action name="Groupquiry" class="groupAction" method="Groupquiry">
+		</action>
+		
+		<!-- 修改群资料 -->
+		<action name="GroupModification" class="groupAction" method="GroupModification">
+		</action>
+		
+		<!-- 查询用户 创建的班级 和 加入的-->
+		<action name="Idtgroup" class="groupAction" method="Idtgroup">
+		</action>
+		
+		<!-- 群主查看审核 -->
+		<action name="GroupJointion" class="groupAction" method="GroupJointion">
+		</action>
+		
+		<!--UDP发生送  -->
+		<action name="groupSend" class="groupAction" method="groupSend">
+		</action>
+		<!--删除群消息 uid gid cid  -->
+		<action name="groupCisUidDelete" class="groupAction" method="groupCisUidDelete">
+		</action>
+		
+		
+		<!-- 删除  用户在某群的聊天信息 -->
+		<action name="RemoveCis" class="groupAction" method="RemoveCis">
+		</action>
+	
+		<!-- 查询我创建的班级 -->
+		<action name="Usergroup" class="groupAction" method="Usergroup">
+		</action>
+		<!-- 添加聊天信息 -->
+		<action name="Sendf" class="groupAction" method="Sendf">
+		</action>
+		
+		<!--获取聊天信息 -->
+		<action name="Sendjieshou" class="groupAction" method="Sendjieshou">
+		</action>
+		<!-- 群成员退群 -->
+		<action name="RetreatGroup" class="groupAction" method="RetreatGroup">
+		</action>
+		<!-- 用户修改群资料 -->
+		<action name="ModifyGroupIn" class="groupAction" method="ModifyGroupIn">
+		</action>
+		<!-- 查看群信息  用户头像 昵称 -->
+		<action name="ViewGroupMembers" class="groupAction" method="ViewGroupMembers">
+		</action>
+		<!-- 查看个人的群资料 -->
+		<action name="ViewGMembers" class="groupAction" method="ViewGMembers">
+		</action>
+		<!-- 删除群-->
+		<action name="RemoveGroup" class="groupAction" method="RemoveGroup">
+		</action>
+		
+	
+
+	</package>
+</struts>

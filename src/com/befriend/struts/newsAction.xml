@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="News" extends="struts-default">
+
+		<!-- 查看新闻是否更新 -->
+		<action name="newNewsId" class="newsAction" method="newNewsId">
+		</action>
+		<!-- 获取全部新闻 -->
+		<action name="NewsAll" class="newsAction" method="NewsAll">
+		</action>
+		
+		<!-- 添加收藏 -->
+		<action name="Csave" class="newsAction" method="Csave">
+		</action>
+		
+		<!-- 判断是否收藏 -->
+		<action name="Whether" class="newsAction" method="Whether">
+		</action>
+
+		<!-- 删除收藏 -->
+		<action name="RemoveC" class="newsAction" method="RemoveC">
+		</action>
+
+		<!-- 用户查询他收藏了那些文章 -->
+		<action name="SB" class="newsAction" method="SearchBookmark">
+		</action>
+		
+		<!-- 用户添加评论 -->
+		<action name="Rsave" class="newsAction" method="Rsave">
+		</action>
+		
+		<!-- 用户删除评论 -->
+		<action name="RemoveR" class="newsAction" method="RemoveR">
+		</action>
+
+		<!-- 根据newsid查询评论 -->
+		<action name="RI" class="newsAction" method="ReviewsInquiry">
+		</action>
+		<!-- 根据newsid查询评论 有用户信息-->
+		<action name="RI513" class="newsAction" method="ReviewsInquiry513">
+		</action>
+		
+		
+		<!-- 根据newsid查询新闻 -->
+		<action name="NewsId" class="newsAction" method="NewsId">
+		</action>
+
+		<!-- 上传新闻 -->
+		<action name="UPtext" class="newsAction" method="UPtext">
+			<result name="A">AU.jsp</result>
+			<result name="B">AUB.jsp</result>
+		</action>
+		
+		<!-- 根据八大类查询 -->
+		<action name="type" class="newsAction" method="type">
+		</action>
+		
+		<!-- 根据八大类 的4小类查询查询 -->
+		<action name="types" class="newsAction" method="types">
+		</action>
+		
+		<!--全国最热新闻 -->
+		<action name="Hottest" class="newsAction" method="Hottest">
+		</action>
+		
+		<!--本地最热新闻 -->
+		<action name="Hotarea" class="newsAction" method="Hotarea">
+		</action>
+
+		<!--主页新闻 -->
+		<action name="NewsA" class="newsAction" method="NewsA">
+		</action>
+		
+		<!--最热新闻 -->
+		<action name="Cah" class="newsAction" method="Cah">
+		</action>
+		
+		<!--主页新闻 10号的 -->
+		<action name="NewsA10" class="newsAction" method="NewsA10">
+		</action>
+		
+		<!--编辑查看新闻  -->
+		<action name="Newsget" class="newsAction" method="Newsget">
+		<result name="success">/SuperAdmin/AdminNews/News.jsp</result>
+		
+		
+		</action>
+		<!-- 删除新闻 -->
+		<action name="NewsRM" class="newsAction" method="NewsRM">
+		
+		</action>
+		<!--分页查询 八大类新闻 -->
+		<action name="newtype" class="newsAction" method="newtype">
+		</action>
+		
+		<!--分页查询 最热新闻 -->
+		<action name="cah" class="newsAction" method="cah">
+		</action>
+		
+		<!--分页查询 本地新闻 -->
+		<action name="Hotareaf" class="newsAction" method="Hotareaf">
+		</action>
+		
+		<!--查看  用户评论过的 新闻  和最新评论 -->
+		<action name="Reviewsusername" class="newsAction" method="Reviewsusername">
+		</action>
+		
+		
+		<!--查看  用户对单独新闻的评论 -->
+		<action name="getRy" class="newsAction" method="getRy">
+		</action>
+		
+		<!--查看 查询本地新闻 为专家的 -->
+		<action name="Newsexpert" class="newsAction" method="Newsexpert">
+		</action>
+		
+		<!--微信查询 本地新闻和  健康导航-->
+		<action name="weiXniBDN" class="newsAction" method="weiXniBDN">
+		<result name="success">/weixin/index.jsp</result>
+		</action>
+		
+		<!--微信通过id查询 新闻-->
+		<action name="weiXniNewsId" class="newsAction" method="weiXniNewsId">
+		<result name="success">/weixin/news_cont.jsp</result>
+		</action>
+		
+		<!--管理通过id查询 新闻-->
+		<action name="adminNewsId" class="newsAction" method="adminNewsId">
+		<result name="success">/SuperAdmin/AdminNews/news_cont.jsp</result>
+		</action>
+		
+		
+		
+			<!--WEB区域-->
+			
+			<!--获取主页新闻-->
+		<action name="webNewsA10" class="newsAction" method="webNewsA10">
+		<result name="success">/SimulationApp/index.jsp</result>
+		</action>
+		
+			<!--通过id查询新闻-->
+		<action name="webNewsId" class="newsAction" method="webNewsId">
+		<result name="success">/SimulationApp/news_cont.jsp</result>
+		</action>
+		
+			<!--分页 查询八大类新闻-->
+		<action name="webNewtype" class="newsAction" method="webNewtype">
+		<result name="success">/SimulationApp/famous_person_badalei.jsp</result>
+		</action>
+		
+			<!--分页 查询升学指南的4小类类新闻-->
+		<action name="webTypes" class="newsAction" method="webTypes">
+		<result name="success">/SimulationApp/famous_person_sixiaolei.jsp</result>
+		</action>
+		
+		<!--分页 查询全国最热-->
+		<action name="webHottest" class="newsAction" method="webHottest">
+		<result name="success">/SimulationApp/famous_person_zuire.jsp</result>
+		</action>
+		
+		<!--分页 查询本地新闻-->
+		<action name="webHotareaf" class="newsAction" method="webHotareaf">
+		<result name="success">/SimulationApp/famous_person_bendi.jsp</result>
+		</action>
+		
+		<!--添加评论-->
+		<action name="webRsave" class="newsAction" method="webRsave">
+		
+		</action>
+		
+		<!--添加收藏-->
+		<action name="webCsave" class="newsAction" method="webCsave">
+		
+		</action>
+		
+		<!--通过userid查询收藏-->
+		<action name="webSearchBookmark" class="newsAction" method="webSearchBookmark">
+		<result name="success">/SimulationApp/metoshoucang.jsp</result>
+		</action>
+		
+		<!--通过username查询最新评论-->
+		<action name="webReviewsusername" class="newsAction" method="webReviewsusername">
+		<result name="success">/SimulationApp/metopinglun.jsp</result>
+		</action>
+		
+		<!-- 微信分页 查询本地新闻-->
+		<action name="webWeiXinHotarea" class="newsAction" method="webWeiXinHotarea">
+		<result name="success">/weixin/famous_person_bendi.jsp</result>
+		</action>
+
+	</package>
+</struts>

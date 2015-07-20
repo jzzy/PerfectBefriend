@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="bgcolor">
+<div class="cont">
+
+<h1 class="tit tit5"><span class="fl"><a href="javascript:history.back(-1);" class="fr">&lt; 反馈至家长天地</a></span><!--  --><img src="images/fanhui.png" width="25"></h1>
+<div class="relycont relycont2">
+   <div><textarea>您的意见将改变我们的服务！</textarea></div>
+   <div class="fasong"><a class="btn03" data-toggle="modal" href="#forgetform"><input type="button" value="发送" /></a></div>
+</div>
+<!--recont-->
+<div class="modal" id="forgetform">
+	<a class="pclose" data-dismiss="modal">×</a>
+	<h1>发送成功</h1>
+    <div class="mocont"><p><img src="images/tt_03.jpg" /></p>感谢您的反馈，我们会做的更好！</div>
+</div>
+</div>
+<!--cont-->
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$("a.forgot").click(function(){
+		$("#login-modal").modal("hide");
+		$("#forgetform").modal({show:!0})
+	});
+	
+	$("#signup-modal").modal("hide");
+	$("#forgetform").modal("hide");
+	$("#login-modal").modal("hide");
+	$("#activation-modal").modal("hide");
+	$("#setpassword-modal").modal("hide");
+	
+});
+</script>
+
+
+</body>
+</html>

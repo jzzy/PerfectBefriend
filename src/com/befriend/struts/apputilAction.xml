@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="appp" extends="struts-default">
+
+		<!-- 统计 -->
+		<action name="aStas" class="appupAction" method="aStas">
+		</action>
+		<!-- 新增游客 -->
+		<action name="visitorMac" class="appupAction" method="visitorMac">
+		</action>
+		<!-- 更新app -->
+		<action name="Appup" class="appupAction" method="Appup">
+		</action>
+
+
+		<!-- 添加用户反馈 -->
+		<action name="SaveFeedback" class="appupAction" method="SaveFeedback">
+		</action>
+		<!-- 上传app -->
+		<action name="AUP" class="appupAction" method="AUP">
+			
+		</action>
+		<!-- 返回8个 app -->
+		<action name="getapp" class="appupAction" method="getapp">
+		</action>
+
+
+		<!-- 显示到页面 -->
+		<action name="Appset" class="appupAction" method="Appset">
+			<result>/SuperAdmin/SuperAdmin/App/appup.jsp</result>
+		</action>
+		<!-- 统计下载次数 -->
+		<action name="AppDs" class="appupAction" method="AppDs">
+
+		</action>
+		<!-- 通过id删除app -->
+		<action name="Deleteapp" class="appupAction" method="Deleteapp">
+
+		</action>
+		<!-- 判断 请求来自 web还是 wap -->
+		<action name="jztd" class="appupAction" method="Jwebandwap">
+
+		</action>
+		<!-- 判断 请求来自 ios还是 安卓 -->
+		<action name="JzFoIosAndAndroid" class="appupAction" method="JzFoIosAndAndroid">
+			
+		</action>
+		<!-- 判断 请求来自 ios还是 安卓 点击微信下载用的-->
+		<action name="weixinJzFoIosAndAndroid" class="appupAction" method="weixinJzFoIosAndAndroid">
+			
+		</action>
+		
+		
+		<!-- 本身 家长天地app 更新 -->
+		<action name="JztdApp" class="appupAction" method="JztdApp">
+			
+		</action>
+		<!-- 通过id获取app-->
+		<action name="getbyidapp" class="appupAction" method="getbyidapp">
+			
+		</action>
+		
+		<!-- 修改家长天地-->
+		<action name="JztdAppm" class="appupAction" method="JztdAppm">
+			
+		</action>
+		<!-- 计算 客户端被更新次数-->
+		<action name="Appupnum" class="appupAction" method="Appupnum">
+			
+		</action>
+		
+		
+		
+		<!-- WEB端 -->
+		
+		<!-- 获取全部app-->
+		<action name="webGetapp" class="appupAction" method="webGetapp">
+
+			  <result name="success">/SimulationApp/Special_ColumnsCopy.jsp</result>
+			<!--<result name="success">/SimulationApp/Special_Columns.jsp</result>	-->
+		</action>
+		
+
+	</package>
+</struts>

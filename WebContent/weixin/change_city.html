@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>切换地区</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/style.js"></script>
+<script type="text/javascript" src="js/jquery.cityselect.js"></script> 
+<script type="text/javascript" src="js/city.min.js"></script> 
+
+</head>
+
+<body style="background:#f9f9f9"  bgcolor=#FFFFFF alink=#333333 vlink=#333333 link=#333333 topmargin=0 leftmargin=0 onload="init()">
+<form action="weiXniBDN" method="post" name="creator" enctype="multipart/form-data">
+<script language="javascript" src="js/cityselect.js"></script>
+<div class="cont">
+<h1 class="tit tit5s"><a href="/Befriend/weiXniBDN">&lt; 切换城市</a></h1>
+<div class="recont">
+
+    <p class="rtit"><img src="images/re_04s.jpg" width="320" /></p>
+    <div class="pnum2 pnum2s">所在城市：<select name="province" onChange = "select()"></select>  <select name="city" onChange = "select()"></select>
+    
+    </div>
+    <div class="next"><input type="submit" value="保存" /></div>
+   
+</div>
+<!--recont-->
+</div>
+<!--cont-->
+</form>
+</body>
+</html>

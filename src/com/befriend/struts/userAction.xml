@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="User" extends="struts-default">
+
+
+		<!-- 查看统计信息 -->
+		<action name="ViewStatistics" class="userAction" method="ViewStatistics">
+		<result name="success">/SuperAdmin/AdminNews/ViewStatistics.jsp</result>
+		</action>
+		
+		<!-- 同步用户登入 -->
+		<action name="synLogin" class="userAction" method="synLogin">
+		</action>
+		<!-- 同步账号 -->
+		<action name="synSave" class="userAction" method="synSave">
+		</action>
+		<!-- 同步资料 -->
+		<action name="synModification" class="userAction" method="synModification">
+		</action>
+		<!-- sha1 -->
+		<action name="sha1" class="userAction" method="sha1">
+		</action>
+		<!-- 登入 -->
+		<action name="Login" class="userAction" method="Login">
+		</action>
+		<!-- 登入 对密码进行隔离 -->
+		<action name="newLogin" class="userAction" method="newLogin">
+		</action>
+		
+		<!-- 注销手机号-->
+		<action name="userLogout" class="userAction" method="userLogout">
+		</action>
+		<!-- 输入手机号 发送 验证码 判断是否已经用该手机号注册过 -->
+		<action name="appSendCode" class="userAction" method="appSendCode">
+		</action>
+		
+		<!-- 输入手机号 发送 验证码 找回密码 -->
+		<action name="appSendCodePasswrod" class="userAction" method="appSendCodePasswrod">
+		</action>
+
+		<!-- 验证验证码是否正确 -->
+		<action name="appCheckCode" class="userAction" method="appCheckCode">
+		</action>
+
+		<!-- 注册 -->
+		<action name="save" class="userAction" method="save">
+		</action>
+
+		<!-- 修改用户信息 -->
+		<action name="Modification" class="userAction" method="Modification">
+		</action>
+		<!-- 通过手机号修改密码 -->
+		<action name="Modtionphone" class="userAction" method="Modtionphone">
+		</action>
+		
+		<!-- 获取用户信息 -->
+		<action name="getUser" class="userAction" method="getUser">
+		
+		<!-- 查看用户-->
+		<result name="success">/SuperAdmin/AdminForum/user.jsp</result>
+		</action>
+		
+		<!-- 获取用户信息 省级管理查看-->
+		<action name="getUsera" class="userAction" method="getUsera">
+			<!-- 查看用户-->
+			<result name="success">/SuperAdmin/UserAdmin/Admin/user.jsp</result>
+		</action>
+		
+		<!-- 论坛管理登入 -->
+		<action name="AdminLogin" class="userAction" method="AdminLogin">
+		
+		</action>
+
+		<!-- 添加论坛管理 -->
+		<action name="SetQ" class="userAction" method="SetQ">
+		
+		</action>
+		<!-- 省级管理 添加管理 -->
+		<action name="SetQU" class="userAction" method="SetQU">
+		
+		</action>
+		<!-- 查询论坛管理 -->
+		<action name="getUseradmin" class="userAction" method="getUseradmin">
+			<!-- 查看管理-->
+			<result name="success">/SuperAdmin/AdminForum/ofuser.jsp</result>
+		</action>
+		
+		<!-- 查询用户管理 省级管理查看的-->
+		<action name="getUadmin" class="userAction" method="getUadmin">
+			<!-- 查看管理-->
+			<result name="success">/SuperAdmin/UserAdmin/Admin/ofuser.jsp</result>
+		</action>
+	
+		
+		<!-- 模糊查询用户 -->
+		<action name="getUsermh" class="userAction" method="getUsermh">
+			<!-- 查询用户信息-->
+			<result name="success">/SuperAdmin/AdminForum/suser.jsp</result>		
+		</action>	
+		
+		<!-- 模糊查询用户 -->
+		<action name="getUsermhh" class="userAction" method="getUsermhh">
+			<!-- 查看用户信息-->
+			<result name="success">/SuperAdmin/UserAdmin/Admin/suser.jsp</result>		
+		</action>	
+		
+		<!-- 查询用户信息 -->
+		<action name="getUserin" class="userAction" method="getUserin">
+			<!-- 查看用户信息-->
+			<result name="success">/SuperAdmin/AdminForum/inuser.jsp</result>		
+		</action>
+		
+		<!-- 查询用户信息  省级管理  查看-->
+		<action name="getUserine" class="userAction" method="getUserine">
+			<!-- 查看用户信息-->
+			<result name="success">/SuperAdmin/UserAdmin/Admin/inuser.jsp</result>		
+		</action>
+		
+		<!-- 对用户在论坛是否禁言 -->
+		<action name="Gag" class="userAction" method="Gag">
+		</action>	
+		
+		<!-- 用户直接注册家长之友 -->
+		<action name="phonetext" class="userAction" method="phonetext">
+	
+		</action>	
+		
+		<!-- 按照时间查询用户 -->
+		<action name="GetUsertime" class="userAction" method="GetUsertime">
+			<!-- 查看用户信息-->
+			<result name="success">/SuperAdmin/AdminNews/users.jsp</result>
+		</action>	
+		
+		<!-- 查看全部用户-->
+		<action name="GetUserAll" class="userAction" method="GetUserAll">
+			<!-- 查看用户-->
+			<result name="success">/SuperAdmin/AdminNews/usera.jsp</result>
+		</action>
+		
+		<!-- 客户端上传图片-->
+		<action name="HeadPortrait" class="userAction" method="HeadPortrait">
+			
+		</action>
+		
+		<!-- 用户管理员获取用户注册信息 -->
+		<action name="RegionalAdministrator" class="userAction" method="RegionalAdministrator">
+			<!-- 查看用户-->
+			<result name="success">/SuperAdmin/UserAdmin/User/UserInfo.jsp</result>
+		</action>
+		
+		<!-- 按照时间查询  地区  用户数量 -->
+		<action name="GetUsertimeares" class="userAction" method="GetUsertimeares">
+			<!-- 查看用户数量-->
+			<result name="success">/SuperAdmin/UserAdmin/User/users.jsp</result>
+		</action>
+	
+	
+	
+	<!-- WEB用户区域 -->
+	
+		<!-- 用户登入-->
+		<action name="webLogin" class="userAction" method="webLogin">
+			<!-- 新闻主页-->
+			<result name="true">/SimulationApp/webNewsA10</result>
+		</action>
+		
+		<!-- 注册-->
+		<action name="webRegistration" class="userAction" method="webRegistration">
+			<!-- 注册成功-->
+			<result name="success">/SimulationApp/perfect_information.html</result>
+			<!-- 注册失败-->
+			<result name="error">/SimulationApp/RegistrationFailed.jsp</result>	
+		</action>
+		
+		<!-- 完善信息 & 修改信息-->
+		<action name="webModification" class="userAction" method="webModification">
+	
+		</action>
+		<!-- 修改密码-->
+		<action name="webpassModification" class="userAction" method="webpassModification">
+	
+		</action>
+		
+		<!-- 退出 销毁session-->
+		<action name="websessionrom" class="userAction" method="websessionrom">
+		
+		</action>
+		
+		
+		
+		<!-- TCP UDP自用接口! -->
+		
+		
+		<!-- 改变用户状态-->
+		<action name="onlineStatus" class="userAction" method="onlineStatus">
+		
+		</action>
+		<!-- 获取用户ip port-->
+		<action name="uIpPort" class="userAction" method="uIpPort">
+		
+		</action>
+		<!-- 给用户发送未读信息-->
+		<action name="onlineUserSend" class="userAction" method="onlineUserSend">
+		
+		</action>
+		<!-- 一键下线-->
+		<action name="updateAllXiaxian" class="userAction" method="updateAllXiaxian">
+		
+		</action>
+		
+		
+		
+		<!--用户注册环信-->
+		<action name="huanxinzc" class="userAction" method="huanxinzc">
+		
+		</action>
+		
+		<!--为用户生成8位账号-->
+		<action name="accnumnoczc" class="userAction" method="accnumnoczc">
+		
+		</action>
+				
+		</package>
+</struts>
