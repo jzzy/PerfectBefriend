@@ -371,9 +371,40 @@ public class NewsDAOImpl implements NewsDAO
 			
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> getThreeByDay(String day)
+	{
+		Query query = entityManager.createQuery("select u from News u where to_char(u.time,'yyyy-MM-dd') = :day order by u.hits desc,u.cah desc");
+		query.setParameter("day", day);
+		query.setMaxResults(3);
+		
+		return query.getResultList();
+	}
 
-	
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> getRecentlyNews(String type, int pageSize, int currentPage)
+	{
+		Query query =  entityManager.createQuery("select u from News u where u.type = :type order by u.time desc");
+		query.setParameter("type", type);
+		int startRow = (currentPage-1)*pageSize;
+		query.setFirstResult(startRow);
+		query.setMaxResults(pageSize);
+		
+		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> getRecentlyNews(int pageSize, int currentPage)
+	{
+		Query query = entityManager.createQuery("select u from News u order by u.time desc");
+		int startRow = (currentPage-1)*pageSize;
+		query.setFirstResult(startRow);
+		query.setMaxResults(pageSize);
+		
+		return query.getResultList();
+	}
 
 }

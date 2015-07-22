@@ -81,4 +81,26 @@ public interface NewsDAO {
 	//按照8大类 4小类查询 分页查询
 	
 	public List<News> types(String type, int pageSize, int currentPage);
+	
+	/**
+	 * 查询某天的3条热门新闻
+	 * @param day
+	 * @return
+	 */
+	public List<News> getThreeByDay(String day);
+	
+	/**
+	 * 查询最近的新闻
+	 * @param type
+	 * @param pageSize
+	 * @param currentPage
+	 * @return
+	 */
+	public List<News> getRecentlyNews(String type,int pageSize,int currentPage);
+	/**
+	 * @param pageSize
+	 * @param currentPage
+	 * @return
+	 */
+	public List<News> getRecentlyNews(int pageSize,int currentPage);
 }
