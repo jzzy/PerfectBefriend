@@ -294,7 +294,7 @@ public class GroupAction {
 			if (file != null) {
 
 				img = "/IMG/Groupimg/" + groupno;
-				img = util.ufileToServer(img, file, fileFileName, "jpg", true);
+				img = util.ufileToServer(img, file,"jpg");
 				System.out.println(img);
 				groupchat.setImg(img);// ÈºÍ¼±ê
 				System.out.println(file.getPath());
@@ -580,7 +580,7 @@ public class GroupAction {
 				
 			}
 			img = "/IMG/Groupimg/" + groupchat.getGroupno();
-			img = util.ufileToServer(img, file, fileFileName, "jpg", true);
+			img = util.ufileToServer(img, file, "jpg");
 			groupchat.setImg(img);
 			
 

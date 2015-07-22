@@ -31,9 +31,6 @@ public class News implements Serializable {
     @Column(name = "content")
     // 内容  
     private String content;
-    @Column(name = "imgmax")
-    // 新闻大图片
-    private String imgmax;
 
     @Column(name = "img")
     // 新闻小图片
@@ -54,11 +51,11 @@ public class News implements Serializable {
     // 新闻地区 市级
     private String areas;
     @Column(name = "type")
-    // 新闻类别 8大类
-    private String type;
+    // 新闻类别 1育经 2本地 3升学 4学校 5健康
+    private int type;
     @Column(name = "types")
     // 新闻类别 8大类的4大类
-    private String types;
+    private int types;
 
     @Column(name = "hits")
     // 新闻点击数
@@ -106,12 +103,7 @@ public class News implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-    public String getImgmax() {
-        return imgmax;
-    }
-    public void setImgmax(String imgmax) {
-        this.imgmax = imgmax;
-    }
+   
     public String getImg() {
         return img;
     }
@@ -148,19 +140,21 @@ public class News implements Serializable {
     public void setAreas(String areas) {
         this.areas = areas;
     }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
-    public String getTypes() {
-        return types;
-    }
-    public void setTypes(String types) {
-        this.types = types;
-    }
-    public Integer getHits() {
+  
+   
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public int getTypes() {
+		return types;
+	}
+	public void setTypes(int types) {
+		this.types = types;
+	}
+	public Integer getHits() {
         return hits;
     }
     public void setHits(Integer hits) {

@@ -22,8 +22,8 @@ if(admin==null){
 	<a href="<%=request.getContextPath()%>/GetUserAll">查看用户信息</a><br>
 	<a href="<%=request.getContextPath()%>/SuperAdmin/AdminNews/ViewStatistics">查询统计信息</a><br>
 	<a href="<%=request.getContextPath()%>/Newsget">管理新闻</a><br>
-	<a href="<%=request.getContextPath()%>/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp">八大类新闻上传</a><br>
-	<a href="<%=request.getContextPath()%>/SuperAdmin/AdminNews/kindeditor/jsp/AUB.jsp">本地新闻上传</a><br>
+	<a href="<%=request.getContextPath()%>/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp">新闻上传(随机时间)</a><br>
+	<a href="<%=request.getContextPath()%>/SuperAdmin/AdminNews/kindeditor/jsp/AUB.jsp">新闻上传(自定义时间)</a><br>
 
 </body>
 </html>

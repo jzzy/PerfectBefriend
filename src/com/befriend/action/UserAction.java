@@ -557,8 +557,8 @@ public class UserAction {
 
 				util.fileRemove(path);
 				path = "/IMG/Userimg/" + u.getId();
-				String pah = util.ufileToServer(path, file, fileFileName,
-						"jpg", true);
+				String pah = util.ufileToServer(path, file,
+						"jpg");
 				u.setImg(pah);
 
 			}
@@ -1165,8 +1165,8 @@ public class UserAction {
 			if (file != null && u != null) {
 
 				path = "/IMG/Userimg/" + u.getId();
-				String pah = util.ufileToServer(path, file, fileFileName,
-						"jpg", true);
+				String pah = util.ufileToServer(path, file,
+						"jpg");
 				System.out.println(pah);
 				u.setImg(pah);
 				userdao.update(u);
@@ -1910,8 +1910,8 @@ public class UserAction {
 				if (file != null) {
 
 					String path = "/IMG/Userimg/" + u.getId();
-					String pah = util.ufileToServer(path, file, fileFileName,
-							"jpg", true);
+					String pah = util.ufileToServer(path, file,
+							"jpg");
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
@@ -2036,8 +2036,8 @@ public class UserAction {
 				if (file != null) {
 
 					String path = "/IMG/Userimg/" + u.getId();
-					String pah = util.ufileToServer(path, file, fileFileName,
-							"jpg", true);
+					String pah = util.ufileToServer(path, file,
+							"jpg");
 					u.setImg(pah);
 					userdao.update(u);
 				} else {

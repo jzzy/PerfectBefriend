@@ -75,44 +75,45 @@ function cka()
 	List<List> l=(List)request.getAttribute("l");
 	
 	 int i=0;
-	String ty="";
+	 String type="";
+	 String area="";
 	for(;i<l.size();i++){
-	    
+	   
 	    News a= (News) l.get(i);
-	    
-	  if(a.getType()!=null&&a.getType()!=""){
-	      if(a.getType().equals("升学指南")){
-		  
-		   ty= a.getType()+" "+a.getTypes();
-		    }
-		else{
-		    ty= a.getType();
-		}
-		    }else{
-			
-			if(a.getAreas()!=null&&a.getAreas()!=""&&a.getArea()!=null&&a.getArea()!=""){
-			    
-			ty=a.getArea()+" "+a.getAreas();
-			
-		    }
-			else if(a.getAreas()==null||a.getAreas()=="")
-			{
-			    
-			if(a.getArea()!=null&&a.getArea()!=""){
-			ty=a.getArea()+" 缺少市级";
-			}else{
-			    ty="缺少省级"+" 缺少市级";
-			}
-			
-		    }else if(a.getArea()==null||a.getArea()==""){
-			if(a.getAreas()!=null&&a.getAreas()!=""){
-				ty="缺少省级 "+a.getAreas();
-				}else{
-				    ty="缺少省级"+"  缺少市级";
-				}
-		    }
-			
-		    }
+	    if(a!=null){
+	    	if(a.getArea()!=null){
+	    		area=a.getArea();
+	    	}
+	    	if(a.getAreas()!=null){
+	    		if(area!=""){
+	    			area=area+a.getAreas();
+	    		}else{
+	    			area=a.getAreas();
+	    		}
+	    		
+	    	}
+	 switch(a.getType()){
+	 case 1:
+		 type="育经";
+			break;
+	 case 2:
+		 type="本地";
+			break;
+	 case 3:
+		 type="升学";
+			break;
+	 case 4:
+		 type="学校";
+			break;
+	 case 5:
+		 type="健康";
+			break;
+
+		default:
+			type="类别异常";
+			break;
+	 }
+	    }
 	
 		 
 		
@@ -123,7 +124,7 @@ function cka()
 		
 		<td width="330"><a  class="pic" href="<%=request.getContextPath()%>/adminNewsId?id=<%=a.getId()%>"><%=a.getTitle()%></a></td>
 		<td width="167""><%=a.getId()%></td>
-		<td width="180"><%=ty %> </td>
+		<td width="180"><%=type %> <%=area %> </td>
 		<td width="130"><%=a.getAdmin()%> </td>
 		<td width="210"><%=a.getTime()%></td>
 		
@@ -140,7 +141,7 @@ function cka()
 		
 		<td width="330"><input type="text" value="<%=a.getTitle()%>" style="height:25px;width:330px;"></td>
 		<td width="162""><%=a.getId()%></td>
-		<td width="180"><%=ty %> </td>
+		<td width="180"><%=type %> </td>
 		<td width="130"><%=a.getAdmin()%> </td>
 		<td width="210"><input type="text" value="<%=a.getTime()%>"style="height:25px;width:145px;"></td>
 		<td width="160"></td>

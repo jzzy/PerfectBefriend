@@ -183,7 +183,7 @@ public class NewsDAOImpl implements NewsDAO
 
 	@Override
 	public List<News> Pagination(int pageSize, int currentPage) {
-	    Query query = entityManager.createQuery("select u from News u order by u.time desc");
+	    Query query = entityManager.createQuery("select u from News u order by u.id desc");
 		//query.setMaxResults(4);
 		//currentPage页数
 		int startRow = (currentPage-1)*pageSize;
@@ -198,14 +198,14 @@ public class NewsDAOImpl implements NewsDAO
 	}
 
 	@Override
-	public List<News> Hottimes(int num) {
-	    Query query = entityManager.createQuery("select u from News u order"
+	public int Hottimes(int num) {
+	    Query query = entityManager.createQuery("select count(u) from News u order"
 			 + " by u.time desc");
 	    
 	    if(num!=0){
 		query.setMaxResults(num);
 	    }
-	    return query.getResultList();
+	    return (int)(long)query.getSingleResult();
 		}
 
 	@Override
@@ -368,6 +368,34 @@ public class NewsDAOImpl implements NewsDAO
 			query.setMaxResults(1);
 		    
 		    return query.getResultList();
+			
+	}
+
+	@Override
+	public List<News> Pagination(int pageSize, int currentPage, String admin) {
+		 Query query = entityManager.createQuery("select u from News u where admin=:admin order by u.id desc");
+			//query.setMaxResults(4);
+			//currentPage页数
+			int startRow = (currentPage-1)*pageSize;
+			if(startRow<0){
+				startRow=0;
+			}
+			query.setParameter("admin",admin);
+			//第几页
+			query.setFirstResult(startRow);
+			//每页显示几条数据
+			query.setMaxResults(pageSize);
+			return query.getResultList();
+	}
+
+	@Override
+	public int Hottimes(String admin) {
+		
+		    Query query = entityManager.createQuery("select count(u) from News u where admin=:admin order"
+				 + " by u.time desc");
+		    query.setParameter("admin",admin);
+		  
+		    return (int)(long)query.getSingleResult();
 			
 	}
 

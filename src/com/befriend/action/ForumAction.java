@@ -427,7 +427,7 @@ public class ForumAction {
 		if (file != null) {
 
 			img = "/IMG/Forumimg/"+userid;
-			img = util.ufileToServer(img, file, fileFileName, "jpg", true);
+			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);
 
@@ -1474,7 +1474,7 @@ public class ForumAction {
 	 */
 	public void Forumonesaveapp() throws IOException {
 
-		System.out.println(util.getfileName());
+		
 
 		System.out.println("model" + model);
 		if (model <= 0) {
@@ -1525,7 +1525,7 @@ public class ForumAction {
 		if (file != null) {
 
 			img = "/IMG/Forumimg/"+userid;
-			img = util.ufileToServer(img, file, fileFileName, "jpg", true);
+			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);
 
@@ -1583,7 +1583,7 @@ public class ForumAction {
 		if (file != null) {
 
 			img = "/IMG/Forumimg/"+userid;
-			img = util.ufileToServer(img, file, fileFileName, "jpg", true);
+			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);
 

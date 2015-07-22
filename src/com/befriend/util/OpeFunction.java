@@ -15,10 +15,16 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,28 +45,118 @@ import com.opensymphony.xwork2.ActionContext;
  *
  */
 public class OpeFunction {
+	/**
+	 * 获取指定范围内的随机时间
+	 * @param rstart
+	 * @param rend
+	 * @return
+	 * @throws ParseException
+	 */
+	public static String RandomTime(String rstart, String rend)
+			throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date start = format.parse(rstart);// 构造开始日期
+		Date end = format.parse(rend);// 构造结束日期
+		long begin = start.getTime();// 获取开始时间戳
+		long endd = end.getTime();// 获取结束时间戳	
+		boolean b = true;
+		long rtn = 0;
+		while (b) {
+
+			rtn = begin + (long) (Math.random() * (endd - begin));
+			// 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
+			if (rtn == start.getTime() || rtn == end.getTime()) {
+
+				continue;
+
+			}
+
+			b = false;
+		}
+		//System.out.println(rtn);//随机时间戳
+		System.out.println("获取到的随机时间"+format.format(new Date(rtn)));
+		return format.format(new Date(rtn));
+
+	}
+
+	/**
+	 * 解析 html img 标签 src中的 地址
+	 * 
+	 * @param content
+	 * @return
+	 */
+	public static List getImgs(String content) {
+
+		String regEx_img = "<img src=\"(.*?)\".*?>";
+		Pattern p_image;
+		ArrayList<String> images = new ArrayList<String>();
+		Matcher m_image;
+		p_image = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
+		m_image = p_image.matcher(content);
+
+		while (m_image.find()) {
+			images.add(m_image.group(1));
+
+		}
+
+		return images;
+	}
 
 	// private static final int FIRST_DAY_OF_WEEK = 0;
 	/**
-	 * 获取本机ip
+	 * 获取时间
+	 * 1年
+	 * 2月
+	 * 3天
+	 * 4时
+	 * 5分
+	 * 6秒
 	 * 
 	 * @throws UnknownHostException
 	 */
-	public static String getfileName() {
+	public static String getfileName(int reg) {
 		Calendar cal = Calendar.getInstance();// 使用日历类
+		/**
 		System.out.println("年" + cal.get(Calendar.YEAR));
 		System.out.println("月" + cal.get(Calendar.MONTH) + 1);
 		System.out.println("天" + cal.get(Calendar.DAY_OF_MONTH));
 		System.out.println("时" + cal.get(Calendar.HOUR));
 		System.out.println("分" + cal.get(Calendar.MINUTE));
 		System.out.println("秒" + cal.get(Calendar.SECOND));
-		;
-		String name = "/" + Integer.valueOf(cal.get(Calendar.YEAR)).toString()
-				+ Integer.valueOf(cal.get(Calendar.MONTH) + 1).toString()
-				+ Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH)).toString()
-				+ Integer.valueOf(cal.get(Calendar.HOUR)).toString()
-				+ Integer.valueOf(cal.get(Calendar.MINUTE)).toString()
-				+ Integer.valueOf(cal.get(Calendar.SECOND)).toString();
+		*/
+		String name="";
+		switch (reg) {
+		case 1:
+			name=Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			break;
+		case 2:
+			if(cal.get(Calendar.MONTH)+1<10){
+			name="0"+Integer.valueOf(cal.get(Calendar.MONTH)+1).toString();
+			}else{
+				name=Integer.valueOf(cal.get(Calendar.MONTH)+1).toString();
+			}
+			break;
+		case 3:
+			if(cal.get(Calendar.DAY_OF_MONTH)<10){
+			name="0"+Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH)).toString();
+			}else{
+				name=Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH)).toString();
+			}
+			break;
+		case 4:
+			name=Integer.valueOf(cal.get(Calendar.HOUR)).toString();
+			break;
+		case 5:
+			name=Integer.valueOf(cal.get(Calendar.MINUTE)).toString();
+			break;
+		case 6:
+			name=Integer.valueOf(cal.get(Calendar.SECOND)).toString();
+			break;
+
+		default:
+			name=Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			break;
+		}
 		return name;
 	}
 
@@ -97,7 +193,7 @@ public class OpeFunction {
 		return map.get(name);
 
 	}
-	
+
 	/**
 	 * 进行sha1加密
 	 * 
@@ -128,8 +224,7 @@ public class OpeFunction {
 	 * 文件上传到服务器 可以自己定义文件格式
 	 *
 	 */
-	public static String ufileToServer(String path, File file, String fileName,
-			String fileType, boolean reName) throws IOException {
+	public static String ufileToServer(String path, File file,String fileType) throws IOException {
 
 		String realpath = ServletActionContext.getServletContext().getRealPath(
 				path);// 服务器路径
@@ -138,21 +233,10 @@ public class OpeFunction {
 			if (!savedir.getParentFile().exists())
 				savedir.getParentFile().mkdirs();
 			File saveFile;
-			// fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
-
-			// 重新命名 以免重名
-			if (reName) {
-
-				saveFile = new File(savedir, java.util.UUID.randomUUID() + "."
+			saveFile = new File(savedir, java.util.UUID.randomUUID() + "."
 						+ fileType);
 
-				FileUtils.copyFile(file, saveFile);
-				return path + "/" + saveFile.getName();
-			} else
-				saveFile = new File(savedir, fileName);
-
 			FileUtils.copyFile(file, saveFile);
-
 			return path + "/" + saveFile.getName();
 		}
 
@@ -256,6 +340,7 @@ public class OpeFunction {
 		return matter1.format(dt);
 
 	}
+
 	/**
 	 * 获得本地时间
 	 * 
@@ -268,7 +353,6 @@ public class OpeFunction {
 		return matter1.format(dt);
 
 	}
-
 
 	/**
 	 * +1 获得昨天 -1获取明天
@@ -430,7 +514,7 @@ public class OpeFunction {
 	 * 向手机号发送信息
 	 */
 	public static void setphone(String phone, String textp) {
-		try {	
+		try {
 			String account = "cf_wcsk_jztd";// 用户名 cf_wcsk_jztd
 			String pwd = "wcsk1212";// 密码 wcsk1212
 			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// 地址
@@ -466,6 +550,38 @@ public class OpeFunction {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
+
+	}
+
+	public static void main(String[] args) throws ParseException {
+		System.out.println(RandomTime("2014-07-21 11:06:11", "2015-01-01 11:06:11"));
+		/**
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+		Date start = format.parse("2014-07-21 11:06:11");// 构造开始日期
+
+		Date end = format.parse("2015-07-21 11:06:11");// 构造结束日期
+		long begin = start.getTime();
+		long endd = end.getTime();
+		System.out.println(begin + "---------" + endd);
+		boolean b = true;
+		long rtn = 0;
+		while (b) {
+
+			rtn = begin + (long) (Math.random() * (endd - begin));
+			// 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
+			if (rtn == start.getTime() || rtn == end.getTime()) {
+
+				continue;
+
+			}
+
+			b = false;
+		}
+		System.out.println(rtn);
+
+		System.out.println(format.format(new Date(rtn)));
+		*/
 
 	}
 
