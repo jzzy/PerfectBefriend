@@ -371,7 +371,7 @@ public class NewsDAOImpl implements NewsDAO
 			
 	}
 
-<<<<<<< HEAD
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<News> getThreeByDay(String day)
@@ -382,7 +382,7 @@ public class NewsDAOImpl implements NewsDAO
 		
 		return query.getResultList();
 	}
-=======
+
 	@Override
 	public List<News> Pagination(int pageSize, int currentPage, String admin) {
 		 Query query = entityManager.createQuery("select u from News u where admin=:admin order by u.id desc");
@@ -412,7 +412,6 @@ public class NewsDAOImpl implements NewsDAO
 	}
 
 	
->>>>>>> 0a6c2325303b593215ccb697a75bbfead8641873
 
 	@SuppressWarnings("unchecked")
 	@Override
