@@ -29,34 +29,33 @@ if(n==null){
  <div class="newtit">
        <h2 class="ntit"><%=n.getTitle() %></h2>
        
-      <%
-       if(n.getArea()!=null&&n.getAreas()!=null){
-       %>
-       
-       <div class="date"><%="发布日期:"+n.getTime()+"   "+n.getArea()+n.getAreas() %></div>
-		<% 
-       }else if(n.getTypes()!=null){
-		%>
-		 <div class="date"><%="发布日期:"+n.getTime()+"   "+n.getType() +" "+n.getTypes()%></div>
-		<%
-		}else if(n.getType()!=null){
-       %>
-        <div class="date"><%="发布日期:"+n.getTime()+"   "+n.getType()%></div>
-       <%
-       }else{
-       %>
-        <div class="date"><%="发布日期:"+n.getTime()%></div>
-       <%
-       }
-       %>
-   <a href="<%=request.getContextPath()%>/webCsave?newsid=<%=n.getId()%>">收藏</a>
+    
+  <!--   <a href="<%=request.getContextPath()%>/webCsave?newsid=<%=n.getId()%>">收藏</a>-->
    </div>
    <!--newtit-->
-
-   <div class="zhaiyao"><b><%=n.getSummary() %></div>
+	
+  <!--   <div class="zhaiyao"><b><%=n.getSummary() %></div>-->
    <!--zhaiyao-->
-   <div class="contimg"><p><img src="<%=request.getContextPath()+n.getImgmax() %>" width="100%"></p></div>
-   <p class="nditail"><%=n.getContent() %></p>
+   <div class="contimg">
+   <%
+   
+   
+  			 String [] s=n.getImg().toString().split(","); 
+  			 for(int i=0;i<s.length;i++){
+			 if(s[i].length()>5){
+				
+			 
+			  
+  			%>
+   <p><img src="<%=request.getContextPath() %><%=s[i] %>" ></p>
+   <%
+			 }
+}
+   %>
+   </div>
+   <p class="nditail">
+   <%=n.getContent() %>
+  </p>
     <% 
    	if(rl!=null&&ul!=null){
    		%>
@@ -95,7 +94,9 @@ if(n==null){
     <%
    	}
     %>
-    <br/><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回">
+    <br />地区省:<%=n.getArea()+" 地区市:"+n.getAreas() %>
+    <br/><input type="button"  onclick="javascript:history.back(-1);" value="返回">
+    <a href="<%=request.getContextPath()%>/adminNewsIds?id=<%=n.getId() %>"><input type="button" value="修改"></a>
    <!--  
    <h1 class="tit tit3"><span>更多热点</span><a href="#" class="more">></a></h1>
    <ul class="hot">

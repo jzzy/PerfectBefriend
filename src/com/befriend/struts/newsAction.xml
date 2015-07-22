@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="News" extends="struts-default">
+	<package name="News" extends="struts-default" >
 
 		<!-- 查看新闻是否更新 -->
 		<action name="newNewsId" class="newsAction" method="newNewsId">
@@ -130,8 +130,13 @@
 		<action name="adminNewsId" class="newsAction" method="adminNewsId">
 		<result name="success">/SuperAdmin/AdminNews/news_cont.jsp</result>
 		</action>
+			<action name="adminNewsIds" class="newsAction" method="adminNewsIds">
+		<result name="success">/SuperAdmin/AdminNews/kindeditor/jsp/UDAU.jsp</result>
+		</action>
 		
-		
+		<action name="adminNewsIdup" class="newsAction" method="adminNewsIdup">
+		<result name="success">/SuperAdmin/AdminNews/kindeditor/jsp/UDAU.jsp</result>
+		</action>
 		
 			<!--WEB区域-->
 			

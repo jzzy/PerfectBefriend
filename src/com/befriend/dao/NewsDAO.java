@@ -18,10 +18,12 @@ public interface NewsDAO {
 
 	// 分页查询
 	public List<News> Pagination(int pageSize, int currentPage);
-
+	// 分页查询
+	public List<News> Pagination(int pageSize, int currentPage,String admin);
 	// 1 查询num 按照时间排序
-	public List<News> Hottimes(int num);
-
+	public int Hottimes(int num);
+	// 1 查询num 按照时间排序
+	public int Hottimes(String admin);
 	// 2 查询num 按照时间排序 不包括 轻松驿站 健康导航 类
 	public List<News> Hottime(int num);
 
