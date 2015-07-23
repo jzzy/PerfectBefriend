@@ -84,6 +84,7 @@
 	<bean id="groupDAO" class="com.befriend.dao.impl.GroupDAOImpl"></bean>
 	<!-- 统计用户注册数量dao -->
 	<bean id="registrationDAO" class="com.befriend.dao.impl.RegistrationDAOImpl"></bean>
+	<bean id="behaviorDAO" class="com.befriend.dao.impl.BehaviorDAOImpl"></bean>
 
 	<!-- Action start here -->
 	

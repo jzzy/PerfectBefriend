@@ -20,13 +20,14 @@ public class News implements Serializable {
     private static final long serialVersionUID = 1L;
     
     //常量
-    public static final String TOP_NEWS = "头条";
-    public static final String RECOMMEND = "推荐";
-    public static final String LOCAL = "本地";
-    public static final String EDUCATION = "育经";
-    public static final String THE_ENTRANCE = "升学";
-    public static final String HEALTHY = "健康";
-    public static final String SCHOOL = "学校";
+    public static final int EDUCATION = 1;
+    public static final int LOCAL = 2;
+    public static final int THE_ENTRANCE = 3;
+    public static final int SCHOOL = 4;
+    public static final int HEALTHY = 5;
+    public static final int TOP_NEWS = 6;
+    public static final int RECOMMEND = 7;
+    
     
     @Id
     @Column(name = "id")
