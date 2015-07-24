@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -30,6 +31,7 @@ public class AppPushAction extends BaseAction
 	private static final long serialVersionUID = 1L;
 	private static final int BEHAVIOR_NUM = 10;// 统计的行为数
 	private static final int NEWS_TYPE_NUM = 5;// 新闻分类数
+	private static final float deviation = 0.03f;//舍6进7
 
 	private NewsDAO newsDAO;
 	private UserDAO userDAO;
@@ -43,6 +45,8 @@ public class AppPushAction extends BaseAction
 	private String province;
 	private String city;
 	private String userId;
+	
+	private List<Behavior> labelBehaviors;
 
 	/**
 	 * 推送新闻
@@ -82,23 +86,23 @@ public class AppPushAction extends BaseAction
 					int realSize = 0;// 实际push新闻数,不一定为pageSize
 					Integer _userId = Integer.valueOf(userId.trim());
 					User user = userDAO.byid(_userId);
-					List<Behavior> typeBehaviors = behaviorDAO
-							.findByUserIdType(NEWS_TYPE_NUM, _userId,
-									Behavior.NEWS_TYPE);
-					long typeSum = 0l;
+					List<Behavior> typeBehaviors = behaviorDAO.findByUserIdType(NEWS_TYPE_NUM, _userId, Behavior.NEWS_TYPE);
+					long typeSum = typeBehaviors.size();//防止被除数为0
 					for (Behavior behavior : typeBehaviors)
 					{
 						typeSum += behavior.getCount();
 					}
 					for (Behavior behavior : typeBehaviors)
 					{
-						int occupy = (int) (behavior.getCount() / (float) typeSum)
-								* pageSize;
+						/**
+						 * 根据比例，舍6进7，计算各个新闻的调数
+						 */
+						int occupy = (int) ((behavior.getCount()+1) / (float) typeSum+deviation)* pageSize;
 						realSize += occupy;
 						behavior.setOccupy(occupy);
 					}
 
-					List<Behavior> labelBehaviors = behaviorDAO.findByUserIdType(BEHAVIOR_NUM, _userId,Behavior.LABEL);
+					labelBehaviors = behaviorDAO.findByUserIdType(BEHAVIOR_NUM, _userId,Behavior.LABEL);
 					/**
 					 * 取出最近一周的新闻
 					 */
@@ -109,7 +113,6 @@ public class AppPushAction extends BaseAction
 					String endTime = sdf.format(calendar.getTime());
 					List<News> recentlyNews = newsDAO.getRecentlyNews(startTime, endTime);
 					/**
-					 * 过滤不push的新闻
 					 * 按照标签统计进行排序
 					 */
 					
@@ -150,6 +153,30 @@ public class AppPushAction extends BaseAction
 						/**
 						 * 根据各类新闻起始游标进行push
 						 */
+						for(int i = 0;i < typeBehaviors.size();i++)
+						{
+							for(int j = 0; j<typeBehaviors.get(i).getOccupy();j++)
+							{
+								/**
+								 * 循环push各类新闻
+								 * 判断该类新闻还有新闻可以push
+								 */
+								if(startP[j] < recentlyNews.size())
+								{
+									news.add(recentlyNews.get(startP[j]++));
+								}
+							}
+						}
+						/**
+						 * 判断最后push得到的新闻长度
+						 */
+						if (news.size() > 0)
+							msg.setCode(Message.SUCCESS);
+						else
+						{
+							msg.setCode(Message.FAILED);
+							msg.setStatement("无内容更新");
+						}
 
 					}
 				} else
@@ -192,6 +219,26 @@ public class AppPushAction extends BaseAction
 			msg.setContent("请求参数为空！");
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	/**
+	 * 新闻比较器
+	 * @author STerOTto
+	 */
+	private class NewsComparator implements Comparator<News>
+	{
+		@Override
+		public int compare(News frist, News second) 
+		{
+			if(labelBehaviors.size() == 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return 1;
+			}
+		}
+
 	}
 
 	public AppPushAction(NewsDAO newsDAO, UserDAO userDAO)
