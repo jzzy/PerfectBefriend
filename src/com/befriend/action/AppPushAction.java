@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -111,11 +112,11 @@ public class AppPushAction extends BaseAction
 					String startTime = sdf.format(calendar.getTime());
 					calendar.add(Calendar.DAY_OF_YEAR, 7);
 					String endTime = sdf.format(calendar.getTime());
-					List<News> recentlyNews = newsDAO.getRecentlyNews(startTime, endTime);
+					List<News> recentlyNews = newsDAO.getRecentlyNewsByTime(startTime, endTime);
 					/**
 					 * 按照标签统计进行排序
 					 */
-					
+					Collections.sort(recentlyNews, new NewsComparator());
 					/**
 					 * 将最近新闻按照push规则进行排序
 					 */
@@ -189,8 +190,7 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 本地 按地区显示新闻，默认显示北京
 				 */
-				news = newsDAO.getRecentlyNews(type, province, city, pageSize,
-						currentPage);
+				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), province, city, pageSize,currentPage);
 				if (news.size() > 0)
 					msg.setCode(Message.SUCCESS);
 				else
@@ -203,7 +203,7 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 其它类别的新闻
 				 */
-				news = newsDAO.getRecentlyNews(type, pageSize, currentPage);
+				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), pageSize, currentPage);
 				if (news.size() > 0)
 					msg.setCode(Message.SUCCESS);
 				else
@@ -227,7 +227,7 @@ public class AppPushAction extends BaseAction
 	private class NewsComparator implements Comparator<News>
 	{
 		@Override
-		public int compare(News frist, News second) 
+		public int compare(News first, News second) 
 		{
 			if(labelBehaviors.size() == 0)
 			{
@@ -235,17 +235,53 @@ public class AppPushAction extends BaseAction
 			}
 			else
 			{
-				return 1;
+				/**
+				 * 定位标签索引
+				 * 比较两个索引先后顺序
+				 */
+				int indexF = labelBehaviors.size();
+				int indexS = labelBehaviors.size();
+				for (int i = 0; i < labelBehaviors.size(); i++) 
+				{
+					if(first.getLabel().contains(labelBehaviors.get(i).getKeyword()))
+					{
+						indexF = i;
+						break;
+					}
+				}
+				for (int i = 0; i < labelBehaviors.size(); i++) {
+					if(first.getLabel().contains(labelBehaviors.get(i).getKeyword()))
+					{
+						indexS = i;
+						break;
+					}
+				}
+				/**
+				 * frist > second 
+				 */
+				if(indexF < indexS)
+					return -1;
+				/**
+				 * frist < second
+				 */
+				else if(indexF > indexS)
+					return 1;
+				/**
+				 * frist = second
+				 */
+				else
+					return 0;
 			}
 		}
 
 	}
 
-	public AppPushAction(NewsDAO newsDAO, UserDAO userDAO)
-	{
+	
+	public AppPushAction(NewsDAO newsDAO, UserDAO userDAO, BehaviorDAO behaviorDAO) {
 		super();
 		this.newsDAO = newsDAO;
 		this.userDAO = userDAO;
+		this.behaviorDAO = behaviorDAO;
 	}
 
 	public PageUtil getPage()
@@ -327,5 +363,5 @@ public class AppPushAction extends BaseAction
 	{
 		this.userId = userId;
 	}
-
+	
 }

@@ -80,6 +80,9 @@ public class News implements Serializable {
     // 是否为专家发布 0 正常 1专家
     @Column(name = "expert")
     private int expert;
+    //新闻标签
+    @Column(name="label")
+    private String label;
     
  
     
@@ -183,7 +186,13 @@ public class News implements Serializable {
     public void setAdmin(String admin) {
         this.admin = admin;
     }
-  
+	public String getLabel() {
+		return label;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+    
    
    
 }

@@ -141,14 +141,18 @@
 	<!-- 微信接口开发 -->
 	<bean id="wechatAction" class="com.befriend.action.WechatAction"
 		scope="prototype">
-		
-		
-		
 	</bean>
+	<bean id="appPushAction" class="com.befriend.action.AppPushAction" scope="prototype">
+		<constructor-arg ref="newsDAO"></constructor-arg>
+		<constructor-arg ref="userDAO"></constructor-arg>
+		<constructor-arg ref="behaviorDAO"></constructor-arg>
+	</bean>	
 	
 	<!-- 在java普通类中调用 dao-->
 	<bean id="app" class="com.befriend.util.ApplicationUtil">
 	</bean>
+	
+	
 	
 
 	
