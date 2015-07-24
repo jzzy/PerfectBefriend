@@ -478,6 +478,20 @@ public class UserDAOImpl implements UserDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public User byMac(String mac) {
+		Query query = entityManager
+				.createQuery("select u from User u where u.mac=:mac");
+		query.setParameter("mac", mac);
+
+		query.setMaxResults(1);
+		@SuppressWarnings("unchecked")
+		List<User> users = query.getResultList();
+		if (users.size() > 0)
+			return users.get(0);
+		return null;
+	}
+
 	
 
 	

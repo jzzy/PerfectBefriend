@@ -51,11 +51,16 @@ public class UserAction {
 	// String postUrl =
 	// "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// 地址
 
+	private int sex = -1;// 我的性别
+	private String signature;// 个性签名
+	private int childrensex = -1;// 孩子性别
+	private int childrenage = -1;// 孩子年龄
+	private String mac;
 	private String phone;// 手机号
 	private String username;// 用户名
 	private String password;// 密码
 	private String newpwd;// 新密码密码
-	private int id;// 用户id
+	private int id = -1;// 用户id
 	private String school;// 所在学校
 	private String stage;// 阶段
 	private String time = util.getNowTime();// 时间
@@ -67,9 +72,9 @@ public class UserAction {
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
 
-	private int competence2 = 0;// 用户id competence 用户权限 0-普通用户 1-市级论坛管理员
-								// 2-省级论坛管理员
-	private int gag = 0;// 0是正常 1 是 禁言
+	private int competence2 = -1;// 用户id competence 用户权限 0-普通用户 1-市级论坛管理员
+									// 2-省级论坛管理员
+	private int gag = -1;// 0是正常 1 是 禁言
 	private int pageSize = 50;// 每页显示 多少条数据
 	private int currentPage = 1;// 这是第多少页
 
@@ -81,7 +86,7 @@ public class UserAction {
 	private String fileContentType;// 文件类型
 
 	private String accnumno;//
-	private int port = 0;//
+	private int port = -1;//
 	private String ip;// 用户ip
 	private String province;// 获取前端的 省级
 	private String city;// 获取前端的 市级
@@ -95,13 +100,13 @@ public class UserAction {
 	 * @throws IOException
 	 */
 	public String ViewStatistics() throws IOException {
-		
+
 		String url = "http://127.0.0.1/PerfectBefriend/aStas";
 		WechatKit.sendGet(url);
 		List<Stas> ios = adao.StasTime("all", "ios");
 		List<Stas> android = adao.StasTime("all", "android");
 		List<Stas> web = adao.StasTime("all", "web");
-		List<Stas> other = adao.StasTimeother("all");	
+		List<Stas> other = adao.StasTimeother("all");
 		List<Stas> syn = adao.StasTime("all", "syn");
 		request.setAttribute("ios", ios);
 		request.setAttribute("android", android);
@@ -119,64 +124,28 @@ public class UserAction {
 	 * @throws IOException
 	 */
 	public void sha1() throws NoSuchAlgorithmException, IOException {
-	
+
 		/**
-		
-		int[] a = { 49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 1 };
-		System.out.println("排序之前：");
-		// 插入排序
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i] + " ");
-		}
-		// 直接插入排序
-		for (int i = 1; i < a.length; i++) {
-			// 待插入元素
-			int temp = a[i];
-			int j;
-
-			for (j = i - 1; j >= 0; j--) {
-				// 将大于temp的往后移动一位
-				if (a[j] > temp) {
-					a[j + 1] = a[j];
-				} else {
-					break;
-				}
-			}
-			a[j + 1] = temp;
-			System.out.println("=========");
-			for (int x = 0; x < a.length; x++) {
-				if (x == a.length - 1) {
-					System.out.println(a[x]);
-				} else {
-					System.out.print(a[x] + " ");
-				}
-
-			}
-		}
-		System.out.println();
-		System.out.println("排序之后：");
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i] + " ");
-		}
-
-		// 冒泡排序
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a.length - i - 1; j++) {
-				// 这里-i主要是每遍历一次都把最大的i个数沉到最底下去了，没有必要再替换了
-				if (a[j] > a[j + 1]) {
-					int temp = a[j];
-					a[j] = a[j + 1];
-					a[j + 1] = temp;
-				}
-			}
-		}
-		System.out.println();
-		System.out.println("排序之后：");
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i] + " ");
-		}
-		*/
-		
+		 * int[] a = { 49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 1 };
+		 * System.out.println("排序之前："); // 插入排序 for (int i = 0; i < a.length;
+		 * i++) { System.out.print(a[i] + " "); } // 直接插入排序 for (int i = 1; i <
+		 * a.length; i++) { // 待插入元素 int temp = a[i]; int j;
+		 * 
+		 * for (j = i - 1; j >= 0; j--) { // 将大于temp的往后移动一位 if (a[j] > temp) {
+		 * a[j + 1] = a[j]; } else { break; } } a[j + 1] = temp;
+		 * System.out.println("========="); for (int x = 0; x < a.length; x++) {
+		 * if (x == a.length - 1) { System.out.println(a[x]); } else {
+		 * System.out.print(a[x] + " "); }
+		 * 
+		 * } } System.out.println(); System.out.println("排序之后："); for (int i =
+		 * 0; i < a.length; i++) { System.out.print(a[i] + " "); }
+		 * 
+		 * // 冒泡排序 for (int i = 0; i < a.length; i++) { for (int j = 0; j <
+		 * a.length - i - 1; j++) { // 这里-i主要是每遍历一次都把最大的i个数沉到最底下去了，没有必要再替换了 if
+		 * (a[j] > a[j + 1]) { int temp = a[j]; a[j] = a[j + 1]; a[j + 1] =
+		 * temp; } } } System.out.println(); System.out.println("排序之后："); for
+		 * (int i = 0; i < a.length; i++) { System.out.print(a[i] + " "); }
+		 */
 
 	}
 
@@ -557,8 +526,7 @@ public class UserAction {
 
 				util.fileRemove(path);
 				path = "/IMG/Userimg/" + u.getId();
-				String pah = util.ufileToServer(path, file,
-						"jpg");
+				String pah = util.ufileToServer(path, file, "jpg");
 				u.setImg(pah);
 
 			}
@@ -672,7 +640,7 @@ public class UserAction {
 				util.Out().print("用户名格式不对！");
 				return null;
 			}
-			
+
 		}
 		// 验证密码
 		reg = "[A-Za-z0-9_]{6,18}";
@@ -1165,8 +1133,7 @@ public class UserAction {
 			if (file != null && u != null) {
 
 				path = "/IMG/Userimg/" + u.getId();
-				String pah = util.ufileToServer(path, file,
-						"jpg");
+				String pah = util.ufileToServer(path, file, "jpg");
 				System.out.println(pah);
 				u.setImg(pah);
 				userdao.update(u);
@@ -1473,11 +1440,12 @@ public class UserAction {
 			util.Out().print(util.ToJson(u));
 			// 更新在线用户数量
 			time = util.getNumTime(0);
-			String url="";
-			if(province!=null){
-			 url= "http://127.0.0.1/PerfectBefriend/aStas?os=" + os+"&province="+province;
-			}else{
-			url="http://127.0.0.1/PerfectBefriend/aStas?os=" + os;	
+			String url = "";
+			if (province != null) {
+				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+						+ "&province=" + province;
+			} else {
+				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
 			}
 			WechatKit.sendGet(url);
 
@@ -1560,7 +1528,7 @@ public class UserAction {
 		if (pd == null) {
 			System.out.println("密码不对!");
 			((HttpServletResponse) util.response()).sendRedirect(request
-					.getContextPath() + "/webNewsA10");		
+					.getContextPath() + "/webNewsA10");
 			return;
 		}
 
@@ -1578,20 +1546,20 @@ public class UserAction {
 			u.setFinaltime(time);
 			u.setIp(request.getRemoteAddr());
 			u.setOs("syn");
-			
+
 			userdao.update(u);
 			// u.setPassword(pd.getPassword());
 			// 更新在线用户数量
 			time = util.getNumTime(0);
-			
+
 			session.setAttribute("u", u);
 
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
 			String url = "";
 			if (u.getAddress() != null) {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os + "&province="
-						+ u.getAddress();
+				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+						+ "&province=" + u.getAddress();
 			} else {
 				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
 			}
@@ -1636,7 +1604,7 @@ public class UserAction {
 			} else {
 				u.setLoginnum(1);
 			}
-		    u.setOnline(1);
+			u.setOnline(1);
 			u.setFinaltime(time);
 			u.setIp(request.getRemoteAddr());
 			os = "web";
@@ -1646,7 +1614,6 @@ public class UserAction {
 			// 更新在线用户数量
 			time = util.getNumTime(0);
 
-			
 			session.setAttribute("u", u);
 
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -1654,8 +1621,8 @@ public class UserAction {
 			System.out.println("转发走了");
 			String url = "";
 			if (u.getAddress() != null) {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os + "&province="
-						+ u.getAddress();
+				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+						+ "&province=" + u.getAddress();
 			} else {
 				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
 			}
@@ -1882,7 +1849,7 @@ public class UserAction {
 				u.setAddress(address);
 				u.setAddcity("未设置");
 			}
-			
+
 			u.setFinaltime(time);
 			u.setSchool("未填写");
 			u.setOs(os);
@@ -1910,8 +1877,7 @@ public class UserAction {
 				if (file != null) {
 
 					String path = "/IMG/Userimg/" + u.getId();
-					String pah = util.ufileToServer(path, file,
-							"jpg");
+					String pah = util.ufileToServer(path, file, "jpg");
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
@@ -1942,6 +1908,90 @@ public class UserAction {
 
 		} catch (Exception e) {
 		}
+	}
+
+	/**
+	 * 新用户注册 通过mac 密码为完美ID
+	 * 
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public void oneSave() throws IOException, JSONException {
+
+		u = userdao.byMac(mac);
+		if (u != null) {
+			System.out.println("注册过!");
+			util.Out().print(util.ToJson(u));
+			return;
+		}
+		boolean b = true;
+		// 判断生成群号 会不会和以前冲突
+		while (b) {
+			// 随机生成8位随机数 作为 群号
+			accnumno = String
+					.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
+			if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
+				b = false;
+			}
+
+		}
+		u = new User();
+		u.setAccnumno(accnumno);
+		u.setMac(mac);
+		u.setStage("未填写");
+		if (address == null) {
+			u.setAddress("北京");
+			u.setAddcity("海淀区");
+		} else {
+			u.setAddress(address);
+			u.setAddcity("未设置");
+		}
+
+		u.setFinaltime(time);
+		u.setSchool("未填写");
+		u.setOs(os);
+		u.setOnline(1);
+		u.setTime(time);
+		u.setCompetence(0);// 普通用户
+		u.setGag(0);// 可以创建论坛
+		userdao.save(u);
+		System.out.println("注册成功 phone" + phone + "accnumno:" + accnumno
+				+ ",pw:" + password);
+
+		// 注册环信
+		u = userdao.byUsernameAccnumnoPhone(accnumno);
+		if (u != null) {
+			if (file != null) {
+
+				String path = "/IMG/Userimg/" + u.getId();
+				String pah = util.ufileToServer(path, file, "jpg");
+				u.setImg(pah);
+				userdao.update(u);
+			} else {
+				System.out.println("没有获取到头像!");
+			}
+			pd.setUid(u.getId());
+			pd.setPassword(accnumno);
+			userdao.save(pd);
+			JSONObject json = new JSONObject();
+			json.put("username", u.getId());
+			// 用户id
+			json.put("password", "123456");
+			// 用户密码
+			String w = WechatKit.post(url, json,
+					RefreshAccessToken.access_token);
+			System.out.println(w);
+			u.setPassword(accnumno);
+
+			util.Out().print(util.ToJson(u));
+			String url = "http://127.0.0.1/PerfectBefriend/aStas?province="
+					+ address + "&os=" + os;
+			WechatKit.sendGet(url);
+			return;
+		}else{
+			util.Out().print("null");
+		}
+
 	}
 
 	/**
@@ -2036,8 +2086,7 @@ public class UserAction {
 				if (file != null) {
 
 					String path = "/IMG/Userimg/" + u.getId();
-					String pah = util.ufileToServer(path, file,
-							"jpg");
+					String pah = util.ufileToServer(path, file, "jpg");
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
@@ -2124,26 +2173,16 @@ public class UserAction {
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 			String newpassword = "";
 			System.out.println("进入Modification");
-			nickname = request.getParameter("nickname");
-
-			addcity = request.getParameter("addcity");
-
-			stage = request.getParameter("stage");
-			address = request.getParameter("address");
-			password = request.getParameter("password");
-
-			newpassword = request.getParameter("newpassword");
-			username = request.getParameter("username");
 			// 用于修改 密码的
 			String p = request.getParameter("p");
-			System.out.println("用户号或者用户名或者手机号是" + username);
+			System.out.println("用户号或者用户名或者手机号是完美ID" + accnumno);
 			System.out.println("地址省级" + address);
 			System.out.println("地址市级" + addcity);
 			System.out.println("孩子阶段" + stage);
 			System.out.println("手机是" + phone);
 			System.out.println("学校是" + school);
 			System.out.println("密码是" + password);
-			System.out.println("用户名 要修改的!:" + accnumno);
+			System.out.println("用户名 要修改的!:" + username);
 			System.out.println("新密码是" + newpassword);
 			System.out.println("昵称是" + nickname);
 			System.out.println("p是空 就是  修改个人资料 不是空 就是 修改密码+" + p);
@@ -2156,7 +2195,7 @@ public class UserAction {
 			 * }
 			 */
 
-			u = userdao.byUsernameAccnumnoPhone(username);
+			u = userdao.byUsernameAccnumnoPhone(accnumno);
 			if (u == null) {
 				System.out.println("没有该用户!");
 				util.Out().print("null");
@@ -2164,12 +2203,6 @@ public class UserAction {
 			}
 
 			if (p != null) {
-				u = userdao.byUsernameAccnumnoPhone(username);
-				if (u == null) {
-					System.out.println("账户为空");
-					util.Out().print("null");
-					return;
-				}
 				pd = userdao.login(u.getId(), password);
 				if (pd == null) {
 					System.out.println("密码不对!");
@@ -2206,20 +2239,20 @@ public class UserAction {
 			}
 
 			if (u.getUsername() == null) {
-				if (accnumno != null) {
+				if (username != null) {
 					reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-					if (accnumno.matches(reg)) {
-						if (userdao.byUsernameAccnumnoPhone(accnumno) != null) {
+					if (username.matches(reg)) {
+						if (userdao.byUsernameAccnumnoPhone(username) != null) {
 							System.out.println("1用户名被占用！");
-							util.Out().print("uaccnumnofalse");
+							util.Out().print("usernamefalse");
 							return;
 						}
-						u.setUsername(accnumno);
+						u.setUsername(username);
 						userdao.update(u);
 						System.out.println("成功修改了用户名!");
 					} else {
 						System.out.println("用户名不符合规范");
-						System.out.println(accnumno);
+						System.out.println(username);
 						util.Out().print("ufalse");
 						return;
 					}
@@ -2246,11 +2279,31 @@ public class UserAction {
 				u.setStage(stage);
 				System.out.println("修改了孩子阶段");
 			}
-			System.out.println(util.ToJson(u));
-			userdao.update(u);
-			util.Out().print(util.ToJson(u));
-			System.out.println("修改成功!");
+			if (childrenage >= 0) {
+				u.setChildrenage(childrenage);// 孩子年龄
+			}
+			if (phone != null) {
+				if (userdao.byUsernameAccnumnoPhone(phone) != null) {
+					util.Out().print("phonefalse");
+					return;
+				}
+				u.setPhone(phone);
+			}
 
+			if (sex >= 0) {
+				u.setSex(sex);// 我的年龄
+				if (signature != null) {
+					u.setSignature(signature);// 个性签名
+				}
+				if (childrensex >= 0) {
+					u.setChildrensex(childrensex);// 孩子性别
+				}
+				u.setMac(null);
+
+				userdao.update(u);
+				util.Out().print(util.ToJson(u));
+				System.out.println("修改成功!");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -2636,6 +2689,14 @@ public class UserAction {
 		this.os = os;
 	}
 
+	public String getMac() {
+		return mac;
+	}
+
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+
 	public UserAction(ApputilDAO adao, UserDAO userdao, GroupDAO gdao,
 			RegistrationDAO regdao) {
 		super();
@@ -2643,6 +2704,38 @@ public class UserAction {
 		this.userdao = userdao;
 		this.gdao = gdao;
 		this.regdao = regdao;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public int getChildrensex() {
+		return childrensex;
+	}
+
+	public void setChildrensex(int childrensex) {
+		this.childrensex = childrensex;
+	}
+
+	public int getChildrenage() {
+		return childrenage;
+	}
+
+	public void setChildrenage(int childrenage) {
+		this.childrenage = childrenage;
 	}
 
 }

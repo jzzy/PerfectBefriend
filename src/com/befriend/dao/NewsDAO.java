@@ -57,7 +57,7 @@ public interface NewsDAO {
 	public void Save(News n);
 
 	// 按照8大类查询
-	public List<News> type(int num, String type);
+	public List<News> type(int num, int type);
 
 
 	// 按照8大类查询 的4小类
@@ -78,7 +78,7 @@ public interface NewsDAO {
 	public List<News> area(String area);
 
 	// 按照8大类查询 分页查询
-	public List<News> type(int num, String type, int pageSize, int currentPage);
+	public List<News> type(int num, int type, int pageSize, int currentPage);
 
 	//按照8大类 4小类查询 分页查询
 	

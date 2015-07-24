@@ -10,431 +10,414 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.NewsDAO;
 import com.befriend.entity.News;
+
 @Transactional
-public class NewsDAOImpl implements NewsDAO
-{
+public class NewsDAOImpl implements NewsDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	
-	//查询全部新闻按照 收藏  评论数 发布时间   排序
+
+	// 查询全部新闻按照 收藏 评论数 发布时间 排序
 	@Override
-	public List<News> All()
-	{
+	public List<News> All() {
 		// TODO 防止sql注入
 		Query query = entityManager.createQuery("select u from News u order"
-			      + " by u.collectnum desc,u.reviews desc,u.time desc");
+				+ " by u.collectnum desc,u.reviews desc,u.time desc");
 		return query.getResultList();
 	}
 
-	//查询num新闻按照 收藏  评论数 发布时间   排序
+	// 查询num新闻按照 收藏 评论数 发布时间 排序
 	@Override
-	public List<News> Hottest(int num)
-	{
+	public List<News> Hottest(int num) {
 		// TODO 防止sql注入
 		Query query = entityManager.createQuery("select u from News u order"
-				 + " by u.collectnum desc,u.reviews desc,u.time desc");
-		
-		
-		if(num!=0){
-		query.setMaxResults(num);
+				+ " by u.collectnum desc,u.reviews desc,u.time desc");
+
+		if (num != 0) {
+			query.setMaxResults(num);
 		}
 		return query.getResultList();
 	}
 
 	@Override
-	public void Upnews(News news)
-	{
+	public void Upnews(News news) {
 		entityManager.merge(news);
-		
+
 	}
 
 	@Override
-	public News byid(int newsid)
-	{
+	public News byid(int newsid) {
 		// TODO 防止sql注入
-	       
-		Query query = entityManager.createQuery("select u from News u where u.id=:newsid");
+
+		Query query = entityManager
+				.createQuery("select u from News u where u.id=:newsid");
 		query.setParameter("newsid", newsid);
 		List<News> news = query.getResultList();
 		if (news.size() > 0)
-				return news.get(0);
-		
-			return null;
+			return news.get(0);
+
+		return null;
 	}
 
 	@Override
 	public List<News> news(int num) {
 		// TODO 防止sql注入
 		Query query = entityManager.createQuery("select u from News u order"
-			      + " by u.time desc");
+				+ " by u.time desc");
 		query.setMaxResults(num);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hottime(int num) {
-				// TODO 防止sql注入
-				Query query = entityManager.createQuery("select u from News u  where "
-						+ " u.type!=:type and u.type!=:type1 order by u.time desc ");
-				query.setParameter("type","轻松驿站");
-				query.setParameter("type1","健康导航");
-				if(num!=0){
-				query.setMaxResults(num);
-				}
-				return query.getResultList();
+		// TODO 防止sql注入
+		Query query = entityManager.createQuery("select u from News u  where "
+				+ " u.type!=:type and u.type!=:type1 order by u.time desc ");
+		query.setParameter("type", "轻松驿站");
+		query.setParameter("type1", "健康导航");
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return query.getResultList();
 	}
 
 	@Override
-	public List<News> Hotarea(int num,String area) {
-				// TODO 防止sql注入
-				Query query = entityManager.createQuery("select u from News u where u.area=:area  order"
-						 + " by u.time desc");
-				
-				query.setParameter("area",area);
-				
-				
-				if(num!=0){
-				query.setMaxResults(num);
-				}
-				return query.getResultList();
+	public List<News> Hotarea(int num, String area) {
+		// TODO 防止sql注入
+		Query query = entityManager
+				.createQuery("select u from News u where u.area=:area  order"
+						+ " by u.time desc");
+
+		query.setParameter("area", area);
+
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return query.getResultList();
 	}
 
 	@Override
 	public void Save(News n) {
 		entityManager.persist(n);
-		
+
 	}
 
 	@Override
-	public List<News> type(int num,String type) {
-				// TODO 防止sql注入
-				/**
-				if(type.equals("轻松驿站")||type.equals("健康导航")||type.equals("社会广角")){
-				*/
-					Query query = entityManager.createQuery("select u from News u where u.type=:type order"
-							 + " by u.time desc,u.collectnum desc,u.reviews desc");
-					query.setParameter("type",type);
-					if(num!=0){
-					    query.setMaxResults(num);
-					}
-					return query.getResultList();
-				/**}else{
-					
-				Query query = entityManager.createQuery("select u from News u where u.type=:type order"
-						 + " by u.collectnum desc,u.reviews desc,u.time desc");
-				query.setParameter("type",type);
-				if(num!=0){
-				    query.setMaxResults(num);
-				}
-				return query.getResultList();
-				}*/
-			
-				
-			
-				
-				
-				
-		
+	public List<News> type(int num, int type) {
+		// TODO 防止sql注入
+
+		Query query = entityManager
+				.createQuery("select u from News u where u.type=:type order"
+						+ " by u.time desc,u.collectnum desc,u.reviews desc");
+		query.setParameter("type", type);
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return query.getResultList();
+
 	}
 
 	@Override
 	public List<News> types(String type) {
 		// TODO 防止sql注入
-		Query query = entityManager.createQuery("select u from News u where u.types=:types order"
-				 + " by u.time desc");
-		//u.collectnum desc,u.reviews desc,
-		query.setParameter("types",type);
+		Query query = entityManager
+				.createQuery("select u from News u where u.types=:types order"
+						+ " by u.time desc");
+		// u.collectnum desc,u.reviews desc,
+		query.setParameter("types", type);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<News> cah(int num,String time,String qtime) {
-	 // TODO 防止sql注入
-	 		Query query = entityManager.createQuery("select n from  News n where"
-	 				+ " n.time>=:qtime and n.time<=:time and n.type!=:type"
-	 				+ " and n.type!=:type1 "
-	 				+ " order by n.cah desc,n.time desc");
-	 		query.setParameter("type","轻松驿站");
-			query.setParameter("type1","健康导航");
-			query.setParameter("time",time);
-			query.setParameter("qtime",qtime);
-		
-	 		if(num!=0){
-	 		query.setMaxResults(num);
-	 		}
-	 		return query.getResultList();
+	public List<News> cah(int num, String time, String qtime) {
+		// TODO 防止sql注入
+		Query query = entityManager.createQuery("select n from  News n where"
+				+ " n.time>=:qtime and n.time<=:time and n.type!=:type"
+				+ " and n.type!=:type1 " + " order by n.cah desc,n.time desc");
+		query.setParameter("type", "轻松驿站");
+		query.setParameter("type1", "健康导航");
+		query.setParameter("time", time);
+		query.setParameter("qtime", qtime);
+
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return query.getResultList();
 	}
 
 	@Override
-	public List<News> area(String area,int num) {
-	    	// TODO 防止sql注入
-		Query query = entityManager.createQuery("select u from News u where u.area=:area"
-				+ " order"
-				 + " by u.time desc");
-		
-		query.setParameter("area",area);
-		if(num!=0){
-		query.setMaxResults(num);
+	public List<News> area(String area, int num) {
+		// TODO 防止sql注入
+		Query query = entityManager
+				.createQuery("select u from News u where u.area=:area"
+						+ " order" + " by u.time desc");
+
+		query.setParameter("area", area);
+		if (num != 0) {
+			query.setMaxResults(num);
 		}
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Pagination(int pageSize, int currentPage) {
-	    Query query = entityManager.createQuery("select u from News u order by u.id desc");
-		//query.setMaxResults(4);
-		//currentPage页数
-		int startRow = (currentPage-1)*pageSize;
-		if(startRow<0){
-			startRow=0;
+		Query query = entityManager
+				.createQuery("select u from News u order by u.id desc");
+		// query.setMaxResults(4);
+		// currentPage页数
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
 		}
-		//第几页
+		// 第几页
 		query.setFirstResult(startRow);
-		//每页显示几条数据
+		// 每页显示几条数据
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
 
 	@Override
 	public int Hottimes(int num) {
-	    Query query = entityManager.createQuery("select count(u) from News u order"
-			 + " by u.time desc");
-	    
-	    if(num!=0){
-		query.setMaxResults(num);
-	    }
-	    return (int)(long)query.getSingleResult();
-		}
+		Query query = entityManager
+				.createQuery("select count(u) from News u order"
+						+ " by u.time desc");
 
-	@Override
-	public void rm(News n) {
-	   entityManager.remove(n);
-	    
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return (int) (long) query.getSingleResult();
 	}
 
 	@Override
-	public List<News> type(int num, String type, int pageSize, int currentPage) {
+	public void rm(News n) {
+		entityManager.remove(n);
+
+	}
+
+	@Override
+	public List<News> type(int num, int type, int pageSize, int currentPage) {
 		// TODO 防止sql注入
-		Query query = entityManager.createQuery("select u from News u where u.type=:type order"
-				 + " by u.time desc,u.collectnum desc,u.reviews desc");
-		query.setParameter("type",type);
-		
-		int startRow = (currentPage-1)*pageSize;
-		if(startRow<0){
-			startRow=0;
+		Query query = entityManager
+				.createQuery("select u from News u where u.type=:type order"
+						+ " by u.time desc,u.collectnum desc,u.reviews desc");
+		query.setParameter("type", type);
+
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
 		}
-		//第几页
+		// 第几页
 		query.setFirstResult(startRow);
-		//每页显示几条数据
+		// 每页显示几条数据
 		query.setMaxResults(pageSize);
-	
-		if(num!=0){
-		    query.setMaxResults(num);
+
+		if (num != 0) {
+			query.setMaxResults(num);
 		}
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> cah(int pageSize, int currentPage) {
-		 // TODO 防止sql注入
- 		Query query = entityManager.createQuery("select u from News u where u.type!=:type and u.type!=:type1 order"
- 				 + " by u.cah desc,u.time desc");
- 		query.setParameter("type","轻松驿站");
-		query.setParameter("type1","健康导航");
- 		
- 		int startRow = (currentPage-1)*pageSize;
-		if(startRow<0){
-			startRow=0;
+		// TODO 防止sql注入
+		Query query = entityManager
+				.createQuery("select u from News u where u.type!=:type and u.type!=:type1 order"
+						+ " by u.cah desc,u.time desc");
+		query.setParameter("type", "轻松驿站");
+		query.setParameter("type1", "健康导航");
+
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
 		}
-		//第几页
+		// 第几页
 		query.setFirstResult(startRow);
-		//每页显示几条数据
+		// 每页显示几条数据
 		query.setMaxResults(pageSize);
- 		return query.getResultList();
+		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hotarea(String area, String areas, int pageSize,
 			int currentPage) {
 		// TODO 防止sql注入
-		Query query = entityManager.createQuery("select u from News u where u.area=:area and u.areas=:areas order"
-				 + " by u.time desc");
-		
-		query.setParameter("area",area);
-		query.setParameter("areas",areas);
-		int startRow = (currentPage-1)*pageSize;
-		if(startRow<0){
-			startRow=0;
+		Query query = entityManager
+				.createQuery("select u from News u where u.area=:area and u.areas=:areas order"
+						+ " by u.time desc");
+
+		query.setParameter("area", area);
+		query.setParameter("areas", areas);
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
 		}
-		//第几页
+		// 第几页
 		query.setFirstResult(startRow);
-		//每页显示几条数据
+		// 每页显示几条数据
 		query.setMaxResults(pageSize);
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> cah(int num) {
-		 // TODO 防止sql注入
- 		Query query = entityManager.createQuery("select n from   News n  where  "
- 				+ " n.type!=:type"
- 				+ " and n.type!=:type1 "
- 				+ " order by n.cah desc,n.time desc");
- 		query.setParameter("type","轻松驿站");
-		query.setParameter("type1","健康导航");
-		
-	
- 		if(num!=0){
- 		query.setMaxResults(num);
- 		}
- 		return query.getResultList();
+		// TODO 防止sql注入
+		Query query = entityManager
+				.createQuery("select n from   News n  where  "
+						+ " n.type!=:type" + " and n.type!=:type1 "
+						+ " order by n.cah desc,n.time desc");
+		query.setParameter("type", "轻松驿站");
+		query.setParameter("type1", "健康导航");
+
+		if (num != 0) {
+			query.setMaxResults(num);
+		}
+		return query.getResultList();
 	}
 
 	@Override
 	public List<News> area(String area) {
-		// TODO 防止sql注入 查询  本地 获取  八大类 里面 为专家的 新闻  
-		Query query = entityManager.createQuery("select u from News u where (u.area=:area or u.area is null)"
-				+ " and u.expert=1 order"
-				 + " by u.time desc");
-		
-		query.setParameter("area",area);		
+		// TODO 防止sql注入 查询 本地 获取 八大类 里面 为专家的 新闻
+		Query query = entityManager
+				.createQuery("select u from News u where (u.area=:area or u.area is null)"
+						+ " and u.expert=1 order" + " by u.time desc");
+
+		query.setParameter("area", area);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> types(String type, int pageSize, int currentPage) {
 		// TODO 防止sql注入
-				Query query = entityManager.createQuery("select u from News u where u.types=:type order"
-						 + " by u.time desc,u.collectnum desc,u.reviews desc");
-				query.setParameter("type",type);
-				
-				int startRow = (currentPage-1)*pageSize;
-				if(startRow<0){
-					startRow=0;
-				}
-				//第几页
-				query.setFirstResult(startRow);
-				//每页显示几条数据
-				query.setMaxResults(pageSize);
-				return query.getResultList();
+		Query query = entityManager
+				.createQuery("select u from News u where u.types=:type order"
+						+ " by u.time desc,u.collectnum desc,u.reviews desc");
+		query.setParameter("type", type);
+
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		// 第几页
+		query.setFirstResult(startRow);
+		// 每页显示几条数据
+		query.setMaxResults(pageSize);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hottest(int pageSize, int currentPage) {
 		// TODO 防止sql注入
-				Query query = entityManager.createQuery("select u from News u order"
-						 + " by u.collectnum desc,u.reviews desc,u.time desc");
-				int startRow = (currentPage-1)*pageSize;
-				if(startRow<0){
-					startRow=0;
-				}
-				//第几页
-				query.setFirstResult(startRow);
-				//每页显示几条数据
-				query.setMaxResults(pageSize);
-				return query.getResultList();
+		Query query = entityManager.createQuery("select u from News u order"
+				+ " by u.collectnum desc,u.reviews desc,u.time desc");
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		// 第几页
+		query.setFirstResult(startRow);
+		// 每页显示几条数据
+		query.setMaxResults(pageSize);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hotarea(String area, int pageSize, int currentPage) {
 		// TODO 防止sql注入
-				Query query = entityManager.createQuery("select u from News u where u.area=:area  order"
-						 + " by u.time desc");
-				
-				query.setParameter("area",area);
-				
-				int startRow = (currentPage-1)*pageSize;
-				if(startRow<0){
-					startRow=0;
-				}
-				//第几页
-				query.setFirstResult(startRow);
-				//每页显示几条数据
-				query.setMaxResults(pageSize);
-				
-				return query.getResultList();
+		Query query = entityManager
+				.createQuery("select u from News u where u.area=:area  order"
+						+ " by u.time desc");
+
+		query.setParameter("area", area);
+
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		// 第几页
+		query.setFirstResult(startRow);
+		// 每页显示几条数据
+		query.setMaxResults(pageSize);
+
+		return query.getResultList();
 	}
 
 	@Override
 	public List<News> n2ews(int newsid) {
 		Query query = entityManager.createQuery("select u from News u order"
-				 + " by u.id desc");
-		    
-		//query.setParameter("newsid",newsid);
-			query.setMaxResults(1);
-		    
-		    return query.getResultList();
-			
-	}
+				+ " by u.id desc");
 
+		// query.setParameter("newsid",newsid);
+		query.setMaxResults(1);
+
+		return query.getResultList();
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getThreeByDay(String day)
-	{
-		Query query = entityManager.createQuery("select u from News u where to_char(u.time,'yyyy-MM-dd') = :day order by u.hits desc,u.cah desc");
+	public List<News> getThreeByDay(String day) {
+		Query query = entityManager
+				.createQuery("select u from News u where to_char(u.time,'yyyy-MM-dd') = :day order by u.hits desc,u.cah desc");
 		query.setParameter("day", day);
 		query.setMaxResults(3);
-		
+
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Pagination(int pageSize, int currentPage, String admin) {
-		 Query query = entityManager.createQuery("select u from News u where admin=:admin order by u.id desc");
-			//query.setMaxResults(4);
-			//currentPage页数
-			int startRow = (currentPage-1)*pageSize;
-			if(startRow<0){
-				startRow=0;
-			}
-			query.setParameter("admin",admin);
-			//第几页
-			query.setFirstResult(startRow);
-			//每页显示几条数据
-			query.setMaxResults(pageSize);
-			return query.getResultList();
+		Query query = entityManager
+				.createQuery("select u from News u where admin=:admin order by u.id desc");
+		// query.setMaxResults(4);
+		// currentPage页数
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		query.setParameter("admin", admin);
+		// 第几页
+		query.setFirstResult(startRow);
+		// 每页显示几条数据
+		query.setMaxResults(pageSize);
+		return query.getResultList();
 	}
 
 	@Override
 	public int Hottimes(String admin) {
-		
-		    Query query = entityManager.createQuery("select count(u) from News u where admin=:admin order"
-				 + " by u.time desc");
-		    query.setParameter("admin",admin);
-		  
-		    return (int)(long)query.getSingleResult();
-			
-	}
 
-	
+		Query query = entityManager
+				.createQuery("select count(u) from News u where admin=:admin order"
+						+ " by u.time desc");
+		query.setParameter("admin", admin);
+
+		return (int) (long) query.getSingleResult();
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(String type, int pageSize, int currentPage)
-	{
-		Query query =  entityManager.createQuery("select u from News u where u.type = :type order by u.time desc");
+	public List<News> getRecentlyNews(String type, int pageSize, int currentPage) {
+		Query query = entityManager
+				.createQuery("select u from News u where u.type = :type order by u.time desc");
 		query.setParameter("type", type);
-		int startRow = (currentPage-1)*pageSize;
+		int startRow = (currentPage - 1) * pageSize;
 		query.setFirstResult(startRow);
 		query.setMaxResults(pageSize);
-		
+
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(int pageSize, int currentPage)
-	{
-		Query query = entityManager.createQuery("select u from News u order by u.time desc");
-		int startRow = (currentPage-1)*pageSize;
+	public List<News> getRecentlyNews(int pageSize, int currentPage) {
+		Query query = entityManager
+				.createQuery("select u from News u order by u.time desc");
+		int startRow = (currentPage - 1) * pageSize;
 		query.setFirstResult(startRow);
 		query.setMaxResults(pageSize);
-		
+
 		return query.getResultList();
 	}
 

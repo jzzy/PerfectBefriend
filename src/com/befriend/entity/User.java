@@ -63,14 +63,54 @@ public class User implements Serializable
 	private int port;
 	@Column(name="online")//用户 用户上线状态 0不在线 1在线
 	private int online;
-	@Column(name="accnumno")//用户账号 8位的
+	@Column(name="accnumno")//完美ID 8位的
 	private String accnumno;
 	@Column(name="come")// 等于null 是我们自己的用户 
 	private String come;
-	@Column(name="os")// 
+	@Column(name="os")// 系统
 	private String os;
+	@Column(name="mac")// mac
+	private String mac;
+	@Column(name="sex")//性别  1男 0女
+	private int sex;
+	@Column(name="signature")// 个性签名
+	private String signature;
+	@Column(name="childrenage")// 孩子年龄
+	private int childrenage;
+	@Column(name="childrensex")// 孩子性别  1男 0女
+	private int childrensex;
 	
+	public String getMac() {
+		return mac;
+	}
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	public int getSex() {
+		return sex;
+	}
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+	public String getSignature() {
+		return signature;
+	}
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+	public int getChildrenage() {
+		return childrenage;
+	}
+	public void setChildrenage(int childrenage) {
+		this.childrenage = childrenage;
+	}
 	
+	public int getChildrensex() {
+		return childrensex;
+	}
+	public void setChildrensex(int childrensex) {
+		this.childrensex = childrensex;
+	}
 	public String getOs() {
 		return os;
 	}

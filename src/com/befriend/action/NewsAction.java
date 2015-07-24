@@ -532,46 +532,10 @@ public class NewsAction {
 
 			System.out.println("进入webnewtype");
 			System.out.println("传的" + tp);
-			switch (tp) {
-
-			case 1:
-				type = "升学指南";
-
-				break;
-			case 2:
-				type = "教子经验";
-
-				break;
-			case 3:
-				type = "成长路上";
-				break;
-			case 4:
-				type = "出国留学";
-				break;
-			case 5:
-				type = "兴趣特长";
-				break;
-			case 6:
-				type = "名人教子";
-				break;
-			case 7:
-				type = "健康导航";
-				break;
-			case 8:
-				type = "轻松驿站";
-				break;
-			case 9:
-				type = "社会广角";
-				break;
-
-			default:
-				System.out.println("请输入正确代码tp");
-				type = "No";
-				return null;
-			}
+			
 			int a = 0;
 
-			a = ndao.type(0, type).size();
+			a = ndao.type(0, tp).size();
 
 			if (a % pageSize == 0) {
 				a = a / pageSize;
@@ -588,7 +552,7 @@ public class NewsAction {
 
 			System.out.println(type);
 
-			nl = ndao.type(0, type, pageSize, currentPage);
+			nl = ndao.type(0, tp, pageSize, currentPage);
 
 			request.setAttribute("currentPage", currentPage);
 
@@ -859,43 +823,8 @@ public class NewsAction {
 
 			System.out.println("进入newtype");
 			System.out.println("传的" + tp);
-			switch (tp) {
-
-			case 1:
-				type = "升学指南";
-
-				break;
-			case 2:
-				type = "教子经验";
-
-				break;
-			case 3:
-				type = "成长路上";
-				break;
-			case 4:
-				type = "出国留学";
-				break;
-			case 5:
-				type = "兴趣特长";
-				break;
-			case 6:
-				type = "名人教子";
-				break;
-			case 7:
-				type = "健康导航";
-				break;
-			case 8:
-				type = "轻松驿站";
-				break;
-			case 9:
-				type = "社会广角";
-				break;
-			default:
-				System.out.println("请输入正确代码tp");
-				type = "No";
-				break;
-			}
-			int a = ndao.type(0, type).size();
+			
+			int a = ndao.type(0, tp).size();
 
 			if (a % pageSize == 0) {
 				a = a / pageSize;
@@ -912,7 +841,7 @@ public class NewsAction {
 			System.out.println(type + " -有" + a + "页");
 			System.out.println("每页多少条-" + pageSize);
 			System.out.println("第-" + currentPage + "-页");
-			nl = ndao.type(0, type, pageSize, currentPage);
+			nl = ndao.type(0, tp, pageSize, currentPage);
 			System.out.println(type);
 			String result = "{\"nl\":" + util.ToJson(nl) + ",\"cpe\":" + a
 					+ ",\"currentPage\":" + currentPage + "}";
@@ -1071,7 +1000,7 @@ public class NewsAction {
 			// 本省 新闻数量 小于2
 			if (ndao.area(area, num).size() < 2) {
 				System.out.println("本省新闻小于2条");
-				n4 = ndao.type(2, "轻松驿站");
+				
 
 			} else {
 				num = 2;
@@ -1083,16 +1012,15 @@ public class NewsAction {
 			System.out.println("省：" + area);
 			System.out.println("市：" + areas);
 
-			ndao.type(1, "健康导航");
-			ndao.type(1, "轻松驿站");
+			
 			List<News> n5 = new ArrayList<News>();
-			n5 = ndao.type(1, "轻松驿站");
+		
 
 			List<News> n8 = new ArrayList<News>();
-			n8 = ndao.type(1, "健康导航");
+			
 
 			List<News> n9 = new ArrayList<News>();
-			n9 = ndao.type(1, "社会广角");
+			
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nh.size()
 					+ "本地新闻-" + n4.size() + "轻松驿站" + n5.size() + "健康导航"
 					+ n8.size() + "社会广角" + n9.size());
@@ -1185,13 +1113,12 @@ public class NewsAction {
 
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nh.size()
 					+ "本地新闻-" + n4.size());
-			ndao.type(1, "健康导航");
-			ndao.type(1, "轻松驿站");
+			
 			List<News> n5 = new ArrayList<News>();
-			n5 = ndao.type(1, "轻松驿站");
+			
 
 			List<News> n8 = new ArrayList<News>();
-			n8 = ndao.type(1, "健康导航");
+			
 
 			System.out.println("时间排序" + nt.size() + "热门新闻" + nh.size() + "本地新闻"
 					+ n4.size() + "轻松导航是1--" + n5.get(0).getType()
@@ -1293,7 +1220,7 @@ public class NewsAction {
 
 			if (ndao.area(area, num).size() < 2) {
 				System.out.println("本省新闻小于2条");
-				n4 = ndao.type(2, "轻松驿站");
+				
 
 			} else {
 				num = 2;
@@ -1400,7 +1327,7 @@ public class NewsAction {
 
 			System.out.println(type);
 
-			nl = ndao.type(0, type);
+		
 
 			if (nl.size() > 0) {
 				util.Out().print(util.ToJson(nl));
@@ -1492,7 +1419,7 @@ public class NewsAction {
 		String rt = "";
 
 		System.out.println("进入了上传新闻UPtext");
-		savePath = request.getContextPath() + "/Newsimg" + "/"
+		savePath = "/Newsimg" + "/"
 				+ util.getfileName(1) + "/" + util.getfileName(2) + "/"
 				+ util.getfileName(1) + util.getfileName(2)
 				+ util.getfileName(3);
@@ -1559,6 +1486,7 @@ public class NewsAction {
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
 					System.out.println("路径" + images.get(i));
+					
 					if (i == 0) {
 						sb.append(images.get(i));
 					} else {

@@ -5,6 +5,9 @@
 	<package name="User" extends="struts-default">
 
 
+		<!-- 通过mac先注册下用户 -->
+		<action name="oneSave" class="userAction" method="oneSave">
+		</action>
 		<!-- 查看统计信息 -->
 		<action name="ViewStatistics" class="userAction" method="ViewStatistics">
 		<result name="success">/SuperAdmin/AdminNews/ViewStatistics.jsp</result>

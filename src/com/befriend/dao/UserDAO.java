@@ -21,7 +21,7 @@ public interface UserDAO
 	
 	
 	
-	
+	public User byMac(String mac);
 	// 登入  通过 (手机号  用户号  用户名 )+密码  都可以登入
 	//public User login(String username, String password);
 	//通过 手机号  用户号  用户名 查询 是否为空
