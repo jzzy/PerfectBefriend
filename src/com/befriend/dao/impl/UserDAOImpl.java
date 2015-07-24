@@ -17,8 +17,6 @@ public class UserDAOImpl implements UserDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	
-
 	@Override
 	public void save(User user) {
 
@@ -52,36 +50,28 @@ public class UserDAOImpl implements UserDAO {
 			return users.get(0);
 		return null;
 	}
+
 	/**
-	@Override
-	public User byusername(String username) {
-		Query query = entityManager
-				.createQuery("select u from User u where u.username=:username ");
-		query.setParameter("username", username);
-
-		query.setMaxResults(1);
-		@SuppressWarnings("unchecked")
-		List<User> users = query.getResultList();
-		if (users.size() > 0)
-			return users.get(0);
-		return null;
-	}
-	*/
-/**
-	@Override
-	public User byphone(String phone) {
-		Query query = entityManager
-				.createQuery("select u from User u where u.phone=:phone ");
-		query.setParameter("phone", phone);
-
-		query.setMaxResults(1);
-		@SuppressWarnings("unchecked")
-		List<User> users = query.getResultList();
-		if (users.size() > 0)
-			return users.get(0);
-		return null;
-	}
-*/
+	 * @Override public User byusername(String username) { Query query =
+	 *           entityManager
+	 *           .createQuery("select u from User u where u.username=:username "
+	 *           ); query.setParameter("username", username);
+	 * 
+	 *           query.setMaxResults(1);
+	 * @SuppressWarnings("unchecked") List<User> users = query.getResultList();
+	 *                                if (users.size() > 0) return users.get(0);
+	 *                                return null; }
+	 */
+	/**
+	 * @Override public User byphone(String phone) { Query query = entityManager
+	 *           .createQuery("select u from User u where u.phone=:phone ");
+	 *           query.setParameter("phone", phone);
+	 * 
+	 *           query.setMaxResults(1);
+	 * @SuppressWarnings("unchecked") List<User> users = query.getResultList();
+	 *                                if (users.size() > 0) return users.get(0);
+	 *                                return null; }
+	 */
 	@Override
 	public List<User> getUser(int pageSize, int currentPage) {
 		Query query = entityManager
@@ -319,33 +309,28 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
-	
 	/**
-	@Override
-	public User accnumNo(String accnumno) {
-		Query query = entityManager
-				.createQuery("select u from User u where u.accnumno=:accnumno ");
-		query.setParameter("accnumno", accnumno);	
-		query.setMaxResults(1);
-		List<User> users = query.getResultList();
-		if (users.size() > 0)
-			return users.get(0);
-		return null;
-	}*/
+	 * @Override public User accnumNo(String accnumno) { Query query =
+	 *           entityManager
+	 *           .createQuery("select u from User u where u.accnumno=:accnumno "
+	 *           ); query.setParameter("accnumno", accnumno);
+	 *           query.setMaxResults(1); List<User> users =
+	 *           query.getResultList(); if (users.size() > 0) return
+	 *           users.get(0); return null; }
+	 */
 
 	@Override
 	public User byUsernameAccnumnoPhone(String uap) {
 		Query query = entityManager
 				.createQuery("select u from User u where u.username=:username or u.phone=:username or u.accnumno=:username");
 		query.setParameter("username", uap);
-		
 
 		query.setMaxResults(1);
 		List<User> users = query.getResultList();
-		if (users.size() > 0){
+		if (users.size() > 0) {
 			return users.get(0);
-		}else{
-		return null;
+		} else {
+			return null;
 		}
 	}
 
@@ -366,26 +351,26 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void save(Password password) {
 		entityManager.persist(password);
-		
+
 	}
 
 	@Override
 	public void remove(Password password) {
 		entityManager.remove(password);
-		
+
 	}
 
 	@Override
 	public void update(Password password) {
 		entityManager.merge(password);
-		
+
 	}
 
 	@Override
 	public Password select(int uid) {
 		Query query = entityManager
 				.createQuery("select u from Password u where u.uid=:uid ");
-		query.setParameter("uid", uid);		
+		query.setParameter("uid", uid);
 		query.setMaxResults(1);
 		List<Password> pl = query.getResultList();
 		if (pl.size() > 0)
@@ -395,56 +380,57 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public List<User> getUsersynAll() {
-		Query query = entityManager.createQuery("select u from User u where u.come is not null order"
-				+ " by u.time desc");
+		Query query = entityManager
+				.createQuery("select u from User u where u.come is not null order"
+						+ " by u.time desc");
 		return query.getResultList();
 	}
 
 	@Override
 	public int getCount() {
-		
+
 		Query query = entityManager.createQuery("select count(u) from User u");
-		//int count = new Long((long)query.getSingleResult()).intValue();
-		int count =(int)(long)query.getSingleResult();
+		// int count = new Long((long)query.getSingleResult()).intValue();
+		int count = (int) (long) query.getSingleResult();
 		return count;
-		
 
 	}
 
 	@Override
 	public int getCountSyn() {
-		
-		 Query query = entityManager.createQuery("select count(u) from User u where u.come is not null");
-			 //count = new Long((long)query.getSingleResult()).intValue();
-			 int count =(int)(long)query.getSingleResult();
-			return count;
+
+		Query query = entityManager
+				.createQuery("select count(u) from User u where u.come is not null");
+		// count = new Long((long)query.getSingleResult()).intValue();
+		int count = (int) (long) query.getSingleResult();
+		return count;
 	}
 
 	@Override
-	public List<User> getFinaltime(String time,String os) {
+	public List<User> getFinaltime(String time, String os) {
 		Query query = entityManager
 				.createQuery("select u from User u where u.finaltime LIKE :time and u.os=:os");
-		query.setParameter("time", time+"%");		
+		query.setParameter("time", time + "%");
 		query.setParameter("os", os);
 		return query.getResultList();
-		
+
 	}
 
 	@Override
-	public List<User> getSaveTime(String time,String os) {
+	public List<User> getSaveTime(String time, String os) {
 		Query query = entityManager
 				.createQuery("select u from User u where u.time LIKE :time and u.os=:os");
-		query.setParameter("time", time+"%");		
+		query.setParameter("time", time + "%");
 		query.setParameter("os", os);
 		return query.getResultList();
-		
+
 	}
 
 	@Override
 	public List<User> getOnline() {
 		Query query = entityManager
 				.createQuery("select u from User u where u.online=1 order by u.finaltime desc  ");
-		
+
 		return query.getResultList();
 	}
 
@@ -452,7 +438,7 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getSaveTime(String time, String os, String province) {
 		Query query = entityManager
 				.createQuery("select u from User u where u.time LIKE :time and u.os=:os and u.address=:province");
-		query.setParameter("time", time+"%");		
+		query.setParameter("time", time + "%");
 		query.setParameter("os", os);
 		query.setParameter("province", province);
 		return query.getResultList();
@@ -462,11 +448,11 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getFinaltime(String time, String os, String province) {
 		Query query = entityManager
 				.createQuery("select u from User u where u.finaltime LIKE :time and u.os=:os and u.address=:province");
-		query.setParameter("time", time+"%");		
+		query.setParameter("time", time + "%");
 		query.setParameter("os", os);
 		query.setParameter("province", province);
 		return query.getResultList();
-		
+
 	}
 
 	@Override
@@ -491,10 +477,5 @@ public class UserDAOImpl implements UserDAO {
 			return users.get(0);
 		return null;
 	}
-
-	
-
-	
-
 
 }

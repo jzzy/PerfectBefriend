@@ -1920,7 +1920,6 @@ public class UserAction {
 
 		u = userdao.byMac(mac);
 		if (u != null) {
-			System.out.println("×¢²á¹ý!");
 			util.Out().print(util.ToJson(u));
 			return;
 		}

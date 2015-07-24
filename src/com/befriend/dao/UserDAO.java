@@ -78,7 +78,7 @@ public interface UserDAO
 	public int getCount();
 	//查询全部用户
 	public int getCountSyn();
-		
+
 	//查询syn全部用户
 	public List<User> getUsersynAll();
 	

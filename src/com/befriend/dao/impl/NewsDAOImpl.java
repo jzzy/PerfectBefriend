@@ -1,5 +1,6 @@
 package com.befriend.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -402,22 +403,68 @@ public class NewsDAOImpl implements NewsDAO {
 		Query query = entityManager
 				.createQuery("select u from News u where u.type = :type order by u.time desc");
 		query.setParameter("type", type);
-		int startRow = (currentPage - 1) * pageSize;
-		query.setFirstResult(startRow);
-		query.setMaxResults(pageSize);
 
-		return query.getResultList();
+
+		int startRow = (currentPage-1)*pageSize;
+		if(startRow<query.getResultList().size())
+		{
+			query.setFirstResult(startRow);
+			query.setMaxResults(pageSize);
+		
+			return query.getResultList();
+		}
+		else
+			return new ArrayList<News>();
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(int pageSize, int currentPage) {
-		Query query = entityManager
-				.createQuery("select u from News u order by u.time desc");
-		int startRow = (currentPage - 1) * pageSize;
-		query.setFirstResult(startRow);
-		query.setMaxResults(pageSize);
 
+
+	public List<News> getRecentlyNews(int pageSize, int currentPage)
+	{
+		Query query = entityManager.createQuery("select u from News u order by u.time desc");
+		int startRow = (currentPage-1)*pageSize;
+		if(startRow<query.getResultList().size())
+		{
+			query.setFirstResult(startRow);
+			query.setMaxResults(pageSize);
+		
+			return query.getResultList();
+		}
+		else
+			return new ArrayList<News>();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> getRecentlyNews(String type,String province, String city, int pageSize,
+			int currentPage)
+	{
+		Query query =  entityManager.createQuery("select u from News u where u.type = :type and u.area = :province and u.areas = :city order by u.time desc");
+		query.setParameter("type", type);
+		query.setParameter("area", province);
+		query.setParameter("city", city);
+		int startRow = (currentPage-1)*pageSize;
+		if(startRow<query.getResultList().size())
+		{
+			query.setFirstResult(startRow);
+			query.setMaxResults(pageSize);
+		
+			return query.getResultList();
+		}
+		else
+			return new ArrayList<News>();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> getRecentlyNews(String startTime, String endTime)
+	{
+		Query query = entityManager.createQuery("select u from News u where u.time >= :startTime and u.time <= :endTime");
+		query.setParameter("startTime", startTime);
+		query.setParameter("endTime", endTime);
 		return query.getResultList();
 	}
 

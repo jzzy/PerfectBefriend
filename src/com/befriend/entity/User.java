@@ -126,17 +126,20 @@ public class User implements Serializable
 	public int getPort() {
 		return port;
 	}
-	public String getAccnumno() {
-		return accnumno;
-	}
-	public void setAccnumno(String accnumno) {
-		this.accnumno = accnumno;
-	}
+	
+	
+	
 	public void setPort(int port) {
 		this.port = port;
 	}
 	public int getOnline() {
 		return online;
+	}
+	public String getAccnumno() {
+		return accnumno;
+	}
+	public void setAccnumno(String accnumno) {
+		this.accnumno = accnumno;
 	}
 	public void setOnline(int online) {
 		this.online = online;
