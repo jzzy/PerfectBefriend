@@ -493,10 +493,5 @@ public class NewsDAOImpl implements NewsDAO {
 		return null;
 	}
 
-	@Override
-	public List<News> getRecentlyNews(String startTime, String endTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
