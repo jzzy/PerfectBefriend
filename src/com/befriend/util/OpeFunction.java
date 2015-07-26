@@ -554,35 +554,8 @@ public class OpeFunction {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		System.out.println(RandomTime("2014-07-21 11:06:11", "2015-01-01 11:06:11"));
-		/**
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-		Date start = format.parse("2014-07-21 11:06:11");// 构造开始日期
-
-		Date end = format.parse("2015-07-21 11:06:11");// 构造结束日期
-		long begin = start.getTime();
-		long endd = end.getTime();
-		System.out.println(begin + "---------" + endd);
-		boolean b = true;
-		long rtn = 0;
-		while (b) {
-
-			rtn = begin + (long) (Math.random() * (endd - begin));
-			// 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值
-			if (rtn == start.getTime() || rtn == end.getTime()) {
-
-				continue;
-
-			}
-
-			b = false;
-		}
-		System.out.println(rtn);
-
-		System.out.println(format.format(new Date(rtn)));
-		*/
-
-	}
+		
+		      }  
+	
 
 }
