@@ -158,6 +158,7 @@ function cka(){
 
 					</td>
 				</tr>
+				<!--  
 				<tr>
 					<td colspan="2">文章图片1: <input
 						type="file" id="imgFile1" name="imgFile1" />
@@ -179,6 +180,7 @@ function cka(){
 
 					<td></td>
 				</tr>
+				-->
 				<p></p>
 				<tr>
 					<td>文章类别 </td>

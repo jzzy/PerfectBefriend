@@ -2279,7 +2279,7 @@ public class UserAction {
 				u.setStage(stage);
 				System.out.println("修改了孩子阶段");
 			}
-			if (!StringUtils.isEmpty(childrenage.trim())) {
+			if (!util.isNull(childrenage)) {
 				u.setChildrenage(childrenage+"岁");// 孩子年龄
 			}
 			if (phone != null) {
@@ -2290,12 +2290,12 @@ public class UserAction {
 				u.setPhone(phone);
 			}
 
-			if (!StringUtils.isEmpty(sex.trim())) {
+			if (!util.isNull(sex)) {
 				u.setSex(sex);// 我的年龄
 				if (signature != null) {
 					u.setSignature(signature);// 个性签名
 				}
-				if (!StringUtils.isEmpty(childrensex.trim())) {
+				if (!StringUtils.isEmpty(childrensex)) {
 					u.setChildrensex(childrensex);// 孩子性别
 				}
 				u.setMac(null);

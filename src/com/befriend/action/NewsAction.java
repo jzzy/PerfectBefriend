@@ -166,7 +166,7 @@ public class NewsAction {
 				System.out.println("准备添加!");
 				String label=null;
 				//读第一列
-				if(xssfRow.getCell(0)!=null&&!StringUtils.isEmpty(xssfRow.getCell(0).toString().trim())){
+				if(xssfRow.getCell(0)!=null&&!util.isNull(xssfRow.getCell(0).toString())){
 					label=xssfRow.getCell(0).toString();
 				
 					if(ndao.byNewsLabelName(label)!=null){
@@ -1024,6 +1024,7 @@ public class NewsAction {
 			currentPage = 1;
 		}
 		int n = 0;
+		
 		List<News> l = new ArrayList<News>();
 		if (admin.getLevel() == 2) {
 			l = ndao.Pagination(pageSize, currentPage, admin.getAdmin());

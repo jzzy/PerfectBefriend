@@ -92,21 +92,42 @@ public class AppPushAction extends BaseAction
 					Integer _userId = Integer.valueOf(userId);
 					User user = userDAO.byid(_userId);
 					List<Behavior> typeBehaviors = behaviorDAO.findByUserIdType(NEWS_TYPE_NUM, _userId, Behavior.NEWS_TYPE);
+					/**
+					 * 新用户，添加行为统计
+					 */
+					if(typeBehaviors == null || typeBehaviors.size()==0)
+					{
+						typeBehaviors = new ArrayList<Behavior>();
+						for (int i = 0; i < NEWS_TYPE_NUM; i++) 
+						{
+							Behavior behavior = new Behavior();
+							behavior.setUserId(_userId);
+							behavior.setKeyword(String.valueOf(i+1));
+							behavior.setType(Behavior.NEWS_TYPE);
+							behavior.setCount(1L);
+							/**
+							 * 存入数据库，并且加入行为列表
+							 */
+							behaviorDAO.save(behavior);
+							typeBehaviors.add(behavior);
+						}
+						
+					}
 					long typeSum = typeBehaviors.size();//防止被除数为0
 					for (Behavior behavior : typeBehaviors)
 					{
 						typeSum += behavior.getCount();
 					}
+					
 					for (Behavior behavior : typeBehaviors)
 					{
 						/**
 						 * 根据比例，舍6进7，计算各个新闻的调数
 						 */
-						int occupy = (int) ((behavior.getCount()+1) / (float) typeSum+deviation)* pageSize;
+						int occupy = (int) (((behavior.getCount()+1f) / (float) typeSum+deviation)* pageSize);
 						realSize += occupy;
 						behavior.setOccupy(occupy);
 					}
-
 					labelBehaviors = behaviorDAO.findByUserIdType(BEHAVIOR_NUM, _userId,Behavior.LABEL);
 					/**
 					 * 取出最近一周的新闻

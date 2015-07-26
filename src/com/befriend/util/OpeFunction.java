@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.befriend.email.MailSenderInfo;
@@ -45,6 +46,31 @@ import com.opensymphony.xwork2.ActionContext;
  *
  */
 public class OpeFunction {
+	/**
+	 * 
+	 * 空  返回  true
+	 * 
+	 * 不空  返回 false
+	 * @param rstart
+	 * @param rend
+	 * @return
+	 */
+	public static boolean isNull(String string){
+		
+		if(string!=null){
+			if(StringUtils.isEmpty(string.trim())){
+				System.out.println("空");
+				return true;
+			}else{
+				System.out.println("不空");
+				return false;
+			}
+		}else{
+			System.out.println("空");
+			return true;
+		}
+	}
+	
 	/**
 	 * 获取指定范围内的随机时间
 	 * @param rstart
@@ -554,8 +580,11 @@ public class OpeFunction {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		String xlsxFileFileName="121231.a";
-		System.out.println(xlsxFileFileName.split("\\.")[1]);
+		
+			
+	
+		
+		
 		
 		
 		      }  
