@@ -47,7 +47,7 @@ public class MathUtils
 	 */
 	public static double sim(List<Double> v1,List<Double> v2)
 	{
-		if(v1.size() != v2.size())
+		if(v1.size() != v2.size() || isZero(v1) || isZero(v2))
 			return 0d;
 		else
 		{
@@ -64,6 +64,16 @@ public class MathUtils
 		}
 	}
 	
+	public static boolean isZero(List<Double> v)
+	{
+		boolean result = true;
+		for (Double d : v) 
+		{
+			if(d != 0d)
+				result = false;
+		}
+		return result;
+	}
 	
 	public static final double MAX_W = 5d;
 	public static final double SPEED = 0.1d;
