@@ -120,7 +120,7 @@ public interface NewsDAO {
 	 * @param endTime
 	 * @return
 	 */
-<<<<<<< HEAD
+
 	public List<News> getRecentlyNews(String startTime,String endTime);
 	/**
 	 * 添加标签
@@ -134,8 +134,7 @@ public interface NewsDAO {
 	 * 查看标签
 	 */
 	public NewsLabel byNewsLabelName(String NewsLabelName);
-}	
-=======
+
 	public List<News> getRecentlyNewsByTime(String startTime,String endTime);
 }
->>>>>>> bfa649fa8570bf28627cf0d86865ffec5dfa8487
+
