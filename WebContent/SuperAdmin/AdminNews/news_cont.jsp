@@ -41,7 +41,7 @@ if(n==null){
    
    
   			 String [] s=n.getImg().toString().split(","); 
-  			 for(int i=0;i<s.length;i++){
+  			 for(int i=0;i<0;i++){
 			 if(s[i].length()>5){
 				
 			 

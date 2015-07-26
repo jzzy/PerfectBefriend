@@ -200,7 +200,7 @@ public class NewsAction {
 	 * @throws IOException
 	 */
 	public void newNewsId() throws IOException {
-		nl = ndao.n2ews(newsid);
+		nl = ndao.n2ews();
 		if (nl.size() > 0) {
 
 			util.Out().print(nl.get(0).getId());

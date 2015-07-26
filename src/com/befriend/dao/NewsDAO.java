@@ -12,8 +12,12 @@ import com.befriend.entity.NewsLabel;
  *
  */
 public interface NewsDAO {
-	// 1 查询 看有多少条更新
-	public List<News> n2ews(int newsid);
+	/**
+	 * num是代表多少条
+	 * @return
+	 */
+	//查看最新新闻
+	public List<News> n2ews();
 	// 删除新闻
 	public void rm(News n);
 
@@ -21,9 +25,9 @@ public interface NewsDAO {
 	public List<News> Pagination(int pageSize, int currentPage);
 	// 分页查询
 	public List<News> Pagination(int pageSize, int currentPage,String admin);
-	// 1 查询num 按照时间排序
+	// 1 查询num条 按照时间排序
 	public int Hottimes(int num);
-	// 1 查询num 按照时间排序
+	// 查看新闻管理员上传的数量
 	public int Hottimes(String admin);
 	// 2 查询num 按照时间排序 不包括 轻松驿站 健康导航 类
 	public List<News> Hottime(int num);
@@ -51,20 +55,20 @@ public interface NewsDAO {
 	// 通过newsid查询 新闻
 	public News byid(int newsid);
 
-	// 获取 时间最新的 新闻
+	// 获取 时间最新的 新闻 num条
 	public List<News> news(int num);
 
 	// 添加新闻
 	public void Save(News n);
 
-	// 按照8大类查询
+	// 按照8大类查询 num条
 	public List<News> type(int num, int type);
 
 
 	// 按照8大类查询 的4小类
 	public List<News> types(String type);
 
-	// 新闻按点击数 +收藏数 时间 排序 可以 定义查询 多少天之前的
+	// 新闻按点击数 +收藏数 时间 排序 可以 定义查询 多少天之前的 num条
 	public List<News> cah(int num, String time, String qtime);
 
 	// 新闻按点击数 +收藏数 时间 排序

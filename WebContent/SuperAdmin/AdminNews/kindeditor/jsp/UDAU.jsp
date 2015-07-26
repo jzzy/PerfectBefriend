@@ -164,6 +164,7 @@ News n=(News)request.getAttribute("n");
 
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<td colspan="2">文章图片1: <input
 						type="file" id="imgFile1" name="imgFile1" />
@@ -186,6 +187,7 @@ News n=(News)request.getAttribute("n");
 					<td></td>
 				</tr>
 				<p></p>
+				 -->
 				<tr>
 					<td>文章类别 </td>
 					<td><select name="itype" id="type"   disable=true onclick="ck()">

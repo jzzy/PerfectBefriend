@@ -25,6 +25,7 @@ public class NewsDAOImpl implements NewsDAO {
 		// TODO ·ÀÖ¹sql×¢Èë
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.collectnum desc,u.reviews desc,u.time desc");
+		query.setMaxResults(10);
 		return query.getResultList();
 	}
 
@@ -346,7 +347,7 @@ public class NewsDAOImpl implements NewsDAO {
 	}
 
 	@Override
-	public List<News> n2ews(int newsid) {
+	public List<News> n2ews() {
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.id desc");
 
@@ -445,7 +446,7 @@ public class NewsDAOImpl implements NewsDAO {
 	{
 		Query query =  entityManager.createQuery("select u from News u where u.type = :type and u.area = :province and u.areas = :city order by u.time desc");
 		query.setParameter("type", type);
-		query.setParameter("area", province);
+		query.setParameter("province", province);
 		query.setParameter("city", city);
 		int startRow = (currentPage-1)*pageSize;
 		if(startRow<query.getResultList().size())
