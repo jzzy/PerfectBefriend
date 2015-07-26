@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -22,7 +21,6 @@ import com.befriend.util.MathUtils;
 import com.befriend.util.Message;
 import com.befriend.util.PageUtil;
 
-import freemarker.template.utility.StringUtil;
 
 /**
  * @author STerOTto
@@ -70,7 +68,10 @@ public class AppPushAction extends BaseAction
 				 */
 				news = newsDAO.getRecentlyNews(pageSize, currentPage);
 				if (news.size() > 0)
+				{
 					msg.setCode(Message.SUCCESS);
+					msg.setContent(news);
+				}
 				else
 				{
 					msg.setCode(Message.FAILED);
@@ -288,7 +289,10 @@ public class AppPushAction extends BaseAction
 						 * 判断最后push得到的新闻长度
 						 */
 						if (news.size() > 0)
+						{
 							msg.setCode(Message.SUCCESS);
+							msg.setContent(news);
+						}
 						else
 						{
 							msg.setCode(Message.FAILED);
@@ -308,7 +312,10 @@ public class AppPushAction extends BaseAction
 				 */
 				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), province, city, pageSize,currentPage);
 				if (news.size() > 0)
+				{
 					msg.setCode(Message.SUCCESS);
+					msg.setContent(news);
+				}
 				else
 				{
 					msg.setCode(Message.FAILED);
@@ -321,7 +328,10 @@ public class AppPushAction extends BaseAction
 				 */
 				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), pageSize, currentPage);
 				if (news.size() > 0)
+				{
 					msg.setCode(Message.SUCCESS);
+					msg.setContent(news);
+				}
 				else
 				{
 					msg.setCode(Message.FAILED);
