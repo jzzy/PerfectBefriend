@@ -52,7 +52,7 @@ public class UserAction {
 	// String postUrl =
 	// "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// 地址
 
-	private int sex = -1;// 我的性别
+	private String sex;// 我的性别
 	private String signature;// 个性签名
 	private String childrensex;// 孩子性别
 	private String childrenage;// 孩子年龄
@@ -2279,7 +2279,7 @@ public class UserAction {
 				u.setStage(stage);
 				System.out.println("修改了孩子阶段");
 			}
-			if (StringUtils.isEmpty(childrenage)) {
+			if (StringUtils.isEmpty(childrenage.trim())) {
 				u.setChildrenage(childrenage+"岁");// 孩子年龄
 			}
 			if (phone != null) {
@@ -2290,7 +2290,7 @@ public class UserAction {
 				u.setPhone(phone);
 			}
 
-			if (sex >= 0) {
+			if (StringUtils.isEmpty(sex.trim())) {
 				u.setSex(sex);// 我的年龄
 				if (signature != null) {
 					u.setSignature(signature);// 个性签名
@@ -2714,11 +2714,13 @@ public class UserAction {
 		this.signature = signature;
 	}
 
-	public int getSex() {
+
+
+	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(int sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 

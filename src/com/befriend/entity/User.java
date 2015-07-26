@@ -75,8 +75,8 @@ public class User implements Serializable
 	private String os;
 	@Column(name="mac")// mac
 	private String mac;
-	@Column(name="sex")//性别  1男 0女
-	private int sex;
+	@Column(name="sex")//性别  男 女
+	private String sex;
 	@Column(name="signature")// 个性签名
 	private String signature;
 	@Column(name="childrenage")// 孩子年龄
@@ -92,10 +92,11 @@ public class User implements Serializable
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
-	public int getSex() {
+	
+	public String getSex() {
 		return sex;
 	}
-	public void setSex(int sex) {
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 	public String getSignature() {

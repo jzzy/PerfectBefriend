@@ -1537,7 +1537,7 @@ public class NewsAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setCharacterEncoding("UTF-8");
 		htmlData = request.getParameter("content1");
-		List images = new ArrayList();
+		List<String> images = new ArrayList<String>();
 		System.out.println("文章内容" + htmlData);
 		if (htmlData == null) {
 			util.Out().print("文章内容没有获取到" + htmlData);
@@ -1601,14 +1601,11 @@ public class NewsAction {
 			images = util.getImgs(htmlData);
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("路径" + images.get(i));
+					System.out.println("路径 "+images.get(i).replaceAll("/PerfectBefriend","")+",");
 					
-					if (i == 0) {
-						sb.append(images.get(i));
-					} else {
-						sb.append("," + images.get(i));
-					}
-
+					
+						sb.append(images.get(i).replaceAll("/PerfectBefriend","")+",");
+					
 				}
 			}
 			/**

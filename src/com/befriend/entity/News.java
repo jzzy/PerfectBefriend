@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 //新闻表
 @Entity
@@ -85,6 +86,7 @@ public class News implements Serializable {
     private String label;
     
     //相似度
+    @Transient
     private double similarity;
     
  
