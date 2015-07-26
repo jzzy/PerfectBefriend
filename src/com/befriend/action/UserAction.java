@@ -1988,7 +1988,7 @@ public class UserAction {
 					+ address + "&os=" + os;
 			WechatKit.sendGet(url);
 			return;
-		}else{
+		} else {
 			util.Out().print("null");
 		}
 
@@ -2279,8 +2279,8 @@ public class UserAction {
 				u.setStage(stage);
 				System.out.println("修改了孩子阶段");
 			}
-			if (!util.isNull(childrenage)) {
-				u.setChildrenage(childrenage+"岁");// 孩子年龄
+			if (!util.isEmpty(childrenage)) {
+				u.setChildrenage(childrenage + "岁");// 孩子年龄
 			}
 			if (phone != null) {
 				if (userdao.byUsernameAccnumnoPhone(phone) != null) {
@@ -2290,20 +2290,21 @@ public class UserAction {
 				u.setPhone(phone);
 			}
 
-			if (!util.isNull(sex)) {
+			if (!util.isEmpty(sex)) {
 				u.setSex(sex);// 我的年龄
-				if (signature != null) {
-					u.setSignature(signature);// 个性签名
-				}
-				if (!StringUtils.isEmpty(childrensex)) {
-					u.setChildrensex(childrensex);// 孩子性别
-				}
-				u.setMac(null);
-
-				userdao.update(u);
-				util.Out().print(util.ToJson(u));
-				System.out.println("修改成功!");
 			}
+			if (signature != null) {
+				u.setSignature(signature);// 个性签名
+			}
+			if (!StringUtils.isEmpty(childrensex)) {
+				u.setChildrensex(childrensex);// 孩子性别
+			}
+			u.setMac(null);
+
+			userdao.update(u);
+			util.Out().print(util.ToJson(u));
+			System.out.println("修改成功!");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -2714,8 +2715,6 @@ public class UserAction {
 		this.signature = signature;
 	}
 
-
-
 	public String getSex() {
 		return sex;
 	}
@@ -2739,7 +2738,5 @@ public class UserAction {
 	public void setChildrenage(String childrenage) {
 		this.childrenage = childrenage;
 	}
-
-	
 
 }

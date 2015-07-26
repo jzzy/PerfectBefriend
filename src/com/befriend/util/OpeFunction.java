@@ -55,7 +55,7 @@ public class OpeFunction {
 	 * @param rend
 	 * @return
 	 */
-	public static boolean isNull(String string){
+	public static boolean isEmpty(String string){
 		
 		if(string!=null){
 			if(StringUtils.isEmpty(string.trim())){

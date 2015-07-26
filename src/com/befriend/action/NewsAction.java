@@ -166,7 +166,7 @@ public class NewsAction {
 				System.out.println("准备添加!");
 				String label=null;
 				//读第一列
-				if(xssfRow.getCell(0)!=null&&!util.isNull(xssfRow.getCell(0).toString())){
+				if(xssfRow.getCell(0)!=null&&!util.isEmpty(xssfRow.getCell(0).toString())){
 					label=xssfRow.getCell(0).toString();
 				
 					if(ndao.byNewsLabelName(label)!=null){

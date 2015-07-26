@@ -19,7 +19,6 @@ import com.befriend.entity.User;
 import com.befriend.util.JsonUtil;
 import com.befriend.util.MathUtils;
 import com.befriend.util.Message;
-import com.befriend.util.PageUtil;
 
 
 /**
@@ -38,7 +37,6 @@ public class AppPushAction extends BaseAction
 	private UserDAO userDAO;
 	private BehaviorDAO behaviorDAO;
 
-	private PageUtil page;
 	private int currentPage = 1;
 	private int pageSize = 10;
 	private Message msg;
@@ -402,15 +400,6 @@ public class AppPushAction extends BaseAction
 		this.behaviorDAO = behaviorDAO;
 	}
 
-	public PageUtil getPage()
-	{
-		return page;
-	}
-
-	public void setPage(PageUtil page)
-	{
-		this.page = page;
-	}
 
 	public int getCurrentPage()
 	{
