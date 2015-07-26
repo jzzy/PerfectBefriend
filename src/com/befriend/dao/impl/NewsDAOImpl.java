@@ -400,7 +400,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(String type, int pageSize, int currentPage) {
+	public List<News> getRecentlyNews(int type, int pageSize, int currentPage) {
 		Query query = entityManager
 				.createQuery("select u from News u where u.type = :type order by u.time desc");
 		query.setParameter("type", type);
@@ -440,7 +440,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(String type,String province, String city, int pageSize,
+	public List<News> getRecentlyNews(int type,String province, String city, int pageSize,
 			int currentPage)
 	{
 		Query query =  entityManager.createQuery("select u from News u where u.type = :type and u.area = :province and u.areas = :city order by u.time desc");
@@ -461,7 +461,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<News> getRecentlyNews(String startTime, String endTime)
+	public List<News> getRecentlyNewsByTime(String startTime, String endTime)
 	{
 		Query query = entityManager.createQuery("select u from News u where u.time >= :startTime and u.time <= :endTime");
 		query.setParameter("startTime", startTime);

@@ -26,6 +26,7 @@ public class Behavior
 	@Column(name="count",nullable=false)
 	private long count;
 	private int occupy;
+	private double weight;
 
 	public Integer getId()
 	{
@@ -75,5 +76,11 @@ public class Behavior
 	{
 		this.occupy = occupy;
 	}
-
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	
 }

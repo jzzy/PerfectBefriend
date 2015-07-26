@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,8 +54,8 @@ public class UserAction {
 
 	private int sex = -1;// 我的性别
 	private String signature;// 个性签名
-	private int childrensex = -1;// 孩子性别
-	private int childrenage = -1;// 孩子年龄
+	private String childrensex;// 孩子性别
+	private String childrenage;// 孩子年龄
 	private String mac;
 	private String phone;// 手机号
 	private String username;// 用户名
@@ -2278,8 +2279,8 @@ public class UserAction {
 				u.setStage(stage);
 				System.out.println("修改了孩子阶段");
 			}
-			if (childrenage >= 0) {
-				u.setChildrenage(childrenage);// 孩子年龄
+			if (StringUtils.isEmpty(childrenage)) {
+				u.setChildrenage(childrenage+"岁");// 孩子年龄
 			}
 			if (phone != null) {
 				if (userdao.byUsernameAccnumnoPhone(phone) != null) {
@@ -2294,7 +2295,7 @@ public class UserAction {
 				if (signature != null) {
 					u.setSignature(signature);// 个性签名
 				}
-				if (childrensex >= 0) {
+				if (StringUtils.isEmpty(childrensex)) {
 					u.setChildrensex(childrensex);// 孩子性别
 				}
 				u.setMac(null);
@@ -2721,20 +2722,22 @@ public class UserAction {
 		this.sex = sex;
 	}
 
-	public int getChildrensex() {
+	public String getChildrensex() {
 		return childrensex;
 	}
 
-	public void setChildrensex(int childrensex) {
+	public void setChildrensex(String childrensex) {
 		this.childrensex = childrensex;
 	}
 
-	public int getChildrenage() {
+	public String getChildrenage() {
 		return childrenage;
 	}
 
-	public void setChildrenage(int childrenage) {
+	public void setChildrenage(String childrenage) {
 		this.childrenage = childrenage;
 	}
+
+	
 
 }
