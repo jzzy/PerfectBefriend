@@ -56,4 +56,21 @@ public class BehaviorDAOImpl implements BehaviorDAO
 			return null;
 	}
 
+	@Override
+	public Behavior findByUserKeyword(Integer userId, String keyword, int type) {
+		Query query = entityManager.createQuery("select u from Behavior u where u.userId = :userId and u.type = :type and u.keyword = :keyword");
+		query.setParameter("userId", userId);
+		query.setParameter("type", type);
+		query.setParameter("keyword", keyword);
+		if(query.getResultList().size()>0)
+		{
+			if(query.getResultList().get(0) instanceof Behavior)
+				return (Behavior) query.getResultList().get(0);
+			else
+				return null;
+		}
+		else
+			return null;
+	}
+
 }

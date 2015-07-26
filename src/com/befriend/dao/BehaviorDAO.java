@@ -38,6 +38,14 @@ public interface BehaviorDAO
 	 * @return
 	 */
 	public Behavior findByUserKeyword(Integer userId,String keyword);
+	/**
+	 *分标签类型查询 
+	 * @param userId
+	 * @param keyword
+	 * @param type
+	 * @return
+	 */
+	public Behavior findByUserKeyword(Integer userId,String keyword,int type);
 	
 
 }
