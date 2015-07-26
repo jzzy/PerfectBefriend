@@ -60,7 +60,7 @@ public class AppPushAction extends BaseAction
 		List<News> news = new ArrayList<News>();
 		if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(userId))
 		{
-			switch (Integer.valueOf(type.trim()))
+			switch (Integer.valueOf(type))
 			{
 			case News.TOP_NEWS:
 				/**
@@ -82,14 +82,14 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 推荐 个人信息+用户行为
 				 */
-				if (StringUtils.isNumeric(userId.trim()))
+				if (StringUtils.isNumeric(userId))
 				{
 					/**
 					 * 根据userId查找推荐指标：个人信息，个人行为表 计算各类别或标签的比例
 					 */
 					@SuppressWarnings("unused")
 					int realSize = 0;// 实际push新闻数,不一定为pageSize
-					Integer _userId = Integer.valueOf(userId.trim());
+					Integer _userId = Integer.valueOf(userId);
 					User user = userDAO.byid(_userId);
 					List<Behavior> typeBehaviors = behaviorDAO.findByUserIdType(NEWS_TYPE_NUM, _userId, Behavior.NEWS_TYPE);
 					long typeSum = typeBehaviors.size();//防止被除数为0
@@ -124,32 +124,32 @@ public class AppPushAction extends BaseAction
 					 * 下面计算的是用户信息偏好权值
 					 */
 					List<Double> prefence = new ArrayList<>();
-					if(!StringUtils.isEmpty(user.getChildrenage().trim()))
+					if(!StringUtils.isEmpty(user.getChildrenage()))
 						prefence.add(User.CHILD_AGE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getStage().trim()))
+					if(!StringUtils.isEmpty(user.getStage()))
 						prefence.add(User.STAGE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getChildrensex().trim()))
+					if(!StringUtils.isEmpty(user.getChildrensex()))
 						prefence.add(User.CHILD_SEX);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getSchool().trim()))
+					if(!StringUtils.isEmpty(user.getSchool()))
 						prefence.add(User.SCHOOL);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getAddress().trim()))
+					if(!StringUtils.isEmpty(user.getAddress()))
 						prefence.add(User.PROVINCE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getAddcity().trim()))
+					if(!StringUtils.isEmpty(user.getAddcity()))
 						prefence.add(User.CITY);
 					else
 						prefence.add(0d);
@@ -184,32 +184,32 @@ public class AppPushAction extends BaseAction
 							 * <age,stage,sex,school,province,city,+统计偏好>
 							 * 新闻标签不为空，则求向量个分量权值
 							 */
-							if(!StringUtils.isEmpty(user.getChildrenage().trim())&&n.getLabel().contains(user.getChildrenage()))
+							if(!StringUtils.isEmpty(user.getChildrenage())&&n.getLabel().contains(user.getChildrenage()))
 								newsV.add(User.CHILD_AGE);
 							else
 								newsV.add(0d);
 							
-							if(!StringUtils.isEmpty(user.getStage().trim()) && n.getLabel().contains(user.getStage()))
+							if(!StringUtils.isEmpty(user.getStage()) && n.getLabel().contains(user.getStage()))
 								newsV.add(User.STAGE);
 							else
 								newsV.add(0d);
 							
-							if(!StringUtils.isEmpty(user.getChildrensex().trim()) && n.getLabel().contains(user.getChildrensex()))
+							if(!StringUtils.isEmpty(user.getChildrensex()) && n.getLabel().contains(user.getChildrensex()))
 								newsV.add(User.CHILD_SEX);
 							else
 								newsV.add(0d);
 							
-							if(!StringUtils.isEmpty(user.getSchool().trim()) && n.getLabel().contains(user.getSchool()))
+							if(!StringUtils.isEmpty(user.getSchool()) && n.getLabel().contains(user.getSchool()))
 								newsV.add(User.SCHOOL);
 							else
 								newsV.add(0d);
 							
-							if(!StringUtils.isEmpty(user.getAddress().trim()) && n.getLabel().contains(user.getAddress().trim()))
+							if(!StringUtils.isEmpty(user.getAddress()) && n.getLabel().contains(user.getAddress()))
 								newsV.add(User.PROVINCE);
 							else
 								newsV.add(0d);
 							
-							if(!StringUtils.isEmpty(user.getAddcity().trim()) && n.getLabel().contains(user.getAddcity().trim()))
+							if(!StringUtils.isEmpty(user.getAddcity()) && n.getLabel().contains(user.getAddcity()))
 								newsV.add(User.CITY);
 							else
 								newsV.add(0d);
@@ -218,7 +218,7 @@ public class AppPushAction extends BaseAction
 							 */
 							for(Behavior behavior:labelBehaviors)
 							{
-								if(n.getLabel().contains(behavior.getKeyword().trim()))
+								if(n.getLabel().contains(behavior.getKeyword()))
 									newsV.add(MathUtils.getWeight(behavior.getCount()));
 								else
 									newsV.add(0d);
@@ -310,7 +310,7 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 本地 按地区显示新闻，默认显示北京
 				 */
-				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), province, city, pageSize,currentPage);
+				news = newsDAO.getRecentlyNews(Integer.valueOf(type), province, city, pageSize,currentPage);
 				if (news.size() > 0)
 				{
 					msg.setCode(Message.SUCCESS);
@@ -326,9 +326,9 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 其它类别的新闻
 				 */
-				if(Integer.valueOf(type.trim())!=0)
+				if(Integer.valueOf(type)!=0)
 				{
-					news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), pageSize, currentPage);
+					news = newsDAO.getRecentlyNews(Integer.valueOf(type), pageSize, currentPage);
 					if (news.size() > 0)
 					{
 						msg.setCode(Message.SUCCESS);

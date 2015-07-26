@@ -34,8 +34,8 @@ public class StatisticsAction extends BaseAction
 			 */
 			behavior = new Behavior();
 			behavior.setUserId(userId);
-			behavior.setKeyword(keyword.trim());
-			if(StringUtils.isNumeric(keyword.trim()))
+			behavior.setKeyword(keyword);
+			if(StringUtils.isNumeric(keyword))
 				behavior.setType(Behavior.NEWS_TYPE);
 			else
 				behavior.setType(Behavior.LABEL);
