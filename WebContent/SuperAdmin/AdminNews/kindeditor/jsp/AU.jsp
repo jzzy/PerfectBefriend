@@ -225,6 +225,23 @@ function cka(){
 			</table>
 
 		</form>
+		<form action="saveLabel" enctype="multipart/form-data" method="post">
+		<table>
+		
+		
+			<tr>
+					<td>新闻标签</td>
+					
+				</tr>
+				<tr>
+					<td>选择文件<input type="file" id="" name="xlsxFile" /></td>
+				</tr>
+				<tr>
+					
+					<td><input type="submit" id="" name="" value="上传新闻标签"/></td>
+				</tr>
+				</table>
+		</form>
 		
 		---------<h3><a href="<%=request.getContextPath()%><%=OpeFunction.request().getSession().getAttribute("home") %>" onclick="return cka();">返回主页</a></h3>
 	</div>

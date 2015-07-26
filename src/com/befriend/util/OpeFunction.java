@@ -554,6 +554,9 @@ public class OpeFunction {
 	}
 
 	public static void main(String[] args) throws ParseException {
+		String xlsxFileFileName="121231.a";
+		System.out.println(xlsxFileFileName.split("\\.")[1]);
+		
 		
 		      }  
 	

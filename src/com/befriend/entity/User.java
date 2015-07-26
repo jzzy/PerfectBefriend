@@ -30,7 +30,7 @@ public class User implements Serializable
 	private String img;
 	
 	
-	@Column(name="stage")//½×¶Î
+	@Column(name="stage")//º¢×Ó½×¶Î
 	private String stage;
 	@Column(name="time")//×¢²áÊ±¼ä
 	private String time;

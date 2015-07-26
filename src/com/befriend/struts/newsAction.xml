@@ -4,6 +4,9 @@
 <struts>
 	<package name="News" extends="struts-default" >
 
+	<!-- 上传新闻标签 -->
+		<action name="saveLabel" class="newsAction" method="saveLabel">
+		</action>
 		<!-- 查看新闻是否更新 -->
 		<action name="newNewsId" class="newsAction" method="newNewsId">
 		</action>

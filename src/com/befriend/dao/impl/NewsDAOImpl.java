@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.NewsDAO;
 import com.befriend.entity.News;
+import com.befriend.entity.NewsLabel;
 
 @Transactional
 public class NewsDAOImpl implements NewsDAO {
@@ -466,6 +467,30 @@ public class NewsDAOImpl implements NewsDAO {
 		query.setParameter("startTime", startTime);
 		query.setParameter("endTime", endTime);
 		return query.getResultList();
+	}
+
+	@Override
+	public void Save(NewsLabel nlab) {
+		// TODO Auto-generated method stub
+		entityManager.persist(nlab);
+	}
+
+	@Override
+	public List<NewsLabel> getNewsLabelAll() {
+		Query query = entityManager.createQuery("select u from NewsLabel u order by u.time desc");
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public NewsLabel byNewsLabelName(String NewsLabelName) {
+		Query query = entityManager.createQuery("select u from NewsLabel u where u.label=:NewsLabelName");
+		query.setParameter("NewsLabelName", NewsLabelName);
+		List<NewsLabel> nbl=query.getResultList();
+		if(nbl.size()>0){
+			return nbl.get(0);
+		}
+		return null;
 	}
 
 }

@@ -15,10 +15,15 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.mail.search.DateTerm;
 import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 
@@ -30,6 +35,7 @@ import com.befriend.entity.Admin;
 import com.befriend.entity.App;
 import com.befriend.entity.Collect;
 import com.befriend.entity.News;
+import com.befriend.entity.NewsLabel;
 import com.befriend.entity.Review;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
@@ -96,7 +102,102 @@ public class NewsAction {
 	private String province;// 省级
 
 	private String city;// 市级
+	public File xlsxFile;//新闻标签表
+	private String xlsxFileFileName;//文件类型
+	public String getXlsxFileFileName() {
+		return xlsxFileFileName;
+	}
+	public void setXlsxFileFileName(String xlsxFileFileName) {
+		this.xlsxFileFileName = xlsxFileFileName;
+	}
+	/**
+	 * 上传新闻标签
+	 * @throws InvalidFormatException 
+	 */
+	public void saveLabel() throws IOException, InvalidFormatException {
+		System.out.println("文件类型"+xlsxFileFileName);
+		
+		ServletResponse srp=(ServletResponse) util.response();
+		srp.setCharacterEncoding("GBK");
+		PrintWriter out = srp.getWriter();
+		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
+		StringBuilder builder = new StringBuilder();
+		builder.append("<script type=\"text/javascript\">");
+		
+		if (xlsxFile==null) {
+			loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
+			builder.append("alert('添加标签失败！');");
+			builder.append("window.top.location.href='");
+			builder.append(loginPage);
+			builder.append("';");
+			builder.append("</script>");
+			out.print(builder.toString());
+			return;
+		}
+		if(!xlsxFileFileName.split("\\.")[1].equals("xlsx")){
+			loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
+			builder.append("alert('文件类型不对 你的是: ."+xlsxFileFileName.split("\\.")[1]+"');");
+			builder.append("window.top.location.href='");
+			builder.append(loginPage);
+			builder.append("';");
+			builder.append("</script>");
+			out.print(builder.toString());
+			return;
+		}
+		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(xlsxFile);
 
+		// 循环工作表Sheet
+		for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
+			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
+			if (xssfSheet == null) {
+				continue;
+			}
+			
+			// 循环行Row
+			for (int rowNum = 0; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
+				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
+				if (xssfRow == null) {
+					continue;
+				}
+				//第一次不读 是标题
+				if(rowNum<1){
+					//System.out.println("列："+xssfRow.getCell(0));
+					System.out.println("新闻标签："+xssfRow.getCell(1));
+					//continue;
+					}
+				System.out.println("新闻标签："+xssfRow.getCell(1));
+				System.out.println("第"+numSheet+"个工作表Sheet,的第"+rowNum+"行");
+				System.out.println("准备添加!");
+				String label=null;
+				if(xssfRow.getCell(1)!=null){
+					label=xssfRow.getCell(1).toString();
+				}
+				if(label==null){
+					System.out.println("空的!");
+					continue;
+				}
+				if(ndao.byNewsLabelName(label)!=null){
+					System.out.println("已经添加过!");
+					continue;
+				}
+				//添加要存储的信息
+				NewsLabel nlb=new NewsLabel();
+				nlb.setLabel(label);
+				nlb.setTime(util.getNowTime());
+				ndao.Save(nlb);
+									
+			}
+		}
+		
+		builder.append("alert('添加标签成功!');");
+		builder.append("window.top.location.href='");
+		builder.append(loginPage);
+		builder.append("';");
+		builder.append("</script>");
+		out.print(builder.toString());
+		
+		
+	}
 	/**
 	 * 通过id查询新闻 看是否有更新
 	 * 
@@ -1447,11 +1548,26 @@ public class NewsAction {
 			return null;
 		}
 		News n = new News();
-
+		List<NewsLabel> nbl=ndao.getNewsLabelAll();
+		StringBuffer sb=new StringBuffer();
+		
+		for(int i=0;i<nbl.size();i++){
+			NewsLabel nb=nbl.get(i);
+			if(nb!=null)
+			{
+				if(htmlData.contains(nb.getLabel())){
+					sb.append(nb.getLabel()+",");
+				}
+			}
+		}
+		
+		if(sb!=null){
+		n.setLabel(sb.toString());
+		}
 		n.setTitle(title);
 		n.setSummary(summary);
 		n.setContent(htmlData);
-		StringBuffer sb = new StringBuffer();
+		sb=new StringBuffer();
 		if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
 
 			if (imgFile1 != null) {
@@ -1466,15 +1582,15 @@ public class NewsAction {
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
 					System.out.println("路径" + images.get(i));
-					if (i == 0) {
-						sb.append(images.get(i));
-					} else {
-						sb.append("," + images.get(i));
-					}
+				
+						sb.append(images.get(i)+",");
+					
 
 				}
 			}
+			if(sb!=null){
 			n.setImg(sb.toString());
+			}
 			// String [] s=n.getImg().toString().split("xy-x");
 			// for(int i=0;i<s.length;i++){
 			// System.out.println("截取的路径---"+s[i]);
@@ -2403,6 +2519,12 @@ public class NewsAction {
 
 	public void setItype(int itype) {
 		this.itype = itype;
+	}
+	public File getXlsxFile() {
+		return xlsxFile;
+	}
+	public void setXlsxFile(File xlsxFile) {
+		this.xlsxFile = xlsxFile;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.befriend.dao;
 import java.util.List;
 
 import com.befriend.entity.News;
+import com.befriend.entity.NewsLabel;
 
 /**
  * 新闻方法
@@ -120,4 +121,16 @@ public interface NewsDAO {
 	 * @return
 	 */
 	public List<News> getRecentlyNews(String startTime,String endTime);
-}
+	/**
+	 * 添加标签
+	 */
+	public void Save(NewsLabel nlab);
+	/**
+	 * 查询所有标签
+	 */
+	public List<NewsLabel> getNewsLabelAll();
+	/**
+	 * 查看标签
+	 */
+	public NewsLabel byNewsLabelName(String NewsLabelName);
+}	
