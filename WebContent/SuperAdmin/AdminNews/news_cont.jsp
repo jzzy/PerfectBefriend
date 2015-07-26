@@ -47,7 +47,7 @@ if(n==null){
 			 
 			  
   			%>
-   <p><img src="<%=request.getContextPath() %><%=s[i] %>" ></p>
+   <p>展示图---<img src="<%=request.getContextPath() %><%=s[i] %>" ></p>
    <%
 			 }
 }

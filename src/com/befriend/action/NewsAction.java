@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -154,38 +155,33 @@ public class NewsAction {
 			}
 			
 			// 循环行Row
-			for (int rowNum = 0; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
+			for (int rowNum = 1; rowNum < xssfSheet.getLastRowNum(); rowNum++) {
+				//读行
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow == null) {
 					continue;
 				}
-				//第一次不读 是标题
-				if(rowNum<1){
-					//System.out.println("列："+xssfRow.getCell(0));
-					System.out.println("新闻标签："+xssfRow.getCell(1));
-					//continue;
-					}
-				System.out.println("新闻标签："+xssfRow.getCell(1));
+				System.out.println("新闻标签："+xssfRow.getCell(0));
 				System.out.println("第"+numSheet+"个工作表Sheet,的第"+rowNum+"行");
 				System.out.println("准备添加!");
 				String label=null;
-				if(xssfRow.getCell(1)!=null){
-					label=xssfRow.getCell(1).toString();
+				//读第一列
+				if(xssfRow.getCell(0)!=null&&!StringUtils.isEmpty(xssfRow.getCell(0).toString().trim())){
+					label=xssfRow.getCell(0).toString();
+				
+					if(ndao.byNewsLabelName(label)!=null){
+						System.out.println("已经添加过!");
+						continue;
+					}
+					else
+					{
+						//添加要存储的信息
+						NewsLabel nlb=new NewsLabel();
+						nlb.setLabel(label);
+						nlb.setTime(util.getNowTime());
+						ndao.Save(nlb);
+					}
 				}
-				if(label==null){
-					System.out.println("空的!");
-					continue;
-				}
-				if(ndao.byNewsLabelName(label)!=null){
-					System.out.println("已经添加过!");
-					continue;
-				}
-				//添加要存储的信息
-				NewsLabel nlb=new NewsLabel();
-				nlb.setLabel(label);
-				nlb.setTime(util.getNowTime());
-				ndao.Save(nlb);
-									
 			}
 		}
 		
@@ -939,7 +935,7 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println(type + " -有" + a + "页");
+			System.out.println( " -有" + a + "页");
 			System.out.println("每页多少条-" + pageSize);
 			System.out.println("第-" + currentPage + "-页");
 			nl = ndao.type(0, tp, pageSize, currentPage);
@@ -1613,7 +1609,7 @@ public class NewsAction {
 			 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
 			 * System.out.println("截取的路径"+s[i]); }
 			 */
-
+			System.out.println("存了 "+sb.toString());
 			n.setImg(sb.toString());
 
 		}
