@@ -120,12 +120,8 @@ public interface NewsDAO {
 	 * @param endTime
 	 * @return
 	 */
-<<<<<<< HEAD
 
-	public List<News> getRecentlyNews(String startTime,String endTime);
-=======
 	public List<News> getRecentlyNewsByTime(String startTime,String endTime);
->>>>>>> d6cd751214ad6450e19b2af570c7823cfa29ec17
 	/**
 	 * ÃÌº”±Í«©
 	 */
@@ -139,10 +135,5 @@ public interface NewsDAO {
 	 */
 	public NewsLabel byNewsLabelName(String NewsLabelName);
 
-<<<<<<< HEAD
-	public List<News> getRecentlyNewsByTime(String startTime,String endTime);
-=======
-	
->>>>>>> d6cd751214ad6450e19b2af570c7823cfa29ec17
 }
 

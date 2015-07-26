@@ -463,7 +463,7 @@ public class NewsDAOImpl implements NewsDAO {
 	@Override
 	public List<News> getRecentlyNewsByTime(String startTime, String endTime)
 	{
-		Query query = entityManager.createQuery("select u from News u where u.time >= :startTime and u.time <= :endTime");
+		Query query = entityManager.createQuery("select u from News u where u.time >= :startTime and u.time <= :endTime order by u.time desc");
 		query.setParameter("startTime", startTime);
 		query.setParameter("endTime", endTime);
 		return query.getResultList();
@@ -493,10 +493,5 @@ public class NewsDAOImpl implements NewsDAO {
 		return null;
 	}
 
-	@Override
-	public List<News> getRecentlyNews(String startTime, String endTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
