@@ -22,5 +22,6 @@
 	<include file="com/befriend/struts/groupAction.xml"></include><!-- 群聊 -->
 	<include file="com/befriend/struts/wechatAction.xml"></include><!-- 微信开发 -->
 	<include file="com/befriend/struts/appPush.xml"></include>
+	<include file="com/befriend/struts/statistics_action.xml"></include>
 	
 </struts>

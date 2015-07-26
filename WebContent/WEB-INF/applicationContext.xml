@@ -147,6 +147,9 @@
 		<constructor-arg ref="userDAO"></constructor-arg>
 		<constructor-arg ref="behaviorDAO"></constructor-arg>
 	</bean>	
+	<bean id="statisticsAction" class="com.befriend.action.StatisticsAction" scope="prototype">
+		<constructor-arg ref="behaviorDAO"></constructor-arg>
+	</bean>
 	
 	<!-- 在java普通类中调用 dao-->
 	<bean id="app" class="com.befriend.util.ApplicationUtil">

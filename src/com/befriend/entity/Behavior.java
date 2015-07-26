@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="behavior")
@@ -25,7 +26,9 @@ public class Behavior
 	private int type;//关键词类型，1：新闻类别；2：新闻标签
 	@Column(name="count",nullable=false)
 	private long count;
+	@Transient
 	private int occupy;
+	@Transient
 	private double weight;
 
 	public Integer getId()

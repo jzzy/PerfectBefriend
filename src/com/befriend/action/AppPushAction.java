@@ -251,7 +251,7 @@ public class AppPushAction extends BaseAction
 						 * 找到当前页码的各个新闻分类的起始游标
 						 * indexs表示各个分类到当前页实际已有的新闻数
 						 */
-						int[] indexs = new int[NEWS_TYPE_NUM];
+						int[] indexs = new int[typeBehaviors.size()];
 						for (int i=0;i<recentlyNews.size();i++)
 						{
 							for (int j = 0; j < typeBehaviors.size(); j++)
@@ -279,9 +279,9 @@ public class AppPushAction extends BaseAction
 								 * 循环push各类新闻
 								 * 判断该类新闻还有新闻可以push
 								 */
-								if(startP[j] < recentlyNews.size())
+								if(startP[i] < recentlyNews.size())
 								{
-									news.add(recentlyNews.get(startP[j]++));
+									news.add(recentlyNews.get(startP[i]++));
 								}
 							}
 						}
@@ -296,7 +296,7 @@ public class AppPushAction extends BaseAction
 						else
 						{
 							msg.setCode(Message.FAILED);
-							msg.setStatement("无内容更新");
+							msg.setStatement("无push内容");
 						}
 
 					}
@@ -326,16 +326,24 @@ public class AppPushAction extends BaseAction
 				/**
 				 * 其它类别的新闻
 				 */
-				news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), pageSize, currentPage);
-				if (news.size() > 0)
+				if(Integer.valueOf(type.trim())!=0)
 				{
-					msg.setCode(Message.SUCCESS);
-					msg.setContent(news);
+					news = newsDAO.getRecentlyNews(Integer.valueOf(type.trim()), pageSize, currentPage);
+					if (news.size() > 0)
+					{
+						msg.setCode(Message.SUCCESS);
+						msg.setContent(news);
+					}
+					else
+					{
+						msg.setCode(Message.FAILED);
+						msg.setStatement("无内容更新");
+					}
 				}
 				else
 				{
-					msg.setCode(Message.FAILED);
-					msg.setStatement("无内容更新");
+					msg.setCode(Message.ERROR);
+					msg.setContent("请求参数错误");
 				}
 				break;
 			}
