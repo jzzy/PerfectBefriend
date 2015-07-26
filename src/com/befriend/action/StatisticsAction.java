@@ -20,7 +20,7 @@ public class StatisticsAction extends BaseAction
 	private BehaviorDAO behaviorDAO;
 	private NewsDAO newsDAO;
 	
-	private Integer userId;
+	private String userId;
 	private String newsId;
 	
 	/**
@@ -28,14 +28,13 @@ public class StatisticsAction extends BaseAction
 	 */
 	public void statistics()
 	{
-		System.out.println(newsId);
-		if(StringUtils.isNumeric(newsId))
+		if(StringUtils.isNumeric(newsId)&&StringUtils.isNumeric(userId))
 		{
 			News news = newsDAO.byid(Integer.valueOf(newsId));
 			System.out.println(news == null);
 			if(news != null)
 			{
-				Behavior typeBehavior = behaviorDAO.findByUserKeyword(userId, String.valueOf(news.getType()),Behavior.NEWS_TYPE);
+				Behavior typeBehavior = behaviorDAO.findByUserKeyword(Integer.valueOf(userId), String.valueOf(news.getType()),Behavior.NEWS_TYPE);
 				if(typeBehavior == null)
 				{
 					/**
@@ -43,7 +42,7 @@ public class StatisticsAction extends BaseAction
 					 * 新建一个统计记录
 					 */
 					typeBehavior = new Behavior();
-					typeBehavior.setUserId(userId);
+					typeBehavior.setUserId(Integer.valueOf(userId));
 					typeBehavior.setKeyword(String.valueOf(news.getType()));
 					typeBehavior.setType(Behavior.NEWS_TYPE);
 					typeBehavior.setCount(1l);
@@ -59,7 +58,7 @@ public class StatisticsAction extends BaseAction
 				{
 					String [] labels = news.getLabel().split(",");
 					for (String keyword : labels) {
-						Behavior labelBehavior = behaviorDAO.findByUserKeyword(userId, keyword,Behavior.LABEL);
+						Behavior labelBehavior = behaviorDAO.findByUserKeyword(Integer.valueOf(userId), keyword,Behavior.LABEL);
 						if(labelBehavior == null)
 						{
 							/**
@@ -67,7 +66,7 @@ public class StatisticsAction extends BaseAction
 							 * 新建一个统计记录
 							 */
 							labelBehavior = new Behavior();
-							labelBehavior.setUserId(userId);
+							labelBehavior.setUserId(Integer.valueOf(userId));
 							labelBehavior.setKeyword(keyword);
 							labelBehavior.setType(Behavior.LABEL);
 							labelBehavior.setCount(1l);
