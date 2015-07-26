@@ -98,7 +98,7 @@ public interface NewsDAO {
 	 * @param currentPage
 	 * @return
 	 */
-	public List<News> getRecentlyNews(String type,int pageSize,int currentPage);
+	public List<News> getRecentlyNews(int type,int pageSize,int currentPage);
 	/**
 	 * @param pageSize
 	 * @param currentPage
@@ -112,12 +112,12 @@ public interface NewsDAO {
 	 * @param currentPage
 	 * @return
 	 */
-	public List<News> getRecentlyNews(String type,String province,String city,int pageSize,int currentPage);
+	public List<News> getRecentlyNews(int type,String province,String city,int pageSize,int currentPage);
 	/**
 	 * 按时间段查询最近的新闻
 	 * @param startTime
 	 * @param endTime
 	 * @return
 	 */
-	public List<News> getRecentlyNews(String startTime,String endTime);
+	public List<News> getRecentlyNewsByTime(String startTime,String endTime);
 }

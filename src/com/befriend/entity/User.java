@@ -32,6 +32,7 @@ public class User implements Serializable
 	
 	@Column(name="stage")//阶段
 	private String stage;
+	public static final double STAGE = 2D;
 	@Column(name="time")//注册时间
 	private String time;
 	@Column(name="address")//地址 省级
@@ -39,13 +40,16 @@ public class User implements Serializable
 	 * 地址 省级
 	 */
 	private String address;
+	public static final double PROVINCE = 3D;
 	
 	@Column(name="addcity")//地址 市级
 	private String addcity;
+	public static final double CITY = 4D;
 	@Column(name="phone")//电话
 	private String phone;
 	@Column(name="school")//学校
 	private String school;
+	public static final double SCHOOL = 5D;
 	
 	@Column(name="competence")//权限  0 普通用户  1 市级管理员 2省级管理员 4是教授
 	private int competence;
@@ -76,9 +80,11 @@ public class User implements Serializable
 	@Column(name="signature")// 个性签名
 	private String signature;
 	@Column(name="childrenage")// 孩子年龄
-	private int childrenage;
-	@Column(name="childrensex")// 孩子性别  1男 0女
-	private int childrensex;
+	private String childrenage;
+	public static final double CHILD_AGE = 4D;
+	@Column(name="childrensex")// 孩子性别  男 女
+	private String childrensex;
+	public static final double CHILD_SEX = 3D;
 	
 	public String getMac() {
 		return mac;
@@ -98,17 +104,17 @@ public class User implements Serializable
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
-	public int getChildrenage() {
+	
+	public String getChildrenage() {
 		return childrenage;
 	}
-	public void setChildrenage(int childrenage) {
+	public void setChildrenage(String childrenage) {
 		this.childrenage = childrenage;
 	}
-	
-	public int getChildrensex() {
+	public String getChildrensex() {
 		return childrensex;
 	}
-	public void setChildrensex(int childrensex) {
+	public void setChildrensex(String childrensex) {
 		this.childrensex = childrensex;
 	}
 	public String getOs() {

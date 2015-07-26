@@ -22,6 +22,8 @@ import com.befriend.util.MathUtils;
 import com.befriend.util.Message;
 import com.befriend.util.PageUtil;
 
+import freemarker.template.utility.StringUtil;
+
 /**
  * @author STerOTto
  * @describe app push规则
@@ -84,6 +86,7 @@ public class AppPushAction extends BaseAction
 					/**
 					 * 根据userId查找推荐指标：个人信息，个人行为表 计算各类别或标签的比例
 					 */
+					@SuppressWarnings("unused")
 					int realSize = 0;// 实际push新闻数,不一定为pageSize
 					Integer _userId = Integer.valueOf(userId.trim());
 					User user = userDAO.byid(_userId);
@@ -114,9 +117,122 @@ public class AppPushAction extends BaseAction
 					String endTime = sdf.format(calendar.getTime());
 					List<News> recentlyNews = newsDAO.getRecentlyNewsByTime(startTime, endTime);
 					/**
-					 * 按照标签统计进行排序
+					 * 1,计算用户偏好向量<age,stage,sex,school,province,city,+统计偏好>
+					 * 2,计算新闻与用户偏好相似度
+					 * 3,进行排序
+					 * 下面计算的是用户信息偏好权值
 					 */
-					Collections.sort(recentlyNews, new NewsComparator());
+					List<Double> prefence = new ArrayList<>();
+					if(!StringUtils.isEmpty(user.getChildrenage().trim()))
+						prefence.add(User.CHILD_AGE);
+					else
+						prefence.add(0d);
+					
+					if(!StringUtils.isEmpty(user.getStage().trim()))
+						prefence.add(User.STAGE);
+					else
+						prefence.add(0d);
+					
+					if(!StringUtils.isEmpty(user.getChildrensex().trim()))
+						prefence.add(User.CHILD_SEX);
+					else
+						prefence.add(0d);
+					
+					if(!StringUtils.isEmpty(user.getSchool().trim()))
+						prefence.add(User.SCHOOL);
+					else
+						prefence.add(0d);
+					
+					if(!StringUtils.isEmpty(user.getAddress().trim()))
+						prefence.add(User.PROVINCE);
+					else
+						prefence.add(0d);
+					
+					if(!StringUtils.isEmpty(user.getAddcity().trim()))
+						prefence.add(User.CITY);
+					else
+						prefence.add(0d);
+					/**
+					 * 计算用户行为偏好权值
+					 */
+					for(Behavior behavior:labelBehaviors)
+					{
+						prefence.add(MathUtils.getWeight(behavior.getCount()));
+					}
+					/**
+					 * 计算新闻权值
+					 */
+					for (int i=0 ; i<recentlyNews.size() ; i++) 
+					{
+						News n = recentlyNews.get(i);
+						List<Double> newsV = new ArrayList<>();
+						if(StringUtils.isEmpty(n.getLabel()))
+						{
+							/**
+							 * 若新闻标签为空，则新闻权值向量为零向量
+							 */
+							for(int j=0 ; j<prefence.size() ; j++)
+							{
+								newsV.add(0d);
+							}
+							
+						}
+						else
+						{
+							/**
+							 * <age,stage,sex,school,province,city,+统计偏好>
+							 * 新闻标签不为空，则求向量个分量权值
+							 */
+							if(!StringUtils.isEmpty(user.getChildrenage().trim())&&n.getLabel().contains(user.getChildrenage()))
+								newsV.add(User.CHILD_AGE);
+							else
+								newsV.add(0d);
+							
+							if(!StringUtils.isEmpty(user.getStage().trim()) && n.getLabel().contains(user.getStage()))
+								newsV.add(User.STAGE);
+							else
+								newsV.add(0d);
+							
+							if(!StringUtils.isEmpty(user.getChildrensex().trim()) && n.getLabel().contains(user.getChildrensex()))
+								newsV.add(User.CHILD_SEX);
+							else
+								newsV.add(0d);
+							
+							if(!StringUtils.isEmpty(user.getSchool().trim()) && n.getLabel().contains(user.getSchool()))
+								newsV.add(User.SCHOOL);
+							else
+								newsV.add(0d);
+							
+							if(!StringUtils.isEmpty(user.getAddress().trim()) && n.getLabel().contains(user.getAddress().trim()))
+								newsV.add(User.PROVINCE);
+							else
+								newsV.add(0d);
+							
+							if(!StringUtils.isEmpty(user.getAddcity().trim()) && n.getLabel().contains(user.getAddcity().trim()))
+								newsV.add(User.CITY);
+							else
+								newsV.add(0d);
+							/**
+							 * 个人行为权值比较	
+							 */
+							for(Behavior behavior:labelBehaviors)
+							{
+								if(n.getLabel().contains(behavior.getKeyword().trim()))
+									newsV.add(MathUtils.getWeight(behavior.getCount()));
+								else
+									newsV.add(0d);
+							}
+							
+							/**
+							 * 设置权值
+							 */
+							n.setSimilarity(MathUtils.sim(prefence, newsV));
+							recentlyNews.set(i, n);
+						}
+						
+						
+					}
+					recentlyNews.sort(new NewsComparator());
 					/**
 					 * 将最近新闻按照push规则进行排序
 					 */
@@ -229,49 +345,12 @@ public class AppPushAction extends BaseAction
 		@Override
 		public int compare(News first, News second) 
 		{
-			if(labelBehaviors.size() == 0)
-			{
-				return 0;
-			}
+			if(first.getSimilarity()<second.getSimilarity())
+				return 1;
+			else if(first.getSimilarity() > second.getSimilarity())
+				return -1;
 			else
-			{
-				/**
-				 * 定位标签索引
-				 * 比较两个索引先后顺序
-				 */
-				int indexF = labelBehaviors.size();
-				int indexS = labelBehaviors.size();
-				for (int i = 0; i < labelBehaviors.size(); i++) 
-				{
-					if(first.getLabel().contains(labelBehaviors.get(i).getKeyword()))
-					{
-						indexF = i;
-						break;
-					}
-				}
-				for (int i = 0; i < labelBehaviors.size(); i++) {
-					if(first.getLabel().contains(labelBehaviors.get(i).getKeyword()))
-					{
-						indexS = i;
-						break;
-					}
-				}
-				/**
-				 * frist > second 
-				 */
-				if(indexF < indexS)
-					return -1;
-				/**
-				 * frist < second
-				 */
-				else if(indexF > indexS)
-					return 1;
-				/**
-				 * frist = second
-				 */
-				else
-					return 0;
-			}
+				return 0;
 		}
 
 	}

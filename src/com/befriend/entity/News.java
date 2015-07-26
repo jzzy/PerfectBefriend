@@ -84,6 +84,9 @@ public class News implements Serializable {
     @Column(name="label")
     private String label;
     
+    //œ‡À∆∂»
+    private double similarity;
+    
  
     
    
@@ -191,6 +194,12 @@ public class News implements Serializable {
 	}
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	public double getSimilarity() {
+		return similarity;
+	}
+	public void setSimilarity(double similarity) {
+		this.similarity = similarity;
 	}
     
    
