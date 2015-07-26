@@ -129,7 +129,7 @@ function cka()
 		<td width="210"><%=a.getTime()%></td>
 		
 		<td width="150"><a href="NewsRM?newsid=<%=a.getId() %>" onclick="return ck()">删除</a></td>
-		<td  width="163"><h4 ><input type="button" value="修改"  onclick="k(this.picForm);"></h4></td>
+		<td  width="163"></td>
 		</tr>
 		<hr>
 		

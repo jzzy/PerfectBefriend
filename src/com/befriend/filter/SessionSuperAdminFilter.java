@@ -50,7 +50,7 @@ public class SessionSuperAdminFilter implements Filter {
 		request.setCharacterEncoding("GBK");
 		response.setCharacterEncoding("GBK");
 		PrintWriter out = response.getWriter();
-		String loginPage = "/Befriend/SuperAdmin/SuperAdmin.jsp";
+		String loginPage = "/PerfectBefriend/SuperAdmin/SuperAdmin.jsp";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<script type=\"text/javascript\">");
 		builder.append("alert('这需要系统超级管理员权限！！请您重新登入！');");

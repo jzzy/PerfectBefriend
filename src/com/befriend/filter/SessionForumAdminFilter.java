@@ -49,7 +49,7 @@ public class SessionForumAdminFilter implements Filter {
 			request.setCharacterEncoding("GBK");
 			response.setCharacterEncoding("GBK");
 			PrintWriter out = response.getWriter();
-			String loginPage = "/Befriend/SuperAdmin/SuperAdmin.jsp";
+			String loginPage = "/PerfectBefriend/SuperAdmin/SuperAdmin.jsp";
 			StringBuilder builder = new StringBuilder();
 			builder.append("<script type=\"text/javascript\">");
 			builder.append("alert('这需要论坛超级管理员的权限！！请您重新登入！');");

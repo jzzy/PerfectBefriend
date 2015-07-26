@@ -34,7 +34,7 @@ public class SessionNewsAdminFilter implements Filter {
 			HttpSession session = util.request().getSession();
 			// 如果你想用将此过滤器在struts2过滤器之前使用，使用如下方法
 			// session = ((HttpServletRequest)request).getSession();
-			request.setCharacterEncoding("UTF-8");// 在请求里设置上指定的编码
+			request.setCharacterEncoding("GBK");// 在请求里设置上指定的编码
 			System.out.println("SessionNewsAdminFilter过滤前");
 
 			Admin admin = (Admin) session.getAttribute("admin");
@@ -47,10 +47,10 @@ public class SessionNewsAdminFilter implements Filter {
 				request.setCharacterEncoding("GBK");
 				response.setCharacterEncoding("GBK");
 				PrintWriter out = response.getWriter();
-				String loginPage = "/Befriend/SuperAdmin/SuperAdmin.jsp";
+				String loginPage = "/PerfectBefriend/SuperAdmin/SuperAdmin.jsp";
 				StringBuilder builder = new StringBuilder();
 				builder.append("<script type=\"text/javascript\">");
-				builder.append("alert('这需要新闻超级管理员权限！请您重新登入！');");
+				builder.append("alert('zhe xuyao xinwen admin quanxian');");
 				builder.append("window.top.location.href='");
 				builder.append(loginPage);
 				builder.append("';");

@@ -243,7 +243,7 @@ News n=(News)request.getAttribute("n");
 				
 				<tr>
 					<td>文章发布时间：( 例如 : 2014-12-09 12:12:32 )</td>
-					<td><input type="datetime" id="timet" name="timet"
+					<td><input type="text" id="timet" name="timet"
 						value="<%=n.getTime() %>"/></td>
 
 				</tr>

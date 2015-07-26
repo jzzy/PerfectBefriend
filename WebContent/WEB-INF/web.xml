@@ -86,7 +86,7 @@
 	 <filter-mapping>
 	  <filter-name>SessionNewsAdminFilter</filter-name> 
 	  <url-pattern>/SuperAdmin/AdminNews/*</url-pattern>
-	   <url-pattern>/kindeditor/*</url-pattern>
+	  
 		<dispatcher>REQUEST</dispatcher>
 		 <dispatcher>FORWARD</dispatcher>
 		  <dispatcher>ERROR</dispatcher> 

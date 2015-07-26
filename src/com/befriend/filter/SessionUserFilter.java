@@ -55,9 +55,9 @@ public class SessionUserFilter implements Filter  {
 			String loginPage = null;
 			//不等于空 说明从论坛登入来的
 			if(luntan!=null){
-				loginPage="/Befriend/SuperAdmin/UserAdminForum.jsp";
+				loginPage="/PerfectBefriend/SuperAdmin/UserAdminForum.jsp";
 			}else{
-				loginPage = "/Befriend/SuperAdmin/UserAdminInformation.jsp";
+				loginPage = "/PerfectBefriend/SuperAdmin/UserAdminInformation.jsp";
 			}
 			
 			StringBuilder builder = new StringBuilder();
