@@ -23,15 +23,15 @@ import com.befriend.util.Message;
 
 /**
  * @author STerOTto
- * @describe app push¹æÔò
+ * @describe app pushè§„åˆ™
  */
 public class AppPushAction extends BaseAction
 {
 
 	private static final long serialVersionUID = 1L;
-	private static final int BEHAVIOR_NUM = 10;// Í³¼ÆµÄĞĞÎªÊı
-	private static final int NEWS_TYPE_NUM = 5;// ĞÂÎÅ·ÖÀàÊı
-	private static final float deviation = 0.03f;//Éá6½ø7
+	private static final int BEHAVIOR_NUM = 10;// ç»Ÿè®¡çš„è¡Œä¸ºæ•°
+	private static final int NEWS_TYPE_NUM = 5;// æ–°é—»åˆ†ç±»æ•°
+	private static final float deviation = 0.03f;//èˆ6è¿›7
 
 	private NewsDAO newsDAO;
 	private UserDAO userDAO;
@@ -48,7 +48,7 @@ public class AppPushAction extends BaseAction
 	private List<Behavior> labelBehaviors;
 
 	/**
-	 * ÍÆËÍĞÂÎÅ
+	 * æ¨é€æ–°é—»
 	 * 
 	 * @throws IOException
 	 */
@@ -62,7 +62,7 @@ public class AppPushAction extends BaseAction
 			{
 			case News.TOP_NEWS:
 				/**
-				 * Í·ÌõĞÂÎÅ ÆäËûËùÓĞÀà£¨³ıÁË ÍÆ¼ö£©µÄĞÂÎÅ °´×îĞÂÊ±¼äÅÅĞò
+				 * å¤´æ¡æ–°é—» å…¶ä»–æ‰€æœ‰ç±»ï¼ˆé™¤äº† æ¨èï¼‰çš„æ–°é—» æŒ‰æœ€æ–°æ—¶é—´æ’åº
 				 */
 				news = newsDAO.getRecentlyNews(pageSize, currentPage);
 				if (news.size() > 0)
@@ -73,25 +73,25 @@ public class AppPushAction extends BaseAction
 				else
 				{
 					msg.setCode(Message.FAILED);
-					msg.setStatement("ÎŞÄÚÈİ¸üĞÂ");
+					msg.setStatement("æ— å†…å®¹æ›´æ–°");
 				}
 				break;
 			case News.RECOMMEND:
 				/**
-				 * ÍÆ¼ö ¸öÈËĞÅÏ¢+ÓÃ»§ĞĞÎª
+				 * æ¨è ä¸ªäººä¿¡æ¯+ç”¨æˆ·è¡Œä¸º
 				 */
 				if (StringUtils.isNumeric(userId))
 				{
 					/**
-					 * ¸ù¾İuserId²éÕÒÍÆ¼öÖ¸±ê£º¸öÈËĞÅÏ¢£¬¸öÈËĞĞÎª±í ¼ÆËã¸÷Àà±ğ»ò±êÇ©µÄ±ÈÀı
+					 * æ ¹æ®userIdæŸ¥æ‰¾æ¨èæŒ‡æ ‡ï¼šä¸ªäººä¿¡æ¯ï¼Œä¸ªäººè¡Œä¸ºè¡¨ è®¡ç®—å„ç±»åˆ«æˆ–æ ‡ç­¾çš„æ¯”ä¾‹
 					 */
 					@SuppressWarnings("unused")
-					int realSize = 0;// Êµ¼ÊpushĞÂÎÅÊı,²»Ò»¶¨ÎªpageSize
+					int realSize = 0;// å®é™…pushæ–°é—»æ•°,ä¸ä¸€å®šä¸ºpageSize
 					Integer _userId = Integer.valueOf(userId);
 					User user = userDAO.byid(_userId);
 					List<Behavior> typeBehaviors = behaviorDAO.findByUserIdType(NEWS_TYPE_NUM, _userId, Behavior.NEWS_TYPE);
 					/**
-					 * ĞÂÓÃ»§£¬Ìí¼ÓĞĞÎªÍ³¼Æ
+					 * æ–°ç”¨æˆ·ï¼Œæ·»åŠ è¡Œä¸ºç»Ÿè®¡
 					 */
 					if(typeBehaviors == null || typeBehaviors.size()==0)
 					{
@@ -104,14 +104,14 @@ public class AppPushAction extends BaseAction
 							behavior.setType(Behavior.NEWS_TYPE);
 							behavior.setCount(1L);
 							/**
-							 * ´æÈëÊı¾İ¿â£¬²¢ÇÒ¼ÓÈëĞĞÎªÁĞ±í
+							 * å­˜å…¥æ•°æ®åº“ï¼Œå¹¶ä¸”åŠ å…¥è¡Œä¸ºåˆ—è¡¨
 							 */
 							behaviorDAO.save(behavior);
 							typeBehaviors.add(behavior);
 						}
 						
 					}
-					long typeSum = typeBehaviors.size();//·ÀÖ¹±»³ıÊıÎª0
+					long typeSum = typeBehaviors.size();//é˜²æ­¢è¢«é™¤æ•°ä¸º0
 					for (Behavior behavior : typeBehaviors)
 					{
 						typeSum += behavior.getCount();
@@ -120,7 +120,7 @@ public class AppPushAction extends BaseAction
 					for (Behavior behavior : typeBehaviors)
 					{
 						/**
-						 * ¸ù¾İ±ÈÀı£¬Éá6½ø7£¬¼ÆËã¸÷¸öĞÂÎÅµÄµ÷Êı
+						 * æ ¹æ®æ¯”ä¾‹ï¼Œèˆ6è¿›7ï¼Œè®¡ç®—å„ä¸ªæ–°é—»çš„è°ƒæ•°
 						 */
 						int occupy = (int) (((behavior.getCount()+1f) / (float) typeSum+deviation)* pageSize);
 						realSize += occupy;
@@ -128,19 +128,19 @@ public class AppPushAction extends BaseAction
 					}
 					labelBehaviors = behaviorDAO.findByUserIdType(BEHAVIOR_NUM, _userId,Behavior.LABEL);
 					/**
-					 * È¡³ö×î½üÒ»ÖÜµÄĞÂÎÅ
+					 * å–å‡ºæœ€è¿‘ä¸€å‘¨çš„æ–°é—»
 					 */
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Calendar calendar = Calendar.getInstance();
 					String startTime = sdf.format(calendar.getTime());
-					calendar.add(Calendar.DAY_OF_YEAR, 7);
+					calendar.add(Calendar.DAY_OF_YEAR, -7);
 					String endTime = sdf.format(calendar.getTime());
 					List<News> recentlyNews = newsDAO.getRecentlyNewsByTime(startTime, endTime);
 					/**
-					 * 1,¼ÆËãÓÃ»§Æ«ºÃÏòÁ¿<age,stage,sex,school,province,city,+Í³¼ÆÆ«ºÃ>
-					 * 2,¼ÆËãĞÂÎÅÓëÓÃ»§Æ«ºÃÏàËÆ¶È
-					 * 3,½øĞĞÅÅĞò
-					 * ÏÂÃæ¼ÆËãµÄÊÇÓÃ»§ĞÅÏ¢Æ«ºÃÈ¨Öµ
+					 * 1,è®¡ç®—ç”¨æˆ·åå¥½å‘é‡<age,stage,sex,school,province,city,+ç»Ÿè®¡åå¥½>
+					 * 2,è®¡ç®—æ–°é—»ä¸ç”¨æˆ·åå¥½ç›¸ä¼¼åº¦
+					 * 3,è¿›è¡Œæ’åº
+					 * ä¸‹é¢è®¡ç®—çš„æ˜¯ç”¨æˆ·ä¿¡æ¯åå¥½æƒå€¼
 					 */
 					List<Double> prefence = new ArrayList<>();
 					if(!StringUtils.isEmpty(user.getChildrenage()))
@@ -173,14 +173,14 @@ public class AppPushAction extends BaseAction
 					else
 						prefence.add(0d);
 					/**
-					 * ¼ÆËãÓÃ»§ĞĞÎªÆ«ºÃÈ¨Öµ
+					 * è®¡ç®—ç”¨æˆ·è¡Œä¸ºåå¥½æƒå€¼
 					 */
 					for(Behavior behavior:labelBehaviors)
 					{
 						prefence.add(MathUtils.getWeight(behavior.getCount()));
 					}
 					/**
-					 * ¼ÆËãĞÂÎÅÈ¨Öµ
+					 * è®¡ç®—æ–°é—»æƒå€¼
 					 */
 					for (int i=0 ; i<recentlyNews.size() ; i++) 
 					{
@@ -189,7 +189,7 @@ public class AppPushAction extends BaseAction
 						if(StringUtils.isEmpty(n.getLabel()))
 						{
 							/**
-							 * ÈôĞÂÎÅ±êÇ©Îª¿Õ£¬ÔòĞÂÎÅÈ¨ÖµÏòÁ¿ÎªÁãÏòÁ¿
+							 * è‹¥æ–°é—»æ ‡ç­¾ä¸ºç©ºï¼Œåˆ™æ–°é—»æƒå€¼å‘é‡ä¸ºé›¶å‘é‡
 							 */
 							for(int j=0 ; j<prefence.size() ; j++)
 							{
@@ -200,8 +200,8 @@ public class AppPushAction extends BaseAction
 						else
 						{
 							/**
-							 * <age,stage,sex,school,province,city,+Í³¼ÆÆ«ºÃ>
-							 * ĞÂÎÅ±êÇ©²»Îª¿Õ£¬ÔòÇóÏòÁ¿¸ö·ÖÁ¿È¨Öµ
+							 * <age,stage,sex,school,province,city,+ç»Ÿè®¡åå¥½>
+							 * æ–°é—»æ ‡ç­¾ä¸ä¸ºç©ºï¼Œåˆ™æ±‚å‘é‡ä¸ªåˆ†é‡æƒå€¼
 							 */
 							if(!StringUtils.isEmpty(user.getChildrenage())&&n.getLabel().contains(user.getChildrenage()))
 								newsV.add(User.CHILD_AGE);
@@ -233,7 +233,7 @@ public class AppPushAction extends BaseAction
 							else
 								newsV.add(0d);
 							/**
-							 * ¸öÈËĞĞÎªÈ¨Öµ±È½Ï	
+							 * ä¸ªäººè¡Œä¸ºæƒå€¼æ¯”è¾ƒ	
 							 */
 							for(Behavior behavior:labelBehaviors)
 							{
@@ -244,7 +244,7 @@ public class AppPushAction extends BaseAction
 							}
 							
 							/**
-							 * ÉèÖÃÈ¨Öµ
+							 * è®¾ç½®æƒå€¼
 							 */
 							n.setSimilarity(MathUtils.sim(prefence, newsV));
 							recentlyNews.set(i, n);
@@ -254,21 +254,21 @@ public class AppPushAction extends BaseAction
 					}
 					recentlyNews.sort(new NewsComparator());
 					/**
-					 * ½«×î½üĞÂÎÅ°´ÕÕpush¹æÔò½øĞĞÅÅĞò
+					 * å°†æœ€è¿‘æ–°é—»æŒ‰ç…§pushè§„åˆ™è¿›è¡Œæ’åº
 					 */
 					int[] startP = new int[NEWS_TYPE_NUM];
 					if (MathUtils.min(startP) >= recentlyNews.size())
 					{
 						/**
-						 * ËùÓĞÀà±ğĞÂÎÅ¶¼ÍÆËÍÍê
+						 * æ‰€æœ‰ç±»åˆ«æ–°é—»éƒ½æ¨é€å®Œ
 						 */
 						msg.setCode(Message.FAILED);
-						msg.setStatement("ÎŞÄÚÈİ¸üĞÂ");
+						msg.setStatement("æ— å†…å®¹æ›´æ–°");
 					} else
 					{
 						/**
-						 * ÕÒµ½µ±Ç°Ò³ÂëµÄ¸÷¸öĞÂÎÅ·ÖÀàµÄÆğÊ¼ÓÎ±ê
-						 * indexs±íÊ¾¸÷¸ö·ÖÀàµ½µ±Ç°Ò³Êµ¼ÊÒÑÓĞµÄĞÂÎÅÊı
+						 * æ‰¾åˆ°å½“å‰é¡µç çš„å„ä¸ªæ–°é—»åˆ†ç±»çš„èµ·å§‹æ¸¸æ ‡
+						 * indexsè¡¨ç¤ºå„ä¸ªåˆ†ç±»åˆ°å½“å‰é¡µå®é™…å·²æœ‰çš„æ–°é—»æ•°
 						 */
 						int[] indexs = new int[typeBehaviors.size()];
 						for (int i=0;i<recentlyNews.size();i++)
@@ -280,7 +280,7 @@ public class AppPushAction extends BaseAction
 										&& indexs[j] < behavior.getOccupy()* (currentPage - 1))
 								{
 									/**
-									 * ÒÆ¶¯ÓÎ±ê
+									 * ç§»åŠ¨æ¸¸æ ‡
 									 */
 									indexs[j]++;
 									startP[j] = i;
@@ -288,15 +288,15 @@ public class AppPushAction extends BaseAction
 							}
 						}
 						/**
-						 * ¸ù¾İ¸÷ÀàĞÂÎÅÆğÊ¼ÓÎ±ê½øĞĞpush
+						 * æ ¹æ®å„ç±»æ–°é—»èµ·å§‹æ¸¸æ ‡è¿›è¡Œpush
 						 */
 						for(int i = 0;i < typeBehaviors.size();i++)
 						{
 							for(int j = 0; j<typeBehaviors.get(i).getOccupy();j++)
 							{
 								/**
-								 * Ñ­»·push¸÷ÀàĞÂÎÅ
-								 * ÅĞ¶Ï¸ÃÀàĞÂÎÅ»¹ÓĞĞÂÎÅ¿ÉÒÔpush
+								 * å¾ªç¯pushå„ç±»æ–°é—»
+								 * åˆ¤æ–­è¯¥ç±»æ–°é—»è¿˜æœ‰æ–°é—»å¯ä»¥push
 								 */
 								if(startP[i] < recentlyNews.size())
 								{
@@ -305,7 +305,7 @@ public class AppPushAction extends BaseAction
 							}
 						}
 						/**
-						 * ÅĞ¶Ï×îºópushµÃµ½µÄĞÂÎÅ³¤¶È
+						 * åˆ¤æ–­æœ€åpushå¾—åˆ°çš„æ–°é—»é•¿åº¦
 						 */
 						if (news.size() > 0)
 						{
@@ -315,19 +315,19 @@ public class AppPushAction extends BaseAction
 						else
 						{
 							msg.setCode(Message.FAILED);
-							msg.setStatement("ÎŞpushÄÚÈİ");
+							msg.setStatement("æ— pushå†…å®¹");
 						}
 
 					}
 				} else
 				{
 					msg.setCode(Message.ERROR);
-					msg.setStatement("ÓÃ»§id²»ÎªÊı×Ö");
+					msg.setStatement("ç”¨æˆ·idä¸ä¸ºæ•°å­—");
 				}
 				break;
 			case News.LOCAL:
 				/**
-				 * ±¾µØ °´µØÇøÏÔÊ¾ĞÂÎÅ£¬Ä¬ÈÏÏÔÊ¾±±¾©
+				 * æœ¬åœ° æŒ‰åœ°åŒºæ˜¾ç¤ºæ–°é—»ï¼Œé»˜è®¤æ˜¾ç¤ºåŒ—äº¬
 				 */
 				news = newsDAO.getRecentlyNews(Integer.valueOf(type), province, city, pageSize,currentPage);
 				if (news.size() > 0)
@@ -338,12 +338,12 @@ public class AppPushAction extends BaseAction
 				else
 				{
 					msg.setCode(Message.FAILED);
-					msg.setStatement("ÎŞÄÚÈİ¸üĞÂ");
+					msg.setStatement("æ— å†…å®¹æ›´æ–°");
 				}
 				break;
 			default:
 				/**
-				 * ÆäËüÀà±ğµÄĞÂÎÅ
+				 * å…¶å®ƒç±»åˆ«çš„æ–°é—»
 				 */
 				if(Integer.valueOf(type)!=0)
 				{
@@ -356,25 +356,25 @@ public class AppPushAction extends BaseAction
 					else
 					{
 						msg.setCode(Message.FAILED);
-						msg.setStatement("ÎŞÄÚÈİ¸üĞÂ");
+						msg.setStatement("æ— å†…å®¹æ›´æ–°");
 					}
 				}
 				else
 				{
 					msg.setCode(Message.ERROR);
-					msg.setContent("ÇëÇó²ÎÊı´íÎó");
+					msg.setContent("è¯·æ±‚å‚æ•°é”™è¯¯");
 				}
 				break;
 			}
 		} else
 		{
 			msg.setCode(Message.ERROR);
-			msg.setContent("ÇëÇó²ÎÊıÎª¿Õ£¡");
+			msg.setContent("è¯·æ±‚å‚æ•°ä¸ºç©ºï¼");
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
 	/**
-	 * ĞÂÎÅ±È½ÏÆ÷
+	 * æ–°é—»æ¯”è¾ƒå™¨
 	 * @author STerOTto
 	 */
 	private class NewsComparator implements Comparator<News>
