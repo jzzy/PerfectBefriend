@@ -13,7 +13,8 @@
 <script charset="utf-8" src="<%=request.getContextPath() %>/SuperAdmin/AdminNews/kindeditor/kindeditor.js"></script>
 <script charset="utf-8" src="<%=request.getContextPath() %>/SuperAdmin/AdminNews/kindeditor/lang/zh_CN.js"></script>
 <script charset="utf-8" src="<%=request.getContextPath() %>/SuperAdmin/AdminNews/kindeditor/plugins/code/prettify.js"></script>
-
+<script type="text/javascript" src="<%=request.getContextPath() %>/SuperAdmin/AdminNews/kindeditor/jsp/js/jquery.cityselect.js"></script> 
+<script language="javascript" src="<%=request.getContextPath() %>/SuperAdmin/AdminNews/kindeditor/jsp/js/cityselect.js"></script>
 
 
 <script type="text/javascript">
@@ -123,7 +124,7 @@ function cka(){
 		});
 	</script>
 </head>
-<body>
+<body topmargin=0 leftmargin=0 onload="init()">
 <%
 //获取新闻
 News n=(News)request.getAttribute("n");
@@ -131,7 +132,7 @@ News n=(News)request.getAttribute("n");
 
 	<div style="background: #adc; width: 100%; height: 1000px;">
 	<h2>新闻上传(随机时间)</h2>
-		<form action="adminNewsIdup" method="post" name="picForm"
+		<form action="adminNewsIdup" method="post" name=creator
 			enctype="multipart/form-data">
 			<table cellpadding="0" cellspacing="0" style="width: 100%">
 				<p></p>
@@ -233,15 +234,30 @@ News n=(News)request.getAttribute("n");
 
 				</tr>
 				<tr>
-					<td><input type="text" value="<%=n.getId() %>" id="id" name="id" style="display: none" />文章地区省(例如：省份写为 "山东"," 河北" 直辖市写为 "北京"，"上海"）</td>
-					<td><input type="text" value="<%=n.getArea() %>" id="area" name="area" /></td>
+				<td>
+				
+				</td>
+				<td>
+					当前地区：<%=n.getArea() %><%=n.getAreas() %>
+     </td>
+					
+				</tr>
+				<tr>
+				<td>
+				
+				</td>
+					<td width="600px">
+					<input type="text" value="<%=n.getId() %>" id="id" name="id" style="display: none" />
+				选择城市：<select name="province" onChange = "select()">
+				
+				</select> 
+     		<select name="city" onChange = "select()">
+    				
+     </select>
+     </td>
+					
 				</tr>
 
-				<tr>
-					<td>文章地区市(例如：省份的市写为 "长春"," 青岛" 直辖市的区写为: "海淀区" , "朝阳区"）</td>
-					<td><input type="text" value="<%=n.getAreas() %>" id="areas" name="areas"  />
-					</td>
-				</tr>
 				
 				<tr>
 					<td>文章发布时间：( 例如 : 2014-12-09 12:12:32 )</td>

@@ -121,13 +121,12 @@ public class NewsAction {
 		ServletResponse srp=(ServletResponse) util.response();
 		srp.setCharacterEncoding("GBK");
 		PrintWriter out = srp.getWriter();
-		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
+		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<script type=\"text/javascript\">");
 		
 		if (xlsxFile==null) {
-			loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
-			builder.append("alert('添加标签失败！');");
+						builder.append("alert('添加标签失败！');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -136,8 +135,7 @@ public class NewsAction {
 			return;
 		}
 		if(!xlsxFileFileName.split("\\.")[1].equals("xlsx")){
-			loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/newshome.jsp";
-			builder.append("alert('文件类型不对 你的是: ."+xlsxFileFileName.split("\\.")[1]+"');");
+						builder.append("alert('文件类型不对 你的是: ."+xlsxFileFileName.split("\\.")[1]+"');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -1544,6 +1542,7 @@ public class NewsAction {
 			util.Out().print("文章内容没有获取到" + htmlData);
 			return null;
 		}
+		
 		News n = new News();
 		List<NewsLabel> nbl=ndao.getNewsLabelAll();
 		StringBuffer sb=new StringBuffer();
@@ -1614,7 +1613,12 @@ public class NewsAction {
 			n.setImg(sb.toString());
 
 		}
-
+		StringBuffer sbf=new StringBuffer(htmlData);
+		System.out.println("在啊啊啊啊啊啊啊啊啊啊啊啊啊啊"+sbf.indexOf("<img"));
+		if(sbf.indexOf("<img")>=0){
+			sbf.insert(sbf.indexOf("<img")," width=100% ");
+		}
+		htmlData=sbf.toString();
 		if (timet == null) {
 			timet = util.getNowTime();
 		}
@@ -1634,10 +1638,12 @@ public class NewsAction {
 		}
 
 	
-		
-		if (area.length() >= 2) {
-			n.setArea(area);
-			n.setAreas(areas);
+		if (!province.equals("请选择省份")) {
+			n.setArea(province);
+
+		}
+		if (!city.equals("请选择地区")) {
+			n.setAreas(city);
 		}
 		n.setCollectnum(0);
 		n.setCah(0);
@@ -1956,6 +1962,13 @@ public class NewsAction {
 
 				if (timet==null) {
 					timet = util.getNowTime();
+				}
+				if (!province.equals("请选择省份")) {
+					n.setArea(province);
+
+				}
+				if (!city.equals("请选择地区")) {
+					n.setAreas(city);
 				}
 				n.setTime(timet);
 				ndao.Upnews(n);

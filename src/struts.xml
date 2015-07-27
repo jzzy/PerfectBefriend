@@ -9,6 +9,8 @@
 	-->
 	<!-- 关闭调试模式 -->
 	<constant name="struts.devMode" value="false" />
+	<!-- 设置struts后缀名  -->
+	<!--<constant name="struts.action.extension" value="" />-->
 	
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.ui.theme" value="simple" />

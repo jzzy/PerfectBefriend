@@ -5,17 +5,19 @@
 
 <html>
 <head>
-<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>新闻上传(随机时间)</title>
 <link rel="stylesheet" href="../themes/default/default.css" />
 <link rel="stylesheet" href="../plugins/code/prettify.css" />
 <script charset="utf-8" src="../kindeditor.js"></script>
 <script charset="utf-8" src="../lang/zh_CN.js"></script>
 <script charset="utf-8" src="../plugins/code/prettify.js"></script>
+<script type="text/javascript" src="js/jquery.cityselect.js"></script> 
+<script language="javascript" src="js/cityselect.js"></script>
 
 
-
-<script type="text/javascript">
+<script type="text/javascript">   
 
 function cka(){
 	 if(confirm("确定放弃当前操作返回主页？"))
@@ -122,11 +124,11 @@ function cka(){
 		});
 	</script>
 </head>
-<body>
+<body topmargin=0 leftmargin=0 onload="init()">
 
 	<div style="background: #adc; width: 100%; height: 1000px;">
 	<h2>新闻上传(随机时间)</h2>
-		<form action="UPtext.action" method="post" name="picForm"
+		<form action="UPtext.action" method="post" name=creator
 			enctype="multipart/form-data">
 			<table cellpadding="0" cellspacing="0" style="width: 100%">
 				<p></p>
@@ -202,14 +204,19 @@ function cka(){
 
 				</tr>
 				<tr>
-					<td>文章地区省(例如：省份写为 "山东"," 河北" 直辖市写为 "北京"，"上海"）</td>
-					<td><input type="text" id="area" name="area" /></td>
-				</tr>
-
-				<tr>
-					<td>文章地区市(例如：省份的市写为 "长春"," 青岛" 直辖市的区写为: "海淀区" , "朝阳区"）</td>
-					<td><input type="text" id="areas" name="areas"  />
-					</td>
+				<td width="600px">
+				所在城市：<select name="province" onChange = "select()"></select> 
+     <select name="city" onChange = "select()"></select>
+     </td>
+				<!-- 
+				<select onchange="initcity();" name="province" > 
+             		<SCRIPT>creatprovince();</SCRIPT> 
+				</select> 
+			<select name="city"> 
+           				<option value="">选择城市</option> 
+				</select> 
+				 -->
+				
 				</tr>
 				<!--  
 				<tr>
@@ -221,18 +228,20 @@ function cka(){
 				-->
 				<tr>
 					<td><br /> <input type="submit" name="button"
-						onclick="return check(picForm);" value="确认发布" /></td>
+						onclick="return check(creator);" value="确认发布" /></td>
 				</tr>
 
 			</table>
 
 		</form>
+		
+ 
 		<form action="saveLabel" enctype="multipart/form-data" method="post">
 		<table>
 		
 		
 			<tr>
-					<td>新闻标签</td>
+					<td>新闻标签 读A列</td>
 					
 				</tr>
 				<tr>
