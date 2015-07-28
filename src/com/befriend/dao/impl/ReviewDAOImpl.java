@@ -27,12 +27,12 @@ public class ReviewDAOImpl implements ReviewDAO
 	}
 
 	@Override
-	public List<Review> Allu(String username)
+	public List<Review> Allu(int userid)
 	{
 		Query query = entityManager.createQuery("select u from Review u  where"
-				+ " u.username=:username order"
+				+ " u.userid=:userid order"
 			      + " by u.time desc");
-		query.setParameter("username", username);
+		query.setParameter("userid", userid);
 		return query.getResultList();
 	}
 
@@ -44,13 +44,13 @@ public class ReviewDAOImpl implements ReviewDAO
 	}
 
 	@Override
-	public List<Review> unid(String username, int newsid)
+	public List<Review> unid(int userid, int newsid)
 	{
 		Query query = entityManager.createQuery("select u from Review u where"
-				+ " u.username=:username and u.newsid=:newsid order"
+				+ " u.userid=:userid and u.newsid=:newsid order"
 			      + " by u.time desc");
 		
-		query.setParameter("username", username);
+		query.setParameter("userid", userid);
 		query.setParameter("newsid", newsid);
 		 return query.getResultList();
 	}
@@ -63,13 +63,13 @@ public class ReviewDAOImpl implements ReviewDAO
 	}
 
 	@Override
-	public Review byid(int reviewid,String username) {
+	public Review byid(int reviewid,int userid) {
 		Query query = entityManager.createQuery("select u from Review u  where"
-				+ " u.id=:id and u.username=:username order"
+				+ " u.id=:id and u.userid=:userid order"
 			      + " by u.time desc");
 		
 		query.setParameter("id", reviewid);
-		query.setParameter("username", username);
+		query.setParameter("userid", userid);
 		List<Review>  r =query.getResultList();
 		if(r.size()>0)
 			return r.get(0);

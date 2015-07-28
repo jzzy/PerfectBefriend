@@ -21,8 +21,8 @@ public class Review implements Serializable
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="username")//用户名
-	private String username;
+	@Column(name="userid")//用户名
+	private Integer userid;
 	@Column(name="newsid")//新闻id
 	private int newsid;
 	@Column(name="review")//评论内容
@@ -39,11 +39,12 @@ public class Review implements Serializable
 	}
 	
 	
-	public String getUsername() {
-	    return username;
+
+	public Integer getUserid() {
+		return userid;
 	}
-	public void setUsername(String username) {
-	    this.username = username;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 	public int getNewsid()
 	{

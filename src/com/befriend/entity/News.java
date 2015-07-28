@@ -84,7 +84,9 @@ public class News implements Serializable {
     //新闻标签
     @Column(name="label")
     private String label;
-    
+  //新闻被赞数
+    @Column(name="supports")
+    private int supports;
     //相似度
     @Transient
     private double similarity;
@@ -92,7 +94,13 @@ public class News implements Serializable {
  
     
    
-    public int getExpert() {
+    public int getSupports() {
+		return supports;
+	}
+	public void setSupports(int supports) {
+		this.supports = supports;
+	}
+	public int getExpert() {
 		return expert;
 	}
 	public void setExpert(int expert) {

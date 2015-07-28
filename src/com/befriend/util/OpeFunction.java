@@ -104,7 +104,32 @@ public class OpeFunction {
 		return format.format(new Date(rtn));
 
 	}
+	/**
+	 * 解析 html img 标签 src中的 地址
+	 * 
+	 * @param content
+	 * @return
+	 */
+	public static String setImgswidth100(String content) {
 
+		String regEx_img = "<img src=\"(.*?)\".*?>";
+		Pattern p_image;
+		ArrayList<String> images = new ArrayList<String>();
+		Matcher m_image;
+		p_image = Pattern.compile(regEx_img, Pattern.CASE_INSENSITIVE);
+		m_image = p_image.matcher(content);
+
+		while (m_image.find()) {
+			
+			images.add(m_image.group(1));
+			//重写写入 
+			String reg = "<img src=\""+m_image.group(1)+"\" .*?>";
+			content = content.replaceAll(reg, "<img src=\""+m_image.group(1)+"\" width=\"100%\" />");
+
+		}
+		System.out.println("content=="+content);
+		return content;
+	}
 	/**
 	 * 解析 html img 标签 src中的 地址
 	 * 
@@ -121,7 +146,10 @@ public class OpeFunction {
 		m_image = p_image.matcher(content);
 
 		while (m_image.find()) {
+			
 			images.add(m_image.group(1));
+			//重写写入 
+			//m_image.replaceAll("<img src=\""+m_image.group(1)+"\" with=\"100%\" />");
 
 		}
 
@@ -581,8 +609,7 @@ public class OpeFunction {
 
 	public static void main(String[] args) throws ParseException {
 		
-			
-	
+		System.out.println(setImgswidth100("111<img src=\"/PerfectBefriend/kindeditor/attached/image/20150727/20150727183630_727.jpg\" alt=\"\"  height=\"360\" title=\"\" align=\"left\" />222<img src=\"/PerfectBefriend/kindeditor/attached/image/20150727/20150727183630_727.jpg\" alt=\"\"  height=\"360\" title=\"\" align=\"left\" />"));
 		
 		
 		

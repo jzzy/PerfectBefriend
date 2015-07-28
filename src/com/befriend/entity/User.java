@@ -81,6 +81,8 @@ public class User implements Serializable
 	private String signature;
 	@Column(name="childrenage")// 孩子年龄
 	private String childrenage;
+	@Column(name="age")// 年龄
+	private String age;
 	public static final double CHILD_AGE = 4D;
 	@Column(name="childrensex")// 孩子性别  男 女
 	private String childrensex;
@@ -106,6 +108,12 @@ public class User implements Serializable
 		this.signature = signature;
 	}
 	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	public String getChildrenage() {
 		return childrenage;
 	}

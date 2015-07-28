@@ -132,9 +132,9 @@ public class AppPushAction extends BaseAction
 					 */
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Calendar calendar = Calendar.getInstance();
-					String startTime = sdf.format(calendar.getTime());
-					calendar.add(Calendar.DAY_OF_YEAR, -7);
 					String endTime = sdf.format(calendar.getTime());
+					calendar.add(Calendar.DAY_OF_YEAR, -7);
+					String startTime = sdf.format(calendar.getTime());
 					List<News> recentlyNews = newsDAO.getRecentlyNewsByTime(startTime, endTime);
 					/**
 					 * 1,计算用户偏好向量<age,stage,sex,school,province,city,+统计偏好>

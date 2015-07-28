@@ -38,6 +38,7 @@ import com.befriend.entity.Collect;
 import com.befriend.entity.News;
 import com.befriend.entity.NewsLabel;
 import com.befriend.entity.Review;
+import com.befriend.entity.Support;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
@@ -56,6 +57,8 @@ public class NewsAction {
 	private List<News> nl = new ArrayList<News>();
 	private News n = new News();// 新闻类
 	private Collect c = new Collect();// 收藏类
+	Support st=new Support();//点赞类
+	private List<Support> sl = new ArrayList<Support>();// 评论类
 	private Review r = new Review();// 评论类
 	private List<Review> rl = new ArrayList<Review>();// 评论类
 	private List<Collect> cl = new ArrayList<Collect>();// 收藏 List
@@ -274,7 +277,7 @@ public class NewsAction {
 			username = u.getUsername();
 
 			List<Integer> rn = new ArrayList<Integer>();// 收藏 List
-			for (Review r1 : rdao.Allu(username)) {
+			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
 
@@ -290,7 +293,7 @@ public class NewsAction {
 				if (b) {
 					System.out.println("我评论过的新闻  用户名和新闻id" + username + "+"
 							+ r1.getNewsid() + "时间是：" + r1.getTime());
-					rl.add(rdao.unid(username, r1.getNewsid()).get(0));
+					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 				}
 
@@ -409,7 +412,7 @@ public class NewsAction {
 			}
 			System.out.println("进入添加评论Rsave");
 
-			if (newsid <= 0) {
+			if (newsid <= 0||userid<=0) {
 				util.Out().print("null");
 				return;
 
@@ -423,7 +426,7 @@ public class NewsAction {
 				return;
 			}
 			r.setNewsid(newsid);
-			r.setUsername(u.getUsername());
+			r.setUserid(userid);
 			r.setTime(util.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
@@ -683,7 +686,7 @@ public class NewsAction {
 			System.out.println("有评论");
 			for (int i = 0; i < rl.size(); i++) {
 
-				ul.add(userdao.byUsernameAccnumnoPhone(rl.get(i).getUsername()));
+				ul.add(userdao.byid(rl.get(i).getId()));
 			}
 			System.out.println("评论" + rl.size());
 
@@ -725,7 +728,7 @@ public class NewsAction {
 			System.out.println("有评论");
 			for (int i = 0; i < rl.size(); i++) {
 
-				ul.add(userdao.byUsernameAccnumnoPhone(rl.get(i).getUsername()));
+				ul.add(userdao.byid(rl.get(i).getId()));
 			}
 			System.out.println("评论" + rl.size());
 
@@ -1562,7 +1565,7 @@ public class NewsAction {
 		}
 		n.setTitle(title);
 		n.setSummary(summary);
-		n.setContent(htmlData);
+		
 		sb=new StringBuffer();
 		if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
 
@@ -1613,12 +1616,10 @@ public class NewsAction {
 			n.setImg(sb.toString());
 
 		}
-		StringBuffer sbf=new StringBuffer(htmlData);
-		System.out.println("在啊啊啊啊啊啊啊啊啊啊啊啊啊啊"+sbf.indexOf("<img"));
-		if(sbf.indexOf("<img")>=0){
-			sbf.insert(sbf.indexOf("<img")," width=100% ");
-		}
-		htmlData=sbf.toString();
+		//将width 设置Wie 100%
+		htmlData=util.setImgswidth100(htmlData);
+		System.out.println("htmlData=="+htmlData);
+		n.setContent(htmlData);
 		if (timet == null) {
 			timet = util.getNowTime();
 		}
@@ -1721,7 +1722,7 @@ public class NewsAction {
 					n.setCah(nn);
 				}
 				ndao.Upnews(n);
-				util.Out().print(util.ToJson(ndao.byid(newsid)));
+				util.Out().print(util.ToJson(n));
 			} else {
 				util.Out().print("null");
 			}
@@ -1827,6 +1828,36 @@ public class NewsAction {
 			System.out.println(e.getMessage());
 		}
 	}
+	/**
+	 * 添加赞通过 用户id 新闻id
+	 * 
+	 * @throws IOException
+	 */
+	public void supportSave() throws IOException {
+		
+			System.out.println("进入新闻点赞userid:" + userid + "newsid:" + newsid);
+			if (cdao.sunid(userid, newsid) != null) {
+				System.out.println("已经收赞过!");
+				util.Out().print(false);
+			} else {
+				User u = userdao.byid(userid);
+				if (u == null || newsid <= 0) {
+					util.Out().print(false);
+					return;
+				}
+				st.setNewsid(newsid);
+				st.setUserid(userid);
+				st.setTime(util.getNowTime());
+				cdao.save(st);
+
+				n = ndao.byid(newsid);
+				n.setSupports(cdao.sNlln(newsid).size());
+				ndao.Upnews(n);
+				System.out.println("点赞成功!");
+				util.Out().print(true);
+			}
+		
+	}
 
 	/**
 	 * 后台管理查看新闻详情
@@ -1847,7 +1878,7 @@ public class NewsAction {
 			System.out.println("有评论");
 			for (int i = 0; i < rl.size(); i++) {
 
-				ul.add(userdao.byUsernameAccnumnoPhone(rl.get(i).getUsername()));
+				ul.add(userdao.byid(rl.get(i).getId()));
 			}
 			System.out.println("评论" + rl.size());
 
@@ -2027,6 +2058,49 @@ public class NewsAction {
 			System.out.println(e.getMessage());
 		}
 	}
+	/**
+	 * 取消赞 通过 用户id 新闻id
+	 * 
+	 * @throws IOException
+	 */
+	public void removeSupport() throws IOException {
+		st=cdao.sunid(userid, newsid);
+		if(st!=null){
+			cdao.remove(st);
+			n=ndao.byid(newsid);
+			if(n!=null){
+				n.setSupports(cdao.sNlln(newsid).size());
+				ndao.Upnews(n);
+				util.Out().print(true);
+				return;
+			}
+			util.Out().print(false);
+			return;
+		}else{
+			util.Out().print(false);
+			return;
+		}
+		
+	}
+	/**
+	 * 新闻查看赞
+	 * 
+	 * @throws IOException
+	 */
+	public void newsLookSupport() throws IOException {
+		sl=cdao.sNlln(newsid);
+		for(int i=0;i<sl.size();i++){
+			st=sl.get(i);
+			if(st!=null){
+				ul.add(userdao.byid(st.getUserid()));
+			}else{
+				ul.add(null);
+			}
+		}
+		util.Out().print(util.ToJson(ul));
+		
+	}
+
 
 	/**
 	 * 判断是否收藏
@@ -2085,31 +2159,24 @@ public class NewsAction {
 		try {
 			System.out.println("删除评论方法RemoveR");
 			System.out.println("reviewid+" + reviewid);
-			System.out.println("username+" + username);
-			if (rdao.byid(reviewid, username) == null) {
+			System.out.println("userid+" + userid);
+			r=rdao.byid(reviewid, userid);
+			if (r== null) {
 				util.Out().print("null");
 				System.out.println("评论  为空");
 				return;
 			}
-			newsid = rdao.byid(reviewid, username).getNewsid();
-			rdao.remove(rdao.byid(reviewid, username));
+			newsid = r.getNewsid();
+			rdao.remove(r);
 
 			n = ndao.byid(newsid);
 			System.out.println("修改代码");
 			System.out.println("newsid是" + n.getId());
-			System.out.println("该文章被评论" + rdao.Alln(newsid).size());
+			
 			n.setReviews(rdao.Alln(newsid).size());
 			ndao.Upnews(n);
 
-			rl = rdao.unid(username, newsid);
-			if (rl.size() > 0) {
-				System.out.println("有评论");
-				util.Out().print(util.ToJson(rl));
-				return;
-			} else {
-				System.out.println("没有评论");
-				util.Out().print("null");
-			}
+			util.Out().print(true);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -2123,26 +2190,21 @@ public class NewsAction {
 	 */
 	public void Rsave() throws IOException {
 		try {
-			username = "gyn781369549";
-			System.out.println("进入添加评论Rsave" + username);
+			System.out.println("进入添加评论Rsave" + userid);
 
-			if (newsid <= 0 || username == null) {
+			if (newsid <= 0 || userid <=0) {
 				util.Out().print("null");
 				return;
 
 			}
 
-			if (username == null) {
-				util.Out().print("null");
-				return;
-			}
-			User u = userdao.byUsernameAccnumnoPhone(username);
+			User u = userdao.byid(userid);
 			if (u == null) {
 				util.Out().print("null");
 				return;
 			}
 			r.setNewsid(newsid);
-			r.setUsername(username);
+			r.setUserid(userid);
 			r.setTime(util.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
@@ -2154,46 +2216,22 @@ public class NewsAction {
 
 			}
 			rl = rdao.Alln(newsid);
-			int a = rl.size();
-			System.out.println("是否有新闻" + n != null);
+			
+			
 			System.out.println("评论内容" + review);
 			System.out.println("newsid是" + n.getId());
-			System.out.println("该文章被评论" + a);
-			n.setReviews(a);
+		
+			n.setReviews(rl.size());
 			ndao.Upnews(n);
-
-			if (a > 0) {
-				System.out.println("有评论");
-				util.Out().print(util.ToJson(rl));
-
-			} else {
-				System.out.println("没有评论");
-				util.Out().print("null");
-			}
+			util.Out().print(true);
+			
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	/**
-	 * 通过newsid查询 评论
-	 * 
-	 * @throws IOException
-	 */
-	public void ReviewsInquiry() throws IOException {
-		System.out.println("newsid是-" + newsid);
-		rl = rdao.Alln(newsid);
-		if (rl.size() > 0) {
-			System.out.println("有评论");
-			util.Out().print(util.ToJson(rl));
 
-		} else {
-			System.out.println("没有评论");
-			util.Out().print("null");
-		}
-
-	}
 
 	/**
 	 * 通过newsid查询 评论
@@ -2206,9 +2244,8 @@ public class NewsAction {
 		if (rl.size() > 0) {
 			System.out.println("有评论");
 			for (int i = 0; i < rl.size(); i++) {
-				User u1 = userdao.byUsernameAccnumnoPhone(rl.get(i)
-						.getUsername());
-
+				User u1 = userdao.byid((rl.get(i)
+						.getId()));
 				ul.add(u1);
 			}
 			System.out.println("有评论");
@@ -2232,7 +2269,7 @@ public class NewsAction {
 		try {
 
 			List<Integer> rn = new ArrayList<Integer>();// 收藏 List
-			for (Review r1 : rdao.Allu(username)) {
+			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
 
@@ -2249,7 +2286,7 @@ public class NewsAction {
 				if (b) {
 					System.out.println("我评论过的新闻  用户名和新闻id" + username + "+"
 							+ r1.getNewsid() + "时间是：" + r1.getTime());
-					rl.add(rdao.unid(username, r1.getNewsid()).get(0));
+					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 
 					rn.add(r1.getNewsid());
@@ -2279,7 +2316,7 @@ public class NewsAction {
 	 */
 	public void getRy() throws IOException {
 
-		rl = rdao.unid(username, newsid);
+		rl = rdao.unid(userid, newsid);
 		if (rl.size() <= 0) {
 			util.Out().print("null");
 		} else {

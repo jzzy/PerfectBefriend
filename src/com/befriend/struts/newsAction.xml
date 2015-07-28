@@ -38,9 +38,7 @@
 		<action name="RemoveR" class="newsAction" method="RemoveR">
 		</action>
 
-		<!-- 根据newsid查询评论 -->
-		<action name="RI" class="newsAction" method="ReviewsInquiry">
-		</action>
+		
 		<!-- 根据newsid查询评论 有用户信息-->
 		<action name="RI513" class="newsAction" method="ReviewsInquiry513">
 		</action>
@@ -191,6 +189,18 @@
 		<!--通过username查询最新评论-->
 		<action name="webReviewsusername" class="newsAction" method="webReviewsusername">
 		<result name="success">/SimulationApp/metopinglun.jsp</result>
+		</action>
+		<!--添加赞通过 用户id 新闻id-->
+		<action name="supportSave" class="newsAction" method="supportSave">
+		
+		</action>
+		<!--取消赞通过 用户id 新闻id-->
+		<action name="removeSupport" class="newsAction" method="removeSupport">
+		
+		</action>
+		<!--新闻查看 被谁赞过 通过过新闻id-->
+		<action name="newsLookSupport" class="newsAction" method="newsLookSupport">
+		
 		</action>
 		
 		<!-- 微信分页 查询本地新闻-->

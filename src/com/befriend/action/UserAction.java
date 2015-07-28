@@ -55,6 +55,8 @@ public class UserAction {
 	private String sex;// 我的性别
 	private String signature;// 个性签名
 	private String childrensex;// 孩子性别
+	
+
 	private String childrenage;// 孩子年龄
 	private String mac;
 	private String phone;// 手机号
@@ -91,6 +93,8 @@ public class UserAction {
 	private String ip;// 用户ip
 	private String province;// 获取前端的 省级
 	private String city;// 获取前端的 市级
+	private String age;//年龄
+	
 	// 环信用户注册
 	private String url = "https://a1.easemob.com/topLong/wcfriend/users";
 	private Password pd = new Password();
@@ -2289,9 +2293,11 @@ public class UserAction {
 				}
 				u.setPhone(phone);
 			}
-
+			if(!util.isEmpty(age)){
+				u.setAge(age);
+			}
 			if (!util.isEmpty(sex)) {
-				u.setSex(sex);// 我的年龄
+				u.setSex(sex);// 我的性别
 			}
 			if (signature != null) {
 				u.setSignature(signature);// 个性签名
@@ -2693,7 +2699,13 @@ public class UserAction {
 	public String getMac() {
 		return mac;
 	}
+	public String getAge() {
+		return age;
+	}
 
+	public void setAge(String age) {
+		this.age = age;
+	}
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
