@@ -258,7 +258,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * 通过username查询评论 新闻和对每个新闻的最新 评论
+	 * 通过userid查询评论 新闻和对每个新闻的最新 评论
 	 * 
 	 * @throws IOException
 	 */

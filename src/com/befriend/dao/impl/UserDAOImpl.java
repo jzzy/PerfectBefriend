@@ -478,4 +478,19 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	@Override
+	public User byIdMac() {
+		Query query = entityManager
+				.createQuery("select u from User u order by u.accnumno desc");
+		
+
+		query.setMaxResults(1);
+		List<User> users = query.getResultList();
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
+	}
+
 }

@@ -205,20 +205,21 @@ public class UserAction {
 				continue;
 
 			}
-			if (u.getAccnumno() != null) {
+			if (!util.isEmpty(u.getAccnumno())) {
 				System.out.println("用户有账号了！:" + u.getAccnumno() + "第" + i
 						+ "个！");
 				continue;
 			}
-			boolean b = true;
-			while (b) {
-				accnumno = String
-						.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
-				if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
-					b = false;
-				}
-
+			
+			
+			User macU=userdao.byIdMac();
+			if(macU!=null){
+				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
+				accnumno=ing.toString();
+			}else{
+				accnumno="10000000";
 			}
+			System.out.println("完美ID:"+accnumno);
 			u.setAccnumno(accnumno);
 			userdao.update(u);
 			System.out.println("生成账号成功！第 " + i + " 个！账号为:" + accnumno);
@@ -665,17 +666,7 @@ public class UserAction {
 		System.out.println("进入时间" + util.getNowTime());
 		System.out.println("手机号" + phone);
 		System.out.println("用户名" + username);
-		boolean b = true;
-
-		while (b) {
-
-			accnumno = String
-					.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
-			if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
-				b = false;
-			}
-
-		}
+		
 		// 判断手机号是否注册过
 		if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 			System.out.println("此手机号  已经注册过");
@@ -701,6 +692,15 @@ public class UserAction {
 			request.setAttribute("ue", username);
 			return Action.ERROR;
 		}
+		User macU=userdao.byIdMac();
+		if(macU!=null){
+			Integer ing=Integer.parseInt(macU.getAccnumno())+1;
+			accnumno=ing.toString();
+		}else{
+			accnumno="10000000";
+		}
+		System.out.println("完美ID:"+accnumno);
+		u.setAccnumno(accnumno);
 		userdao.save(u);
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
 		if (u == null) {
@@ -1787,17 +1787,7 @@ public class UserAction {
 		try {
 			// 验证用户名
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			boolean b = true;
-			// 判断生成群号 会不会和以前冲突
-			while (b) {
-				// 随机生成8位随机数 作为 群号
-				accnumno = String
-						.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
-				if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
-					b = false;
-				}
-
-			}
+			
 
 			if (username != null) {
 				if (!username.matches(reg)) {
@@ -1872,6 +1862,15 @@ public class UserAction {
 				return;
 
 			}
+			User macU=userdao.byIdMac();
+			if(macU!=null){
+				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
+				accnumno=ing.toString();
+			}else{
+				accnumno="10000000";
+			}
+			System.out.println("完美ID:"+accnumno);
+			u.setAccnumno(accnumno);
 			userdao.save(u);
 			System.out.println("注册成功 phone" + phone + "accnumno:" + accnumno
 					+ ",pw:" + password);
@@ -1928,19 +1927,10 @@ public class UserAction {
 			util.Out().print(util.ToJson(u));
 			return;
 		}
-		boolean b = true;
-		// 判断生成群号 会不会和以前冲突
-		while (b) {
-			// 随机生成8位随机数 作为 群号
-			accnumno = String
-					.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
-			if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
-				b = false;
-			}
-
-		}
+		
+		
 		u = new User();
-		u.setAccnumno(accnumno);
+		
 		u.setMac(mac);
 		u.setStage("未填写");
 		if (address == null) {
@@ -1953,11 +1943,20 @@ public class UserAction {
 
 		u.setFinaltime(time);
 		u.setSchool("未填写");
-		u.setOs(os);
+		//u.setOs(os);
 		u.setOnline(1);
 		u.setTime(time);
 		u.setCompetence(0);// 普通用户
 		u.setGag(0);// 可以创建论坛
+		User macU=userdao.byIdMac();
+		if(macU!=null){
+			Integer ing=Integer.parseInt(macU.getAccnumno())+1;
+			accnumno=ing.toString();
+		}else{
+			accnumno="10000000";
+		}
+		System.out.println("完美ID:"+accnumno);
+		u.setAccnumno(accnumno);
 		userdao.save(u);
 		System.out.println("注册成功 phone" + phone + "accnumno:" + accnumno
 				+ ",pw:" + password);
@@ -1975,7 +1974,7 @@ public class UserAction {
 				System.out.println("没有获取到头像!");
 			}
 			pd.setUid(u.getId());
-			pd.setPassword(accnumno);
+			pd.setPassword(accnumno.toString());//初始密码 
 			userdao.save(pd);
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
@@ -1985,7 +1984,7 @@ public class UserAction {
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
 			System.out.println(w);
-			u.setPassword(accnumno);
+			u.setPassword(accnumno.toString());
 
 			util.Out().print(util.ToJson(u));
 			String url = "http://127.0.0.1/PerfectBefriend/aStas?province="
@@ -2013,17 +2012,7 @@ public class UserAction {
 			}
 			// 验证用户名
 			// String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			boolean b = true;
-			// 判断生成群号 会不会和以前冲突
-			while (b) {
-				// 随机生成8位随机数 作为 群号
-				accnumno = String
-						.valueOf((int) ((Math.random() * 9 + 1) * 10000000));
-				if (userdao.byUsernameAccnumnoPhone(accnumno) == null) {
-					b = false;
-				}
-
-			}
+		
 
 			if (username == null) {
 				util.Out().print("ufalse");
@@ -2080,6 +2069,15 @@ public class UserAction {
 				return;
 
 			}
+			User macU=userdao.byIdMac();
+			if(macU!=null){
+				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
+				accnumno=ing.toString();
+			}else{
+				accnumno="10000000";
+			}
+			System.out.println("完美ID:"+accnumno);
+			u.setAccnumno(accnumno);
 			userdao.save(u);
 			System.out.println("注册成功 phone" + phone + "accnumno:" + accnumno
 					+ ",pw:" + password);
@@ -2233,10 +2231,10 @@ public class UserAction {
 			}
 
 			if (u.getCompetence() == 0) {
-				if (addcity != null) {
+				if (!util.isEmpty(addcity)) {
 					u.setAddcity(addcity);
 				}
-				if (address != null) {
+				if (!util.isEmpty(address)) {
 					u.setAddress(address);
 					System.out.println("修改了地址");
 				}
@@ -2286,7 +2284,7 @@ public class UserAction {
 			if (!util.isEmpty(childrenage)) {
 				u.setChildrenage(childrenage + "岁");// 孩子年龄
 			}
-			if (phone != null) {
+			if (!util.isEmpty(phone)) {
 				if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 					util.Out().print("phonefalse");
 					return;
@@ -2655,6 +2653,10 @@ public class UserAction {
 	public void setProvince(String province) {
 		this.province = province;
 	}
+
+	
+
+	
 
 	public String getAccnumno() {
 		return accnumno;

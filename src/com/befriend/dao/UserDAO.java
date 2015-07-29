@@ -26,6 +26,7 @@ public interface UserDAO
 	//public User login(String username, String password);
 	//通过 手机号  用户号  用户名 查询 是否为空
 	public User byUsernameAccnumnoPhone(String uap);
+	public User byIdMac();
 	/**
 	// 通过用户名查
 	public User byusername(String username);

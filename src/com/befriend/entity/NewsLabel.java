@@ -1,7 +1,4 @@
 package com.befriend.entity;
-
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +13,7 @@ public class NewsLabel {
 		/**
 		 * 新闻标签表
 		 */
-		private static final long serialVersionUID = 1L;
+		
 		@Id
 		@Column(name="id")
 		@GeneratedValue(strategy=GenerationType.IDENTITY)

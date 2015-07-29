@@ -150,12 +150,9 @@ public class User implements Serializable
 	public int getOnline() {
 		return online;
 	}
-	public String getAccnumno() {
-		return accnumno;
-	}
-	public void setAccnumno(String accnumno) {
-		this.accnumno = accnumno;
-	}
+	
+	
+	
 	public void setOnline(int online) {
 		this.online = online;
 	}
@@ -272,6 +269,12 @@ public class User implements Serializable
 	public void setNickname(String nickname)
 	{
 		this.nickname = nickname;
+	}
+	public String getAccnumno() {
+		return accnumno;
+	}
+	public void setAccnumno(String accnumno) {
+		this.accnumno = accnumno;
 	}
 	
 
