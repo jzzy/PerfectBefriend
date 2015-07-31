@@ -55,8 +55,8 @@ public class UserAction {
 	private String sex;// 我的性别
 	private String signature;// 个性签名
 	private String childrensex;// 孩子性别
+	private String newpassword;// 新密码
 	
-
 	private String childrenage;// 孩子年龄
 	private String mac;
 	private String phone;// 手机号
@@ -2173,7 +2173,7 @@ public class UserAction {
 		try {
 			// 6-18 位 字母数子 下划线 [A-Za-z] 字母开头
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			String newpassword = "";
+			//String newpassword = "";
 			System.out.println("进入Modification");
 			// 用于修改 密码的
 			String p = request.getParameter("p");
@@ -2314,109 +2314,46 @@ public class UserAction {
 		}
 	}
 
+
 	/**
-	 * 用户修改 信息
+	 * 用户更改手机号时向手机发送验证码
 	 * 
 	 * @throws IOException
 	 */
-	public void synModification() throws IOException {
-		try {
-			System.out.println("进入synModification");
-			nickname = request.getParameter("nickname");
-			addcity = request.getParameter("addcity");
-			stage = request.getParameter("stage");
-			address = request.getParameter("address");
-			password = request.getParameter("password");
-			String newpassword = request.getParameter("newpassword");
-			username = request.getParameter("username");
-			String key = request.getParameter("key");
-			if (!key.equals("tryunk")) {
-				util.Out().print("keynull");
-				return;
-			}
-			System.out.println("用户号或者用户名或者手机号是" + username);
-			System.out.println("地址省级" + address);
-			System.out.println("地址市级" + addcity);
-			System.out.println("孩子阶段" + stage);
-			System.out.println("手机是" + phone);
-			System.out.println("学校是" + school);
-			System.out.println("密码是" + password);
-			System.out.println("用户名 要修改的!:" + accnumno);
-			System.out.println("新密码是" + newpassword);
-			System.out.println("昵称是" + nickname);
-			u = userdao.byUsernameAccnumnoPhone(username);
-			if (u == null) {
-				System.out.println("没有该用户!");
-				util.Out().print("null");
-				return;
-			}
-			if (!u.getCome().equals("syn")) {
-				System.out.println("是家长之友用户");
-				util.Out().print("null");
-				return;
-			}
-			pd = userdao.select(u.getId());
-			if (pd == null) {
-				System.out.println("密码不对!");
-				util.Out().print(false);
-				return;
-			}
-
-			if (newpassword != null && newpassword != " ") {
-				pd.setPassword(newpassword);
-				userdao.update(pd);
-				System.out.println("修改成功!新密码为:" + newpassword);
-			}
-
-			if (u.getCompetence() == 0) {
-
-				if (addcity != null) {
-					u.setAddcity(addcity);
-				}
-				if (address != null) {
-					u.setAddress(address);
-					System.out.println("修改了地址");
-				}
-			}
-
-			if (nickname != null) {
-				u.setNickname(nickname);
-				System.out.println("修改了昵称!");
-			}
-			if (school != null) {
-				u.setSchool(school);
-				System.out.println("修改了学校!");
-			}
-			if (stage != null) {
-				u.setStage(stage);
-				System.out.println("修改了孩子阶段");
-			}
-			userdao.update(u);
-			util.Out().print(true);
-			System.out.println("修改成功!");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 向这个手机号发送信息
-	 * 
-	 * @throws IOException
-	 */
-	public void phonetext() throws IOException {
+	public void phoneSend() throws IOException {
 		// phone="13555717521";
 		// int num=123456789;
-		if (phone != null) {
-			System.out.println(phone);
-			String content = new String("尊敬的用户：您的号码" + phone
-					+ "已验证成功。感谢您注册家长之友！");
-
-			util.setphone(phone, content);
-		} else {
-			util.Out().print("phone,null");
+		System.out.println("进入phonetext");
+		//
+		String regp = "[0-9]{11}";
+		if (phone == null) {
+			System.out.println("手机号空！");
+			util.Out().print("null");
+			return;
 		}
+		if (!phone.matches(regp)) {
+			System.out.println("手机号格式不对！");
+			util.Out().print("null");
+			return;
+		}
+		if (userdao.byUsernameAccnumnoPhone(phone) == null) {
+			System.out.println("此手机号没有注册过");
+
+			util.Out().print(false);
+
+			return;
+		}
+		int num = (int) ((Math.random() * 9 + 1) * 100000);
+		session.setAttribute("app_code", String.valueOf(num));
+		session.setMaxInactiveInterval(90);
+		System.out.println("1正确验证码为" + num);
+
+		String content = new String("您的验证码是：" + num
+				+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
+		util.setphone(phone, content);
+		util.Out().print(true);
+	
+		
 
 	}
 
@@ -2751,6 +2688,14 @@ public class UserAction {
 
 	public void setChildrenage(String childrenage) {
 		this.childrenage = childrenage;
+	}
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
 	}
 
 }

@@ -1,5 +1,4 @@
 package com.befriend.util;
-
 import java.io.Serializable;
 
 

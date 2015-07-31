@@ -168,7 +168,7 @@ public class OpeFunction {
 	 * 
 	 * @throws UnknownHostException
 	 */
-	public static String getfileName(int reg) {
+	public static String getDayTime(int reg) {
 		Calendar cal = Calendar.getInstance();// 使用日历类
 		/**
 		System.out.println("年" + cal.get(Calendar.YEAR));

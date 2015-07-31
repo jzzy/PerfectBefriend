@@ -25,8 +25,29 @@ public class ForumOne {
 	private String title;
 
 	@Column(name = "type")
-	// 论坛类别 1 专家答疑 2学前 3小学 4中学 5按地区分
+	
+	/**
+	 * 论坛板块
+	 * 1完美家长
+	 * 2完美宝贝
+	 * 3同城家长
+	 * 4健康保健
+	 * 5舌尖美食 
+	 * 6旅游出行
+	 */
 	private int type;
+	@Column(name = "types")
+	
+	/**
+	 * 论坛小组 
+	 * 小组 11 完美酷爸 12 完美辣妈 
+	 * 小组 21托班 22小班 23中班 24大班 25小学 26初中 27高中
+	 * 小组 地区 31
+	 * 小组  41健康饮食 42运动保健 43心理健康、
+	 *    51美食分享 52美食攻略 53创意菜肴、
+	 *    61路线分享 62出行攻略
+	 */
+	private int types;
 	@Column(name = "total")
 	// 论坛总回复数
 	private int total;
@@ -70,6 +91,14 @@ public class ForumOne {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public int getTypes() {
+		return types;
+	}
+
+	public void setTypes(int types) {
+		this.types = types;
 	}
 
 	public String getImg() {

@@ -48,9 +48,26 @@ public class ForumAction {
 	 */
 	private int id = 0;// id
 	/**
-	 * 论坛类别 1专家答疑 2学前 3小学 4中学
+	 * 论坛板块
+	 * 1完美家长
+	 * 2完美宝贝
+	 * 3同城家长
+	 * 4健康保健
+	 * 5舌尖美食 
+	 * 6旅游出行
 	 */
 	private int model = 0;
+
+	/**
+	 * 论坛小组 
+	 * 小组 11 完美酷爸 12 完美辣妈 
+	 * 小组 21托班 22小班 23中班 24大班 25小学 26初中 27高中
+	 * 小组 地区 31
+	 * 小组  41健康饮食 42运动保健 43心理健康、
+	 *    51美食分享 52美食攻略 53创意菜肴、
+	 *    61路线分享 62出行攻略
+	 */
+	private int types = 0;
 	private String time = util.getNowTime();// 时间
 
 	private int total = 0;// 论坛总回复数
@@ -1466,7 +1483,6 @@ public class ForumAction {
 		}
 		util.Out().print(false);
 	}
-
 	/**
 	 * 添加论坛 app端
 	 * 
@@ -1513,6 +1529,12 @@ public class ForumAction {
 			return;
 
 		}
+		if (types<=0) {
+
+			util.Out().print("null");
+			return;
+
+		}
 		User u = userdao.byid(userid);
 		if (u == null) {
 			System.out.println("userid不合法!");
@@ -1524,14 +1546,14 @@ public class ForumAction {
 
 		if (file != null) {
 
-			img = "/IMG/Forumimg/"+userid;
+			img = "/IMG/Forumimg/"+util.getDayTime(1)+"/"+util.getDayTime(2)+util.getDayTime(3)+"/"+userid;
 			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);
 
 			System.out.println("头像上传成功！");
 		}
-
+		fone.setTypes(types);
 		fone.setArea(area);
 		fone.setAreas(areas);
 		fone.setTitle(title);

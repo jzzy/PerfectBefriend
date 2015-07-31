@@ -1,39 +1,30 @@
 package com.befriend.action;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
-import javax.mail.search.DateTerm;
 import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.Session;
 
 import com.befriend.dao.CollectDAO;
 import com.befriend.dao.NewsDAO;
 import com.befriend.dao.ReviewDAO;
 import com.befriend.dao.UserDAO;
 import com.befriend.entity.Admin;
-import com.befriend.entity.App;
 import com.befriend.entity.Collect;
 import com.befriend.entity.News;
 import com.befriend.entity.NewsLabel;
@@ -45,9 +36,6 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 public class NewsAction {
-	private static final List<App> Map = null;// Map集合
-	private OpeFunction util;// 自建的工具类
-
 	private UserDAO userdao;// 用户dao
 	private NewsDAO ndao; // 新闻dao
 	private CollectDAO cdao;// 收藏dao
@@ -57,7 +45,7 @@ public class NewsAction {
 	private List<News> nl = new ArrayList<News>();
 	private News n = new News();// 新闻类
 	private Collect c = new Collect();// 收藏类
-	Support st=new Support();//点赞类
+	Support st = new Support();// 点赞类
 	private List<Support> sl = new ArrayList<Support>();// 评论类
 	private Review r = new Review();// 评论类
 	private List<Review> rl = new ArrayList<Review>();// 评论类
@@ -98,7 +86,7 @@ public class NewsAction {
 	private int currentPage = 1;// 这是第多少页
 	private int id;// id
 	private String username;// 评论的用户名
-	Map Mapsession = (Map) ActionContext.getContext().get("session");
+	Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext().get("session");
 	HttpServletRequest request = ServletActionContext.getRequest();
 	// httpsession
 	HttpSession session = ServletActionContext.getRequest().getSession();
@@ -106,30 +94,34 @@ public class NewsAction {
 	private String province;// 省级
 
 	private String city;// 市级
-	public File xlsxFile;//新闻标签表
-	private String xlsxFileFileName;//文件类型
+	public File xlsxFile;// 新闻标签表
+	private String xlsxFileFileName;// 文件类型
+
 	public String getXlsxFileFileName() {
 		return xlsxFileFileName;
 	}
+
 	public void setXlsxFileFileName(String xlsxFileFileName) {
 		this.xlsxFileFileName = xlsxFileFileName;
 	}
+
 	/**
 	 * 上传新闻标签
-	 * @throws InvalidFormatException 
+	 * 
+	 * @throws InvalidFormatException
 	 */
 	public void saveLabel() throws IOException, InvalidFormatException {
-		System.out.println("文件类型"+xlsxFileFileName);
-		
-		ServletResponse srp=(ServletResponse) util.response();
+		System.out.println("文件类型" + xlsxFileFileName);
+
+		ServletResponse srp = (ServletResponse) OpeFunction.response();
 		srp.setCharacterEncoding("GBK");
 		PrintWriter out = srp.getWriter();
 		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<script type=\"text/javascript\">");
-		
-		if (xlsxFile==null) {
-						builder.append("alert('添加标签失败！');");
+
+		if (xlsxFile == null) {
+			builder.append("alert('添加标签失败！');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -137,8 +129,9 @@ public class NewsAction {
 			out.print(builder.toString());
 			return;
 		}
-		if(!xlsxFileFileName.split("\\.")[1].equals("xlsx")){
-						builder.append("alert('文件类型不对 你的是: ."+xlsxFileFileName.split("\\.")[1]+"');");
+		if (!xlsxFileFileName.split("\\.")[1].equals("xlsx")) {
+			builder.append("alert('文件类型不对 你的是: ."
+					+ xlsxFileFileName.split("\\.")[1] + "');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -146,6 +139,7 @@ public class NewsAction {
 			out.print(builder.toString());
 			return;
 		}
+		@SuppressWarnings("resource")
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(xlsxFile);
 
 		// 循环工作表Sheet
@@ -154,47 +148,47 @@ public class NewsAction {
 			if (xssfSheet == null) {
 				continue;
 			}
-			
+
 			// 循环行Row
 			for (int rowNum = 1; rowNum < xssfSheet.getLastRowNum(); rowNum++) {
-				//读行
+				// 读行
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow == null) {
 					continue;
 				}
-				System.out.println("新闻标签："+xssfRow.getCell(0));
-				System.out.println("第"+numSheet+"个工作表Sheet,的第"+rowNum+"行");
+				System.out.println("新闻标签：" + xssfRow.getCell(0));
+				System.out.println("第" + numSheet + "个工作表Sheet,的第" + rowNum
+						+ "行");
 				System.out.println("准备添加!");
-				String label=null;
-				//读第一列
-				if(xssfRow.getCell(0)!=null&&!util.isEmpty(xssfRow.getCell(0).toString())){
-					label=xssfRow.getCell(0).toString();
-				
-					if(ndao.byNewsLabelName(label)!=null){
+				String label = null;
+				// 读第一列
+				if (xssfRow.getCell(0) != null
+						&& !OpeFunction.isEmpty(xssfRow.getCell(0).toString())) {
+					label = xssfRow.getCell(0).toString();
+
+					if (ndao.byNewsLabelName(label) != null) {
 						System.out.println("已经添加过!");
 						continue;
-					}
-					else
-					{
-						//添加要存储的信息
-						NewsLabel nlb=new NewsLabel();
+					} else {
+						// 添加要存储的信息
+						NewsLabel nlb = new NewsLabel();
 						nlb.setLabel(label);
-						nlb.setTime(util.getNowTime());
+						nlb.setTime(OpeFunction.getNowTime());
 						ndao.Save(nlb);
 					}
 				}
 			}
 		}
-		
+
 		builder.append("alert('添加标签成功!');");
 		builder.append("window.top.location.href='");
 		builder.append(loginPage);
 		builder.append("';");
 		builder.append("</script>");
 		out.print(builder.toString());
-		
-		
+
 	}
+
 	/**
 	 * 通过id查询新闻 看是否有更新
 	 * 
@@ -204,9 +198,9 @@ public class NewsAction {
 		nl = ndao.n2ews();
 		if (nl.size() > 0) {
 
-			util.Out().print(nl.get(0).getId());
+			OpeFunction.Out().print(nl.get(0).getId());
 		} else {
-			util.Out().print(0);
+			OpeFunction.Out().print(0);
 		}
 	}
 
@@ -269,7 +263,7 @@ public class NewsAction {
 
 			if (u == null) {
 
-				((HttpServletResponse) util.response()).sendRedirect(request
+				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 				return null;
 			}
@@ -318,7 +312,7 @@ public class NewsAction {
 
 		if (u == null) {
 
-			((HttpServletResponse) util.response()).sendRedirect(request
+			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 			return null;
 		}
@@ -349,7 +343,7 @@ public class NewsAction {
 
 			if (u == null) {
 
-				((HttpServletResponse) util.response()).sendRedirect(request
+				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 				System.out.println("你还没有登入!");
 				return;
@@ -357,12 +351,12 @@ public class NewsAction {
 			userid = u.getId();
 			System.out.println("userid" + u.getId());
 			if (cdao.unid(userid, newsid) != null) {
-				util.Out().print("已经收藏过!");
+				OpeFunction.Out().print("已经收藏过!");
 				return;
 			} else {
 				c.setNewsid(newsid);
 				c.setUserid(userid);
-				c.setTime(util.getNowTime());
+				c.setTime(OpeFunction.getNowTime());
 				cdao.save(c);
 
 				n = ndao.byid(newsid);
@@ -386,7 +380,7 @@ public class NewsAction {
 				n.setCollectnum(n1);
 
 				ndao.Upnews(n);
-				util.Out().print("收藏成功");
+				OpeFunction.Out().print("收藏成功");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -405,36 +399,36 @@ public class NewsAction {
 
 			if (u == null) {
 
-				((HttpServletResponse) util.response()).sendRedirect(request
+				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 				System.out.println("你还没登入!");
 				return;
 			}
 			System.out.println("进入添加评论Rsave");
 
-			if (newsid <= 0||userid<=0) {
-				util.Out().print("null");
+			if (newsid <= 0 || userid <= 0) {
+				OpeFunction.Out().print("null");
 				return;
 
 			}
 			if (review == null || review.equals("")) {
-				util.Out().print("请填写评论内容");
+				OpeFunction.Out().print("请填写评论内容");
 				return;
 			}
 			if (u.getUsername() == null) {
-				util.Out().print("请设置用户名!");
+				OpeFunction.Out().print("请设置用户名!");
 				return;
 			}
 			r.setNewsid(newsid);
 			r.setUserid(userid);
-			r.setTime(util.getNowTime());
+			r.setTime(OpeFunction.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
 
 			n = ndao.byid(newsid);
 			//
 			if (n == null) {
-				util.Out().print("没有该新闻");
+				OpeFunction.Out().print("没有该新闻");
 				return;
 
 			}
@@ -447,7 +441,7 @@ public class NewsAction {
 
 			ndao.Upnews(n);
 
-			((HttpServletResponse) util.response()).sendRedirect(request
+			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/webNewsId?id=" + newsid + "");
 
 		} catch (Exception e) {
@@ -466,7 +460,7 @@ public class NewsAction {
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-			((HttpServletResponse) util.response()).sendRedirect(request
+			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 			System.out.println("你还没登入!");
 
@@ -621,7 +615,7 @@ public class NewsAction {
 				pageSize = 10;
 			}
 			if (tp <= 0) {
-				util.Out().print("tp为空！");
+				OpeFunction.Out().print("tp为空！");
 				return null;
 			}
 			if (currentPage <= 0) {
@@ -630,7 +624,7 @@ public class NewsAction {
 
 			System.out.println("进入webnewtype");
 			System.out.println("传的" + tp);
-			
+
 			int a = 0;
 
 			a = ndao.type(0, tp).size();
@@ -676,7 +670,7 @@ public class NewsAction {
 	public String webNewsId() throws IOException, ParseException {
 		System.out.println("web 通过id查询新闻" + id);
 		if (id <= 0) {
-			util.Out().print("没有获取到新闻id");
+			OpeFunction.Out().print("没有获取到新闻id");
 			System.out.println("没有获取到新闻id");
 			return null;
 		}
@@ -718,7 +712,7 @@ public class NewsAction {
 
 		System.out.println("微信公众号 通过id查询新闻" + id);
 		if (id <= 0) {
-			util.Out().print("没有获取到新闻id");
+			OpeFunction.Out().print("没有获取到新闻id");
 			System.out.println("没有获取到新闻id");
 			return null;
 		}
@@ -811,9 +805,9 @@ public class NewsAction {
 			System.out.println(nl.get(i).getArea() + nl.get(i).getTime());
 		}
 		if (ext >= 1) {
-			util.Out().print(util.ToJson(nl));
+			OpeFunction.Out().print(OpeFunction.ToJson(nl));
 		} else {
-			util.Out().print("null");
+			OpeFunction.Out().print("null");
 		}
 	}
 
@@ -832,7 +826,7 @@ public class NewsAction {
 			currentPage = 1;
 		}
 		if (area == null) {
-			util.Out().print("省级为空！");
+			OpeFunction.Out().print("省级为空！");
 			return;
 		}
 
@@ -852,13 +846,13 @@ public class NewsAction {
 		System.out.println("每页多少条-" + pageSize);
 		System.out.println("第-" + currentPage + "-页");
 		nl = ndao.Hotarea(area, pageSize, currentPage);
-		String result = "{\"nl\":" + util.ToJson(nl) + ",\"cpe\":" + a
+		String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
 				+ ",\"currentPage\":" + currentPage + "}";
 
 		if (nl.size() > 0) {
-			util.Out().print(result);
+			OpeFunction.Out().print(result);
 		} else {
-			util.Out().print("null");
+			OpeFunction.Out().print("null");
 		}
 	}
 
@@ -893,13 +887,13 @@ public class NewsAction {
 		System.out.println("每页多少条-" + pageSize);
 		System.out.println("第-" + currentPage + "-页");
 		nl = ndao.cah(pageSize, currentPage);
-		String result = "{\"nl\":" + util.ToJson(nl) + ",\"cpe\":" + a
+		String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
 				+ ",\"currentPage\":" + currentPage + "}";
 
 		if (nl.size() > 0) {
-			util.Out().print(result);
+			OpeFunction.Out().print(result);
 		} else {
-			util.Out().print("null");
+			OpeFunction.Out().print("null");
 		}
 	}
 
@@ -915,13 +909,13 @@ public class NewsAction {
 
 			}
 			if (tp <= 0) {
-				util.Out().print("tp==null！");
+				OpeFunction.Out().print("tp==null！");
 				return;
 			}
 
 			System.out.println("进入newtype");
 			System.out.println("传的" + tp);
-			
+
 			int a = ndao.type(0, tp).size();
 
 			if (a % pageSize == 0) {
@@ -936,18 +930,48 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println( " -有" + a + "页");
+			System.out.println(" -有" + a + "页");
 			System.out.println("每页多少条-" + pageSize);
 			System.out.println("第-" + currentPage + "-页");
 			nl = ndao.type(0, tp, pageSize, currentPage);
+			List<Boolean> scb=new ArrayList<Boolean>();
+			List<Boolean> plb=new ArrayList<Boolean>();
+			List<Boolean> zb=new ArrayList<Boolean>();
+			
+			for(int i=0;i<nl.size();i++){
+				n=nl.get(i);
+				//是否收藏过
+				if(cdao.unid(userid, n.getId())!=null){
+					scb.add(true);
+				}else{
+					scb.add(false);
+				}
+				//是否赞过
+				if(cdao.sunid(userid, n.getId())!=null){
+					zb.add(true);
+				}else{
+					zb.add(false);
+				}
+				//是否评论过
+				if(rdao.unid(userid, n.getId()).size()>0){
+					plb.add(true);
+				}else{
+					plb.add(false);
+				}
+					
+				
+			}
+			
 			System.out.println(type);
-			String result = "{\"nl\":" + util.ToJson(nl) + ",\"cpe\":" + a
-					+ ",\"currentPage\":" + currentPage + "}";
+			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
+					+ ",\"currentPage\":" + currentPage + ",\"plb\":" +
+					OpeFunction.ToJson(plb) + ",\"zb\":" + OpeFunction.ToJson(zb) + ",\"scb\":"
+					+ OpeFunction.ToJson(scb) + "}";
 
 			if (nl.size() > 0) {
-				util.Out().print(result);
+				OpeFunction.Out().print(result);
 			} else {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -991,10 +1015,10 @@ public class NewsAction {
 
 			ndao.rm(n);
 
-			((HttpServletResponse) util.response()).sendRedirect(request
+			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/Newsget");
 		} else {
-			util.Out().print("删除失败 没有要删除的新闻！");
+			OpeFunction.Out().print("删除失败 没有要删除的新闻！");
 
 		}
 
@@ -1010,11 +1034,11 @@ public class NewsAction {
 	public String Newsget() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("系统检测您没有登入！请重新登入重试！");
+			OpeFunction.Out().print("系统检测您没有登入！请重新登入重试！");
 			return null;
 		}
 		if (admin.getLevel() > 2) {
-			util.Out().print("系统检测您没有登入！请重新登入重试！");
+			OpeFunction.Out().print("系统检测您没有登入！请重新登入重试！");
 			return null;
 		}
 
@@ -1025,7 +1049,7 @@ public class NewsAction {
 			currentPage = 1;
 		}
 		int n = 0;
-		
+
 		List<News> l = new ArrayList<News>();
 		if (admin.getLevel() == 2) {
 			l = ndao.Pagination(pageSize, currentPage, admin.getAdmin());
@@ -1056,10 +1080,10 @@ public class NewsAction {
 	 */
 	public void NewsA10() throws IOException {
 		try {
-			System.out.println("时间是" + util.getNowTime());
+			System.out.println("时间是" + OpeFunction.getNowTime());
 			System.out.println("进入了NewsA10!!");
 			int day = 14;
-			System.out.println(util.getNumTime(day) + "前" + day + "天？");
+			System.out.println(OpeFunction.getNumTime(day) + "前" + day + "天？");
 			List<News> nt = new ArrayList<News>();
 			num = 11;
 
@@ -1068,24 +1092,24 @@ public class NewsAction {
 			List<News> nh = new ArrayList<News>();
 			num = 3;
 
-			String htime = util.getMondayOfWeek1();
-			String time = util.getMondayOfWeek7();
+			String htime = OpeFunction.getMondayOfWeek1();
+			String time = OpeFunction.getMondayOfWeek7();
 			System.out.println("上周1是" + htime + "上周日是" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
-				htime = util.getNumTime(10);
+				htime = OpeFunction.getNumTime(10);
 
 				if (ndao.cah(num, time, htime).size() != 3) {
-					htime = util.getNumTime(15);
+					htime = OpeFunction.getNumTime(15);
 
 					if (ndao.cah(num, time, htime).size() != 3) {
-						htime = util.getNumTime(30);
+						htime = OpeFunction.getNumTime(30);
 
 						if (ndao.cah(num, time, htime).size() != 3) {
-							htime = util.getNumTime(365);
+							htime = OpeFunction.getNumTime(365);
 
 							if (ndao.cah(num, time, htime).size() != 3) {
-								htime = util.getNumTime(720);
+								htime = OpeFunction.getNumTime(720);
 							}
 						}
 					}
@@ -1099,7 +1123,6 @@ public class NewsAction {
 			// 本省 新闻数量 小于2
 			if (ndao.area(area, num).size() < 2) {
 				System.out.println("本省新闻小于2条");
-				
 
 			} else {
 				num = 2;
@@ -1111,23 +1134,20 @@ public class NewsAction {
 			System.out.println("省：" + area);
 			System.out.println("市：" + areas);
 
-			
 			List<News> n5 = new ArrayList<News>();
-		
 
 			List<News> n8 = new ArrayList<News>();
-			
 
 			List<News> n9 = new ArrayList<News>();
-			
+
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nh.size()
 					+ "本地新闻-" + n4.size() + "轻松驿站" + n5.size() + "健康导航"
 					+ n8.size() + "社会广角" + n9.size());
-			String result = "{\"Hottime\":" + util.ToJson(nt) + ",\"Hottest\":"
-					+ util.ToJson(nh) + ",\"Hotarea\":" + util.ToJson(n4)
-					+ ",\"typeqs\":" + util.ToJson(n5) + ",\"typejk\":"
-					+ util.ToJson(n8) + ",\"typegj\":" + util.ToJson(n9) + "}";
-			util.Out().print(result);
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
+					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4)
+					+ ",\"typeqs\":" + OpeFunction.ToJson(n5) + ",\"typejk\":"
+					+ OpeFunction.ToJson(n8) + ",\"typegj\":" + OpeFunction.ToJson(n9) + "}";
+			OpeFunction.Out().print(result);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1152,10 +1172,10 @@ public class NewsAction {
 				// 市级
 				areas = u.getAddcity();
 			}
-			System.out.println("时间是" + util.getNowTime());
+			System.out.println("时间是" + OpeFunction.getNowTime());
 			System.out.println("进入了webNewsA10!!");
 			int day = 14;
-			System.out.println(util.getNumTime(day) + "前" + day + "天？");
+			System.out.println(OpeFunction.getNumTime(day) + "前" + day + "天？");
 			List<News> nt = new ArrayList<News>();
 			num = 11;
 
@@ -1166,24 +1186,24 @@ public class NewsAction {
 			num = 3;
 
 			// 最热
-			String htime = util.getMondayOfWeek1();
-			String time = util.getMondayOfWeek7();
+			String htime = OpeFunction.getMondayOfWeek1();
+			String time = OpeFunction.getMondayOfWeek7();
 			System.out.println("上周1是" + htime + "上周日是" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
-				htime = util.getNumTime(10);
+				htime = OpeFunction.getNumTime(10);
 
 				if (ndao.cah(num, time, htime).size() != 3) {
-					htime = util.getNumTime(15);
+					htime = OpeFunction.getNumTime(15);
 
 					if (ndao.cah(num, time, htime).size() != 3) {
-						htime = util.getNumTime(30);
+						htime = OpeFunction.getNumTime(30);
 
 						if (ndao.cah(num, time, htime).size() != 3) {
-							htime = util.getNumTime(365);
+							htime = OpeFunction.getNumTime(365);
 
 							if (ndao.cah(num, time, htime).size() != 3) {
-								htime = util.getNumTime(720);
+								htime = OpeFunction.getNumTime(720);
 							}
 						}
 					}
@@ -1212,12 +1232,10 @@ public class NewsAction {
 
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nh.size()
 					+ "本地新闻-" + n4.size());
-			
+
 			List<News> n5 = new ArrayList<News>();
-			
 
 			List<News> n8 = new ArrayList<News>();
-			
 
 			System.out.println("时间排序" + nt.size() + "热门新闻" + nh.size() + "本地新闻"
 					+ n4.size() + "轻松导航是1--" + n5.get(0).getType()
@@ -1249,29 +1267,28 @@ public class NewsAction {
 		try {
 
 			num = 3;
-			String htime = util.getMondayOfWeek1();
-			String time = util.getMondayOfWeek7();
+			String htime = OpeFunction.getMondayOfWeek1();
+			String time = OpeFunction.getMondayOfWeek7();
 			System.out.println("上周1是" + htime + "上周日是" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
-				htime = util.getNumTime(10);
+				htime = OpeFunction.getNumTime(10);
 
 				if (ndao.cah(num, time, htime).size() != 3) {
-					htime = util.getNumTime(15);
+					htime = OpeFunction.getNumTime(15);
 
 					if (ndao.cah(num, time, htime).size() != 3) {
-						htime = util.getNumTime(30);
+						htime = OpeFunction.getNumTime(30);
 
 						if (ndao.cah(num, time, htime).size() != 3) {
-							htime = util.getNumTime(365);
+							htime = OpeFunction.getNumTime(365);
 						}
 					}
 				}
 			}
-			util.Out().print(util.ToJson(ndao.cah(0, time, htime)));
+			OpeFunction.Out().print(OpeFunction.ToJson(ndao.cah(0, time, htime)));
 
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 	}
@@ -1283,7 +1300,7 @@ public class NewsAction {
 	 */
 	public void NewsA() throws IOException {
 		try {
-			System.out.println("时间是" + util.getNowTime());
+			System.out.println("时间是" + OpeFunction.getNowTime());
 			System.out.println("进入了NewsA");
 			List<News> nt = new ArrayList<News>();
 			num = 4;
@@ -1292,21 +1309,21 @@ public class NewsAction {
 			List<News> nh = new ArrayList<News>();
 			num = 3;
 
-			String htime = util.getMondayOfWeek1();
-			String time = util.getMondayOfWeek7();
+			String htime = OpeFunction.getMondayOfWeek1();
+			String time = OpeFunction.getMondayOfWeek7();
 			System.out.println("上周1是" + htime + "上周日是" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
-				htime = util.getNumTime(10);
+				htime = OpeFunction.getNumTime(10);
 
 				if (ndao.cah(num, time, htime).size() != 3) {
-					htime = util.getNumTime(15);
+					htime = OpeFunction.getNumTime(15);
 
 					if (ndao.cah(num, time, htime).size() != 3) {
-						htime = util.getNumTime(30);
+						htime = OpeFunction.getNumTime(30);
 
 						if (ndao.cah(num, time, htime).size() != 3) {
-							htime = util.getNumTime(365);
+							htime = OpeFunction.getNumTime(365);
 						}
 					}
 				}
@@ -1319,7 +1336,6 @@ public class NewsAction {
 
 			if (ndao.area(area, num).size() < 2) {
 				System.out.println("本省新闻小于2条");
-				
 
 			} else {
 				num = 2;
@@ -1334,14 +1350,13 @@ public class NewsAction {
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nh.size()
 					+ "本地新闻-" + n4.size());
 			// 1是全国最热
-			String result = "{\"Hottime\":" + util.ToJson(nt) + ",\"Hottest\":"
-					+ util.ToJson(nh) + ",\"Hotarea\":" + util.ToJson(n4) + "}";
-			util.Out().print(result);
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
+					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
+			OpeFunction.Out().print(result);
 			System.out.println("时间排序" + nt.size() + "热门新闻" + nh.size() + "本地新闻"
 					+ n4.size());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			// TODO: handle exception
 		}
 
 	}
@@ -1354,9 +1369,9 @@ public class NewsAction {
 
 			nl = ndao.Hotarea(0, area);
 			if (nl.size() == 0) {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
-			util.Out().print(util.ToJson(nl));
+			OpeFunction.Out().print(OpeFunction.ToJson(nl));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -1370,7 +1385,7 @@ public class NewsAction {
 
 			nl = ndao.Hottest(0);
 
-			util.Out().print(util.ToJson(nl));
+			OpeFunction.Out().print(OpeFunction.ToJson(nl));
 			;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1426,12 +1441,10 @@ public class NewsAction {
 
 			System.out.println(type);
 
-		
-
 			if (nl.size() > 0) {
-				util.Out().print(util.ToJson(nl));
+				OpeFunction.Out().print(OpeFunction.ToJson(nl));
 			} else {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1463,7 +1476,7 @@ public class NewsAction {
 
 			default:
 				System.out.println("请输入正确代码tp");
-				util.Out().print("not tp");
+				OpeFunction.Out().print("not tp");
 				return;
 			}
 
@@ -1491,13 +1504,13 @@ public class NewsAction {
 			System.out.println("第-" + currentPage + "-页");
 			nl = ndao.types(type, pageSize, currentPage);
 			System.out.println(type);
-			String result = "{\"nl\":" + util.ToJson(nl) + ",\"cpe\":" + a
+			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
 					+ ",\"currentPage\":" + currentPage + "}";
 
 			if (nl.size() > 0) {
-				util.Out().print(result);
+				OpeFunction.Out().print(result);
 			} else {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
 
 		} catch (Exception e) {
@@ -1513,22 +1526,22 @@ public class NewsAction {
 	 * @throws IOException
 	 */
 
+	@SuppressWarnings("unchecked")
 	public String UPtext() throws IOException {
 		// 1是来自随机时间
 		String rt = "";
 
 		System.out.println("进入了上传新闻UPtext");
-		savePath = "/Newsimg" + "/"
-				+ util.getfileName(1) + "/" + util.getfileName(2) + "/"
-				+ util.getfileName(1) + util.getfileName(2)
-				+ util.getfileName(3);
+		savePath = "/Newsimg" + "/" + OpeFunction.getDayTime(1) + "/"
+				+ OpeFunction.getDayTime(2) + "/" + OpeFunction.getDayTime(1)
+				+ OpeFunction.getDayTime(2) + OpeFunction.getDayTime(3);
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("系统检测您没有登入！请重新登入重试！");
+			OpeFunction.Out().print("系统检测您没有登入！请重新登入重试！");
 			return null;
 		}
 		if (admin.getLevel() > 2) {
-			util.Out().print("系统检测您没有登入！请重新登入重试！");
+			OpeFunction.Out().print("系统检测您没有登入！请重新登入重试！");
 			return null;
 		}
 
@@ -1538,57 +1551,55 @@ public class NewsAction {
 		List<String> images = new ArrayList<String>();
 		System.out.println("文章内容" + htmlData);
 		if (htmlData == null) {
-			util.Out().print("文章内容没有获取到" + htmlData);
+			OpeFunction.Out().print("文章内容没有获取到" + htmlData);
 			return null;
 		}
 		if (htmlData.length() < 3) {
-			util.Out().print("文章内容没有获取到" + htmlData);
+			OpeFunction.Out().print("文章内容没有获取到" + htmlData);
 			return null;
 		}
-		
+
 		News n = new News();
-		List<NewsLabel> nbl=ndao.getNewsLabelAll();
-		StringBuffer sb=new StringBuffer();
-		
-		for(int i=0;i<nbl.size();i++){
-			NewsLabel nb=nbl.get(i);
-			if(nb!=null)
-			{
-				if(htmlData.contains(nb.getLabel())){
-					sb.append(nb.getLabel()+",");
+		List<NewsLabel> nbl = ndao.getNewsLabelAll();
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < nbl.size(); i++) {
+			NewsLabel nb = nbl.get(i);
+			if (nb != null) {
+				if (htmlData.contains(nb.getLabel())) {
+					sb.append(nb.getLabel() + ",");
 				}
 			}
 		}
-		
-		if(sb!=null){
-		n.setLabel(sb.toString());
+
+		if (sb != null) {
+			n.setLabel(sb.toString());
 		}
 		n.setTitle(title);
 		n.setSummary(summary);
-		
-		sb=new StringBuffer();
+
+		sb = new StringBuffer();
 		if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
 
 			if (imgFile1 != null) {
-				images.add(util.ufileToServer(savePath, imgFile1, "jpg"));
+				images.add(OpeFunction.ufileToServer(savePath, imgFile1, "jpg"));
 			}
 			if (imgFile2 != null) {
-				images.add(util.ufileToServer(savePath, imgFile2, "jpg"));
+				images.add(OpeFunction.ufileToServer(savePath, imgFile2, "jpg"));
 			}
 			if (imgFile3 != null) {
-				images.add(util.ufileToServer(savePath, imgFile3, "jpg"));
+				images.add(OpeFunction.ufileToServer(savePath, imgFile3, "jpg"));
 			}
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
 					System.out.println("路径" + images.get(i));
-				
-						sb.append(images.get(i)+",");
-					
+
+					sb.append(images.get(i) + ",");
 
 				}
 			}
-			if(sb!=null){
-			n.setImg(sb.toString());
+			if (sb != null) {
+				n.setImg(sb.toString());
 			}
 			// String [] s=n.getImg().toString().split("xy-x");
 			// for(int i=0;i<s.length;i++){
@@ -1597,14 +1608,16 @@ public class NewsAction {
 
 		} else {
 
-			images = util.getImgs(htmlData);
+			images = OpeFunction.getImgs(htmlData);
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("路径 "+images.get(i).replaceAll("/PerfectBefriend","")+",");
-					
-					
-						sb.append(images.get(i).replaceAll("/PerfectBefriend","")+",");
-					
+					System.out.println("路径 "
+							+ images.get(i).replaceAll("/PerfectBefriend", "")
+							+ ",");
+
+					sb.append(images.get(i).replaceAll("/PerfectBefriend", "")
+							+ ",");
+
 				}
 			}
 			/**
@@ -1612,24 +1625,23 @@ public class NewsAction {
 			 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
 			 * System.out.println("截取的路径"+s[i]); }
 			 */
-			System.out.println("存了 "+sb.toString());
+			System.out.println("存了 " + sb.toString());
 			n.setImg(sb.toString());
 
 		}
-		//将width 设置Wie 100%
-		htmlData=util.setImgswidth100(htmlData);
-		System.out.println("htmlData=="+htmlData);
+		// 将width 设置Wie 100%
+		htmlData = OpeFunction.setImgswidth100(htmlData);
+		System.out.println("htmlData==" + htmlData);
 		n.setContent(htmlData);
 		if (timet == null) {
-			timet = util.getNowTime();
+			timet = OpeFunction.getNowTime();
 		}
 
 		if (expert == 1) {
 			try {
-				n.setTime(util.RandomTime("2014-01-01  00:00:00",
+				n.setTime(OpeFunction.RandomTime("2014-01-01  00:00:00",
 						"2015-01-01  00:00:00"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			rt = "A";
@@ -1637,15 +1649,15 @@ public class NewsAction {
 			n.setTime(timet);
 			rt = "B";
 		}
-
-	
-		if (!province.equals("请选择省份")) {
+		
+		if (province!=null&&!province.equals("请选择省份")) {
 			n.setArea(province);
 
 		}
-		if (!city.equals("请选择地区")) {
+		if (city!=null&&!city.equals("请选择地区")) {
 			n.setAreas(city);
 		}
+		
 		n.setCollectnum(0);
 		n.setCah(0);
 		n.setHits(0);
@@ -1654,13 +1666,13 @@ public class NewsAction {
 		n.setAdmin(admin.getAdmin());
 		n.setType(itype);
 		ndao.Save(n);
-
+		System.out.println("rt:" + rt);
 		return rt;
 
 		/**
-		 * if (imgFile == null) { util.Out().print("您没有上传小图 ！请您返回重试！"); return
+		 * if (imgFile == null) { OpeFunction.Out().print("您没有上传小图 ！请您返回重试！"); return
 		 * null; } if (imgFilemax == null) {
-		 * util.Out().print("您没有上传大图！请您返回重试！"); return null; }
+		 * OpeFunction.Out().print("您没有上传大图！请您返回重试！"); return null; }
 		 * 
 		 * BufferedImage sourceImg = ImageIO .read(new
 		 * FileInputStream(imgFile)); BufferedImage sourceImgmax =
@@ -1671,15 +1683,15 @@ public class NewsAction {
 		 * util.fileSize(imgFilemax);
 		 * 
 		 * if (sourceImgmax.getWidth() != 720 || sourceImgmax.getHeight() !=
-		 * 360) { util.Out().print("大图尺寸为 720*360 请您重新检查下！请您返回重试！"); return
+		 * 360) { OpeFunction.Out().print("大图尺寸为 720*360 请您重新检查下！请您返回重试！"); return
 		 * null; } if (sourceImg.getWidth() != 180 || sourceImg.getHeight() !=
-		 * 140) { util.Out().print("小图尺寸为 180*140 请您重新检查下！请您返回重试！"); return
+		 * 140) { OpeFunction.Out().print("小图尺寸为 180*140 请您重新检查下！请您返回重试！"); return
 		 * null; }
 		 * 
 		 * if (fimg > 512.00) {
-		 * util.Out().print("小图大小为 0.5MB 以下！请您重新检查下！请您返回重试！"); return null; } if
+		 * OpeFunction.Out().print("小图大小为 0.5MB 以下！请您重新检查下！请您返回重试！"); return null; } if
 		 * (fimgmax > 1024.00) {
-		 * util.Out().print("大图大小为 1MB 以下！请您重新检查下！请您返回重试！"); return null; }
+		 * OpeFunction.Out().print("大图大小为 1MB 以下！请您重新检查下！请您返回重试！"); return null; }
 		 * System.out.println("宽" + sourceImg.getWidth());
 		 * System.out.println("高" + sourceImg.getHeight());
 		 * System.out.println("是否是专家 0不是 1是 :" + expert);
@@ -1722,9 +1734,9 @@ public class NewsAction {
 					n.setCah(nn);
 				}
 				ndao.Upnews(n);
-				util.Out().print(util.ToJson(n));
+				OpeFunction.Out().print(OpeFunction.ToJson(n));
 			} else {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1739,7 +1751,7 @@ public class NewsAction {
 	 */
 	public void NewsAll() throws IOException {
 		try {
-			System.out.println("时间是" + util.getNowTime());
+			System.out.println("时间是" + OpeFunction.getNowTime());
 			System.out.println("进入了NewsAll");
 			List<News> nt = new ArrayList<News>();
 			num = 3;
@@ -1770,12 +1782,11 @@ public class NewsAction {
 			System.out.println("全国最新有-" + nt.size() + ",全国最热-" + nn.size()
 					+ "本地新闻-" + n4.size());
 
-			String result = "{\"Hottime\":" + util.ToJson(nt) + ",\"Hottest\":"
-					+ util.ToJson(nn) + ",\"Hotarea\":" + util.ToJson(n4) + "}";
-			util.Out().print(result);
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
+					+ OpeFunction.ToJson(nn) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
+			OpeFunction.Out().print(result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			// TODO: handle exception
 		}
 
 	}
@@ -1790,16 +1801,16 @@ public class NewsAction {
 			System.out.println("进入新闻收藏userid:" + userid + "newsid:" + newsid);
 			if (cdao.unid(userid, newsid) != null) {
 				System.out.println("已经收藏过!");
-				util.Out().print(false);
+				OpeFunction.Out().print(false);
 			} else {
 				User u = userdao.byid(userid);
 				if (u == null || newsid <= 0) {
-					util.Out().print(false);
+					OpeFunction.Out().print(false);
 					return;
 				}
 				c.setNewsid(newsid);
 				c.setUserid(userid);
-				c.setTime(util.getNowTime());
+				c.setTime(OpeFunction.getNowTime());
 				cdao.save(c);
 
 				n = ndao.byid(newsid);
@@ -1822,41 +1833,42 @@ public class NewsAction {
 
 				ndao.Upnews(n);
 				System.out.println("收藏成功!");
-				util.Out().print(true);
+				OpeFunction.Out().print(true);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
 	 * 添加赞通过 用户id 新闻id
 	 * 
 	 * @throws IOException
 	 */
 	public void supportSave() throws IOException {
-		
-			System.out.println("进入新闻点赞userid:" + userid + "newsid:" + newsid);
-			if (cdao.sunid(userid, newsid) != null) {
-				System.out.println("已经收赞过!");
-				util.Out().print(false);
-			} else {
-				User u = userdao.byid(userid);
-				if (u == null || newsid <= 0) {
-					util.Out().print(false);
-					return;
-				}
-				st.setNewsid(newsid);
-				st.setUserid(userid);
-				st.setTime(util.getNowTime());
-				cdao.save(st);
 
-				n = ndao.byid(newsid);
-				n.setSupports(cdao.sNlln(newsid).size());
-				ndao.Upnews(n);
-				System.out.println("点赞成功!");
-				util.Out().print(true);
+		System.out.println("进入新闻点赞userid:" + userid + "newsid:" + newsid);
+		if (cdao.sunid(userid, newsid) != null) {
+			System.out.println("已经收赞过!");
+			OpeFunction.Out().print(false);
+		} else {
+			User u = userdao.byid(userid);
+			if (u == null || newsid <= 0) {
+				OpeFunction.Out().print(false);
+				return;
 			}
-		
+			st.setNewsid(newsid);
+			st.setUserid(userid);
+			st.setTime(OpeFunction.getNowTime());
+			cdao.save(st);
+
+			n = ndao.byid(newsid);
+			n.setSupports(cdao.sNlln(newsid).size());
+			ndao.Upnews(n);
+			System.out.println("点赞成功!");
+			OpeFunction.Out().print(true);
+		}
+
 	}
 
 	/**
@@ -1868,7 +1880,7 @@ public class NewsAction {
 
 		System.out.println("后台管理查看新闻详情通过id查询新闻" + id);
 		if (id <= 0) {
-			util.Out().print("没有获取到新闻id");
+			OpeFunction.Out().print("没有获取到新闻id");
 			System.out.println("没有获取到新闻id");
 			return null;
 		}
@@ -1906,103 +1918,106 @@ public class NewsAction {
 	 * 
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	public String adminNewsIdup() throws IOException {
 
 		System.out.println("后台管理查看新闻详情通过id查询新闻" + id);
 		if (id <= 0) {
-			util.Out().print("没有获取到新闻id");
+			OpeFunction.Out().print("没有获取到新闻id");
 			System.out.println("没有获取到新闻id");
 			return null;
 		}
-		n = ndao.byid(id);		
+		n = ndao.byid(id);
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setCharacterEncoding("UTF-8");
-				htmlData = request.getParameter("content1");
-				List images = new ArrayList();
-				System.out.println("文章内容" + htmlData);
-				if(htmlData==null){
-					util.Out().print("文章内容没有获取到" + htmlData);
-					return null;
-				}
-				if (htmlData.length()<3) {
-					util.Out().print("文章内容没有获取到" + htmlData);
-					return null;
-				}
-				
+		htmlData = request.getParameter("content1");
+		List<String> images = new ArrayList<String>();
+		System.out.println("文章内容" + htmlData);
+		if (htmlData == null) {
+			OpeFunction.Out().print("文章内容没有获取到" + htmlData);
+			return null;
+		}
+		if (htmlData.length() < 3) {
+			OpeFunction.Out().print("文章内容没有获取到" + htmlData);
+			return null;
+		}
 
-				n.setTitle(title);
-				n.setSummary(summary);
-				n.setContent(htmlData);
-				n.setType(itype);
-				n.setArea(area);
-				n.setAreas(areas);
-				StringBuffer sb = new StringBuffer();
-				if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
-					
-					if (imgFile1 != null) {
-						images.add(util.ufileToServer(savePath, imgFile1, "jpg"));
+		n.setTitle(title);
+		n.setSummary(summary);
+		n.setContent(htmlData);
+		n.setType(itype);
+		if(area!=null&&!area.equals("请选择省份")){
+		n.setArea(area);
+		}
+		if(areas!=null&&!areas.equals("请选择地区")){
+		n.setAreas(areas);
+		}
+		StringBuffer sb = new StringBuffer();
+		if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
+
+			if (imgFile1 != null) {
+				images.add(OpeFunction.ufileToServer(savePath, imgFile1, "jpg"));
+			}
+			if (imgFile2 != null) {
+				images.add(OpeFunction.ufileToServer(savePath, imgFile2, "jpg"));
+			}
+			if (imgFile3 != null) {
+				images.add(OpeFunction.ufileToServer(savePath, imgFile3, "jpg"));
+			}
+			if (images != null) {
+				for (int i = 0; i < images.size(); i++) {
+					System.out.println("路径" + images.get(i));
+					if (i == 0) {
+						sb.append(images.get(i));
+					} else {
+						sb.append("," + images.get(i));
 					}
-					if (imgFile2 != null) {
-						images.add(util.ufileToServer(savePath, imgFile2, "jpg"));
-					}
-					if (imgFile3 != null) {
-						images.add(util.ufileToServer(savePath, imgFile3, "jpg"));
-					}
-					if (images != null) {
-						for (int i = 0; i < images.size(); i++) {
-							System.out.println("路径" + images.get(i));
-							if (i == 0) {
-								sb.append(images.get(i));
-							} else {
-								sb.append("," + images.get(i));
-							}
-
-						}
-					}
-					n.setImg(sb.toString());
-//					 String [] s=n.getImg().toString().split("xy-x"); 
-//		  			 for(int i=0;i<s.length;i++){
-//					  System.out.println("截取的路径---"+s[i]); 
-//					  }
-
-				} else {
-					
-					images = util.getImgs(htmlData);
-					if (images != null) {
-						for (int i = 0; i < images.size(); i++) {
-							System.out.println("路径" + images.get(i));
-							if (i == 0) {
-								sb.append(images.get(i));
-							} else {
-								sb.append("," + images.get(i));
-							}
-
-						}
-					}
-					/**
-					 * System.out.println(sb.toString()); String []
-					 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
-					 * System.out.println("截取的路径"+s[i]); }
-					 */
-					
-
-					n.setImg(sb.toString());
 
 				}
+			}
+			n.setImg(sb.toString());
+			// String [] s=n.getImg().toString().split("xy-x");
+			// for(int i=0;i<s.length;i++){
+			// System.out.println("截取的路径---"+s[i]);
+			// }
 
-				if (timet==null) {
-					timet = util.getNowTime();
-				}
-				if (!province.equals("请选择省份")) {
-					n.setArea(province);
+		} else {
+
+			images = OpeFunction.getImgs(htmlData);
+			if (images != null) {
+				for (int i = 0; i < images.size(); i++) {
+					System.out.println("路径" + images.get(i));
+					if (i == 0) {
+						sb.append(images.get(i));
+					} else {
+						sb.append("," + images.get(i));
+					}
 
 				}
-				if (!city.equals("请选择地区")) {
-					n.setAreas(city);
-				}
-				n.setTime(timet);
-				ndao.Upnews(n);
+			}
+			/**
+			 * System.out.println(sb.toString()); String []
+			 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
+			 * System.out.println("截取的路径"+s[i]); }
+			 */
+
+			n.setImg(sb.toString());
+
+		}
+
+		if (timet == null) {
+			timet = OpeFunction.getNowTime();
+		}
+		if (!province.equals("请选择省份")) {
+			n.setArea(province);
+
+		}
+		if (!city.equals("请选择地区")) {
+			n.setAreas(city);
+		}
+		n.setTime(timet);
+		ndao.Upnews(n);
 		request.setAttribute("n", n);
 
 		return Action.SUCCESS;
@@ -2017,7 +2032,7 @@ public class NewsAction {
 
 		System.out.println("后台管理查看新闻详情通过id查询新闻" + id);
 		if (id <= 0) {
-			util.Out().print("没有获取到新闻id");
+			OpeFunction.Out().print("没有获取到新闻id");
 			System.out.println("没有获取到新闻id");
 			return null;
 		}
@@ -2050,57 +2065,58 @@ public class NewsAction {
 
 				n.setCollectnum(n1);
 				ndao.Upnews(n);
-				util.Out().print(true);
+				OpeFunction.Out().print(true);
 			} else {
-				util.Out().print(false);
+				OpeFunction.Out().print(false);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	/**
 	 * 取消赞 通过 用户id 新闻id
 	 * 
 	 * @throws IOException
 	 */
 	public void removeSupport() throws IOException {
-		st=cdao.sunid(userid, newsid);
-		if(st!=null){
+		st = cdao.sunid(userid, newsid);
+		if (st != null) {
 			cdao.remove(st);
-			n=ndao.byid(newsid);
-			if(n!=null){
+			n = ndao.byid(newsid);
+			if (n != null) {
 				n.setSupports(cdao.sNlln(newsid).size());
 				ndao.Upnews(n);
-				util.Out().print(true);
+				OpeFunction.Out().print(true);
 				return;
 			}
-			util.Out().print(false);
+			OpeFunction.Out().print(false);
 			return;
-		}else{
-			util.Out().print(false);
+		} else {
+			OpeFunction.Out().print(false);
 			return;
 		}
-		
+
 	}
+
 	/**
 	 * 新闻查看赞
 	 * 
 	 * @throws IOException
 	 */
 	public void newsLookSupport() throws IOException {
-		sl=cdao.sNlln(newsid);
-		for(int i=0;i<sl.size();i++){
-			st=sl.get(i);
-			if(st!=null){
+		sl = cdao.sNlln(newsid);
+		for (int i = 0; i < sl.size(); i++) {
+			st = sl.get(i);
+			if (st != null) {
 				ul.add(userdao.byid(st.getUserid()));
-			}else{
+			} else {
 				ul.add(null);
 			}
 		}
-		util.Out().print(util.ToJson(ul));
-		
-	}
+		OpeFunction.Out().print(OpeFunction.ToJson(ul));
 
+	}
 
 	/**
 	 * 判断是否收藏
@@ -2109,9 +2125,9 @@ public class NewsAction {
 		try {
 
 			if (cdao.unid(userid, newsid) == null) {
-				util.Out().print(false);
+				OpeFunction.Out().print(false);
 			} else {
-				util.Out().print(true);
+				OpeFunction.Out().print(true);
 			}
 
 		} catch (Exception e) {
@@ -2127,7 +2143,7 @@ public class NewsAction {
 			System.out.println("进入了SearchBookmark");
 			User u = userdao.byid(userid);
 			if (u == null) {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 				return;
 			}
 			for (Collect c : cdao.Allu(userid)) {
@@ -2138,10 +2154,10 @@ public class NewsAction {
 			System.out.println("用户" + u.getUsername() + "收藏了" + nl.size()
 					+ "个文章");
 			if (nl.size() == 0) {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			} else {
 
-				util.Out().print(util.ToJson(nl));
+				OpeFunction.Out().print(OpeFunction.ToJson(nl));
 			}
 
 		} catch (Exception e) {
@@ -2160,9 +2176,9 @@ public class NewsAction {
 			System.out.println("删除评论方法RemoveR");
 			System.out.println("reviewid+" + reviewid);
 			System.out.println("userid+" + userid);
-			r=rdao.byid(reviewid, userid);
-			if (r== null) {
-				util.Out().print("null");
+			r = rdao.byid(reviewid, userid);
+			if (r == null) {
+				OpeFunction.Out().print("null");
 				System.out.println("评论  为空");
 				return;
 			}
@@ -2172,11 +2188,11 @@ public class NewsAction {
 			n = ndao.byid(newsid);
 			System.out.println("修改代码");
 			System.out.println("newsid是" + n.getId());
-			
+
 			n.setReviews(rdao.Alln(newsid).size());
 			ndao.Upnews(n);
 
-			util.Out().print(true);
+			OpeFunction.Out().print(true);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -2192,46 +2208,42 @@ public class NewsAction {
 		try {
 			System.out.println("进入添加评论Rsave" + userid);
 
-			if (newsid <= 0 || userid <=0) {
-				util.Out().print("null");
+			if (newsid <= 0 || userid <= 0) {
+				OpeFunction.Out().print("null");
 				return;
 
 			}
 
 			User u = userdao.byid(userid);
 			if (u == null) {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 				return;
 			}
 			r.setNewsid(newsid);
 			r.setUserid(userid);
-			r.setTime(util.getNowTime());
+			r.setTime(OpeFunction.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
 			// 查询该文章被评论多少次 重新写入
 			n = ndao.byid(newsid);
 			if (n == null) {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 				return;
 
 			}
 			rl = rdao.Alln(newsid);
-			
-			
+
 			System.out.println("评论内容" + review);
 			System.out.println("newsid是" + n.getId());
-		
+
 			n.setReviews(rl.size());
 			ndao.Upnews(n);
-			util.Out().print(true);
-			
+			OpeFunction.Out().print(true);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
-
 
 	/**
 	 * 通过newsid查询 评论
@@ -2244,18 +2256,17 @@ public class NewsAction {
 		if (rl.size() > 0) {
 			System.out.println("有评论");
 			for (int i = 0; i < rl.size(); i++) {
-				User u1 = userdao.byid((rl.get(i)
-						.getId()));
+				User u1 = userdao.byid((rl.get(i).getId()));
 				ul.add(u1);
 			}
 			System.out.println("有评论");
-			String result = "{\"rl\":" + util.ToJson(rl) + ",\"ul\":"
-					+ util.ToJson(ul) + "}";
-			util.Out().print(result);
+			String result = "{\"rl\":" + OpeFunction.ToJson(rl) + ",\"ul\":"
+					+ OpeFunction.ToJson(ul) + "}";
+			OpeFunction.Out().print(result);
 
 		} else {
 			System.out.println("没有评论");
-			util.Out().print("null");
+			OpeFunction.Out().print("null");
 		}
 
 	}
@@ -2293,13 +2304,13 @@ public class NewsAction {
 				}
 
 			}
-			String result = "{\"news\":" + util.ToJson(nl) + ",\"review\":"
-					+ util.ToJson(rl) + "}";
+			String result = "{\"news\":" + OpeFunction.ToJson(nl) + ",\"review\":"
+					+ OpeFunction.ToJson(rl) + "}";
 			if (nl.size() > 0 && rl.size() > 0) {
-				util.Out().print(result);
+				OpeFunction.Out().print(result);
 
 			} else {
-				util.Out().print("null");
+				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
 			System.out.println("异常是" + e.getMessage());
@@ -2318,9 +2329,9 @@ public class NewsAction {
 
 		rl = rdao.unid(userid, newsid);
 		if (rl.size() <= 0) {
-			util.Out().print("null");
+			OpeFunction.Out().print("null");
 		} else {
-			util.Out().print(util.ToJson(rl));
+			OpeFunction.Out().print(OpeFunction.ToJson(rl));
 		}
 	}
 
@@ -2564,9 +2575,11 @@ public class NewsAction {
 	public void setItype(int itype) {
 		this.itype = itype;
 	}
+
 	public File getXlsxFile() {
 		return xlsxFile;
 	}
+
 	public void setXlsxFile(File xlsxFile) {
 		this.xlsxFile = xlsxFile;
 	}

@@ -125,8 +125,8 @@
 		<action name="Gag" class="userAction" method="Gag">
 		</action>	
 		
-		<!-- 用户直接注册家长之友 -->
-		<action name="phonetext" class="userAction" method="phonetext">
+		<!-- 用户更改手机号时向手机发送验证码 -->
+		<action name="phoneSend" class="userAction" method="phoneSend">
 	
 		</action>	
 		
