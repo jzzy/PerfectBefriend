@@ -3,6 +3,7 @@ package com.befriend.util;
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * @author STerOTto
@@ -10,6 +11,13 @@ import com.google.gson.Gson;
  */
 public class JsonUtil
 {
+	public static <T> String toJsonExpose(T entity)
+	{
+		String result = "";
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		result = gson.toJson(entity);
+		return result;
+	}
 	
 	/**
 	 * 实体类转json

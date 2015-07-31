@@ -15,7 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * @author sterotto
@@ -29,25 +30,30 @@ public class UserGroup implements Serializable
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
+	@Expose
 	private Integer id;
 	
 	@ManyToOne(cascade=CascadeType.ALL)        
-	@JoinColumn(name="user_id")  
+	@JoinColumn(name="user_id") 
+	@Expose(serialize=false)
 	private User user;
 	
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="userGroup")
-	private Set<GroupFriend> groupFriends = new HashSet<GroupFriend>();
 	@Column(name="name",nullable=false)
+	@Expose
 	private String name;
 	
 	@Column(name="order_num",nullable=false)
+	@Expose
 	private int orderNum;
 	
 	@Column(name="create_time")
+	@Expose
 	private String createTime;
 	
-	@Transient
-	private Set<User> friends = new HashSet<User>();
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="userGroup")
+	@Expose
+	private Set<GroupFriend> groupFriends = new HashSet<GroupFriend>();
+	
 	
 	public Integer getId()
 	{
@@ -75,10 +81,6 @@ public class UserGroup implements Serializable
 	{
 		this.groupFriends = groupFriends;
 	}
-	public void setFriends(Set<User> friends)
-	{
-		this.friends = friends;
-	}
 	public String getName()
 	{
 		return name;
@@ -104,5 +106,10 @@ public class UserGroup implements Serializable
 	{
 		this.createTime = createTime;
 	}
-
+	@Override
+	public String toString() {
+		return "UserGroup [id=" + id + ", user=" + user + ", groupFriends=" + groupFriends + ", name=" + name
+				+ ", orderNum=" + orderNum + ", createTime=" + createTime + "]";
+	}
+	
 }

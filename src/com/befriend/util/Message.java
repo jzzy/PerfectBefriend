@@ -1,6 +1,8 @@
 package com.befriend.util;
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
+
 
 /**
  * 消息实体类
@@ -15,9 +17,11 @@ public class Message implements Serializable
 	public static final Integer FAILED = 0;
 	public static final Integer NULL = -1;
 	public static final Integer ERROR = -2;
-	
+	@Expose
 	private Integer code;//状态吗
+	@Expose
 	private String statement;//备注
+	@Expose
 	private Object content;//请求内容
 	
 	public Integer getCode()
@@ -43,6 +47,10 @@ public class Message implements Serializable
 	public void setContent(Object content)
 	{
 		this.content = content;
+	}
+	@Override
+	public String toString() {
+		return "Message [code=" + code + ", statement=" + statement + ", content=" + content + "]";
 	}
 	
 
