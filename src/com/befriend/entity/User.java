@@ -21,7 +21,7 @@ public class User implements Serializable
 {
 
 	/**
-	 * �û� 
+	 * 锟矫伙拷 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -29,159 +29,99 @@ public class User implements Serializable
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Expose
 	private Integer id;
-	@Column(name="username")
+	@Column(name="username")//锟矫伙拷锟斤拷
 	private String username;
-<<<<<<< HEAD
-	@Column(name="nickname")
-=======
-	@Column(name="nickname")//�ǳ�
+	@Column(name="nickname")//锟角筹拷
 	@Expose
->>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String nickname;
-	@Column(name="password")
+	@Column(name="password")//锟斤拷锟斤拷
 	private String password;
-<<<<<<< HEAD
-	@Column(name="img")//
-	private String img;
-	
-	
-	@Column(name="stage")//
-	private String stage;
-	public static final double STAGE = 2D;
-	@Column(name="time")//
-	private String time;
-	@Column(name="address")//
-	
-	private String address;
-	public static final double PROVINCE = 3D;
-	
-	@Column(name="addcity")//
-	private String addcity;
-	public static final double CITY = 4D;
-	@Column(name="phone")//
-=======
-	@Column(name="img")//�û�ͷ���ַ
+	@Column(name="img")//锟矫伙拷头锟斤拷锟街�
 	@Expose
 	private String img;
 	
 	
-	@Column(name="stage")//���ӽ׶�
+	@Column(name="stage")//锟斤拷锟接阶讹拷
 	@Expose
 	private String stage;
 	public static final double STAGE = 2D;
-	@Column(name="time")//ע��ʱ��
+	@Column(name="time")//注锟斤拷时锟斤拷
 	@Expose
 	private String time;
-	@Column(name="address")//��ַ ʡ��
+	@Column(name="address")//锟斤拷址 省锟斤拷
 	/**
-	 * ��ַ ʡ��
+	 * 锟斤拷址 省锟斤拷
 	 */
 	@Expose
 	private String address;
 	public static final double PROVINCE = 3D;
 	
-	@Column(name="addcity")//��ַ �м�
+	@Column(name="addcity")//锟斤拷址 锟叫硷拷
 	@Expose
 	private String addcity;
 	public static final double CITY = 4D;
-	@Column(name="phone")//�绰
+	@Column(name="phone")//锟界话
 	@Expose
->>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String phone;
-	@Column(name="school")//ѧУ
+	@Column(name="school")//学校
 	@Expose
 	private String school;
 	public static final double SCHOOL = 5D;
 	
-<<<<<<< HEAD
-	@Column(name="competence")//
-	private int competence;
-	@Column(name="gag")//
-	private int gag;
-	
-	@Column(name="loginnum")//
-	private int loginnum;
-	
-	@Column(name="finaltime")//
-	private String finaltime;
-	@Column(name="ip")//
-	private String ip;
-	@Column(name="port")//
-	private int port;
-	@Column(name="online")//
-	private int online;
-	@Column(name="accnumno")//
-	private String accnumno;
-	@Column(name="come")// 
-	private String come;
-	@Column(name="os")// 
-=======
-	@Column(name="competence")//Ȩ��  0 ��ͨ�û�  1 �м�����Ա 2ʡ������Ա 4�ǽ���
+	@Column(name="competence")//权锟斤拷  0 锟斤拷通锟矫伙拷  1 锟叫硷拷锟斤拷锟斤拷员 2省锟斤拷锟斤拷锟斤拷员 4锟角斤拷锟斤拷
 	@Expose
 	private int competence;
-	@Column(name="gag")//������̳Ȩ��  0 ���Դ�����̳  1 ������  
+	@Column(name="gag")//锟斤拷锟斤拷锟斤拷坛权锟斤拷  0 锟斤拷锟皆达拷锟斤拷锟斤拷坛  1 锟斤拷锟斤拷锟斤拷  
 	@Expose
 	private int gag;
 	
-	@Column(name="loginnum")//�û��������
+	@Column(name="loginnum")//锟矫伙拷锟斤拷锟斤拷锟斤拷锟�
 	@Expose
 	private int loginnum;
 	
-	@Column(name="finaltime")//�û�������ʱ��
+	@Column(name="finaltime")//锟矫伙拷锟斤拷锟斤拷锟斤拷时锟斤拷
 	@Expose
 	private String finaltime;
-	@Column(name="ip")//�û�ip
+	@Column(name="ip")//锟矫伙拷ip
 	@Expose
 	private String ip;
-	@Column(name="port")//�û�port
+	@Column(name="port")//锟矫伙拷port
 	@Expose
 	private int port;
-	@Column(name="online")//�û� �û�����״̬ 0������ 1����
+	@Column(name="online")//锟矫伙拷 锟矫伙拷锟斤拷锟斤拷状态 0锟斤拷锟斤拷锟斤拷 1锟斤拷锟斤拷
 	@Expose
 	private int online;
-	@Column(name="accnumno")//����ID 8λ��
+	@Column(name="accnumno")//锟斤拷锟斤拷ID 8位锟斤拷
 	@Expose
 	private String accnumno;
-	@Column(name="come")// ����null �������Լ����û� 
+	@Column(name="come")// 锟斤拷锟斤拷null 锟斤拷锟斤拷锟斤拷锟皆硷拷锟斤拷锟矫伙拷 
 	@Expose
 	private String come;
-	@Column(name="os")// ϵͳ
+	@Column(name="os")// 系统
 	@Expose
->>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String os;
 	@Column(name="mac")// mac
 	@Expose
 	private String mac;
-<<<<<<< HEAD
-	@Column(name="sex")//
-	private String sex;
-	@Column(name="signature")// 
-	private String signature;
-	@Column(name="childrenage")// 
-	private String childrenage;
-	@Column(name="age")// 
-	private String age;
-	public static final double CHILD_AGE = 4D;
-	@Column(name="childrensex")// 
-=======
-	@Column(name="sex")//�Ա�  �� Ů
+	@Column(name="sex")//锟皆憋拷  锟斤拷 女
 	@Expose
 	private String sex;
-	@Column(name="signature")// ����ǩ��
+	@Column(name="signature")// 锟斤拷锟斤拷签锟斤拷
 	@Expose
 	private String signature;
-	@Column(name="childrenage")// ��������
+	@Column(name="childrenage")// 锟斤拷锟斤拷锟斤拷锟斤拷
 	@Expose
 	private String childrenage;
-	@Column(name="age")// ����
+	@Column(name="age")// 锟斤拷锟斤拷
 	@Expose
 	private String age;
 	public static final double CHILD_AGE = 4D;
-	@Column(name="childrensex")// �����Ա�  �� Ů
+	@Column(name="childrensex")// 锟斤拷锟斤拷锟皆憋拷  锟斤拷 女
 	@Expose
->>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String childrensex;
 	public static final double CHILD_SEX = 3D;
+
+	
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="user")
 	@Expose

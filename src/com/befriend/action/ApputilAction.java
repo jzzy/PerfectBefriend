@@ -78,6 +78,7 @@ public class ApputilAction {
 	public HttpServletRequest request = ServletActionContext.getRequest();// 获取request
 	private String Mac;//
 	private String os;// 系统
+	@SuppressWarnings("static-access")
 	private String time = util.getNowTime();
 	private String province = "all";// 省级
 	private int synlogin;// 登入次数
