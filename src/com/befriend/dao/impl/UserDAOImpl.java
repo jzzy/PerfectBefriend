@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.befriend.dao.UserDAO;
 import com.befriend.entity.Password;
 import com.befriend.entity.User;
+import com.befriend.entity.UserGroup;
 
 @Transactional
 public class UserDAOImpl implements UserDAO {
@@ -81,9 +82,9 @@ public class UserDAOImpl implements UserDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 
@@ -98,9 +99,9 @@ public class UserDAOImpl implements UserDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
@@ -163,9 +164,9 @@ public class UserDAOImpl implements UserDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³ u.finaltime desc,
+		// ï¿½Ú¼ï¿½Ò³ u.finaltime desc,
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
@@ -233,9 +234,9 @@ public class UserDAOImpl implements UserDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
@@ -252,9 +253,9 @@ public class UserDAOImpl implements UserDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -491,6 +492,17 @@ public class UserDAOImpl implements UserDAO {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public User getUserGroup(Integer userId)
+	{
+		Query query = entityManager.createQuery("select u from User u where u.id = :userId"); 
+		query.setParameter("userId", userId);
+		if(query.getResultList().size()>0)
+			return (User) query.getResultList().get(0);
+		else
+			return null;
 	}
 
 }
