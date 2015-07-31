@@ -4,6 +4,11 @@ encoding//WebContent/SuperAdmin/SuperAdmin/App/JZTDUP.jsp=UTF-8
 encoding//WebContent/SuperAdmin/SuperAdmin/home.jsp=UTF-8
 encoding//WebContent/index.jsp=UTF-8
 encoding//src/com/befriend/action/AppPushAction.java=UTF-8
+<<<<<<< HEAD
 encoding//src/com/befriend/entity/User.java=GBK
+=======
+encoding//src/com/befriend/entity/GroupFriend.java=UTF-8
+encoding//src/com/befriend/entity/User.java=UTF-8
+>>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 encoding//src/com/befriend/util/JsonUtil.java=UTF-8
 encoding//src/com/befriend/util/PageUtil.java=UTF-8

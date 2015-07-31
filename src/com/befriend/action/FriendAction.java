@@ -45,11 +45,12 @@ public class FriendAction extends BaseAction
 			User user = userDAO.getUserGroup(Integer.valueOf(userId));
 			if (user != null)
 			{
+				 
 				Set<UserGroup> userGroups = new HashSet<UserGroup>();
 				for (UserGroup userGroup : user.getUserGroup())
 				{
 
-					Set<User> friends = new HashSet<User>();
+					Set<GroupFriend> groupFriends = new HashSet<GroupFriend>();
 					for (GroupFriend groupFriend : userGroup.getGroupFriends())
 					{
 						/**
@@ -58,11 +59,14 @@ public class FriendAction extends BaseAction
 						User friend = userDAO.byid(groupFriend.getUserId());
 						if (friend != null)
 						{
-							friends.add(friend);
-							System.out.println("friend'id is :" + friend.getId());
+							groupFriend.setUsername(friend.getUsername());
+							groupFriend.setNickname(friend.getNickname());
+							groupFriend.setImg(friend.getImg());
 						}
+						groupFriends.add(groupFriend);
 					}
-					userGroup.setFriends(friends);
+					userGroup.setGroupFriends(groupFriends);
+					
 					userGroups.add(userGroup);
 				}
 				user.setUserGroup(userGroups);
@@ -82,7 +86,7 @@ public class FriendAction extends BaseAction
 		/**
 		 * write response
 		 */
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 
 	public FriendAction(UserDAO userDAO, UserGroupDAO userGroupDAO, com.befriend.dao.GroupInfoDAO groupInfoDAO)

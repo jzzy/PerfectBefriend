@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="users")
 public class User implements Serializable
@@ -25,13 +27,20 @@ public class User implements Serializable
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="username")
 	private String username;
+<<<<<<< HEAD
 	@Column(name="nickname")
+=======
+	@Column(name="nickname")//�ǳ�
+	@Expose
+>>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String nickname;
 	@Column(name="password")
 	private String password;
+<<<<<<< HEAD
 	@Column(name="img")//
 	private String img;
 	
@@ -50,11 +59,41 @@ public class User implements Serializable
 	private String addcity;
 	public static final double CITY = 4D;
 	@Column(name="phone")//
+=======
+	@Column(name="img")//�û�ͷ���ַ
+	@Expose
+	private String img;
+	
+	
+	@Column(name="stage")//���ӽ׶�
+	@Expose
+	private String stage;
+	public static final double STAGE = 2D;
+	@Column(name="time")//ע��ʱ��
+	@Expose
+	private String time;
+	@Column(name="address")//��ַ ʡ��
+	/**
+	 * ��ַ ʡ��
+	 */
+	@Expose
+	private String address;
+	public static final double PROVINCE = 3D;
+	
+	@Column(name="addcity")//��ַ �м�
+	@Expose
+	private String addcity;
+	public static final double CITY = 4D;
+	@Column(name="phone")//�绰
+	@Expose
+>>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String phone;
 	@Column(name="school")//ѧУ
+	@Expose
 	private String school;
 	public static final double SCHOOL = 5D;
 	
+<<<<<<< HEAD
 	@Column(name="competence")//
 	private int competence;
 	@Column(name="gag")//
@@ -76,9 +115,44 @@ public class User implements Serializable
 	@Column(name="come")// 
 	private String come;
 	@Column(name="os")// 
+=======
+	@Column(name="competence")//Ȩ��  0 ��ͨ�û�  1 �м�����Ա 2ʡ������Ա 4�ǽ���
+	@Expose
+	private int competence;
+	@Column(name="gag")//������̳Ȩ��  0 ���Դ�����̳  1 ������  
+	@Expose
+	private int gag;
+	
+	@Column(name="loginnum")//�û��������
+	@Expose
+	private int loginnum;
+	
+	@Column(name="finaltime")//�û�������ʱ��
+	@Expose
+	private String finaltime;
+	@Column(name="ip")//�û�ip
+	@Expose
+	private String ip;
+	@Column(name="port")//�û�port
+	@Expose
+	private int port;
+	@Column(name="online")//�û� �û�����״̬ 0������ 1����
+	@Expose
+	private int online;
+	@Column(name="accnumno")//����ID 8λ��
+	@Expose
+	private String accnumno;
+	@Column(name="come")// ����null �������Լ����û� 
+	@Expose
+	private String come;
+	@Column(name="os")// ϵͳ
+	@Expose
+>>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String os;
 	@Column(name="mac")// mac
+	@Expose
 	private String mac;
+<<<<<<< HEAD
 	@Column(name="sex")//
 	private String sex;
 	@Column(name="signature")// 
@@ -89,10 +163,28 @@ public class User implements Serializable
 	private String age;
 	public static final double CHILD_AGE = 4D;
 	@Column(name="childrensex")// 
+=======
+	@Column(name="sex")//�Ա�  �� Ů
+	@Expose
+	private String sex;
+	@Column(name="signature")// ����ǩ��
+	@Expose
+	private String signature;
+	@Column(name="childrenage")// ��������
+	@Expose
+	private String childrenage;
+	@Column(name="age")// ����
+	@Expose
+	private String age;
+	public static final double CHILD_AGE = 4D;
+	@Column(name="childrensex")// �����Ա�  �� Ů
+	@Expose
+>>>>>>> 5ba30930a030c51f4cac1af26126b0f7be9c928c
 	private String childrensex;
 	public static final double CHILD_SEX = 3D;
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="user")
+	@Expose
 	private Set<UserGroup> userGroup = new HashSet<UserGroup>();
 	
 	

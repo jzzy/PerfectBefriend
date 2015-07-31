@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.google.gson.annotations.Expose;
 
 /**
  * @author sterotto
@@ -24,18 +27,31 @@ public class GroupFriend implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
+	@Expose
 	private Integer id;
 	
 	@ManyToOne(cascade=CascadeType.ALL)        
 	@JoinColumn(name="user_group_id") 
+	@Expose(serialize=false)
 	private UserGroup userGroup;
 	
 	@Column(name="user_id",nullable = false)
+	@Expose
 	private Integer userId;
 	
 	@Column(name="create_time")
+	@Expose
 	private String createTime;
 	
+	@Transient
+	@Expose
+	private String username;
+	@Transient
+	@Expose
+	private String nickname;
+	@Transient
+	@Expose
+	private String img;
 	
 	public UserGroup getUserGroup()
 	{
@@ -69,4 +85,29 @@ public class GroupFriend implements Serializable
 	{
 		this.createTime = createTime;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	@Override
+	public String toString() {
+		return "GroupFriend [id=" + id + ", userGroup=" + userGroup + ", userId=" + userId + ", username=" + username
+				+ ", nickname=" + nickname + ", img=" + img + ", createTime=" + createTime + "]";
+	}
+	
+	
 }
