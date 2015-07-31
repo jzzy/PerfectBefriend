@@ -40,7 +40,7 @@ import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
 
 /**
- * ¹¤¾ßÀà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author Administrator
  *
@@ -48,9 +48,9 @@ import com.opensymphony.xwork2.ActionContext;
 public class OpeFunction {
 	/**
 	 * 
-	 * ¿Õ  ·µ»Ø  true
+	 * ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½  true
 	 * 
-	 * ²»¿Õ  ·µ»Ø false
+	 * ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ false
 	 * @param rstart
 	 * @param rend
 	 * @return
@@ -59,20 +59,20 @@ public class OpeFunction {
 		
 		if(string!=null){
 			if(StringUtils.isEmpty(string.trim())){
-				System.out.println("¿Õ");
+				System.out.println("ï¿½ï¿½");
 				return true;
 			}else{
-				System.out.println("²»¿Õ");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½");
 				return false;
 			}
 		}else{
-			System.out.println("¿Õ");
+			System.out.println("ï¿½ï¿½");
 			return true;
 		}
 	}
 	
 	/**
-	 * »ñÈ¡Ö¸¶¨·¶Î§ÄÚµÄËæ»úÊ±¼ä
+	 * ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * @param rstart
 	 * @param rend
 	 * @return
@@ -81,16 +81,16 @@ public class OpeFunction {
 	public static String RandomTime(String rstart, String rend)
 			throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date start = format.parse(rstart);// ¹¹Ôì¿ªÊ¼ÈÕÆÚ
-		Date end = format.parse(rend);// ¹¹Ôì½áÊøÈÕÆÚ
-		long begin = start.getTime();// »ñÈ¡¿ªÊ¼Ê±¼ä´Á
-		long endd = end.getTime();// »ñÈ¡½áÊøÊ±¼ä´Á	
+		Date start = format.parse(rstart);// ï¿½ï¿½ï¿½ì¿ªÊ¼ï¿½ï¿½ï¿½ï¿½
+		Date end = format.parse(rend);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		long begin = start.getTime();// ï¿½ï¿½È¡ï¿½ï¿½Ê¼Ê±ï¿½ï¿½ï¿½
+		long endd = end.getTime();// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½	
 		boolean b = true;
 		long rtn = 0;
 		while (b) {
 
 			rtn = begin + (long) (Math.random() * (endd - begin));
-			// Èç¹û·µ»ØµÄÊÇ¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä£¬ÔòµÝ¹éµ÷ÓÃ±¾º¯Êý²éÕÒËæ»úÖµ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½Ç¿ï¿½Ê¼Ê±ï¿½ï¿½Í½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 			if (rtn == start.getTime() || rtn == end.getTime()) {
 
 				continue;
@@ -99,13 +99,13 @@ public class OpeFunction {
 
 			b = false;
 		}
-		//System.out.println(rtn);//Ëæ»úÊ±¼ä´Á
-		System.out.println("»ñÈ¡µ½µÄËæ»úÊ±¼ä"+format.format(new Date(rtn)));
+		//System.out.println(rtn);//ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
+		System.out.println("ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½"+format.format(new Date(rtn)));
 		return format.format(new Date(rtn));
 
 	}
 	/**
-	 * ½âÎö html img ±êÇ© srcÖÐµÄ µØÖ·
+	 * ï¿½ï¿½ï¿½ï¿½ html img ï¿½ï¿½Ç© srcï¿½Ðµï¿½ ï¿½ï¿½Ö·
 	 * 
 	 * @param content
 	 * @return
@@ -122,7 +122,7 @@ public class OpeFunction {
 		while (m_image.find()) {
 			
 			images.add(m_image.group(1));
-			//ÖØÐ´Ð´Èë 
+			//ï¿½ï¿½Ð´Ð´ï¿½ï¿½ 
 			String reg = "<img src=\""+m_image.group(1)+"\" .*?>";
 			content = content.replaceAll(reg, "<img src=\""+m_image.group(1)+"\" width=\"100%\" />");
 
@@ -131,7 +131,7 @@ public class OpeFunction {
 		return content;
 	}
 	/**
-	 * ½âÎö html img ±êÇ© srcÖÐµÄ µØÖ·
+	 * ï¿½ï¿½ï¿½ï¿½ html img ï¿½ï¿½Ç© srcï¿½Ðµï¿½ ï¿½ï¿½Ö·
 	 * 
 	 * @param content
 	 * @return
@@ -148,7 +148,7 @@ public class OpeFunction {
 		while (m_image.find()) {
 			
 			images.add(m_image.group(1));
-			//ÖØÐ´Ð´Èë 
+			//ï¿½ï¿½Ð´Ð´ï¿½ï¿½ 
 			//m_image.replaceAll("<img src=\""+m_image.group(1)+"\" with=\"100%\" />");
 
 		}
@@ -158,25 +158,25 @@ public class OpeFunction {
 
 	// private static final int FIRST_DAY_OF_WEEK = 0;
 	/**
-	 * »ñÈ¡Ê±¼ä
-	 * 1Äê
-	 * 2ÔÂ
-	 * 3Ìì
+	 * ï¿½ï¿½È¡Ê±ï¿½ï¿½
+	 * 1ï¿½ï¿½
+	 * 2ï¿½ï¿½
+	 * 3ï¿½ï¿½
 	 * 4Ê±
-	 * 5·Ö
-	 * 6Ãë
+	 * 5ï¿½ï¿½
+	 * 6ï¿½ï¿½
 	 * 
 	 * @throws UnknownHostException
 	 */
 	public static String getDayTime(int reg) {
-		Calendar cal = Calendar.getInstance();// Ê¹ÓÃÈÕÀúÀà
+		Calendar cal = Calendar.getInstance();// Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		/**
-		System.out.println("Äê" + cal.get(Calendar.YEAR));
-		System.out.println("ÔÂ" + cal.get(Calendar.MONTH) + 1);
-		System.out.println("Ìì" + cal.get(Calendar.DAY_OF_MONTH));
+		System.out.println("ï¿½ï¿½" + cal.get(Calendar.YEAR));
+		System.out.println("ï¿½ï¿½" + cal.get(Calendar.MONTH) + 1);
+		System.out.println("ï¿½ï¿½" + cal.get(Calendar.DAY_OF_MONTH));
 		System.out.println("Ê±" + cal.get(Calendar.HOUR));
-		System.out.println("·Ö" + cal.get(Calendar.MINUTE));
-		System.out.println("Ãë" + cal.get(Calendar.SECOND));
+		System.out.println("ï¿½ï¿½" + cal.get(Calendar.MINUTE));
+		System.out.println("ï¿½ï¿½" + cal.get(Calendar.SECOND));
 		*/
 		String name="";
 		switch (reg) {
@@ -215,7 +215,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡±¾»úip
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ip
 	 * 
 	 * @throws UnknownHostException
 	 */
@@ -225,7 +225,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * Í¨¹ýkey ´ÓjsonÖÐ È¡Öµ
+	 * Í¨ï¿½ï¿½key ï¿½ï¿½jsonï¿½ï¿½ È¡Öµ
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 */
@@ -237,7 +237,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * Í¨¹ýkey ´ÓjsonÖÐ È¡Öµ
+	 * Í¨ï¿½ï¿½key ï¿½ï¿½jsonï¿½ï¿½ È¡Öµ
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 */
@@ -249,7 +249,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ½øÐÐsha1¼ÓÃÜ
+	 * ï¿½ï¿½ï¿½ï¿½sha1ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 */
@@ -257,13 +257,13 @@ public class OpeFunction {
 		try {
 
 			StringBuffer sb = new StringBuffer();
-			// Ñ¡Ôñsha1¼ÓÃÜ
+			// Ñ¡ï¿½ï¿½sha1ï¿½ï¿½ï¿½ï¿½
 			MessageDigest digest = MessageDigest.getInstance("SHA-1");
-			// ½øÐÐsha1¼ÓÃÜ
+			// ï¿½ï¿½ï¿½ï¿½sha1ï¿½ï¿½ï¿½ï¿½
 			digest.update(str.getBytes());
-			// byteÊý×é
+			// byteï¿½ï¿½ï¿½ï¿½
 			byte[] digbyte = digest.digest();
-			// ±éÀúbyteÊý×é
+			// ï¿½ï¿½ï¿½ï¿½byteï¿½ï¿½ï¿½ï¿½
 			for (byte b : digbyte) {
 				sb.append(String.format("%02x", b));
 			}
@@ -275,15 +275,15 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ÎÄ¼þÉÏ´«µ½·þÎñÆ÷ ¿ÉÒÔ×Ô¼º¶¨ÒåÎÄ¼þ¸ñÊ½
+	 * 
 	 *
 	 */
 	public static String ufileToServer(String path, File file,String fileType) throws IOException {
 
 		String realpath = ServletActionContext.getServletContext().getRealPath(
-				path);// ·þÎñÆ÷Â·¾¶
+				path);
 		if (file != null) {
-			File savedir = new File(realpath);// ½¨Á¢Ä¿Â¼
+			File savedir = new File(realpath);
 			if (!savedir.getParentFile().exists())
 				savedir.getParentFile().mkdirs();
 			File saveFile;
@@ -299,7 +299,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * É¾³ýÎÄ¼þ
+	 * É¾ï¿½ï¿½ï¿½Ä¼ï¿½
 	 *
 	 */
 	public static Boolean fileRemove(String path) throws IOException {
@@ -313,22 +313,22 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ÎÄ¼þÉÏ´«µ½·þÎñÆ÷
+	 * ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 *
 	 */
 	public static String fileToServer(String path, File file, String fileName,
 			String fileType, boolean reName) throws IOException {
 
 		String realpath = ServletActionContext.getServletContext().getRealPath(
-				path);// ·þÎñÆ÷Â·¾¶
+				path);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		if (file != null) {
-			File savedir = new File(realpath);// ½¨Á¢Ä¿Â¼
+			File savedir = new File(realpath);// ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 			if (!savedir.getParentFile().exists())
 				savedir.getParentFile().mkdirs();
 			File saveFile;
 			fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-			// ÖØÐÂÃüÃû ÒÔÃâÖØÃû
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (reName) {
 
 				saveFile = new File(savedir, java.util.UUID.randomUUID() + "."
@@ -349,7 +349,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡ÎÄ¼þµÄ´óÐ¡ µ¥Î»ÎªKB,±£ÁôÁ½Î»Ð¡Êý
+	 * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½Ä´ï¿½Ð¡ ï¿½ï¿½Î»ÎªKB,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»Ð¡ï¿½ï¿½
 	 * 
 	 * @param file
 	 * @return
@@ -366,7 +366,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡ÎÄ¼þµÄ´óÐ¡ µ¥Î»ÎªMB¡¢ ,±£ÁôÁ½Î»Ð¡Êý
+	 * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½Ä´ï¿½Ð¡ ï¿½ï¿½Î»ÎªMBï¿½ï¿½ ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»Ð¡ï¿½ï¿½
 	 * 
 	 * @param file
 	 * @return
@@ -383,7 +383,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñµÃ±¾µØÊ±¼ä
+	 * ï¿½ï¿½Ã±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -396,7 +396,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñµÃ±¾µØÊ±¼ä
+	 * ï¿½ï¿½Ã±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * 
 	 * @return
 	 */
@@ -409,14 +409,14 @@ public class OpeFunction {
 	}
 
 	/**
-	 * +1 »ñµÃ×òÌì -1»ñÈ¡Ã÷Ìì
+	 * +1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 */
 	public static String getNumTime(int day) {
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, -day); // µÃµ½Ç°Ò»Ìì
+		calendar.add(Calendar.DATE, -day); // ï¿½Ãµï¿½Ç°Ò»ï¿½ï¿½
 		Date date = calendar.getTime();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(date);
@@ -424,7 +424,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ÉÏÖÜ1 Ê±¼ä
+	 * ï¿½ï¿½ï¿½ï¿½1 Ê±ï¿½ï¿½
 	 * 
 	 * @param date
 	 * @return
@@ -433,13 +433,13 @@ public class OpeFunction {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		cal.add(Calendar.WEEK_OF_MONTH, -1);
-		cal.set(Calendar.DAY_OF_WEEK, 2); // »ñÈ¡±¾ÖÜÒ»µÄÈÕÆÚ
+		cal.set(Calendar.DAY_OF_WEEK, 2); // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		return df.format(cal.getTime());
 	}
 
 	/**
-	 * ÉÏÖÜÈÕ Ê±¼ä
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ê±ï¿½ï¿½
 	 * 
 	 * @param date
 	 * @return
@@ -448,13 +448,13 @@ public class OpeFunction {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-		cal.set(Calendar.DAY_OF_WEEK, 1); // »ñ
+		cal.set(Calendar.DAY_OF_WEEK, 1); // ï¿½ï¿½
 
 		return df.format(cal.getTime());
 	}
 
 	/**
-	 * ·â×°response
+	 * ï¿½ï¿½×°response
 	 * 
 	 * @return
 	 * @throws IOException
@@ -469,7 +469,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ·â×°Gson to Json
+	 * ï¿½ï¿½×°Gson to Json
 	 * 
 	 * @param object
 	 * @return
@@ -485,7 +485,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡ session
+	 * ï¿½ï¿½È¡ session
 	 * 
 	 * @return
 	 * @throws UnsupportedEncodingException
@@ -497,7 +497,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡ request
+	 * ï¿½ï¿½È¡ request
 	 * 
 	 * @return
 	 * @throws UnsupportedEncodingException
@@ -512,7 +512,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * »ñÈ¡ response
+	 * ï¿½ï¿½È¡ response
 	 * 
 	 * @return
 	 */
@@ -525,34 +525,34 @@ public class OpeFunction {
 	}
 
 	/**
-	 * gyn µç×ÓÓÊ¼þ·¢ËÍ¶«Î÷ ÐèÒªEmail
+	 * gyn ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ ï¿½ï¿½ÒªEmail
 	 */
 	public static void Email(String Email, String information)
 			throws IOException {
-		// ·¢ËÍÓÊ¼þ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		mailInfo.setMailServerHost("smtp.chaimiyouxi.com");
 		mailInfo.setMailServerPort("25");
 		mailInfo.setValidate(true);
 		mailInfo.setUserName("system@chaimiyouxi.com");
-		mailInfo.setPassword("nandayong11");// ÓÊÏäÃÜÂë
+		mailInfo.setPassword("nandayong11");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		mailInfo.setFromAddress("system@chaimiyouxi.com");
-		// ·¢ËÍµÄµØÖ·
+		// ï¿½ï¿½ï¿½ÍµÄµï¿½Ö·
 		mailInfo.setToAddress(Email);
-		// ±êÌâ
-		mailInfo.setSubject("¼Ò³¤ÌìµØÓÃ»§ÌåÑé·´À¡ÐÅÏ¢");
-		// Ê±¼ä
+		// ï¿½ï¿½ï¿½ï¿½
+		mailInfo.setSubject("ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½é·´ï¿½ï¿½ï¿½ï¿½Ï¢");
+		// Ê±ï¿½ï¿½
 
 		mailInfo.setContent("<h1 style='color: red;'>" + getNowTime() + "<br>"
 				+ information + "<h1>");
-		// Õâ¸öÀàÖ÷ÒªÀ´·¢ËÍÓÊ¼þ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½
 		SimpleMailSender sms = new SimpleMailSender();
-		// sms.sendTextMail(mailInfo);//·¢ËÍÎÄÌå¸ñÊ½
-		sms.sendHtmlMail(mailInfo);// ·¢ËÍhtml¸ñÊ½
+		// sms.sendTextMail(mailInfo);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+		sms.sendHtmlMail(mailInfo);// ï¿½ï¿½ï¿½ï¿½htmlï¿½ï¿½Ê½
 	}
 
 	/**
-	 * »ñÈ¡¿Í»§¶Ëip
+	 * ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ï¿½ip
 	 * 
 	 * @param request
 	 * @return
@@ -565,20 +565,20 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ÏòÊÖ»úºÅ·¢ËÍÐÅÏ¢
+	 * ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	public static void setphone(String phone, String textp) {
 		try {
-			String account = "cf_wcsk_jztd";// ÓÃ»§Ãû cf_wcsk_jztd
-			String pwd = "wcsk1212";// ÃÜÂë wcsk1212
-			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// µØÖ·
-			// ÊäÈëÒª·¢ËÍµÄÐÅÏ¢
+			String account = "cf_wcsk_jztd";// ï¿½Ã»ï¿½ï¿½ï¿½ cf_wcsk_jztd
+			String pwd = "wcsk1212";// ï¿½ï¿½ï¿½ï¿½ wcsk1212
+			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// ï¿½ï¿½Ö·
+			// ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ï¢
 			// String content = new String(textp+"!");
 			URL url = new URL(postUrl);
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
-			connection.setDoOutput(true);// ÔÊÐíÁ¬½ÓÌá½»ÐÅÏ¢
-			connection.setRequestMethod("POST");// ÍøÒ³Ìá½»·½Ê½¡°GET¡±¡¢¡°POST¡±
+			connection.setDoOutput(true);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½Ï¢
+			connection.setRequestMethod("POST");// ï¿½ï¿½Ò³ï¿½á½»ï¿½ï¿½Ê½ï¿½ï¿½GETï¿½ï¿½ï¿½ï¿½ï¿½ï¿½POSTï¿½ï¿½
 			connection.setRequestProperty("Content-Type",
 					"application/x-www-form-urlencoded");
 			connection.setRequestProperty("Connection", "Keep-Alive");
@@ -586,7 +586,7 @@ public class OpeFunction {
 			sb.append("&account=" + account);
 			sb.append("&password=" + pwd);
 			sb.append("&content=" + textp);
-			sb.append("&mobile=" + phone);// Òª·¢ËÍµÄÊÖ»úºÅ
+			sb.append("&mobile=" + phone);// Òªï¿½ï¿½ï¿½Íµï¿½ï¿½Ö»ï¿½ï¿½ï¿½
 			OutputStream os = connection.getOutputStream();
 			os.write(sb.toString().getBytes());
 			os.close();

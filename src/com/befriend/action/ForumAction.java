@@ -26,83 +26,58 @@ import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 
 public class ForumAction {
-	private OpeFunction util;// ×Ô½¨¹¤¾ßÀà
-	// Map session = (Map) util.getsession();// ´´½¨ sessionmap
-	private UserDAO userdao;// ÓÃ»§dao
-	private ForumDAO forumdao;// ÂÛÌ³dao
-	private FollectDAO foldao;// ÂÛÌ³ÊÕ²Ødao
+	private OpeFunction util;
+	private UserDAO userdao;
+	private ForumDAO forumdao;//
+	private FollectDAO foldao;// 
 	List<User> us = new ArrayList<User>();
-	Follect fo = new Follect();// ÂÛÌ³ÊÕ²ØÀà
-	ForumOne fone = new ForumOne();// ÂÛÌ³Ö÷Àà
-	ForumTwo ftwo = new ForumTwo();// ÂÛÌ³Ö÷Ò³Àà
-	ForumThree fehree = new ForumThree();// ÂÛÌ³»Ø¸´Àà
-	List<Follect> fos = new ArrayList<Follect>();// ÂÛÌ³ÊÕ²ØÀàList
-	List<ForumOne> fones = new ArrayList<ForumOne>();// ÂÛÌ³Ö÷ÀàList
-	List<ForumTwo> ftwos = new ArrayList<ForumTwo>();// ÂÛÌ³Ö÷ÀàList
-	List<ForumThree> fehrees = new ArrayList<ForumThree>();// ÂÛÌ³Ö÷ÀàList
+	Follect fo = new Follect();//
+	ForumOne fone = new ForumOne();//
+	ForumTwo ftwo = new ForumTwo();//
+	ForumThree fehree = new ForumThree();// 
+	List<Follect> fos = new ArrayList<Follect>();//
+	List<ForumOne> fones = new ArrayList<ForumOne>();//
+	List<ForumTwo> ftwos = new ArrayList<ForumTwo>();// 
+	List<ForumThree> fehrees = new ArrayList<ForumThree>();//
 	private HttpSession session = ServletActionContext.getRequest()
-			.getSession();// »ñÈ¡ HttpSession
-	public HttpServletRequest request = ServletActionContext.getRequest();// »ñÈ¡request
-	/**
-	 * ÂÛÌ³Ö÷Àà×Ö¶Î
-	 */
+			.getSession();//
+	public HttpServletRequest request = ServletActionContext.getRequest();//
+	
 	private int id = 0;// id
-	/**
-	 * ÂÛÌ³°å¿é
-	 * 1ÍêÃÀ¼Ò³¤
-	 * 2ÍêÃÀ±¦±´
-	 * 3Í¬³Ç¼Ò³¤
-	 * 4½¡¿µ±£½¡
-	 * 5Éà¼âÃÀÊ³ 
-	 * 6ÂÃÓÎ³öÐÐ
-	 */
+	
 	private int model = 0;
 
-	/**
-	 * ÂÛÌ³Ð¡×é 
-	 * Ð¡×é 11 ÍêÃÀ¿á°Ö 12 ÍêÃÀÀ±Âè 
-	 * Ð¡×é 21ÍÐ°à 22Ð¡°à 23ÖÐ°à 24´ó°à 25Ð¡Ñ§ 26³õÖÐ 27¸ßÖÐ
-	 * Ð¡×é µØÇø 31
-	 * Ð¡×é  41½¡¿µÒûÊ³ 42ÔË¶¯±£½¡ 43ÐÄÀí½¡¿µ¡¢
-	 *    51ÃÀÊ³·ÖÏí 52ÃÀÊ³¹¥ÂÔ 53´´Òâ²ËëÈ¡¢
-	 *    61Â·Ïß·ÖÏí 62³öÐÐ¹¥ÂÔ
-	 */
+	
 	private int types = 0;
-	private String time = util.getNowTime();// Ê±¼ä
+	private String time = util.getNowTime();// Ê±ï¿½ï¿½
 
-	private int total = 0;// ÂÛÌ³×Ü»Ø¸´Êý
-	private int userid = 0;// ÂÛÌ³´´½¨Õß
-	private String content;// ÂÛÌ³ÄÚÈÝ
-	private String title;// ÂÛÌ³±êÌâ
-	private String area;// ÂÛÌ³µØÇøÊ¡¼¶
-	private String areas;// ÂÛÌ³µØÇøÊÐ¼¶
-	private String img;// ÂÛÌ³Í¼Æ¬
-	public File file;// ÂÛÌ³Í¼Æ¬ÎÄ¼þ
-	private String fileFileName;// ÎÄ¼þÃû
-	private String fileContentType;// ÎÄ¼þÀàÐÍ
+	private int total = 0;//
+	private int userid = 0;//
+	private String content;// 
+	private String title;//
+	private String area;//
+	private String areas;//
+	private String img;//
+	public File file;// 
+	private String fileFileName;//
+	private String fileContentType;//
+	private String reply; //
+	private int forumid = 0; // 
+	private int touserid = 0;// 
+	private int forumtwoid = 0;// 
 
-	/**
-	 * ÂÛÌ³»Ø¸´×Ö¶Î
-	 */
-	private String reply; // ÁôÑÔÄÚÈÝ
-	private int forumid = 0; // ÂÛÌ³id
-	private int touserid = 0;// Â¥Ö÷id&& three ¸øË­»Ø¸´
-	private int forumtwoid = 0;// ÅÅÐò °´Â¥²ãid
+	private int pageSize = 0;// 
+	private int currentPage = 0;//
+	private int cpe = 0;//
 
-	private int pageSize = 0;// Ã¿Ò³ÏÔÊ¾µÄÊý¾Ý
-	private int currentPage = 0;// µ±Ç°Ò³Êý
-	private int cpe = 0;// ¹²ÓÐ¶àÉÙÒ³
-
-	/**
-	 * Ä£ºý²éÑ¯ ¸ù¾Ýtitle ËÑË÷ÂÛÌ³
-	 */
+	
 	public void likeTitle() throws IOException {
 
 		System.out.println("likeTitle title:" + title);
 
 		cpe = forumdao.likeTitle(title).size();
 		if (cpe == 0) {
-			System.out.println("Ã»ÓÐÒªËÑË÷µÄÂÛÌ³title!");
+			
 			util.Out().print("null");
 			return;
 		}
@@ -137,18 +112,18 @@ public class ForumAction {
 			int g = ftwos.size() - 1;
 			System.out.println("g==" + g);
 			if (g >= 0) {
-				System.out.println("Ìí¼ÓÁË" + i);
+				
 				ftwo = ftwos.get(g);
 
 				ftwosa.add(ftwo);
 			} else {
-				System.out.println("Ã»ÓÐÌí¼Ó" + i);
+				
 				ftwosa.add(null);
 			}
 
 		}
-		System.out.println("likeTitleÓ¦¸ÃÏàÍ¬±ÈÀý£¡" + fones.size() + "-"
-				+ ftwosa.size() + "-" + us.size());
+		
+		
 
 		String result = "{\"fones\":" + util.ToJson(fones) + ",\"ftwos\":"
 				+ util.ToJson(ftwosa) + ",\"us\":" + util.ToJson(us)
@@ -158,17 +133,13 @@ public class ForumAction {
 
 	}
 
-	/**
-	 * ºóÌ¨web adminÉ¾³ý »Ø¸´ÐÅÏ¢
-	 * 
-	 * @throws IOException
-	 */
+	
 
 	public void webAdminRemoveForumThree() throws IOException {
-		System.out.println("½øÈëwebProfessorRemoveForumThreeadmin");
+		
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("ÇëµÇÈë!");
+			util.Out().print("Is null");
 			return;
 		}
 		fehree = forumdao.getForumThree(id);
@@ -177,7 +148,7 @@ public class ForumAction {
 			forumid = fehree.getForumid();
 			forumdao.Remove(fehree);
 		} else {
-			util.Out().print("Ã»ÓÐ¸ÃÐÅÏ¢!");
+			util.Out().print("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½Ï¢!");
 			return;
 		}
 		System.out.println("webProfessorRemoveForumThreeadmin forumid"
@@ -187,23 +158,23 @@ public class ForumAction {
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/ForumLook?id=" + fone.getId());
 		} else {
-			util.Out().print("Ã»ÓÐ»ñÈ¡µ½ÂÛÌ³");
+			util.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ì³");
 		}
 
 	}
 
 	/**
-	 * ºóÌ¨web admin É¾³ýÆÀÂÛ ÒÔ¼°É¾³ý »Ø¸´ÐÅÏ¢
+	 * ï¿½ï¿½Ì¨web admin É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½É¾ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
 
 	public void webAdminRemoveForumTwo() throws IOException {
 
-		System.out.println("½øÈëwebProfessorRemoveForumThreeadmin");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½webProfessorRemoveForumThreeadmin");
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("ÇëµÇÈë!");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			return;
 		}
 
@@ -235,20 +206,20 @@ public class ForumAction {
 
 				forumdao.Remove(ftwo);
 			} catch (Exception e) {
-				util.Out().print("É¾³ýÒì³£!" + e.getMessage());
+				util.Out().print("É¾ï¿½ï¿½ï¿½ì³£!" + e.getMessage());
 			}
 
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/ForumLook?id=" + ftwo.getForumid());
 
 		} else {
-			System.out.println("Ã»ÓÐ¸ÃÆÀÂÛ");
-			util.Out().print("Ã»ÓÐ¸ÃÆÀÂÛ");
+			System.out.println("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
+			util.Out().print("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
 	/**
-	 * ºóÌ¨web ×¨¼ÒÉ¾³ý »Ø¸´ÐÅÏ¢
+	 * ï¿½ï¿½Ì¨web ×¨ï¿½ï¿½É¾ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
@@ -257,11 +228,11 @@ public class ForumAction {
 
 		User user = (User) session.getAttribute("useradmin");
 		if (user == null) {
-			util.Out().print("ÓÃ»§Îª¿Õ");
+			util.Out().print("ï¿½Ã»ï¿½Îªï¿½ï¿½");
 			return;
 		}
 		if (user.getCompetence() != 4) {
-			util.Out().print("Äã²»ÊÇ×¨¼Ò");
+			util.Out().print("ï¿½ã²»ï¿½ï¿½×¨ï¿½ï¿½");
 			return;
 		}
 
@@ -276,7 +247,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * ºóÌ¨web ×¨¼ÒÉ¾³ýÆÀÂÛ ÒÔ¼°É¾³ý »Ø¸´ÐÅÏ¢
+	 * ï¿½ï¿½Ì¨web ×¨ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½É¾ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
@@ -285,12 +256,12 @@ public class ForumAction {
 
 		User user = (User) session.getAttribute("useradmin");
 		if (user == null) {
-			util.Out().print("ÓÃ»§Îª¿Õ");
+			util.Out().print("ï¿½Ã»ï¿½Îªï¿½ï¿½");
 			return;
 		}
 		if (user != null) {
 			if (user.getCompetence() != 4) {
-				util.Out().print("Äã²»ÊÇ×¨¼Ò");
+				util.Out().print("ï¿½ã²»ï¿½ï¿½×¨ï¿½ï¿½");
 				return;
 			}
 		}
@@ -322,7 +293,7 @@ public class ForumAction {
 				}
 				forumdao.Remove(ftwo);
 			} catch (Exception e) {
-				util.Out().print("É¾³ýÒì³£!" + e.getMessage());
+				util.Out().print("É¾ï¿½ï¿½ï¿½ì³£!" + e.getMessage());
 			}
 
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -331,13 +302,13 @@ public class ForumAction {
 					+ ftwo.getForumid());
 
 		} else {
-			System.out.println("Ã»ÓÐ¸ÃÆÀÂÛ");
-			util.Out().print("Ã»ÓÐ¸ÃÆÀÂÛ");
+			System.out.println("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
+			util.Out().print("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
 	/**
-	 * ºóÌ¨web ×¨¼ÒÐÞ¸Ä»Ø¸´»Ø¸´
+	 * ï¿½ï¿½Ì¨web ×¨ï¿½ï¿½ï¿½Þ¸Ä»Ø¸ï¿½ï¿½Ø¸ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -345,11 +316,11 @@ public class ForumAction {
 	public void webProfessorUpdateForumTwo() throws IOException {
 		User user = (User) session.getAttribute("useradmin");
 		if (user == null) {
-			util.Out().print("ÓÃ»§Îª¿Õ");
+			util.Out().print("ï¿½Ã»ï¿½Îªï¿½ï¿½");
 			return;
 		}
 		if (user.getCompetence() != 4) {
-			util.Out().print("Äã²»ÊÇ×¨¼Ò");
+			util.Out().print("ï¿½ã²»ï¿½ï¿½×¨ï¿½ï¿½");
 			return;
 		}
 		System.out.println("webProfessorUpdateForumTwo id=" + id);
@@ -362,13 +333,13 @@ public class ForumAction {
 					+ "/ForumLookiduser?id="
 					+ ftwo.getForumid());
 		} else {
-			System.out.println("Ã»ÓÐ¸ÃÆÀÂÛ");
-			util.Out().print("Ã»ÓÐ¸ÃÆÀÂÛ");
+			System.out.println("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
+			util.Out().print("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
 	/**
-	 * ºóÌ¨web ×¨¼Ò»Ø¸´ÓÃ»§
+	 * ï¿½ï¿½Ì¨web ×¨ï¿½Ò»Ø¸ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -378,16 +349,16 @@ public class ForumAction {
 		System.out.println("webForumtwosaveProfessor forumid=" + forumid);
 		User user = (User) session.getAttribute("useradmin");
 		if (user == null) {
-			util.Out().print("ÓÃ»§Îª¿Õ");
+			util.Out().print("ï¿½Ã»ï¿½Îªï¿½ï¿½");
 			return;
 		}
 		if (user.getCompetence() != 4) {
-			util.Out().print("Äã²»ÊÇ×¨¼Ò");
+			util.Out().print("ï¿½ã²»ï¿½ï¿½×¨ï¿½ï¿½");
 			return;
 		}
 		fone = forumdao.getForumOne(forumid);
 		if (fone == null) {
-			util.Out().print("ÂÛÌ³Îª¿Õ");
+			util.Out().print("ï¿½ï¿½Ì³Îªï¿½ï¿½");
 			return;
 		}
 
@@ -406,18 +377,18 @@ public class ForumAction {
 	}
 
 	/**
-	 * ´´½¨ÂÛÌ³ web¶Ë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ webï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 
 	public void webForumonesaveapp() throws IOException {
-		System.out.println("½øÈëwebÌí¼ÓÂÛÌ³£¡");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½webï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½");
 
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-			System.out.println("ÇëÖØÐÂµÇÈë!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 			return;
@@ -426,7 +397,7 @@ public class ForumAction {
 		userid = u.getId();
 		if (userid <= 0) {
 
-			System.out.println("id´íÎó");
+			System.out.println("idï¿½ï¿½ï¿½ï¿½");
 			return;
 
 		}
@@ -439,7 +410,7 @@ public class ForumAction {
 		}
 		area = u.getAddress();
 		areas = u.getAddcity();
-		System.out.println("Ìí¼ÓÂÛÌ³" + area + areas);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ì³" + area + areas);
 
 		if (file != null) {
 
@@ -448,7 +419,7 @@ public class ForumAction {
 			System.out.println(img);
 			fone.setImg(img);
 
-			System.out.println("Í·ÏñÉÏ´«³É¹¦!");
+			System.out.println("Í·ï¿½ï¿½ï¿½Ï´ï¿½ï¿½É¹ï¿½!");
 		}
 
 		fone.setArea(area);
@@ -460,7 +431,7 @@ public class ForumAction {
 		fone.setUserid(userid);
 		fone.setContent(content);
 		forumdao.save(fone);
-		System.out.println("Ìí¼ÓÂÛÌ³³É¹¦!ÂÛÌ³ÀàÐÍ" + model);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½É¹ï¿½!ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½" + model);
 
 		((HttpServletResponse) util.response()).sendRedirect(request
 				.getContextPath() + "/webForumApptype?model=" + model + "");
@@ -469,7 +440,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * web Three ÓÃ»§»Ø¸´ÓÃ»§
+	 * web Three ï¿½Ã»ï¿½ï¿½Ø¸ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @param forumdao
 	 * @throws ServletException
@@ -479,7 +450,7 @@ public class ForumAction {
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-			System.out.println("ÇëÖØÐÂµÇÈë!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 			return;
@@ -487,15 +458,15 @@ public class ForumAction {
 
 		userid = u.getId();
 		/**
-		 * if(userid==touserid){ System.out.println("×èÖ¹ÁË  ×Ô¼º»Ø¸´×Ô¼ºµÄÆÀÂÛ");
+		 * if(userid==touserid){ System.out.println("ï¿½ï¿½Ö¹ï¿½ï¿½  ï¿½Ô¼ï¿½ï¿½Ø¸ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		 * util.Out().print(false); return; }
 		 */
 
-		System.out.println("ÂÛÌ³id " + forumid);
-		System.out.println("»Ø¸´ÄÚÈÝ " + reply);
-		System.out.println("»Ø¸´¸ø " + touserid);
-		System.out.println("ÎÒµÄid " + userid);
-		System.out.println("ÎÒµÄÂ¥²ã id" + forumtwoid);
+		System.out.println("ï¿½ï¿½Ì³id " + forumid);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ " + reply);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ " + touserid);
+		System.out.println("ï¿½Òµï¿½id " + userid);
+		System.out.println("ï¿½Òµï¿½Â¥ï¿½ï¿½ id" + forumtwoid);
 		if (forumid <= 0) {
 			util.Out().print(false);
 			return;
@@ -522,7 +493,7 @@ public class ForumAction {
 			return;
 		}
 		if (fone.getType() == 1 && u.getCompetence() != 4) {
-			util.Out().print("ÄúÃ»ÓÐ½ÌÊÚÈ¨ÏÞ£¡");
+			util.Out().print("ï¿½ï¿½Ã»ï¿½Ð½ï¿½ï¿½ï¿½È¨ï¿½Þ£ï¿½");
 			return;
 		}
 		fehree.setForumid(forumid);
@@ -538,7 +509,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * web appTwo Ìí¼ÓÂÛÌ³ÓÃ»§»Ø¸´Â¥Ö÷
+	 * web appTwo ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ã»ï¿½ï¿½Ø¸ï¿½Â¥ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -547,24 +518,24 @@ public class ForumAction {
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-			System.out.println("ÇëÖØÐÂµÇÈë!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 			return;
 		}
 
 		userid = u.getId();
-		System.out.println("½øÈëwebÌí¼ÓÂÛÌ³»Ø¸´");
-		System.out.println("ÂÛÌ³id" + forumid);
-		System.out.println("»Ø¸´ÄÚÈÝ" + reply);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½webï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½");
+		System.out.println("ï¿½ï¿½Ì³id" + forumid);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½" + reply);
 
-		System.out.println("ÎÒµÄid" + userid);
+		System.out.println("ï¿½Òµï¿½id" + userid);
 
 		fone = forumdao.getForumOne(forumid);
 
 		ftwos = forumdao.getForumTwoALL(forumid);
 		/**
-		 * if(userid==touserid){ System.out.println("×èÖ¹ÁË  ×Ô¼º»Ø¸´×Ô¼ºµÄÆÀÂÛ");
+		 * if(userid==touserid){ System.out.println("ï¿½ï¿½Ö¹ï¿½ï¿½  ï¿½Ô¼ï¿½ï¿½Ø¸ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		 * util.Out().print(false); return; }
 		 */
 		if (userid <= 0) {
@@ -575,7 +546,7 @@ public class ForumAction {
 
 		if (fone != null) {
 			if (fone.getType() == 1 && u.getCompetence() != 4) {
-				util.Out().print("ÄúÃ»ÓÐ½ÌÊÚÈ¨ÏÞ");
+				util.Out().print("ï¿½ï¿½Ã»ï¿½Ð½ï¿½ï¿½ï¿½È¨ï¿½ï¿½");
 				return;
 			}
 
@@ -602,7 +573,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * web Í¨¹ýÓÃ»§userid ²éÑ¯ÎÒ´´½¨µÄÂÛÌ³
+	 * web Í¨ï¿½ï¿½ï¿½Ã»ï¿½userid ï¿½ï¿½Ñ¯ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 	 */
 	public String webForumoneTouseid() throws IOException {
 		try {
@@ -610,16 +581,16 @@ public class ForumAction {
 			User u = (User) session.getAttribute("u");
 			if (u == null) {
 
-				System.out.println("ÇëÖØÐÂµÇÈë!");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 				return null;
 			}
 
 			userid = u.getId();
-			System.out.println("Í¨¹ýÓÃ»§userid²éÑ¯ÂÛÌ³idÊÇ:" + userid);
+			System.out.println("Í¨ï¿½ï¿½ï¿½Ã»ï¿½useridï¿½ï¿½Ñ¯ï¿½ï¿½Ì³idï¿½ï¿½:" + userid);
 			if (userid <= 0) {
-				System.out.println("userid²»ºÏ·¨!");
+				System.out.println("useridï¿½ï¿½ï¿½Ï·ï¿½!");
 				return null;
 
 			}
@@ -635,37 +606,37 @@ public class ForumAction {
 			request.setAttribute("fones", fones);
 
 			/**
-			 * if (fones.size() != 0) { System.out.println("Õý³£"); String result
+			 * if (fones.size() != 0) { System.out.println("ï¿½ï¿½ï¿½ï¿½"); String result
 			 * = "{\"fones\":" + util.ToJson(fones) + ",\"us\":" +
 			 * util.ToJson(us) + "}"; util.Out().print(result); } else {
-			 * System.out.println("¿Õ  Ã»ÓÐÂÛÌ³"); util.Out().print("null"); }
+			 * System.out.println("ï¿½ï¿½  Ã»ï¿½ï¿½ï¿½ï¿½Ì³"); util.Out().print("null"); }
 			 */
 		} catch (Exception e) {
-			System.out.println("Òì³£" + e.getMessage());
+			System.out.println("ï¿½ì³£" + e.getMessage());
 		}
 		return Action.SUCCESS;
 
 	}
 
 	/**
-	 * web ÓÃ»§Í¨¹ýid²é¿´ÂÛÌ³
+	 * web ï¿½Ã»ï¿½Í¨ï¿½ï¿½idï¿½é¿´ï¿½ï¿½Ì³
 	 * 
 	 * @param forumdao
 	 * @throws IOException
 	 */
 	public String webForumLook() throws IOException {
 		try {
-			System.out.println("webÓÃ»§²é¿´ÂÛÌ³");
-			System.out.println("ÂÛÌ³id   ==" + id);
+			System.out.println("webï¿½Ã»ï¿½ï¿½é¿´ï¿½ï¿½Ì³");
+			System.out.println("ï¿½ï¿½Ì³id   ==" + id);
 			if (id > 0) {
 				fone = forumdao.getForumOne(id);
 
 				if (fone == null) {
-					util.Out().print("Ã»ÓÐÕâ¸öÂÛÌ³!");
-					System.out.println("Ã»ÓÐÕâ¸öÂÛÌ³!");
+					util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
+					System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
 					return null;
 				}
-				System.out.println("ÂÛÌ³±êÌâ:" + fone.getTitle());
+				System.out.println("ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½:" + fone.getTitle());
 				fone.setfHits(fone.getfHits() + 1);
 
 				ftwos = forumdao.getForumTwoALL(id);
@@ -675,7 +646,7 @@ public class ForumAction {
 				List fl = new ArrayList();
 				List fu = new ArrayList();
 				List fut = new ArrayList();
-				System.out.println("ÆÀÂÛÊý" + ftwos.size());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + ftwos.size());
 
 				forumid = id;
 
@@ -693,14 +664,14 @@ public class ForumAction {
 					fehrees = forumdao.getForumThreeALL(forumid, forumtwoid);
 
 					if (fehrees.size() == 0) {
-						System.out.println("fehrees==nullµÚ" + i + "´ÎÑ­»·");
+						System.out.println("fehrees==nullï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½");
 
 						fl.add(null);
 						fut.add(null);
 						fu.add(null);
 					} else {
-						System.out.println("fehreesµÚ" + i + "´ÎÑ­»· ÐÅÏ¢Îª"
-								+ fehrees.size() + "Ìõ");
+						System.out.println("fehreesï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½ ï¿½ï¿½Ï¢Îª"
+								+ fehrees.size() + "ï¿½ï¿½");
 						List<User> userz = new ArrayList<User>();
 						List<User> touser = new ArrayList<User>();
 
@@ -725,7 +696,7 @@ public class ForumAction {
 					}
 
 				}
-				System.out.println("threes»Ø¸´Êý" + fl.size());
+				System.out.println("threesï¿½Ø¸ï¿½ï¿½ï¿½" + fl.size());
 
 				request.setAttribute("fone", fone);
 				request.setAttribute("ftwos", ftwos);
@@ -738,7 +709,7 @@ public class ForumAction {
 				System.out.println("------------------------------");
 
 			} else {
-				System.out.println("id²»ÕýÈ·");
+				System.out.println("idï¿½ï¿½ï¿½ï¿½È·");
 			}
 
 		} catch (Exception e) {
@@ -749,13 +720,13 @@ public class ForumAction {
 	}
 
 	/**
-	 * web ¸ù¾Ý ÀàÐÍ ²éÑ¯ÂÛÌ³ ÂÛÌ³
+	 * web ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ï¿½ï¿½Ì³ ï¿½ï¿½Ì³
 	 * 
 	 * @throws IOException
 	 */
 	public String webForumApptype() throws IOException {
 
-		System.out.println(" webÓÃ»§°´ÀàÐÍ ²é¿´È«¹úÂÛÌ³");
+		System.out.println(" webï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³");
 		System.out.println();
 		User user = (User) session.getAttribute("u");
 		if (user == null) {
@@ -765,7 +736,7 @@ public class ForumAction {
 			return null;
 		}
 		if (model <= 0) {
-			System.out.println("ÇëÖØÐÂµÇÈë!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 			util.Out().print("model <= 0");
 			
 			
@@ -773,7 +744,7 @@ public class ForumAction {
 			return null;
 		}
 		cpe = forumdao.gettypeForumOneALL(model).size();
-		System.out.println("ÀàÐÍtypeÊÇ £º" + model+user.getAddress()+"ÓÐ" + cpe + "¸öÂÛÌ³");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½typeï¿½ï¿½ ï¿½ï¿½" + model+user.getAddress()+"ï¿½ï¿½" + cpe + "ï¿½ï¿½ï¿½ï¿½Ì³");
 
 		if (pageSize <= 0) {
 			pageSize = 10;
@@ -804,17 +775,17 @@ public class ForumAction {
 			int g = ftwos.size() - 1;
 			System.out.println("g==" + g);
 			if (g >= 0) {
-				System.out.println("Ìí¼ÓÁË");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½");
 				ftwo = ftwos.get(0);
 
 				ftwosa.add(ftwo);
 			} else {
-				System.out.println("Ã»ÓÐÌí¼Ó");
+				System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½");
 				ftwosa.add(null);
 			}
 
 		}
-		System.out.println("Ó¦¸ÃÏàÍ¬±ÈÀý£¡" + fones.size() + "-" + ftwosa.size() + "-"
+		System.out.println("Ó¦ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + fones.size() + "-" + ftwosa.size() + "-"
 				+ us.size());
 
 		request.setAttribute("fones", fones);
@@ -833,7 +804,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * È¡ÏûÊÕ²Ø
+	 * È¡ï¿½ï¿½ï¿½Õ²ï¿½
 	 */
 	public void FolR() throws IOException {
 		fo = foldao.ufid(userid, forumid);
@@ -864,7 +835,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * ÅÐ¶ÏÊÇ·ñÊÕ²Ø¹ý
+	 * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Õ²Ø¹ï¿½
 	 */
 	public void Folft() throws IOException {
 
@@ -876,11 +847,11 @@ public class ForumAction {
 	}
 
 	/**
-	 * ²é¿´ÎÒÊÕ²ØµÄÂÛÌ³
+	 * ï¿½é¿´ï¿½ï¿½ï¿½Õ²Øµï¿½ï¿½ï¿½Ì³
 	 */
 	public void Folook() throws IOException {
 
-		System.out.println("½øÈë²é¿´ÊÕ²Øuserid" + userid);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½é¿´ï¿½Õ²ï¿½userid" + userid);
 		if (userid > 0) {
 			fos = foldao.Allu(userid);
 
@@ -898,7 +869,7 @@ public class ForumAction {
 					us.add(u);
 					fones.add(fone);
 				} else {
-					System.out.println("ÓÃ»§ »ò ÊÕ²ØµÄÂÛÌ³ÒÑ±»É¾³ý£¡ÂÛÌ³idÎª:"
+					System.out.println("ï¿½Ã»ï¿½ ï¿½ï¿½ ï¿½Õ²Øµï¿½ï¿½ï¿½Ì³ï¿½Ñ±ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³idÎª:"
 							+ fos.get(i).getForumid());
 
 				}
@@ -915,13 +886,13 @@ public class ForumAction {
 	}
 
 	/**
-	 * Ìí¼ÓÂÛÌ³ÊÕ²Ø
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Õ²ï¿½
 	 */
 	public void Fosave() throws IOException {
-		System.out.println("appÌí¼ÓÂÛÌ³ÊÕ²Ø");
+		System.out.println("appï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Õ²ï¿½");
 
 		Follect fo = new Follect();
-		System.out.println("ÂÛÌ³id" + forumid + "ÓÃ»§id" + userid);
+		System.out.println("ï¿½ï¿½Ì³id" + forumid + "ï¿½Ã»ï¿½id" + userid);
 
 		if (forumid > 0 && userid > 0) {
 
@@ -949,25 +920,25 @@ public class ForumAction {
 			foldao.save(fo);
 			util.Out().print(true);
 		} else {
-			util.Out().print("ÂÛÌ³id»òÕßÓÃ»§id Îª¿Õ");
+			util.Out().print("ï¿½ï¿½Ì³idï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½id Îªï¿½ï¿½");
 		}
 
 	}
 
 	/**
-	 * app ¸ù¾Ý ÀàÐÍ ²éÑ¯ÂÛÌ³ ÂÛÌ³
+	 * app ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ï¿½ï¿½Ì³ ï¿½ï¿½Ì³
 	 * 
 	 * @throws IOException
 	 */
 	public void ForumApptype() throws IOException {
 
-		System.out.println("ÀàÐÍtypeÊÇ £º" + model);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½typeï¿½ï¿½ ï¿½ï¿½" + model);
 		if (area == null) {
 			cpe = forumdao.getForumOneALL(model).size();
 		} else {
 			cpe = forumdao.getForumOneareaALL(area, model).size();
 		}
-		System.out.println("È«¹úÓÐ" + cpe + "¸öÂÛÌ³");
+		System.out.println("È«ï¿½ï¿½ï¿½ï¿½" + cpe + "ï¿½ï¿½ï¿½ï¿½Ì³");
 		if (pageSize <= 0) {
 			System.out.println("pageSize<=0");
 			pageSize = 10;
@@ -1004,17 +975,17 @@ public class ForumAction {
 			int g = ftwos.size() - 1;
 			System.out.println("g==" + g);
 			if (g >= 0) {
-				System.out.println("Ìí¼ÓÁË" + i);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½" + i);
 				ftwo = ftwos.get(g);
 
 				ftwosa.add(ftwo);
 			} else {
-				System.out.println("Ã»ÓÐÌí¼Ó" + i);
+				System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½" + i);
 				ftwosa.add(null);
 			}
 
 		}
-		System.out.println("Ó¦¸ÃÏàÍ¬±ÈÀý£¡" + fones.size() + "-" + ftwosa.size() + "-"
+		System.out.println("Ó¦ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + fones.size() + "-" + ftwosa.size() + "-"
 				+ us.size());
 
 		String result = "{\"fones\":" + util.ToJson(fones) + ",\"ftwos\":"
@@ -1026,7 +997,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * app ÂÛÌ³É¾³ý
+	 * app ï¿½ï¿½Ì³É¾ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -1062,22 +1033,22 @@ public class ForumAction {
 
 			for (int i = 0; i < ftwos.size(); i++) {
 				forumdao.Remove(ftwos.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³ÆÀÂÛ" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½" + i);
 			}
 
 			for (int i = 0; i < fehrees.size(); i++) {
 				forumdao.Remove(fehrees.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³»Ø¸´ÐÅÏ¢" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢" + i);
 			}
 
 			if (fone.getImg() != null) {
 				try {
 
-					System.out.println("ÊÇ·ñÉ¾³ý³É¹¦"
+					System.out.println("ï¿½Ç·ï¿½É¾ï¿½ï¿½ï¿½É¹ï¿½"
 							+ util.fileRemove(fone.getImg()));
 
 				} catch (Exception e) {
-					System.out.println("É¾³ýÒì³£!");
+					System.out.println("É¾ï¿½ï¿½ï¿½ì³£!");
 				}
 			}
 
@@ -1090,14 +1061,14 @@ public class ForumAction {
 	}
 
 	/**
-	 * ²é¿´È«²¿ÂÛÌ³
+	 * ï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³
 	 */
 	public void Forumall() throws IOException {
-		System.out.println(" appuser²é¿´È«¹úÂÛÌ³");
+		System.out.println(" appuserï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³");
 
 		cpe = forumdao.getForumOneALL234().size();
 
-		System.out.println("È«¹úÓÐ" + cpe + "¸öÂÛÌ³");
+		System.out.println("È«ï¿½ï¿½ï¿½ï¿½" + cpe + "ï¿½ï¿½ï¿½ï¿½Ì³");
 		if (pageSize <= 0) {
 			System.out.println("pageSize<=0");
 			pageSize = 10;
@@ -1114,7 +1085,7 @@ public class ForumAction {
 		if (currentPage >= cpe) {
 			currentPage = cpe;
 		}
-		System.out.println("ÓÐ" + cpe + "Ò³");
+		System.out.println("ï¿½ï¿½" + cpe + "Ò³");
 		System.out.println("pageSize" + pageSize);
 		System.out.println("currentPage" + currentPage);
 		if (currentPage != 0 && pageSize != 0) {
@@ -1131,17 +1102,17 @@ public class ForumAction {
 				int g = ftwos.size() - 1;
 				System.out.println("g==" + g);
 				if (g >= 0) {
-					System.out.println("Ìí¼ÓÁË" + i);
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½" + i);
 					ftwo = ftwos.get(g);
 
 					ftwosa.add(ftwo);
 				} else {
-					System.out.println("Ã»ÓÐÌí¼Ó" + i);
+					System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½" + i);
 					ftwosa.add(null);
 				}
 
 			}
-			System.out.println("Ó¦¸ÃÏàÍ¬±ÈÀý£¡" + fones.size() + "-" + ftwosa.size()
+			System.out.println("Ó¦ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + fones.size() + "-" + ftwosa.size()
 					+ "-" + us.size());
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"ftwos\":"
@@ -1157,7 +1128,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * Í¨¹ýÓÃ»§id ²éÑ¯ÎÒÆÀÂÛ¹ýµÄ ÂÛÌ³
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½id ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³
 	 */
 	public void Fuseid() throws IOException {
 
@@ -1202,8 +1173,8 @@ public class ForumAction {
 
 		if (fones.size() > 0) {
 			System.out.println("ftwos" + fow.size());
-			System.out.println("ÓÃ»§" + us.size());
-			System.out.println("ÂÛÌ³" + fones.size());
+			System.out.println("ï¿½Ã»ï¿½" + us.size());
+			System.out.println("ï¿½ï¿½Ì³" + fones.size());
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
 					+ util.ToJson(us) + ",\"ftwos\":" + util.ToJson(fow) + "}";
@@ -1211,17 +1182,17 @@ public class ForumAction {
 			util.Out().print(result);
 
 		} else {
-			System.out.println("¿Õ  Ã»ÓÐÂÛÌ³");
+			System.out.println("ï¿½ï¿½  Ã»ï¿½ï¿½ï¿½ï¿½Ì³");
 			util.Out().print("null");
 
 		}
 	}
 
 	/**
-	 * Í¨¹ýÓÃ»§id²éÑ¯ÂÛÌ³
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½Ì³
 	 */
 	public void ForumoneTouseid() throws IOException {
-		System.out.println("Í¨¹ýÓÃ»§userid²éÑ¯ÂÛÌ³idÊÇ:" + userid);
+		System.out.println("Í¨ï¿½ï¿½ï¿½Ã»ï¿½useridï¿½ï¿½Ñ¯ï¿½ï¿½Ì³idï¿½ï¿½:" + userid);
 		if (userid <= 0) {
 			util.Out().print("null");
 			return;
@@ -1237,33 +1208,33 @@ public class ForumAction {
 		}
 
 		if (fones.size() != 0) {
-			System.out.println("Õý³£");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
 					+ util.ToJson(us) + "}";
 			util.Out().print(result);
 		} else {
-			System.out.println("¿Õ  Ã»ÓÐÂÛÌ³");
+			System.out.println("ï¿½ï¿½  Ã»ï¿½ï¿½ï¿½ï¿½Ì³");
 			util.Out().print("null");
 		}
 
 	}
 
 	/**
-	 * appTwo Ìí¼ÓÂÛÌ³»Ø¸´ userid ÓÃ»§id forumid ÂÛÌ³id reply »Ø¸´ÄÚÈÝ
+	 * appTwo ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½ userid ï¿½Ã»ï¿½id forumid ï¿½ï¿½Ì³id reply ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void Forumtwosaveapp() throws IOException {
-		System.out.println("½øÈëappÌí¼ÓÂÛÌ³»Ø¸´");
-		System.out.println("ÂÛÌ³id" + forumid);
-		System.out.println("»Ø¸´ÄÚÈÝ" + reply);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½appï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½");
+		System.out.println("ï¿½ï¿½Ì³id" + forumid);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½" + reply);
 
-		System.out.println("ÎÒµÄid" + userid);
+		System.out.println("ï¿½Òµï¿½id" + userid);
 		fone = forumdao.getForumOne(forumid);
 
-		// ftwos = forumdao.getForumTwoALL(forumid);// ²éÑ¯ÆÀÂÛ
+		// ftwos = forumdao.getForumTwoALL(forumid);// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		/**
-		 * if(userid==touserid){ System.out.println("×èÖ¹ÁË  ×Ô¼º»Ø¸´×Ô¼ºµÄÆÀÂÛ");
+		 * if(userid==touserid){ System.out.println("ï¿½ï¿½Ö¹ï¿½ï¿½  ï¿½Ô¼ï¿½ï¿½Ø¸ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		 * util.Out().print(false); return; }
 		 */
 		User u = userdao.byid(userid);
@@ -1307,7 +1278,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * app ÓÃ»§ Í¨¹ý id ²é¿´ÂÛÌ³ÏêÇé
+	 * app ï¿½Ã»ï¿½ Í¨ï¿½ï¿½ id ï¿½é¿´ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param forumdao
 	 * @throws IOException
@@ -1320,11 +1291,11 @@ public class ForumAction {
 			if (id > 0) {
 				fone = forumdao.getForumOne(id);
 				if (fone == null) {
-					util.Out().print("Ã»ÓÐÕâ¸öÂÛÌ³!");
-					System.out.println("Ã»ÓÐÕâ¸öÂÛÌ³!");
+					util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
+					System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
 					return;
 				}
-				System.out.println("ÂÛÌ³±êÌâ:" + fone.getTitle());
+				System.out.println("ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½:" + fone.getTitle());
 				fone.setfHits(fone.getfHits() + 1);
 
 				ftwos = forumdao.getForumTwoALL(id);
@@ -1335,7 +1306,7 @@ public class ForumAction {
 				List fl = new ArrayList();
 				List fu = new ArrayList();
 				List fut = new ArrayList();
-				System.out.println("ÆÀÂÛÊý" + ftwos.size());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + ftwos.size());
 
 				forumid = id;
 
@@ -1353,14 +1324,14 @@ public class ForumAction {
 					fehrees = forumdao.getForumThreeALL(forumid, forumtwoid);
 
 					if (fehrees.size() == 0) {
-						System.out.println("fehrees==nullµÚ" + i + "´ÎÑ­»·");
+						System.out.println("fehrees==nullï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½");
 
 						fl.add(null);
 						fut.add(null);
 						fu.add(null);
 					} else {
-						System.out.println("fehreesµÚ" + i + "´ÎÑ­»· ÐÅÏ¢Îª"
-								+ fehrees.size() + "Ìõ");
+						System.out.println("fehreesï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½ ï¿½ï¿½Ï¢Îª"
+								+ fehrees.size() + "ï¿½ï¿½");
 						List<User> userz = new ArrayList<User>();
 						List<User> touser = new ArrayList<User>();
 
@@ -1385,7 +1356,7 @@ public class ForumAction {
 					}
 
 				}
-				System.out.println("threes»Ø¸´Êý" + fl.size());
+				System.out.println("threesï¿½Ø¸ï¿½ï¿½ï¿½" + fl.size());
 				String result = "{\"fone\":" + util.ToJson(fone)
 						+ ",\"ftwos\":" + util.ToJson(ftwos) + ",\"fl\":"
 						+ util.ToJson(fl) + ",\"fu\":" + util.ToJson(fu)
@@ -1404,26 +1375,26 @@ public class ForumAction {
 	}
 
 	/**
-	 * ²éÑ¯ µ±Ç° Ê¡¼¶ ÊÐ¼¶ ÂÛÌ³
+	 * ï¿½ï¿½Ñ¯ ï¿½ï¿½Ç° Ê¡ï¿½ï¿½ ï¿½Ð¼ï¿½ ï¿½ï¿½Ì³
 	 * 
 	 * @throws IOException
 	 */
 	public void ForumArea() throws IOException {
 
-		System.out.println("ForumAreaµØÇøÎª" + area + areas);
+		System.out.println("ForumAreaï¿½ï¿½ï¿½ï¿½Îª" + area + areas);
 		fones = forumdao.getForumOneareassALL(area, areas);
-		System.out.println(area + areas + "ÓÐ" + fones.size() + "¸öÂÛÌ³");
+		System.out.println(area + areas + "ï¿½ï¿½" + fones.size() + "ï¿½ï¿½ï¿½ï¿½Ì³");
 		if (fones.size() != 0) {
-			System.out.println("Õý³£");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			util.Out().print(util.ToJson(fones));
 		} else {
-			System.out.println("¿Õ  Ã»ÓÐÂÛÌ³");
+			System.out.println("ï¿½ï¿½  Ã»ï¿½ï¿½ï¿½ï¿½Ì³");
 			util.Out().print("null");
 		}
 	}
 
 	/**
-	 * Three ÓÃ»§»Ø¸´ÓÃ»§
+	 * Three ï¿½Ã»ï¿½ï¿½Ø¸ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @param forumdao
 	 * @throws ServletException
@@ -1431,15 +1402,15 @@ public class ForumAction {
 	public void Forumthreesappadd() throws IOException, ServletException {
 
 		/**
-		 * if(userid==touserid){ System.out.println("×èÖ¹ÁË  ×Ô¼º»Ø¸´×Ô¼ºµÄÆÀÂÛ");
+		 * if(userid==touserid){ System.out.println("ï¿½ï¿½Ö¹ï¿½ï¿½  ï¿½Ô¼ï¿½ï¿½Ø¸ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		 * util.Out().print(false); return; }
 		 */
 
-		System.out.println("ÂÛÌ³id " + forumid);
-		System.out.println("»Ø¸´ÄÚÈÝ " + reply);
-		System.out.println("»Ø¸´¸ø " + touserid);
-		System.out.println("ÎÒµÄid " + userid);
-		System.out.println("ÎÒµÄÂ¥²ã id" + forumtwoid);
+		System.out.println("ï¿½ï¿½Ì³id " + forumid);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ " + reply);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ " + touserid);
+		System.out.println("ï¿½Òµï¿½id " + userid);
+		System.out.println("ï¿½Òµï¿½Â¥ï¿½ï¿½ id" + forumtwoid);
 		if (forumid <= 0) {
 			util.Out().print(false);
 			return;
@@ -1484,7 +1455,7 @@ public class ForumAction {
 		util.Out().print(false);
 	}
 	/**
-	 * Ìí¼ÓÂÛÌ³ app¶Ë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ appï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -1537,12 +1508,12 @@ public class ForumAction {
 		}
 		User u = userdao.byid(userid);
 		if (u == null) {
-			System.out.println("userid²»ºÏ·¨!");
+			System.out.println("useridï¿½ï¿½ï¿½Ï·ï¿½!");
 			util.Out().print(false);
 			return;
 		}
 
-		System.out.println("Ìí¼ÓÂÛÌ³" + area + areas);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ì³" + area + areas);
 
 		if (file != null) {
 
@@ -1551,7 +1522,7 @@ public class ForumAction {
 			System.out.println(img);
 			fone.setImg(img);
 
-			System.out.println("Í·ÏñÉÏ´«³É¹¦£¡");
+			System.out.println("Í·ï¿½ï¿½ï¿½Ï´ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 		}
 		fone.setTypes(types);
 		fone.setArea(area);
@@ -1563,7 +1534,7 @@ public class ForumAction {
 		fone.setUserid(userid);
 		fone.setContent(content);
 		forumdao.save(fone);
-		System.out.println("Ìí¼Ó³É¹¦");
+		System.out.println("ï¿½ï¿½Ó³É¹ï¿½");
 		util.Out().print(true);
 
 	}
@@ -1573,7 +1544,7 @@ public class ForumAction {
 	 */
 
 	/**
-	 * Ìí¼ÓÂÛÌ³ ÍøÒ³
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ ï¿½ï¿½Ò³
 	 * 
 	 * @throws IOException
 	 */
@@ -1589,11 +1560,11 @@ public class ForumAction {
 		}
 		userid = u.getId();
 		if (model <= 0) {
-			System.out.println("id±êÊ¾²»ÕýÈ·");
-			util.Out().print("id±êÊ¾²»ÕýÈ·");
+			System.out.println("idï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½È·");
+			util.Out().print("idï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½È·");
 			return;
 		}
-		System.out.println("Ìí¼ÓÂÛÌ³" + area + areas);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ì³" + area + areas);
 		fone.setArea(u.getAddress());
 		fone.setAreas(u.getAddcity());
 		fone.setTitle(title);
@@ -1609,7 +1580,7 @@ public class ForumAction {
 			System.out.println(img);
 			fone.setImg(img);
 
-			System.out.println("Í·ÏñÉÏ´«³É¹¦!");
+			System.out.println("Í·ï¿½ï¿½ï¿½Ï´ï¿½ï¿½É¹ï¿½!");
 		}
 		forumdao.save(fone);
 
@@ -1622,18 +1593,18 @@ public class ForumAction {
 	}
 
 	/**
-	 * user¹ÜÀíÔ±²é¿´ÂÛÌ³
+	 * userï¿½ï¿½ï¿½ï¿½Ô±ï¿½é¿´ï¿½ï¿½Ì³
 	 */
 	public String ForumLookuser() throws IOException {
 
 		User user = (User) session.getAttribute("useradmin");
 
 		if (user == null) {
-			util.Out().print("ÇëµÇÈë");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½");
 			return null;
 
 		}
-		System.out.println(" ÓÃ»§¹ÜÀíÔ±²é¿´" + user.getUsername() + "²é¿´ÂÛÌ³");
+		System.out.println(" ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½é¿´" + user.getUsername() + "ï¿½é¿´ï¿½ï¿½Ì³");
 
 		if (user.getCompetence() == 2) {
 			fones = forumdao.getForumOneareaALL(user.getAddress());
@@ -1674,13 +1645,13 @@ public class ForumAction {
 	}
 
 	/**
-	 * ²é¿´È«²¿ÂÛÌ³ admin ºÍ ÂÛÌ³³¬¼¶¹ÜÀíÔ±
+	 * ï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³ admin ï¿½ï¿½ ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 	 */
 	public String ForumLookall() throws IOException {
 
-		System.out.println(" admin ºÍ ÂÛÌ³³¬¼¶¹ÜÀíÔ±²é¿´È«¹úÂÛÌ³");
+		System.out.println(" admin ï¿½ï¿½ ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³");
 		cpe = forumdao.getForumOneNotALL(1).size();
-		System.out.println("È«¹úÓÐ" + cpe + "¸öÂÛÌ³");
+		System.out.println("È«ï¿½ï¿½ï¿½ï¿½" + cpe + "ï¿½ï¿½ï¿½ï¿½Ì³");
 		pageSize = 20;
 		if (cpe % pageSize == 0) {
 			cpe = cpe / pageSize;
@@ -1705,22 +1676,22 @@ public class ForumAction {
 		request.setAttribute("fones", fones);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("cpe", cpe);
-		request.setAttribute("ar", "È«¹ú");
+		request.setAttribute("ar", "È«ï¿½ï¿½");
 
-		System.out.println("È«¹úÓÐ" + fones.size() + "¸öÂÛÌ³ ÓÃ»§" + us.size());
+		System.out.println("È«ï¿½ï¿½ï¿½ï¿½" + fones.size() + "ï¿½ï¿½ï¿½ï¿½Ì³ ï¿½Ã»ï¿½" + us.size());
 
 		return Action.SUCCESS;
 
 	}
 
 	/**
-	 * ²é¿´È«²¿ÂÛÌ³ admin ºÍ ÂÛÌ³³¬¼¶¹ÜÀíÔ± ²é¿´×¨¼Ò´ðÒÉÂÛÌ³
+	 * ï¿½é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³ admin ï¿½ï¿½ ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô± ï¿½é¿´×¨ï¿½Ò´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 	 */
 	public String ForumLookalltype() throws IOException {
 
-		System.out.println("adminºÍÂÛÌ³³¬¼¶¹ÜÀíÔ±°´ÀàÐÍ²é¿´È«¹úÂÛÌ³");
+		System.out.println("adminï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Í²é¿´È«ï¿½ï¿½ï¿½ï¿½Ì³");
 		cpe = forumdao.getForumOneALL(model).size();
-		System.out.println("È«¹úÓÐ" + cpe + "¸öÂÛÌ³");
+		System.out.println("È«ï¿½ï¿½ï¿½ï¿½" + cpe + "ï¿½ï¿½ï¿½ï¿½Ì³");
 		pageSize = 20;
 		if (cpe % pageSize == 0) {
 			cpe = cpe / pageSize;
@@ -1751,23 +1722,23 @@ public class ForumAction {
 	}
 
 	/**
-	 * admin ºÍ ÂÛÌ³³¬¼¶¹ÜÀíÔ± Í¨¹ýid²é¿´ÂÛÌ³
+	 * admin ï¿½ï¿½ ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô± Í¨ï¿½ï¿½idï¿½é¿´ï¿½ï¿½Ì³
 	 * 
 	 * @param forumdao
 	 * @throws IOException
 	 */
 	public String ForumLook() throws IOException {
 		try {
-			System.out.println(" ForumLook½øÈë²é¿´ÂÛÌ³");
-			System.out.println("ÂÛÌ³id   ==" + id);
+			System.out.println(" ForumLookï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½Ì³");
+			System.out.println("ï¿½ï¿½Ì³id   ==" + id);
 			if (id > 0) {
 				fone = forumdao.getForumOne(id);
 				if (fone == null) {
-					util.Out().print("Ã»ÓÐÕâ¸öÂÛÌ³!");
-					System.out.println("Ã»ÓÐÕâ¸öÂÛÌ³!");
+					util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
+					System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
 					return null;
 				}
-				System.out.println("ÂÛÌ³±êÌâ:" + fone.getTitle());
+				System.out.println("ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½:" + fone.getTitle());
 				fone.setfHits(fone.getfHits() + 1);
 
 				ftwos = forumdao.getForumTwoALL(id);
@@ -1777,7 +1748,7 @@ public class ForumAction {
 				List fl = new ArrayList();
 				List fu = new ArrayList();
 				List fut = new ArrayList();
-				System.out.println("ÆÀÂÛÊý" + ftwos.size());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + ftwos.size());
 
 				forumid = id;
 
@@ -1795,14 +1766,14 @@ public class ForumAction {
 					fehrees = forumdao.getForumThreeALL(forumid, forumtwoid);
 
 					if (fehrees.size() == 0) {
-						System.out.println("fehrees==nullµÚ" + i + "´ÎÑ­»·");
+						System.out.println("fehrees==nullï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½");
 
 						fl.add(null);
 						fut.add(null);
 						fu.add(null);
 					} else {
-						System.out.println("fehreesµÚ" + i + "´ÎÑ­»· ÐÅÏ¢Îª"
-								+ fehrees.size() + "Ìõ");
+						System.out.println("fehreesï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½ ï¿½ï¿½Ï¢Îª"
+								+ fehrees.size() + "ï¿½ï¿½");
 						List<User> userz = new ArrayList<User>();
 						List<User> touser = new ArrayList<User>();
 
@@ -1827,7 +1798,7 @@ public class ForumAction {
 					}
 
 				}
-				System.out.println("threes»Ø¸´Êý" + fl.size());
+				System.out.println("threesï¿½Ø¸ï¿½ï¿½ï¿½" + fl.size());
 
 				request.setAttribute("fone", fone);
 				request.setAttribute("ftwos", ftwos);
@@ -1840,7 +1811,7 @@ public class ForumAction {
 				System.out.println("------------------------------");
 
 			} else {
-				util.Out().print("idµÈÓÚ¿Õ");
+				util.Out().print("idï¿½ï¿½ï¿½Ú¿ï¿½");
 			}
 
 		} catch (Exception e) {
@@ -1851,7 +1822,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * ÓÃ»§¹ÜÀíÔ±Í¨¹ýid²é¿´ÂÛÌ³
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ô±Í¨ï¿½ï¿½idï¿½é¿´ï¿½ï¿½Ì³
 	 * 
 	 * @param forumdao
 	 * @throws IOException
@@ -1864,11 +1835,11 @@ public class ForumAction {
 			if (id > 0) {
 				fone = forumdao.getForumOne(id);
 				if (fone == null) {
-					util.Out().print("Ã»ÓÐÕâ¸öÂÛÌ³!");
-					System.out.println("Ã»ÓÐÕâ¸öÂÛÌ³!");
+					util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
+					System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³!");
 					return null;
 				}
-				System.out.println("ÂÛÌ³±êÌâ:" + fone.getTitle());
+				System.out.println("ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½:" + fone.getTitle());
 
 				User user = userdao.byid(fone.getUserid());
 
@@ -1879,7 +1850,7 @@ public class ForumAction {
 				ftwos = forumdao.getForumTwoALL(id);
 
 				List fl = new ArrayList();
-				System.out.println("ÆÀÂÛÊý" + ftwos.size());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + ftwos.size());
 
 				forumid = id;
 				for (int i = 0; i < ftwos.size(); i++) {
@@ -1894,12 +1865,12 @@ public class ForumAction {
 					us.add(u);
 
 					if (fehrees.size() == 0) {
-						System.out.println("fehrees==nullµÚ" + i + "´ÎÑ­»·");
+						System.out.println("fehrees==nullï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½");
 
 						fl.add(null);
 					} else {
-						System.out.println("fehreesµÚ" + i + "´ÎÑ­»· ÐÅÏ¢Îª"
-								+ fehrees.size() + "Ìõ");
+						System.out.println("fehreesï¿½ï¿½" + i + "ï¿½ï¿½Ñ­ï¿½ï¿½ ï¿½ï¿½Ï¢Îª"
+								+ fehrees.size() + "ï¿½ï¿½");
 
 						List<User> userz = new ArrayList<User>();
 
@@ -1926,7 +1897,7 @@ public class ForumAction {
 					}
 
 				}
-				System.out.println("threes»Ø¸´Êý" + fl.size());
+				System.out.println("threesï¿½Ø¸ï¿½ï¿½ï¿½" + fl.size());
 
 				request.setAttribute("fone", fone);
 				request.setAttribute("ftwos", ftwos);
@@ -1937,7 +1908,7 @@ public class ForumAction {
 				request.setAttribute("u", user);
 
 			} else {
-				util.Out().print("idµÈÓÚ¿Õ");
+				util.Out().print("idï¿½ï¿½ï¿½Ú¿ï¿½");
 			}
 
 		} catch (Exception e) {
@@ -1948,7 +1919,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * Two Ìí¼ÓÂÛÌ³»Ø¸´
+	 * Two ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -1990,17 +1961,17 @@ public class ForumAction {
 	}
 
 	/**
-	 * Three ÓÃ»§»Ø¸´ÓÃ»§
+	 * Three ï¿½Ã»ï¿½ï¿½Ø¸ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @param forumdao
 	 * @throws ServletException
 	 */
 	public void Forumthreesave() throws IOException, ServletException {
-		System.out.println("ÂÛÌ³id " + forumid);
-		System.out.println("»Ø¸´ÄÚÈÝ " + reply);
-		System.out.println("»Ø¸´¸ø " + touserid);
-		System.out.println("ÎÒµÄid " + userid);
-		System.out.println("ÎÒµÄÂ¥²ãid " + forumtwoid);
+		System.out.println("ï¿½ï¿½Ì³id " + forumid);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ " + reply);
+		System.out.println("ï¿½Ø¸ï¿½ï¿½ï¿½ " + touserid);
+		System.out.println("ï¿½Òµï¿½id " + userid);
+		System.out.println("ï¿½Òµï¿½Â¥ï¿½ï¿½id " + forumtwoid);
 		if (forumid <= 0) {
 			util.Out().print(false);
 			return;
@@ -2047,7 +2018,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * ÓÃ»§¹ÜÀíÔ± ÂÛÌ³É¾³ý
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½Ì³É¾ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -2055,7 +2026,7 @@ public class ForumAction {
 		User user = (User) session.getAttribute("useradmin");
 
 		if (user == null) {
-			util.Out().print("ÇëµÇÈë");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½");
 			return;
 
 		}
@@ -2075,7 +2046,7 @@ public class ForumAction {
 			}
 
 			if (fone == null) {
-				util.Out().print("Ã»ÓÐÕâ¸öÂÛÌ³");
+				util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³");
 				return;
 			}
 
@@ -2085,22 +2056,22 @@ public class ForumAction {
 
 			for (int i = 0; i < ftwos.size(); i++) {
 				forumdao.Remove(ftwos.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³ÆÀÂÛ" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½" + i);
 			}
 
 			for (int i = 0; i < fehrees.size(); i++) {
 				forumdao.Remove(fehrees.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³»Ø¸´ÐÅÏ¢" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢" + i);
 			}
 
 			if (fone.getImg() != null) {
 				try {
 
-					System.out.println("ÊÇ·ñÉ¾³ý³É¹¦"
+					System.out.println("ï¿½Ç·ï¿½É¾ï¿½ï¿½ï¿½É¹ï¿½"
 							+ util.fileRemove(fone.getImg()));
 
 				} catch (Exception e) {
-					System.out.println("É¾³ýÒì³£!");
+					System.out.println("É¾ï¿½ï¿½ï¿½ì³£!");
 				}
 			}
 
@@ -2115,18 +2086,18 @@ public class ForumAction {
 	}
 
 	/**
-	 * adminÂÛÌ³É¾³ý
+	 * adminï¿½ï¿½Ì³É¾ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void webForumRemove() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("ÄúÃ»ÓÐµÇÈë£¡");
+			util.Out().print("ï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ë£¡");
 			return;
 		}
 		if (admin.getLevel() > 2 || admin.getLevel() <= 0) {
-			util.Out().print("ÄúÈ¨ÏÞ²»¶Ô£¡");
+			util.Out().print("ï¿½ï¿½È¨ï¿½Þ²ï¿½ï¿½Ô£ï¿½");
 			return;
 		}
 		System.out.println("fid   ==" + forumid);
@@ -2149,22 +2120,22 @@ public class ForumAction {
 
 			for (int i = 0; i < ftwos.size(); i++) {
 				forumdao.Remove(ftwos.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³ÆÀÂÛ" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½" + i);
 			}
 
 			for (int i = 0; i < fehrees.size(); i++) {
 				forumdao.Remove(fehrees.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³»Ø¸´ÐÅÏ¢" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢" + i);
 			}
 
 			if (fone.getImg() != null) {
 				try {
 
-					System.out.println("ÊÇ·ñÉ¾³ý³É¹¦"
+					System.out.println("ï¿½Ç·ï¿½É¾ï¿½ï¿½ï¿½É¹ï¿½"
 							+ util.fileRemove(fone.getImg()));
 
 				} catch (Exception e) {
-					System.out.println("É¾³ýÒì³£!");
+					System.out.println("É¾ï¿½ï¿½ï¿½ì³£!");
 				}
 			}
 
@@ -2175,7 +2146,7 @@ public class ForumAction {
 	}
 
 	/**
-	 * ÂÛÌ³É¾³ý ¿Í»§¶Ë Ö»ÄÜ±¾ÈËÉ¾³ý
+	 * ï¿½ï¿½Ì³É¾ï¿½ï¿½ ï¿½Í»ï¿½ï¿½ï¿½ Ö»ï¿½Ü±ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -2206,22 +2177,22 @@ public class ForumAction {
 
 			for (int i = 0; i < ftwos.size(); i++) {
 				forumdao.Remove(ftwos.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³ÆÀÂÛ" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½" + i);
 			}
 
 			for (int i = 0; i < fehrees.size(); i++) {
 				forumdao.Remove(fehrees.get(i));
-				System.out.println("Ñ­»·É¾³ýÂÛÌ³»Ø¸´ÐÅÏ¢" + i);
+				System.out.println("Ñ­ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ø¸ï¿½ï¿½ï¿½Ï¢" + i);
 			}
 
 			if (fone.getImg() != null) {
 				try {
 
-					System.out.println("ÊÇ·ñÉ¾³ý³É¹¦"
+					System.out.println("ï¿½Ç·ï¿½É¾ï¿½ï¿½ï¿½É¹ï¿½"
 							+ util.fileRemove(fone.getImg()));
 
 				} catch (Exception e) {
-					System.out.println("É¾³ýÒì³£!");
+					System.out.println("É¾ï¿½ï¿½ï¿½ì³£!");
 				}
 			}
 

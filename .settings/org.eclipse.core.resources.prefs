@@ -4,5 +4,6 @@ encoding//WebContent/SuperAdmin/SuperAdmin/App/JZTDUP.jsp=UTF-8
 encoding//WebContent/SuperAdmin/SuperAdmin/home.jsp=UTF-8
 encoding//WebContent/index.jsp=UTF-8
 encoding//src/com/befriend/action/AppPushAction.java=UTF-8
+encoding//src/com/befriend/entity/User.java=GBK
 encoding//src/com/befriend/util/JsonUtil.java=UTF-8
 encoding//src/com/befriend/util/PageUtil.java=UTF-8

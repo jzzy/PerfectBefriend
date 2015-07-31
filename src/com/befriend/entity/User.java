@@ -26,71 +26,69 @@ public class User implements Serializable
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="username")//�û���
+	@Column(name="username")
 	private String username;
-	@Column(name="nickname")//�ǳ�
+	@Column(name="nickname")
 	private String nickname;
-	@Column(name="password")//����
+	@Column(name="password")
 	private String password;
-	@Column(name="img")//�û�ͷ���ַ
+	@Column(name="img")//
 	private String img;
 	
 	
-	@Column(name="stage")//���ӽ׶�
+	@Column(name="stage")//
 	private String stage;
 	public static final double STAGE = 2D;
-	@Column(name="time")//ע��ʱ��
+	@Column(name="time")//
 	private String time;
-	@Column(name="address")//��ַ ʡ��
-	/**
-	 * ��ַ ʡ��
-	 */
+	@Column(name="address")//
+	
 	private String address;
 	public static final double PROVINCE = 3D;
 	
-	@Column(name="addcity")//��ַ �м�
+	@Column(name="addcity")//
 	private String addcity;
 	public static final double CITY = 4D;
-	@Column(name="phone")//�绰
+	@Column(name="phone")//
 	private String phone;
 	@Column(name="school")//ѧУ
 	private String school;
 	public static final double SCHOOL = 5D;
 	
-	@Column(name="competence")//Ȩ��  0 ��ͨ�û�  1 �м�����Ա 2ʡ������Ա 4�ǽ���
+	@Column(name="competence")//
 	private int competence;
-	@Column(name="gag")//������̳Ȩ��  0 ���Դ�����̳  1 ������  
+	@Column(name="gag")//
 	private int gag;
 	
-	@Column(name="loginnum")//�û��������
+	@Column(name="loginnum")//
 	private int loginnum;
 	
-	@Column(name="finaltime")//�û�������ʱ��
+	@Column(name="finaltime")//
 	private String finaltime;
-	@Column(name="ip")//�û�ip
+	@Column(name="ip")//
 	private String ip;
-	@Column(name="port")//�û�port
+	@Column(name="port")//
 	private int port;
-	@Column(name="online")//�û� �û�����״̬ 0������ 1����
+	@Column(name="online")//
 	private int online;
-	@Column(name="accnumno")//����ID 8λ��
+	@Column(name="accnumno")//
 	private String accnumno;
-	@Column(name="come")// ����null �������Լ����û� 
+	@Column(name="come")// 
 	private String come;
-	@Column(name="os")// ϵͳ
+	@Column(name="os")// 
 	private String os;
 	@Column(name="mac")// mac
 	private String mac;
-	@Column(name="sex")//�Ա�  �� Ů
+	@Column(name="sex")//
 	private String sex;
-	@Column(name="signature")// ����ǩ��
+	@Column(name="signature")// 
 	private String signature;
-	@Column(name="childrenage")// ��������
+	@Column(name="childrenage")// 
 	private String childrenage;
-	@Column(name="age")// ����
+	@Column(name="age")// 
 	private String age;
 	public static final double CHILD_AGE = 4D;
-	@Column(name="childrensex")// �����Ա�  �� Ů
+	@Column(name="childrensex")// 
 	private String childrensex;
 	public static final double CHILD_SEX = 3D;
 	

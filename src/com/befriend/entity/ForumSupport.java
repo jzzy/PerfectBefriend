@@ -10,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="support")
+@Table(name="forumsupport")
 
-public class Support implements Serializable
+public class ForumSupport implements Serializable
 {
 	/**
-	 * xinwen dianzhan
+	 * luntan dianzhan
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -142,10 +142,7 @@
 			<result name="success">/SuperAdmin/AdminNews/usera.jsp</result>
 		</action>
 		
-		<!-- 客户端上传图片-->
-		<action name="HeadPortrait" class="userAction" method="HeadPortrait">
-			
-		</action>
+		
 		
 		<!-- 用户管理员获取用户注册信息 -->
 		<action name="RegionalAdministrator" class="userAction" method="RegionalAdministrator">

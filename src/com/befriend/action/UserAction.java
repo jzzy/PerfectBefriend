@@ -44,63 +44,64 @@ public class UserAction {
 
 	List<User> us = new ArrayList<User>();
 	HttpServletRequest request = ServletActionContext.getRequest();
-	private String code;// ÑéÖ¤Âë
-	List<Cis> cis = new ArrayList<Cis>();// ÁÄÌì¼ÇÂ¼
-	// String account = "cf_wcskdxyz";//ÓÃ»§Ãû cf_wcsk_jztd
-	// String account = "cf_wcsk_jztd";// ÓÃ»§Ãû cf_wcsk_jztd
-	// String pwd = "wcsk1212";// ÃÜÂë wcsk1212
+	private String code;// ï¿½ï¿½Ö¤ï¿½ï¿½
+	List<Cis> cis = new ArrayList<Cis>();// ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+	// String account = "cf_wcskdxyz";//ï¿½Ã»ï¿½ï¿½ï¿½ cf_wcsk_jztd
+	// String account = "cf_wcsk_jztd";// ï¿½Ã»ï¿½ï¿½ï¿½ cf_wcsk_jztd
+	// String pwd = "wcsk1212";// ï¿½ï¿½ï¿½ï¿½ wcsk1212
 	// String postUrl =
-	// "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// µØÖ·
+	// "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// ï¿½ï¿½Ö·
 
-	private String sex;// ÎÒµÄÐÔ±ð
-	private String signature;// ¸öÐÔÇ©Ãû
-	private String childrensex;// º¢×ÓÐÔ±ð
-	private String newpassword;// ÐÂÃÜÂë
-	
-	private String childrenage;// º¢×ÓÄêÁä
+	private String sex;// ï¿½Òµï¿½ï¿½Ô±ï¿½
+	private String signature;// ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½
+	private String childrensex;// ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½
+	private String newpassword;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+	private String childrenage;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String mac;
-	private String phone;// ÊÖ»úºÅ
-	private String username;// ÓÃ»§Ãû
-	private String password;// ÃÜÂë
-	private String newpwd;// ÐÂÃÜÂëÃÜÂë
-	private int id = -1;// ÓÃ»§id
-	private String school;// ËùÔÚÑ§Ð£
-	private String stage;// ½×¶Î
-	private String time = util.getNowTime();// Ê±¼ä
-	private String nickname;// êÇ³Æ
-	private String address;// µØÖ· Ê¡¼¶
+	private String phone;// ï¿½Ö»ï¿½ï¿½ï¿½
+	private String username;// ï¿½Ã»ï¿½ï¿½ï¿½
+	private String password;// ï¿½ï¿½ï¿½ï¿½
+	private String newpwd;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int id = -1;// ï¿½Ã»ï¿½id
+	private String school;// ï¿½ï¿½ï¿½ï¿½Ñ§Ð£
+	private String stage;// ï¿½×¶ï¿½
+	private String time = util.getNowTime();// Ê±ï¿½ï¿½
+	private String nickname;// ï¿½Ç³ï¿½
+	private String address;// ï¿½ï¿½Ö· Ê¡ï¿½ï¿½
 	private String os = "web";// ÏµÍ³
-	private String addcity;// µØÖ· ÊÐ¼¶
+	private String addcity;// ï¿½ï¿½Ö· ï¿½Ð¼ï¿½
 
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
 
-	private int competence2 = -1;// ÓÃ»§id competence ÓÃ»§È¨ÏÞ 0-ÆÕÍ¨ÓÃ»§ 1-ÊÐ¼¶ÂÛÌ³¹ÜÀíÔ±
-									// 2-Ê¡¼¶ÂÛÌ³¹ÜÀíÔ±
-	private int gag = -1;// 0ÊÇÕý³£ 1 ÊÇ ½ûÑÔ
-	private int pageSize = 50;// Ã¿Ò³ÏÔÊ¾ ¶àÉÙÌõÊý¾Ý
-	private int currentPage = 1;// ÕâÊÇµÚ¶àÉÙÒ³
+	private int competence2 = -1;// ï¿½Ã»ï¿½id competence ï¿½Ã»ï¿½È¨ï¿½ï¿½ 0-ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+									// 1-ï¿½Ð¼ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±
+									// 2-Ê¡ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±
+	private int gag = -1;// 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private int pageSize = 50;// Ã¿Ò³ï¿½ï¿½Ê¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int currentPage = 1;// ï¿½ï¿½ï¿½ÇµÚ¶ï¿½ï¿½ï¿½Ò³
 
-	private String timeq;// ²éÑ¯¿ªÊ¼Ê±¼ä
+	private String timeq;// ï¿½ï¿½Ñ¯ï¿½ï¿½Ê¼Ê±ï¿½ï¿½
 
-	private String timeh;// ²éÑ¯½áÊøÊ±¼ä
+	private String timeh;// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private File file;// logoÍ¼Æ¬
-	private String fileFileName;// ÎÄ¼þÃû
-	private String fileContentType;// ÎÄ¼þÀàÐÍ
+	private String fileFileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String fileContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	private String accnumno;//
 	private int port = -1;//
-	private String ip;// ÓÃ»§ip
-	private String province;// »ñÈ¡Ç°¶ËµÄ Ê¡¼¶
-	private String city;// »ñÈ¡Ç°¶ËµÄ ÊÐ¼¶
-	private String age;//ÄêÁä
-	
-	// »·ÐÅÓÃ»§×¢²á
+	private String ip;// ï¿½Ã»ï¿½ip
+	private String province;// ï¿½ï¿½È¡Ç°ï¿½Ëµï¿½ Ê¡ï¿½ï¿½
+	private String city;// ï¿½ï¿½È¡Ç°ï¿½Ëµï¿½ ï¿½Ð¼ï¿½
+	private String age;// ï¿½ï¿½ï¿½ï¿½
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½
 	private String url = "https://a1.easemob.com/topLong/wcfriend/users";
 	private Password pd = new Password();
 
 	/**
-	 * ²é¿´Í³¼ÆÐÅÏ¢
+	 * ï¿½é¿´Í³ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
@@ -123,7 +124,7 @@ public class UserAction {
 	}
 
 	/**
-	 * sha1 ¼ÓÃÜ
+	 * sha1 ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 * @throws IOException
@@ -132,56 +133,57 @@ public class UserAction {
 
 		/**
 		 * int[] a = { 49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 1 };
-		 * System.out.println("ÅÅÐòÖ®Ç°£º"); // ²åÈëÅÅÐò for (int i = 0; i < a.length;
-		 * i++) { System.out.print(a[i] + " "); } // Ö±½Ó²åÈëÅÅÐò for (int i = 1; i <
-		 * a.length; i++) { // ´ý²åÈëÔªËØ int temp = a[i]; int j;
+		 * System.out.println("ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ for (int i = 0; i <
+		 * a.length; i++) { System.out.print(a[i] + " "); } // Ö±ï¿½Ó²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ for
+		 * (int i = 1; i < a.length; i++) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ int temp = a[i]; int j;
 		 * 
-		 * for (j = i - 1; j >= 0; j--) { // ½«´óÓÚtempµÄÍùºóÒÆ¶¯Ò»Î» if (a[j] > temp) {
-		 * a[j + 1] = a[j]; } else { break; } } a[j + 1] = temp;
+		 * for (j = i - 1; j >= 0; j--) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tempï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Ò»Î» if (a[j] >
+		 * temp) { a[j + 1] = a[j]; } else { break; } } a[j + 1] = temp;
 		 * System.out.println("========="); for (int x = 0; x < a.length; x++) {
 		 * if (x == a.length - 1) { System.out.println(a[x]); } else {
 		 * System.out.print(a[x] + " "); }
 		 * 
-		 * } } System.out.println(); System.out.println("ÅÅÐòÖ®ºó£º"); for (int i =
+		 * } } System.out.println(); System.out.println("ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½"); for (int i =
 		 * 0; i < a.length; i++) { System.out.print(a[i] + " "); }
 		 * 
-		 * // Ã°ÅÝÅÅÐò for (int i = 0; i < a.length; i++) { for (int j = 0; j <
-		 * a.length - i - 1; j++) { // ÕâÀï-iÖ÷ÒªÊÇÃ¿±éÀúÒ»´Î¶¼°Ñ×î´óµÄi¸öÊý³Áµ½×îµ×ÏÂÈ¥ÁË£¬Ã»ÓÐ±ØÒªÔÙÌæ»»ÁË if
-		 * (a[j] > a[j + 1]) { int temp = a[j]; a[j] = a[j + 1]; a[j + 1] =
-		 * temp; } } } System.out.println(); System.out.println("ÅÅÐòÖ®ºó£º"); for
-		 * (int i = 0; i < a.length; i++) { System.out.print(a[i] + " "); }
+		 * // Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ for (int i = 0; i < a.length; i++) { for (int j = 0; j <
+		 * a.length - i - 1; j++) { //
+		 * ï¿½ï¿½ï¿½ï¿½-iï¿½ï¿½Òªï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½Ë£ï¿½Ã»ï¿½Ð±ï¿½Òªï¿½ï¿½ï¿½æ»»ï¿½ï¿½ if (a[j] >
+		 * a[j + 1]) { int temp = a[j]; a[j] = a[j + 1]; a[j + 1] = temp; } } }
+		 * System.out.println(); System.out.println("ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½"); for (int i = 0;
+		 * i < a.length; i++) { System.out.print(a[i] + " "); }
 		 */
 
 	}
 
 	/**
-	 * ºóÌ¨×¢ÏúÊÖ»úºÅ
+	 * ï¿½ï¿½Ì¨×¢ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void userLogout() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		if (admin.getLevel() != 1) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		u = userdao.byid(id);
 		if (u == null) {
-			util.Out().print("Ã»ÓÐÕâ¸öÓÃ»§!");
+			util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½!");
 			return;
 		}
 		u.setPhone(null);
 		userdao.update(u);
-		util.Out().print("×¢Ïú³É¹¦!");
+		util.Out().print("×¢ï¿½ï¿½ï¿½É¹ï¿½!");
 
 	}
 
 	/**
-	 * Ò»¼ü×¢²á ÓÃ»§ºÅ
+	 * Ò»ï¿½ï¿½×¢ï¿½ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½
 	 * 
 	 * @throws InterruptedException
 	 * @throws IOException
@@ -189,11 +191,11 @@ public class UserAction {
 	public void accnumnoczc() throws InterruptedException, IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		if (admin.getLevel() != 1) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 
@@ -201,36 +203,35 @@ public class UserAction {
 		for (int i = 0; i < us.size(); i++) {
 			u = us.get(i);
 			if (u == null) {
-				System.out.println("ÓÃ»§Îª¿Õ£¡");
+				System.out.println("ï¿½Ã»ï¿½Îªï¿½Õ£ï¿½");
 				continue;
 
 			}
 			if (!util.isEmpty(u.getAccnumno())) {
-				System.out.println("ÓÃ»§ÓÐÕËºÅÁË£¡:" + u.getAccnumno() + "µÚ" + i
-						+ "¸ö£¡");
+				System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ëºï¿½ï¿½Ë£ï¿½:" + u.getAccnumno() + "ï¿½ï¿½" + i
+						+ "ï¿½ï¿½ï¿½ï¿½");
 				continue;
 			}
-			
-			
-			User macU=userdao.byIdMac();
-			if(macU!=null){
-				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
-				accnumno=ing.toString();
-			}else{
-				accnumno="10000000";
+
+			User macU = userdao.byIdMac();
+			if (macU != null) {
+				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+				accnumno = ing.toString();
+			} else {
+				accnumno = "10000000";
 			}
-			System.out.println("ÍêÃÀID:"+accnumno);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ID:" + accnumno);
 			u.setAccnumno(accnumno);
 			userdao.update(u);
-			System.out.println("Éú³ÉÕËºÅ³É¹¦£¡µÚ " + i + " ¸ö£¡ÕËºÅÎª:" + accnumno);
-			util.Out().print("Í¬²½Íê³É!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ËºÅ³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ " + i + " ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½Îª:" + accnumno);
+			util.Out().print("Í¬ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			// Thread.sleep(1000);
 		}
 
 	}
 
 	/**
-	 * ×¢²á»·ÐÅ Ò»¼ü×¢²áÈ«²¿ÓÃ»§
+	 * ×¢ï¿½á»·ï¿½ï¿½ Ò»ï¿½ï¿½×¢ï¿½ï¿½È«ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @throws JSONException
 	 * @throws InterruptedException
@@ -239,14 +240,14 @@ public class UserAction {
 	public void huanxinzc() throws JSONException, InterruptedException,
 			IOException {
 
-		System.out.println("½øÈëhuanxinzc");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½huanxinzc");
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		if (admin.getLevel() != 1) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		us = userdao.getUserAll();
@@ -256,45 +257,45 @@ public class UserAction {
 			}
 			Thread.sleep(40);
 			JSONObject json = new JSONObject();
-			json.put("username", us.get(i).getId()); // ÓÃ»§id
-			json.put("password", "123456"); // ÓÃ»§ÃÜÂë
+			json.put("username", us.get(i).getId()); // ï¿½Ã»ï¿½id
+			json.put("password", "123456"); // ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (RefreshAccessToken.access_token == null) {
-				util.Out().print("Ã»ÓÐ»ñÈ¡µ½access_token!");
-				System.out.println("Ã»ÓÐ»ñÈ¡µ½access_token!");
+				util.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½access_token!");
+				System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½access_token!");
 				return;
 			}
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
-			System.out.println("µÚ" + (i + 1) + "¸öÓÃ»§×¢²á ·µ»Ø:" + w);
+			System.out.println("ï¿½ï¿½" + (i + 1) + "ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½:" + w);
 		}
-		util.Out().print("Í¬²½Íê³É!");
+		util.Out().print("Í¬ï¿½ï¿½ï¿½ï¿½ï¿½!");
 
 	}
 
 	/**
-	 * Ò»¼üÏÂÏß
+	 * Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void updateAllXiaxian() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		if (admin.getLevel() != 1) {
-			util.Out().print("Äã²»ÊÇ¹ÜÀí!");
+			util.Out().print("ï¿½ã²»ï¿½Ç¹ï¿½ï¿½ï¿½!");
 			return;
 		}
 		userdao.updateAllXiaxian();
-		System.out.println("Ò»¼üÏÂÏß³É¹¦!");
+		System.out.println("Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ß³É¹ï¿½!");
 		((HttpServletResponse) util.response()).sendRedirect(request
 				.getContextPath() + "/GetUserAll");
 
 	}
 
 	/**
-	 * ·¢ËÍ·½·¨
+	 * ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -303,8 +304,8 @@ public class UserAction {
 		u = userdao.byid(id);
 		if (u != null) {
 			cis = gdao.Cisuid(u.getId());
-			System.out.println("ÓÃ»§ÓÐ:" + u.getUsername() + cis.size() + "¸öÎ´¶ÁÏûÏ¢!"
-					+ "Online:" + u.getOnline());
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" + u.getUsername() + cis.size()
+					+ "ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½Ï¢!" + "Online:" + u.getOnline());
 
 			if (cis.size() == 0) {
 				OpeFunction.Out().print(true);
@@ -341,15 +342,15 @@ public class UserAction {
 
 			util.Out().print(true);
 
-		} else {// ÅÐ¶ÏÁ¬½ÓµÄ ÓÃ»§ÊÇ·ñ´æÔÚ!
+		} else {// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Óµï¿½ ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½!
 			util.Out().print(false);
 
-		}// ÅÐ¶ÏÁ¬½ÓµÄ ÓÃ»§ÊÇ·ñ´æÔÚ!
+		}// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Óµï¿½ ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½!
 
 	}
 
 	/**
-	 * ½ÓÊÕÓÃ»§·¢ËÍµÄudp »ñÈ¡ip port
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Íµï¿½udp ï¿½ï¿½È¡ip port
 	 * 
 	 * @throws IOException
 	 */
@@ -369,11 +370,11 @@ public class UserAction {
 
 			util.Out().print(false);
 		}
-		System.out.println("ÐÞ¸Ä³É¹¦");
+		System.out.println("ï¿½Þ¸Ä³É¹ï¿½");
 	}
 
 	/**
-	 * ¸ü¸ÄÓÃ»§ÔÚÏß×´Ì¬
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -389,7 +390,7 @@ public class UserAction {
 
 			u.setOnline(0);
 			userdao.update(u);
-			System.out.println(id + "ÏÂÏßÁË!");
+			System.out.println(id + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			util.Out().print(true);
 			return;
 
@@ -398,8 +399,8 @@ public class UserAction {
 			 * 
 			 * u.setOnline(1); userdao.update(u);
 			 * 
-			 * cis = gdao.Cisuid(uid); System.out.println("ÓÃ»§ÓÐ:" +
-			 * u.getUsername() + cis.size() + "¸öÎ´¶ÁÏûÏ¢!" + "Online:" +
+			 * cis = gdao.Cisuid(uid); System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" +
+			 * u.getUsername() + cis.size() + "ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½Ï¢!" + "Online:" +
 			 * u.getOnline());
 			 * 
 			 * Thread.sleep(5000); u = userdao.byid(uid); if (cis.size() == 0) {
@@ -435,19 +436,19 @@ public class UserAction {
 	}
 
 	/**
-	 * webÓÃ»§ ×¢Ïú Ïú»Ùsession
+	 * webï¿½Ã»ï¿½ ×¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½session
 	 * 
 	 * @throws IOException
 	 */
 	public void websessionrom() throws IOException {
-		// Ïú»Ùsession
+		// ï¿½ï¿½ï¿½ï¿½session
 		session.removeAttribute("u");
 		((HttpServletResponse) util.response()).sendRedirect(request
 				.getContextPath() + "/SimulationApp/login.html");
 	}
 
 	/**
-	 * webÓÃ»§ ÐÞ¸ÄÃÜÂë
+	 * webï¿½Ã»ï¿½ ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -456,7 +457,7 @@ public class UserAction {
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-			System.out.println("ÇëÖØÐÂµÇÈë!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 
@@ -464,31 +465,31 @@ public class UserAction {
 		}
 		Password pd = userdao.login(u.getId(), password);
 		if (pd != null) {
-			// ÐÂÃÜÂë½øÐÐÅÐ¶Ï
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 			String reg = "[A-Za-z0-9_]{6,18}";
 
 			if (newpwd.matches(reg)) {
 				pd.setPassword(newpwd);
-				System.out.println("ÐÞ¸ÄÁËÃÜÂë");
-				util.Out().print("ÃÜÂëÐÞ¸Ä³É¹¦!" + newpwd);
+				System.out.println("ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+				util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½!" + newpwd);
 				userdao.update(pd);
 				session.removeAttribute("u");
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 				return;
 			} else {
-				util.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÃÜÂë!" + newpwd);
+				util.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!" + newpwd);
 				return;
 			}
 
 		} else {
-			util.Out().print("Ô­ÃÜÂë´íÎó!");
+			util.Out().print("Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			return;
 		}
 	}
 
 	/**
-	 * web ÓÃ»§ ÐÞ¸Ä & ÍêÉÆ ÐÅÏ¢
+	 * web ï¿½Ã»ï¿½ ï¿½Þ¸ï¿½ & ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
@@ -498,7 +499,7 @@ public class UserAction {
 			User u = (User) session.getAttribute("u");
 			if (u == null) {
 
-				System.out.println("ÇëÖØÐÂµÇÈë!");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 
@@ -506,19 +507,19 @@ public class UserAction {
 			}
 
 			u = userdao.byid(u.getId());
-			System.out.println("½øÈëwebModification");
-			System.out.println("ÓÃ»§ÃûÊÇ" + username);
-			System.out.println("µØÖ·Ê¡¼¶" + province);
-			System.out.println("µØÖ·ÊÐ¼¶" + city);
-			System.out.println("º¢×Ó½×¶Î" + stage);
-			System.out.println("ÊÖ»úÊÇ" + phone);
-			System.out.println("Ñ§Ð£ÊÇ" + school);
-			System.out.println("ÃÜÂëÊÇ" + password);
-			System.out.println("êÇ³ÆÊÇ" + nickname);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½webModification");
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½" + username);
+			System.out.println("ï¿½ï¿½Ö·Ê¡ï¿½ï¿½" + province);
+			System.out.println("ï¿½ï¿½Ö·ï¿½Ð¼ï¿½" + city);
+			System.out.println("ï¿½ï¿½ï¿½Ó½×¶ï¿½" + stage);
+			System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½" + phone);
+			System.out.println("Ñ§Ð£ï¿½ï¿½" + school);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + password);
+			System.out.println("ï¿½Ç³ï¿½ï¿½ï¿½" + nickname);
 
 			if (u == null) {
 
-				System.out.println("ÇëÖØÐÂµÇÈë!");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½!");
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 
@@ -538,32 +539,32 @@ public class UserAction {
 			}
 			if (nickname != null) {
 				u.setNickname(nickname);
-				System.out.println("ÐÞ¸ÄÁËêÇ³Æ");
+				System.out.println("ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ç³ï¿½");
 			}
 			if (phone != null) {
 				// u.setPhone(phone);
-				System.out.println("ÐÞ¸ÄÁËÊÖ»úºÅ");
+				System.out.println("ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½");
 			}
-			// =0 ÎªÆÕÍ¨ÓÃ»§¿ÉÒÔËæÊ±ÐÞ¸ÄµØÖ· ¹ÜÀíÔ±ÐèÒªÏÈÈ¡Ïû¹ÜÀíÔ± ÔÚ½øÐÐÐÞ¸Ä
+			// =0 Îªï¿½ï¿½Í¨ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Þ¸Äµï¿½Ö· ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Òªï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô± ï¿½Ú½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 
 			if (u.getCompetence() == 0) {
-				if (city != null && !city.equals("³ÇÊÐÃû") && city != "") {
+				if (city != null && !city.equals("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½") && city != "") {
 					u.setAddcity(city);
-					System.out.println("ÐÞ¸ÄÁËµØÖ·ÊÐ¼¶");
+					System.out.println("ï¿½Þ¸ï¿½ï¿½Ëµï¿½Ö·ï¿½Ð¼ï¿½");
 				} else {
 
 					Object Ocity = session.getAttribute("city");
-					System.err.print("sessionÖÐµÄÊÐ¼¶Îª" + Ocity);
+					System.err.print("sessionï¿½Ðµï¿½ï¿½Ð¼ï¿½Îª" + Ocity);
 					if (Ocity != null) {
 						city = Ocity.toString();
 						u.setAddcity(city);
 					}
 
 				}
-				if (province != null && !province.equals("Ê¡·ÝÃû")
+				if (province != null && !province.equals("Ê¡ï¿½ï¿½ï¿½ï¿½")
 						&& province != "") {
 					u.setAddress(province);
-					System.out.println("ÐÞ¸ÄÁËµØÖ·Ê¡¼¶");
+					System.out.println("ï¿½Þ¸ï¿½ï¿½Ëµï¿½Ö·Ê¡ï¿½ï¿½");
 				} else {
 
 					Object Oprovince = session.getAttribute("province");
@@ -574,32 +575,32 @@ public class UserAction {
 
 				}
 			} else {
-				System.out.println(u.getUsername() + "ÊÇ¹ÜÀíÔ±!");
+				System.out.println(u.getUsername() + "ï¿½Ç¹ï¿½ï¿½ï¿½Ô±!");
 			}
 
-			// ÑéÖ¤ÓÃ»§Ãû
+			// ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 			System.out.println(username);
 			System.out.println(password);
 			if (username != null) {
 				if (!username.matches(reg)) {
-					System.out.println("ÓÃ»§Ãû¸ñÊ½²»¶Ô£¡");
-					util.Out().print("ÓÃ»§Ãû¸ñÊ½²»¶Ô£¡");
+					System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
+					util.Out().print("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 					return;
 				}
 			}
 			if (u.getUsername() == null) {
-				System.out.println("ÐÞ¸ÄÁËÓÃ»§Ãû!");
+				System.out.println("ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½!");
 				u.setUsername(username);
 			}
 			if (school != null) {
 				u.setSchool(school);
-				System.out.println("ÐÞ¸ÄÁËº¢×ÓÑ§Ð£");
+				System.out.println("ï¿½Þ¸ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ñ§Ð£");
 			}
 
 			if (stage != null) {
 				u.setStage(stage);
-				System.out.println("ÐÞ¸ÄÁËº¢×Ó½×¶Î");
+				System.out.println("ï¿½Þ¸ï¿½ï¿½Ëºï¿½ï¿½Ó½×¶ï¿½");
 			}
 
 			userdao.update(u);
@@ -615,7 +616,7 @@ public class UserAction {
 	}
 
 	/**
-	 * web ÓÃ»§×¢²á Ö»ÐèÒª ÊÖ»úºÅ ÓÃ»§Ãû ÃÜÂë ¼´¿É
+	 * web ï¿½Ã»ï¿½×¢ï¿½ï¿½ Ö»ï¿½ï¿½Òª ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 * @throws JSONException
@@ -627,49 +628,49 @@ public class UserAction {
 		username = request.getParameter("username");
 
 		if (password == null) {
-			System.out.println("ÃÜÂëÎª¿Õ");
-			util.Out().print("ÃÜÂëÎª¿Õ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 			return null;
 		}
 		if (phone == null) {
-			System.out.println("ÊÖ»úºÅÎª¿Õ");
-			util.Out().print("ÊÖ»úºÅÎª¿Õ");
+			System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½Îªï¿½ï¿½");
+			util.Out().print("ï¿½Ö»ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 			return null;
 		}
-		// ÑéÖ¤ÓÃ»§Ãû
+		// ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½
 		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 		System.out.println(username);
 		System.out.println(password);
 		if (username != null) {
 			if (!username.matches(reg)) {
-				System.out.println("ÓÃ»§Ãû¸ñÊ½²»¶Ô£¡");
-				util.Out().print("ÓÃ»§Ãû¸ñÊ½²»¶Ô£¡");
+				System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
+				util.Out().print("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 				return null;
 			}
 
 		}
-		// ÑéÖ¤ÃÜÂë
+		// ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 		reg = "[A-Za-z0-9_]{6,18}";
 		if (!password.matches(reg)) {
-			System.out.println("ÃÜÂë¸ñÊ½²»¶Ô£¡");
-			util.Out().print("ÃÜÂë¸ñÊ½²»¶Ô£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
-		// ÑéÖ¤ÊÖ»úºÅ
+		// ï¿½ï¿½Ö¤ï¿½Ö»ï¿½ï¿½ï¿½
 		String regp = "[0-9]{11}";
 		if (!phone.matches(regp)) {
-			System.out.println("ÃÜÂë¸ñÊ½²»¶Ô£¡");
-			util.Out().print("ÃÜÂë¸ñÊ½²»¶Ô£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
-		System.out.println("½øÈëwebÓÃ»§×¢²áÊÖ»úºÅÎª:" + phone);
-		System.out.println("½øÈëÊ±¼ä" + util.getNowTime());
-		System.out.println("ÊÖ»úºÅ" + phone);
-		System.out.println("ÓÃ»§Ãû" + username);
-		
-		// ÅÐ¶ÏÊÖ»úºÅÊÇ·ñ×¢²á¹ý
+		System.out.println("ï¿½ï¿½ï¿½ï¿½webï¿½Ã»ï¿½×¢ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Îª:" + phone);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½" + util.getNowTime());
+		System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½" + phone);
+		System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½" + username);
+
+		// ï¿½Ð¶ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½×¢ï¿½ï¿½ï¿½
 		if (userdao.byUsernameAccnumnoPhone(phone) != null) {
-			System.out.println("´ËÊÖ»úºÅ  ÒÑ¾­×¢²á¹ý");
+			System.out.println("ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½  ï¿½Ñ¾ï¿½×¢ï¿½ï¿½ï¿½");
 			request.setAttribute("ph", phone);
 			return Action.ERROR;
 		}
@@ -679,49 +680,50 @@ public class UserAction {
 			u.setUsername(username);
 		}
 		u.setPhone(phone);
-		u.setStage("Î´ÌîÐ´");
-		u.setAddress("±±¾©");
-		u.setAddcity("º£µíÇø");
-		u.setNickname(username);// Ã»ÓÐÉèÖÃ¹ýÏÔÊ¾ÓÃ»§Ãû
-		u.setSchool("Î´ÌîÐ´");
+		u.setStage("Î´ï¿½ï¿½Ð´");
+		u.setAddress("ï¿½ï¿½ï¿½ï¿½");
+		u.setAddcity("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		u.setNickname(username);// Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½
+		u.setSchool("Î´ï¿½ï¿½Ð´");
 		u.setTime(util.getNowTime());
-		u.setCompetence(0);// ÆÕÍ¨ÓÃ»§
-		u.setGag(0);// ¿ÉÒÔ´´½¨ÂÛÌ³
+		u.setCompetence(0);// ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+		u.setGag(0);// ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 		if (userdao.byUsernameAccnumnoPhone(username) != null) {
-			System.out.println("´ËÓÃ»§Ãû  ÒÑ¾­×¢²á¹ý");
+			System.out.println("ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½  ï¿½Ñ¾ï¿½×¢ï¿½ï¿½ï¿½");
 			request.setAttribute("ue", username);
 			return Action.ERROR;
 		}
-		User macU=userdao.byIdMac();
-		if(macU!=null){
-			Integer ing=Integer.parseInt(macU.getAccnumno())+1;
-			accnumno=ing.toString();
-		}else{
-			accnumno="10000000";
+		User macU = userdao.byIdMac();
+		if (macU != null) {
+			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+			accnumno = ing.toString();
+		} else {
+			accnumno = "10000000";
 		}
-		System.out.println("ÍêÃÀID:"+accnumno);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ID:" + accnumno);
 		u.setAccnumno(accnumno);
 		userdao.save(u);
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
 		if (u == null) {
-			util.Out().print("Òì³£ÇëÖØÐÂ×¢²á");
+			util.Out().print("ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½");
 			return null;
 		}
 		pd.setUid(u.getId());
 		pd.setPassword(password);
 		userdao.save(pd);
 		session.setAttribute("u", u);
-		System.out.println("×¢²á³É¹¦" + "username:" + username + ",pw:" + password);
+		System.out
+				.println("×¢ï¿½ï¿½É¹ï¿½" + "username:" + username + ",pw:" + password);
 
-		// ×¢²á»·ÐÅ
+		// ×¢ï¿½á»·ï¿½ï¿½
 		u = userdao.byUsernameAccnumnoPhone(phone);
 		if (u != null) {
-			// ·â×°¸öjson
-			// »ñÈ¡tokenµÄ
+			// ï¿½ï¿½×°ï¿½ï¿½json
+			// ï¿½ï¿½È¡tokenï¿½ï¿½
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
-			// ÓÃ»§id
-			json.put("password", "123456"); // ÓÃ»§ÃÜÂë
+			// ï¿½Ã»ï¿½id
+			json.put("password", "123456"); // ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
 		}
@@ -731,15 +733,15 @@ public class UserAction {
 	}
 
 	/**
-	 * Ê¡¼¶¹ÜÀí Ä£ºý²éÑ¯userÐÅÏ¢
+	 * Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢
 	 */
 	public String getUsermhh() throws IOException {
 
 		User ue = (User) session.getAttribute("useradmin");
-		Map session = (Map) util.getsession();// ´´½¨ map
+		Map session = (Map) util.getsession();// ï¿½ï¿½ï¿½ï¿½ map
 
 		if (ue == null) {
-			util.Out().print("ÓÃ»§¹ÜÀíÎª¿Õ");
+			util.Out().print("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 			return null;
 		}
 		if (username.length() >= 1) {
@@ -755,7 +757,7 @@ public class UserAction {
 	}
 
 	/**
-	 * ¸øuser¸³ÓèÈ¨ÏÞ
+	 * ï¿½ï¿½userï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -763,8 +765,8 @@ public class UserAction {
 	public void SetQU() throws IOException, InterruptedException {
 
 		User ue = (User) session.getAttribute("useradmin");
-		System.out.println("Ê¡¼¶¹ÜÀí ¹ÜÀíÓÃ»§");
-		System.out.println("idÊÇ-" + id);
+		System.out.println("Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½");
+		System.out.println("idï¿½ï¿½-" + id);
 		u = userdao.byid(id);
 		if (u == null || ue == null) {
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -772,8 +774,8 @@ public class UserAction {
 			return;
 		}
 		if (u.getId().equals(ue.getId())) {
-			// util.Out().print("·Ç·¨²Ù×÷");
-			System.out.println("×Ô¼º²»¿ÉÒÔ¸ü¸Ä×Ô¼ºµÄÈ¨ÏÞ!");
+			// util.Out().print("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½");
+			System.out.println("ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½È¨ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/Judge/No.html");
 			return;
@@ -783,7 +785,7 @@ public class UserAction {
 					.getContextPath() + "/Judge/No.html");
 			return;
 		}
-		System.out.println("competence2ÊÇ-" + competence2);
+		System.out.println("competence2ï¿½ï¿½-" + competence2);
 		if (competence2 == 2) {
 
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -792,7 +794,7 @@ public class UserAction {
 			return;
 		}
 		if (competence2 == 3) {
-			// È¡ÏûÊÚÈ¨
+			// È¡ï¿½ï¿½ï¿½ï¿½È¨
 			u.setCompetence(0);
 			userdao.update(u);
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -811,8 +813,8 @@ public class UserAction {
 			u.setCompetence(competence2);
 
 			userdao.update(u);
-			util.Out().print("³É¹¦¸³ÓèÊÐ¼¶ÂÛÌ³¹ÜÀíÔ±È¨ÏÞ");
-			// µÈ´ý3s
+			util.Out().print("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±È¨ï¿½ï¿½");
+			// ï¿½È´ï¿½3s
 			// Thread.sleep(3000);
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/getUsera");
@@ -822,22 +824,22 @@ public class UserAction {
 	}
 
 	/**
-	 * ²éÑ¯userÐÅÏ¢
+	 * ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢
 	 */
 	public String getUserine() throws IOException {
 		User ue = (User) session.getAttribute("useradmin");
 
 		if (ue == null) {
-			util.Out().print("ÇëÖØÐÂµÇÈë");
+			util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½");
 			return null;
 		}
 
 		u = userdao.byUsernameAccnumnoPhone(username);
 		if (!u.getAddress().equals(ue.getAddress())) {
-			util.Out().print("Ã»ÓÐÈ¨ÏÞ");
+			util.Out().print("Ã»ï¿½ï¿½È¨ï¿½ï¿½");
 			return null;
 		}
-		System.out.println("²éÑ¯userÐÅÏ¢username:" + username);
+		System.out.println("ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢username:" + username);
 
 		request.setAttribute("u", u);
 		return Action.SUCCESS;
@@ -845,22 +847,23 @@ public class UserAction {
 	}
 
 	/**
-	 * »ñÈ¡userÐÅÏ¢
+	 * ï¿½ï¿½È¡userï¿½ï¿½Ï¢
 	 */
 	public String getUsera() throws IOException {
 		u = (User) session.getAttribute("useradmin");
 
 		if (u == null) {
-			util.Out().print("ÏµÍ³Òì³£");
+			util.Out().print("ÏµÍ³ï¿½ì³£");
 			return null;
 		}
 
-		competence2 = userdao.getUser(u.getAddress()).size();// »ñÈ¡ ¹²ÓÐ¶àÉÙÌõÊý¾Ý
+		competence2 = userdao.getUser(u.getAddress()).size();// ï¿½ï¿½È¡
+																// ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		if (competence2 % pageSize == 0) {
-			competence2 = competence2 / pageSize;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		} else {
-			competence2 = competence2 / pageSize + 1;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize + 1;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		}
 		if (currentPage >= competence2) {
 			currentPage = competence2;
@@ -879,22 +882,23 @@ public class UserAction {
 	}
 
 	/**
-	 * »ñÈ¡user¹ÜÀíÔ±ÐÅÏ¢
+	 * ï¿½ï¿½È¡userï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	 */
 	public String getUadmin() throws IOException {
 		u = (User) session.getAttribute("useradmin");
 
 		if (u == null) {
-			util.Out().print("ÏµÍ³Òì³£");
+			util.Out().print("ÏµÍ³ï¿½ì³£");
 			return null;
 		}
 
-		competence2 = userdao.getUseradmin(u.getAddress()).size();// »ñÈ¡ ¹²ÓÐ¶àÉÙÌõÊý¾Ý
+		competence2 = userdao.getUseradmin(u.getAddress()).size();// ï¿½ï¿½È¡
+																	// ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		if (competence2 % pageSize == 0) {
-			competence2 = competence2 / pageSize;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		} else {
-			competence2 = competence2 / pageSize + 1;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize + 1;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		}
 		if (currentPage >= competence2) {
 			currentPage = competence2;
@@ -913,23 +917,23 @@ public class UserAction {
 	}
 
 	/**
-	 * °´ÕÕÊ±¼ä²éÑ¯ µØÇø ÓÃ»§ÊýÁ¿
+	 * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String GetUsertimeares() throws IOException {
 
-		System.out.println("½øÈëGetUsertimeares·½·¨£¡ÓÃ»§ÃûÎª" + username);
-		System.out.println("ÆðÊ¼Ê±¼ä" + timeq);
-		System.out.println("½ØÖ¹Ê±¼ä" + timeh);
-		System.out.println("µØÇø" + addcity);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½GetUsertimearesï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Îª" + username);
+		System.out.println("ï¿½ï¿½Ê¼Ê±ï¿½ï¿½" + timeq);
+		System.out.println("ï¿½ï¿½Ö¹Ê±ï¿½ï¿½" + timeh);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½" + addcity);
 
 		u = (User) session.getAttribute("useradmin");
 		if (u != null) {
-			System.out.println("µØÇøÊÇ" + u.getAddress() + addcity);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + u.getAddress() + addcity);
 
 			if (u.getCompetence() == 1) {
-				System.out.println("ÊÐ¼¶");
+				System.out.println("ï¿½Ð¼ï¿½");
 
 				us = userdao.getUserAll(u.getAddress(), u.getAddcity(), timeq,
 						timeh);
@@ -938,7 +942,7 @@ public class UserAction {
 
 			else if (u.getCompetence() == 2) {
 
-				System.out.println("Ê¡¼¶");
+				System.out.println("Ê¡ï¿½ï¿½");
 
 				if (!addcity.equals("nu")) {
 
@@ -952,11 +956,11 @@ public class UserAction {
 
 			} else {
 
-				System.out.println("ÇëÖØÐÂµÇÈë");
-				util.Out().print("ÇëÖØÐÂµÇÈë");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½");
+				util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½");
 				return null;
 			}
-			System.out.println("ÓÐ" + us.size() + "¸öÓÃ»§");
+			System.out.println("ï¿½ï¿½" + us.size() + "ï¿½ï¿½ï¿½Ã»ï¿½");
 
 			request.setAttribute("GetUsertimeus", us);
 			request.setAttribute("timeq", timeq);
@@ -967,7 +971,7 @@ public class UserAction {
 	}
 
 	/**
-	 * Ê¡¼¶ÓëÊÐ¼¶ ÓÃ»§¹ÜÀíÔ± ²éÑ¯ÓÃ»§ÐÅÏ¢
+	 * Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 	 */
 
 	public String RegionalAdministrator() throws IOException {
@@ -979,14 +983,14 @@ public class UserAction {
 
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
-				util.Out().print("ÕËºÅ»òÃÜÂë´íÎó");
+				util.Out().print("ï¿½ËºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 				return null;
 			}
 			Password pd = userdao.login(u.getId(), password);
 			if (pd == null) {
-				System.out.println("ÃÜÂë²»¶Ô!");
-				util.Out().print("ÃÜÂë²»¶Ô!");
+				System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
+				util.Out().print("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
 				return null;
 			}
 
@@ -994,7 +998,7 @@ public class UserAction {
 			cpe = u.getCompetence();
 
 			if (cpe == 0) {
-				util.Out().print("ÄúÊÇÆÕÍ¨ÓÃ»§£¡ÇëÉý¼¶ÄúµÄÈ¨ÏÞ");
+				util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½");
 
 				return null;
 			}
@@ -1020,25 +1024,25 @@ public class UserAction {
 
 			for (int c = 0; c < a.size(); c++) {
 
-				System.out.println("Ê¡¸ÃµÄÊÐÎª" + c + u.getAddress() + a.get(c));
+				System.out.println("Ê¡ï¿½Ãµï¿½ï¿½ï¿½Îª" + c + u.getAddress() + a.get(c));
 			}
 
-			// ½ñÌì
+			// ï¿½ï¿½ï¿½ï¿½
 			String time0 = util.getNumTime(-1);
-			// ÆßÌìÇ°
+			// ï¿½ï¿½ï¿½ï¿½Ç°
 			String time7 = util.getNumTime(7);
-			// Ò»¸öÔÂÇ°
+			// Ò»ï¿½ï¿½ï¿½ï¿½Ç°
 			String time30 = util.getNumTime(30);
-			// Ò»ÄêÇ°
+			// Ò»ï¿½ï¿½Ç°
 			String time365 = util.getNumTime(365);
-			System.out.println("½ñÌì" + time0);
-			System.out.println("7ÌìÇ°" + time7);
-			System.out.println("30ÌìÇ°" + time30);
-			System.out.println("365ÌìÇ°" + time365);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + time0);
+			System.out.println("7ï¿½ï¿½Ç°" + time7);
+			System.out.println("30ï¿½ï¿½Ç°" + time30);
+			System.out.println("365ï¿½ï¿½Ç°" + time365);
 
 			for (int c = 0; c < a.size(); c++) {
 				System.out.println("a" + a.get(c).toString() + c);
-				// ²éÑ¯30ÌìÒÔÄÚ
+				// ï¿½ï¿½Ñ¯30ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int i30 = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString(), time30, time0).size();
 				// 7
@@ -1048,16 +1052,16 @@ public class UserAction {
 				int i365 = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString(), time365, time0).size();
 
-				// ½ñÌì
+				// ï¿½ï¿½ï¿½ï¿½
 				int i0 = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString(), util.getNumTime(0), time0).size();
-				// È«²¿
+				// È«ï¿½ï¿½
 				int all = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString()).size();
 				System.out.println(u.getAddress() + a.get(c).toString() + i0
 						+ i7 + i30 + i365 + all);
-				// ²éÑ¯ÊÇ·ñÓÐ
-				System.out.println("Ë¢ÐÂµØÇøÎª" + u.getAddress()
+				// ï¿½ï¿½Ñ¯ï¿½Ç·ï¿½ï¿½ï¿½
+				System.out.println("Ë¢ï¿½Âµï¿½ï¿½ï¿½Îª" + u.getAddress()
 						+ a.get(c).toString());
 				Registrationsa rg = new Registrationsa();
 
@@ -1089,7 +1093,8 @@ public class UserAction {
 			if (cpe == 1) {
 
 				Registrationsa rga = new Registrationsa();
-				System.out.println("²é¿´µÄ³ÇÊÐÊÇ" + u.getAddress() + u.getAddcity());
+				System.out.println("ï¿½é¿´ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½" + u.getAddress()
+						+ u.getAddcity());
 
 				rga = regdao.addressty(u.getAddress(), u.getAddcity());
 				System.out.println("rg" + rga.getAddress());
@@ -1104,60 +1109,17 @@ public class UserAction {
 				session.setAttribute("lg", lg);
 				return Action.SUCCESS;
 			}
-			util.Out().print("Ã»ÓÐÈ¨ÏÞ!");
+			util.Out().print("Ã»ï¿½ï¿½È¨ï¿½ï¿½!");
 			return null;
 		} catch (Exception e) {
-			util.Out().print("Òì³£" + e.getMessage());
+			util.Out().print("ï¿½ì³£" + e.getMessage());
 		}
 		return null;
 
 	}
 
 	/**
-	 * ÓÃ»§ÉÏ´« Í·Ïñ
-	 * 
-	 * @throws IOException
-	 */
-
-	public void HeadPortrait() throws IOException {
-		System.out.println("½øÈëHeadPortrait" + username);
-		if (username != null) {
-
-			u = userdao.byUsernameAccnumnoPhone(username);
-			if (u == null) {
-				util.Out().print("null");
-				return;
-			}
-			String path = u.getImg();
-			Boolean b = true;
-			if (path != null) {
-				b = util.fileRemove(path);
-			}
-			System.out.println("Í·ÏñÉ¾³ýÊÇ·ñ³É¹¦£¿" + b);
-			System.out.println("username=" + username);
-			if (file != null && u != null) {
-
-				path = "/IMG/Userimg/" + u.getId();
-				String pah = util.ufileToServer(path, file, "jpg");
-				System.out.println(pah);
-				u.setImg(pah);
-				userdao.update(u);
-				System.out.println("Í·ÏñÉÏ´«³É¹¦");
-
-				util.Out().print(pah);
-			} else {
-				util.Out().print("nullm");
-				System.out.println("Ã»ÓÐ»ñÈ¡µ½Í¼Æ¬");
-			}
-		} else {
-			util.Out().print("nullu");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÓÃ»§Ãû");
-		}
-
-	}
-
-	/**
-	 * ÉèÖÃ ½ûÖ¹ÓÃ»§´´½¨ÂÛÌ³
+	 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 	 * 
 	 * @throws IOException
 	 */
@@ -1167,26 +1129,26 @@ public class UserAction {
 		System.out.println("gag==" + gag);
 		if (gag == 1) {
 			u.setGag(1);
-			util.Out().print("¶ÔÓÃ»§" + username + "½ûÑÔ³É¹¦");
+			util.Out().print("ï¿½ï¿½ï¿½Ã»ï¿½" + username + "ï¿½ï¿½ï¿½Ô³É¹ï¿½");
 		} else {
 			u.setGag(0);
-			util.Out().print("¶ÔÓÃ»§" + username + "È¡Ïû½ûÑÔ³É¹¦");
+			util.Out().print("ï¿½ï¿½ï¿½Ã»ï¿½" + username + "È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ô³É¹ï¿½");
 		}
 		userdao.update(u);
 	}
 
 	/**
-	 * ²éÑ¯userÐÅÏ¢
+	 * ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢
 	 */
 	public String getUserin() throws IOException {
 
 		u = userdao.byid(id);
 		if (u == null) {
-			util.Out().print("Ã»ÓÐÕâ¸öÓÃ»§");
+			util.Out().print("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½");
 			return null;
 
 		}
-		System.out.println("²éÑ¯userÐÅÏ¢userid:" + id);
+		System.out.println("ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢userid:" + id);
 
 		request.setAttribute("u", u);
 		return Action.SUCCESS;
@@ -1194,7 +1156,7 @@ public class UserAction {
 	}
 
 	/**
-	 * Ä£ºý²éÑ¯userÐÅÏ¢
+	 * Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯userï¿½ï¿½Ï¢
 	 */
 	public String getUsermh() throws IOException {
 
@@ -1222,16 +1184,16 @@ public class UserAction {
 	}
 
 	/**
-	 * »ñÈ¡user¹ÜÀíÔ±ÐÅÏ¢
+	 * ï¿½ï¿½È¡userï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢
 	 */
 	public String getUseradmin() throws IOException {
 
-		competence2 = userdao.getUseradmin().size();// »ñÈ¡ ¹²ÓÐ¶àÉÙÌõÊý¾Ý
+		competence2 = userdao.getUseradmin().size();// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		if (competence2 % pageSize == 0) {
-			competence2 = competence2 / pageSize;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		} else {
-			competence2 = competence2 / pageSize + 1;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize + 1;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		}
 		if (currentPage >= competence2) {
 			currentPage = competence2;
@@ -1250,18 +1212,18 @@ public class UserAction {
 	}
 
 	/**
-	 * ¸øuser¸³ÓèÈ¨ÏÞ
+	 * ï¿½ï¿½userï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void SetQ() throws IOException {
 
-		System.out.println("idÊÇ-" + id);
+		System.out.println("idï¿½ï¿½-" + id);
 		u = userdao.byid(id);
 
-		System.out.println("competence2ÊÇ-" + competence2);
+		System.out.println("competence2ï¿½ï¿½-" + competence2);
 		if (competence2 == 3) {
-			util.Out().print("³É¹¦³·ÏúÂÛÌ³¹ÜÀíÔ±È¨ÏÞ");
+			util.Out().print("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±È¨ï¿½ï¿½");
 
 			u.setCompetence(0);
 			userdao.update(u);
@@ -1271,11 +1233,11 @@ public class UserAction {
 		}
 		if (competence2 == 2) {
 			if (u.getAddress() == null) {
-				util.Out().print("¸ÃÓÃ»§Ê¡¼¶Îª¿Õ£¡");
+				util.Out().print("ï¿½ï¿½ï¿½Ã»ï¿½Ê¡ï¿½ï¿½Îªï¿½Õ£ï¿½");
 				return;
 			}
 			u.setCompetence(competence2);
-			util.Out().print("³É¹¦¸³ÓèÊ¡¼¶ÂÛÌ³¹ÜÀíÔ±È¨ÏÞ");
+			util.Out().print("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±È¨ï¿½ï¿½");
 
 			userdao.update(u);
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -1284,11 +1246,11 @@ public class UserAction {
 		}
 		if (competence2 == 1) {
 			if (u.getAddcity() == null) {
-				util.Out().print("¸ÃÓÃ»§ÊÐ¼¶Îª¿Õ!");
+				util.Out().print("ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ð¼ï¿½Îªï¿½ï¿½!");
 				return;
 			}
 			u.setCompetence(competence2);
-			util.Out().print("³É¹¦¸³ÓèÊÐ¼¶ÂÛÌ³¹ÜÀíÔ±È¨ÏÞ");
+			util.Out().print("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±È¨ï¿½ï¿½");
 
 			userdao.update(u);
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -1298,7 +1260,7 @@ public class UserAction {
 		if (competence2 == 4) {
 
 			u.setCompetence(competence2);
-			util.Out().print("³É¹¦¸³Óè½ÌÊÚ");
+			util.Out().print("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 			userdao.update(u);
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -1309,16 +1271,16 @@ public class UserAction {
 	}
 
 	/**
-	 * »ñÈ¡userÐÅÏ¢
+	 * ï¿½ï¿½È¡userï¿½ï¿½Ï¢
 	 */
 	public String getUser() throws IOException {
 		/**
-		 * competence2 = userdao.getUser().size();// »ñÈ¡ ¹²ÓÐ¶àÉÙÌõÊý¾Ý
+		 * competence2 = userdao.getUser().size();// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		 * 
 		 * if (competence2 % pageSize == 0) { competence2 = competence2 /
-		 * pageSize;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³ } else { competence2 = competence2 / pageSize +
-		 * 1;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³ } if (currentPage >= competence2) { currentPage =
-		 * competence2; }
+		 * pageSize;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³ } else { competence2 = competence2 /
+		 * pageSize + 1;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³ } if (currentPage >= competence2) {
+		 * currentPage = competence2; }
 		 */
 		if (currentPage < 1) {
 			currentPage = 1;
@@ -1334,7 +1296,7 @@ public class UserAction {
 	}
 
 	/**
-	 * ÓÃ»§ÂÛÌ³¹ÜÀíÔ±»§µÇÈë ÑéÖ¤
+	 * ï¿½Ã»ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤
 	 * 
 	 * @throws IOException
 	 */
@@ -1347,13 +1309,13 @@ public class UserAction {
 
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
-				util.Out().print("ÕËºÅ»òÃÜÂë´íÎó");
+				util.Out().print("ï¿½ËºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 				return;
 			}
 			Password pd = userdao.login(u.getId(), password);
 			if (pd == null) {
-				System.out.println("ÃÜÂë²»¶Ô!");
+				System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
 				util.Out().print(false);
 				return;
 			}
@@ -1362,7 +1324,7 @@ public class UserAction {
 			cpe = u.getCompetence();
 
 			if (cpe == 0) {
-				util.Out().print("ÄúÊÇÆÕÍ¨ÓÃ»§£¡ÇëÉý¼¶ÄúµÄÈ¨ÏÞ");
+				util.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½");
 
 				return;
 			}
@@ -1403,32 +1365,32 @@ public class UserAction {
 	}
 
 	/**
-	 * ÓÃ»§µÇÈë ÑéÖ¤
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤
 	 * 
 	 * @throws IOException
 	 */
 	public void Login() throws IOException {
 		try {
 
-			System.out.println("½øÈëLogin");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Login");
 
-			System.out.println("ÓÃ»§Ãû" + username);
-			System.out.println("ÃÜÂë" + password);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½" + username);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + password);
 
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
-				System.out.println("ÕË»§Îª¿Õ");
+				System.out.println("ï¿½Ë»ï¿½Îªï¿½ï¿½");
 				util.Out().print("null");
 				return;
 			}
 			Password pd = userdao.login(u.getId(), password);
 			if (pd == null) {
-				System.out.println("ÃÜÂë²»¶Ô!");
+				System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
 				util.Out().print(false);
 				return;
 			}
 
-			System.out.println("µÇÈë³É¹¦£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1443,7 +1405,7 @@ public class UserAction {
 			userdao.update(u);
 			u.setPassword(pd.getPassword());
 			util.Out().print(util.ToJson(u));
-			// ¸üÐÂÔÚÏßÓÃ»§ÊýÁ¿
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			time = util.getNumTime(0);
 			String url = "";
 			if (province != null) {
@@ -1461,32 +1423,32 @@ public class UserAction {
 	}
 
 	/**
-	 * ÓÃ»§µÇÈë ÑéÖ¤
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤
 	 * 
 	 * @throws IOException
 	 */
 	public void newLogin() throws IOException {
 		try {
 
-			System.out.println("½øÈënewLogin");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½newLogin");
 
-			System.out.println("ÓÃ»§Ãû" + username);
-			System.out.println("ÃÜÂë" + password);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½" + username);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + password);
 
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
-				System.out.println("ÕË»§Îª¿Õ");
+				System.out.println("ï¿½Ë»ï¿½Îªï¿½ï¿½");
 				util.Out().print("null");
 				return;
 			}
 			Password pd = userdao.login(u.getId(), password);
 			if (pd == null) {
-				System.out.println("ÃÜÂë²»¶Ô!");
+				System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
 				util.Out().print("false");
 				return;
 			}
 
-			System.out.println("µÇÈë³É¹¦£¡");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1510,28 +1472,28 @@ public class UserAction {
 	}
 
 	/**
-	 * syn ÓÃ»§µÇÈë
+	 * syn ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 * @throws NoSuchAlgorithmException
 	 */
 	public void synLogin() throws IOException, NoSuchAlgorithmException {
 
-		System.out.println("½øÈësynLogin");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½synLogin");
 
-		System.out.println("ÓÃ»§Ãû" + username);
-		System.out.println("ÃÜÂë" + password);
+		System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½" + username);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½" + password);
 		os = "web";
 		u = userdao.byUsernameAccnumnoPhone(username);
 		if (u == null) {
-			System.out.println("ÕË»§Îª¿Õ");
+			System.out.println("ï¿½Ë»ï¿½Îªï¿½ï¿½");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
 			return;
 		}
 		Password pd = userdao.login(u.getId(), password);
 		if (pd == null) {
-			System.out.println("ÃÜÂë²»¶Ô!");
+			System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
 			return;
@@ -1554,7 +1516,7 @@ public class UserAction {
 
 			userdao.update(u);
 			// u.setPassword(pd.getPassword());
-			// ¸üÐÂÔÚÏßÓÃ»§ÊýÁ¿
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			time = util.getNumTime(0);
 
 			session.setAttribute("u", u);
@@ -1574,28 +1536,28 @@ public class UserAction {
 	}
 
 	/**
-	 * WEB ÓÃ»§µÇÈë ÑéÖ¤
+	 * WEB ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤
 	 * 
 	 * @throws IOException
 	 * @throws NoSuchAlgorithmException
 	 */
 	public String webLogin() throws IOException, NoSuchAlgorithmException {
 
-		System.out.println("½øÈëwebLogin");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½webLogin");
 
-		System.out.println("ÓÃ»§Ãû" + username);
-		System.out.println("ÃÜÂë" + password);
+		System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½" + username);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½" + password);
 
 		u = userdao.byUsernameAccnumnoPhone(username);
 		if (u == null) {
-			System.out.println("ÕË»§Îª¿Õ");
-			util.Out().print("ÕË»§Îª¿Õ");
+			System.out.println("ï¿½Ë»ï¿½Îªï¿½ï¿½");
+			util.Out().print("ï¿½Ë»ï¿½Îªï¿½ï¿½");
 			return null;
 		}
 		Password pd = userdao.login(u.getId(), password);
 		if (pd == null) {
-			System.out.println("ÃÜÂë²»¶Ô!");
-			util.Out().print("ÃÜÂë²»¶Ô");
+			System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½!");
+			util.Out().print("ï¿½ï¿½ï¿½ë²»ï¿½ï¿½");
 			return null;
 		}
 
@@ -1616,14 +1578,14 @@ public class UserAction {
 			u.setOs(os);
 			userdao.update(u);
 			// u.setPassword(pd.getPassword());
-			// ¸üÐÂÔÚÏßÓÃ»§ÊýÁ¿
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			time = util.getNumTime(0);
 
 			session.setAttribute("u", u);
 
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
-			System.out.println("×ª·¢×ßÁË");
+			System.out.println("×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			String url = "";
 			if (u.getAddress() != null) {
 				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
@@ -1639,31 +1601,31 @@ public class UserAction {
 	}
 
 	/**
-	 * Í¨¹ýÊÖ»úºÅÕÒ»ØÃÜÂëÕÒ»ØÃÜÂë
+	 * Í¨ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void appSendCodePasswrod() throws IOException {
 		try {
-			System.out.println("½øÈëappSendCodePasswrod");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½appSendCodePasswrod");
 			//
 			String regp = "[0-9]{11}";
 			if (phone == null) {
-				System.out.println("ÊÖ»úºÅ¿Õ£¡");
+				System.out.println("ï¿½Ö»ï¿½ï¿½Å¿Õ£ï¿½");
 				util.Out().print("null");
 				return;
 			}
 			if (!phone.matches(regp)) {
-				System.out.println("ÊÖ»úºÅ¸ñÊ½²»¶Ô£¡");
+				System.out.println("ï¿½Ö»ï¿½ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 				util.Out().print("null");
 				return;
 			}
 
-			System.out.println("½øÈëappSendCode£¬ÊÖ»úºÅÎª:" + phone);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½appSendCodeï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Îª:" + phone);
 
-			System.out.println("½øÈëÊ±¼ä" + util.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½" + util.getNowTime());
 
-			System.out.println("ÊÖ»úºÅ" + phone);
+			System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½" + phone);
 			if (userdao.byUsernameAccnumnoPhone(phone) == null) {
-				System.out.println("´ËÊÖ»úºÅÃ»ÓÐ×¢²á¹ý");
+				System.out.println("ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½×¢ï¿½ï¿½ï¿½");
 
 				util.Out().print(false);
 
@@ -1674,28 +1636,28 @@ public class UserAction {
 
 			session.setAttribute("app_code", String.valueOf(num));
 			session.setMaxInactiveInterval(90);
-			System.out.println("1ÕýÈ·ÑéÖ¤ÂëÎª" + num);
+			System.out.println("1ï¿½ï¿½È·ï¿½ï¿½Ö¤ï¿½ï¿½Îª" + num);
 
-			String content = new String("ÄúµÄÑéÖ¤ÂëÊÇ£º" + num
-					+ "¡£Çë²»Òª°ÑÑéÖ¤ÂëÐ¹Â¶¸øÆäËûÈË¡£Èç·Ç±¾ÈË²Ù×÷£¬¿É²»ÓÃÀí»á£¡");
+			String content = new String("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Ç£ï¿½" + num
+					+ "ï¿½ï¿½ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ð¹Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½á£¡");
 			util.setphone(phone, content);
 			util.Out().print(true);
 
 		} catch (Exception e) {
-			// TODO: handle exceptionÃÜÂëÊÇ
+			// TODO: handle exceptionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * Ïò ÊÖ»úºÅ ·¢ËÍÑéÖ¤ phone
+	 * ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ phone
 	 * 
 	 * @throws IOException
 	 */
 	public void appSendCode() throws IOException {
 		try {
-			System.out.println("½øÈëappSendCode");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½appSendCode");
 			System.out.println("phone:" + phone);
 			//
 			String regp = "[0-9]{11}";
@@ -1707,18 +1669,18 @@ public class UserAction {
 			}
 
 			if (!phone.matches(regp)) {
-				System.out.println("ÊÖ»úºÅ¸ñÊ½²»¶Ô£¡");
+				System.out.println("ï¿½Ö»ï¿½ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 				util.Out().print("null");
 				return;
 			}
 
-			System.out.println("½øÈëappSendCode£¬ÊÖ»úºÅÎª:" + phone);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½appSendCodeï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Îª:" + phone);
 
-			System.out.println("½øÈëÊ±¼ä" + util.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½" + util.getNowTime());
 
-			System.out.println("ÊÖ»úºÅ" + phone);
+			System.out.println("ï¿½Ö»ï¿½ï¿½ï¿½" + phone);
 			if (userdao.byUsernameAccnumnoPhone(phone) != null) {
-				System.out.println("´ËÊÖ»úºÅ  ÒÑ¾­×¢²á¹ý");
+				System.out.println("ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½  ï¿½Ñ¾ï¿½×¢ï¿½ï¿½ï¿½");
 
 				util.Out().print(false);
 
@@ -1729,10 +1691,10 @@ public class UserAction {
 
 			session.setAttribute("app_code", String.valueOf(num));
 			session.setMaxInactiveInterval(90);
-			System.out.println("1ÕýÈ·ÑéÖ¤ÂëÎª" + num);
+			System.out.println("1ï¿½ï¿½È·ï¿½ï¿½Ö¤ï¿½ï¿½Îª" + num);
 
-			String content = new String("ÄúµÄÑéÖ¤ÂëÊÇ£º" + num
-					+ "¡£Çë²»Òª°ÑÑéÖ¤ÂëÐ¹Â¶¸øÆäËûÈË¡£Èç·Ç±¾ÈË²Ù×÷£¬¿É²»ÓÃÀí»á£¡");
+			String content = new String("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Ç£ï¿½" + num
+					+ "ï¿½ï¿½ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ð¹Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½á£¡");
 			util.setphone(phone, content);
 			util.Out().print(true);
 
@@ -1744,31 +1706,31 @@ public class UserAction {
 	}
 
 	/**
-	 * ÅÐ¶ÏÑéÖ¤Âë ÊÇ·ñÕýÈ·
+	 * ï¿½Ð¶ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ ï¿½Ç·ï¿½ï¿½ï¿½È·
 	 * 
 	 * @throws IOException
 	 */
 	public void appCheckCode() throws IOException {
 		try {
 
-			System.out.println("ÅÐ¶ÏÊ±¼ä" + util.getNowTime());
+			System.out.println("ï¿½Ð¶ï¿½Ê±ï¿½ï¿½" + util.getNowTime());
 
 			String codes = (String) session.getAttribute("app_code");
 
-			System.out.println("sessionÖÐ!ÕýÈ·ÑéÖ¤ÂëÎª" + codes);
-			System.out.println("ÓÃ»§ÊäÈëµÄÑéÖ¤ÂëcodeÎª" + code);
+			System.out.println("sessionï¿½ï¿½!ï¿½ï¿½È·ï¿½ï¿½Ö¤ï¿½ï¿½Îª" + codes);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½codeÎª" + code);
 
 			if (codes == null) {
-				System.out.println("sessionÒÑ¹ýÆÚ");
+				System.out.println("sessionï¿½Ñ¹ï¿½ï¿½ï¿½");
 				util.Out().print("null");
 				return;
 			}
 			if (codes.equalsIgnoreCase(code)) {
-				System.out.println("ÑéÖ¤Âë" + code + "ÕýÈ·");
+				System.out.println("ï¿½ï¿½Ö¤ï¿½ï¿½" + code + "ï¿½ï¿½È·");
 				util.Out().print(true);
 				session.invalidate();
 			} else {
-				System.out.println("ÑéÖ¤Âë" + code + "´íÎó");
+				System.out.println("ï¿½ï¿½Ö¤ï¿½ï¿½" + code + "ï¿½ï¿½ï¿½ï¿½");
 				util.Out().print(false);
 			}
 
@@ -1779,19 +1741,18 @@ public class UserAction {
 	}
 
 	/**
-	 * ÐÂÓÃ»§×¢²á username password phone ²»¿ÉÒÔÎªnull
+	 * ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½ username password phone ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªnull
 	 * 
 	 * @throws IOException
 	 */
 	public void save() throws IOException {
 		try {
-			// ÑéÖ¤ÓÃ»§Ãû
+			// ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			
 
 			if (username != null) {
 				if (!username.matches(reg)) {
-					System.out.println("ÓÃ»§Ãû¸ñÊ½²»¶Ô£¡");
+					System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 					util.Out().print(false);
 					return;
 				}
@@ -1802,10 +1763,10 @@ public class UserAction {
 				return;
 
 			}
-			// ÑéÖ¤ÃÜÂë
+			// ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 			reg = "[A-Za-z0-9_]{6,18}";
 			if (!password.matches(reg)) {
-				System.out.println("ÃÜÂë¸ñÊ½²»¶Ô£¡");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 				util.Out().print(false);
 				return;
 			}
@@ -1816,42 +1777,42 @@ public class UserAction {
 			}
 			String regp = "[0-9]{11}";
 			if (!phone.matches(regp)) {
-				System.out.println("ÊÖ»úºÅ¸ñÊ½²»¶Ô£¡");
+				System.out.println("ï¿½Ö»ï¿½ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 				util.Out().print(false);
 				return;
 			}
 
-			System.out.println("ÓÃ»§Ãû:" + username);
-			System.out.println("ÃÜÂë:" + password);
-			System.out.println("ÓÃ»§ºÅ:" + accnumno);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" + username);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½:" + password);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" + accnumno);
 			if (nickname != null) {
 				u.setNickname(nickname);
 			} else {
-				u.setNickname("Î´ÉèÖÃ");
+				u.setNickname("Î´ï¿½ï¿½ï¿½ï¿½");
 			}
 			if (username != null) {
 				u.setUsername(username);
-				u.setNickname(username);// Ã»ÓÐÉèÖÃ¹ýÏÔÊ¾ÓÃ»§Ãû
+				u.setNickname(username);// Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½
 			}
 
 			u.setAccnumno(accnumno);
 			u.setPhone(phone);
-			u.setStage("Î´ÌîÐ´");
+			u.setStage("Î´ï¿½ï¿½Ð´");
 			if (address == null) {
-				u.setAddress("±±¾©");
-				u.setAddcity("º£µíÇø");
+				u.setAddress("ï¿½ï¿½ï¿½ï¿½");
+				u.setAddcity("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			} else {
 				u.setAddress(address);
-				u.setAddcity("Î´ÉèÖÃ");
+				u.setAddcity("Î´ï¿½ï¿½ï¿½ï¿½");
 			}
 
 			u.setFinaltime(time);
-			u.setSchool("Î´ÌîÐ´");
+			u.setSchool("Î´ï¿½ï¿½Ð´");
 			u.setOs(os);
 			u.setOnline(1);
 			u.setTime(time);
-			u.setCompetence(0);// ÆÕÍ¨ÓÃ»§
-			u.setGag(0);// ¿ÉÒÔ´´½¨ÂÛÌ³
+			u.setCompetence(0);// ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+			u.setGag(0);// ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 			if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 				util.Out().print(false);
 				return;
@@ -1862,20 +1823,20 @@ public class UserAction {
 				return;
 
 			}
-			User macU=userdao.byIdMac();
-			if(macU!=null){
-				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
-				accnumno=ing.toString();
-			}else{
-				accnumno="10000000";
+			User macU = userdao.byIdMac();
+			if (macU != null) {
+				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+				accnumno = ing.toString();
+			} else {
+				accnumno = "10000000";
 			}
-			System.out.println("ÍêÃÀID:"+accnumno);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ID:" + accnumno);
 			u.setAccnumno(accnumno);
 			userdao.save(u);
-			System.out.println("×¢²á³É¹¦ phone" + phone + "accnumno:" + accnumno
+			System.out.println("×¢ï¿½ï¿½É¹ï¿½ phone" + phone + "accnumno:" + accnumno
 					+ ",pw:" + password);
 
-			// ×¢²á»·ÐÅ
+			// ×¢ï¿½á»·ï¿½ï¿½
 			u = userdao.byUsernameAccnumnoPhone(phone);
 			if (u != null) {
 				if (file != null) {
@@ -1885,16 +1846,16 @@ public class UserAction {
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
-					System.out.println("Ã»ÓÐ»ñÈ¡µ½Í·Ïñ!");
+					System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½Í·ï¿½ï¿½!");
 				}
 				pd.setUid(u.getId());
 				pd.setPassword(password);
 				userdao.save(pd);
 				JSONObject json = new JSONObject();
 				json.put("username", u.getId());
-				// ÓÃ»§id
+				// ï¿½Ã»ï¿½id
 				json.put("password", "123456");
-				// ÓÃ»§ÃÜÂë
+				// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 				String w = WechatKit.post(url, json,
 						RefreshAccessToken.access_token);
 				System.out.println(w);
@@ -1915,7 +1876,7 @@ public class UserAction {
 	}
 
 	/**
-	 * ÐÂÓÃ»§×¢²á Í¨¹ýmac ÃÜÂëÎªÍêÃÀID
+	 * ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½ Í¨ï¿½ï¿½mac ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ID
 	 * 
 	 * @throws IOException
 	 * @throws JSONException
@@ -1927,41 +1888,40 @@ public class UserAction {
 			util.Out().print(util.ToJson(u));
 			return;
 		}
-		
-		
+
 		u = new User();
-		
+
 		u.setMac(mac);
-		u.setStage("Î´ÌîÐ´");
+		u.setStage("Î´ï¿½ï¿½Ð´");
 		if (address == null) {
-			u.setAddress("±±¾©");
-			u.setAddcity("º£µíÇø");
+			u.setAddress("ï¿½ï¿½ï¿½ï¿½");
+			u.setAddcity("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		} else {
 			u.setAddress(address);
-			u.setAddcity("Î´ÉèÖÃ");
+			u.setAddcity("Î´ï¿½ï¿½ï¿½ï¿½");
 		}
 
 		u.setFinaltime(time);
-		u.setSchool("Î´ÌîÐ´");
-		//u.setOs(os);
+		u.setSchool("Î´ï¿½ï¿½Ð´");
+		// u.setOs(os);
 		u.setOnline(1);
 		u.setTime(time);
-		u.setCompetence(0);// ÆÕÍ¨ÓÃ»§
-		u.setGag(0);// ¿ÉÒÔ´´½¨ÂÛÌ³
-		User macU=userdao.byIdMac();
-		if(macU!=null){
-			Integer ing=Integer.parseInt(macU.getAccnumno())+1;
-			accnumno=ing.toString();
-		}else{
-			accnumno="10000000";
+		u.setCompetence(0);// ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+		u.setGag(0);// ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
+		User macU = userdao.byIdMac();
+		if (macU != null) {
+			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+			accnumno = ing.toString();
+		} else {
+			accnumno = "10000000";
 		}
-		System.out.println("ÍêÃÀID:"+accnumno);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ID:" + accnumno);
 		u.setAccnumno(accnumno);
 		userdao.save(u);
-		System.out.println("×¢²á³É¹¦ phone" + phone + "accnumno:" + accnumno
+		System.out.println("×¢ï¿½ï¿½É¹ï¿½ phone" + phone + "accnumno:" + accnumno
 				+ ",pw:" + password);
 
-		// ×¢²á»·ÐÅ
+		// ×¢ï¿½á»·ï¿½ï¿½
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
 		if (u != null) {
 			if (file != null) {
@@ -1971,16 +1931,16 @@ public class UserAction {
 				u.setImg(pah);
 				userdao.update(u);
 			} else {
-				System.out.println("Ã»ÓÐ»ñÈ¡µ½Í·Ïñ!");
+				System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½Í·ï¿½ï¿½!");
 			}
 			pd.setUid(u.getId());
-			pd.setPassword(accnumno.toString());//³õÊ¼ÃÜÂë 
+			pd.setPassword(accnumno.toString());// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			userdao.save(pd);
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
-			// ÓÃ»§id
+			// ï¿½Ã»ï¿½id
 			json.put("password", "123456");
-			// ÓÃ»§ÃÜÂë
+			// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
 			System.out.println(w);
@@ -1998,7 +1958,7 @@ public class UserAction {
 	}
 
 	/**
-	 * ÐÂÓÃ»§×¢²á username password phone ²»¿ÉÒÔÎªnull
+	 * ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½ username password phone ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªnull
 	 * 
 	 * @throws IOException
 	 */
@@ -2010,9 +1970,8 @@ public class UserAction {
 				util.Out().print("keynull");
 				return;
 			}
-			// ÑéÖ¤ÓÃ»§Ãû
+			// ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½
 			// String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-		
 
 			if (username == null) {
 				util.Out().print("ufalse");
@@ -2025,15 +1984,16 @@ public class UserAction {
 
 			}
 			/**
-			 * // ÑéÖ¤ÃÜÂë reg = "[A-Za-z0-9_]{6,18}"; if (!password.matches(reg)) {
-			 * System.out.println("ÃÜÂë¸ñÊ½²»¶Ô£¡"); util.Out().print(false); return; }
+			 * // ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ reg = "[A-Za-z0-9_]{6,18}"; if
+			 * (!password.matches(reg)) { System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
+			 * util.Out().print(false); return; }
 			 * 
 			 * 
 			 * if (phone == null) { util.Out().print(false); return; }
 			 * 
 			 * String regp = "[0-9]{11}"; if (!phone.matches(regp)) {
-			 * System.out.println("ÊÖ»úºÅ¸ñÊ½²»¶Ô£¡"); util.Out().print(false); return;
-			 * }
+			 * System.out.println("ï¿½Ö»ï¿½ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½"); util.Out().print(false);
+			 * return; }
 			 * 
 			 * if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 			 * util.Out().print(false); return;
@@ -2041,12 +2001,12 @@ public class UserAction {
 			 * }
 			 */
 
-			System.out.println("ÓÃ»§Ãû:" + username);
-			System.out.println("ÃÜÂë:" + password);
-			System.out.println("ÓÃ»§ºÅ:" + accnumno);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" + username);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½:" + password);
+			System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½:" + accnumno);
 			if (username != null) {
 				u.setUsername(username);
-				u.setNickname(username);// Ã»ÓÐÉèÖÃ¹ýÏÔÊ¾ÓÃ»§Ãû
+				u.setNickname(username);// Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½Ê¾ï¿½Ã»ï¿½ï¿½ï¿½
 			}
 			if (nickname != null) {
 				u.setNickname(nickname);
@@ -2056,33 +2016,33 @@ public class UserAction {
 			u.setOs("syn");
 			u.setAccnumno(accnumno);
 			u.setPhone(phone);
-			u.setStage("Î´ÌîÐ´");
+			u.setStage("Î´ï¿½ï¿½Ð´");
 			u.setAddress(address);
 			u.setAddcity(addcity);
 			u.setFinaltime(time);
-			u.setSchool("Î´ÌîÐ´");
+			u.setSchool("Î´ï¿½ï¿½Ð´");
 			u.setTime(time);
-			u.setCompetence(0);// ÆÕÍ¨ÓÃ»§
-			u.setGag(0);// ¿ÉÒÔ´´½¨ÂÛÌ³
+			u.setCompetence(0);// ï¿½ï¿½Í¨ï¿½Ã»ï¿½
+			u.setGag(0);// ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
 			if (userdao.byUsernameAccnumnoPhone(username) != null) {
 				util.Out().print(false);
 				return;
 
 			}
-			User macU=userdao.byIdMac();
-			if(macU!=null){
-				Integer ing=Integer.parseInt(macU.getAccnumno())+1;
-				accnumno=ing.toString();
-			}else{
-				accnumno="10000000";
+			User macU = userdao.byIdMac();
+			if (macU != null) {
+				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+				accnumno = ing.toString();
+			} else {
+				accnumno = "10000000";
 			}
-			System.out.println("ÍêÃÀID:"+accnumno);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ID:" + accnumno);
 			u.setAccnumno(accnumno);
 			userdao.save(u);
-			System.out.println("×¢²á³É¹¦ phone" + phone + "accnumno:" + accnumno
+			System.out.println("×¢ï¿½ï¿½É¹ï¿½ phone" + phone + "accnumno:" + accnumno
 					+ ",pw:" + password);
 
-			// ×¢²á»·ÐÅ
+			// ×¢ï¿½á»·ï¿½ï¿½
 			u = userdao.byUsernameAccnumnoPhone(accnumno);
 			if (u != null) {
 				if (file != null) {
@@ -2092,16 +2052,16 @@ public class UserAction {
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
-					System.out.println("Ã»ÓÐ»ñÈ¡µ½Í·Ïñ!");
+					System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½Í·ï¿½ï¿½!");
 				}
 				pd.setUid(u.getId());
 				pd.setPassword(password);
 				userdao.save(pd);
 				JSONObject json = new JSONObject();
 				json.put("username", u.getId());
-				// ÓÃ»§id
+				// ï¿½Ã»ï¿½id
 				json.put("password", "123456");
-				// ÓÃ»§ÃÜÂë
+				// ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 				String w = WechatKit.post(url, json,
 						RefreshAccessToken.access_token);
 				System.out.println(w);
@@ -2119,45 +2079,45 @@ public class UserAction {
 	}
 
 	/**
-	 * ÓÃ»§Í¨¹ýÊÖ»úºÅÐÞ¸ÄÃÜÂë
+	 * ï¿½Ã»ï¿½Í¨ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void Modtionphone() throws IOException {
 		/**
 		 * String codes = (String) session.getAttribute("app_code"); if (codes
-		 * == null) { System.out.println("sessionÒÑ¹ýÆÚ");
+		 * == null) { System.out.println("sessionï¿½Ñ¹ï¿½ï¿½ï¿½");
 		 * util.Out().print("cnull"); return; } if
 		 * (!codes.equalsIgnoreCase(code)) { util.Out().print("cnull"); return;
 		 * } session.invalidate();
 		 */
 		u = userdao.byUsernameAccnumnoPhone(phone);
 		if (u == null) {
-			System.out.println("ÕË»§²»´æÔÚ!");
+			System.out.println("ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			util.Out().print(false);
 			return;
 		}
 		pd = userdao.select(u.getId());
 		if (pd == null) {
-			System.out.println("ÕË»§²»´æÔÚ!");
+			System.out.println("ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			util.Out().print(false);
 			return;
 		}
 		if (password == null) {
-			System.out.println("ÃÜÂëÎª¿Õ!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½!");
 			util.Out().print("null");
 			return;
 		}
-		// ÑéÖ¤ÃÜÂë
+		// ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 		String reg = "[A-Za-z0-9_]{6,18}";
 		if (password.matches(reg)) {
 			pd.setPassword(password);
 			userdao.update(pd);
-			System.out.println("ÃÜÂëÐÞ¸Ä³É¹¦!");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½!");
 			util.Out().print(true);
 			return;
 		} else {
-			System.out.println("ÃÜÂë²»ºÏ·¨!");
+			System.out.println("ï¿½ï¿½ï¿½ë²»ï¿½Ï·ï¿½!");
 			util.Out().print("pfalse");
 			return;
 		}
@@ -2165,41 +2125,17 @@ public class UserAction {
 	}
 
 	/**
-	 * ÓÃ»§ÐÞ¸Ä ÐÅÏ¢
+	 * ï¿½Ã»ï¿½ï¿½Þ¸ï¿½ ï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
 	public void Modification() throws IOException {
 		try {
-			// 6-18 Î» ×ÖÄ¸Êý×Ó ÏÂ»®Ïß [A-Za-z] ×ÖÄ¸¿ªÍ·
-			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			//String newpassword = "";
-			System.out.println("½øÈëModification");
-			// ÓÃÓÚÐÞ¸Ä ÃÜÂëµÄ
-			String p = request.getParameter("p");
-			System.out.println("ÓÃ»§ºÅ»òÕßÓÃ»§Ãû»òÕßÊÖ»úºÅÊÇÍêÃÀID" + accnumno);
-			System.out.println("µØÖ·Ê¡¼¶" + address);
-			System.out.println("µØÖ·ÊÐ¼¶" + addcity);
-			System.out.println("º¢×Ó½×¶Î" + stage);
-			System.out.println("ÊÖ»úÊÇ" + phone);
-			System.out.println("Ñ§Ð£ÊÇ" + school);
-			System.out.println("ÃÜÂëÊÇ" + password);
-			System.out.println("ÓÃ»§Ãû ÒªÐÞ¸ÄµÄ!:" + username);
-			System.out.println("ÐÂÃÜÂëÊÇ" + newpassword);
-			System.out.println("êÇ³ÆÊÇ" + nickname);
-			System.out.println("pÊÇ¿Õ ¾ÍÊÇ  ÐÞ¸Ä¸öÈË×ÊÁÏ ²»ÊÇ¿Õ ¾ÍÊÇ ÐÞ¸ÄÃÜÂë+" + p);
-			/**
-			 * if (accnumno != null) {
-			 * 
-			 * if (accnumno.matches(reg)) { util.Out().print("ok"); return; }
-			 * else { util.Out().print("no"); return; }
-			 * 
-			 * }
-			 */
 
+			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
+			String p = request.getParameter("p");
 			u = userdao.byUsernameAccnumnoPhone(accnumno);
 			if (u == null) {
-				System.out.println("Ã»ÓÐ¸ÃÓÃ»§!");
 				util.Out().print("null");
 				return;
 			}
@@ -2207,23 +2143,23 @@ public class UserAction {
 			if (p != null) {
 				pd = userdao.login(u.getId(), password);
 				if (pd == null) {
-					System.out.println("ÃÜÂë²»¶Ô!");
+
 					util.Out().print(false);
 					return;
 				}
 
-				if (newpassword != null && newpassword != " ") {
-					// ÑéÖ¤ÃÜÂë
+				if (!OpeFunction.isEmpty(newpassword)) {
+
 					reg = "[A-Za-z0-9_]{6,18}";
 					if (newpassword.matches(reg)) {
 						pd.setPassword(newpassword);
 						userdao.update(pd);
-						System.out.println("ÐÞ¸Ä³É¹¦!ÐÂÃÜÂëÎª:" + newpassword);
+
 						util.Out().print(true);
 						return;
 
 					} else {
-						System.out.println("ÃÜÂë²»·ûºÏ¹æ·¶" + newpassword);
+
 						util.Out().print("nfalse");
 						return;
 					}
@@ -2236,7 +2172,7 @@ public class UserAction {
 				}
 				if (!util.isEmpty(address)) {
 					u.setAddress(address);
-					System.out.println("ÐÞ¸ÄÁËµØÖ·");
+
 				}
 			}
 
@@ -2245,44 +2181,52 @@ public class UserAction {
 					reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 					if (username.matches(reg)) {
 						if (userdao.byUsernameAccnumnoPhone(username) != null) {
-							System.out.println("1ÓÃ»§Ãû±»Õ¼ÓÃ£¡");
+
 							util.Out().print("usernamefalse");
 							return;
 						}
 						u.setUsername(username);
 						userdao.update(u);
-						System.out.println("³É¹¦ÐÞ¸ÄÁËÓÃ»§Ãû!");
+
 					} else {
-						System.out.println("ÓÃ»§Ãû²»·ûºÏ¹æ·¶");
-						System.out.println(username);
+
 						util.Out().print("ufalse");
 						return;
 					}
 				}
 
-			} else {
-				System.out.println("ÒÑ¾­ÐÞ¸Ä¹ýÓÃ»§Ãû!");
 			}
 
 			if (nickname != null) {
 				u.setNickname(nickname);
-				System.out.println("ÐÞ¸ÄÁËêÇ³Æ!");
+
 			}
-			/**
-			 * if (phone != null) { u.setPhone(phone); }
-			 */
 
 			if (school != null) {
 				u.setSchool(school);
-				System.out.println("ÐÞ¸ÄÁËÑ§Ð£!");
+
+			}
+			String path = "";
+
+			if (file != null) {
+				path = u.getImg();
+				if (path != null) {
+					util.fileRemove(path);
+				}
+				path = "/IMG/Userimg/" + OpeFunction.getDayTime(1) + "/"
+						+ OpeFunction.getDayTime(2) + OpeFunction.getDayTime(3)
+						+ "/" + u.getId();
+				path = util.ufileToServer(path, file, "jpg");
+
+				u.setImg(path);
 			}
 
-			if (stage != null) {
+			if (!util.isEmpty(stage)) {
 				u.setStage(stage);
-				System.out.println("ÐÞ¸ÄÁËº¢×Ó½×¶Î");
+
 			}
 			if (!util.isEmpty(childrenage)) {
-				u.setChildrenage(childrenage + "Ëê");// º¢×ÓÄêÁä
+				u.setChildrenage(childrenage);
 			}
 			if (!util.isEmpty(phone)) {
 				if (userdao.byUsernameAccnumnoPhone(phone) != null) {
@@ -2291,53 +2235,51 @@ public class UserAction {
 				}
 				u.setPhone(phone);
 			}
-			if(!util.isEmpty(age)){
+			if (!util.isEmpty(age)) {
 				u.setAge(age);
 			}
 			if (!util.isEmpty(sex)) {
-				u.setSex(sex);// ÎÒµÄÐÔ±ð
+				u.setSex(sex);
 			}
 			if (signature != null) {
-				u.setSignature(signature);// ¸öÐÔÇ©Ãû
+				u.setSignature(signature);
 			}
-			if (!StringUtils.isEmpty(childrensex)) {
-				u.setChildrensex(childrensex);// º¢×ÓÐÔ±ð
+			if (!util.isEmpty(childrensex)) {
+				u.setChildrensex(childrensex);
 			}
 			u.setMac(null);
 
 			userdao.update(u);
 			util.Out().print(util.ToJson(u));
-			System.out.println("ÐÞ¸Ä³É¹¦!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	/**
-	 * ÓÃ»§¸ü¸ÄÊÖ»úºÅÊ±ÏòÊÖ»ú·¢ËÍÑéÖ¤Âë
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void phoneSend() throws IOException {
 		// phone="13555717521";
 		// int num=123456789;
-		System.out.println("½øÈëphonetext");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½phonetext");
 		//
 		String regp = "[0-9]{11}";
 		if (phone == null) {
-			System.out.println("ÊÖ»úºÅ¿Õ£¡");
+			System.out.println("ï¿½Ö»ï¿½ï¿½Å¿Õ£ï¿½");
 			util.Out().print("null");
 			return;
 		}
 		if (!phone.matches(regp)) {
-			System.out.println("ÊÖ»úºÅ¸ñÊ½²»¶Ô£¡");
+			System.out.println("ï¿½Ö»ï¿½ï¿½Å¸ï¿½Ê½ï¿½ï¿½ï¿½Ô£ï¿½");
 			util.Out().print("null");
 			return;
 		}
 		if (userdao.byUsernameAccnumnoPhone(phone) == null) {
-			System.out.println("´ËÊÖ»úºÅÃ»ÓÐ×¢²á¹ý");
+			System.out.println("ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ã»ï¿½ï¿½×¢ï¿½ï¿½ï¿½");
 
 			util.Out().print(false);
 
@@ -2346,31 +2288,29 @@ public class UserAction {
 		int num = (int) ((Math.random() * 9 + 1) * 100000);
 		session.setAttribute("app_code", String.valueOf(num));
 		session.setMaxInactiveInterval(90);
-		System.out.println("1ÕýÈ·ÑéÖ¤ÂëÎª" + num);
+		System.out.println("1ï¿½ï¿½È·ï¿½ï¿½Ö¤ï¿½ï¿½Îª" + num);
 
-		String content = new String("ÄúµÄÑéÖ¤ÂëÊÇ£º" + num
-				+ "¡£Çë²»Òª°ÑÑéÖ¤ÂëÐ¹Â¶¸øÆäËûÈË¡£Èç·Ç±¾ÈË²Ù×÷£¬¿É²»ÓÃÀí»á£¡");
+		String content = new String("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½Ç£ï¿½" + num
+				+ "ï¿½ï¿½ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½Ð¹Â¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¡ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½á£¡");
 		util.setphone(phone, content);
 		util.Out().print(true);
-	
-		
 
 	}
 
 	/**
-	 * °´ÕÕÊ±¼ä²éÑ¯ ÓÃ»§ ºÍ ÓÃ»§ÊýÁ¿
+	 * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ñ¯ ï¿½Ã»ï¿½ ï¿½ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String GetUsertime() throws IOException {
-		// Map session = (Map) util.getsession();// ´´½¨ map
+		// Map session = (Map) util.getsession();// ï¿½ï¿½ï¿½ï¿½ map
 
 		System.out.println(timeq);
 		System.out.println(timeh);
 
 		int count = userdao.getUsertime(timeq, timeh);
 
-		System.out.println("ÓÐ" + us.size() + "¸öÓÃ»§");
+		System.out.println("ï¿½ï¿½" + us.size() + "ï¿½ï¿½ï¿½Ã»ï¿½");
 		request.setAttribute("timeh", timeh);
 		// request.setAttribute("GetUsertimeus", us);
 		request.setAttribute("timeq", timeq);
@@ -2380,23 +2320,23 @@ public class UserAction {
 	}
 
 	/**
-	 * ²éÑ¯È«²¿ÓÃ»§
+	 * ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Ã»ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String GetUserAll() throws IOException {
-		Map session = (Map) util.getsession();// ´´½¨ map
-		competence2 = userdao.getCount();// È«²¿ÓÃ»§ÊýÁ¿
-		int syn = userdao.getCountSyn();// Í¬²½µÄÓÃ»§ÊýÁ¿
-		List<User> ul = userdao.getOnline();// ²éÑ¯ÔÚÏßÓÃ»§
+		Map session = (Map) util.getsession();// ï¿½ï¿½ï¿½ï¿½ map
+		competence2 = userdao.getCount();// È«ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+		int syn = userdao.getCountSyn();// Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+		List<User> ul = userdao.getOnline();// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 		int a = competence2;
-		System.out.println("ÓÃ»§ÊýÁ¿" + competence2);
-		System.out.println("ÓÐ" + competence2 + "¸öÓÃ»§");
+		System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½" + competence2);
+		System.out.println("ï¿½ï¿½" + competence2 + "ï¿½ï¿½ï¿½Ã»ï¿½");
 
 		if (competence2 % pageSize == 0) {
-			competence2 = competence2 / pageSize;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		} else {
-			competence2 = competence2 / pageSize + 1;// »ñÈ¡ ¹²ÓÐ¶àÉÙÒ³
+			competence2 = competence2 / pageSize + 1;// ï¿½ï¿½È¡ ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½Ò³
 		}
 		if (currentPage >= competence2) {
 			currentPage = competence2;
@@ -2591,10 +2531,6 @@ public class UserAction {
 		this.province = province;
 	}
 
-	
-
-	
-
 	public String getAccnumno() {
 		return accnumno;
 	}
@@ -2638,6 +2574,7 @@ public class UserAction {
 	public String getMac() {
 		return mac;
 	}
+
 	public String getAge() {
 		return age;
 	}
@@ -2645,6 +2582,7 @@ public class UserAction {
 	public void setAge(String age) {
 		this.age = age;
 	}
+
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
