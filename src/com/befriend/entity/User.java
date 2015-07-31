@@ -1,10 +1,16 @@
 package com.befriend.entity;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,81 +19,93 @@ public class User implements Serializable
 {
 
 	/**
-	 * ÓÃ»§ 
+	 * ï¿½Ã»ï¿½ 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="username")//ÓÃ»§Ãû
+	@Column(name="username")//ï¿½Ã»ï¿½ï¿½ï¿½
 	private String username;
-	@Column(name="nickname")//êÇ³Æ
+	@Column(name="nickname")//ï¿½Ç³ï¿½
 	private String nickname;
-	@Column(name="password")//ÃÜÂë
+	@Column(name="password")//ï¿½ï¿½ï¿½ï¿½
 	private String password;
-	@Column(name="img")//ÓÃ»§Í·ÏñµØÖ·
+	@Column(name="img")//ï¿½Ã»ï¿½Í·ï¿½ï¿½ï¿½Ö·
 	private String img;
 	
 	
-	@Column(name="stage")//º¢×Ó½×¶Î
+	@Column(name="stage")//ï¿½ï¿½ï¿½Ó½×¶ï¿½
 	private String stage;
 	public static final double STAGE = 2D;
-	@Column(name="time")//×¢²áÊ±¼ä
+	@Column(name="time")//×¢ï¿½ï¿½Ê±ï¿½ï¿½
 	private String time;
-	@Column(name="address")//µØÖ· Ê¡¼¶
+	@Column(name="address")//ï¿½ï¿½Ö· Ê¡ï¿½ï¿½
 	/**
-	 * µØÖ· Ê¡¼¶
+	 * ï¿½ï¿½Ö· Ê¡ï¿½ï¿½
 	 */
 	private String address;
 	public static final double PROVINCE = 3D;
 	
-	@Column(name="addcity")//µØÖ· ÊÐ¼¶
+	@Column(name="addcity")//ï¿½ï¿½Ö· ï¿½Ð¼ï¿½
 	private String addcity;
 	public static final double CITY = 4D;
-	@Column(name="phone")//µç»°
+	@Column(name="phone")//ï¿½ç»°
 	private String phone;
 	@Column(name="school")//Ñ§Ð£
 	private String school;
 	public static final double SCHOOL = 5D;
 	
-	@Column(name="competence")//È¨ÏÞ  0 ÆÕÍ¨ÓÃ»§  1 ÊÐ¼¶¹ÜÀíÔ± 2Ê¡¼¶¹ÜÀíÔ± 4ÊÇ½ÌÊÚ
+	@Column(name="competence")//È¨ï¿½ï¿½  0 ï¿½ï¿½Í¨ï¿½Ã»ï¿½  1 ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô± 2Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô± 4ï¿½Ç½ï¿½ï¿½ï¿½
 	private int competence;
-	@Column(name="gag")//´´½¨ÂÛÌ³È¨ÏÞ  0 ¿ÉÒÔ´´½¨ÂÛÌ³  1 ²»¿ÉÒÔ  
+	@Column(name="gag")//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³È¨ï¿½ï¿½  0 ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ì³  1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
 	private int gag;
 	
-	@Column(name="loginnum")//ÓÃ»§µÇÈë´ÎÊý
+	@Column(name="loginnum")//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int loginnum;
 	
-	@Column(name="finaltime")//ÓÃ»§×îºóµÇÈëÊ±¼ä
+	@Column(name="finaltime")//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String finaltime;
-	@Column(name="ip")//ÓÃ»§ip
+	@Column(name="ip")//ï¿½Ã»ï¿½ip
 	private String ip;
-	@Column(name="port")//ÓÃ»§port
+	@Column(name="port")//ï¿½Ã»ï¿½port
 	private int port;
-	@Column(name="online")//ÓÃ»§ ÓÃ»§ÉÏÏß×´Ì¬ 0²»ÔÚÏß 1ÔÚÏß
+	@Column(name="online")//ï¿½Ã»ï¿½ ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½
 	private int online;
-	@Column(name="accnumno")//ÍêÃÀID 8Î»µÄ
+	@Column(name="accnumno")//ï¿½ï¿½ï¿½ï¿½ID 8Î»ï¿½ï¿½
 	private String accnumno;
-	@Column(name="come")// µÈÓÚnull ÊÇÎÒÃÇ×Ô¼ºµÄÓÃ»§ 
+	@Column(name="come")// ï¿½ï¿½ï¿½ï¿½null ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ 
 	private String come;
 	@Column(name="os")// ÏµÍ³
 	private String os;
 	@Column(name="mac")// mac
 	private String mac;
-	@Column(name="sex")//ÐÔ±ð  ÄÐ Å®
+	@Column(name="sex")//ï¿½Ô±ï¿½  ï¿½ï¿½ Å®
 	private String sex;
-	@Column(name="signature")// ¸öÐÔÇ©Ãû
+	@Column(name="signature")// ï¿½ï¿½ï¿½ï¿½Ç©ï¿½ï¿½
 	private String signature;
-	@Column(name="childrenage")// º¢×ÓÄêÁä
+	@Column(name="childrenage")// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String childrenage;
-	@Column(name="age")// ÄêÁä
+	@Column(name="age")// ï¿½ï¿½ï¿½ï¿½
 	private String age;
 	public static final double CHILD_AGE = 4D;
-	@Column(name="childrensex")// º¢×ÓÐÔ±ð  ÄÐ Å®
+	@Column(name="childrensex")// ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½  ï¿½ï¿½ Å®
 	private String childrensex;
 	public static final double CHILD_SEX = 3D;
 	
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="user")
+	private Set<UserGroup> userGroup = new HashSet<UserGroup>();
+	
+	
+	public Set<UserGroup> getUserGroup()
+	{
+		return userGroup;
+	}
+	public void setUserGroup(Set<UserGroup> userGroup)
+	{
+		this.userGroup = userGroup;
+	}
 	public String getMac() {
 		return mac;
 	}

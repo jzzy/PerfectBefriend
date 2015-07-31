@@ -1,5 +1,7 @@
 package com.befriend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,9 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="behavior")
-public class Behavior
+public class Behavior implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	public static final int NEWS_TYPE = 1;
 	public static final int LABEL = 2;
 	@Id
@@ -23,7 +26,7 @@ public class Behavior
 	@Column(name="keyword",nullable=false)
 	private String keyword;
 	@Column(name="type",nullable=false)
-	private int type;//¹Ø¼ü´ÊÀàÐÍ£¬1£ºÐÂÎÅÀà±ð£»2£ºÐÂÎÅ±êÇ©
+	private int type;//ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½Ç©
 	@Column(name="count",nullable=false)
 	private long count;
 	@Transient

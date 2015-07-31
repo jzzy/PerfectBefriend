@@ -4,147 +4,149 @@ import java.util.List;
 
 import com.befriend.entity.Password;
 import com.befriend.entity.User;
+import com.befriend.entity.UserGroup;
 
 public interface UserDAO
 {
-	// É¾³ı
+	// É¾ï¿½ï¿½
 	public void remove(Password password);
-	// ĞŞ¸Ä
+	// ï¿½Ş¸ï¿½
 	public void update(Password password);
-	//Í¬²½ÃÜÂë
+	//Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void save(Password password);
-	//Í¨¹ıuid ÃÜÂë ÑéÖ¤ÃÜÂë
+	//Í¨ï¿½ï¿½uid ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 	public Password login(int uid, String password);
-	//Í¨¹ıuid ÃÜÂë ÑéÖ¤ÃÜÂë
+	//Í¨ï¿½ï¿½uid ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
 	public Password select(int uid);
 	
 	
 	
 	
 	public User byMac(String mac);
-	// µÇÈë  Í¨¹ı (ÊÖ»úºÅ  ÓÃ»§ºÅ  ÓÃ»§Ãû )+ÃÜÂë  ¶¼¿ÉÒÔµÇÈë
+	// ï¿½ï¿½ï¿½ï¿½  Í¨ï¿½ï¿½ (ï¿½Ö»ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½ )+ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½
 	//public User login(String username, String password);
-	//Í¨¹ı ÊÖ»úºÅ  ÓÃ»§ºÅ  ÓÃ»§Ãû ²éÑ¯ ÊÇ·ñÎª¿Õ
+	//Í¨ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ ï¿½Ç·ï¿½Îªï¿½ï¿½
 	public User byUsernameAccnumnoPhone(String uap);
 	public User byIdMac();
 	/**
-	// Í¨¹ıÓÃ»§Ãû²é
+	// Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	public User byusername(String username);
-	// ²é¿´ Í¨¹ıÓÃ»§ºÅ
+	// ï¿½é¿´ Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 	public User accnumNo(String accnumno);	
-	// Í¨¹ıÊÖ»úºÅ²éÑ¯
+	// Í¨ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Å²ï¿½Ñ¯
 	public User byphone(String phone);
 	*/
 	
-	// ×¢²á
+	// ×¢ï¿½ï¿½
 	public void save(User user);
 
-	// É¾³ı
+	// É¾ï¿½ï¿½
 	public void remove(User user);
 
-	// ĞŞ¸Ä
+	// ï¿½Ş¸ï¿½
 	public void update(User user);
-	//Ò»¼üÏÂÏß
+	//Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void updateAllXiaxian();
-	// Í¨¹ıid²éÑ¯
+	// Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯
 	public User byid(int id);
 
 	
-	// Í¨¹ıÓÃ»§ÃûÄ£ºı²éÑ¯
+	// Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯
 	public List<User> likeusername(String username);
-	// Í¨¹ıÓÃ»§ÃûÄ£ºı²éÑ¯
+	// Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯
 	public List<User> likeusername(String username,String area);
 
 	
-	// ²éÑ¯·Ç¹ÜÀíÔ±µÄÓÃ»§
+	// ï¿½ï¿½Ñ¯ï¿½Ç¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ã»ï¿½
 	public List<User> getUser(int pageSize, int currentPage);
-	// ²éÑ¯·Ç¹ÜÀíÔ±µÄÓÃ»§  °´ÕÕ Ê¡¼¶
+	// ï¿½ï¿½Ñ¯ï¿½Ç¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ã»ï¿½  ï¿½ï¿½ï¿½ï¿½ Ê¡ï¿½ï¿½
 	public List<User> getUser(int pageSize, int currentPage,String area);
 	public List<User> getUser();
-	//°´Ê¡  ²éÑ¯·Ç¹ÜÀí
+	//ï¿½ï¿½Ê¡  ï¿½ï¿½Ñ¯ï¿½Ç¹ï¿½ï¿½ï¿½
 	public List<User> getUser(String area);
-	// ²éÑ¯¹ÜÀíÔ±µÄÓÃ»§
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ã»ï¿½
 	public List<User> getUseradmin(int pageSize, int currentPage);
-	// ²éÑ¯Ä³Ê¡¹ÜÀíÔ±
+	// ï¿½ï¿½Ñ¯Ä³Ê¡ï¿½ï¿½ï¿½ï¿½Ô±
 	public List<User> getUseradmin(int pageSize, int currentPage,String area);
-	//²éÑ¯  ¹ÜÀí
+	//ï¿½ï¿½Ñ¯  ï¿½ï¿½ï¿½ï¿½
 	public List<User> getUseradmin();
-	//°´Ê¡²éÑ¯¹ÜÀí
+	//ï¿½ï¿½Ê¡ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	public List<User> getUseradmin(String area);
-	//²éÑ¯Ê²Ã´Ê±¼äµ½Ê²Ã´Ê±¼ä×¢²áµÄÓÃ»§
+	//ï¿½ï¿½Ñ¯Ê²Ã´Ê±ï¿½äµ½Ê²Ã´Ê±ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	public int getUsertime(String timeq,String timeh);
-	//²éÑ¯È«²¿ÓÃ»§
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Ã»ï¿½
 	public List<User> getUserAll();
-	//²éÑ¯È«²¿ÓÃ»§
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Ã»ï¿½
 	public int getCount();
-	//²éÑ¯È«²¿ÓÃ»§
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Ã»ï¿½
 	public int getCountSyn();
 
-	//²éÑ¯synÈ«²¿ÓÃ»§
+	//ï¿½ï¿½Ñ¯synÈ«ï¿½ï¿½ï¿½Ã»ï¿½
 	public List<User> getUsersynAll();
 	
-	//²éÑ¯È«²¿ÓÃ»§ ·ÖÒ³²éÑ¯
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Ã»ï¿½ ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 	public List<User> getUserAll(int pageSize, int currentPage);
 	/**
-	 * ²éÑ¯Ê¡¼¶ÓÃ»§ +°´ÕÕÊ²Ã´Ê±¼äÖÁÊ²Ã´Ê±¼ä²éÑ¯ Ê¡ +ÊĞ + ¿ªÊ¼Ê±¼ä +½áÊøÊ±¼ä
+	 * ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½Ã»ï¿½ +ï¿½ï¿½ï¿½ï¿½Ê²Ã´Ê±ï¿½ï¿½ï¿½ï¿½Ê²Ã´Ê±ï¿½ï¿½ï¿½Ñ¯ Ê¡ +ï¿½ï¿½ + ï¿½ï¿½Ê¼Ê±ï¿½ï¿½ +ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * @param area
 	 * @return
 	 */
 	public List<User> getUserAll(String area,String timeq,String timeh);
 	/**
-	 * ²éÑ¯Ê¡¼¶+ÊĞ¼¶ÓÃ»§ +°´ÕÕÊ²Ã´Ê±¼äÖÁÊ²Ã´Ê±¼ä²éÑ¯ Ê¡ +ÊĞ + ¿ªÊ¼Ê±¼ä +½áÊøÊ±¼ä
+	 * ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½+ï¿½Ğ¼ï¿½ï¿½Ã»ï¿½ +ï¿½ï¿½ï¿½ï¿½Ê²Ã´Ê±ï¿½ï¿½ï¿½ï¿½Ê²Ã´Ê±ï¿½ï¿½ï¿½Ñ¯ Ê¡ +ï¿½ï¿½ + ï¿½ï¿½Ê¼Ê±ï¿½ï¿½ +ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 * @param area
 	 * @param areas
 	 * @return
 	 */
 	public List<User> getUserAll(String area,String areas,String timeq,String timeh);
 	/**
-	 * ²éÑ¯Ê¡¼¶+ÊĞ¼¶ÓÃ»§  
+	 * ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½+ï¿½Ğ¼ï¿½ï¿½Ã»ï¿½  
 	 * @param area
 	 * @param areas
 	 * @return
 	 */
 	public List<User> getUserAll(String area,String areas);
 	/**
-	 * ²éÑ¯Ê¡¼¶ÓÃ»§ ²é¿´  ÓĞ¶àÉÙÊĞ
+	 * ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½Ã»ï¿½ ï¿½é¿´  ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param area
 	 * @return
 	 */
 	public List<User> getUserAll(String area);
 	/**
-	 * ²éÑ¯ÔÚÏßÓÃ»§
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @param area
 	 * @return
 	 */
 	public List<User> getOnline(String os);
 	/**
-	 * ²éÑ¯ÔÚÏßÓÃ»§
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @param area
 	 * @return
 	 */
 	public List<User> getOnline(String os,String province);
 	/**
-	 * ²éÑ¯ÔÚÏßÓÃ»§
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @param area
 	 * @return
 	 */
 	public List<User> getOnline();
 	/**
-	 * ²éÑ¯ µ±ÌìµÇÈë¹ıµÄÓÃ»§
+	 * ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	public List<User> getFinaltime(String time,String os);
 	/**
-	 * ²éÑ¯µ±Ìì×¢²áµÄÓÃ»§
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	public List<User> getSaveTime(String time,String os);
 	/**
-	 * ²éÑ¯µ±Ìì×¢²áµÄÓÃ»§  °´µØÇø
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½Ã»ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<User> getSaveTime(String time,String os,String province);
 	/**
-	 * ²éÑ¯ µ±ÌìµÇÈë¹ıµÄÓÃ»§ °´µØÇø
+	 * ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<User> getFinaltime(String time,String os,String province);
 	
+	public User getUserGroup(Integer userId);
 
 }
