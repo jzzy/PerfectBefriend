@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
-Source Server Version : 50703
+Source Server         : localhost
+Source Server Version : 50626
 Source Host           : localhost:3306
 Source Database       : perfectbefriend
 
 Target Server Type    : MYSQL
-Target Server Version : 50703
+Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2015-08-03 19:26:20
+Date: 2015-08-03 20:51:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -7826,6 +7826,22 @@ INSERT INTO `stas` VALUES ('172', '0', '0', '0', '0', '0', '2015-08-03', 'ios', 
 INSERT INTO `stas` VALUES ('173', '0', '0', '0', '0', '0', '2015-08-03', 'syn', 'all');
 
 -- ----------------------------
+-- Table structure for support
+-- ----------------------------
+DROP TABLE IF EXISTS `support`;
+CREATE TABLE `support` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userid` varchar(11) NOT NULL,
+  `newsid` varchar(11) NOT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of support
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for support_forum
 -- ----------------------------
 DROP TABLE IF EXISTS `support_forum`;
@@ -7929,18 +7945,23 @@ CREATE TABLE `user_group` (
   `name` varchar(255) NOT NULL,
   `order_num` int(11) NOT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
+  `is_default` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_group_user_id` (`user_id`),
   CONSTRAINT `user_group_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_group
 -- ----------------------------
-INSERT INTO `user_group` VALUES ('1', '675', '列表1', '4', '2015-07-31 19:11:42');
-INSERT INTO `user_group` VALUES ('2', '675', '列表2', '2', '2015-07-31 19:12:06');
-INSERT INTO `user_group` VALUES ('3', '674', '哈', '1', '2015-07-31 20:44:55');
-INSERT INTO `user_group` VALUES ('4', '672', '暗室逢灯', '1', '2015-08-27 19:05:37');
+INSERT INTO `user_group` VALUES ('1', '675', '列表1', '4', '2015-07-31 19:11:42', '0');
+INSERT INTO `user_group` VALUES ('2', '675', '列表2', '2', '2015-07-31 19:12:06', '0');
+INSERT INTO `user_group` VALUES ('3', '674', '哈', '1', '2015-07-31 20:44:55', '0');
+INSERT INTO `user_group` VALUES ('4', '672', '暗室逢灯', '1', '2015-08-27 19:05:37', '0');
+INSERT INTO `user_group` VALUES ('5', '672', '好友', '0', '2015-08-03 20:45:57', '1');
+INSERT INTO `user_group` VALUES ('8', '672', '黑名单', '0', '2015-08-03 20:50:18', '2');
+INSERT INTO `user_group` VALUES ('9', '673', '好友', '0', '2015-08-03 20:51:26', '1');
+INSERT INTO `user_group` VALUES ('10', '673', '黑名单', '0', '2015-08-03 20:51:26', '2');
 
 -- ----------------------------
 -- Table structure for visitor

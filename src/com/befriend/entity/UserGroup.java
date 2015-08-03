@@ -26,6 +26,11 @@ import com.google.gson.annotations.Expose;
 @Table(name="user_group")
 public class UserGroup implements Serializable
 {
+	public static final String MY_FRIEND = "好友";
+	public static final String MY_BLACKLIST = "黑名单";
+	public static final int FRIEND_DEFAULT = 1;
+	public static final int BLACKLIST_DEFAULT = 2;
+	public static final int NOT_DEFAULT = 0;
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,6 +46,10 @@ public class UserGroup implements Serializable
 	@Column(name="name",nullable=false)
 	@Expose
 	private String name;
+	
+	@Column(name="is_default",nullable = false)
+	@Expose
+	private int isDefault = 0;
 	
 	@Column(name="order_num",nullable=false)
 	@Expose
@@ -105,6 +114,13 @@ public class UserGroup implements Serializable
 	public void setCreateTime(String createTime)
 	{
 		this.createTime = createTime;
+	}
+	
+	public int getIsDefault() {
+		return isDefault;
+	}
+	public void setIsDefault(int isDefault) {
+		this.isDefault = isDefault;
 	}
 	@Override
 	public String toString() {

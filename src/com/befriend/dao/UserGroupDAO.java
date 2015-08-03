@@ -16,6 +16,18 @@ public interface UserGroupDAO
 	public UserGroup find(int id);
 	/**
 	 * @param userId
+	 * @param name
+	 * @return
+	 */
+	public UserGroup find(int userId,String name);
+	/**
+	 * @param userId
+	 * @param isDefault
+	 * @return
+	 */
+	public UserGroup findDefault(int userId,int isDefault);
+	/**
+	 * @param userId
 	 * @return
 	 */
 	public List<UserGroup> findByUserId(Integer userId);

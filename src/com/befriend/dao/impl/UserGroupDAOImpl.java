@@ -49,4 +49,28 @@ public class UserGroupDAOImpl implements UserGroupDAO
 		entityManager.remove(userGroup);
 	}
 
+	@Override
+	public UserGroup find(int userId, String name) 
+	{
+		Query query = entityManager.createQuery("select userGroup from User user inner join user.userGroup userGroup where user.id = :userId and userGroup.name like :name");
+		query.setParameter("userId", userId);
+		query.setParameter("name", "%"+name+"%");
+		if(query.getResultList().size()>0)
+			return (UserGroup) query.getResultList().get(0);
+		else
+			return null;
+	}
+
+	@Override
+	public UserGroup findDefault(int userId, int isDefault) 
+	{
+		Query query = entityManager.createQuery("select userGroup from User user inner join user.userGroup userGroup where user.id = :userId and userGroup.isDefault = :isDefault");
+		query.setParameter("userId", userId);
+		query.setParameter("isDefault", isDefault);
+		if(query.getResultList().size()>0)
+			return (UserGroup) query.getResultList().get(0);
+		else
+			return null;
+	}
+
 }

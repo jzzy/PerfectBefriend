@@ -2,6 +2,7 @@ package com.befriend.action;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -267,6 +268,54 @@ public class FriendAction extends BaseAction
 				}
 				this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 		}
+	}
+	/**
+	 * @param userId
+	 * @throws IOException 
+	 */
+	public void createDefaultGroup() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(userId))
+		{
+			User user = userDAO.byid(Integer.valueOf(userId));
+			if(user != null)
+			{
+				UserGroup myFriend = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.FRIEND_DEFAULT);
+				UserGroup blacklist = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.BLACKLIST_DEFAULT);
+				if(myFriend == null)
+				{
+					myFriend = new UserGroup();
+					myFriend.setUser(user);
+					myFriend.setName(UserGroup.MY_FRIEND);
+					myFriend.setIsDefault(UserGroup.FRIEND_DEFAULT);
+					myFriend.setCreateTime(OpeFunction.getNowTime());
+					userGroupDAO.save(myFriend);
+				}
+				if(blacklist == null)
+				{
+					blacklist = new UserGroup();
+					blacklist.setUser(user);
+					blacklist.setName(UserGroup.MY_BLACKLIST);
+					blacklist.setIsDefault(UserGroup.BLACKLIST_DEFAULT);
+					blacklist.setCreateTime(OpeFunction.getNowTime());
+					userGroupDAO.save(blacklist);
+				}
+				msg.setCode(Message.SUCCESS);
+				msg.setStatement("sucess");
+			}
+			else
+			{
+				msg.setCode(Message.ERROR);
+				msg.setStatement("user is null");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter is error");
+		}
+		this.getJsonResponse().getWriter().println(JsonUtil.toJson(msg));
 	}
 
 	
