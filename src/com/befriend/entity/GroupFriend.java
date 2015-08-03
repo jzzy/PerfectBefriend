@@ -24,6 +24,12 @@ import com.google.gson.annotations.Expose;
 public class GroupFriend implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	public static final int INVITE = 1;
+	public static final int INVITED = 2;
+	public static final int FRIEND = 3;
+	public static final int STRANGER = 0;
+	public static final int REFUSE = -1;
+	public static final int BLACKLIST = -2;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -38,6 +44,14 @@ public class GroupFriend implements Serializable
 	@Column(name="user_id",nullable = false)
 	@Expose
 	private Integer userId;
+	
+	@Column(name="remark")
+	@Expose
+	private String remark;
+	
+	@Column(name="status",nullable = false)
+	@Expose
+	private Integer status = 0;
 	
 	@Column(name="create_time")
 	@Expose
@@ -102,6 +116,20 @@ public class GroupFriend implements Serializable
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	@Override
 	public String toString() {

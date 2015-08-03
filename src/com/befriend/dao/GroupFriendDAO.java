@@ -6,13 +6,19 @@ import com.befriend.entity.GroupFriend;
  * @author sterotto
  *
  */
-public interface GroupInfoDAO
+public interface GroupFriendDAO
 {
 	/**
 	 * @param id
 	 * @return
 	 */
 	public GroupFriend find(int id);
+	/**
+	 * @param userId
+	 * @param friendId
+	 * @return
+	 */
+	public GroupFriend find(int userId,int friendId);
 	/**
 	 * @param groupInfo
 	 */
@@ -25,6 +31,5 @@ public interface GroupInfoDAO
 	 * @param groupInfo
 	 */
 	public void remove(GroupFriend groupFriend);
-	
 
 }

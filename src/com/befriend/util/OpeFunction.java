@@ -390,7 +390,7 @@ public class OpeFunction {
 	public static String getNowTime() {
 
 		Date dt = new Date();
-		SimpleDateFormat matter1 = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+		SimpleDateFormat matter1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return matter1.format(dt);
 
 	}

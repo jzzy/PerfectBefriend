@@ -4,5 +4,8 @@
 <struts>
 	<package name="friend" extends="struts-default" >
 		<action name="getFriendsList" class="friendAction" method="getFriendsList"></action>
+		<action name="addFriend" class="friendAction" method="addFriend"></action>
+		<action name="handleInvitation" class="friendAction" method="handleInvitation" ></action>
 	</package>
+	
 </struts>

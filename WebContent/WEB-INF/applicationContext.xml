@@ -86,7 +86,7 @@
 	<bean id="registrationDAO" class="com.befriend.dao.impl.RegistrationDAOImpl"></bean>
 	<bean id="behaviorDAO" class="com.befriend.dao.impl.BehaviorDAOImpl"></bean>
 	<bean id="userGroupDAO" class="com.befriend.dao.impl.UserGroupDAOImpl"></bean>
-	<bean id="groupInfoDAO" class="com.befriend.dao.impl.GroupInfoDAOImpl"></bean>
+	<bean id="groupFriendDAO" class="com.befriend.dao.impl.GroupFriendDAOImpl"></bean>
 
 	<!-- Action start here -->
 	
@@ -156,7 +156,7 @@
 	<bean id="friendAction" class="com.befriend.action.FriendAction" scope="prototype">
 		<constructor-arg ref="userDAO"></constructor-arg>
 		<constructor-arg ref="userGroupDAO"></constructor-arg>
-		<constructor-arg ref="groupInfoDAO"></constructor-arg>
+		<constructor-arg ref="groupFriendDAO"></constructor-arg>
 	</bean>
 	<!-- 在java普通类中调用 dao-->
 	<bean id="app" class="com.befriend.util.ApplicationUtil">

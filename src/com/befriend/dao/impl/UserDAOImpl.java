@@ -495,10 +495,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User getUserGroup(Integer userId)
+	public User getUserGroup(Integer userId,int status)
 	{
-		Query query = entityManager.createQuery("select u from User u where u.id = :userId"); 
+		Query query = entityManager.createQuery("select u from User u inner join u.userGroup uGroup join uGroup.groupFriends gFriends where u.id = :userId and gFriends.status = :status");
 		query.setParameter("userId", userId);
+		query.setParameter("status", status);
 		if(query.getResultList().size()>0)
 			return (User) query.getResultList().get(0);
 		else
