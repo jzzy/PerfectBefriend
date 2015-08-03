@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="forumsupport")
+@Table(name="support_forum")
 
-public class ForumSupport implements Serializable
+public class Support_forum implements Serializable
 {
 	/**
 	 * luntan dianzhan
@@ -24,8 +24,8 @@ public class ForumSupport implements Serializable
 	private Integer id;
 	@Column(name="userid")
 	private int userid;
-	@Column(name="newsid")
-	private int newsid;
+	@Column(name="forumid")
+	private int forumid;
 	
 	@Column(name="time")
 	private String time;
@@ -41,13 +41,14 @@ public class ForumSupport implements Serializable
 	public void setUserid(int userid) {
 	    this.userid = userid;
 	}
-	public int getNewsid() {
-	    return newsid;
-	}
-	public void setNewsid(int newsid) {
-	    this.newsid = newsid;
-	}
 	
+	
+	public int getForumid() {
+		return forumid;
+	}
+	public void setForumid(int forumid) {
+		this.forumid = forumid;
+	}
 	public String getTime() {
 	    return time;
 	}

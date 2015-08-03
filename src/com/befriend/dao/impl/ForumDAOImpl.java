@@ -9,9 +9,12 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.ForumDAO;
+import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.ForumOne;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
+
+import com.befriend.entity.Support_forum;
 
 @Transactional
 public class ForumDAOImpl implements ForumDAO {
@@ -27,7 +30,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<ForumOne> getForumOneALL(int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select f from ForumOne f order"
 						+ " by f.time desc");
@@ -35,16 +38,16 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<ForumOne> gettypeForumOneALL(int type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select f from ForumOne f where f.type=:type order"
 						+ " by f.time desc");
@@ -182,7 +185,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<ForumOne> getForumOneALL() {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select f from ForumOne f order"
 						+ " by f.time desc");
@@ -192,7 +195,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<ForumOne> getForumOneALL(int pageSize, int currentPage, int type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select f from ForumOne f"
 				+ " where f.type=:type order" + " by f.time desc");
 		query.setParameter("type", type);
@@ -200,16 +203,16 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<ForumOne> getForumOneALL(int type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select f from ForumOne f"
 				+ " where f.type=:type order" + " by f.time desc");
 		query.setParameter("type", type);
@@ -239,7 +242,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<ForumOne> getForumOneNotALL(int type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select f from ForumOne f where f.type!=:type order"
 						+ " by f.time desc");
@@ -257,9 +260,9 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -276,9 +279,9 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -295,7 +298,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<ForumOne> getForumOneALL234() {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select f from ForumOne f where f.type=2 or f.type=3 or f.type=4 order"
 						+ " by f.time desc");
@@ -313,9 +316,9 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -340,9 +343,9 @@ public class ForumDAOImpl implements ForumDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
@@ -362,4 +365,95 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 
+	@Override
+	public List<Support_forum> stAllF(int forumid) {
+		Query query = entityManager.createQuery("select u from Support_forum u where"
+				+ " u.forumid=:forumid order by u.time desc");
+
+		query.setParameter("forumid", forumid);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Support_forum> stAllU(int userid) {
+		Query query = entityManager.createQuery("select u from Support_forum u where"
+				+ " u.userid=:userid order by u.time desc");
+
+		query.setParameter("userid", userid);
+		return query.getResultList();
+	}
+
+	@Override
+	public void save(Support_forum st) {
+		// TODO Auto-generated method stub
+		entityManager.persist(st);
+	}
+
+	@Override
+	public Support_forum sufid(int userid, int forumid) {
+
+		Query query = entityManager.createQuery("select u from Support_forum u where"
+				+ " u.userid=:userid and u.forumid=:forumid");
+		query.setMaxResults(1);
+		query.setParameter("userid", userid);
+		query.setParameter("forumid", forumid);
+		@SuppressWarnings("unchecked")
+		List<Support_forum> Support = query.getResultList();
+		if (Support.size() > 0)
+			return Support.get(0);
+		return null;
+	}
+
+	@Override
+	public void remove(Support_forum st) {
+		// TODO Auto-generated method stub
+		entityManager.remove(st);
+
+	}
+
+	@Override
+	public List<Attention_Forum> atAllF(int forutypeid) {
+		Query query = entityManager.createQuery("select u from Attention_Forum u where"
+				+ " u.forutypeid=:forutypeid order by u.time desc");
+
+		query.setParameter("forutypeid", forutypeid);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Attention_Forum> atAllU(int userid) {
+		Query query = entityManager.createQuery("select u from Attention_Forum u where"
+				+ " u.userid=:userid order by u.time desc");
+
+		query.setParameter("userid", userid);
+		return query.getResultList();
+	}
+
+	@Override
+	public void save(Attention_Forum at) {
+		// TODO Auto-generated method stub
+		entityManager.persist(at);		
+		
+	}
+
+	@Override
+	public Attention_Forum aufid(int userid, int forutypeid) {
+		Query query = entityManager.createQuery("select u from Attention_Forum u where"
+				+ " u.userid=:userid and u.forutypeid=:forutypeid");
+		query.setMaxResults(1);
+		query.setParameter("userid", userid);
+		query.setParameter("forutypeid", forutypeid);
+		@SuppressWarnings("unchecked")
+		List<Attention_Forum> Support = query.getResultList();
+		if (Support.size() > 0)
+			return Support.get(0);
+		return null;
+	}
+
+	@Override
+	public void remove(Attention_Forum at) {
+		// TODO Auto-generated method stub
+		entityManager.remove(at);
+		
+	}
 }

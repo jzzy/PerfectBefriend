@@ -1,100 +1,162 @@
 package com.befriend.dao;
 
-
 import java.util.List;
 
+import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.ForumOne;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
+import com.befriend.entity.Support_News;
+import com.befriend.entity.Support_forum;
 import com.befriend.entity.User;
 
 public interface ForumDAO {
 	/**
-	 * ÂÛÌ³dao
+	 * ï¿½ï¿½Ì³dao
+	 * 
 	 * @param ForumOne
 	 */
-	
-	
-		//Ìí¼ÓĞÂÂÛÌ³
-		public void save(ForumOne ForumOne);
-		// Í¨¹ı±êÌâÄ£ºı²éÑ¯
-		public List<ForumOne> likeTitle(String title);
-		// Í¨¹ı±êÌâÄ£ºı²éÑ¯ ·ÖÒ³
-		public List<ForumOne> likeTitle(int pageSize, int currentPage,String title);
-		//²éÑ¯ËùÓĞ ÂÛÌ³
-		public List<ForumOne> getForumOneALL(int pageSize, int currentPage);
-		//²éÑ¯ËùÓĞ ÂÛÌ³ ²»°üÀ¨ typeÀàĞÍ
-		public List<ForumOne> getForumOneNotALL(int pageSize, int currentPage,int type);
-		//²éÑ¯ËùÓĞ ÂÛÌ³ ²»°üÀ¨ typeÀàĞÍ
-		public List<ForumOne> getForumOneALL234(int pageSize, int currentPage);
-		//²éÑ¯ËùÓĞ ÂÛÌ³   °´ÕÕÀà±ğ²éÑ¯
-		
-		public List<ForumOne> getForumOneALL(int pageSize, int currentPage,int type);
-		//²éÑ¯ËùÓĞ ÂÛÌ³
-		public List<ForumOne> getForumOneALL();
-		//²éÑ¯ËùÓĞ ÂÛÌ³ ²»°üÀ¨typeÀàĞÍ
-		public List<ForumOne> getForumOneNotALL(int type);
-		//²éÑ¯ËùÓĞ ÂÛÌ³ ²»°üÀ¨typeÀàĞÍ
-		public List<ForumOne> getForumOneALL234();
-		//²éÑ¯ËùÓĞ ÂÛÌ³ °´ÕÕÀà±ğ²éÑ¯
-		public List<ForumOne> getForumOneALL(int type);
-		//²éÑ¯Ê¡¼¶ËùÓĞ ÂÛÌ³ type=5 desc
-		
-		public List<ForumOne> getForumOneareaALL(String area);
-		//²éÑ¯Ê¡¼¶ËùÓĞ ÂÛÌ³ type=5 desc
-		
-		public List<ForumOne> getForumOneareaALL(String area,int model);
-		//²éÑ¯Ê¡¼¶ËùÓĞ ÂÛÌ³ type=5 desc
-		
-		public List<ForumOne> getForumOneareaALL(int pageSize, int currentPage,String area,int model);
-		//²éÑ¯Ê¡¼¶ËùÓĞ ÂÛÌ³
-		public List<ForumOne> getForumOneareassALL(String area,String areas);
-		//²éÑ¯Ê¡¼¶ÊĞ¼¶ÂÛÌ³
-		public List<ForumOne> getForumOneareasALL(String areas);
-		//°´ÕÕ·ÖÀà ²éÑ¯ËùÓĞÂÛÌ³
-		public List<ForumOne> gettypeForumOneALL(int type);
-		//ForumOneid ²éÑ¯ÂÛÌ³
-		public ForumOne getForumOne(int id);
-		//ForumOneid Í¨¹ıÓÃ»§id²éÑ¯ÂÛÌ³
-		public  List<ForumOne> getUseridForumOne(int id);
-		//ForumOneĞŞ¸Ä
-		public void update(ForumOne ForumOne);
-		//ForumOneÉ¾³ı
-		public void Remove(ForumOne ForumOne);
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
+	public void save(ForumOne ForumOne);
+
+	// Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯
+	public List<ForumOne> likeTitle(String title);
+
+	// Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ñ¯ ï¿½ï¿½Ò³
+	public List<ForumOne> likeTitle(int pageSize, int currentPage, String title);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³
+	public List<ForumOne> getForumOneALL(int pageSize, int currentPage);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ typeï¿½ï¿½ï¿½ï¿½
+	public List<ForumOne> getForumOneNotALL(int pageSize, int currentPage,
+			int type);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ typeï¿½ï¿½ï¿½ï¿½
+	public List<ForumOne> getForumOneALL234(int pageSize, int currentPage);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+
+	public List<ForumOne> getForumOneALL(int pageSize, int currentPage, int type);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³
+	public List<ForumOne> getForumOneALL();
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½typeï¿½ï¿½ï¿½ï¿½
+	public List<ForumOne> getForumOneNotALL(int type);
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½typeï¿½ï¿½ï¿½ï¿½
+	public List<ForumOne> getForumOneALL234();
+
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+	public List<ForumOne> getForumOneALL(int type);
+
+	// ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ type=5 desc
+
+	public List<ForumOne> getForumOneareaALL(String area);
+
+	// ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ type=5 desc
+
+	public List<ForumOne> getForumOneareaALL(String area, int model);
+
+	// ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³ type=5 desc
+
+	public List<ForumOne> getForumOneareaALL(int pageSize, int currentPage,
+			String area, int model);
+
+	// ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ì³
+	public List<ForumOne> getForumOneareassALL(String area, String areas);
+
+	// ï¿½ï¿½Ñ¯Ê¡ï¿½ï¿½ï¿½Ğ¼ï¿½ï¿½ï¿½Ì³
+	public List<ForumOne> getForumOneareasALL(String areas);
+
+	// ï¿½ï¿½ï¿½Õ·ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³
+	public List<ForumOne> gettypeForumOneALL(int type);
+
+	// ForumOneid ï¿½ï¿½Ñ¯ï¿½ï¿½Ì³
+	public ForumOne getForumOne(int id);
+
+	// ForumOneid Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½Ì³
+	public List<ForumOne> getUseridForumOne(int id);
+
+	// ForumOneï¿½Ş¸ï¿½
+	public void update(ForumOne ForumOne);
+
+	// ForumOneÉ¾ï¿½ï¿½
+	public void Remove(ForumOne ForumOne);
+
 	/**
-	 *Two 	
+	 * Two
+	 * 
 	 * @param ForumTwo
 	 */
-		//ForumTw0 ²éÑ¯»Ø¸´ÄÚÈİ
-		public List<ForumTwo> getFuserALL(int userid);
-		//ForumTw0 Ìí¼Ó»Ø¸´
-		public void save(ForumTwo ForumTwo);
-		//ForumTw0 ²éÑ¯»Ø¸´ÄÚÈİ asc
-		public List<ForumTwo> getForumTwoALL(int forumid);
-		//ForumTwoÉ¾³ı
-		public void Remove(ForumTwo ForumTwo);
-		//¸ù¾İid²é¿´ ÆÀÂÛ
-		public ForumTwo getForumTwoid(int id);
-		//¸üĞÂ
-		public void update(ForumTwo forumTwo);
+	// ForumTw0 ï¿½ï¿½Ñ¯ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public List<ForumTwo> getFuserALL(int userid);
+
+	// ForumTw0 ï¿½ï¿½Ó»Ø¸ï¿½
+	public void save(ForumTwo ForumTwo);
+
+	// ForumTw0 ï¿½ï¿½Ñ¯ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ asc
+	public List<ForumTwo> getForumTwoALL(int forumid);
+
+	// ForumTwoÉ¾ï¿½ï¿½
+	public void Remove(ForumTwo ForumTwo);
+
+	// ï¿½ï¿½ï¿½ï¿½idï¿½é¿´ ï¿½ï¿½ï¿½ï¿½
+	public ForumTwo getForumTwoid(int id);
+
+	// ï¿½ï¿½ï¿½ï¿½
+	public void update(ForumTwo forumTwo);
+
 	/**
-	 * Three	
+	 * Three
+	 * 
 	 * @param ForumThree
 	 */
-		//ForumThreeÉ¾³ı
-		public void Remove(ForumThree ForumThree);		
-		
-		//Forumthree ÓÃ»§Ïà»¥»Ø¸´
-		public void save(ForumThree ForumThree);
-		//Forumthree  ²éÑ¯ ÆÀÂÛÏÂµÄ »Ø¸´ÄÚÈİ
-		public List<ForumThree> getForumThreeALL(int forumid,int forumtwoid);
-		//Forumthree ²éÑ¯»Ø¸´ÄÚÈİ
-		public List<ForumThree> getForumThreeALL(int forumid);
-		//Forumthree ²éÑ¯»Ø¸´ÄÚÈİ
-		public ForumThree getForumThree(int id);
-		
-		
-		
-		
-		
+	// ForumThreeÉ¾ï¿½ï¿½
+	public void Remove(ForumThree ForumThree);
+
+	// Forumthree ï¿½Ã»ï¿½ï¿½à»¥ï¿½Ø¸ï¿½
+	public void save(ForumThree ForumThree);
+
+	// Forumthree ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public List<ForumThree> getForumThreeALL(int forumid, int forumtwoid);
+
+	// Forumthree ï¿½ï¿½Ñ¯ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public List<ForumThree> getForumThreeALL(int forumid);
+
+	// Forumthree ï¿½ï¿½Ñ¯ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	public ForumThree getForumThree(int id);
+
+	
+	/**
+	 * 
+	 * @param Support_forum
+	 * @return
+	 */
+	public List<Support_forum> stAllF(int forumid);
+
+	public List<Support_forum> stAllU(int userid);
+
+	public void save(Support_forum sf);
+
+	public Support_forum sufid(int userid, int forumid);
+
+	public void remove(Support_forum sf);
+	/**
+	 * 
+	 * @param Attention_Forum
+	 * @return
+	 */
+	public List<Attention_Forum> atAllF(int forutypeid);
+
+	public List<Attention_Forum> atAllU(int userid);
+
+	public void save(Attention_Forum at);
+
+	public Attention_Forum aufid(int userid, int forutypeid);
+
+	public void remove(Attention_Forum at);
+	
 }

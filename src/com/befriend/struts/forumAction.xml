@@ -72,6 +72,27 @@
 		
 		
 		<!-- app用的 -->
+		<!--添加赞-->
+		<action name="forumStandBy" class="forumAction" method="forumStandBy" >
+		
+		</action>
+		<!--取消赞-->
+		<action name="forumRemoveStandBy" class="forumAction" method="forumRemoveStandBy" >
+		
+		</action>
+		<!--取消关注-->
+		<action name="forumRemoveAttention" class="forumAction" method="forumRemoveAttention" >
+		
+		</action>
+		<!--添加关注-->
+		<action name="forumAttention" class="forumAction" method="forumAttention" >
+		
+		</action>
+		
+		<!--我的关注-->
+		<action name="forumMeAttention" class="forumAction" method="forumMeAttention" >
+		
+		</action>
 		
 		
 		<!-- 用户查看论坛 通过id-->
@@ -182,7 +203,6 @@
 		<action name="webForumthreesappadd" class="forumAction" method="webForumthreesappadd" >
 		
 		</action>
-		
 		
 		
 		

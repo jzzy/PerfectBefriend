@@ -29,73 +29,73 @@ import com.befriend.entity.Collect;
 import com.befriend.entity.News;
 import com.befriend.entity.NewsLabel;
 import com.befriend.entity.Review;
-import com.befriend.entity.Support;
+import com.befriend.entity.Support_News;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 public class NewsAction {
-	private UserDAO userdao;// ÓÃ»§dao
-	private NewsDAO ndao; // ÐÂÎÅdao
-	private CollectDAO cdao;// ÊÕ²Ødao
-	private ReviewDAO rdao;// ÆÀÂÛdao
+	private UserDAO userdao;// ï¿½Ã»ï¿½dao
+	private NewsDAO ndao; // ï¿½ï¿½ï¿½ï¿½dao
+	private CollectDAO cdao;// ï¿½Õ²ï¿½dao
+	private ReviewDAO rdao;// ï¿½ï¿½ï¿½ï¿½dao
 
-	private int num = 0;// ÐèÒª¶àÉÙÐÂÎÅ
+	private int num = 0;// ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private List<News> nl = new ArrayList<News>();
-	private News n = new News();// ÐÂÎÅÀà
-	private Collect c = new Collect();// ÊÕ²ØÀà
-	Support st = new Support();// µãÔÞÀà
-	private List<Support> sl = new ArrayList<Support>();// ÆÀÂÛÀà
-	private Review r = new Review();// ÆÀÂÛÀà
-	private List<Review> rl = new ArrayList<Review>();// ÆÀÂÛÀà
-	private List<Collect> cl = new ArrayList<Collect>();// ÊÕ²Ø List
-	private List<User> ul = new ArrayList<User>();// ÓÃ»§ List
-	private int userid;// ÓÃ»§id
-	private int newsid;// ÐÂÎÅid
-	private String review;// ÆÀÂÛÄÚÈÝ
-	private int reviewid;// ÆÀÂÛµÄid
-	private int expert = 0;// »ñÈ¡ÐÂÎÅÊÇ·ñÎª ×¨¼Ò 0²»ÊÇ 1ÊÇ
-	private String types;// 4Ð¡Àà
-	private String type;// 8´óÀà
-	private int itypes;// 4Ð¡Àà
-	private int itype;// 8´óÀà
-	private String summary;// ¼ò½é
-	private String title;// ±êÌâ
-	private String timet;// Ê±¼ä
+	private News n = new News();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Collect c = new Collect();// ï¿½Õ²ï¿½ï¿½ï¿½
+	Support_News st = new Support_News();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private List<Support_News> sl = new ArrayList<Support_News>();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Review r = new Review();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private List<Review> rl = new ArrayList<Review>();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private List<Collect> cl = new ArrayList<Collect>();// ï¿½Õ²ï¿½ List
+	private List<User> ul = new ArrayList<User>();// ï¿½Ã»ï¿½ List
+	private int userid;// ï¿½Ã»ï¿½id
+	private int newsid;// ï¿½ï¿½ï¿½ï¿½id
+	private String review;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int reviewid;// ï¿½ï¿½ï¿½Ûµï¿½id
+	private int expert = 0;// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îª ×¨ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½
+	private String types;// 4Ð¡ï¿½ï¿½
+	private String type;// 8ï¿½ï¿½ï¿½ï¿½
+	private int itypes;// 4Ð¡ï¿½ï¿½
+	private int itype;// 8ï¿½ï¿½ï¿½ï¿½
+	private String summary;// ï¿½ï¿½ï¿½
+	private String title;// ï¿½ï¿½ï¿½ï¿½
+	private String timet;// Ê±ï¿½ï¿½
 
-	private String area;// Ê¡¼¶
-	private String areas;// ÊÐ¼¶
+	private String area;// Ê¡ï¿½ï¿½
+	private String areas;// ï¿½Ð¼ï¿½
 
-	private File imgFile1;// Ð¡Í¼ÎÄ¼þ
-	private File imgFile2;// Ð¡Í¼ÎÄ¼þ
-	private File imgFile3;// Ð¡Í¼ÎÄ¼þ
+	private File imgFile1;// Ð¡Í¼ï¿½Ä¼ï¿½
+	private File imgFile2;// Ð¡Í¼ï¿½Ä¼ï¿½
+	private File imgFile3;// Ð¡Í¼ï¿½Ä¼ï¿½
 	/**
-	 * private File imgFilemax;// ´óÍ¼ÎÄ¼þ private String imgFileFileName;// Ð¡Í¼ÎÄ¼þÃû
+	 * private File imgFilemax;// ï¿½ï¿½Í¼ï¿½Ä¼ï¿½ private String imgFileFileName;// Ð¡Í¼ï¿½Ä¼ï¿½ï¿½ï¿½
 	 * 
-	 * private String imgFileContentType;// Ð¡Í¼ÎÄ¼þÀàÐÍ private String
-	 * imgFilemaxFileName;// ´óÍ¼ÎÄ¼þÃû private String imgFilemaxContentType;//
-	 * ´óÍ¼ÎÄ¼þÀàÐÍ
+	 * private String imgFileContentType;// Ð¡Í¼ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ private String
+	 * imgFilemaxFileName;// ï¿½ï¿½Í¼ï¿½Ä¼ï¿½ï¿½ï¿½ private String imgFilemaxContentType;//
+	 * ï¿½ï¿½Í¼ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 
 	private String savePath;// Ä¿Â¼
-	private int tp;// Ñ¡Ôñ °Ë´óÀàÐÂÎÅ
-	private String htmlData;// ÐÂÎÅÖ÷ÒªÄÚÈÝ
-	private String A;// Ò»¸ö ±êÊ¾ ÓÃÓÚÅÐ¶Ï ÍùÄÄÌø×ª ºÍ ÅÐ¶Ï ÊÇ °Ë´óÀàÐÂÎÅ »¹ÊÇ ±¾µØÐÂÎÅ
-	private int pageSize = 10;// Ã¿Ò³ÏÔÊ¾ ¶àÉÙÌõÊý¾Ý
-	private int currentPage = 1;// ÕâÊÇµÚ¶àÉÙÒ³
+	private int tp;// Ñ¡ï¿½ï¿½ ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String htmlData;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+	private String A;// Ò»ï¿½ï¿½ ï¿½ï¿½Ê¾ ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ª ï¿½ï¿½ ï¿½Ð¶ï¿½ ï¿½ï¿½ ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int pageSize = 10;// Ã¿Ò³ï¿½ï¿½Ê¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int currentPage = 1;// ï¿½ï¿½ï¿½ÇµÚ¶ï¿½ï¿½ï¿½Ò³
 	private int id;// id
-	private String username;// ÆÀÂÛµÄÓÃ»§Ãû
+	private String username;// ï¿½ï¿½ï¿½Ûµï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 	Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext().get("session");
 	HttpServletRequest request = ServletActionContext.getRequest();
 	// httpsession
 	HttpSession session = ServletActionContext.getRequest().getSession();
 
-	private String province;// Ê¡¼¶
+	private String province;// Ê¡ï¿½ï¿½
 
-	private String city;// ÊÐ¼¶
-	public File xlsxFile;// ÐÂÎÅ±êÇ©±í
-	private String xlsxFileFileName;// ÎÄ¼þÀàÐÍ
+	private String city;// ï¿½Ð¼ï¿½
+	public File xlsxFile;// ï¿½ï¿½ï¿½Å±ï¿½Ç©ï¿½ï¿½
+	private String xlsxFileFileName;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public String getXlsxFileFileName() {
 		return xlsxFileFileName;
@@ -106,12 +106,12 @@ public class NewsAction {
 	}
 
 	/**
-	 * ÉÏ´«ÐÂÎÅ±êÇ©
+	 * ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Å±ï¿½Ç©
 	 * 
 	 * @throws InvalidFormatException
 	 */
 	public void saveLabel() throws IOException, InvalidFormatException {
-		System.out.println("ÎÄ¼þÀàÐÍ" + xlsxFileFileName);
+		System.out.println("ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½" + xlsxFileFileName);
 
 		ServletResponse srp = (ServletResponse) OpeFunction.response();
 		srp.setCharacterEncoding("GBK");
@@ -121,7 +121,7 @@ public class NewsAction {
 		builder.append("<script type=\"text/javascript\">");
 
 		if (xlsxFile == null) {
-			builder.append("alert('Ìí¼Ó±êÇ©Ê§°Ü£¡');");
+			builder.append("alert('ï¿½ï¿½Ó±ï¿½Ç©Ê§ï¿½Ü£ï¿½');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -130,7 +130,7 @@ public class NewsAction {
 			return;
 		}
 		if (!xlsxFileFileName.split("\\.")[1].equals("xlsx")) {
-			builder.append("alert('ÎÄ¼þÀàÐÍ²»¶Ô ÄãµÄÊÇ: ."
+			builder.append("alert('ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½: ."
 					+ xlsxFileFileName.split("\\.")[1] + "');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
@@ -142,35 +142,35 @@ public class NewsAction {
 		@SuppressWarnings("resource")
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(xlsxFile);
 
-		// Ñ­»·¹¤×÷±íSheet
+		// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sheet
 		for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
 			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
 			if (xssfSheet == null) {
 				continue;
 			}
 
-			// Ñ­»·ÐÐRow
+			// Ñ­ï¿½ï¿½ï¿½ï¿½Row
 			for (int rowNum = 1; rowNum < xssfSheet.getLastRowNum(); rowNum++) {
-				// ¶ÁÐÐ
+				// ï¿½ï¿½ï¿½ï¿½
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow == null) {
 					continue;
 				}
-				System.out.println("ÐÂÎÅ±êÇ©£º" + xssfRow.getCell(0));
-				System.out.println("µÚ" + numSheet + "¸ö¹¤×÷±íSheet,µÄµÚ" + rowNum
-						+ "ÐÐ");
-				System.out.println("×¼±¸Ìí¼Ó!");
+				System.out.println("ï¿½ï¿½ï¿½Å±ï¿½Ç©ï¿½ï¿½" + xssfRow.getCell(0));
+				System.out.println("ï¿½ï¿½" + numSheet + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sheet,ï¿½Äµï¿½" + rowNum
+						+ "ï¿½ï¿½");
+				System.out.println("×¼ï¿½ï¿½ï¿½ï¿½ï¿½!");
 				String label = null;
-				// ¶ÁµÚÒ»ÁÐ
+				// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 				if (xssfRow.getCell(0) != null
 						&& !OpeFunction.isEmpty(xssfRow.getCell(0).toString())) {
 					label = xssfRow.getCell(0).toString();
 
 					if (ndao.byNewsLabelName(label) != null) {
-						System.out.println("ÒÑ¾­Ìí¼Ó¹ý!");
+						System.out.println("ï¿½Ñ¾ï¿½ï¿½ï¿½Ó¹ï¿½!");
 						continue;
 					} else {
-						// Ìí¼ÓÒª´æ´¢µÄÐÅÏ¢
+						// ï¿½ï¿½ï¿½Òªï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Ï¢
 						NewsLabel nlb = new NewsLabel();
 						nlb.setLabel(label);
 						nlb.setTime(OpeFunction.getNowTime());
@@ -180,7 +180,7 @@ public class NewsAction {
 			}
 		}
 
-		builder.append("alert('Ìí¼Ó±êÇ©³É¹¦!');");
+		builder.append("alert('ï¿½ï¿½Ó±ï¿½Ç©ï¿½É¹ï¿½!');");
 		builder.append("window.top.location.href='");
 		builder.append(loginPage);
 		builder.append("';");
@@ -190,7 +190,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * Í¨¹ýid²éÑ¯ÐÂÎÅ ¿´ÊÇ·ñÓÐ¸üÐÂ
+	 * Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -205,7 +205,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * Î¢ÐÅ·ÖÒ³ ²éÑ¯ ±¾µØÐÂÎÅ
+	 * Î¢ï¿½Å·ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -224,7 +224,7 @@ public class NewsAction {
 			province = Oprovince.toString();
 
 		} else {
-			province = "ºþÄÏ";
+			province = "ï¿½ï¿½ï¿½ï¿½";
 		}
 		System.out.println(province);
 		a = ndao.area(province, 0).size();
@@ -239,9 +239,9 @@ public class NewsAction {
 		}
 
 		nl = ndao.Hotarea(province, pageSize, currentPage);
-		System.out.println(" -ÓÐ" + a + "Ò³");
-		System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-		System.out.println("µÚ-" + currentPage + "-Ò³");
+		System.out.println(" -ï¿½ï¿½" + a + "Ò³");
+		System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+		System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 
 		request.setAttribute("currentPage", currentPage);
 
@@ -252,7 +252,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * Í¨¹ýuserid²éÑ¯ÆÀÂÛ ÐÂÎÅºÍ¶ÔÃ¿¸öÐÂÎÅµÄ×îÐÂ ÆÀÂÛ
+	 * Í¨ï¿½ï¿½useridï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÅºÍ¶ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -270,7 +270,7 @@ public class NewsAction {
 
 			username = u.getUsername();
 
-			List<Integer> rn = new ArrayList<Integer>();// ÊÕ²Ø List
+			List<Integer> rn = new ArrayList<Integer>();// ï¿½Õ²ï¿½ List
 			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
@@ -285,8 +285,8 @@ public class NewsAction {
 				}
 
 				if (b) {
-					System.out.println("ÎÒÆÀÂÛ¹ýµÄÐÂÎÅ  ÓÃ»§ÃûºÍÐÂÎÅid" + username + "+"
-							+ r1.getNewsid() + "Ê±¼äÊÇ£º" + r1.getTime());
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id" + username + "+"
+							+ r1.getNewsid() + "Ê±ï¿½ï¿½ï¿½Ç£ï¿½" + r1.getTime());
 					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 				}
@@ -298,13 +298,13 @@ public class NewsAction {
 			request.setAttribute("nl", nl);
 			request.setAttribute("rl", rl);
 		} catch (Exception e) {
-			System.out.println("Òì³£ÊÇ" + e.getMessage());
+			System.out.println("ï¿½ì³£ï¿½ï¿½" + e.getMessage());
 		}
 		return Action.SUCCESS;
 	}
 
 	/**
-	 * ²éÑ¯ÊÕ²Ø Í¨¹ýÓÃ»§id½øÐÐ²éÑ¯
+	 * ï¿½ï¿½Ñ¯ï¿½Õ²ï¿½ Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½ï¿½Ð²ï¿½Ñ¯
 	 */
 	public String webSearchBookmark() throws IOException {
 
@@ -317,7 +317,7 @@ public class NewsAction {
 			return null;
 		}
 		userid = u.getId();
-		System.out.println("½øÈëÁËwebSearchBookmark");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½webSearchBookmark");
 
 		for (Collect c : cdao.Allu(userid)) {
 			n = ndao.byid(c.getNewsid());
@@ -325,19 +325,19 @@ public class NewsAction {
 
 		}
 		request.setAttribute("nl", nl);
-		System.out.println("ÓÃ»§" + u.getUsername() + "ÊÕ²ØÁË" + nl.size() + "¸öÎÄÕÂ");
+		System.out.println("ï¿½Ã»ï¿½" + u.getUsername() + "ï¿½Õ²ï¿½ï¿½ï¿½" + nl.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		return Action.SUCCESS;
 
 	}
 
 	/**
-	 * Ìí¼ÓÊÕ²Ø Í¨¹ý ÓÃ»§id ÐÂÎÅid
+	 * ï¿½ï¿½ï¿½ï¿½Õ²ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½id ï¿½ï¿½ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
 	public void webCsave() throws IOException {
 		try {
-			System.out.println("webCsaveÄã»¹Ã»ÓÐµÇÈë!");
+			System.out.println("webCsaveï¿½ã»¹Ã»ï¿½Ðµï¿½ï¿½ï¿½!");
 
 			User u = (User) session.getAttribute("u");
 
@@ -345,13 +345,13 @@ public class NewsAction {
 
 				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
-				System.out.println("Äã»¹Ã»ÓÐµÇÈë!");
+				System.out.println("ï¿½ã»¹Ã»ï¿½Ðµï¿½ï¿½ï¿½!");
 				return;
 			}
 			userid = u.getId();
 			System.out.println("userid" + u.getId());
 			if (cdao.unid(userid, newsid) != null) {
-				OpeFunction.Out().print("ÒÑ¾­ÊÕ²Ø¹ý!");
+				OpeFunction.Out().print("ï¿½Ñ¾ï¿½ï¿½Õ²Ø¹ï¿½!");
 				return;
 			} else {
 				c.setNewsid(newsid);
@@ -361,8 +361,8 @@ public class NewsAction {
 
 				n = ndao.byid(newsid);
 
-				System.out.println("newsidÊÇ" + n.getId());
-				System.out.println("1¸ÃÎÄÕÂ±»ÊÕ²Ø" + n.getCollectnum());
+				System.out.println("newsidï¿½ï¿½" + n.getId());
+				System.out.println("1ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Õ²ï¿½" + n.getCollectnum());
 				int n1;
 				if (n.getCollectnum() != null) {
 					n1 = n.getCollectnum() + 1;
@@ -376,11 +376,11 @@ public class NewsAction {
 					n.setCah(n1 * 2);
 				}
 
-				System.out.println("2¸ÃÎÄÕÂ±»ÊÕ²Ø" + n1);
+				System.out.println("2ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Õ²ï¿½" + n1);
 				n.setCollectnum(n1);
 
 				ndao.Upnews(n);
-				OpeFunction.Out().print("ÊÕ²Ø³É¹¦");
+				OpeFunction.Out().print("ï¿½Õ²Ø³É¹ï¿½");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -388,7 +388,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * webÌí¼ÓÆÀÂÛ Í¨¹ý ÓÃ»§username ÐÂÎÅnewsid
+	 * webï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½username ï¿½ï¿½ï¿½ï¿½newsid
 	 * 
 	 * @throws IOException
 	 */
@@ -401,10 +401,10 @@ public class NewsAction {
 
 				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
-				System.out.println("Äã»¹Ã»µÇÈë!");
+				System.out.println("ï¿½ã»¹Ã»ï¿½ï¿½ï¿½ï¿½!");
 				return;
 			}
-			System.out.println("½øÈëÌí¼ÓÆÀÂÛRsave");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rsave");
 
 			if (newsid <= 0 || userid <= 0) {
 				OpeFunction.Out().print("null");
@@ -412,11 +412,11 @@ public class NewsAction {
 
 			}
 			if (review == null || review.equals("")) {
-				OpeFunction.Out().print("ÇëÌîÐ´ÆÀÂÛÄÚÈÝ");
+				OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				return;
 			}
 			if (u.getUsername() == null) {
-				OpeFunction.Out().print("ÇëÉèÖÃÓÃ»§Ãû!");
+				OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½!");
 				return;
 			}
 			r.setNewsid(newsid);
@@ -428,15 +428,15 @@ public class NewsAction {
 			n = ndao.byid(newsid);
 			//
 			if (n == null) {
-				OpeFunction.Out().print("Ã»ÓÐ¸ÃÐÂÎÅ");
+				OpeFunction.Out().print("Ã»ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½");
 				return;
 
 			}
 			int a = rdao.Alln(newsid).size();
-			System.out.println("ÊÇ·ñÓÐÐÂÎÅ" + n != null);
-			System.out.println("ÆÀÂÛÄÚÈÝ" + review);
-			System.out.println("newsidÊÇ" + n.getId());
-			System.out.println("¸ÃÎÄÕÂ±»ÆÀÂÛ" + a);
+			System.out.println("ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + n != null);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + review);
+			System.out.println("newsidï¿½ï¿½" + n.getId());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½" + a);
 			n.setReviews(a);
 
 			ndao.Upnews(n);
@@ -451,7 +451,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ·ÖÒ³ ²éÑ¯ ±¾µØÐÂÎÅ
+	 * ï¿½ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -462,7 +462,7 @@ public class NewsAction {
 
 			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
-			System.out.println("Äã»¹Ã»µÇÈë!");
+			System.out.println("ï¿½ã»¹Ã»ï¿½ï¿½ï¿½ï¿½!");
 
 			return null;
 		}
@@ -488,9 +488,9 @@ public class NewsAction {
 		}
 
 		nl = ndao.Hotarea(u.getAddress(), pageSize, currentPage);
-		System.out.println(" -ÓÐ" + a + "Ò³");
-		System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-		System.out.println("µÚ-" + currentPage + "-Ò³");
+		System.out.println(" -ï¿½ï¿½" + a + "Ò³");
+		System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+		System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 
 		request.setAttribute("currentPage", currentPage);
 
@@ -501,7 +501,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * È«¹ú×îÈÈÐÂÎÅ ·ÖÒ³²éÑ¯
+	 * È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 	 */
 	public String webHottest() {
 		try {
@@ -521,8 +521,8 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-			System.out.println("µÚ-" + currentPage + "-Ò³");
+			System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+			System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 
 			nl = ndao.Hottest(pageSize, currentPage);
 
@@ -539,7 +539,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * °Ë´óÀà µÄ4Ð¡Àà ²éÑ¯ type
+	 * ï¿½Ë´ï¿½ï¿½ï¿½ ï¿½ï¿½4Ð¡ï¿½ï¿½ ï¿½ï¿½Ñ¯ type
 	 * 
 	 * @throws IOException
 	 */
@@ -547,25 +547,25 @@ public class NewsAction {
 		try {
 			switch (tp) {
 			case 1:
-				type = "Ó×ÉýÐ¡";
+				type = "ï¿½ï¿½ï¿½ï¿½Ð¡";
 
 				break;
 			case 2:
-				type = "Ð¡Éý³õ";
+				type = "Ð¡ï¿½ï¿½ï¿½ï¿½";
 				break;
 			case 3:
-				type = "ÖÐ¿¼";
+				type = "ï¿½Ð¿ï¿½";
 				break;
 			case 4:
-				type = "¸ß¿¼";
+				type = "ï¿½ß¿ï¿½";
 				break;
 
 			default:
-				System.out.println("ÇëÊäÈëÕýÈ·´úÂëtp");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½tp");
 				type = "No";
 				break;
 			}
-			System.out.println("´«µÄÊÇ" + tp + "Àà±ðÊÇ" + type);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + tp + "ï¿½ï¿½ï¿½ï¿½ï¿½" + type);
 			int a = 0;
 
 			a = ndao.types(type).size();
@@ -581,9 +581,9 @@ public class NewsAction {
 			if (currentPage <= 0) {
 				currentPage = 1;
 			}
-			System.out.println(type + " -ÓÐ" + a + "Ò³");
-			System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-			System.out.println("µÚ-" + currentPage + "-Ò³");
+			System.out.println(type + " -ï¿½ï¿½" + a + "Ò³");
+			System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+			System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 
 			nl = ndao.types(type, pageSize, currentPage);
 
@@ -604,7 +604,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * web·ÖÒ³ ²éÑ¯ °Ë´óÀàtype
+	 * webï¿½ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½Ë´ï¿½ï¿½ï¿½type
 	 * 
 	 * @throws IOException
 	 */
@@ -615,15 +615,15 @@ public class NewsAction {
 				pageSize = 10;
 			}
 			if (tp <= 0) {
-				OpeFunction.Out().print("tpÎª¿Õ£¡");
+				OpeFunction.Out().print("tpÎªï¿½Õ£ï¿½");
 				return null;
 			}
 			if (currentPage <= 0) {
 				currentPage = 1;
 			}
 
-			System.out.println("½øÈëwebnewtype");
-			System.out.println("´«µÄ" + tp);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½webnewtype");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + tp);
 
 			int a = 0;
 
@@ -638,9 +638,9 @@ public class NewsAction {
 				currentPage = a;
 			}
 
-			System.out.println(type + " -ÓÐ" + a + "Ò³");
-			System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-			System.out.println("µÚ-" + currentPage + "-Ò³");
+			System.out.println(type + " -ï¿½ï¿½" + a + "Ò³");
+			System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+			System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 
 			System.out.println(type);
 
@@ -662,27 +662,27 @@ public class NewsAction {
 	}
 
 	/**
-	 * web Í¨¹ýid²éÑ¯ÐÂÎÅ
+	 * web Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 * @throws ParseException
 	 */
 	public String webNewsId() throws IOException, ParseException {
-		System.out.println("web Í¨¹ýid²éÑ¯ÐÂÎÅ" + id);
+		System.out.println("web Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" + id);
 		if (id <= 0) {
-			OpeFunction.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
+			OpeFunction.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
+			System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
 			return null;
 		}
-		// »ñÈ¡ÆÀÂÛÐÅÏ¢
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		rl = rdao.Alln(id);
 		if (rl.size() != 0) {
-			System.out.println("ÓÐÆÀÂÛ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			for (int i = 0; i < rl.size(); i++) {
 
 				ul.add(userdao.byid(rl.get(i).getId()));
 			}
-			System.out.println("ÆÀÂÛ" + rl.size());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + rl.size());
 
 			request.setAttribute("ul", ul);
 			request.setAttribute("rl", rl);
@@ -694,8 +694,8 @@ public class NewsAction {
 
 		n.setCah(n.getCah() + 1);
 
-		System.out.println("µã»÷Êý:" + n.getHits() + "ÊÕ²ØÊý+µã»÷Êý:" + n.getCah()
-				+ "ÊÕ²ØÊý:" + n.getCollectnum());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½:" + n.getHits() + "ï¿½Õ²ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½:" + n.getCah()
+				+ "ï¿½Õ²ï¿½ï¿½ï¿½:" + n.getCollectnum());
 
 		ndao.Upnews(n);
 		request.setAttribute("n", n);
@@ -704,27 +704,27 @@ public class NewsAction {
 	}
 
 	/**
-	 * Î¢ÐÅ¹«ÖÚºÅ Í¨¹ýid²éÑ¯ÐÂÎÅ
+	 * Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½ Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String weiXniNewsId() throws IOException {
 
-		System.out.println("Î¢ÐÅ¹«ÖÚºÅ Í¨¹ýid²éÑ¯ÐÂÎÅ" + id);
+		System.out.println("Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½ Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" + id);
 		if (id <= 0) {
-			OpeFunction.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
+			OpeFunction.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
+			System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
 			return null;
 		}
 
 		rl = rdao.Alln(id);
 		if (rl.size() != 0) {
-			System.out.println("ÓÐÆÀÂÛ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			for (int i = 0; i < rl.size(); i++) {
 
 				ul.add(userdao.byid(rl.get(i).getId()));
 			}
-			System.out.println("ÆÀÂÛ" + rl.size());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + rl.size());
 
 			request.setAttribute("ul", ul);
 			request.setAttribute("rl", rl);
@@ -741,7 +741,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * Î¢ÐÅ¹«ÖÚºÅ ±¾µØÐÂÎÅ
+	 * Î¢ï¿½Å¹ï¿½ï¿½Úºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -751,7 +751,7 @@ public class NewsAction {
 		System.out.println("province" + province);
 		System.out.println("city" + city);
 
-		if (province != null && !province.equals("Ê¡·ÝÃû")) {
+		if (province != null && !province.equals("Ê¡ï¿½ï¿½ï¿½ï¿½")) {
 
 			area = province;
 
@@ -762,9 +762,9 @@ public class NewsAction {
 			}
 		}
 
-		System.out.println("Î¢ÐÅ±¾µØÐÂÎÅÊ×Ò³");
+		System.out.println("Î¢ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³");
 		if (area == null || area == "") {
-			area = "ºþÄÏ";
+			area = "ï¿½ï¿½ï¿½ï¿½";
 		}
 
 		Object oprovince = session.getAttribute("province");
@@ -787,12 +787,12 @@ public class NewsAction {
 		request.setAttribute("Address", area);
 		request.setAttribute("province", province);
 		request.setAttribute("city", city);
-		System.out.println("" + area + nl.size() + "ÐÂÎÅ");
+		System.out.println("" + area + nl.size() + "ï¿½ï¿½ï¿½ï¿½");
 		return Action.SUCCESS;
 	}
 
 	/**
-	 * ²éÑ¯±¾µØÐÂÎÅ ºÍ°Ë´óÀàÀï Îª×¨¼ÒµÄ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í°Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ Îª×¨ï¿½Òµï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -800,7 +800,7 @@ public class NewsAction {
 
 		nl = ndao.area(area);
 		int ext = nl.size();
-		System.out.println(area + " ×¨¼ÒÐÂÎÅÓÐ" + ext);
+		System.out.println(area + " ×¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + ext);
 		for (int i = 0; i < ext; i++) {
 			System.out.println(nl.get(i).getArea() + nl.get(i).getTime());
 		}
@@ -812,7 +812,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ·ÖÒ³ ²éÑ¯ ±¾µØÐÂÎÅ
+	 * ï¿½ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -826,7 +826,7 @@ public class NewsAction {
 			currentPage = 1;
 		}
 		if (area == null) {
-			OpeFunction.Out().print("Ê¡¼¶Îª¿Õ£¡");
+			OpeFunction.Out().print("Ê¡ï¿½ï¿½Îªï¿½Õ£ï¿½");
 			return;
 		}
 
@@ -842,9 +842,9 @@ public class NewsAction {
 			currentPage = a;
 		}
 
-		System.out.println(" -ÓÐ" + a + "Ò³");
-		System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-		System.out.println("µÚ-" + currentPage + "-Ò³");
+		System.out.println(" -ï¿½ï¿½" + a + "Ò³");
+		System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+		System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 		nl = ndao.Hotarea(area, pageSize, currentPage);
 		String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
 				+ ",\"currentPage\":" + currentPage + "}";
@@ -857,7 +857,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ·ÖÒ³ ²éÑ¯ ×îÈÈÐÂÎÅ
+	 * ï¿½ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -883,9 +883,9 @@ public class NewsAction {
 			currentPage = a;
 		}
 
-		System.out.println(" -ÓÐ" + a + "Ò³");
-		System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-		System.out.println("µÚ-" + currentPage + "-Ò³");
+		System.out.println(" -ï¿½ï¿½" + a + "Ò³");
+		System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+		System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 		nl = ndao.cah(pageSize, currentPage);
 		String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
 				+ ",\"currentPage\":" + currentPage + "}";
@@ -898,7 +898,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ·ÖÒ³ ²éÑ¯ °Ë´óÀàtype
+	 * ï¿½ï¿½Ò³ ï¿½ï¿½Ñ¯ ï¿½Ë´ï¿½ï¿½ï¿½type
 	 * 
 	 * @throws IOException
 	 */
@@ -909,12 +909,12 @@ public class NewsAction {
 
 			}
 			if (tp <= 0) {
-				OpeFunction.Out().print("tp==null£¡");
+				OpeFunction.Out().print("tp==nullï¿½ï¿½");
 				return;
 			}
 
-			System.out.println("½øÈënewtype");
-			System.out.println("´«µÄ" + tp);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½newtype");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + tp);
 
 			int a = ndao.type(0, tp).size();
 
@@ -930,9 +930,9 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println(" -ÓÐ" + a + "Ò³");
-			System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-			System.out.println("µÚ-" + currentPage + "-Ò³");
+			System.out.println(" -ï¿½ï¿½" + a + "Ò³");
+			System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+			System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 			nl = ndao.type(0, tp, pageSize, currentPage);
 			List<Boolean> scb=new ArrayList<Boolean>();
 			List<Boolean> plb=new ArrayList<Boolean>();
@@ -940,19 +940,19 @@ public class NewsAction {
 			
 			for(int i=0;i<nl.size();i++){
 				n=nl.get(i);
-				//ÊÇ·ñÊÕ²Ø¹ý
+				//ï¿½Ç·ï¿½ï¿½Õ²Ø¹ï¿½
 				if(cdao.unid(userid, n.getId())!=null){
 					scb.add(true);
 				}else{
 					scb.add(false);
 				}
-				//ÊÇ·ñÔÞ¹ý
+				//ï¿½Ç·ï¿½ï¿½Þ¹ï¿½
 				if(cdao.sunid(userid, n.getId())!=null){
 					zb.add(true);
 				}else{
 					zb.add(false);
 				}
-				//ÊÇ·ñÆÀÂÛ¹ý
+				//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Û¹ï¿½
 				if(rdao.unid(userid, n.getId()).size()>0){
 					plb.add(true);
 				}else{
@@ -980,7 +980,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * Í¨¹ýidÉ¾³ýÐÂÎÅ
+	 * Í¨ï¿½ï¿½idÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throw
 	 * @throws IOException
@@ -1010,7 +1010,7 @@ public class NewsAction {
 				File file = new File(ServletActionContext.getServletContext()
 						.getRealPath(n.getImg()));
 				b = file.delete();
-				System.out.println("ÐÂÎÅÐ¡Í¼É¾³ýÊÇ·ñ³É¹¦£¿" + b);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½Ð¡Í¼É¾ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½" + b);
 			}
 
 			ndao.rm(n);
@@ -1018,14 +1018,14 @@ public class NewsAction {
 			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/Newsget");
 		} else {
-			OpeFunction.Out().print("É¾³ýÊ§°Ü Ã»ÓÐÒªÉ¾³ýµÄÐÂÎÅ£¡");
+			OpeFunction.Out().print("É¾ï¿½ï¿½Ê§ï¿½ï¿½ Ã»ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å£ï¿½");
 
 		}
 
 	}
 
 	/**
-	 * ·ÖÒ³²éÑ¯
+	 * ï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 	 * 
 	 * @return
 	 * @throws IOException
@@ -1034,11 +1034,11 @@ public class NewsAction {
 	public String Newsget() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			OpeFunction.Out().print("ÏµÍ³¼ì²âÄúÃ»ÓÐµÇÈë£¡ÇëÖØÐÂµÇÈëÖØÊÔ£¡");
+			OpeFunction.Out().print("ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ë£¡ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
 		if (admin.getLevel() > 2) {
-			OpeFunction.Out().print("ÏµÍ³¼ì²âÄúÃ»ÓÐµÇÈë£¡ÇëÖØÐÂµÇÈëÖØÊÔ£¡");
+			OpeFunction.Out().print("ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ë£¡ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
 
@@ -1074,16 +1074,16 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²é¿´Ö÷Ò³ÐÂÎÅ 12/10
+	 * ï¿½é¿´ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ 12/10
 	 * 
 	 * @throws IOException
 	 */
 	public void NewsA10() throws IOException {
 		try {
-			System.out.println("Ê±¼äÊÇ" + OpeFunction.getNowTime());
-			System.out.println("½øÈëÁËNewsA10!!");
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½" + OpeFunction.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½NewsA10!!");
 			int day = 14;
-			System.out.println(OpeFunction.getNumTime(day) + "Ç°" + day + "Ìì£¿");
+			System.out.println(OpeFunction.getNumTime(day) + "Ç°" + day + "ï¿½ì£¿");
 			List<News> nt = new ArrayList<News>();
 			num = 11;
 
@@ -1094,7 +1094,7 @@ public class NewsAction {
 
 			String htime = OpeFunction.getMondayOfWeek1();
 			String time = OpeFunction.getMondayOfWeek7();
-			System.out.println("ÉÏÖÜ1ÊÇ" + htime + "ÉÏÖÜÈÕÊÇ" + time);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½" + htime + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
 				htime = OpeFunction.getNumTime(10);
@@ -1120,19 +1120,19 @@ public class NewsAction {
 			List<News> n4 = new ArrayList<News>();
 
 			num = 2;
-			// ±¾Ê¡ ÐÂÎÅÊýÁ¿ Ð¡ÓÚ2
+			// ï¿½ï¿½Ê¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ð¡ï¿½ï¿½2
 			if (ndao.area(area, num).size() < 2) {
-				System.out.println("±¾Ê¡ÐÂÎÅÐ¡ÓÚ2Ìõ");
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½2ï¿½ï¿½");
 
 			} else {
 				num = 2;
-				System.out.println("±¾Ê¡ÐÂÎÅ");
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½");
 				n4 = ndao.area(area, num);
 
 			}
 
-			System.out.println("Ê¡£º" + area);
-			System.out.println("ÊÐ£º" + areas);
+			System.out.println("Ê¡ï¿½ï¿½" + area);
+			System.out.println("ï¿½Ð£ï¿½" + areas);
 
 			List<News> n5 = new ArrayList<News>();
 
@@ -1140,9 +1140,9 @@ public class NewsAction {
 
 			List<News> n9 = new ArrayList<News>();
 
-			System.out.println("È«¹ú×îÐÂÓÐ-" + nt.size() + ",È«¹ú×îÈÈ-" + nh.size()
-					+ "±¾µØÐÂÎÅ-" + n4.size() + "ÇáËÉæäÕ¾" + n5.size() + "½¡¿µµ¼º½"
-					+ n8.size() + "Éç»á¹ã½Ç" + n9.size());
+			System.out.println("È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nt.size() + ",È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nh.size()
+					+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + n4.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾" + n5.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+					+ n8.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½" + n9.size());
 			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
 					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4)
 					+ ",\"typeqs\":" + OpeFunction.ToJson(n5) + ",\"typejk\":"
@@ -1157,7 +1157,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²é¿´Ö÷Ò³ÐÂÎÅ 2014/12/10
+	 * ï¿½é¿´ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ 2014/12/10
 	 * 
 	 * @throws IOException
 	 */
@@ -1166,29 +1166,29 @@ public class NewsAction {
 			User u = (User) session.getAttribute("u");
 			if (u != null) {
 
-				System.out.println("»ñÈ¡µ½ÓÃ»§ÐÅÏ¢ÁË");
+				System.out.println("ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½");
 
 				area = u.getAddress();
-				// ÊÐ¼¶
+				// ï¿½Ð¼ï¿½
 				areas = u.getAddcity();
 			}
-			System.out.println("Ê±¼äÊÇ" + OpeFunction.getNowTime());
-			System.out.println("½øÈëÁËwebNewsA10!!");
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½" + OpeFunction.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½webNewsA10!!");
 			int day = 14;
-			System.out.println(OpeFunction.getNumTime(day) + "Ç°" + day + "Ìì£¿");
+			System.out.println(OpeFunction.getNumTime(day) + "Ç°" + day + "ï¿½ì£¿");
 			List<News> nt = new ArrayList<News>();
 			num = 11;
 
-			// È«¹ú×îÐÂ
+			// È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			nt = ndao.Hottime(num);
 
 			List<News> nh = new ArrayList<News>();
 			num = 3;
 
-			// ×îÈÈ
+			// ï¿½ï¿½ï¿½ï¿½
 			String htime = OpeFunction.getMondayOfWeek1();
 			String time = OpeFunction.getMondayOfWeek7();
-			System.out.println("ÉÏÖÜ1ÊÇ" + htime + "ÉÏÖÜÈÕÊÇ" + time);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½" + htime + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
 				htime = OpeFunction.getNumTime(10);
@@ -1217,29 +1217,29 @@ public class NewsAction {
 
 			if (ndao.area(area, num).size() < 2) {
 
-				System.out.println("±¾Ê¡ÐÂÎÅÐ¡ÓÚ2Ìõ");
-				n4 = ndao.area("ºþÄÏ", num);
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½2ï¿½ï¿½");
+				n4 = ndao.area("ï¿½ï¿½ï¿½ï¿½", num);
 
 			} else {
 				num = 2;
-				System.out.println("±¾Ê¡ÐÂÎÅ");
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½");
 				n4 = ndao.area(area, num);
 
 			}
 
-			System.out.println("Ê¡£º" + area);
-			System.out.println("ÊÐ£º" + areas);
+			System.out.println("Ê¡ï¿½ï¿½" + area);
+			System.out.println("ï¿½Ð£ï¿½" + areas);
 
-			System.out.println("È«¹ú×îÐÂÓÐ-" + nt.size() + ",È«¹ú×îÈÈ-" + nh.size()
-					+ "±¾µØÐÂÎÅ-" + n4.size());
+			System.out.println("È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nt.size() + ",È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nh.size()
+					+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + n4.size());
 
 			List<News> n5 = new ArrayList<News>();
 
 			List<News> n8 = new ArrayList<News>();
 
-			System.out.println("Ê±¼äÅÅÐò" + nt.size() + "ÈÈÃÅÐÂÎÅ" + nh.size() + "±¾µØÐÂÎÅ"
-					+ n4.size() + "ÇáËÉµ¼º½ÊÇ1--" + n5.get(0).getType()
-					+ "--½¡¿µµ¼º½ÊÇ1---" + n8.get(0).getType());
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + nt.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + nh.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+					+ n4.size() + "ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½1--" + n5.get(0).getType()
+					+ "--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1---" + n8.get(0).getType());
 
 			request.setAttribute("Hottime", nt);
 
@@ -1260,7 +1260,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²éÑ¯È«¹ú×îÈÈÐÂÎÅ 12/09
+	 * ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 12/09
 	 */
 
 	public void Cah() {
@@ -1269,7 +1269,7 @@ public class NewsAction {
 			num = 3;
 			String htime = OpeFunction.getMondayOfWeek1();
 			String time = OpeFunction.getMondayOfWeek7();
-			System.out.println("ÉÏÖÜ1ÊÇ" + htime + "ÉÏÖÜÈÕÊÇ" + time);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½" + htime + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
 				htime = OpeFunction.getNumTime(10);
@@ -1294,14 +1294,14 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²é¿´Ö÷Ò³ÐÂÎÅ 12/9
+	 * ï¿½é¿´ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ 12/9
 	 * 
 	 * @throws IOException
 	 */
 	public void NewsA() throws IOException {
 		try {
-			System.out.println("Ê±¼äÊÇ" + OpeFunction.getNowTime());
-			System.out.println("½øÈëÁËNewsA");
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½" + OpeFunction.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½NewsA");
 			List<News> nt = new ArrayList<News>();
 			num = 4;
 
@@ -1311,7 +1311,7 @@ public class NewsAction {
 
 			String htime = OpeFunction.getMondayOfWeek1();
 			String time = OpeFunction.getMondayOfWeek7();
-			System.out.println("ÉÏÖÜ1ÊÇ" + htime + "ÉÏÖÜÈÕÊÇ" + time);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½" + htime + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + time);
 
 			if (ndao.cah(num, time, htime).size() != 3) {
 				htime = OpeFunction.getNumTime(10);
@@ -1328,32 +1328,32 @@ public class NewsAction {
 					}
 				}
 			}
-			System.out.println("È·¶¨µÄÈÕÆÚ" + htime);
+			System.out.println("È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + htime);
 			nh = ndao.cah(num, time, htime);
 
 			List<News> n4 = new ArrayList<News>();
 			num = 2;
 
 			if (ndao.area(area, num).size() < 2) {
-				System.out.println("±¾Ê¡ÐÂÎÅÐ¡ÓÚ2Ìõ");
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½2ï¿½ï¿½");
 
 			} else {
 				num = 2;
-				System.out.println("±¾Ê¡ÐÂÎÅ");
+				System.out.println("ï¿½ï¿½Ê¡ï¿½ï¿½ï¿½ï¿½");
 				n4 = ndao.area(area, num);
 
 			}
 
-			System.out.println("Ê¡£º" + area);
-			System.out.println("ÊÐ£º" + areas);
+			System.out.println("Ê¡ï¿½ï¿½" + area);
+			System.out.println("ï¿½Ð£ï¿½" + areas);
 
-			System.out.println("È«¹ú×îÐÂÓÐ-" + nt.size() + ",È«¹ú×îÈÈ-" + nh.size()
-					+ "±¾µØÐÂÎÅ-" + n4.size());
-			// 1ÊÇÈ«¹ú×îÈÈ
+			System.out.println("È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nt.size() + ",È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nh.size()
+					+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + n4.size());
+			// 1ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
 					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
 			OpeFunction.Out().print(result);
-			System.out.println("Ê±¼äÅÅÐò" + nt.size() + "ÈÈÃÅÐÂÎÅ" + nh.size() + "±¾µØÐÂÎÅ"
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + nt.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + nh.size() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 					+ n4.size());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1362,7 +1362,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²éÑ¯±¾µØÐÂÎÅ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void Hotarea() {
 		try {
@@ -1378,7 +1378,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * È«¹ú×îÈÈÐÂÎÅ
+	 * È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void Hottest() {
 		try {
@@ -1393,48 +1393,48 @@ public class NewsAction {
 	}
 
 	/**
-	 * °Ë´óÀà ²éÑ¯ type
+	 * ï¿½Ë´ï¿½ï¿½ï¿½ ï¿½ï¿½Ñ¯ type
 	 * 
 	 * @throws IOException
 	 */
 	public void type() throws IOException {
 		try {
-			System.out.println("½øÈëtype");
-			System.out.println("´«µÄ" + tp);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½type");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + tp);
 			switch (tp) {
 
 			case 1:
-				type = "ÉýÑ§Ö¸ÄÏ";
+				type = "ï¿½ï¿½Ñ§Ö¸ï¿½ï¿½";
 
 				break;
 			case 2:
-				type = "½Ì×Ó¾­Ñé";
+				type = "ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½";
 
 				break;
 			case 3:
-				type = "³É³¤Â·ÉÏ";
+				type = "ï¿½É³ï¿½Â·ï¿½ï¿½";
 				break;
 			case 4:
-				type = "³ö¹úÁôÑ§";
+				type = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§";
 				break;
 			case 5:
-				type = "ÐËÈ¤ÌØ³¤";
+				type = "ï¿½ï¿½È¤ï¿½Ø³ï¿½";
 				break;
 			case 6:
-				type = "ÃûÈË½Ì×Ó";
+				type = "ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½";
 				break;
 			case 7:
-				type = "½¡¿µµ¼º½";
+				type = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 				break;
 			case 8:
-				type = "ÇáËÉæäÕ¾";
+				type = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾";
 				break;
 			case 9:
-				type = "Éç»á¹ã½Ç";
+				type = "ï¿½ï¿½ï¿½ï¿½ï¿½";
 				break;
 
 			default:
-				System.out.println("ÇëÊäÈëÕýÈ·´úÂëtp");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½tp");
 				type = "No";
 				break;
 			}
@@ -1453,7 +1453,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * °Ë´óÀà µÄ4Ð¡Àà ²éÑ¯ type
+	 * ï¿½Ë´ï¿½ï¿½ï¿½ ï¿½ï¿½4Ð¡ï¿½ï¿½ ï¿½ï¿½Ñ¯ type
 	 * 
 	 * @throws IOException
 	 */
@@ -1461,26 +1461,26 @@ public class NewsAction {
 		try {
 			switch (tp) {
 			case 1:
-				type = "Ó×ÉýÐ¡";
+				type = "ï¿½ï¿½ï¿½ï¿½Ð¡";
 
 				break;
 			case 2:
-				type = "Ð¡Éý³õ";
+				type = "Ð¡ï¿½ï¿½ï¿½ï¿½";
 				break;
 			case 3:
-				type = "ÖÐ¿¼";
+				type = "ï¿½Ð¿ï¿½";
 				break;
 			case 4:
-				type = "¸ß¿¼";
+				type = "ï¿½ß¿ï¿½";
 				break;
 
 			default:
-				System.out.println("ÇëÊäÈëÕýÈ·´úÂëtp");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½tp");
 				OpeFunction.Out().print("not tp");
 				return;
 			}
 
-			System.out.println("´«µÄÊÇ" + tp + "Àà±ðÊÇ" + type);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + tp + "ï¿½ï¿½ï¿½ï¿½ï¿½" + type);
 
 			int a = ndao.types(type).size();
 
@@ -1499,9 +1499,9 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println(type + " -ÓÐ" + a + "Ò³");
-			System.out.println("Ã¿Ò³¶àÉÙÌõ-" + pageSize);
-			System.out.println("µÚ-" + currentPage + "-Ò³");
+			System.out.println(type + " -ï¿½ï¿½" + a + "Ò³");
+			System.out.println("Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + pageSize);
+			System.out.println("ï¿½ï¿½-" + currentPage + "-Ò³");
 			nl = ndao.types(type, pageSize, currentPage);
 			System.out.println(type);
 			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
@@ -1520,7 +1520,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ÉÏ´«ÐÂÎÅ
+	 * ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @return
 	 * @throws IOException
@@ -1528,20 +1528,20 @@ public class NewsAction {
 
 	@SuppressWarnings("unchecked")
 	public String UPtext() throws IOException {
-		// 1ÊÇÀ´×ÔËæ»úÊ±¼ä
+		// 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		String rt = "";
 
-		System.out.println("½øÈëÁËÉÏ´«ÐÂÎÅUPtext");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½UPtext");
 		savePath = "/Newsimg" + "/" + OpeFunction.getDayTime(1) + "/"
 				+ OpeFunction.getDayTime(2) + "/" + OpeFunction.getDayTime(1)
 				+ OpeFunction.getDayTime(2) + OpeFunction.getDayTime(3);
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			OpeFunction.Out().print("ÏµÍ³¼ì²âÄúÃ»ÓÐµÇÈë£¡ÇëÖØÐÂµÇÈëÖØÊÔ£¡");
+			OpeFunction.Out().print("ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ë£¡ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
 		if (admin.getLevel() > 2) {
-			OpeFunction.Out().print("ÏµÍ³¼ì²âÄúÃ»ÓÐµÇÈë£¡ÇëÖØÐÂµÇÈëÖØÊÔ£¡");
+			OpeFunction.Out().print("ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ë£¡ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½");
 			return null;
 		}
 
@@ -1549,13 +1549,13 @@ public class NewsAction {
 		request.setCharacterEncoding("UTF-8");
 		htmlData = request.getParameter("content1");
 		List<String> images = new ArrayList<String>();
-		System.out.println("ÎÄÕÂÄÚÈÝ" + htmlData);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + htmlData);
 		if (htmlData == null) {
-			OpeFunction.Out().print("ÎÄÕÂÄÚÈÝÃ»ÓÐ»ñÈ¡µ½" + htmlData);
+			OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½" + htmlData);
 			return null;
 		}
 		if (htmlData.length() < 3) {
-			OpeFunction.Out().print("ÎÄÕÂÄÚÈÝÃ»ÓÐ»ñÈ¡µ½" + htmlData);
+			OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½" + htmlData);
 			return null;
 		}
 
@@ -1592,7 +1592,7 @@ public class NewsAction {
 			}
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("Â·¾¶" + images.get(i));
+					System.out.println("Â·ï¿½ï¿½" + images.get(i));
 
 					sb.append(images.get(i) + ",");
 
@@ -1603,7 +1603,7 @@ public class NewsAction {
 			}
 			// String [] s=n.getImg().toString().split("xy-x");
 			// for(int i=0;i<s.length;i++){
-			// System.out.println("½ØÈ¡µÄÂ·¾¶---"+s[i]);
+			// System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Â·ï¿½ï¿½---"+s[i]);
 			// }
 
 		} else {
@@ -1611,7 +1611,7 @@ public class NewsAction {
 			images = OpeFunction.getImgs(htmlData);
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("Â·¾¶ "
+					System.out.println("Â·ï¿½ï¿½ "
 							+ images.get(i).replaceAll("/PerfectBefriend", "")
 							+ ",");
 
@@ -1623,13 +1623,13 @@ public class NewsAction {
 			/**
 			 * System.out.println(sb.toString()); String []
 			 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
-			 * System.out.println("½ØÈ¡µÄÂ·¾¶"+s[i]); }
+			 * System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Â·ï¿½ï¿½"+s[i]); }
 			 */
-			System.out.println("´æÁË " + sb.toString());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ " + sb.toString());
 			n.setImg(sb.toString());
 
 		}
-		// ½«width ÉèÖÃWie 100%
+		// ï¿½ï¿½width ï¿½ï¿½ï¿½ï¿½Wie 100%
 		htmlData = OpeFunction.setImgswidth100(htmlData);
 		System.out.println("htmlData==" + htmlData);
 		n.setContent(htmlData);
@@ -1650,11 +1650,11 @@ public class NewsAction {
 			rt = "B";
 		}
 		
-		if (province!=null&&!province.equals("ÇëÑ¡ÔñÊ¡·Ý")) {
+		if (province!=null&&!province.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½Ê¡ï¿½ï¿½")) {
 			n.setArea(province);
 
 		}
-		if (city!=null&&!city.equals("ÇëÑ¡ÔñµØÇø")) {
+		if (city!=null&&!city.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½")) {
 			n.setAreas(city);
 		}
 		
@@ -1670,9 +1670,9 @@ public class NewsAction {
 		return rt;
 
 		/**
-		 * if (imgFile == null) { OpeFunction.Out().print("ÄúÃ»ÓÐÉÏ´«Ð¡Í¼ £¡ÇëÄú·µ»ØÖØÊÔ£¡"); return
+		 * if (imgFile == null) { OpeFunction.Out().print("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï´ï¿½Ð¡Í¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return
 		 * null; } if (imgFilemax == null) {
-		 * OpeFunction.Out().print("ÄúÃ»ÓÐÉÏ´«´óÍ¼£¡ÇëÄú·µ»ØÖØÊÔ£¡"); return null; }
+		 * OpeFunction.Out().print("ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return null; }
 		 * 
 		 * BufferedImage sourceImg = ImageIO .read(new
 		 * FileInputStream(imgFile)); BufferedImage sourceImgmax =
@@ -1683,18 +1683,18 @@ public class NewsAction {
 		 * util.fileSize(imgFilemax);
 		 * 
 		 * if (sourceImgmax.getWidth() != 720 || sourceImgmax.getHeight() !=
-		 * 360) { OpeFunction.Out().print("´óÍ¼³ß´çÎª 720*360 ÇëÄúÖØÐÂ¼ì²éÏÂ£¡ÇëÄú·µ»ØÖØÊÔ£¡"); return
+		 * 360) { OpeFunction.Out().print("ï¿½ï¿½Í¼ï¿½ß´ï¿½Îª 720*360 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return
 		 * null; } if (sourceImg.getWidth() != 180 || sourceImg.getHeight() !=
-		 * 140) { OpeFunction.Out().print("Ð¡Í¼³ß´çÎª 180*140 ÇëÄúÖØÐÂ¼ì²éÏÂ£¡ÇëÄú·µ»ØÖØÊÔ£¡"); return
+		 * 140) { OpeFunction.Out().print("Ð¡Í¼ï¿½ß´ï¿½Îª 180*140 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return
 		 * null; }
 		 * 
 		 * if (fimg > 512.00) {
-		 * OpeFunction.Out().print("Ð¡Í¼´óÐ¡Îª 0.5MB ÒÔÏÂ£¡ÇëÄúÖØÐÂ¼ì²éÏÂ£¡ÇëÄú·µ»ØÖØÊÔ£¡"); return null; } if
+		 * OpeFunction.Out().print("Ð¡Í¼ï¿½ï¿½Ð¡Îª 0.5MB ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return null; } if
 		 * (fimgmax > 1024.00) {
-		 * OpeFunction.Out().print("´óÍ¼´óÐ¡Îª 1MB ÒÔÏÂ£¡ÇëÄúÖØÐÂ¼ì²éÏÂ£¡ÇëÄú·µ»ØÖØÊÔ£¡"); return null; }
-		 * System.out.println("¿í" + sourceImg.getWidth());
-		 * System.out.println("¸ß" + sourceImg.getHeight());
-		 * System.out.println("ÊÇ·ñÊÇ×¨¼Ò 0²»ÊÇ 1ÊÇ :" + expert);
+		 * OpeFunction.Out().print("ï¿½ï¿½Í¼ï¿½ï¿½Ð¡Îª 1MB ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½"); return null; }
+		 * System.out.println("ï¿½ï¿½" + sourceImg.getWidth());
+		 * System.out.println("ï¿½ï¿½" + sourceImg.getHeight());
+		 * System.out.println("ï¿½Ç·ï¿½ï¿½ï¿½×¨ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ :" + expert);
 		 * 
 		 * String imgmax = util.fileToServer(savePath, imgFilemax,
 		 * imgFilemaxFileName, imgFilemaxContentType, true); String img =
@@ -1705,18 +1705,18 @@ public class NewsAction {
 	}
 
 	/**
-	 * Í¨¹ýid²é¿´ÐÂÎÅ
+	 * Í¨ï¿½ï¿½idï¿½é¿´ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void NewsId() {
 		try {
-			System.out.println("½øÈëNewsId£º" + newsid);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½NewsIdï¿½ï¿½" + newsid);
 			if (newsid > 0) {
-				System.out.println("ÐÂÎÅid" + newsid);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½id" + newsid);
 				n = ndao.byid(newsid);
 				int nn;
-				System.out.println("ÐÂÎÅ±êÌâ" + n.getTitle());
+				System.out.println("ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½" + n.getTitle());
 				if (n.getHits() == null) {
 					System.out.println("Hitsnull");
 					nn = 1;
@@ -1724,7 +1724,7 @@ public class NewsAction {
 					nn = n.getHits() + 1;
 				}
 
-				System.out.println("µã»÷ÊýÎª" + nn);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Îª" + nn);
 
 				n.setHits(nn);
 
@@ -1745,42 +1745,42 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²é¿´Ö÷Ò³ÐÂÎÅ
+	 * ï¿½é¿´ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void NewsAll() throws IOException {
 		try {
-			System.out.println("Ê±¼äÊÇ" + OpeFunction.getNowTime());
-			System.out.println("½øÈëÁËNewsAll");
+			System.out.println("Ê±ï¿½ï¿½ï¿½ï¿½" + OpeFunction.getNowTime());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½NewsAll");
 			List<News> nt = new ArrayList<News>();
 			num = 3;
 
 			for (News n2 : ndao.Hottime(num)) {
 				nt.add(n2);
-				System.out.println("È«¹ú×îÐÂÐÂÎÅid-" + n2.getId());
+				System.out.println("È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id-" + n2.getId());
 			}
 			List<News> nn = new ArrayList<News>();
 			num = 2;
 
 			for (News n : ndao.Hottest(num)) {
-				System.out.println("×îÈÈÐÂÎÅid-" + n.getId());
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id-" + n.getId());
 				nn.add(n);
 			}
 			List<News> n4 = new ArrayList<News>();
 			num = 2;
 			if (ndao.Hotarea(num, area).size() < 2) {
-				area = "±±¾©";
-				areas = "º£µíÇø";
+				area = "ï¿½ï¿½ï¿½ï¿½";
+				areas = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 			}
 			for (News ns : ndao.Hotarea(num, area)) {
 				n4.add(ns);
 			}
-			System.out.println("Ê¡£º" + area);
-			System.out.println("ÊÐ£º" + areas);
+			System.out.println("Ê¡ï¿½ï¿½" + area);
+			System.out.println("ï¿½Ð£ï¿½" + areas);
 
-			System.out.println("È«¹ú×îÐÂÓÐ-" + nt.size() + ",È«¹ú×îÈÈ-" + nn.size()
-					+ "±¾µØÐÂÎÅ-" + n4.size());
+			System.out.println("È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nt.size() + ",È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + nn.size()
+					+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-" + n4.size());
 
 			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
 					+ OpeFunction.ToJson(nn) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
@@ -1792,15 +1792,15 @@ public class NewsAction {
 	}
 
 	/**
-	 * Ìí¼ÓÊÕ²Ø Í¨¹ý ÓÃ»§id ÐÂÎÅid
+	 * ï¿½ï¿½ï¿½ï¿½Õ²ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½id ï¿½ï¿½ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
 	public void Csave() throws IOException {
 		try {
-			System.out.println("½øÈëÐÂÎÅÊÕ²Øuserid:" + userid + "newsid:" + newsid);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ²ï¿½userid:" + userid + "newsid:" + newsid);
 			if (cdao.unid(userid, newsid) != null) {
-				System.out.println("ÒÑ¾­ÊÕ²Ø¹ý!");
+				System.out.println("ï¿½Ñ¾ï¿½ï¿½Õ²Ø¹ï¿½!");
 				OpeFunction.Out().print(false);
 			} else {
 				User u = userdao.byid(userid);
@@ -1832,7 +1832,7 @@ public class NewsAction {
 				n.setCollectnum(n1);
 
 				ndao.Upnews(n);
-				System.out.println("ÊÕ²Ø³É¹¦!");
+				System.out.println("ï¿½Õ²Ø³É¹ï¿½!");
 				OpeFunction.Out().print(true);
 			}
 		} catch (Exception e) {
@@ -1841,15 +1841,15 @@ public class NewsAction {
 	}
 
 	/**
-	 * Ìí¼ÓÔÞÍ¨¹ý ÓÃ»§id ÐÂÎÅid
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ ï¿½Ã»ï¿½id ï¿½ï¿½ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
 	public void supportSave() throws IOException {
 
-		System.out.println("½øÈëÐÂÎÅµãÔÞuserid:" + userid + "newsid:" + newsid);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½userid:" + userid + "newsid:" + newsid);
 		if (cdao.sunid(userid, newsid) != null) {
-			System.out.println("ÒÑ¾­ÊÕÔÞ¹ý!");
+			System.out.println("ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½!");
 			OpeFunction.Out().print(false);
 		} else {
 			User u = userdao.byid(userid);
@@ -1865,34 +1865,34 @@ public class NewsAction {
 			n = ndao.byid(newsid);
 			n.setSupports(cdao.sNlln(newsid).size());
 			ndao.Upnews(n);
-			System.out.println("µãÔÞ³É¹¦!");
+			System.out.println("ï¿½ï¿½ï¿½Þ³É¹ï¿½!");
 			OpeFunction.Out().print(true);
 		}
 
 	}
 
 	/**
-	 * ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇé
+	 * ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String adminNewsId() throws IOException {
 
-		System.out.println("ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇéÍ¨¹ýid²éÑ¯ÐÂÎÅ" + id);
+		System.out.println("ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" + id);
 		if (id <= 0) {
-			OpeFunction.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
+			OpeFunction.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
+			System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
 			return null;
 		}
 
 		rl = rdao.Alln(id);
 		if (rl.size() != 0) {
-			System.out.println("ÓÐÆÀÂÛ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			for (int i = 0; i < rl.size(); i++) {
 
 				ul.add(userdao.byid(rl.get(i).getId()));
 			}
-			System.out.println("ÆÀÂÛ" + rl.size());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½" + rl.size());
 
 			request.setAttribute("ul", ul);
 			request.setAttribute("rl", rl);
@@ -1904,8 +1904,8 @@ public class NewsAction {
 
 		n.setCah(n.getCah() + 1);
 
-		System.out.println("µã»÷Êý:" + n.getHits() + "ÊÕ²ØÊý+µã»÷Êý:" + n.getCah()
-				+ "ÊÕ²ØÊý:" + n.getCollectnum());
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½:" + n.getHits() + "ï¿½Õ²ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½:" + n.getCah()
+				+ "ï¿½Õ²ï¿½ï¿½ï¿½:" + n.getCollectnum());
 
 		ndao.Upnews(n);
 		request.setAttribute("n", n);
@@ -1914,17 +1914,17 @@ public class NewsAction {
 	}
 
 	/**
-	 * ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇé
+	 * ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
 	public String adminNewsIdup() throws IOException {
 
-		System.out.println("ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇéÍ¨¹ýid²éÑ¯ÐÂÎÅ" + id);
+		System.out.println("ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" + id);
 		if (id <= 0) {
-			OpeFunction.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
+			OpeFunction.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
+			System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
 			return null;
 		}
 		n = ndao.byid(id);
@@ -1933,13 +1933,13 @@ public class NewsAction {
 		request.setCharacterEncoding("UTF-8");
 		htmlData = request.getParameter("content1");
 		List<String> images = new ArrayList<String>();
-		System.out.println("ÎÄÕÂÄÚÈÝ" + htmlData);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + htmlData);
 		if (htmlData == null) {
-			OpeFunction.Out().print("ÎÄÕÂÄÚÈÝÃ»ÓÐ»ñÈ¡µ½" + htmlData);
+			OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½" + htmlData);
 			return null;
 		}
 		if (htmlData.length() < 3) {
-			OpeFunction.Out().print("ÎÄÕÂÄÚÈÝÃ»ÓÐ»ñÈ¡µ½" + htmlData);
+			OpeFunction.Out().print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½" + htmlData);
 			return null;
 		}
 
@@ -1947,10 +1947,10 @@ public class NewsAction {
 		n.setSummary(summary);
 		n.setContent(htmlData);
 		n.setType(itype);
-		if(area!=null&&!area.equals("ÇëÑ¡ÔñÊ¡·Ý")){
+		if(area!=null&&!area.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½Ê¡ï¿½ï¿½")){
 		n.setArea(area);
 		}
-		if(areas!=null&&!areas.equals("ÇëÑ¡ÔñµØÇø")){
+		if(areas!=null&&!areas.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½")){
 		n.setAreas(areas);
 		}
 		StringBuffer sb = new StringBuffer();
@@ -1967,7 +1967,7 @@ public class NewsAction {
 			}
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("Â·¾¶" + images.get(i));
+					System.out.println("Â·ï¿½ï¿½" + images.get(i));
 					if (i == 0) {
 						sb.append(images.get(i));
 					} else {
@@ -1979,7 +1979,7 @@ public class NewsAction {
 			n.setImg(sb.toString());
 			// String [] s=n.getImg().toString().split("xy-x");
 			// for(int i=0;i<s.length;i++){
-			// System.out.println("½ØÈ¡µÄÂ·¾¶---"+s[i]);
+			// System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Â·ï¿½ï¿½---"+s[i]);
 			// }
 
 		} else {
@@ -1987,7 +1987,7 @@ public class NewsAction {
 			images = OpeFunction.getImgs(htmlData);
 			if (images != null) {
 				for (int i = 0; i < images.size(); i++) {
-					System.out.println("Â·¾¶" + images.get(i));
+					System.out.println("Â·ï¿½ï¿½" + images.get(i));
 					if (i == 0) {
 						sb.append(images.get(i));
 					} else {
@@ -1999,7 +1999,7 @@ public class NewsAction {
 			/**
 			 * System.out.println(sb.toString()); String []
 			 * s=sb.toString().split(","); for(int i=0;i<s.length;i++){
-			 * System.out.println("½ØÈ¡µÄÂ·¾¶"+s[i]); }
+			 * System.out.println("ï¿½ï¿½È¡ï¿½ï¿½Â·ï¿½ï¿½"+s[i]); }
 			 */
 
 			n.setImg(sb.toString());
@@ -2009,11 +2009,11 @@ public class NewsAction {
 		if (timet == null) {
 			timet = OpeFunction.getNowTime();
 		}
-		if (!province.equals("ÇëÑ¡ÔñÊ¡·Ý")) {
+		if (!province.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½Ê¡ï¿½ï¿½")) {
 			n.setArea(province);
 
 		}
-		if (!city.equals("ÇëÑ¡ÔñµØÇø")) {
+		if (!city.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½")) {
 			n.setAreas(city);
 		}
 		n.setTime(timet);
@@ -2024,16 +2024,16 @@ public class NewsAction {
 	}
 
 	/**
-	 * ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇé
+	 * ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public String adminNewsIds() throws IOException {
 
-		System.out.println("ºóÌ¨¹ÜÀí²é¿´ÐÂÎÅÏêÇéÍ¨¹ýid²éÑ¯ÐÂÎÅ" + id);
+		System.out.println("ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½" + id);
 		if (id <= 0) {
-			OpeFunction.Out().print("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
-			System.out.println("Ã»ÓÐ»ñÈ¡µ½ÐÂÎÅid");
+			OpeFunction.Out().print("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
+			System.out.println("Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id");
 			return null;
 		}
 
@@ -2044,7 +2044,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * É¾³ýÊÕ²Ø Í¨¹ý ÓÃ»§id ÐÂÎÅid
+	 * É¾ï¿½ï¿½ï¿½Õ²ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½id ï¿½ï¿½ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
@@ -2053,10 +2053,10 @@ public class NewsAction {
 			if (cdao.unid(userid, newsid) != null) {
 				cdao.remove(cdao.unid(userid, newsid));
 				n = ndao.byid(newsid);
-				// ²éÑ¯¸ÃÎÄÕÂ±»ÊÕ²Ø¶àÉÙ´Î ÖØÐÂÐ´Èë
-				System.out.println("¸ÃÎÄÕÂ±»ÊÕ²Ø" + n.getCollectnum());
+				// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Õ²Ø¶ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Õ²ï¿½" + n.getCollectnum());
 				int n1 = n.getCollectnum() - 1;
-				System.out.println("¸ÃÎÄÕÂ±»ÊÕ²Ø" + n1);
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½Õ²ï¿½" + n1);
 				if (n.getHits() != null) {
 					n.setCah(n1 * 2 + n.getHits());
 				} else {
@@ -2075,7 +2075,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * È¡ÏûÔÞ Í¨¹ý ÓÃ»§id ÐÂÎÅid
+	 * È¡ï¿½ï¿½ï¿½ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½id ï¿½ï¿½ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
@@ -2100,7 +2100,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ÐÂÎÅ²é¿´ÔÞ
+	 * ï¿½ï¿½ï¿½Å²é¿´ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -2119,7 +2119,7 @@ public class NewsAction {
 	}
 
 	/**
-	 * ÅÐ¶ÏÊÇ·ñÊÕ²Ø
+	 * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Õ²ï¿½
 	 */
 	public void Whether() {
 		try {
@@ -2136,11 +2136,11 @@ public class NewsAction {
 	}
 
 	/**
-	 * ²éÑ¯ÊÕ²Ø Í¨¹ýÓÃ»§id½øÐÐ²éÑ¯
+	 * ï¿½ï¿½Ñ¯ï¿½Õ²ï¿½ Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½ï¿½ï¿½Ð²ï¿½Ñ¯
 	 */
 	public void SearchBookmark() throws IOException {
 		try {
-			System.out.println("½øÈëÁËSearchBookmark");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SearchBookmark");
 			User u = userdao.byid(userid);
 			if (u == null) {
 				OpeFunction.Out().print("null");
@@ -2151,8 +2151,8 @@ public class NewsAction {
 				nl.add(n);
 
 			}
-			System.out.println("ÓÃ»§" + u.getUsername() + "ÊÕ²ØÁË" + nl.size()
-					+ "¸öÎÄÕÂ");
+			System.out.println("ï¿½Ã»ï¿½" + u.getUsername() + "ï¿½Õ²ï¿½ï¿½ï¿½" + nl.size()
+					+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			if (nl.size() == 0) {
 				OpeFunction.Out().print("null");
 			} else {
@@ -2167,27 +2167,27 @@ public class NewsAction {
 	}
 
 	/**
-	 * É¾³ýÆÀÂÛ Í¨¹ý ÆÀÂÛµÄreviewid ÓÃ»§ username
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Í¨ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½reviewid ï¿½Ã»ï¿½ username
 	 * 
 	 * @throws IOException
 	 */
 	public void RemoveR() throws IOException {
 		try {
-			System.out.println("É¾³ýÆÀÂÛ·½·¨RemoveR");
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½ï¿½Û·ï¿½ï¿½ï¿½RemoveR");
 			System.out.println("reviewid+" + reviewid);
 			System.out.println("userid+" + userid);
 			r = rdao.byid(reviewid, userid);
 			if (r == null) {
 				OpeFunction.Out().print("null");
-				System.out.println("ÆÀÂÛ  Îª¿Õ");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½  Îªï¿½ï¿½");
 				return;
 			}
 			newsid = r.getNewsid();
 			rdao.remove(r);
 
 			n = ndao.byid(newsid);
-			System.out.println("ÐÞ¸Ä´úÂë");
-			System.out.println("newsidÊÇ" + n.getId());
+			System.out.println("ï¿½Þ¸Ä´ï¿½ï¿½ï¿½");
+			System.out.println("newsidï¿½ï¿½" + n.getId());
 
 			n.setReviews(rdao.Alln(newsid).size());
 			ndao.Upnews(n);
@@ -2200,13 +2200,13 @@ public class NewsAction {
 	}
 
 	/**
-	 * Ìí¼ÓÆÀÂÛ Í¨¹ý ÓÃ»§username ÐÂÎÅnewsid
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Í¨ï¿½ï¿½ ï¿½Ã»ï¿½username ï¿½ï¿½ï¿½ï¿½newsid
 	 * 
 	 * @throws IOException
 	 */
 	public void Rsave() throws IOException {
 		try {
-			System.out.println("½øÈëÌí¼ÓÆÀÂÛRsave" + userid);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rsave" + userid);
 
 			if (newsid <= 0 || userid <= 0) {
 				OpeFunction.Out().print("null");
@@ -2224,7 +2224,7 @@ public class NewsAction {
 			r.setTime(OpeFunction.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
-			// ²éÑ¯¸ÃÎÄÕÂ±»ÆÀÂÛ¶àÉÙ´Î ÖØÐÂÐ´Èë
+			// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½Û¶ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
 			n = ndao.byid(newsid);
 			if (n == null) {
 				OpeFunction.Out().print("null");
@@ -2233,8 +2233,8 @@ public class NewsAction {
 			}
 			rl = rdao.Alln(newsid);
 
-			System.out.println("ÆÀÂÛÄÚÈÝ" + review);
-			System.out.println("newsidÊÇ" + n.getId());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + review);
+			System.out.println("newsidï¿½ï¿½" + n.getId());
 
 			n.setReviews(rl.size());
 			ndao.Upnews(n);
@@ -2246,40 +2246,40 @@ public class NewsAction {
 	}
 
 	/**
-	 * Í¨¹ýnewsid²éÑ¯ ÆÀÂÛ
+	 * Í¨ï¿½ï¿½newsidï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void ReviewsInquiry513() throws IOException {
-		System.out.println("newsidÊÇ-" + newsid);
+		System.out.println("newsidï¿½ï¿½-" + newsid);
 		rl = rdao.Alln(newsid);
 		if (rl.size() > 0) {
-			System.out.println("ÓÐÆÀÂÛ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			for (int i = 0; i < rl.size(); i++) {
 				User u1 = userdao.byid((rl.get(i).getId()));
 				ul.add(u1);
 			}
-			System.out.println("ÓÐÆÀÂÛ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			String result = "{\"rl\":" + OpeFunction.ToJson(rl) + ",\"ul\":"
 					+ OpeFunction.ToJson(ul) + "}";
 			OpeFunction.Out().print(result);
 
 		} else {
-			System.out.println("Ã»ÓÐÆÀÂÛ");
+			System.out.println("Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			OpeFunction.Out().print("null");
 		}
 
 	}
 
 	/**
-	 * Í¨¹ýusername²éÑ¯ÆÀÂÛ ÐÂÎÅºÍ¶ÔÃ¿¸öÐÂÎÅµÄ×îÐÂ ÆÀÂÛ
+	 * Í¨ï¿½ï¿½usernameï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÅºÍ¶ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
 	public void Reviewsusername() throws IOException {
 		try {
 
-			List<Integer> rn = new ArrayList<Integer>();// ÊÕ²Ø List
+			List<Integer> rn = new ArrayList<Integer>();// ï¿½Õ²ï¿½ List
 			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
@@ -2295,8 +2295,8 @@ public class NewsAction {
 				}
 
 				if (b) {
-					System.out.println("ÎÒÆÀÂÛ¹ýµÄÐÂÎÅ  ÓÃ»§ÃûºÍÐÂÎÅid" + username + "+"
-							+ r1.getNewsid() + "Ê±¼äÊÇ£º" + r1.getTime());
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id" + username + "+"
+							+ r1.getNewsid() + "Ê±ï¿½ï¿½ï¿½Ç£ï¿½" + r1.getTime());
 					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 
@@ -2313,12 +2313,12 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
-			System.out.println("Òì³£ÊÇ" + e.getMessage());
+			System.out.println("ï¿½ì³£ï¿½ï¿½" + e.getMessage());
 		}
 	}
 
 	/**
-	 * Í¨¹ýÓÃ»§Ãû username newsid ²éÑ¯ÆÀÂÛ
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ username newsid ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param ndao
 	 * @param cdao

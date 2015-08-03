@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="support")
+@Table(name="support_news")
 
-public class Support implements Serializable
+public class Support_News implements Serializable
 {
 	/**
 	 * xinwen dianzhan

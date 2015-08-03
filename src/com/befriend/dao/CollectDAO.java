@@ -3,38 +3,38 @@ package com.befriend.dao;
 import java.util.List;
 
 import com.befriend.entity.Collect;
-import com.befriend.entity.Support;
+import com.befriend.entity.Support_News;
 /**
- * ÊÕ²Ø·½·¨
+ * ï¿½Õ²Ø·ï¿½ï¿½ï¿½
  * @author Administrator
  *
  */
 public interface CollectDAO
 {
-	//¸ù¾Ýnewsid²éÑ¯È«²¿ÊÕ²Ø
+	//ï¿½ï¿½ï¿½ï¿½newsidï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Õ²ï¿½
 	public List<Collect> Alln(int newsid);
-	//¸ù¾Ýuserid²éÑ¯È«²¿ÊÕ²Ø
+	//ï¿½ï¿½ï¿½ï¿½useridï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½Õ²ï¿½
 	public List<Collect> Allu(int userid);
-	//¸ù¾Ýuserid newsid Ìí¼ÓÊÕ²Ø 
+	//ï¿½ï¿½ï¿½ï¿½userid newsid ï¿½ï¿½ï¿½ï¿½Õ²ï¿½ 
 	public void save(Collect collect);
-	//¸ù¾Ýuserid ºÍ newsid  ²éÑ¯   ·ÀÖ¹ÖØ¸´ÊÕ²Ø
+	//ï¿½ï¿½ï¿½ï¿½userid ï¿½ï¿½ newsid  ï¿½ï¿½Ñ¯   ï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ï¿½Õ²ï¿½
 	public Collect unid(int userid,int newsid);
-	//É¾³ýÊÕ²Ø
+	//É¾ï¿½ï¿½ï¿½Õ²ï¿½
 	public void remove(Collect collect);
 	
 	/**
-	 * µãÔÞ
+	 * ï¿½ï¿½ï¿½ï¿½
 	 */
-		//¸ù¾Ýnewsid²éÑ¯È«²¿ÔÞ
-		public List<Support> sNlln(int newsid);
-		//¸ù¾Ýuserid²éÑ¯È«²¿ÔÞ
-		public List<Support> sAllu(int userid);
-		//¸ù¾Ýuserid newsid Ìí¼ÓÔÞ
-		public void save(Support st);
-		//¸ù¾Ýuserid ºÍ newsid  ²éÑ¯   ·ÀÖ¹ÖØ¸´ÔÞ
-		public Support sunid(int userid,int newsid);
-		//È¡ÏûÔÞ
-		public void remove(Support st);
+		//ï¿½ï¿½ï¿½ï¿½newsidï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½ï¿½
+		public List<Support_News> sNlln(int newsid);
+		//ï¿½ï¿½ï¿½ï¿½useridï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½ï¿½
+		public List<Support_News> sAllu(int userid);
+		//ï¿½ï¿½ï¿½ï¿½userid newsid ï¿½ï¿½ï¿½ï¿½ï¿½
+		public void save(Support_News st);
+		//ï¿½ï¿½ï¿½ï¿½userid ï¿½ï¿½ newsid  ï¿½ï¿½Ñ¯   ï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ï¿½ï¿½
+		public Support_News sunid(int userid,int newsid);
+		//È¡ï¿½ï¿½ï¿½ï¿½
+		public void remove(Support_News st);
 	
 	
 

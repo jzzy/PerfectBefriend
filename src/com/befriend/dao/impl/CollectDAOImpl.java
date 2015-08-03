@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.CollectDAO;
 import com.befriend.entity.Collect;
-import com.befriend.entity.Support;
+import com.befriend.entity.Support_News;
 
 @Transactional
 public class CollectDAOImpl implements CollectDAO {
@@ -64,7 +64,7 @@ public class CollectDAOImpl implements CollectDAO {
 	}
 
 	@Override
-	public List<Support> sNlln(int newsid) {
+	public List<Support_News> sNlln(int newsid) {
 		Query query = entityManager.createQuery("select u from Support u where"
 				+ " u.newsid=:newsid order by u.time desc");
 
@@ -73,7 +73,7 @@ public class CollectDAOImpl implements CollectDAO {
 	}
 
 	@Override
-	public List<Support> sAllu(int userid) {
+	public List<Support_News> sAllu(int userid) {
 		Query query = entityManager.createQuery("select u from Support u where"
 				+ " u.userid=:userid order by u.time desc");
 
@@ -82,13 +82,13 @@ public class CollectDAOImpl implements CollectDAO {
 	}
 
 	@Override
-	public void save(Support st) {
+	public void save(Support_News st) {
 		// TODO Auto-generated method stub
 		entityManager.persist(st);
 	}
 
 	@Override
-	public Support sunid(int userid, int newsid) {
+	public Support_News sunid(int userid, int newsid) {
 
 		Query query = entityManager.createQuery("select u from Support u where"
 				+ " u.userid=:userid and u.newsid=:newsid");
@@ -96,14 +96,14 @@ public class CollectDAOImpl implements CollectDAO {
 		query.setParameter("userid", userid);
 		query.setParameter("newsid", newsid);
 		@SuppressWarnings("unchecked")
-		List<Support> Support = query.getResultList();
+		List<Support_News> Support = query.getResultList();
 		if (Support.size() > 0)
 			return Support.get(0);
 		return null;
 	}
 
 	@Override
-	public void remove(Support st) {
+	public void remove(Support_News st) {
 		// TODO Auto-generated method stub
 		entityManager.remove(st);
 

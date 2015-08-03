@@ -7,83 +7,75 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//论坛概要表
+
 @Entity
 @Table(name = "forumone")
 public class ForumOne {
 
-	/**
-	 * 论坛概要表 one
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "title")
-	// 论坛标题
+	
 	private String title;
 
 	@Column(name = "type")
 	
-	/**
-	 * 论坛板块
-	 * 1完美家长
-	 * 2完美宝贝
-	 * 3同城家长
-	 * 4健康保健
-	 * 5舌尖美食 
-	 * 6旅游出行
-	 */
+	
 	private int type;
 	@Column(name = "types")
 	
-	/**
-	 * 论坛小组 
-	 * 小组 11 完美酷爸 12 完美辣妈 
-	 * 小组 21托班 22小班 23中班 24大班 25小学 26初中 27高中
-	 * 小组 地区 31
-	 * 小组  41健康饮食 42运动保健 43心理健康、
-	 *    51美食分享 52美食攻略 53创意菜肴、
-	 *    61路线分享 62出行攻略
-	 */
+	
 	private int types;
 	@Column(name = "total")
-	// 论坛总回复数
+	
 	private int total;
 
 	@Column(name = "userid")
-	// 论坛创建者
+	
 	private int userid;
 	@Column(name = "time")
-	// 论坛创建时间
+	
 	private String time;
 
 	@Column(name = "content")
-	// 论坛内容
+	
 	private String content;
 
 	@Column(name = "area")
-	// 论坛地区省级
+	
 	private String area;
 	@Column(name = "areas")
-	// 论坛地区市级
+	
 	private String areas;
 	@Column(name = "img")
-	// 论坛图片
+	
 	private String img;
 	@Column(name = "follectnum")
-	// 论坛被收藏次数
+	
 	private int follectnum;
 	@Column(name = "fHits")
-	// 论坛被点击次数
+	
 	private int fHits;
 
 	@Column(name = "frs")
-	// 论坛被回复次数
+	
 	private int frs;
+	@Column(name="supports")
+	private int supports;
+	
+	
 
+	public int getSupports() {
+		return supports;
+	}
 
+	public void setSupports(int supports) {
+		this.supports = supports;
+	}
 
 	public int getType() {
 		return type;
