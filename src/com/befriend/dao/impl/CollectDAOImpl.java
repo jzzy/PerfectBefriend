@@ -65,7 +65,7 @@ public class CollectDAOImpl implements CollectDAO {
 
 	@Override
 	public List<Support_News> sNlln(int newsid) {
-		Query query = entityManager.createQuery("select u from Support u where"
+		Query query = entityManager.createQuery("select u from support_news u where"
 				+ " u.newsid=:newsid order by u.time desc");
 
 		query.setParameter("newsid", newsid);
@@ -74,7 +74,7 @@ public class CollectDAOImpl implements CollectDAO {
 
 	@Override
 	public List<Support_News> sAllu(int userid) {
-		Query query = entityManager.createQuery("select u from Support u where"
+		Query query = entityManager.createQuery("select u from support_news u where"
 				+ " u.userid=:userid order by u.time desc");
 
 		query.setParameter("userid", userid);
@@ -90,7 +90,7 @@ public class CollectDAOImpl implements CollectDAO {
 	@Override
 	public Support_News sunid(int userid, int newsid) {
 
-		Query query = entityManager.createQuery("select u from Support u where"
+		Query query = entityManager.createQuery("select u from support_news u where"
 				+ " u.userid=:userid and u.newsid=:newsid");
 		query.setMaxResults(1);
 		query.setParameter("userid", userid);
