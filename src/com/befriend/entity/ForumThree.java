@@ -1,5 +1,7 @@
 package com.befriend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,33 +9,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//ÂÛÌ³ÁôÑÔĞÅÏ¢±í
+//ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
 @Entity
 @Table(name="forumthree")
-public class ForumThree {
+public class ForumThree  implements Serializable {
 
 
 	/**
-	 * Ğ¡°åÁôÑÔ
+	 * Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="userid")//ÓÃ»§id
+	@Column(name="userid")//ï¿½Ã»ï¿½id
 	private int userid;
-	@Column(name="touserid")//toÓÃ»§id
+	@Column(name="touserid")//toï¿½Ã»ï¿½id
 	private int touserid;
-	@Column(name="reply")//»Ø¸´ÄÚÈİ
+	@Column(name="reply")//ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String reply;
-	@Column(name="time")//·¢±íÊ±¼ä
+	@Column(name="time")//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String time;
     @Column(name = "forumid")
-	// ÂÛÌ³id
+	// ï¿½ï¿½Ì³id
 	private int forumid;
     @Column(name = "forumtwoid")
-    // ÆÀÂÛid
+    // ï¿½ï¿½ï¿½ï¿½id
     private int forumtwoid;
 	
 

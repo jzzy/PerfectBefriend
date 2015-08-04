@@ -34,6 +34,7 @@ import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
+import com.sun.xml.internal.fastinfoset.stax.events.Util;
 
 public class NewsAction {
 	private UserDAO userdao;// �û�dao
@@ -2205,9 +2206,9 @@ public class NewsAction {
 	 * @throws IOException
 	 */
 	public void Rsave() throws IOException {
-		try {
-			System.out.println("�����������Rsave" + userid);
-
+		
+			
+			System.out.println("review:" + review);
 			if (newsid <= 0 || userid <= 0) {
 				OpeFunction.Out().print("null");
 				return;
@@ -2219,12 +2220,16 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 				return;
 			}
+			if(OpeFunction.isEmpty(review)){
+				OpeFunction.Out().print("null");
+				return;
+			}
 			r.setNewsid(newsid);
 			r.setUserid(userid);
 			r.setTime(OpeFunction.getNowTime());
 			r.setReview(review);
 			rdao.save(r);
-			// ��ѯ�����±����۶��ٴ� ����д��
+			
 			n = ndao.byid(newsid);
 			if (n == null) {
 				OpeFunction.Out().print("null");
@@ -2233,39 +2238,31 @@ public class NewsAction {
 			}
 			rl = rdao.Alln(newsid);
 
-			System.out.println("��������" + review);
-			System.out.println("newsid��" + n.getId());
-
+		
 			n.setReviews(rl.size());
 			ndao.Upnews(n);
 			OpeFunction.Out().print(true);
 
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		
 	}
 
-	/**
-	 * ͨ��newsid��ѯ ����
-	 * 
-	 * @throws IOException
-	 */
+	
 	public void ReviewsInquiry513() throws IOException {
-		System.out.println("newsid��-" + newsid);
+		
 		rl = rdao.Alln(newsid);
 		if (rl.size() > 0) {
-			System.out.println("������");
+			
 			for (int i = 0; i < rl.size(); i++) {
-				User u1 = userdao.byid((rl.get(i).getId()));
+				User u1 = userdao.byid((rl.get(i).getUserid()));
 				ul.add(u1);
 			}
-			System.out.println("������");
+			
 			String result = "{\"rl\":" + OpeFunction.ToJson(rl) + ",\"ul\":"
 					+ OpeFunction.ToJson(ul) + "}";
 			OpeFunction.Out().print(result);
 
 		} else {
-			System.out.println("û������");
+			
 			OpeFunction.Out().print("null");
 		}
 

@@ -14,15 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.google.gson.annotations.Expose;
-
+/**
+ * @author sterotto
+ * @describe 用户信息
+ */
 @Entity
 @Table(name="users")
 public class User implements Serializable
 {
 
-	/**
-	 * 锟矫伙拷 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")

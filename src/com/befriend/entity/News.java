@@ -10,17 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-//ĞÂÎÅ±í
+
 @Entity
 @Table(name = "news")
 public class News implements Serializable {
 
-    /**
-     * ĞÂÎÅ
-     */
+  
     private static final long serialVersionUID = 1L;
-    
-    //³£Á¿
     public static final int EDUCATION = 1;
     public static final int LOCAL = 2;
     public static final int THE_ENTRANCE = 3;
@@ -35,59 +31,60 @@ public class News implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "title")
-    // ±êÌâ
+   
     private String title;
     @Column(name = "summary")
-    // ÕªÒªÄÚÈİ
+    
     private String summary;
     @Column(name = "content")
-    // ÄÚÈİ  
+    
     private String content;
 
     @Column(name = "img")
-    // ĞÂÎÅĞ¡Í¼Æ¬
+    
     private String img;
     @Column(name = "time")
-    // ĞÂÎÅ·¢²¼Ê±¼ä
+    
     private String time;
     @Column(name = "collectnum")
-    // ĞÂÎÅ±»ÊÕ²Ø´ÎÊı
+    // è¢«æ”¶è—æ¬¡æ•°
     private Integer collectnum;
     @Column(name = "reviews")
-    // ĞÂÎÅ±»ÆÀÂÛ´ÎÊı
+    // è¯„è®ºæ•°
     private Integer reviews;
     @Column(name = "area")
-    // ĞÂÎÅµØÇø Ê¡¼¶
+    // åœ°åŒºçœ
     private String area;
     @Column(name = "areas")
-    // ĞÂÎÅµØÇø ÊĞ¼¶
+    // åœ°åŒºå¸‚
     private String areas;
     @Column(name = "type")
-    // ĞÂÎÅÀà±ğ 1Óı¾­ 2±¾µØ 3ÉıÑ§ 4Ñ§Ğ£ 5½¡¿µ
+    // å¤§ç±»
     private int type;
     @Column(name = "types")
-    // ĞÂÎÅÀà±ğ 8´óÀàµÄ4´óÀà
+    // å°ç±»
     private int types;
 
     @Column(name = "hits")
-    // ĞÂÎÅµã»÷Êı
+ // æ–°é—»ç‚¹å‡»æ•°
     private Integer hits;
     @Column(name = "cah")
-    // ĞÂÎÅµã»÷Êı+ÊÕ²ØÊı
+    // ç‚¹å‡»æ•°+æ”¶è—æ•°
     private Integer cah;
-    // ¹ÜÀíÔ±ÕËºÅ
+    // ä¸Šä¼ çš„ç®¡ç†å‘˜
     @Column(name = "admin")
     private String admin;
-    // ÊÇ·ñÎª×¨¼Ò·¢²¼ 0 Õı³£ 1×¨¼Ò
+    // æ˜¯å¦ä¸“å®¶
     @Column(name = "expert")
     private int expert;
-    //ĞÂÎÅ±êÇ©
+    //æ ‡ç­¾
     @Column(name="label")
     private String label;
-  //ĞÂÎÅ±»ÔŞÊı
+   
     @Column(name="supports")
+    //ç‚¹èµæ•°
     private int supports;
-    //ÏàËÆ¶È
+    //ç›¸ä¼¼åº¦
     @Transient
     private double similarity;
     

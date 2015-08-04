@@ -1,5 +1,7 @@
 package com.befriend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,30 +11,30 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="stas")
-public class Stas {
+public class Stas  implements Serializable {
 	/**
-	 * Ã¿Ìì¼ÇÂ¼  Í³¼Æ
+	 * Ã¿ï¿½ï¿½ï¿½Â¼  Í³ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="vored")//Ã¿ÌìĞÂÔöÓÎ¿ÍÊıÁ¿
+	@Column(name="vored")//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int vored;
-	@Column(name="usersaved")//Ã¿ÌìĞÂÔöÓÃ»§ÊıÁ¿
+	@Column(name="usersaved")//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int usersaved;
-	@Column(name="userlogined")//Ã¿ÌìµÇÈëÓÃ»§ÊıÁ¿
+	@Column(name="userlogined")//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int userlogined;
-	@Column(name="usersyned")//Ã¿ÌìÍ¬Ê±ÔÚÏß(áÛ·å)ÓÃ»§ÊıÁ¿
+	@Column(name="usersyned")//Ã¿ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½(ï¿½Û·ï¿½)ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int usersyned;
-	@Column(name="downloaded")//Ã¿Ìì¿Í»§¶ËÏÂÔØÁ¿
+	@Column(name="downloaded")//Ã¿ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int downloaded;
-	@Column(name="time")//Ê±¼ä 2005-05-05
+	@Column(name="time")//Ê±ï¿½ï¿½ 2005-05-05
 	private String time;
-	@Column(name="os")// À´×ÔµÄÏµÍ³
+	@Column(name="os")// ï¿½ï¿½ï¿½Ôµï¿½ÏµÍ³
 	private String os;
-	@Column(name="province")// À´×ÔµÄµÄÊ¡
+	@Column(name="province")// ï¿½ï¿½ï¿½ÔµÄµï¿½Ê¡
 	private String province;
 	
 	public String getProvince() {

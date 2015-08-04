@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.UserDAO;
-import com.befriend.entity.Password;
 import com.befriend.entity.User;
 import com.befriend.entity.UserGroup;
 
@@ -52,27 +51,7 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
-	/**
-	 * @Override public User byusername(String username) { Query query =
-	 *           entityManager
-	 *           .createQuery("select u from User u where u.username=:username "
-	 *           ); query.setParameter("username", username);
-	 * 
-	 *           query.setMaxResults(1);
-	 * @SuppressWarnings("unchecked") List<User> users = query.getResultList();
-	 *                                if (users.size() > 0) return users.get(0);
-	 *                                return null; }
-	 */
-	/**
-	 * @Override public User byphone(String phone) { Query query = entityManager
-	 *           .createQuery("select u from User u where u.phone=:phone ");
-	 *           query.setParameter("phone", phone);
-	 * 
-	 *           query.setMaxResults(1);
-	 * @SuppressWarnings("unchecked") List<User> users = query.getResultList();
-	 *                                if (users.size() > 0) return users.get(0);
-	 *                                return null; }
-	 */
+	
 	@Override
 	public List<User> getUser(int pageSize, int currentPage) {
 		Query query = entityManager
@@ -335,49 +314,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
-	public Password login(int uid, String password) {
-		Query query = entityManager
-				.createQuery("select u from Password u where u.uid=:uid and u.password=:password");
-		query.setParameter("uid", uid);
-		query.setParameter("password", password);
+	
 
-		query.setMaxResults(1);
-		List<Password> pl = query.getResultList();
-		if (pl.size() > 0)
-			return pl.get(0);
-		return null;
-	}
-
-	@Override
-	public void save(Password password) {
-		entityManager.persist(password);
-
-	}
-
-	@Override
-	public void remove(Password password) {
-		entityManager.remove(password);
-
-	}
-
-	@Override
-	public void update(Password password) {
-		entityManager.merge(password);
-
-	}
-
-	@Override
-	public Password select(int uid) {
-		Query query = entityManager
-				.createQuery("select u from Password u where u.uid=:uid ");
-		query.setParameter("uid", uid);
-		query.setMaxResults(1);
-		List<Password> pl = query.getResultList();
-		if (pl.size() > 0)
-			return pl.get(0);
-		return null;
-	}
+	
 
 	@Override
 	public List<User> getUsersynAll() {
@@ -504,6 +443,20 @@ public class UserDAOImpl implements UserDAO {
 			return (User) query.getResultList().get(0);
 		else
 			return null;
+	}
+
+	@Override
+	public User login(String username, String password) {
+		Query query = entityManager
+				.createQuery("select u from User u where (u.username=:username or u.phone=:username or u.accnumno=:username) and  u.password=:password");
+		query.setParameter("password", password);
+		query.setParameter("username", username);
+		query.setMaxResults(1);
+		@SuppressWarnings("unchecked")
+		List<User> users = query.getResultList();
+		if (users.size() > 0)
+			return users.get(0);
+		return null;
 	}
 
 }

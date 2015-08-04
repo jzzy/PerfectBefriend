@@ -23,7 +23,6 @@ import com.befriend.dao.RegistrationDAO;
 import com.befriend.dao.UserDAO;
 import com.befriend.entity.Admin;
 import com.befriend.entity.Cis;
-import com.befriend.entity.Password;
 import com.befriend.entity.Profile;
 import com.befriend.entity.Registrationsa;
 import com.befriend.entity.Stas;
@@ -92,9 +91,7 @@ public class UserAction {
 
 	// �����û�ע��
 	private String url = "https://a1.easemob.com/topLong/wcfriend/users";
-	private Password pd = new Password();
 
-	
 	public String ViewStatistics() throws IOException {
 
 		String url = "http://127.0.0.1/PerfectBefriend/aStas";
@@ -123,25 +120,24 @@ public class UserAction {
 
 		/**
 		 * int[] a = { 49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 1 };
-		 * 1("����֮ǰ��"); // �������� for (int i = 0; i <
-		 * a.length; i++) { System.out.print(a[i] + " "); } // ֱ�Ӳ������� for
-		 * (int i = 1; i < a.length; i++) { // ������Ԫ�� int temp = a[i]; int j;
+		 * 1("����֮ǰ��"); // �������� for (int i = 0; i < a.length; i++) {
+		 * System.out.print(a[i] + " "); } // ֱ�Ӳ������� for (int i = 1; i <
+		 * a.length; i++) { // ������Ԫ�� int temp = a[i]; int j;
 		 * 
 		 * for (j = i - 1; j >= 0; j--) { // ������temp�������ƶ�һλ if (a[j] >
 		 * temp) { a[j + 1] = a[j]; } else { break; } } a[j + 1] = temp;
-		 * 1("========="); for (int x = 0; x < a.length; x++) {
-		 * if (x == a.length - 1) { 1(a[x]); } else {
-		 * System.out.print(a[x] + " "); }
+		 * 1("========="); for (int x = 0; x < a.length; x++) { if (x ==
+		 * a.length - 1) { 1(a[x]); } else { System.out.print(a[x] + " "); }
 		 * 
-		 * } } 1(); 1("����֮��"); for (int i =
-		 * 0; i < a.length; i++) { System.out.print(a[i] + " "); }
+		 * } } 1(); 1("����֮��"); for (int i = 0; i < a.length; i++) {
+		 * System.out.print(a[i] + " "); }
 		 * 
 		 * // ð������ for (int i = 0; i < a.length; i++) { for (int j = 0; j <
 		 * a.length - i - 1; j++) { //
 		 * ����-i��Ҫ��ÿ����һ�ζ�������i�������������ȥ�ˣ�û�б�Ҫ���滻�� if (a[j] >
 		 * a[j + 1]) { int temp = a[j]; a[j] = a[j + 1]; a[j + 1] = temp; } } }
-		 * 1(); 1("����֮��"); for (int i = 0;
-		 * i < a.length; i++) { System.out.print(a[i] + " "); }
+		 * 1(); 1("����֮��"); for (int i = 0; i < a.length; i++) {
+		 * System.out.print(a[i] + " "); }
 		 */
 
 	}
@@ -154,21 +150,21 @@ public class UserAction {
 	public void userLogout() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			util.Out().print("�㲻�ǹ���!");
+			util.Out().print(false);
 			return;
 		}
 		if (admin.getLevel() != 1) {
-			util.Out().print("�㲻�ǹ���!");
+			util.Out().print(false);
 			return;
 		}
 		u = userdao.byid(id);
 		if (u == null) {
-			util.Out().print("û������û�!");
+			util.Out().print(false);
 			return;
 		}
 		u.setPhone(null);
 		userdao.update(u);
-		util.Out().print("ע���ɹ�!");
+		util.Out().print(true);
 
 	}
 
@@ -193,12 +189,12 @@ public class UserAction {
 		for (int i = 0; i < us.size(); i++) {
 			u = us.get(i);
 			if (u == null) {
-				
+
 				continue;
 
 			}
 			if (!util.isEmpty(u.getAccnumno())) {
-				
+
 				continue;
 			}
 
@@ -209,10 +205,10 @@ public class UserAction {
 			} else {
 				accnumno = "10000000";
 			}
-			
+
 			u.setAccnumno(accnumno);
 			userdao.update(u);
-		
+
 			util.Out().print("ͬ�����!");
 			// Thread.sleep(1000);
 		}
@@ -249,12 +245,12 @@ public class UserAction {
 			json.put("password", "123456"); // �û�����
 			if (RefreshAccessToken.access_token == null) {
 				util.Out().print("û�л�ȡ��access_token!");
-				
+
 				return;
 			}
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
-			
+
 		}
 		util.Out().print("ͬ�����!");
 
@@ -276,19 +272,17 @@ public class UserAction {
 			return;
 		}
 		userdao.updateAllXiaxian();
-		
+
 		((HttpServletResponse) util.response()).sendRedirect(request
 				.getContextPath() + "/GetUserAll");
 
 	}
 
-	
 	public void onlineUserSend() throws IOException, InterruptedException {
-		
+
 		u = userdao.byid(id);
 		if (u != null) {
 			cis = gdao.Cisuid(u.getId());
-		
 
 			if (cis.size() == 0) {
 				OpeFunction.Out().print(true);
@@ -339,8 +333,6 @@ public class UserAction {
 	 */
 	public void uIpPort() throws IOException {
 
-	
-
 		u = userdao.byid(id);
 		if (u != null) {
 
@@ -352,10 +344,9 @@ public class UserAction {
 
 			util.Out().print(false);
 		}
-		
+
 	}
 
-	
 	public void onlineStatus() throws IOException, InterruptedException {
 
 		u = userdao.byid(id);
@@ -364,11 +355,9 @@ public class UserAction {
 		}
 		if (u != null) {
 
-			
-
 			u.setOnline(0);
 			userdao.update(u);
-		
+
 			util.Out().print(true);
 			return;
 
@@ -377,9 +366,8 @@ public class UserAction {
 			 * 
 			 * u.setOnline(1); userdao.update(u);
 			 * 
-			 * cis = gdao.Cisuid(uid); 1("�û���:" +
-			 * u.getUsername() + cis.size() + "��δ����Ϣ!" + "Online:" +
-			 * u.getOnline());
+			 * cis = gdao.Cisuid(uid); 1("�û���:" + u.getUsername() + cis.size()
+			 * + "��δ����Ϣ!" + "Online:" + u.getOnline());
 			 * 
 			 * Thread.sleep(5000); u = userdao.byid(uid); if (cis.size() == 0) {
 			 * OpeFunction.Out().print(true); return; }
@@ -413,49 +401,24 @@ public class UserAction {
 
 	}
 
-	
 	public void websessionrom() throws IOException {
-		
+
 		session.removeAttribute("u");
 		((HttpServletResponse) util.response()).sendRedirect(request
 				.getContextPath() + "/SimulationApp/login.html");
 	}
 
-	
 	public void webpassModification() throws IOException {
 
 		User u = (User) session.getAttribute("u");
 		if (u == null) {
 
-		
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
 
 			return;
 		}
-		Password pd = userdao.login(u.getId(), password);
-		if (pd != null) {
-			// ����������ж�
-			String reg = "[A-Za-z0-9_]{6,18}";
 
-			if (newpwd.matches(reg)) {
-				pd.setPassword(newpwd);
-			
-				util.Out().print("�����޸ĳɹ�!" + newpwd);
-				userdao.update(pd);
-				session.removeAttribute("u");
-				((HttpServletResponse) util.response()).sendRedirect(request
-						.getContextPath() + "/SimulationApp/login.html");
-				return;
-			} else {
-				util.Out().print("û�л�ȡ��������!" + newpwd);
-				return;
-			}
-
-		} else {
-			util.Out().print("ԭ�������!");
-			return;
-		}
 	}
 
 	/**
@@ -469,7 +432,6 @@ public class UserAction {
 			User u = (User) session.getAttribute("u");
 			if (u == null) {
 
-			
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 
@@ -477,11 +439,9 @@ public class UserAction {
 			}
 
 			u = userdao.byid(u.getId());
-			
 
 			if (u == null) {
 
-				
 				((HttpServletResponse) util.response()).sendRedirect(request
 						.getContextPath() + "/SimulationApp/login.html");
 
@@ -501,18 +461,17 @@ public class UserAction {
 			}
 			if (nickname != null) {
 				u.setNickname(nickname);
-			
+
 			}
-		
 
 			if (u.getCompetence() == 0) {
 				if (city != null && !city.equals("������") && city != "") {
 					u.setAddcity(city);
-					
+
 				} else {
 
 					Object Ocity = session.getAttribute("city");
-					
+
 					if (Ocity != null) {
 						city = Ocity.toString();
 						u.setAddcity(city);
@@ -522,7 +481,7 @@ public class UserAction {
 				if (province != null && !province.equals("ʡ����")
 						&& province != "") {
 					u.setAddress(province);
-					
+
 				} else {
 
 					Object Oprovince = session.getAttribute("province");
@@ -533,31 +492,31 @@ public class UserAction {
 
 				}
 			} else {
-				
+
 			}
 
 			// ��֤�û���
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-			
+
 			if (username != null) {
 				if (!username.matches(reg)) {
-					
+
 					util.Out().print("�û�����ʽ���ԣ�");
 					return;
 				}
 			}
 			if (u.getUsername() == null) {
-				
+
 				u.setUsername(username);
 			}
 			if (school != null) {
 				u.setSchool(school);
-			
+
 			}
 
 			if (stage != null) {
 				u.setStage(stage);
-				
+
 			}
 
 			userdao.update(u);
@@ -567,12 +526,11 @@ public class UserAction {
 					.getContextPath()
 					+ "/SimulationApp/personal_information.jsp");
 		} catch (Exception e) {
-			
+
 		}
 
 	}
 
-	
 	public String webRegistration() throws IOException, JSONException {
 
 		phone = request.getParameter("phone");
@@ -580,21 +538,21 @@ public class UserAction {
 		username = request.getParameter("username");
 
 		if (password == null) {
-		
+
 			util.Out().print("����Ϊ��");
 			return null;
 		}
 		if (phone == null) {
-			
+
 			util.Out().print("�ֻ���Ϊ��");
 			return null;
 		}
-	
+
 		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
-	
+
 		if (username != null) {
 			if (!username.matches(reg)) {
-				
+
 				util.Out().print("�û�����ʽ���ԣ�");
 				return null;
 			}
@@ -603,22 +561,20 @@ public class UserAction {
 		// ��֤����
 		reg = "[A-Za-z0-9_]{6,18}";
 		if (!password.matches(reg)) {
-			
+
 			util.Out().print("�����ʽ���ԣ�");
 			return null;
 		}
 		// ��֤�ֻ���
 		String regp = "[0-9]{11}";
 		if (!phone.matches(regp)) {
-		
+
 			util.Out().print("�����ʽ���ԣ�");
 			return null;
 		}
-	
 
-	
 		if (userdao.byUsernameAccnumnoPhone(phone) != null) {
-			
+
 			request.setAttribute("ph", phone);
 			return Action.ERROR;
 		}
@@ -637,7 +593,7 @@ public class UserAction {
 		u.setCompetence(0);// ��ͨ�û�
 		u.setGag(0);// ���Դ�����̳
 		if (userdao.byUsernameAccnumnoPhone(username) != null) {
-		
+
 			request.setAttribute("ue", username);
 			return Action.ERROR;
 		}
@@ -648,7 +604,7 @@ public class UserAction {
 		} else {
 			accnumno = "10000000";
 		}
-		
+
 		u.setAccnumno(accnumno);
 		userdao.save(u);
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
@@ -656,18 +612,17 @@ public class UserAction {
 			util.Out().print("�쳣������ע��");
 			return null;
 		}
-		pd.setUid(u.getId());
-		pd.setPassword(password);
-		userdao.save(pd);
+
+		u.setPassword(password);
 		session.setAttribute("u", u);
-		
+
 		u = userdao.byUsernameAccnumnoPhone(phone);
 		if (u != null) {
-		
+
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
-			
-			json.put("password", "123456"); 
+
+			json.put("password", "123456");
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
 		}
@@ -676,7 +631,6 @@ public class UserAction {
 
 	}
 
-	
 	public String getUsermhh() throws IOException {
 
 		User ue = (User) session.getAttribute("useradmin");
@@ -690,19 +644,16 @@ public class UserAction {
 			us = userdao.likeusername(username, ue.getAddress());
 		}
 
-		
-
 		request.setAttribute("usaha", us);
 
 		return Action.SUCCESS;
 
 	}
 
-	
 	public void SetQU() throws IOException, InterruptedException {
 
 		User ue = (User) session.getAttribute("useradmin");
-	
+
 		u = userdao.byid(id);
 		if (u == null || ue == null) {
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -710,8 +661,7 @@ public class UserAction {
 			return;
 		}
 		if (u.getId().equals(ue.getId())) {
-			
-			
+
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/Judge/No.html");
 			return;
@@ -721,7 +671,7 @@ public class UserAction {
 					.getContextPath() + "/Judge/No.html");
 			return;
 		}
-		
+
 		if (competence2 == 2) {
 
 			((HttpServletResponse) util.response()).sendRedirect(request
@@ -775,13 +725,11 @@ public class UserAction {
 			util.Out().print("û��Ȩ��");
 			return null;
 		}
-	
 
 		request.setAttribute("u", u);
 		return Action.SUCCESS;
 
 	}
-
 
 	public String getUsera() throws IOException {
 		u = (User) session.getAttribute("useradmin");
@@ -857,12 +805,10 @@ public class UserAction {
 	 */
 	public String GetUsertimeares() throws IOException {
 
-
 		u = (User) session.getAttribute("useradmin");
 		if (u != null) {
-			
+
 			if (u.getCompetence() == 1) {
-				
 
 				us = userdao.getUserAll(u.getAddress(), u.getAddcity(), timeq,
 						timeh);
@@ -870,8 +816,6 @@ public class UserAction {
 			}
 
 			else if (u.getCompetence() == 2) {
-
-				
 
 				if (!addcity.equals("nu")) {
 
@@ -885,11 +829,9 @@ public class UserAction {
 
 			} else {
 
-				
 				util.Out().print("�����µ���");
 				return null;
 			}
-		
 
 			request.setAttribute("GetUsertimeus", us);
 			request.setAttribute("timeq", timeq);
@@ -899,23 +841,13 @@ public class UserAction {
 		return Action.SUCCESS;
 	}
 
-	
 	public String RegionalAdministrator() throws IOException {
 		try {
-	
-
-		
 
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
 				util.Out().print("�˺Ż��������");
 
-				return null;
-			}
-			Password pd = userdao.login(u.getId(), password);
-			if (pd == null) {
-			
-				util.Out().print("���벻��!");
 				return null;
 			}
 
@@ -949,7 +881,6 @@ public class UserAction {
 
 			for (int c = 0; c < a.size(); c++) {
 
-				
 			}
 
 			// ����
@@ -960,10 +891,9 @@ public class UserAction {
 			String time30 = util.getNumTime(30);
 			// һ��ǰ
 			String time365 = util.getNumTime(365);
-		
 
 			for (int c = 0; c < a.size(); c++) {
-			
+
 				// ��ѯ30������
 				int i30 = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString(), time30, time0).size();
@@ -980,8 +910,7 @@ public class UserAction {
 				// ȫ��
 				int all = userdao.getUserAll(u.getAddress(),
 						a.get(c).toString()).size();
-				
-			
+
 				Registrationsa rg = new Registrationsa();
 
 				rg = regdao.addressty(u.getAddress(), a.get(c).toString());
@@ -1012,9 +941,9 @@ public class UserAction {
 			if (cpe == 1) {
 
 				Registrationsa rga = new Registrationsa();
-			
+
 				rga = regdao.addressty(u.getAddress(), u.getAddcity());
-				
+
 				session.setAttribute("rg", rga);
 				session.setAttribute("num", "1");
 				return Action.SUCCESS;
@@ -1048,7 +977,6 @@ public class UserAction {
 		userdao.update(u);
 	}
 
-
 	public String getUserin() throws IOException {
 
 		u = userdao.byid(id);
@@ -1057,34 +985,20 @@ public class UserAction {
 			return null;
 
 		}
-		
 
 		request.setAttribute("u", u);
 		return Action.SUCCESS;
 
 	}
 
-
 	public String getUsermh() throws IOException {
 
 		if (username.length() >= 1) {
 			us = userdao.likeusername(username);
 		}
-		List<Password> pl = new ArrayList<Password>();
-		for (int i = 0; i < us.size(); i++) {
-			u = us.get(i);
-			if (u != null) {
-				pd = userdao.select(u.getId());
-				pl.add(pd);
-			} else {
-				pl.add(null);
 
-			}
-		}
-
-	
 		request.setAttribute("usaha", us);
-		request.setAttribute("pl", pl);
+
 		return Action.SUCCESS;
 
 	}
@@ -1124,10 +1038,8 @@ public class UserAction {
 	 */
 	public void SetQ() throws IOException {
 
-		
 		u = userdao.byid(id);
 
-		
 		if (competence2 == 3) {
 			util.Out().print("�ɹ�������̳����ԱȨ��");
 
@@ -1176,9 +1088,8 @@ public class UserAction {
 
 	}
 
-	
 	public String getUser() throws IOException {
-		
+
 		if (currentPage < 1) {
 			currentPage = 1;
 		}
@@ -1202,12 +1113,6 @@ public class UserAction {
 			if (u == null) {
 				util.Out().print("�˺Ż��������");
 
-				return;
-			}
-			Password pd = userdao.login(u.getId(), password);
-			if (pd == null) {
-				
-				util.Out().print(false);
 				return;
 			}
 
@@ -1255,30 +1160,21 @@ public class UserAction {
 
 	}
 
-	/**
-	 * �û����� ��֤
-	 * 
-	 * @throws IOException
-	 */
+	@SuppressWarnings("static-access")
 	public void Login() throws IOException {
 		try {
+			System.out.println(username+ password);
+			if(util.isEmpty(username)||util.isEmpty(password)){
 
-		
-
-			u = userdao.byUsernameAccnumnoPhone(username);
-			if (u == null) {
-			
 				util.Out().print("null");
 				return;
 			}
-			Password pd = userdao.login(u.getId(), password);
-			if (pd == null) {
-			
-				util.Out().print(false);
+			u = userdao.login(username, password);
+			if (u == null) {
+
+				util.Out().print("null");
 				return;
 			}
-
-		
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1291,9 +1187,9 @@ public class UserAction {
 			u.setFinaltime(time);
 			u.setOnline(1);
 			userdao.update(u);
-			u.setPassword(pd.getPassword());
+
 			util.Out().print(util.ToJson(u));
-			// ���������û�����
+
 			time = util.getNumTime(0);
 			String url = "";
 			if (province != null) {
@@ -1305,7 +1201,7 @@ public class UserAction {
 			WechatKit.sendGet(url);
 
 		} catch (Exception e) {
-		
+
 		}
 
 	}
@@ -1313,22 +1209,12 @@ public class UserAction {
 	public void newLogin() throws IOException {
 		try {
 
-		
-
 			u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
-				
+
 				util.Out().print("null");
 				return;
 			}
-			Password pd = userdao.login(u.getId(), password);
-			if (pd == null) {
-
-				util.Out().print("false");
-				return;
-			}
-
-		
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1341,12 +1227,11 @@ public class UserAction {
 			u.setFinaltime(time);
 
 			userdao.update(u);
-			String result = "{\"user\":" + util.ToJson(u) + ",\"pwd\":"
-					+ util.ToJson(pd) + "}";
+			String result = "{\"user\":" + util.ToJson(u) + "}";
 			util.Out().print(result);
 
 		} catch (Exception e) {
-		
+
 		}
 
 	}
@@ -1362,21 +1247,13 @@ public class UserAction {
 		os = "web";
 		u = userdao.byUsernameAccnumnoPhone(username);
 		if (u == null) {
-		
-			((HttpServletResponse) util.response()).sendRedirect(request
-					.getContextPath() + "/webNewsA10");
-			return;
-		}
-		Password pd = userdao.login(u.getId(), password);
-		if (pd == null) {
-			
+
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
 			return;
 		}
 
 		if (u != null) {
-			
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1419,22 +1296,14 @@ public class UserAction {
 	 */
 	public String webLogin() throws IOException, NoSuchAlgorithmException {
 
-
 		u = userdao.byUsernameAccnumnoPhone(username);
 		if (u == null) {
-			
+
 			util.Out().print("�˻�Ϊ��");
-			return null;
-		}
-		Password pd = userdao.login(u.getId(), password);
-		if (pd == null) {
-			
-			util.Out().print("���벻��");
 			return null;
 		}
 
 		if (u != null) {
-			
 
 			int ut = u.getLoginnum();
 			if (ut > 0) {
@@ -1457,7 +1326,7 @@ public class UserAction {
 
 			((HttpServletResponse) util.response()).sendRedirect(request
 					.getContextPath() + "/webNewsA10");
-			
+
 			String url = "";
 			if (u.getAddress() != null) {
 				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
@@ -1475,23 +1344,22 @@ public class UserAction {
 	/**
 	 * ͨ���ֻ����һ������һ�����
 	 */
-	public void appSendCodePasswrod() throws IOException {
+	public void appSendCodePassword() throws IOException {
 		try {
-			
+
 			//
 			String regp = "[0-9]{11}";
 			if (phone == null) {
-			
+
 				util.Out().print("null");
 				return;
 			}
 			if (!phone.matches(regp)) {
-				
+
 				util.Out().print("null");
 				return;
 			}
 
-			
 			if (userdao.byUsernameAccnumnoPhone(phone) == null) {
 				util.Out().print(false);
 
@@ -1502,11 +1370,11 @@ public class UserAction {
 
 			session.setAttribute("app_code", String.valueOf(num));
 			session.setMaxInactiveInterval(90);
-		
 
 			String content = new String("您的验证码是：" + num
 					+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
 			util.setphone(phone, content);
+			System.out.println(content);
 			util.Out().print(true);
 
 		} catch (Exception e) {
@@ -1536,7 +1404,7 @@ public class UserAction {
 				util.Out().print("null");
 				return;
 			}
-	
+
 			if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 
 				util.Out().print(false);
@@ -1548,10 +1416,11 @@ public class UserAction {
 
 			session.setAttribute("app_code", String.valueOf(num));
 			session.setMaxInactiveInterval(90);
-			
+
 			String content = new String("您的验证码是：" + num
 					+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
 			util.setphone(phone, content);
+			System.out.println(content);
 			util.Out().print(true);
 
 		} catch (Exception e) {
@@ -1564,18 +1433,15 @@ public class UserAction {
 	public void appCheckCode() throws IOException {
 		try {
 
-			
-
 			String codes = (String) session.getAttribute("app_code");
 
-
 			if (codes == null) {
-			
+
 				util.Out().print("null");
 				return;
 			}
 			if (codes.equalsIgnoreCase(code)) {
-				
+
 				util.Out().print(true);
 				session.invalidate();
 			} else {
@@ -1583,77 +1449,57 @@ public class UserAction {
 			}
 
 		} catch (Exception e) {
-			
+
 		}
 
 	}
 
 	public void save() throws IOException {
 		try {
-			
+
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 
-			if (username != null) {
+			if (!util.isEmpty(username)) {
 				if (!username.matches(reg)) {
-				
+
 					util.Out().print(false);
 					return;
 				}
 			}
 
-			if (password == null) {
-				util.Out().print(false);
-				return;
-
-			}
-			// ��֤����
 			reg = "[A-Za-z0-9_]{6,18}";
-			if (!password.matches(reg)) {
-				
+			if (password == null||!password.matches(reg)) {
+
 				util.Out().print(false);
 				return;
 			}
 
-			if (phone == null) {
-				util.Out().print(false);
-				return;
-			}
 			String regp = "[0-9]{11}";
-			if (!phone.matches(regp)) {
-				
+			if (phone == null||!phone.matches(regp)) {
+
 				util.Out().print(false);
 				return;
 			}
 
-		
-			if (nickname != null) {
-				u.setNickname(nickname);
-			} else {
-				u.setNickname("δ����");
-			}
-			if (username != null) {
+			
+			if (!util.isEmpty(username)) {
 				u.setUsername(username);
-				u.setNickname(username);// û�����ù���ʾ�û���
+				u.setNickname(username);
+			}
+			if (!util.isEmpty(nickname)) {
+				u.setNickname(nickname);
 			}
 
 			u.setAccnumno(accnumno);
 			u.setPhone(phone);
-			u.setStage("δ��д");
-			if (address == null) {
-				u.setAddress("����");
-				u.setAddcity("������");
-			} else {
-				u.setAddress(address);
-				u.setAddcity("δ����");
-			}
 
 			u.setFinaltime(time);
-			u.setSchool("δ��д");
+
 			u.setOs(os);
 			u.setOnline(1);
 			u.setTime(time);
-			u.setCompetence(0);// ��ͨ�û�
-			u.setGag(0);// ���Դ�����̳
+			u.setCompetence(0);
+			u.setGag(0);
 			if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 				util.Out().print(false);
 				return;
@@ -1671,10 +1517,10 @@ public class UserAction {
 			} else {
 				accnumno = "10000000";
 			}
-			
+			u.setPassword(password);
 			u.setAccnumno(accnumno);
 			userdao.save(u);
-		
+
 			u = userdao.byUsernameAccnumnoPhone(phone);
 			if (u != null) {
 				if (file != null) {
@@ -1684,20 +1530,16 @@ public class UserAction {
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
-				
+
 				}
-				pd.setUid(u.getId());
-				pd.setPassword(password);
-				userdao.save(pd);
+
 				JSONObject json = new JSONObject();
 				json.put("username", u.getId());
-				// �û�id
+
 				json.put("password", "123456");
-				// �û�����
+
 				String w = WechatKit.post(url, json,
 						RefreshAccessToken.access_token);
-			
-				u.setPassword(password);
 
 				util.Out().print(util.ToJson(u));
 				String url = "http://127.0.0.1/PerfectBefriend/aStas?province="
@@ -1730,17 +1572,9 @@ public class UserAction {
 		u = new User();
 
 		u.setMac(mac);
-		u.setStage("δ��д");
-		if (address == null) {
-			u.setAddress("����");
-			u.setAddcity("������");
-		} else {
-			u.setAddress(address);
-			u.setAddcity("δ����");
-		}
 
 		u.setFinaltime(time);
-		u.setSchool("δ��д");
+
 		// u.setOs(os);
 		u.setOnline(1);
 		u.setTime(time);
@@ -1753,11 +1587,10 @@ public class UserAction {
 		} else {
 			accnumno = "10000000";
 		}
-	
+
 		u.setAccnumno(accnumno);
 		userdao.save(u);
-	
-	
+
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
 		if (u != null) {
 			if (file != null) {
@@ -1767,11 +1600,9 @@ public class UserAction {
 				u.setImg(pah);
 				userdao.update(u);
 			} else {
-				
+
 			}
-			pd.setUid(u.getId());
-			pd.setPassword(accnumno.toString());// ��ʼ����
-			userdao.save(pd);
+
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
 			// �û�id
@@ -1779,7 +1610,7 @@ public class UserAction {
 			// �û�����
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
-			
+
 			u.setPassword(accnumno.toString());
 
 			util.Out().print(util.ToJson(u));
@@ -1793,7 +1624,6 @@ public class UserAction {
 
 	}
 
-	
 	public void synSave() throws IOException {
 		try {
 			String key = request.getParameter("key");
@@ -1815,7 +1645,6 @@ public class UserAction {
 				return;
 
 			}
-		
 
 			if (username != null) {
 				u.setUsername(username);
@@ -1829,11 +1658,10 @@ public class UserAction {
 			u.setOs("syn");
 			u.setAccnumno(accnumno);
 			u.setPhone(phone);
-			u.setStage("δ��д");
 			u.setAddress(address);
 			u.setAddcity(addcity);
 			u.setFinaltime(time);
-			u.setSchool("δ��д");
+
 			u.setTime(time);
 			u.setCompetence(0);// ��ͨ�û�
 			u.setGag(0);// ���Դ�����̳
@@ -1849,11 +1677,10 @@ public class UserAction {
 			} else {
 				accnumno = "10000000";
 			}
-		
+
 			u.setAccnumno(accnumno);
 			userdao.save(u);
-		
-		
+
 			u = userdao.byUsernameAccnumnoPhone(accnumno);
 			if (u != null) {
 				if (file != null) {
@@ -1863,11 +1690,9 @@ public class UserAction {
 					u.setImg(pah);
 					userdao.update(u);
 				} else {
-				
+
 				}
-				pd.setUid(u.getId());
-				pd.setPassword(password);
-				userdao.save(pd);
+
 				JSONObject json = new JSONObject();
 				json.put("username", u.getId());
 				// �û�id
@@ -1875,7 +1700,7 @@ public class UserAction {
 				// �û�����
 				String w = WechatKit.post(url, json,
 						RefreshAccessToken.access_token);
-			
+
 				u.setPassword(password);
 
 				util.Out().print(true);
@@ -1889,35 +1714,29 @@ public class UserAction {
 		}
 	}
 
-	
 	public void Modtionphone() throws IOException {
-	
+
 		u = userdao.byUsernameAccnumnoPhone(phone);
 		if (u == null) {
-		
+
 			util.Out().print(false);
 			return;
 		}
-		pd = userdao.select(u.getId());
-		if (pd == null) {
-			util.Out().print(false);
-			return;
-		}
+
 		if (password == null) {
-			
+
 			util.Out().print("null");
 			return;
 		}
 		// ��֤����
 		String reg = "[A-Za-z0-9_]{6,18}";
 		if (password.matches(reg)) {
-			pd.setPassword(password);
-			userdao.update(pd);
-			
+			u.setPassword(password);
+			userdao.update(u);
 			util.Out().print(true);
 			return;
 		} else {
-			
+
 			util.Out().print("pfalse");
 			return;
 		}
@@ -1936,19 +1755,13 @@ public class UserAction {
 			}
 
 			if (p != null) {
-				pd = userdao.login(u.getId(), password);
-				if (pd == null) {
-
-					util.Out().print(false);
-					return;
-				}
 
 				if (!OpeFunction.isEmpty(newpassword)) {
 
 					reg = "[A-Za-z0-9_]{6,18}";
 					if (newpassword.matches(reg)) {
-						pd.setPassword(newpassword);
-						userdao.update(pd);
+						u.setPassword(password);
+						userdao.update(u);
 
 						util.Out().print(true);
 						return;
@@ -2036,15 +1849,17 @@ public class UserAction {
 			if (!util.isEmpty(sex)) {
 				u.setSex(sex);
 			}
-			if (signature != null) {
+			if (!util.isEmpty(signature)) {
 				u.setSignature(signature);
 			}
 			if (!util.isEmpty(childrensex)) {
 				u.setChildrensex(childrensex);
 			}
+
 			u.setMac(null);
 
 			userdao.update(u);
+
 			util.Out().print(util.ToJson(u));
 
 		} catch (Exception e) {
@@ -2052,22 +1867,20 @@ public class UserAction {
 		}
 	}
 
-	
 	public void phoneSend() throws IOException {
-		
+
 		String regp = "[0-9]{11}";
 		if (phone == null) {
-		
+
 			util.Out().print("null");
 			return;
 		}
 		if (!phone.matches(regp)) {
-		
+
 			util.Out().print("null");
 			return;
 		}
 		if (userdao.byUsernameAccnumnoPhone(phone) == null) {
-		
 
 			util.Out().print(false);
 
@@ -2075,8 +1888,7 @@ public class UserAction {
 		}
 		int num = (int) ((Math.random() * 9 + 1) * 100000);
 		session.setAttribute("app_code", String.valueOf(num));
-		session.setMaxInactiveInterval(90);
-		
+		//session.setMaxInactiveInterval(90);
 
 		String content = new String("您的验证码是：" + num
 				+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
@@ -2093,8 +1905,6 @@ public class UserAction {
 	public String GetUsertime() throws IOException {
 		// Map session = (Map) util.getsession();// ���� map
 
-		
-
 		int count = userdao.getUsertime(timeq, timeh);
 
 		request.setAttribute("timeh", timeh);
@@ -2105,7 +1915,6 @@ public class UserAction {
 		return Action.SUCCESS;
 	}
 
-	
 	public String GetUserAll() throws IOException {
 		Map session = (Map) util.getsession();// ���� map
 		competence2 = userdao.getCount();// ȫ���û�����

@@ -40,7 +40,7 @@
 		</action>
 		
 		<!-- 输入手机号 发送 验证码 找回密码 -->
-		<action name="appSendCodePasswrod" class="userAction" method="appSendCodePasswrod">
+		<action name="appSendCodePassword" class="userAction" method="appSendCodePassword">
 		</action>
 
 		<!-- 验证验证码是否正确 -->

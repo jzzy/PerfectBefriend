@@ -11,26 +11,26 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="visitor")
-public class Visitor {
+public class Visitor  implements Serializable {
 
 	
 		/**
-		 * 游客
+		 * 锟轿匡拷
 		 */
 		private static final long serialVersionUID = 1L;
 		@Id
 		@Column(name="id")
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private Integer id;
-		@Column(name="nickname")//游客昵称
+		@Column(name="nickname")//锟轿匡拷锟角筹拷
 		private String nickname;
-		@Column(name="appmac")//游客唯一appmac
+		@Column(name="appmac")//锟轿匡拷唯一appmac
 		private String appmac;
-		@Column(name="time")//游客第一次登入时间
+		@Column(name="time")//锟轿客碉拷一锟轿碉拷锟斤拷时锟斤拷
 		private String time;
-		@Column(name="os")// 来自的系统  android ios
+		@Column(name="os")// 锟斤拷锟皆碉拷系统  android ios
 		private String os;
-		@Column(name="province")// 来自的系统 地区
+		@Column(name="province")// 锟斤拷锟皆碉拷系统 锟斤拷锟斤拷
 		private String province;
 		
 		public String getProvince() {

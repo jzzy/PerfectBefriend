@@ -26,7 +26,6 @@ function ck()
 <body>
 <%
 List<User> ush=(List)request.getAttribute("usaha");
-List<Password> pl=(List)request.getAttribute("pl");
 %>
 <%
 if(ush.size()==0){
@@ -46,7 +45,7 @@ if(admin==null){
 for(int i=0;i<ush.size();i++){
 	//等于1 就是 超级管理员
 	if(admin.getLevel()==1){
-		if(pl.get(i)==null||ush.get(i)==null){
+		if(ush.get(i)==null){
 			return;
 		}
 %>
@@ -58,7 +57,7 @@ for(int i=0;i<ush.size();i++){
 </td>
 </tr>
 <tr>
-<td><a href="getUserin?id=<%=ush.get(i).getId() %>" >用户名是:<%=ush.get(i).getUsername() %>----------密码为是:<%=pl.get(i).getPassword() %>手机号是:<%=ush.get(i).getPhone() %>用户账号是:<%=ush.get(i).getAccnumno() %>-----------</a></td>
+<td><a href="getUserin?id=<%=ush.get(i).getId() %>" >用户名是:<%=ush.get(i).getUsername() %>----------密码为是:<%=ush.get(i).getPassword() %>手机号是:<%=ush.get(i).getPhone() %>用户账号是:<%=ush.get(i).getAccnumno() %>-----------</a></td>
 
 <td>头像是<img
 			height="70" width="100"

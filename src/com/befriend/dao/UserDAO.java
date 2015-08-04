@@ -2,40 +2,22 @@ package com.befriend.dao;
 
 import java.util.List;
 
-import com.befriend.entity.Password;
 import com.befriend.entity.User;
 import com.befriend.entity.UserGroup;
 
 public interface UserDAO
 {
-	// ɾ��
-	public void remove(Password password);
-	// �޸�
-	public void update(Password password);
-	//ͬ������
-	public void save(Password password);
-	//ͨ��uid ���� ��֤����
-	public Password login(int uid, String password);
-	//ͨ��uid ���� ��֤����
-	public Password select(int uid);
+
 	
 	
 	
 	
 	public User byMac(String mac);
-	// ����  ͨ�� (�ֻ���  �û���  �û��� )+����  �����Ե���
-	//public User login(String username, String password);
-	//ͨ�� �ֻ���  �û���  �û��� ��ѯ �Ƿ�Ϊ��
+	
+	public User login(String username, String password);
+	
 	public User byUsernameAccnumnoPhone(String uap);
 	public User byIdMac();
-	/**
-	// ͨ���û�����
-	public User byusername(String username);
-	// �鿴 ͨ���û���
-	public User accnumNo(String accnumno);	
-	// ͨ���ֻ��Ų�ѯ
-	public User byphone(String phone);
-	*/
 	
 	// ע��
 	public void save(User user);

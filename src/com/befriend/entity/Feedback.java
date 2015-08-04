@@ -1,5 +1,7 @@
 package com.befriend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,23 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//ÓÃ»§·´À¡±í
+//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @Entity
 @Table(name="feedback")
-public class Feedback {
+public class Feedback  implements Serializable {
 	/**
-	 * ÓÃ»§·´À¡±í
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="username")//ÓÃ»§id
+	@Column(name="username")//ï¿½Ã»ï¿½id
 	private String username;
-	@Column(name="information")//ÓÃ»§·´À¡ÐÅÏ¢
+	@Column(name="information")//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	private String information;
-	@Column(name="time")//ÓÃ»§·´À¡Ê±¼ä
+	@Column(name="time")//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	private String time;
 	
 	public Integer getId() {

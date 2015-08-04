@@ -19,6 +19,7 @@ import com.befriend.entity.User;
 import com.befriend.util.JsonUtil;
 import com.befriend.util.MathUtils;
 import com.befriend.util.Message;
+import com.befriend.util.OpeFunction;
 
 
 /**
@@ -143,32 +144,32 @@ public class AppPushAction extends BaseAction
 					 * 下面计算的是用户信息偏好权值
 					 */
 					List<Double> prefence = new ArrayList<>();
-					if(!StringUtils.isEmpty(user.getChildrenage()))
+					if(!OpeFunction.isEmpty(user.getChildrenage()))
 						prefence.add(User.CHILD_AGE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getStage()))
+					if(!OpeFunction.isEmpty(user.getStage()))
 						prefence.add(User.STAGE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getChildrensex()))
+					if(!OpeFunction.isEmpty(user.getChildrensex()))
 						prefence.add(User.CHILD_SEX);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getSchool()))
+					if(!OpeFunction.isEmpty(user.getSchool()))
 						prefence.add(User.SCHOOL);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getAddress()))
+					if(!OpeFunction.isEmpty(user.getAddress()))
 						prefence.add(User.PROVINCE);
 					else
 						prefence.add(0d);
 					
-					if(!StringUtils.isEmpty(user.getAddcity()))
+					if(!OpeFunction.isEmpty(user.getAddcity()))
 						prefence.add(User.CITY);
 					else
 						prefence.add(0d);

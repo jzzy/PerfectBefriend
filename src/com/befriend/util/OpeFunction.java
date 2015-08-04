@@ -48,9 +48,9 @@ import com.opensymphony.xwork2.ActionContext;
 public class OpeFunction {
 	/**
 	 * 
-	 * ��  ����  true
+	 * null=true
 	 * 
-	 * ����  ���� false
+	 * not null=false
 	 * @param rstart
 	 * @param rend
 	 * @return

@@ -1,5 +1,7 @@
 package com.befriend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,49 +11,49 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="app")
-public class App {
+public class App  implements Serializable {
 
 
 	/**
-	 * appÀà
+	 * appï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="name")//appÃû×Ö
+	@Column(name="name")//appï¿½ï¿½ï¿½ï¿½
 	private String name;
-	@Column(name="summary")//app¸ÅÒª
+	@Column(name="summary")//appï¿½ï¿½Òª
 	private String summary;
 	
-	@Column(name="time")//appÉÏ´«Ê±¼ä
+	@Column(name="time")//appï¿½Ï´ï¿½Ê±ï¿½ï¿½
 	private String time;
 	
-	@Column(name="pathapk")//appapkÉÏ´«µØÖ·
+	@Column(name="pathapk")//appapkï¿½Ï´ï¿½ï¿½ï¿½Ö·
 	private String pathapk;
-	@Column(name="pathimg")//applogoÍ¼Æ¬µØÖ·
+	@Column(name="pathimg")//applogoÍ¼Æ¬ï¿½ï¿½Ö·
 	private String pathimg;
-	@Column(name="pathimg1")//Ó¦ÓÃ½ØÍ¼1µØÖ·
+	@Column(name="pathimg1")//Ó¦ï¿½Ã½ï¿½Í¼1ï¿½ï¿½Ö·
 	private String pathimg1;
-	@Column(name="pathimg2")//Ó¦ÓÃ½ØÍ¼2µØÖ·
+	@Column(name="pathimg2")//Ó¦ï¿½Ã½ï¿½Í¼2ï¿½ï¿½Ö·
 	private String pathimg2;
-	@Column(name="pathimg3")//Ó¦ÓÃ½ØÍ¼3µØÖ·
+	@Column(name="pathimg3")//Ó¦ï¿½Ã½ï¿½Í¼3ï¿½ï¿½Ö·
 	private String pathimg3;
-	@Column(name="sequence")//appÅÅĞò
+	@Column(name="sequence")//appï¿½ï¿½ï¿½ï¿½
 	private int sequence;
-	@Column(name="type")//appÀà±ğ
+	@Column(name="type")//appï¿½ï¿½ï¿½
 	private String type;
-	@Column(name="vnum")//app°æ±¾ºÅ
+	@Column(name="vnum")//appï¿½æ±¾ï¿½ï¿½
 	private String vnum;
-	@Column(name="dpt")//Ó¦ÓÃÃèÊö
+	@Column(name="dpt")//Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String dpt;
 	
-	@Column(name="downloads")//appÏÂÔØ´ÎÊı
+	@Column(name="downloads")//appï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 	private int downloads;
-	@Column(name="realds")//appÕæÊµÏÂÔØ´ÎÊı
+	@Column(name="realds")//appï¿½ï¿½Êµï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 	private int realds;
-	@Column(name="appsize")//app´óĞ¡MB
+	@Column(name="appsize")//appï¿½ï¿½Ğ¡MB
 	
 	private double appsize;
 

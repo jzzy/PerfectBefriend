@@ -1,4 +1,6 @@
 package com.befriend.entity;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="label")
-public class NewsLabel {
+public class NewsLabel  implements Serializable {
 	
 	
 		/**
-		 * ÐÂÎÅ±êÇ©±í
+		 * ï¿½ï¿½ï¿½Å±ï¿½Ç©ï¿½ï¿½
 		 */
 		
 		@Id
@@ -20,9 +22,9 @@ public class NewsLabel {
 		private Integer id;
 		
 		@Column(name="label")
-		private String label;//±êÇ©
+		private String label;//ï¿½ï¿½Ç©
 		@Column(name="time")
-		private String time;//Ê±¼ä
+		private String time;//Ê±ï¿½ï¿½
 
 		public String getTime() {
 			return time;

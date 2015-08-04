@@ -766,13 +766,11 @@ public class ForumAction {
 				request.setAttribute("fu", fu);
 				request.setAttribute("fut", fut);
 				request.setAttribute("us", us);
-				request.setAttribute("u", user);
-				System.out.println(user.getUsername());
+			//	request.setAttribute("u", user);
+			
 				System.out.println("------------------------------");
 
-			} else {
-				System.out.println("id����ȷ");
-			}
+			} 
 
 		} catch (Exception e) {
 			util.Out().print(e.getMessage());
