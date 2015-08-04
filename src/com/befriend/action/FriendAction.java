@@ -2,7 +2,6 @@ package com.befriend.action;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +32,8 @@ public class FriendAction extends BaseAction
 	private String groupId;
 	private String agree;
 	private String remark;
+	private String groupName;
+	private String orderNum;
 
 	/**
 	 * get friend list
@@ -317,6 +318,153 @@ public class FriendAction extends BaseAction
 		}
 		this.getJsonResponse().getWriter().println(JsonUtil.toJson(msg));
 	}
+	
+	/**
+	 * @param userId
+	 * @param groupName
+	 * user add a group
+	 * @throws IOException 
+	 */
+	public void addUserGroup() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(userId)&&!StringUtils.isEmpty(groupName))
+		{
+			User user = userDAO.byid(Integer.valueOf(userId));
+			if(user != null)
+			{
+				UserGroup userGroup = userGroupDAO.find(Integer.valueOf(userId), groupName);
+				if(userGroup==null)
+				{
+					/**
+					 * if not existed a group
+					 * insert a new group
+					 */
+					userGroup = new UserGroup();
+					userGroup.setUser(user);
+					userGroup.setName(groupName);
+					userGroup.setIsDefault(UserGroup.NOT_DEFAULT);
+					userGroup.setOrderNum(0);
+					userGroup.setCreateTime(OpeFunction.getNowTime());
+					userGroupDAO.save(userGroup);
+					msg.setCode(Message.SUCCESS);
+					msg.setStatement("add "+groupName+" success");
+					
+				}
+				else
+				{
+					msg.setCode(Message.FAILED);
+					msg.setStatement("there was a group named by "+groupName+" already");
+				}
+			}
+			else
+			{
+				msg.setCode(Message.ERROR);
+				msg.setStatement("user not exist");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter is error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	
+	/**
+	 * @param groupId
+	 * @param groupName choice
+	 * @param orderNum choice
+	 * @throws IOException 
+	 * 
+	 * @describe edit user's group
+	 * 
+	 */
+	public void editUserGroup() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(groupId))
+		{
+			UserGroup userGroup = userGroupDAO.find(Integer.valueOf(groupId));
+			if(userGroup != null)
+			{
+				/**
+				 * if the group is not null and group is not default
+				 * update the group
+				 */
+				if(userGroup.getIsDefault() != UserGroup.BLACKLIST_DEFAULT && userGroup.getIsDefault() != UserGroup.FRIEND_DEFAULT)
+				{
+					if(!StringUtils.isEmpty(groupName))
+						userGroup.setName(groupName);
+					if(StringUtils.isNumeric(orderNum))
+						userGroup.setOrderNum(Integer.valueOf(orderNum));
+					userGroupDAO.update(userGroup);
+					msg.setCode(Message.SUCCESS);
+					msg.setStatement("edit user group success");
+				}
+				else
+				{
+					msg.setCode(Message.FAILED);
+					msg.setStatement("default");
+				}
+				
+			}
+			else
+			{
+				msg.setCode(Message.FAILED);
+				msg.setStatement("the userGroup is not exist");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	/**
+	 * @param groupId
+	 * @throws IOException 
+	 * @describe delete user group
+	 */
+	public void deleteUserGroup() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(groupId))
+		{
+			UserGroup userGroup = userGroupDAO.find(Integer.valueOf(groupId));
+			if(userGroup != null)
+			{
+				/**
+				 * if the group is not null and group is not default
+				 * delete the group
+				 */
+				if(userGroup.getIsDefault() != UserGroup.BLACKLIST_DEFAULT && userGroup.getIsDefault() != UserGroup.FRIEND_DEFAULT)
+				{
+					userGroupDAO.remove(userGroup);
+					msg.setCode(Message.SUCCESS);
+					msg.setStatement("delete user group success");
+				}
+				else
+				{
+					msg.setCode(Message.FAILED);
+					msg.setStatement("default");
+				}
+				
+			}
+			else
+			{
+				msg.setCode(Message.FAILED);
+				msg.setStatement("the userGroup is not exist");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
 
 	
 
@@ -325,6 +473,27 @@ public class FriendAction extends BaseAction
 		this.userDAO = userDAO;
 		this.userGroupDAO = userGroupDAO;
 		this.groupFriendDAO = groupFriendDAO;
+	}
+	
+
+	public String getOrderNum()
+	{
+		return orderNum;
+	}
+
+	public void setOrderNum(String orderNum)
+	{
+		this.orderNum = orderNum;
+	}
+
+	public String getGroupName()
+	{
+		return groupName;
+	}
+
+	public void setGroupName(String groupName)
+	{
+		this.groupName = groupName;
 	}
 
 	public String getUserId()

@@ -26,7 +26,7 @@ public class Behavior implements Serializable
 	@Column(name="keyword",nullable=false)
 	private String keyword;
 	@Column(name="type",nullable=false)
-	private int type;//�ؼ������ͣ�1���������2�����ű�ǩ
+	private int type;
 	@Column(name="count",nullable=false)
 	private long count;
 	@Transient

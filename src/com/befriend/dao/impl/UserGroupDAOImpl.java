@@ -52,9 +52,9 @@ public class UserGroupDAOImpl implements UserGroupDAO
 	@Override
 	public UserGroup find(int userId, String name) 
 	{
-		Query query = entityManager.createQuery("select userGroup from User user inner join user.userGroup userGroup where user.id = :userId and userGroup.name like :name");
+		Query query = entityManager.createQuery("select userGroup from User user inner join user.userGroup userGroup where user.id = :userId and userGroup.name = :name");
 		query.setParameter("userId", userId);
-		query.setParameter("name", "%"+name+"%");
+		query.setParameter("name", name);
 		if(query.getResultList().size()>0)
 			return (UserGroup) query.getResultList().get(0);
 		else
