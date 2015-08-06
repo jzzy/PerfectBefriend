@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,6 @@ import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
-import com.sun.xml.internal.fastinfoset.stax.events.Util;
-
 public class NewsAction {
 	private UserDAO userdao;// �û�dao
 	private NewsDAO ndao; // ����dao
@@ -49,7 +48,7 @@ public class NewsAction {
 	Support_News st = new Support_News();// ������
 	private List<Support_News> sl = new ArrayList<Support_News>();// ������
 	private Review r = new Review();// ������
-	private List<Review> rl = new ArrayList<Review>();// ������
+	List<Review> rl = new ArrayList<Review>();
 	private List<Collect> cl = new ArrayList<Collect>();// �ղ� List
 	private List<User> ul = new ArrayList<User>();// �û� List
 	private int userid;// �û�id
@@ -106,23 +105,65 @@ public class NewsAction {
 		this.xlsxFileFileName = xlsxFileFileName;
 	}
 
-	/**
-	 * �ϴ����ű�ǩ
-	 * 
-	 * @throws InvalidFormatException
-	 */
+	public void Recommendation() throws IOException {
+		n = ndao.byid(newsid);
+		if(n==null){
+			OpeFunction.Out().print("null");
+			return;
+		}
+		String nb = n.getLabel();
+		nl = ndao.getRecentlyNewsByTime(OpeFunction.getNumTime(15),
+				OpeFunction.getNowTime());
+		for (int i = 0; i < nl.size(); i++) {
+			double d = 0.0;
+			n = nl.get(i);
+			String[] nlb = n.getLabel().split(",");
+			for (int j = 0; j < nlb.length; j++) {
+				if (nb.contains(nlb[j])) {
+					++d;
+				}
+			}
+			n.setSimilarity(d);
+			nl.set(i, n);
+
+		}
+		nl.sort(new newsSprt());
+		List<News> lnews = nl;
+		if(nl.size()>3){
+		nl = new ArrayList<News>();
+		for (int i = 0; i < 3; i++) {
+			nl.add(lnews.get(i));
+		}
+		}
+		OpeFunction.Out().print(OpeFunction.ToJson(nl));
+	}
+	public class newsSprt implements Comparator<News>{
+		@Override
+		public int compare(News o1, News o2) {
+			if(o1.getSimilarity()>o2.getSimilarity()){
+				return -1;
+			}else if(o1.getSimilarity()<o2.getSimilarity()){
+				return 1;
+			}else{
+				return 0;
+			}
+			
+			
+		}
+		
+	} 
 	public void saveLabel() throws IOException, InvalidFormatException {
 		System.out.println("�ļ�����" + xlsxFileFileName);
 
 		ServletResponse srp = (ServletResponse) OpeFunction.response();
-		srp.setCharacterEncoding("GBK");
+		//srp.setCharacterEncoding("GBK");
 		PrintWriter out = srp.getWriter();
 		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<script type=\"text/javascript\">");
 
 		if (xlsxFile == null) {
-			builder.append("alert('��ӱ�ǩʧ�ܣ�');");
+			builder.append("alert('null');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -131,7 +172,7 @@ public class NewsAction {
 			return;
 		}
 		if (!xlsxFileFileName.split("\\.")[1].equals("xlsx")) {
-			builder.append("alert('�ļ����Ͳ��� �����: ."
+			builder.append("alert('No: ."
 					+ xlsxFileFileName.split("\\.")[1] + "');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
@@ -181,7 +222,7 @@ public class NewsAction {
 			}
 		}
 
-		builder.append("alert('��ӱ�ǩ�ɹ�!');");
+		builder.append("alert('ok');");
 		builder.append("window.top.location.href='");
 		builder.append(loginPage);
 		builder.append("';");
@@ -2313,15 +2354,24 @@ public class NewsAction {
 			System.out.println("�쳣��" + e.getMessage());
 		}
 	}
-
 	/**
-	 * ͨ���û��� username newsid ��ѯ����
-	 * 
-	 * @param ndao
-	 * @param cdao
-	 * @param rdao
-	 * @throws IOException
+	 * 新闻比较器
+	 * @author STerOTto
 	 */
+	private class NewsComparator implements Comparator<News>
+	{
+		@Override
+		public int compare(News first, News second) 
+		{
+			if(first.getSimilarity()<second.getSimilarity())
+				return 1;
+			else if(first.getSimilarity() > second.getSimilarity())
+				return -1;
+			else
+				return 0;
+		}
+
+	}
 	public void getRy() throws IOException {
 
 		rl = rdao.unid(userid, newsid);
@@ -2580,5 +2630,7 @@ public class NewsAction {
 	public void setXlsxFile(File xlsxFile) {
 		this.xlsxFile = xlsxFile;
 	}
+
+	
 
 }

@@ -11,6 +11,13 @@ import com.google.gson.GsonBuilder;
  */
 public class JsonUtil
 {
+	/**
+	 * 实体类转json
+	 * 只转有  @Expose 注解的
+	 * T可为实体类或集合
+	 * @param entity
+	 * @return json
+	 */
 	public static <T> String toJsonExpose(T entity)
 	{
 		String result = "";

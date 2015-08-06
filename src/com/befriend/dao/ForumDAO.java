@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.ForumOne;
+import com.befriend.entity.ForumOneType;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
 import com.befriend.entity.Support_News;
@@ -158,5 +159,11 @@ public interface ForumDAO {
 	public Attention_Forum aufid(int userid, int forutypeid);
 
 	public void remove(Attention_Forum at);
+	/**
+	 *@param ForumOneType
+	 * @return
+	 */
+	public ForumOneType getByIdForumOneType(int id);
+	public List<ForumOneType> getForumOneTypeAll();
 	
 }

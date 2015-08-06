@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.befriend.dao.ForumDAO;
 import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.ForumOne;
+import com.befriend.entity.ForumOneType;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
-
 import com.befriend.entity.Support_forum;
 
 @Transactional
@@ -454,6 +454,28 @@ public class ForumDAOImpl implements ForumDAO {
 	public void remove(Attention_Forum at) {
 		// TODO Auto-generated method stub
 		entityManager.remove(at);
+		
+	}
+
+	@Override
+	public ForumOneType getByIdForumOneType(int id) {
+		Query query = entityManager.createQuery("select u from ForumOneType u where"
+				+ " u.id=:id order by u.id desc");
+		query.setMaxResults(1);
+		query.setParameter("id", id);
+		
+		@SuppressWarnings("unchecked")
+		List<ForumOneType> Support = query.getResultList();
+		if (Support.size() > 0)
+			return Support.get(0);
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ForumOneType> getForumOneTypeAll() {
+		Query query = entityManager.createQuery("select u from ForumOneType u order by u.id asc");		
+		return query.getResultList();
 		
 	}
 }

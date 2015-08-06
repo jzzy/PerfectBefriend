@@ -4,6 +4,9 @@
 <struts>
 	<package name="News" extends="struts-default" >
 
+		<!-- 相关阅读 15天以内-->
+		<action name="NewsRecommendation" class="newsAction" method="Recommendation">
+		</action>
 	<!-- 上传新闻标签 -->
 		<action name="saveLabel" class="newsAction" method="saveLabel">
 		</action>

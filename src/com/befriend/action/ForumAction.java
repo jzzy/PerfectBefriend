@@ -20,10 +20,13 @@ import com.befriend.entity.Admin;
 import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.Follect;
 import com.befriend.entity.ForumOne;
+import com.befriend.entity.ForumOneType;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
+import com.befriend.entity.ForumTwoType;
 import com.befriend.entity.Support_forum;
 import com.befriend.entity.User;
+import com.befriend.util.JsonUtil;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 
@@ -73,7 +76,20 @@ public class ForumAction {
 	Support_forum sf = new Support_forum();
 	Attention_Forum af = new Attention_Forum();
 	List<Attention_Forum> afl = new ArrayList<Attention_Forum>();
+	public void getForumOneTypeAll() throws IOException{
+		List<ForumOneType> fotl=forumdao.getForumOneTypeAll();
+		for (int i = 0; i < fotl.size(); i++) {
+			System.out.println("1:"+fotl.get(i).getTitle());
+			List<ForumTwoType> fttl=fotl.get(i).getfTT();
+			for (int j = 0; j < fttl.size(); j++) {
+				System.out.println("2:"+fttl.get(j).getTitle());
+			}
+		}
+		OpeFunction.Out().print(JsonUtil.toJsonExpose(fotl));
+		
+	}
 
+	@SuppressWarnings("static-access")
 	public void forumMeAttention() throws IOException {
 		afl = forumdao.atAllU(userid);
 		if (afl.size() > 0) {

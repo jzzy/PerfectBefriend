@@ -42,24 +42,24 @@ public class TCPAcceptThreads implements Runnable {
 			
 			//ip = OpeFunction.getLIP();
 
-			// »ñÈ¡ÈëÁ÷
+			// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 			InputStream in = s.getInputStream();
-			// °ü×° ÊäÈëÁ÷
+			// ï¿½ï¿½×° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			DataInputStream dis = new DataInputStream(in);
 
-			// ×èÈû½ÓÊÜ ÐÅÏ¢
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¢
 			while (true) {
 				String st = null;
-				System.out.println("TCP½ÓÊÕ¶Ë½øÈë×èÈû"+s + OpeFunction.getNowTime());
-				// ¶ÁÈ¡»ñÈ¡µÄÄÚÈÝ
+				System.out.println("TCPï¿½ï¿½ï¿½Õ¶Ë½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+s + OpeFunction.getNowTime());
+				// ï¿½ï¿½È¡ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 				st = dis.readUTF();
-				System.out.println("TCP½ÓÊÕµ½:" + st + "   "
+				System.out.println("TCPï¿½ï¿½ï¿½Õµï¿½:" + st + "   "
 						+ OpeFunction.getNowTime());
 				try {
-					u = OpeFunction.getJsonKeyUs(st);
+					u = OpeFunction.fromJson(st, User);
 
-					// ÉÏÏßÄ£Ê½
+					// ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 					if (u != null) {
 					
 						
@@ -71,7 +71,7 @@ public class TCPAcceptThreads implements Runnable {
 					}
 				} catch (Exception e) {
 					System.out.println("tcp:"+url);
-					System.out.println("TCPAcceptThreads ¸ü¸ÄÓÃ»§ÉÏÏß×´Ì¬Òì³££¡ "
+					System.out.println("TCPAcceptThreads ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ì³£ï¿½ï¿½ "
 							+ e.getMessage());
 					
 				}
@@ -80,11 +80,11 @@ public class TCPAcceptThreads implements Runnable {
 
 		} catch (Exception e) {
 
-			System.out.println("¿Í»§¶ËÏÂÏß"+s + e);
-			// ÏÂÏßÄ£Ê½
+			System.out.println("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+s + e);
+			// ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 			if (u != null) {
 				try {
-					System.out.println("TCP·¢ËÍÏÂÏßÇëÇó!");
+					System.out.println("TCPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 					url = "http://127.0.0.1/Befriend/onlineStatus?id=" + u.getId()
 							+ "&gag=1"+"";
 				
@@ -92,12 +92,12 @@ public class TCPAcceptThreads implements Runnable {
 				
 					WechatKit.sendGet(url);
 				} catch (IOException e1) {
-					System.out.println("TCPAcceptThreads ¸ü¸ÄÓÃ»§ÏÂÏß×´Ì¬Òì³££¡ "
+					System.out.println("TCPAcceptThreads ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ì³£ï¿½ï¿½ "
 							+ e1.getMessage());
 
 				}
 			}else{
-				System.out.println("TCPÃ»ÓÐ»ñÈ¡µ½User!");
+				System.out.println("TCPÃ»ï¿½Ð»ï¿½È¡ï¿½ï¿½User!");
 			}
 
 		} finally {
@@ -111,7 +111,7 @@ public class TCPAcceptThreads implements Runnable {
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				System.out.println("socket¹Ø±ÕÒì³£" + e);
+				System.out.println("socketï¿½Ø±ï¿½ï¿½ì³£" + e);
 			}
 		}
 

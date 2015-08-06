@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -19,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +74,7 @@ public class OpeFunction {
 	}
 	
 	/**
-	 * ��ȡָ����Χ�ڵ����ʱ��
+	 * 两个日期内的随机时间
 	 * @param rstart
 	 * @param rend
 	 * @return
@@ -81,16 +83,15 @@ public class OpeFunction {
 	public static String RandomTime(String rstart, String rend)
 			throws ParseException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date start = format.parse(rstart);// ���쿪ʼ����
-		Date end = format.parse(rend);// �����������
-		long begin = start.getTime();// ��ȡ��ʼʱ���
-		long endd = end.getTime();// ��ȡ����ʱ���	
+		Date start = format.parse(rstart);
+		Date end = format.parse(rend);
+		long begin = start.getTime();
+		long endd = end.getTime();
 		boolean b = true;
 		long rtn = 0;
 		while (b) {
 
 			rtn = begin + (long) (Math.random() * (endd - begin));
-			// ������ص��ǿ�ʼʱ��ͽ���ʱ�䣬��ݹ���ñ������������ֵ
 			if (rtn == start.getTime() || rtn == end.getTime()) {
 
 				continue;
@@ -99,13 +100,12 @@ public class OpeFunction {
 
 			b = false;
 		}
-		//System.out.println(rtn);//���ʱ���
-		System.out.println("��ȡ�������ʱ��"+format.format(new Date(rtn)));
+	
 		return format.format(new Date(rtn));
 
 	}
 	/**
-	 * ���� html img ��ǩ src�е� ��ַ
+	 *添加img 的属性
 	 * 
 	 * @param content
 	 * @return
@@ -131,9 +131,9 @@ public class OpeFunction {
 		return content;
 	}
 	/**
-	 * ���� html img ��ǩ src�е� ��ַ
+	 *
 	 * 
-	 * @param content
+	 * @param 取出img
 	 * @return
 	 */
 	public static List getImgs(String content) {
@@ -156,66 +156,81 @@ public class OpeFunction {
 		return images;
 	}
 
-	// private static final int FIRST_DAY_OF_WEEK = 0;
+
 	/**
-	 * ��ȡʱ��
-	 * 1��
-	 * 2��
-	 * 3��
-	 * 4ʱ
-	 * 5��
-	 * 6��
 	 * 
-	 * @throws UnknownHostException
+	 * 
+	 * @param 1年月日 2时分秒
 	 */
 	public static String getDayTime(int reg) {
-		Calendar cal = Calendar.getInstance();// ʹ��������
-		/**
-		System.out.println("��" + cal.get(Calendar.YEAR));
-		System.out.println("��" + cal.get(Calendar.MONTH) + 1);
-		System.out.println("��" + cal.get(Calendar.DAY_OF_MONTH));
-		System.out.println("ʱ" + cal.get(Calendar.HOUR));
-		System.out.println("��" + cal.get(Calendar.MINUTE));
-		System.out.println("��" + cal.get(Calendar.SECOND));
-		*/
-		String name="";
+		Calendar cal = Calendar.getInstance();
+		String name = "";
 		switch (reg) {
 		case 1:
-			name=Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			name = Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			if (cal.get(Calendar.MONTH) + 1 < 10) {
+				name = name
+						+ "0"
+						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
+								.toString();
+			} else {
+				name = name
+						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
+								.toString();
+			}
+			if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
+				name = name
+						+ "0"
+						+ Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH))
+								.toString();
+			} else {
+				name = name
+						+ Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH))
+								.toString();
+			}
 			break;
+		
 		case 2:
-			if(cal.get(Calendar.MONTH)+1<10){
-			name="0"+Integer.valueOf(cal.get(Calendar.MONTH)+1).toString();
-			}else{
-				name=Integer.valueOf(cal.get(Calendar.MONTH)+1).toString();
+			if (cal.get(Calendar.HOUR) + 1 < 10) {
+				name = name
+						+ "0"
+						+ Integer.valueOf(cal.get(Calendar.HOUR))
+								.toString();
+			} else {
+				name = name
+						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
+								.toString();
+			}
+			if (cal.get(Calendar.MINUTE) < 10) {
+				name = name
+						+ "0"
+						+ Integer.valueOf(cal.get(Calendar.MINUTE))
+								.toString();
+			} else {
+				name = name
+						+ Integer.valueOf(cal.get(Calendar.MINUTE))
+								.toString();
+			}
+			if (cal.get(Calendar.SECOND) < 10) {
+				name = name
+						+ "0"
+						+ Integer.valueOf(cal.get(Calendar.SECOND))
+								.toString();
+			} else {
+				name = name
+						+ Integer.valueOf(cal.get(Calendar.SECOND) )
+								.toString();
 			}
 			break;
-		case 3:
-			if(cal.get(Calendar.DAY_OF_MONTH)<10){
-			name="0"+Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH)).toString();
-			}else{
-				name=Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH)).toString();
-			}
-			break;
-		case 4:
-			name=Integer.valueOf(cal.get(Calendar.HOUR)).toString();
-			break;
-		case 5:
-			name=Integer.valueOf(cal.get(Calendar.MINUTE)).toString();
-			break;
-		case 6:
-			name=Integer.valueOf(cal.get(Calendar.SECOND)).toString();
-			break;
-
 		default:
-			name=Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			name = Integer.valueOf(cal.get(Calendar.YEAR)).toString();
 			break;
 		}
 		return name;
 	}
 
 	/**
-	 * ��ȡ����ip
+	 * 获取本机ip
 	 * 
 	 * @throws UnknownHostException
 	 */
@@ -225,19 +240,22 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ͨ��key ��json�� ȡֵ
-	 * 
-	 * @throws NoSuchAlgorithmException
+	 * json转实体类
+	 * T可为实体类或集合
+	 * @param json
+	 * @param type 
+	 * 		  Type.class
+	 *        TypeToken<List<Type>>(){}.getType()
+	 * @return
 	 */
-	public static User getJsonKeyUs(String str) {
-		Gson gs = new Gson();
-		User u = gs.fromJson(str, User.class);
-		return u;
-
+	public static <T> T fromJson(String json,Type type)
+	{
+		Gson gson = new Gson();
+		return gson.fromJson(json, type);
 	}
 
 	/**
-	 * ͨ��key ��json�� ȡֵ
+	 * 
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 */
@@ -408,11 +426,7 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * +1 ������� -1��ȡ����
-	 * 
-	 * @return
-	 */
+	
 	public static String getNumTime(int day) {
 
 		Calendar calendar = Calendar.getInstance();
@@ -474,10 +488,10 @@ public class OpeFunction {
 	 * @param object
 	 * @return
 	 */
-	public static String ToJson(Object object) {
+	public static <T> String ToJson(T entity) {
 		Gson gson = new Gson();
-		if (object != null) {
-			return gson.toJson(object);
+		if (entity != null) {
+			return gson.toJson(entity);
 		} else {
 			return null;
 		}
@@ -608,13 +622,26 @@ public class OpeFunction {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		
-		System.out.println(setImgswidth100("111<img src=\"/PerfectBefriend/kindeditor/attached/image/20150727/20150727183630_727.jpg\" alt=\"\"  height=\"360\" title=\"\" align=\"left\" />222<img src=\"/PerfectBefriend/kindeditor/attached/image/20150727/20150727183630_727.jpg\" alt=\"\"  height=\"360\" title=\"\" align=\"left\" />"));
-		
-		
-		
+		System.out.println(getDayTime(1));
+		System.out.println(getDayTime(2));
 		
 		      }  
+	public static class SSSS  implements Comparator<Integer>{
+
+		@Override
+		public int compare(Integer o1, Integer o2) {
+			if(o1>o2)
+				return 1;
+			else
+				if(o1<o2)
+					return -1;
+				else
+					return 0;
+		}
+
+		
+		
+	}
 	
 
 }

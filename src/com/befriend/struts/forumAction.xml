@@ -72,6 +72,11 @@
 		
 		
 		<!-- app用的 -->
+		
+		<!--查询论坛模块-->
+		<action name="forumgetForumOneTypeAll" class="forumAction" method="getForumOneTypeAll" >
+		
+		</action>
 		<!--添加赞-->
 		<action name="forumStandBy" class="forumAction" method="forumStandBy" >
 		

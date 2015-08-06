@@ -126,7 +126,7 @@ public class User implements Serializable
 	
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="user")
 	@Expose
-	private Set<UserGroup> userGroup = new HashSet<UserGroup>();
+	private Set<UserGroup> userGroup = new HashSet<UserGroup>();//java里面set 或者 list表示多
 	
 	
 	public Set<UserGroup> getUserGroup()

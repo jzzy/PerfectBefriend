@@ -86,7 +86,7 @@ public class News implements Serializable {
     private int supports;
     //相似度
     @Transient
-    private double similarity;
+    private double similarity=0d;
     
  
     

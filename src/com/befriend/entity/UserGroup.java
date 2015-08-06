@@ -39,9 +39,9 @@ public class UserGroup implements Serializable
 	private Integer id;
 	
 	@ManyToOne(cascade=CascadeType.ALL)        
-	@JoinColumn(name="user_id") 
+	@JoinColumn(name="user_id") //这是数据库里面的，这个字段是关联外键
 	@Expose(serialize=false)
-	private User user;
+	private User user;//与这里对应，这里表示一
 	
 	@Column(name="name",nullable=false)
 	@Expose
@@ -53,7 +53,7 @@ public class UserGroup implements Serializable
 	
 	@Column(name="order_num",nullable=false)
 	@Expose
-	private int orderNum;
+	private int orderNum; 
 	
 	@Column(name="create_time")
 	@Expose
