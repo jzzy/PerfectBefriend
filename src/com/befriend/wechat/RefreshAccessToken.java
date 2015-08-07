@@ -2,7 +2,6 @@ package com.befriend.wechat;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.apache.commons.httpclient.NameValuePair;
 import org.json.JSONObject;
 
 import com.befriend.util.OpeFunction;
@@ -19,6 +18,7 @@ public class RefreshAccessToken {
 
 	public class RefreshAccessTokenTask extends TimerTask {
 
+		@SuppressWarnings("unused")
 		@Override
 		public void run() {
 

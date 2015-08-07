@@ -21,68 +21,68 @@ public class UDPThread implements Runnable {
 	public void run() {
 		try {
 
-			// ÉùÃ÷ byteÊý×é
+			// ï¿½ï¿½ï¿½ï¿½ byteï¿½ï¿½ï¿½ï¿½
 			byte[] buf = new byte[4096];
 
-			// ´´½¨½ÓÊÕÊý¾Ý°ü£¬´æ´¢ÔÚbufÖÐ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½bufï¿½ï¿½
 			DatagramPacket packet = new DatagramPacket(buf, buf.length);
-			System.out.println("UDP·þÎñÆ÷¼àÌý¿ªÊ¼..." + OpeFunction.getNowTime());
+			System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼..." + OpeFunction.getNowTime());
 
 			try {
 
 				while (true) {
 
-					System.out.println("UDP·þÎñÆ÷µÈ´ý½ÓÊÕ..."
+					System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½..."
 							+ OpeFunction.getNowTime());
-					// ½ÓÊÕ²Ù×÷ »á×èÈû
+					// ï¿½ï¿½ï¿½Õ²ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					server.receive(packet);
 					String uip = new String(packet.getAddress().toString());
 					String a[] = uip.split("/");
-					System.out.println("UDP·þÎñÆ÷½ÓÊÜÁËÀ´×ÔipÎª:" + a[1] + "_Ê±¼ä:"
+					System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ipÎª:" + a[1] + "_Ê±ï¿½ï¿½:"
 							+ OpeFunction.getNowTime());
-					System.out.println("UDP·þÎñÆ÷½ÓÊÜÁËÀ´×Ô¶Ë¿ÚºÅÎª:" + packet.getPort());
+					System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶Ë¿Úºï¿½Îª:" + packet.getPort());
 					String info = new String(packet.getData(), 0,
 							packet.getLength());
-					System.out.println("UDP·þÎñÆ÷½ÓÊÕµ½µÄÐÅÏ¢:" + info);
+					System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢:" + info);
 					try {
 
-						u = OpeFunction.getJsonKeyUs(info);
+						u = OpeFunction.fromJson(info, User.class);
 
 						if (u != null) {
 							new Thread(new ModifyThreads(u, a[1],
 									packet.getPort())).start();
 						}
 					} catch (Exception e) {
-						System.out.println("½ÓÊÜµ½µÄÊý¾Ý²»Õý¹æ »òÕß½âÎö´íÎó »òÕßÆô¶¯ÐÞ¸ÄÏß³ÌÊ§°Ü£¡"+e.getMessage());
-						info = "½ÓÊÜµ½µÄÊý¾Ý²»Õý¹æ »òÕß½âÎö´íÎó »òÕßÆô¶¯ÐÞ¸ÄÏß³ÌÊ§°Ü£¡"+e.getMessage();
-						// ·¢ËÍ
+						System.out.println("ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ß³ï¿½Ê§ï¿½Ü£ï¿½"+e.getMessage());
+						info = "ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ß³ï¿½Ê§ï¿½Ü£ï¿½"+e.getMessage();
+						// ï¿½ï¿½ï¿½ï¿½
 						UDPServer.Send(info, a[1], packet.getPort());
 						continue;
 					}
 					info = "true";
 
-					// ·¢ËÍ
+					// ï¿½ï¿½ï¿½ï¿½
 					UDPServer.Send(info, a[1], packet.getPort());
 				}
 
 			} catch (Exception e) {
-				System.out.println("UDP¼àÌýÒì³£ÄÚ" + e);
+				System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½" + e);
 			} finally {
 				if (server != null) {
 					server.close();
 				}
 				try {
 
-					// ÔÙ´ÎÆô¶¯ UDP¼àÌý
+					// ï¿½Ù´ï¿½ï¿½ï¿½ï¿½ï¿½ UDPï¿½ï¿½ï¿½ï¿½
 					UDPServer.Startup();
 				} catch (Exception e2) {
-					System.out.println("¶þ´ÎÆô¶¯Ê§°Ü£¡ÇëÖØÆô·þÎñÆ÷£¡" + e2.getMessage());
+					System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + e2.getMessage());
 				}
 
 			}
 
 		} catch (Exception e) {
-			System.out.println("UDP¼àÌýÒì³£Íâ");
+			System.out.println("UDPï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½");
 		}
 
 	}

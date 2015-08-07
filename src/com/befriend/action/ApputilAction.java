@@ -26,83 +26,78 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 public class ApputilAction {
-	public OpeFunction util;// ¹¤¾ßÀà
+	public OpeFunction util;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private ApputilDAO audao;// ApputilDAO
-	private UserDAO userdao;// ÓÃ»§dao
+	private UserDAO userdao;// ï¿½Ã»ï¿½dao
 	private AppDAO adao;// appdao
-	private String username;// ÓÃ»§Ãû
+	private String username;// ï¿½Ã»ï¿½ï¿½ï¿½
 	private String information;//
 
 	private File imgFile;// logoÍ¼Æ¬
-	private String imgFileFileName;// ÎÄ¼þÃû
-	private String imgFileContentType;// ÎÄ¼þÀàÐÍ
+	private String imgFileFileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String imgFileContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private File imgFile1;// Ó¦ÓÃ½ØÍ¼1
-	private String imgFile1FileName;// ÎÄ¼þÃû
-	private String imgFile1ContentType;// ÎÄ¼þÀàÐÍ
+	private File imgFile1;// Ó¦ï¿½Ã½ï¿½Í¼1
+	private String imgFile1FileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String imgFile1ContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private File imgFile2;// Ó¦ÓÃ½ØÍ¼2
-	private String imgFile2FileName;// ÎÄ¼þÃû
-	private String imgFile2ContentType;// ÎÄ¼þÀàÐÍ
+	private File imgFile2;// Ó¦ï¿½Ã½ï¿½Í¼2
+	private String imgFile2FileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String imgFile2ContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private File imgFile3;// Ó¦ÓÃ½ØÍ¼3
-	private String imgFile3FileName;// ÎÄ¼þÃû
-	private String imgFile3ContentType;// ÎÄ¼þÀàÐÍ
+	private File imgFile3;// Ó¦ï¿½Ã½ï¿½Í¼3
+	private String imgFile3FileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String imgFile3ContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	private String savePath;// Ä¿Â¼
 
-	private File appFile;// appÎÄ¼þ
-	private String appFileFileName;// ÎÄ¼þÃû
-	private String appFileContentType;// ÎÄ¼þÀàÐÍ
+	private File appFile;// appï¿½Ä¼ï¿½
+	private String appFileFileName;// ï¿½Ä¼ï¿½ï¿½ï¿½
+	private String appFileContentType;// ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	private String vnum;// app°æ±¾ºÅ
-	private String type;// appÀà±ð
-	private String dpt;// Ó¦ÓÃÃèÊö
-	private String summary;// Ó¦ÓÃ¸ÅÒª
+	private String vnum;// appï¿½æ±¾ï¿½ï¿½
+	private String type;// appï¿½ï¿½ï¿½
+	private String dpt;// Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String summary;// Ó¦ï¿½Ã¸ï¿½Òª
 
-	private String name;// appÃû×Ö
-	private int num = 0;// appÍÆ¼öÖ¸Êý
+	private String name;// appï¿½ï¿½ï¿½ï¿½
+	private int num = 0;// appï¿½Æ¼ï¿½Ö¸ï¿½ï¿½
 
-	private int currentPage = 1;// Ò³Êý
+	private int currentPage = 1;// Ò³ï¿½ï¿½
 	private int id = 0;// id
-	private int pageSize = 4;// ÐÐÊý
+	private int pageSize = 4;// ï¿½ï¿½ï¿½ï¿½
 
-	private int downloads = 0;// appÏÂÔØ´ÎÊý
+	private int downloads = 0;// appï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 
-	private int apptv = 0;// °æ±¾ºÅ
-	private String updates;// ¸üÐÂÄÚÈÝ
+	private int apptv = 0;// ï¿½æ±¾ï¿½ï¿½
+	private String updates;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	AppUp au = new AppUp();// appupÊµÌåÀà ¼Ò³¤Ö®ÓÑ¸üÐÂÓÃµÄÀà
-	App app = new App();// appÊµÌåÀà
-	Visitor vor = new Visitor();// ÓÎ¿ÍÀà
-	public HttpServletRequest request = ServletActionContext.getRequest();// »ñÈ¡request
+	AppUp au = new AppUp();// appupÊµï¿½ï¿½ï¿½ï¿½ ï¿½Ò³ï¿½Ö®ï¿½Ñ¸ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½
+	App app = new App();// appÊµï¿½ï¿½ï¿½ï¿½
+	Visitor vor = new Visitor();// ï¿½Î¿ï¿½ï¿½ï¿½
+	public HttpServletRequest request = ServletActionContext.getRequest();// ï¿½ï¿½È¡request
 	private String Mac;//
 	private String os;// ÏµÍ³
 	@SuppressWarnings("static-access")
 	private String time = util.getNowTime();
-	private String province = "all";// Ê¡¼¶
-	private int synlogin;// µÇÈë´ÎÊý
-	private int downloaded;// ÏÂÔØ´ÎÊý
-	private int usersyned;// Í¬Ê±ÔÚÏßÊý
-	private int vored;// µ±ÈÕÐÂÔöÓÎ¿ÍÁ¿
-	private int usersaved;// µ±ÈÕ×¢²áÈËÊý
+	private String province = "all";// Ê¡ï¿½ï¿½
+	private int synlogin;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int downloaded;// ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
+	private int usersyned;// Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int vored;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½
+	private int usersaved;// ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	// µ±ÈÕ×¢²áÈËÊý
-	/**
-	 * ¼ÇÂ¼Í³¼Æ±ä»¯ ³õÊ¼»¯
-	 */
-	public void aStas() {
-		System.out.println("province"+province);
-		// ¸üÐÂÔÚÏßÓÃ»§ÊýÁ¿
-		time = util.getNumTime(0);
 	
-		
-		// ³õÊ¼»¯3´óÏµÍ³Í³¼ÆÁ¿
+	public void aStas() {
+
+		time = util.getNumTime(0);
+
 		String sys = "";
 		for (int i = 0; i < 4; i++) {
-			if(province.equals("all")||province==null||province.equals("null")){
+			if (province.equals("all") || province == null
+					|| province.equals("null")) {
 				continue;
-			}		
+			}
 			switch (i) {
 			case 0:
 				sys = "web";
@@ -124,69 +119,65 @@ public class ApputilAction {
 			if (sys == null) {
 				continue;
 			}
-			Stas sta = audao.StasTimeDay(time, sys,province);
-			// »ñÈ¡µ±Ìì×¢²áÓÃ»§ÊýÁ¿
-			usersaved = userdao.getSaveTime(time, sys,province).size();
-			//»ñÈ¡µ±ÈÕÐÂÔöÓÎ¿Í
-			vored=audao.VisitorTime(time, sys,province).size();
-			System.out.println("11111111111111111"+vored+province+sys);
-			// »ñÈ¡µ±ÌìµÇÈëµÄÓÃ»§ÊýÁ¿
-			synlogin = userdao.getFinaltime(time, sys,province).size();
-			if(synlogin!=0){
-				if(synlogin%3==0){
-					usersyned=synlogin/3;
-				}else{
-					usersyned=synlogin/3+1;
+			Stas sta = audao.StasTimeDay(time, sys, province);
+
+			usersaved = userdao.getSaveTime(time, sys, province).size();
+
+			vored = audao.VisitorTime(time, sys, province).size();
+
+			synlogin = userdao.getFinaltime(time, sys, province).size();
+			if (synlogin != 0) {
+				if (synlogin % 3 == 0) {
+					usersyned = synlogin / 3;
+				} else {
+					usersyned = synlogin / 3 + 1;
 				}
-				}else{
-					usersyned=0;
-				}
-			// »ñÈ¡ÔÚÏßÓÃ»§
-			//usersyned = userdao.getOnline(sys,province).size();
+			} else {
+				usersyned = 0;
+			}
+
 			if (sta == null) {
 				sta = new Stas();
-				sta.setProvince(province);// µØÇø
-				sta.setTime(time);// Í³¼ÆÊ±¼ä
-				sta.setUserlogined(synlogin);// µÇÈë´ÎÊý
-				if(downloads!=0){
-				sta.setDownloaded(1);
-				}else{
+				sta.setProvince(province);
+				sta.setTime(time);
+				sta.setUserlogined(synlogin);
+				if (downloads != 0) {
+					sta.setDownloaded(1);
+				} else {
 					sta.setDownloaded(0);
-				}// ÏÂÔØÊýÁ¿
-				sta.setOs(sys);// À´×ÔµÄÏµÍ³
-				sta.setUsersyned(usersyned);// Í¬Ê±ÔÚÏßÊý
-				sta.setUsersaved(usersaved);// µ±ÈÕ×¢²áÈËÊý				
-				sta.setVored(vored);// µ±ÈÕÐÂÔöÓÎ¿ÍÁ¿
-				
+				}
+				sta.setOs(sys);
+				sta.setUsersyned(usersyned);
+				sta.setUsersaved(usersaved);
+				sta.setVored(vored);
+
 				audao.Save(sta);
 				continue;
 			}
-			sta = audao.StasTimeDay(time, sys,province);
-			
-			if (sta==null) {
+			sta = audao.StasTimeDay(time, sys, province);
+
+			if (sta == null) {
 				continue;
 			}
-			// sta.setProvince(province);//Í³¼ÆÈ«²¿
-			// sta.setTime(time);// Í³¼ÆÊ±¼ä
 
-			sta.setUserlogined(synlogin);// µÇÈë´ÎÊý
-			if (downloaded != 0&&sys.equals(os)) {
-				sta.setDownloaded(sta.getDownloaded() + 1);// ÏÂÔØÊýÁ¿
+			sta.setUserlogined(synlogin);
+			if (downloaded != 0 && sys.equals(os)) {
+				sta.setDownloaded(sta.getDownloaded() + 1);
 			}
-			// sta.setOs(os);//À´×ÔµÄÏµÍ³
+
 			if (usersyned > sta.getUsersyned()) {
-				sta.setUsersyned(usersyned);// Í¬Ê±ÔÚÏßÊý
+				sta.setUsersyned(usersyned);
 			}
-			sta.setUsersaved(usersaved);// µ±ÈÕ×¢²áÈËÊý
-			
-			sta.setVored(vored);// µ±ÈÕÐÂÔöÓÎ¿ÍÁ¿
-			
+			sta.setUsersaved(usersaved);
+
+			sta.setVored(vored);
+
 			audao.Update(sta);
 
 		}
 
 		for (int i = 0; i < 4; i++) {
-		
+
 			switch (i) {
 			case 0:
 				sys = "web";
@@ -208,70 +199,62 @@ public class ApputilAction {
 			if (sys == null) {
 				continue;
 			}
-		
-			Stas sta = audao.StasTimeDay(time, sys,"all");
-			// »ñÈ¡µ±Ìì×¢²áÓÃ»§ÊýÁ¿
+
+			Stas sta = audao.StasTimeDay(time, sys, "all");
+
 			usersaved = userdao.getSaveTime(time, sys).size();
-			System.out.println("µ±Ìì×¢²áÁ¿"+usersaved+sys);
-			//»ñÈ¡µ±ÈÕÐÂÔöÓÎ¿Í
-			vored=audao.VisitorTime(time, sys).size();
-			System.out.println(vored+"vored"+sys+time);
-			// »ñÈ¡µ±ÌìµÇÈëµÄÓÃ»§ÊýÁ¿
+
+			vored = audao.VisitorTime(time, sys).size();
+			
+
 			synlogin = userdao.getFinaltime(time, sys).size();
-			// »ñÈ¡ÔÚÏßÓÃ»§
-			//usersyned = userdao.getOnline(sys).size();
-			if(synlogin!=0){
-			if(synlogin%3==0){
-				usersyned=synlogin/3;
-			}else{
-				usersyned=synlogin/3+1;
-			}
-			}else{
-				usersyned=0;
+
+			if (synlogin != 0) {
+				if (synlogin % 3 == 0) {
+					usersyned = synlogin / 3;
+				} else {
+					usersyned = synlogin / 3 + 1;
+				}
+			} else {
+				usersyned = 0;
 			}
 			if (sta == null) {
 				sta = new Stas();
-				sta.setProvince(province);// µØÇø
-				sta.setTime(time);// Í³¼ÆÊ±¼ä
-				sta.setUserlogined(synlogin);// µÇÈë´ÎÊý
-				if (downloaded != 0&&sys.equals(os)) {
-					sta.setDownloaded(1);// ÏÂÔØÊýÁ¿
-				}else{
-					sta.setDownloaded(0);// ÏÂÔØÊýÁ¿
+				sta.setProvince(province);
+				sta.setTime(time);
+				sta.setUserlogined(synlogin);
+				if (downloaded != 0 && sys.equals(os)) {
+					sta.setDownloaded(1);
+				} else {
+					sta.setDownloaded(0);
 				}
-				sta.setOs(sys);// À´×ÔµÄÏµÍ³
-				sta.setUsersyned(usersyned);// Í¬Ê±ÔÚÏßÊý
-				sta.setUsersaved(usersaved);// µ±ÈÕ×¢²áÈËÊý
-				sta.setVored(vored);// µ±ÈÕÐÂÔöÓÎ¿ÍÁ¿
+				sta.setOs(sys);
+				sta.setUsersyned(usersyned);
+				sta.setUsersaved(usersaved);
+				sta.setVored(vored);
 				audao.Save(sta);
 				continue;
 			}
-			sta = audao.StasTimeDay(time, sys,"all");			
-			// sta.setProvince(province);//Í³¼ÆÈ«²¿
-			// sta.setTime(time);// Í³¼ÆÊ±¼ä
+			sta = audao.StasTimeDay(time, sys, "all");
 
-			sta.setUserlogined(synlogin);// µÇÈë´ÎÊý
-			if (downloaded != 0&&sys.equals(os)) {
-				sta.setDownloaded(sta.getDownloaded() + 1);// ÏÂÔØÊýÁ¿
+			sta.setUserlogined(synlogin);
+			if (downloaded != 0 && sys.equals(os)) {
+				sta.setDownloaded(sta.getDownloaded() + 1);
 			}
-			// sta.setOs(os);//À´×ÔµÄÏµÍ³
-			
-				sta.setUsersyned(usersyned);// Í¬Ê±ÔÚÏßÊý
-			
-			sta.setUsersaved(usersaved);// µ±ÈÕ×¢²áÈËÊý
-			
-			
-			sta.setVored(vored);// µ±ÈÕÐÂÔöÓÎ¿ÍÁ¿
-			
+
+			sta.setUsersyned(usersyned);
+
+			sta.setUsersaved(usersaved);
+
+			sta.setVored(vored);
+
 			audao.Update(sta);
 
 		}
 
 	}
 
-	/**
-	 * ¼ÇÂ¼ÐÂÔö ÓÎ¿Í appmac
-	 */
+
 	public void visitorMac() throws IOException {
 		if (Mac == null) {
 			util.Out().print(false);
@@ -294,9 +277,7 @@ public class ApputilAction {
 		}
 
 		if (vor == null) {
-			/**
-			 * ¼ÇÂ¼Ã¿ÌìÐÂÔöÓÎ¿Í
-			 */
+		
 			
 			vor = new Visitor();
 			vor.setAppmac(Mac);
@@ -314,11 +295,7 @@ public class ApputilAction {
 		util.Out().print(false);
 	}
 
-	/**
-	 * ÐÞ¸Ä°æ±¾ºÅ »òÕß Í£Ö¹¸üÐÂÊ¹ÓÃ
-	 * 
-	 * @throws IOException
-	 */
+
 	public void JztdAppm() throws IOException {
 		au = audao
 				.select("http://182.92.100.235/PerfectBefriend/AppUp/FamilyGroup.apk");
@@ -334,14 +311,14 @@ public class ApputilAction {
 			}
 
 			audao.Update(au);
-			OpeFunction.Out().print("ÐÞ¸Ä³É¹¦");
+			OpeFunction.Out().print("ï¿½Þ¸Ä³É¹ï¿½");
 		} else {
-			OpeFunction.Out().print("ÐÞ¸ÄÊ§°Ü");
+			OpeFunction.Out().print("ï¿½Þ¸ï¿½Ê§ï¿½ï¿½");
 		}
 	}
 
 	/**
-	 * ÓÃÓÚ¼Ò³¤ÌìµØ¿Í»§¶ËµÄ¸üÐÂ ¸üÐÂ ¾ÍÊÇ É¾³ýÔ­À´µÄ ´«ÐÂµÄ Õâ¸öÃüÃûÊÇºã¶¨µÄ FamilyGroup.apk
+	 * ï¿½ï¿½ï¿½Ú¼Ò³ï¿½ï¿½ï¿½Ø¿Í»ï¿½ï¿½ËµÄ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ É¾ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çºã¶¨ï¿½ï¿½ FamilyGroup.apk
 	 * 
 	 * @throws IOException
 	 */
@@ -354,14 +331,14 @@ public class ApputilAction {
 				return;
 			}
 			if (!appFileFileName.equals("FamilyGroup.apk")) {
-				OpeFunction.Out().print("Ãû×Ö±ØÐëÎª'FamilyGroup.apk'");
+				OpeFunction.Out().print("ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Îª'FamilyGroup.apk'");
 				return;
 			}
 			System.out.println(appFileFileName);
 			au = audao
 					.select("http://182.92.100.235/PerfectBefriend/AppUp/FamilyGroup.apk");
 			Boolean b = false;
-			// µÈÓÚ¿Õ ËµÃ÷ Ã»ÓÐ ¾Í²»ÐèÒªÉ¾³ý
+			// ï¿½ï¿½ï¿½Ú¿ï¿½ Ëµï¿½ï¿½ Ã»ï¿½ï¿½ ï¿½Í²ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½
 			if (au != null) {
 				File file1 = new File(ServletActionContext.getServletContext()
 						.getRealPath("/AppUp/FamilyGroup.apk"));
@@ -375,7 +352,7 @@ public class ApputilAction {
 			String upth = "http://182.92.100.235/PerfectBefriend/"
 					+ OpeFunction.fileToServer(savePath, appFile,
 							appFileFileName, appFileContentType, false);
-			// ±¸·ÝÒ»·Ý
+			// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 			savePath = "AppUp/Past";
 			OpeFunction.fileToServer(savePath, appFile, appFileFileName,
 					appFileContentType, true);
@@ -386,7 +363,7 @@ public class ApputilAction {
 			ap.setPath(upth);
 			audao.Save(ap);
 
-			OpeFunction.Out().print("¸üÐÂ³É¹¦ É¾³ý¾É°æ±¾³É¹¦?" + b);
+			OpeFunction.Out().print("ï¿½ï¿½ï¿½Â³É¹ï¿½ É¾ï¿½ï¿½ï¿½É°æ±¾ï¿½É¹ï¿½?" + b);
 		} catch (Exception e) {
 			OpeFunction.Out().print(e.getMessage());
 		}
@@ -394,7 +371,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÓÃÓÚÅÐ¶Ï ·ÃÎÊ ¼Ò³¤ÌìµØ ÊÇÀ´Ô´ÓÚ °²×¿ »¹ÊÇ Æ»¹û °²×¿Ìøµ½Ó¦ÓÃ±¦
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ ï¿½ï¿½×¿ ï¿½ï¿½ï¿½ï¿½ Æ»ï¿½ï¿½ ï¿½ï¿½×¿ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã±ï¿½
 	 *
 	 * @throws IOException
 	 */
@@ -402,12 +379,12 @@ public class ApputilAction {
 		boolean b = false;
 		try {
 
-			System.out.println("½øÈëhtml");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½html");
 			HttpServletRequest request = OpeFunction.request();
 			HttpServletResponse response = OpeFunction.response();
 			String sUA = request.getHeader("user-agent");
 			System.out.println(sUA);
-			// pc°æ±¾´úºÅ
+			// pcï¿½æ±¾ï¿½ï¿½ï¿½ï¿½
 			List<String> al = new ArrayList<String>();
 
 			al.add("Mac OS X");
@@ -415,7 +392,7 @@ public class ApputilAction {
 			for (int i = 0; i < al.size(); i++) {
 				if (sUA.indexOf(al.get(i)) != -1) {
 					b = true;
-					System.out.println("ÔÚÊ²Ã´Î»ÖÃ³öÏÖµÄ!" + sUA.indexOf(al.get(i)));
+					System.out.println("ï¿½ï¿½Ê²Ã´Î»ï¿½Ã³ï¿½ï¿½Öµï¿½!" + sUA.indexOf(al.get(i)));
 					break;
 				}
 			}
@@ -428,13 +405,13 @@ public class ApputilAction {
 			String url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + "ios"
 					+ "&downloaded=1";
 			WechatKit.sendGet(url);
-			// ×ª·¢
+			// ×ªï¿½ï¿½
 			((HttpServletResponse) util.response())
 					.sendRedirect("https://itunes.apple.com/cn/app/jia-zhang-zhi-you/id995642623?mt=8");
 
 		} else {
-			// ×ª·¢
-			System.out.println("ÊÇÆäËû");
+			// ×ªï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			String url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + "android"
 					+ "&downloaded=1";
 			WechatKit.sendGet(url);
@@ -446,7 +423,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÓÃÓÚÅÐ¶Ï ·ÃÎÊ ¼Ò³¤ÌìµØ ÊÇÀ´Ô´ÓÚ °²×¿ »¹ÊÇ Æ»¹û
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ ï¿½ï¿½×¿ ï¿½ï¿½ï¿½ï¿½ Æ»ï¿½ï¿½
 	 *
 	 * @throws IOException
 	 */
@@ -454,12 +431,12 @@ public class ApputilAction {
 		boolean b = false;
 		try {
 
-			System.out.println("½øÈëhtml");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½html");
 			HttpServletRequest request = OpeFunction.request();
 			HttpServletResponse response = OpeFunction.response();
 			String sUA = request.getHeader("user-agent");
 			System.out.println(sUA);
-			// pc°æ±¾´úºÅ
+			// pcï¿½æ±¾ï¿½ï¿½ï¿½ï¿½
 			List<String> al = new ArrayList<String>();
 
 			al.add("Mac OS X");
@@ -467,7 +444,7 @@ public class ApputilAction {
 			for (int i = 0; i < al.size(); i++) {
 				if (sUA.indexOf(al.get(i)) != -1) {
 					b = true;
-					System.out.println("ÔÚÊ²Ã´Î»ÖÃ³öÏÖµÄ!" + sUA.indexOf(al.get(i)));
+					System.out.println("ï¿½ï¿½Ê²Ã´Î»ï¿½Ã³ï¿½ï¿½Öµï¿½!" + sUA.indexOf(al.get(i)));
 					break;
 				}
 			}
@@ -478,26 +455,26 @@ public class ApputilAction {
 
 		if (b == true) {
 			/**
-			 * ¼ÇÂ¼Ã¿ÌìÏÂÔØ´ÎÊýios
+			 * ï¿½ï¿½Â¼Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ios
 			 */
 			String url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + "ios"
 					+ "&downloaded=1";
 			WechatKit.sendGet(url);
 			System.out.println("Mac OS X");
-			// ×ª·¢
+			// ×ªï¿½ï¿½
 			((HttpServletResponse) util.response())
 					.sendRedirect("https://itunes.apple.com/cn/app/jia-zhang-zhi-you/id995642623?mt=8");
 
 		} else {
 			/**
-			 * ¼ÇÂ¼Ã¿ÌìÏÂÔØ´ÎÊýAndroid
+			 * ï¿½ï¿½Â¼Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½Android
 			 */
 			String url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + "android"
 					+ "&downloaded=1";
 			WechatKit.sendGet(url);
 
-			// ×ª·¢
-			System.out.println("ÊÇÆäËû");
+			// ×ªï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			((HttpServletResponse) util.response())
 					.sendRedirect("http://182.92.100.235/PerfectBefriend/AppUp/FamilyGroup.apk");
 
@@ -506,19 +483,19 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÓÃÓÚÅÐ¶Ï ·ÃÎÊ ¼Ò³¤ÌìµØ ÊÇÀ´Ô´ÓÚ ÊÖ»ú »¹ÊÇ pc
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ ï¿½Ö»ï¿½ ï¿½ï¿½ï¿½ï¿½ pc
 	 *
 	 * @throws IOException
 	 */
 	public void Jwebandwap() throws IOException {
 		try {
 
-			System.out.println("½øÈëhtml");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½html");
 			HttpServletRequest request = OpeFunction.request();
 			HttpServletResponse response = OpeFunction.response();
 			String sUA = request.getHeader("user-agent");
 			System.out.println(sUA);
-			// pc°æ±¾´úºÅ
+			// pcï¿½æ±¾ï¿½ï¿½ï¿½ï¿½
 			List<String> al = new ArrayList<String>();
 			al.add("Windows 98");
 			al.add("Windows ME");
@@ -534,7 +511,7 @@ public class ApputilAction {
 						&& sUA.indexOf(al.get(i)) == 13) {
 					b = true;
 					System.out
-							.println("ÅÐ¶Ï 13Î»ÊÇ Ê²Ã´ÏµÍ³!" + sUA.indexOf(al.get(i)));
+							.println("ï¿½Ð¶ï¿½ 13Î»ï¿½ï¿½ Ê²Ã´ÏµÍ³!" + sUA.indexOf(al.get(i)));
 					break;
 				}
 			}
@@ -557,7 +534,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * 8¸öÍÆ¼ö app µÄ¹ÜÀí ÏÔÊ¾
+	 * 8ï¿½ï¿½ï¿½Æ¼ï¿½ app ï¿½Ä¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¾
 	 * 
 	 * @return
 	 */
@@ -586,7 +563,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * É¾³ýapp Í¨¹ýid
+	 * É¾ï¿½ï¿½app Í¨ï¿½ï¿½id
 	 * 
 	 * @throws IOException
 	 */
@@ -596,7 +573,7 @@ public class ApputilAction {
 			System.out.println("id:" + id);
 			app = adao.byid(id);
 			if (app == null) {
-				util.Out().print("É¾³ýÊ§°Ü Ã»ÓÐÒªÉ¾³ýµÄapp£¡");
+				util.Out().print("É¾ï¿½ï¿½Ê§ï¿½ï¿½ Ã»ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½appï¿½ï¿½");
 				return;
 			}
 			System.out.println("app" + app);
@@ -626,15 +603,15 @@ public class ApputilAction {
 	}
 
 	/**
-	 * Í³¼ÆappÏÂÔØ´ÎÊý
+	 * Í³ï¿½ï¿½appï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 	 */
 	public void AppDs() {
 
 		app = adao.byid(id);
 		int iz = app.getRealds() + 1;
 		int i = app.getDownloads() + 1;
-		System.out.println(app.getName() + "ÕæÊµÏÂÔØ´ÎÊýÊÇ" + iz);
-		System.out.println(app.getName() + "ÏÂÔØ´ÎÊýÊÇ" + i);
+		System.out.println(app.getName() + "ï¿½ï¿½Êµï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½" + iz);
+		System.out.println(app.getName() + "ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½" + i);
 		app.setRealds(iz);
 		app.setDownloads(i);
 		adao.Ds(app);
@@ -642,7 +619,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÅÐ¶Ï¼Ò³¤ÌìµØÊÇ·ñ ÓÐ¸üÐÂ
+	 * ï¿½Ð¶Ï¼Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Ð¸ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -650,7 +627,7 @@ public class ApputilAction {
 		try {
 			au = audao.UP();
 
-			System.out.println("½øÈëÁËAppup ¸üÐÂÁË" + au.getUpdates());
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Appup ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + au.getUpdates());
 			OpeFunction.Out().print(OpeFunction.ToJson(au));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -658,7 +635,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * µã»÷¸üÐÂÊ±Ê¹ÓÃ ¼ÆËã¸üÐÂ´ÎÊý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ê¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½ï¿½ï¿½
 	 * 
 	 * @throws IOException
 	 */
@@ -680,17 +657,17 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÓÃ»§Ìí¼Ó ·´À¡
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void SaveFeedback() {
 		try {
 
-			System.out.println("½øÈëÁË  SaveFeedback" + "," + username + ","
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  SaveFeedback" + "," + username + ","
 					+ information);
 			User u = userdao.byUsernameAccnumnoPhone(username);
 			if (u == null) {
 				OpeFunction.Out().print(false);
-				System.out.println("ÓÃ»§²»´æÔÚ!");
+				System.out.println("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 				return;
 			}
 			Feedback f = new Feedback();
@@ -699,7 +676,7 @@ public class ApputilAction {
 			f.setTime(OpeFunction.getNowTime());
 			audao.Save(f);
 			String Email = "781369549@qq.com";
-			String sg = u.getPhone() + " ÓÃ»§µÄ·´À¡:" + information;
+			String sg = u.getPhone() + " ï¿½Ã»ï¿½ï¿½Ä·ï¿½ï¿½ï¿½:" + information;
 			Email = "user@jiazhangtd.net";
 			OpeFunction.Email(Email, sg);
 			OpeFunction.Out().print(true);
@@ -710,7 +687,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ÉÏ´« ÍÆ¼ö app
+	 * ï¿½Ï´ï¿½ ï¿½Æ¼ï¿½ app
 	 */
 	public void AUP() throws IOException {
 
@@ -736,15 +713,15 @@ public class ApputilAction {
 			return;
 		}
 		if (imgFile1 == null) {
-			OpeFunction.Out().print("Ó¦ÓÃ½ØÍ¼1NULL");
+			OpeFunction.Out().print("Ó¦ï¿½Ã½ï¿½Í¼1NULL");
 			return;
 		}
 		if (imgFile2 == null) {
-			OpeFunction.Out().print("Ó¦ÓÃ½ØÍ¼2NULL");
+			OpeFunction.Out().print("Ó¦ï¿½Ã½ï¿½Í¼2NULL");
 			return;
 		}
 		if (imgFile3 == null) {
-			OpeFunction.Out().print("Ó¦ÓÃ½ØÍ¼3NULL");
+			OpeFunction.Out().print("Ó¦ï¿½Ã½ï¿½Í¼3NULL");
 			return;
 		}
 
@@ -764,7 +741,7 @@ public class ApputilAction {
 				appFileFileName, appFileContentType, false);
 		float fl = 0;
 		fl = OpeFunction.fileSizem(appFile);
-		System.out.println("app´óÐ¡" + fl);
+		System.out.println("appï¿½ï¿½Ð¡" + fl);
 		App app = new App();
 		app.setName(name);
 		app.setPathapk(apk);
@@ -804,7 +781,7 @@ public class ApputilAction {
 	}
 
 	/**
-	 * Í¨¹ýid²éÑ¯appÐÅÏ¢
+	 * Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯appï¿½ï¿½Ï¢
 	 * 
 	 * @throws IOException
 	 */
@@ -822,11 +799,11 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ·µ»Ø¸ø ¿Í»§¶Ë µÄ8¸öapp
+	 * ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½Í»ï¿½ï¿½ï¿½ ï¿½ï¿½8ï¿½ï¿½app
 	 */
 	public void getapp() {
 		try {
-			// numµÈÓÚ0 ÆôÓÃÄ¬ÈÏÖµ
+			// numï¿½ï¿½ï¿½ï¿½0 ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
 			if (num == 0) {
 				num = 8;
 			}
@@ -839,15 +816,15 @@ public class ApputilAction {
 	}
 
 	/**
-	 * ·µ»Ø¸ø web»§¶Ë µÄn¸öapp
+	 * ï¿½ï¿½ï¿½Ø¸ï¿½ webï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½nï¿½ï¿½app
 	 */
 	public String webGetapp() {
 		try {
-			// numµÈÓÚ0 ÆôÓÃÄ¬ÈÏÖµ
+			// numï¿½ï¿½ï¿½ï¿½0 ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
 			if (num == 0) {
 				num = 8;
 			}
-			// ²éÑ¯appÐÅÏ¢
+			// ï¿½ï¿½Ñ¯appï¿½ï¿½Ï¢
 			List<App> la = adao.All(0);
 			request.setAttribute("la", la);
 		} catch (Exception e) {

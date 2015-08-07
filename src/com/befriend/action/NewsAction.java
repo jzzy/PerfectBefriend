@@ -8,19 +8,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
-
 import com.befriend.dao.CollectDAO;
 import com.befriend.dao.NewsDAO;
 import com.befriend.dao.ReviewDAO;
@@ -30,72 +26,67 @@ import com.befriend.entity.Collect;
 import com.befriend.entity.News;
 import com.befriend.entity.NewsLabel;
 import com.befriend.entity.Review;
-import com.befriend.entity.Support_News;
+import com.befriend.entity.Support;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
+
 public class NewsAction {
-	private UserDAO userdao;// �û�dao
-	private NewsDAO ndao; // ����dao
-	private CollectDAO cdao;// �ղ�dao
-	private ReviewDAO rdao;// ����dao
+	private UserDAO userdao;
+	private NewsDAO ndao;
+	private CollectDAO cdao;
+	private ReviewDAO rdao;
 
-	private int num = 0;// ��Ҫ��������
+	private int num = 0;
 	private List<News> nl = new ArrayList<News>();
-	private News n = new News();// ������
-	private Collect c = new Collect();// �ղ���
-	Support_News st = new Support_News();// ������
-	private List<Support_News> sl = new ArrayList<Support_News>();// ������
-	private Review r = new Review();// ������
+	private News n = new News();
+	private Collect c = new Collect();
+	Support st = new Support();
+	List<Support> sl = new ArrayList<Support>();
+	private Review r = new Review();
 	List<Review> rl = new ArrayList<Review>();
-	private List<Collect> cl = new ArrayList<Collect>();// �ղ� List
-	private List<User> ul = new ArrayList<User>();// �û� List
-	private int userid;// �û�id
-	private int newsid;// ����id
-	private String review;// ��������
-	private int reviewid;// ���۵�id
-	private int expert = 0;// ��ȡ�����Ƿ�Ϊ ר�� 0���� 1��
-	private String types;// 4С��
-	private String type;// 8����
-	private int itypes;// 4С��
-	private int itype;// 8����
-	private String summary;// ���
-	private String title;// ����
-	private String timet;// ʱ��
+	private List<Collect> cl = new ArrayList<Collect>();
+	private List<User> ul = new ArrayList<User>();
+	private int userid;
+	private int newsid;
+	private String review;
+	private int reviewid;
+	private int expert = 0;
+	private String types;
+	private String type;
+	private int itypes;
+	private int itype;
+	private String summary;
+	private String title;
+	private String timet;
 
-	private String area;// ʡ��
-	private String areas;// �м�
+	private String area;
+	private String areas;
 
-	private File imgFile1;// Сͼ�ļ�
-	private File imgFile2;// Сͼ�ļ�
-	private File imgFile3;// Сͼ�ļ�
-	/**
-	 * private File imgFilemax;// ��ͼ�ļ� private String imgFileFileName;// Сͼ�ļ���
-	 * 
-	 * private String imgFileContentType;// Сͼ�ļ����� private String
-	 * imgFilemaxFileName;// ��ͼ�ļ��� private String imgFilemaxContentType;//
-	 * ��ͼ�ļ�����
-	 */
-
-	private String savePath;// Ŀ¼
-	private int tp;// ѡ�� �˴�������
-	private String htmlData;// ������Ҫ����
-	private String A;// һ�� ��ʾ �����ж� ������ת �� �ж� �� �˴������� ���� ��������
-	private int pageSize = 10;// ÿҳ��ʾ ����������
-	private int currentPage = 1;// ���ǵڶ���ҳ
-	private int id;// id
-	private String username;// ���۵��û���
-	Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext().get("session");
+	private File imgFile1;
+	private File imgFile2;
+	private File imgFile3;
+	private String savePath;
+	private int tp;
+	private String htmlData;
+	private String A;
+	private int pageSize = 10;
+	private int currentPage = 1;
+	private int id;
+	private String username;
+	Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext()
+			.get("session");
 	HttpServletRequest request = ServletActionContext.getRequest();
-	// httpsession
+
 	HttpSession session = ServletActionContext.getRequest().getSession();
 
-	private String province;// ʡ��
+	private String province;
 
-	private String city;// �м�
-	public File xlsxFile;// ���ű�ǩ��
-	private String xlsxFileFileName;// �ļ�����
+	private String city;
+	public File xlsxFile;
+	private String xlsxFileFileName;
+	private int comefrom = 1;
 
 	public String getXlsxFileFileName() {
 		return xlsxFileFileName;
@@ -107,7 +98,7 @@ public class NewsAction {
 
 	public void Recommendation() throws IOException {
 		n = ndao.byid(newsid);
-		if(n==null){
+		if (n == null) {
 			OpeFunction.Out().print("null");
 			return;
 		}
@@ -129,34 +120,34 @@ public class NewsAction {
 		}
 		nl.sort(new newsSprt());
 		List<News> lnews = nl;
-		if(nl.size()>3){
-		nl = new ArrayList<News>();
-		for (int i = 0; i < 3; i++) {
-			nl.add(lnews.get(i));
-		}
+		if (nl.size() > 3) {
+			nl = new ArrayList<News>();
+			for (int i = 0; i < 3; i++) {
+				nl.add(lnews.get(i));
+			}
 		}
 		OpeFunction.Out().print(OpeFunction.ToJson(nl));
 	}
-	public class newsSprt implements Comparator<News>{
+
+	public class newsSprt implements Comparator<News> {
 		@Override
 		public int compare(News o1, News o2) {
-			if(o1.getSimilarity()>o2.getSimilarity()){
+			if (o1.getSimilarity() > o2.getSimilarity()) {
 				return -1;
-			}else if(o1.getSimilarity()<o2.getSimilarity()){
+			} else if (o1.getSimilarity() < o2.getSimilarity()) {
 				return 1;
-			}else{
+			} else {
 				return 0;
 			}
-			
-			
+
 		}
-		
-	} 
+
+	}
+
 	public void saveLabel() throws IOException, InvalidFormatException {
-		System.out.println("�ļ�����" + xlsxFileFileName);
 
 		ServletResponse srp = (ServletResponse) OpeFunction.response();
-		//srp.setCharacterEncoding("GBK");
+		// srp.setCharacterEncoding("GBK");
 		PrintWriter out = srp.getWriter();
 		String loginPage = "/PerfectBefriend/SuperAdmin/AdminNews/kindeditor/jsp/AU.jsp";
 		StringBuilder builder = new StringBuilder();
@@ -172,8 +163,8 @@ public class NewsAction {
 			return;
 		}
 		if (!xlsxFileFileName.split("\\.")[1].equals("xlsx")) {
-			builder.append("alert('No: ."
-					+ xlsxFileFileName.split("\\.")[1] + "');");
+			builder.append("alert('No: ." + xlsxFileFileName.split("\\.")[1]
+					+ "');");
 			builder.append("window.top.location.href='");
 			builder.append(loginPage);
 			builder.append("';");
@@ -184,35 +175,29 @@ public class NewsAction {
 		@SuppressWarnings("resource")
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(xlsxFile);
 
-		// ѭ��������Sheet
 		for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
 			XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(numSheet);
 			if (xssfSheet == null) {
 				continue;
 			}
 
-			// ѭ����Row
 			for (int rowNum = 1; rowNum < xssfSheet.getLastRowNum(); rowNum++) {
-				// ����
+
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow == null) {
 					continue;
 				}
-				System.out.println("���ű�ǩ��" + xssfRow.getCell(0));
-				System.out.println("��" + numSheet + "��������Sheet,�ĵ�" + rowNum
-						+ "��");
-				System.out.println("׼�����!");
 				String label = null;
-				// ����һ��
+
 				if (xssfRow.getCell(0) != null
 						&& !OpeFunction.isEmpty(xssfRow.getCell(0).toString())) {
 					label = xssfRow.getCell(0).toString();
 
 					if (ndao.byNewsLabelName(label) != null) {
-						System.out.println("�Ѿ���ӹ�!");
+
 						continue;
 					} else {
-						// ���Ҫ�洢����Ϣ
+
 						NewsLabel nlb = new NewsLabel();
 						nlb.setLabel(label);
 						nlb.setTime(OpeFunction.getNowTime());
@@ -231,11 +216,6 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * ͨ��id��ѯ���� ���Ƿ��и���
-	 * 
-	 * @throws IOException
-	 */
 	public void newNewsId() throws IOException {
 		nl = ndao.n2ews();
 		if (nl.size() > 0) {
@@ -246,11 +226,6 @@ public class NewsAction {
 		}
 	}
 
-	/**
-	 * ΢�ŷ�ҳ ��ѯ ��������
-	 * 
-	 * @throws IOException
-	 */
 	public String webWeiXinHotarea() throws IOException {
 		if (pageSize <= 0) {
 			pageSize = 10;
@@ -281,9 +256,6 @@ public class NewsAction {
 		}
 
 		nl = ndao.Hotarea(province, pageSize, currentPage);
-		System.out.println(" -��" + a + "ҳ");
-		System.out.println("ÿҳ������-" + pageSize);
-		System.out.println("��-" + currentPage + "-ҳ");
 
 		request.setAttribute("currentPage", currentPage);
 
@@ -293,11 +265,6 @@ public class NewsAction {
 		return Action.SUCCESS;
 	}
 
-	/**
-	 * ͨ��userid��ѯ���� ���źͶ�ÿ�����ŵ����� ����
-	 * 
-	 * @throws IOException
-	 */
 	public String webReviewsusername() throws IOException {
 		try {
 
@@ -305,14 +272,15 @@ public class NewsAction {
 
 			if (u == null) {
 
-				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
-						.getContextPath() + "/SimulationApp/login.html");
+				((HttpServletResponse) OpeFunction.response())
+						.sendRedirect(request.getContextPath()
+								+ "/SimulationApp/login.html");
 				return null;
 			}
 
 			username = u.getUsername();
 
-			List<Integer> rn = new ArrayList<Integer>();// �ղ� List
+			List<Integer> rn = new ArrayList<Integer>();
 			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
@@ -327,8 +295,7 @@ public class NewsAction {
 				}
 
 				if (b) {
-					System.out.println("�����۹�������  �û���������id" + username + "+"
-							+ r1.getNewsid() + "ʱ���ǣ�" + r1.getTime());
+
 					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 				}
@@ -340,14 +307,11 @@ public class NewsAction {
 			request.setAttribute("nl", nl);
 			request.setAttribute("rl", rl);
 		} catch (Exception e) {
-			System.out.println("�쳣��" + e.getMessage());
+
 		}
 		return Action.SUCCESS;
 	}
 
-	/**
-	 * ��ѯ�ղ� ͨ���û�id���в�ѯ
-	 */
 	public String webSearchBookmark() throws IOException {
 
 		User u = (User) session.getAttribute("u");
@@ -359,7 +323,6 @@ public class NewsAction {
 			return null;
 		}
 		userid = u.getId();
-		System.out.println("������webSearchBookmark");
 
 		for (Collect c : cdao.Allu(userid)) {
 			n = ndao.byid(c.getNewsid());
@@ -367,27 +330,23 @@ public class NewsAction {
 
 		}
 		request.setAttribute("nl", nl);
-		System.out.println("�û�" + u.getUsername() + "�ղ���" + nl.size() + "������");
+		System.out.println("�û�" + u.getUsername() + "�ղ���" + nl.size()
+				+ "������");
 		return Action.SUCCESS;
 
 	}
 
-	/**
-	 * ����ղ� ͨ�� �û�id ����id
-	 * 
-	 * @throws IOException
-	 */
 	public void webCsave() throws IOException {
 		try {
-			System.out.println("webCsave�㻹û�е���!");
 
 			User u = (User) session.getAttribute("u");
 
 			if (u == null) {
 
-				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
-						.getContextPath() + "/SimulationApp/login.html");
-				System.out.println("�㻹û�е���!");
+				((HttpServletResponse) OpeFunction.response())
+						.sendRedirect(request.getContextPath()
+								+ "/SimulationApp/login.html");
+
 				return;
 			}
 			userid = u.getId();
@@ -403,8 +362,6 @@ public class NewsAction {
 
 				n = ndao.byid(newsid);
 
-				System.out.println("newsid��" + n.getId());
-				System.out.println("1�����±��ղ�" + n.getCollectnum());
 				int n1;
 				if (n.getCollectnum() != null) {
 					n1 = n.getCollectnum() + 1;
@@ -418,22 +375,16 @@ public class NewsAction {
 					n.setCah(n1 * 2);
 				}
 
-				System.out.println("2�����±��ղ�" + n1);
 				n.setCollectnum(n1);
 
 				ndao.Upnews(n);
-				OpeFunction.Out().print("�ղسɹ�");
+				OpeFunction.Out().print("ok");
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	/**
-	 * web������� ͨ�� �û�username ����newsid
-	 * 
-	 * @throws IOException
-	 */
 	public void webRsave() throws IOException {
 		try {
 
@@ -441,12 +392,12 @@ public class NewsAction {
 
 			if (u == null) {
 
-				((HttpServletResponse) OpeFunction.response()).sendRedirect(request
-						.getContextPath() + "/SimulationApp/login.html");
-				System.out.println("�㻹û����!");
+				((HttpServletResponse) OpeFunction.response())
+						.sendRedirect(request.getContextPath()
+								+ "/SimulationApp/login.html");
+
 				return;
 			}
-			System.out.println("�����������Rsave");
 
 			if (newsid <= 0 || userid <= 0) {
 				OpeFunction.Out().print("null");
@@ -454,11 +405,11 @@ public class NewsAction {
 
 			}
 			if (review == null || review.equals("")) {
-				OpeFunction.Out().print("����д��������");
+				OpeFunction.Out().print("null");
 				return;
 			}
 			if (u.getUsername() == null) {
-				OpeFunction.Out().print("�������û���!");
+				OpeFunction.Out().print("null");
 				return;
 			}
 			r.setNewsid(newsid);
@@ -468,17 +419,14 @@ public class NewsAction {
 			rdao.save(r);
 
 			n = ndao.byid(newsid);
-			//
+
 			if (n == null) {
 				OpeFunction.Out().print("û�и�����");
 				return;
 
 			}
 			int a = rdao.Alln(newsid).size();
-			System.out.println("�Ƿ�������" + n != null);
-			System.out.println("��������" + review);
-			System.out.println("newsid��" + n.getId());
-			System.out.println("�����±�����" + a);
+
 			n.setReviews(a);
 
 			ndao.Upnews(n);
@@ -487,16 +435,11 @@ public class NewsAction {
 					.getContextPath() + "/webNewsId?id=" + newsid + "");
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
 		}
 
 	}
 
-	/**
-	 * ��ҳ ��ѯ ��������
-	 * 
-	 * @throws IOException
-	 */
 	public String webHotareaf() throws IOException {
 
 		User u = (User) session.getAttribute("u");
@@ -504,7 +447,6 @@ public class NewsAction {
 
 			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/SimulationApp/login.html");
-			System.out.println("�㻹û����!");
 
 			return null;
 		}
@@ -530,9 +472,6 @@ public class NewsAction {
 		}
 
 		nl = ndao.Hotarea(u.getAddress(), pageSize, currentPage);
-		System.out.println(" -��" + a + "ҳ");
-		System.out.println("ÿҳ������-" + pageSize);
-		System.out.println("��-" + currentPage + "-ҳ");
 
 		request.setAttribute("currentPage", currentPage);
 
@@ -976,38 +915,38 @@ public class NewsAction {
 			System.out.println("ÿҳ������-" + pageSize);
 			System.out.println("��-" + currentPage + "-ҳ");
 			nl = ndao.type(0, tp, pageSize, currentPage);
-			List<Boolean> scb=new ArrayList<Boolean>();
-			List<Boolean> plb=new ArrayList<Boolean>();
-			List<Boolean> zb=new ArrayList<Boolean>();
-			
-			for(int i=0;i<nl.size();i++){
-				n=nl.get(i);
-				//�Ƿ��ղع�
-				if(cdao.unid(userid, n.getId())!=null){
+			List<Boolean> scb = new ArrayList<Boolean>();
+			List<Boolean> plb = new ArrayList<Boolean>();
+			List<Boolean> zb = new ArrayList<Boolean>();
+
+			for (int i = 0; i < nl.size(); i++) {
+				n = nl.get(i);
+				// �Ƿ��ղع�
+				if (cdao.unid(userid, n.getId()) != null) {
 					scb.add(true);
-				}else{
+				} else {
 					scb.add(false);
 				}
-				//�Ƿ��޹�
-				if(cdao.sunid(userid, n.getId())!=null){
+				// �Ƿ��޹�
+				if (cdao.Whether(comefrom, userid, n.getId()) != null) {
 					zb.add(true);
-				}else{
+				} else {
 					zb.add(false);
 				}
-				//�Ƿ����۹�
-				if(rdao.unid(userid, n.getId()).size()>0){
+				// �Ƿ����۹�
+				if (rdao.unid(userid, n.getId()).size() > 0) {
 					plb.add(true);
-				}else{
+				} else {
 					plb.add(false);
 				}
-					
-				
+
 			}
-			
+
 			System.out.println(type);
-			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
-					+ ",\"currentPage\":" + currentPage + ",\"plb\":" +
-					OpeFunction.ToJson(plb) + ",\"zb\":" + OpeFunction.ToJson(zb) + ",\"scb\":"
+			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":"
+					+ a + ",\"currentPage\":" + currentPage + ",\"plb\":"
+					+ OpeFunction.ToJson(plb) + ",\"zb\":"
+					+ OpeFunction.ToJson(zb) + ",\"scb\":"
 					+ OpeFunction.ToJson(scb) + "}";
 
 			if (nl.size() > 0) {
@@ -1021,13 +960,7 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * ͨ��idɾ������
-	 * 
-	 * @throw
-	 * @throws IOException
-	 * @throws ServletException
-	 */
+	@SuppressWarnings("unused")
 	public void NewsRM() throws IOException {
 
 		n = ndao.byid(newsid);
@@ -1052,7 +985,7 @@ public class NewsAction {
 				File file = new File(ServletActionContext.getServletContext()
 						.getRealPath(n.getImg()));
 				b = file.delete();
-				System.out.println("����Сͼɾ���Ƿ�ɹ���" + b);
+
 			}
 
 			ndao.rm(n);
@@ -1060,27 +993,20 @@ public class NewsAction {
 			((HttpServletResponse) OpeFunction.response()).sendRedirect(request
 					.getContextPath() + "/Newsget");
 		} else {
-			OpeFunction.Out().print("ɾ��ʧ�� û��Ҫɾ�������ţ�");
+			OpeFunction.Out().print("no");
 
 		}
 
 	}
 
-	/**
-	 * ��ҳ��ѯ
-	 * 
-	 * @return
-	 * @throws IOException
-	 */
-
 	public String Newsget() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
-			OpeFunction.Out().print("ϵͳ�����û�е��룡�����µ������ԣ�");
+			OpeFunction.Out().print("no");
 			return null;
 		}
 		if (admin.getLevel() > 2) {
-			OpeFunction.Out().print("ϵͳ�����û�е��룡�����µ������ԣ�");
+			OpeFunction.Out().print("no2");
 			return null;
 		}
 
@@ -1182,13 +1108,12 @@ public class NewsAction {
 
 			List<News> n9 = new ArrayList<News>();
 
-			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-" + nh.size()
-					+ "��������-" + n4.size() + "������վ" + n5.size() + "��������"
-					+ n8.size() + "�����" + n9.size());
-			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
-					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4)
-					+ ",\"typeqs\":" + OpeFunction.ToJson(n5) + ",\"typejk\":"
-					+ OpeFunction.ToJson(n8) + ",\"typegj\":" + OpeFunction.ToJson(n9) + "}";
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt)
+					+ ",\"Hottest\":" + OpeFunction.ToJson(nh)
+					+ ",\"Hotarea\":" + OpeFunction.ToJson(n4) + ",\"typeqs\":"
+					+ OpeFunction.ToJson(n5) + ",\"typejk\":"
+					+ OpeFunction.ToJson(n8) + ",\"typegj\":"
+					+ OpeFunction.ToJson(n9) + "}";
 			OpeFunction.Out().print(result);
 
 		} catch (Exception e) {
@@ -1198,11 +1123,6 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * �鿴��ҳ���� 2014/12/10
-	 * 
-	 * @throws IOException
-	 */
 	public String webNewsA10() throws IOException {
 		try {
 			User u = (User) session.getAttribute("u");
@@ -1272,16 +1192,12 @@ public class NewsAction {
 			System.out.println("ʡ��" + area);
 			System.out.println("�У�" + areas);
 
-			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-" + nh.size()
-					+ "��������-" + n4.size());
+			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-"
+					+ nh.size() + "��������-" + n4.size());
 
 			List<News> n5 = new ArrayList<News>();
 
 			List<News> n8 = new ArrayList<News>();
-
-			System.out.println("ʱ������" + nt.size() + "��������" + nh.size() + "��������"
-					+ n4.size() + "���ɵ�����1--" + n5.get(0).getType()
-					+ "--����������1---" + n8.get(0).getType());
 
 			request.setAttribute("Hottime", nt);
 
@@ -1328,7 +1244,8 @@ public class NewsAction {
 					}
 				}
 			}
-			OpeFunction.Out().print(OpeFunction.ToJson(ndao.cah(0, time, htime)));
+			OpeFunction.Out().print(
+					OpeFunction.ToJson(ndao.cah(0, time, htime)));
 
 		} catch (Exception e) {
 		}
@@ -1389,14 +1306,15 @@ public class NewsAction {
 			System.out.println("ʡ��" + area);
 			System.out.println("�У�" + areas);
 
-			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-" + nh.size()
-					+ "��������-" + n4.size());
+			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-"
+					+ nh.size() + "��������-" + n4.size());
 			// 1��ȫ������
-			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
-					+ OpeFunction.ToJson(nh) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt)
+					+ ",\"Hottest\":" + OpeFunction.ToJson(nh)
+					+ ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
 			OpeFunction.Out().print(result);
-			System.out.println("ʱ������" + nt.size() + "��������" + nh.size() + "��������"
-					+ n4.size());
+			System.out.println("ʱ������" + nt.size() + "��������" + nh.size()
+					+ "��������" + n4.size());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -1546,8 +1464,8 @@ public class NewsAction {
 			System.out.println("��-" + currentPage + "-ҳ");
 			nl = ndao.types(type, pageSize, currentPage);
 			System.out.println(type);
-			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":" + a
-					+ ",\"currentPage\":" + currentPage + "}";
+			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":"
+					+ a + ",\"currentPage\":" + currentPage + "}";
 
 			if (nl.size() > 0) {
 				OpeFunction.Out().print(result);
@@ -1691,15 +1609,15 @@ public class NewsAction {
 			n.setTime(timet);
 			rt = "B";
 		}
-		
-		if (province!=null&&!province.equals("��ѡ��ʡ��")) {
+
+		if (province != null && !province.equals("��ѡ��ʡ��")) {
 			n.setArea(province);
 
 		}
-		if (city!=null&&!city.equals("��ѡ�����")) {
+		if (city != null && !city.equals("��ѡ�����")) {
 			n.setAreas(city);
 		}
-		
+
 		n.setCollectnum(0);
 		n.setCah(0);
 		n.setHits(0);
@@ -1712,8 +1630,9 @@ public class NewsAction {
 		return rt;
 
 		/**
-		 * if (imgFile == null) { OpeFunction.Out().print("��û���ϴ�Сͼ �������������ԣ�"); return
-		 * null; } if (imgFilemax == null) {
+		 * if (imgFile == null) {
+		 * OpeFunction.Out().print("��û���ϴ�Сͼ �������������ԣ�"); return null; }
+		 * if (imgFilemax == null) {
 		 * OpeFunction.Out().print("��û���ϴ���ͼ�������������ԣ�"); return null; }
 		 * 
 		 * BufferedImage sourceImg = ImageIO .read(new
@@ -1725,15 +1644,16 @@ public class NewsAction {
 		 * util.fileSize(imgFilemax);
 		 * 
 		 * if (sourceImgmax.getWidth() != 720 || sourceImgmax.getHeight() !=
-		 * 360) { OpeFunction.Out().print("��ͼ�ߴ�Ϊ 720*360 �������¼���£������������ԣ�"); return
-		 * null; } if (sourceImg.getWidth() != 180 || sourceImg.getHeight() !=
-		 * 140) { OpeFunction.Out().print("Сͼ�ߴ�Ϊ 180*140 �������¼���£������������ԣ�"); return
-		 * null; }
+		 * 360) { OpeFunction.Out().print(
+		 * "��ͼ�ߴ�Ϊ 720*360 �������¼���£������������ԣ�"); return null; } if
+		 * (sourceImg.getWidth() != 180 || sourceImg.getHeight() != 140) {
+		 * OpeFunction.Out().print("Сͼ�ߴ�Ϊ 180*140 �������¼���£������������ԣ�");
+		 * return null; }
 		 * 
-		 * if (fimg > 512.00) {
-		 * OpeFunction.Out().print("Сͼ��СΪ 0.5MB ���£��������¼���£������������ԣ�"); return null; } if
-		 * (fimgmax > 1024.00) {
-		 * OpeFunction.Out().print("��ͼ��СΪ 1MB ���£��������¼���£������������ԣ�"); return null; }
+		 * if (fimg > 512.00) { OpeFunction.Out().print(
+		 * "Сͼ��СΪ 0.5MB ���£��������¼���£������������ԣ�"); return null; } if
+		 * (fimgmax > 1024.00) { OpeFunction.Out().print(
+		 * "��ͼ��СΪ 1MB ���£��������¼���£������������ԣ�"); return null; }
 		 * System.out.println("��" + sourceImg.getWidth());
 		 * System.out.println("��" + sourceImg.getHeight());
 		 * System.out.println("�Ƿ���ר�� 0���� 1�� :" + expert);
@@ -1821,11 +1741,12 @@ public class NewsAction {
 			System.out.println("ʡ��" + area);
 			System.out.println("�У�" + areas);
 
-			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-" + nn.size()
-					+ "��������-" + n4.size());
+			System.out.println("ȫ��������-" + nt.size() + ",ȫ������-"
+					+ nn.size() + "��������-" + n4.size());
 
-			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt) + ",\"Hottest\":"
-					+ OpeFunction.ToJson(nn) + ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
+			String result = "{\"Hottime\":" + OpeFunction.ToJson(nt)
+					+ ",\"Hottest\":" + OpeFunction.ToJson(nn)
+					+ ",\"Hotarea\":" + OpeFunction.ToJson(n4) + "}";
 			OpeFunction.Out().print(result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -1840,7 +1761,8 @@ public class NewsAction {
 	 */
 	public void Csave() throws IOException {
 		try {
-			System.out.println("���������ղ�userid:" + userid + "newsid:" + newsid);
+			System.out.println("���������ղ�userid:" + userid + "newsid:"
+					+ newsid);
 			if (cdao.unid(userid, newsid) != null) {
 				System.out.println("�Ѿ��ղع�!");
 				OpeFunction.Out().print(false);
@@ -1882,16 +1804,9 @@ public class NewsAction {
 		}
 	}
 
-	/**
-	 * �����ͨ�� �û�id ����id
-	 * 
-	 * @throws IOException
-	 */
 	public void supportSave() throws IOException {
+		if (cdao.Whether(comefrom, userid, newsid) != null) {
 
-		System.out.println("�������ŵ���userid:" + userid + "newsid:" + newsid);
-		if (cdao.sunid(userid, newsid) != null) {
-			System.out.println("�Ѿ����޹�!");
 			OpeFunction.Out().print(false);
 		} else {
 			User u = userdao.byid(userid);
@@ -1899,15 +1814,14 @@ public class NewsAction {
 				OpeFunction.Out().print(false);
 				return;
 			}
-			st.setNewsid(newsid);
+			st.setObjectid(newsid);
 			st.setUserid(userid);
+			st.setComefrom(comefrom);
 			st.setTime(OpeFunction.getNowTime());
 			cdao.save(st);
-
 			n = ndao.byid(newsid);
-			n.setSupports(cdao.sNlln(newsid).size());
+			n.setSupports(cdao.Frequency(comefrom, newsid).size());
 			ndao.Upnews(n);
-			System.out.println("���޳ɹ�!");
 			OpeFunction.Out().print(true);
 		}
 
@@ -1989,11 +1903,11 @@ public class NewsAction {
 		n.setSummary(summary);
 		n.setContent(htmlData);
 		n.setType(itype);
-		if(area!=null&&!area.equals("��ѡ��ʡ��")){
-		n.setArea(area);
+		if (area != null && !area.equals("��ѡ��ʡ��")) {
+			n.setArea(area);
 		}
-		if(areas!=null&&!areas.equals("��ѡ�����")){
-		n.setAreas(areas);
+		if (areas != null && !areas.equals("��ѡ�����")) {
+			n.setAreas(areas);
 		}
 		StringBuffer sb = new StringBuffer();
 		if (imgFile1 != null || imgFile2 != null || imgFile3 != null) {
@@ -2122,12 +2036,12 @@ public class NewsAction {
 	 * @throws IOException
 	 */
 	public void removeSupport() throws IOException {
-		st = cdao.sunid(userid, newsid);
+		st = cdao.Whether(comefrom, userid, newsid);
 		if (st != null) {
 			cdao.remove(st);
 			n = ndao.byid(newsid);
 			if (n != null) {
-				n.setSupports(cdao.sNlln(newsid).size());
+				n.setSupports(cdao.Frequency(comefrom, newsid).size());
 				ndao.Upnews(n);
 				OpeFunction.Out().print(true);
 				return;
@@ -2141,13 +2055,8 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * ���Ų鿴��
-	 * 
-	 * @throws IOException
-	 */
 	public void newsLookSupport() throws IOException {
-		sl = cdao.sNlln(newsid);
+		sl = cdao.Frequency(comefrom, newsid);
 		for (int i = 0; i < sl.size(); i++) {
 			st = sl.get(i);
 			if (st != null) {
@@ -2160,9 +2069,6 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * �ж��Ƿ��ղ�
-	 */
 	public void Whether() {
 		try {
 
@@ -2177,12 +2083,9 @@ public class NewsAction {
 		}
 	}
 
-	/**
-	 * ��ѯ�ղ� ͨ���û�id���в�ѯ
-	 */
 	public void SearchBookmark() throws IOException {
 		try {
-			System.out.println("������SearchBookmark");
+
 			User u = userdao.byid(userid);
 			if (u == null) {
 				OpeFunction.Out().print("null");
@@ -2193,8 +2096,7 @@ public class NewsAction {
 				nl.add(n);
 
 			}
-			System.out.println("�û�" + u.getUsername() + "�ղ���" + nl.size()
-					+ "������");
+
 			if (nl.size() == 0) {
 				OpeFunction.Out().print("null");
 			} else {
@@ -2208,29 +2110,19 @@ public class NewsAction {
 
 	}
 
-	/**
-	 * ɾ������ ͨ�� ���۵�reviewid �û� username
-	 * 
-	 * @throws IOException
-	 */
 	public void RemoveR() throws IOException {
 		try {
-			System.out.println("ɾ�����۷���RemoveR");
-			System.out.println("reviewid+" + reviewid);
-			System.out.println("userid+" + userid);
+
 			r = rdao.byid(reviewid, userid);
 			if (r == null) {
 				OpeFunction.Out().print("null");
-				System.out.println("����  Ϊ��");
+
 				return;
 			}
 			newsid = r.getNewsid();
 			rdao.remove(r);
 
 			n = ndao.byid(newsid);
-			System.out.println("�޸Ĵ���");
-			System.out.println("newsid��" + n.getId());
-
 			n.setReviews(rdao.Alln(newsid).size());
 			ndao.Upnews(n);
 
@@ -2241,83 +2133,69 @@ public class NewsAction {
 		}
 	}
 
-	/**
-	 * ������� ͨ�� �û�username ����newsid
-	 * 
-	 * @throws IOException
-	 */
 	public void Rsave() throws IOException {
-		
-			
-			System.out.println("review:" + review);
-			if (newsid <= 0 || userid <= 0) {
-				OpeFunction.Out().print("null");
-				return;
 
-			}
+		System.out.println("review:" + review);
+		if (newsid <= 0 || userid <= 0) {
+			OpeFunction.Out().print("null");
+			return;
 
-			User u = userdao.byid(userid);
-			if (u == null) {
-				OpeFunction.Out().print("null");
-				return;
-			}
-			if(OpeFunction.isEmpty(review)){
-				OpeFunction.Out().print("null");
-				return;
-			}
-			r.setNewsid(newsid);
-			r.setUserid(userid);
-			r.setTime(OpeFunction.getNowTime());
-			r.setReview(review);
-			rdao.save(r);
-			
-			n = ndao.byid(newsid);
-			if (n == null) {
-				OpeFunction.Out().print("null");
-				return;
+		}
 
-			}
-			rl = rdao.Alln(newsid);
+		User u = userdao.byid(userid);
+		if (u == null) {
+			OpeFunction.Out().print("null");
+			return;
+		}
+		if (OpeFunction.isEmpty(review)) {
+			OpeFunction.Out().print("null");
+			return;
+		}
+		r.setNewsid(newsid);
+		r.setUserid(userid);
+		r.setTime(OpeFunction.getNowTime());
+		r.setReview(review);
+		rdao.save(r);
 
-		
-			n.setReviews(rl.size());
-			ndao.Upnews(n);
-			OpeFunction.Out().print(true);
+		n = ndao.byid(newsid);
+		if (n == null) {
+			OpeFunction.Out().print("null");
+			return;
 
-		
+		}
+		rl = rdao.Alln(newsid);
+
+		n.setReviews(rl.size());
+		ndao.Upnews(n);
+		OpeFunction.Out().print(true);
+
 	}
 
-	
 	public void ReviewsInquiry513() throws IOException {
-		
+
 		rl = rdao.Alln(newsid);
 		if (rl.size() > 0) {
-			
+
 			for (int i = 0; i < rl.size(); i++) {
 				User u1 = userdao.byid((rl.get(i).getUserid()));
 				ul.add(u1);
 			}
-			
+
 			String result = "{\"rl\":" + OpeFunction.ToJson(rl) + ",\"ul\":"
 					+ OpeFunction.ToJson(ul) + "}";
 			OpeFunction.Out().print(result);
 
 		} else {
-			
+
 			OpeFunction.Out().print("null");
 		}
 
 	}
 
-	/**
-	 * ͨ��username��ѯ���� ���źͶ�ÿ�����ŵ����� ����
-	 * 
-	 * @throws IOException
-	 */
 	public void Reviewsusername() throws IOException {
 		try {
 
-			List<Integer> rn = new ArrayList<Integer>();// �ղ� List
+			List<Integer> rn = new ArrayList<Integer>();
 			for (Review r1 : rdao.Allu(userid)) {
 
 				Boolean b = true;
@@ -2333,8 +2211,7 @@ public class NewsAction {
 				}
 
 				if (b) {
-					System.out.println("�����۹�������  �û���������id" + username + "+"
-							+ r1.getNewsid() + "ʱ���ǣ�" + r1.getTime());
+
 					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
 					nl.add(ndao.byid(r1.getNewsid()));
 
@@ -2342,8 +2219,8 @@ public class NewsAction {
 				}
 
 			}
-			String result = "{\"news\":" + OpeFunction.ToJson(nl) + ",\"review\":"
-					+ OpeFunction.ToJson(rl) + "}";
+			String result = "{\"news\":" + OpeFunction.ToJson(nl)
+					+ ",\"review\":" + OpeFunction.ToJson(rl) + "}";
 			if (nl.size() > 0 && rl.size() > 0) {
 				OpeFunction.Out().print(result);
 
@@ -2351,27 +2228,24 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
-			System.out.println("�쳣��" + e.getMessage());
+
 		}
 	}
-	/**
-	 * 新闻比较器
-	 * @author STerOTto
-	 */
-	private class NewsComparator implements Comparator<News>
-	{
+
+	@SuppressWarnings("unused")
+	private class NewsComparator implements Comparator<News> {
 		@Override
-		public int compare(News first, News second) 
-		{
-			if(first.getSimilarity()<second.getSimilarity())
+		public int compare(News first, News second) {
+			if (first.getSimilarity() < second.getSimilarity())
 				return 1;
-			else if(first.getSimilarity() > second.getSimilarity())
+			else if (first.getSimilarity() > second.getSimilarity())
 				return -1;
 			else
 				return 0;
 		}
 
 	}
+
 	public void getRy() throws IOException {
 
 		rl = rdao.unid(userid, newsid);
@@ -2630,7 +2504,5 @@ public class NewsAction {
 	public void setXlsxFile(File xlsxFile) {
 		this.xlsxFile = xlsxFile;
 	}
-
-	
 
 }

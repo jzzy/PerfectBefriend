@@ -7,7 +7,7 @@ import javax.servlet.ServletContextEvent;
 /**
  * @author STerOTto
  * @version 2014-7-18 14:12:04
- *	·þÎñÆ÷Â·¾¶ÅäÖÃ
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class ServerConfig {
 	
@@ -29,9 +29,7 @@ public class ServerConfig {
 	private  String realPath;
 	private  String contextpath;
 	
-	/**
-	 * ³õÊ¼»¯
-	 */
+	
 	public void initialize(ServletContextEvent event){
 		String realpath = event.getServletContext().getRealPath("/");
 		String[] strPath = realpath.split("\\\\");

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -57,7 +58,8 @@ public class TCPAcceptThreads implements Runnable {
 				System.out.println("TCP���յ�:" + st + "   "
 						+ OpeFunction.getNowTime());
 				try {
-					u = OpeFunction.fromJson(st, User);
+					Type user = (Type) new User();
+					u = OpeFunction.fromJson(st, user);
 
 					// ����ģʽ
 					if (u != null) {

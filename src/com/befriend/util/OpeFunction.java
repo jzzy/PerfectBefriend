@@ -49,6 +49,26 @@ import com.opensymphony.xwork2.ActionContext;
  */
 public class OpeFunction {
 	/**
+	 * js返回到html
+	 * 
+	 * @throws IOException
+	 */
+	public static void outjS(String URL, String string) throws IOException {
+		HttpServletResponse response = ServletActionContext.getResponse();
+
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		String loginPage = URL;
+		StringBuilder builder = new StringBuilder();
+		builder.append("<script type=\"text/javascript\">");
+		builder.append("alert('" + string + "');");
+		builder.append("window.top.location.href='");
+		builder.append(loginPage);
+		builder.append("';");
+		builder.append("</script>");
+		out.print(builder.toString());
+	}
+	/**
 	 * 
 	 * null=true
 	 * 
