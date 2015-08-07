@@ -1,10 +1,14 @@
 package com.befriend.action;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.befriend.base.BaseAction;
 import com.befriend.dao.GroupFriendDAO;
@@ -16,12 +20,17 @@ import com.befriend.entity.UserGroup;
 import com.befriend.util.JsonUtil;
 import com.befriend.util.Message;
 import com.befriend.util.OpeFunction;
+import com.befriend.wechat.RefreshAccessToken;
+import com.befriend.wechat.WechatKit;
 
 public class FriendAction extends BaseAction
 {
 	private static final long serialVersionUID = 1L;
 	public static final String YES = "y";
 	public static final String NO = "n";
+	public static final String REMOVE = "remove";
+	public static final String KEEP = "keep";
+	
 
 	private UserDAO userDAO;
 	private UserGroupDAO userGroupDAO;
@@ -34,8 +43,10 @@ public class FriendAction extends BaseAction
 	private String remark;
 	private String groupName;
 	private String orderNum;
+	private String type;
 
 	/**
+	 * @param userId
 	 * get friend list
 	 * @throws IOException
 	 */
@@ -219,32 +230,56 @@ public class FriendAction extends BaseAction
 					}
 					else
 					{
-						String time = OpeFunction.getNowTime();
 						/**
-						 * update the friends relationship
+						 * if agree to be a friend and update the relationship success in ease mob
+						 * update the relationship in our service
 						 */
-						initiative.setStatus(GroupFriend.FRIEND);
-						initiative.setCreateTime(time);
-						groupFriendDAO.update(initiative);
-						
-						GroupFriend passive = groupFriendDAO.find(Integer.valueOf(userId),Integer.valueOf(friendId));
-						UserGroup userGroup = userGroupDAO.find(Integer.valueOf(groupId));
-						if(passive == null)
-						{
-							passive = new GroupFriend();
+						String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/contacts/users/"+friendId;
+						String result = WechatKit.post(url, null, RefreshAccessToken.access_token);
+						try {
+							JSONObject jsonObject = new JSONObject(result);
+							JSONArray entities = jsonObject.getJSONArray("entities");
+							boolean activated = false;
+							if(entities.length()>0)
+							{
+								JSONObject entity = entities.getJSONObject(0);
+								activated = entity.getBoolean("activated");
+								if(activated)
+								{
+									String time = OpeFunction.getNowTime();
+									/**
+									 * update the initiative relationship
+									 */
+									initiative.setStatus(GroupFriend.FRIEND);
+									initiative.setCreateTime(time);
+									groupFriendDAO.update(initiative);
+									
+									GroupFriend passive = groupFriendDAO.find(Integer.valueOf(userId),Integer.valueOf(friendId));
+									UserGroup userGroup = userGroupDAO.find(Integer.valueOf(groupId));
+									if(passive == null)
+									{
+										passive = new GroupFriend();
+									}
+									passive.setUserGroup(userGroup);
+									passive.setUserId(Integer.valueOf(friendId));
+									passive.setStatus(GroupFriend.FRIEND);
+									passive.setRemark(remark);
+									passive.setCreateTime(time);
+									/**
+									 * if passive's id is null update will insert a new record
+									 */
+									groupFriendDAO.update(passive);
+									msg.setCode(Message.SUCCESS);
+									msg.setStatement("now he or her is your friend");
+									msg.setContent(true);
+								}
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+							msg.setCode(Message.FAILED);
+							msg.setStatement("error in add a friend in ease mob");
 						}
-						passive.setUserGroup(userGroup);
-						passive.setUserId(Integer.valueOf(friendId));
-						passive.setStatus(GroupFriend.FRIEND);
-						passive.setRemark(remark);
-						passive.setCreateTime(time);
-						/**
-						 * if passive's id is null update will insert a new record
-						 */
-						groupFriendDAO.update(passive);
-						msg.setCode(Message.SUCCESS);
-						msg.setStatement("now he or her is your friend");
-						msg.setContent(true);
+						
 					}
 					
 				}
@@ -441,6 +476,30 @@ public class FriendAction extends BaseAction
 				 */
 				if(userGroup.getIsDefault() != UserGroup.BLACKLIST_DEFAULT && userGroup.getIsDefault() != UserGroup.FRIEND_DEFAULT)
 				{
+					Set<GroupFriend> groupFriends = userGroup.getGroupFriends();
+					UserGroup defaultGroup = userGroupDAO.findDefault(userGroup.getUser().getId().intValue(), UserGroup.FRIEND_DEFAULT);
+					if(defaultGroup != null)
+					{
+						/**
+						 * if the default group is not exist
+						 * create a default group
+						 */
+						this.userId = userGroup.getUser().getId().toString();
+						createDefaultGroup();
+						/**
+						 * after insert default group 
+						 * get the default group
+						 */
+						defaultGroup = userGroupDAO.findDefault(userGroup.getUser().getId().intValue(), UserGroup.FRIEND_DEFAULT);
+					}
+					/**
+					 * move the friends of the group to default group
+					 */
+					for (GroupFriend groupFriend : groupFriends) 
+					{
+						groupFriend.setUserGroup(defaultGroup);
+						groupFriendDAO.update(groupFriend);
+					}
 					userGroupDAO.remove(userGroup);
 					msg.setCode(Message.SUCCESS);
 					msg.setStatement("delete user group success");
@@ -465,9 +524,149 @@ public class FriendAction extends BaseAction
 		}
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
-
 	
+	/**
+	 * @param userId myId
+	 * @param friendId
+	 * @throws IOException 
+	 * @describe first delete the friend in ease mob then delete the friend in our service
+	 */
+	public void deleteFriend() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(userId)&&StringUtils.isNumeric(friendId))
+		{
+			/**
+			 * if userId and friendId is number
+			 * delete the friend in ease mob
+			 * delete the friend in our service
+			 */
+			String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/contacts/users/"+friendId;
+			String result = WechatKit.delete(url, RefreshAccessToken.access_token);
+			try {
+				JSONObject jsonObject = new JSONObject(result);
+				JSONArray entities = jsonObject.getJSONArray("entities");
+				boolean activated = false;
+				if(entities.length()>0)
+				{
+					JSONObject entity = entities.getJSONObject(0);
+					activated = entity.getBoolean("activated");
+					if(activated)
+					{
+						/**
+						 * delete success in ease mob
+						 * delete the friend in our service
+						 */
+						GroupFriend initiative = groupFriendDAO.find(Integer.valueOf(userId), Integer.valueOf(friendId));
+						if(initiative != null)
+						{
+							groupFriendDAO.remove(initiative);
+						}
+						GroupFriend passive = groupFriendDAO.find(Integer.valueOf(friendId), Integer.valueOf(userId));
+						if(passive != null)
+						{
+							groupFriendDAO.remove(passive);
+						}
+						msg.setCode(Message.SUCCESS);
+						msg.setContent("delete the friend success");
+					}
+					else
+					{
+						msg.setCode(Message.FAILED);
+						msg.setStatement("error to delete the friend in ease mob");
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+				msg.setCode(Message.ERROR);
+				msg.setStatement("error to delete the friend in ease mob");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
 
+	/**
+	 * @param userId myId
+	 * @param friendId 
+	 * @throws IOException 
+	 * @describe add a friend to black list
+	 */
+	public void addToBlackList() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(userId)&&StringUtils.isNumeric(friendId))
+		{
+			/**
+			 * if userId and friendId is number
+			 * add the friend to black list in ease mob
+			 * add the friend to black list in our service
+			 */
+			String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/blocks/users";
+			try {
+				JSONObject jsonObject = new JSONObject();
+				String [] usernames = {friendId};
+				jsonObject.put("usernames", Arrays.toString(usernames));
+				WechatKit.post(url,jsonObject, RefreshAccessToken.access_token);
+				GroupFriend groupFriend = groupFriendDAO.find(Integer.valueOf(userId), Integer.valueOf(friendId));
+				if(groupFriend != null)
+				{
+					groupFriend.setStatus(GroupFriend.BLACKLIST);
+					groupFriendDAO.update(groupFriend);
+				}
+				msg.setCode(Message.SUCCESS);
+				msg.setStatement("move friend to black list success");
+			} catch (JSONException e) {
+				e.printStackTrace();
+				msg.setCode(Message.ERROR);
+				msg.setStatement("error when move friend to black list in ease mob");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	
+	/**
+	 * @param userId myId
+	 * @param friendId
+	 * @describe move friend out of black list
+	 */
+	public void moveFromBlckList()
+	{
+		Message msg = new Message();
+		String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/blocks/users/"+friendId;
+		if(StringUtils.isNumeric(userId)&&StringUtils.isNumeric(friendId))
+		{
+			/**
+			 * remove from ease mob
+			 */
+			WechatKit.delete(url, RefreshAccessToken.access_token);
+			GroupFriend groupFriend = groupFriendDAO.find(Integer.valueOf(userId), Integer.valueOf(friendId));
+			if(groupFriend != null)
+			{
+				groupFriend.setStatus(GroupFriend.BLACKLIST);
+				groupFriendDAO.update(groupFriend);
+			}
+			msg.setCode(Message.SUCCESS);
+			msg.setStatement("sucess");
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		
+		
+	}
+	
 	public FriendAction(UserDAO userDAO, UserGroupDAO userGroupDAO, GroupFriendDAO groupFriendDAO) {
 		super();
 		this.userDAO = userDAO;
@@ -537,6 +736,14 @@ public class FriendAction extends BaseAction
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

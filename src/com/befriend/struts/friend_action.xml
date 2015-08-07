@@ -10,5 +10,8 @@
 		<action name="addUserGroup" class="friendAction"  method="addUserGroup"></action>
 		<action name="editUserGroup" class="friendAction"  method="editUserGroup"></action>
 		<action name="deleteUserGroup" class="friendAction"  method="deleteUserGroup"></action>
+		<action name="deleteFriend" class="friendAction" method="deleteFriend"></action>
+		<action name="addToBlackList" class="friendAction" method="addToBlackList"></action>
+		<action name="moveFromBlckList" class="friendAction" method="moveFromBlckList"></action>
 	</package>
 </struts>

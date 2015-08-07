@@ -3,14 +3,17 @@ package com.befriend.wechat;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -42,7 +45,7 @@ public class WechatKit {
 	private static HttpClient client=null;
 
 	/**
-	 * ·¢ËÍgetÇëÇó
+	 * ï¿½ï¿½ï¿½ï¿½getï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param url
 	 * @return
@@ -53,27 +56,27 @@ public class WechatKit {
 			String cont = null;
 
 			if (Client == null) {
-				// µÃµ½ Client
+				// ï¿½Ãµï¿½ Client
 				Client = HttpClients.createDefault();
 			}
-			// Ö¸¶¨ url
+			// Ö¸ï¿½ï¿½ url
 			HttpGet get = new HttpGet(url);
 			try {
 
-				// »ñÈ¡ resp
+				// ï¿½ï¿½È¡ resp
 				resp = Client.execute(get);
 			} catch (Exception e) {
-				System.out.println("http resp»ñÈ¡Òì³£!" + e.getMessage());
+				System.out.println("http respï¿½ï¿½È¡ï¿½ì³£!" + e.getMessage());
 			}
-			// »ñÈ¡ code >=200 <300ÊÇÕý³£
+			// ï¿½ï¿½È¡ code >=200 <300ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			int code = resp.getStatusLine().getStatusCode();
 			System.out.println(code);
 			if (code >= 200 && code < 300) {
-				System.out.println("codeÕý³£" + code);
-				// »ñÈ¡ÊµÌå
+				System.out.println("codeï¿½ï¿½ï¿½ï¿½" + code);
+				// ï¿½ï¿½È¡Êµï¿½ï¿½
 				HttpEntity entity = resp.getEntity();
 				if (entity != null) {
-					// ×ª³ÉString
+					// ×ªï¿½ï¿½String
 					cont = EntityUtils.toString(entity);
 					System.out.println(cont);
 					return cont;
@@ -82,7 +85,7 @@ public class WechatKit {
 			}
 		} catch (Exception e) {
 
-			System.out.println("HttpClientÒì³£:" + e.getMessage());
+			System.out.println("HttpClientï¿½ì³£:" + e.getMessage());
 			return null;
 		} finally {
 			if (resp != null) {
@@ -92,7 +95,7 @@ public class WechatKit {
 		return null;
 	}
 	/**
-	 * Í¨¹ýpost·¢ËÍ!
+	 * Í¨ï¿½ï¿½postï¿½ï¿½ï¿½ï¿½!
 	 * @param url
 	 * @param json
 	 * @return
@@ -100,13 +103,12 @@ public class WechatKit {
 	public static String post(String url, JSONObject json,String token) {
 		
 		client = getClient(true);
-		
 		HttpPost post = new HttpPost(url);
 		int code =0;
 		try {
-			StringEntity s = new StringEntity(json.toString());
+			StringEntity s = new StringEntity(json==null?"":json.toString());
 			s.setContentEncoding("UTF-8");
-			s.setContentType("application/json");//: {¡°Content-Type¡±:¡±application/json¡±,¡±Authorization¡±:¡±Bearer ${token}¡±}
+			s.setContentType("application/json");//: {ï¿½ï¿½Content-Typeï¿½ï¿½:ï¿½ï¿½application/jsonï¿½ï¿½,ï¿½ï¿½Authorizationï¿½ï¿½:ï¿½ï¿½Bearer ${token}ï¿½ï¿½}
 			//post.addHeader("Content-Type", "application/json");
 			if(token!=null){
 			post.addHeader("Authorization", "Bearer "+token);
@@ -119,7 +121,7 @@ public class WechatKit {
 			if (code >= 200 && code < 300) {
 				HttpEntity entity = res.getEntity();
 				String charset = EntityUtils.toString(entity);
-				System.out.println("post·µ»ØµÄ¶«Î÷:" +charset);
+				System.out.println("postï¿½ï¿½ï¿½ØµÄ¶ï¿½ï¿½ï¿½:" +charset);
 				return charset;
 			}
 			
@@ -129,9 +131,74 @@ public class WechatKit {
 		}
 		return null;
 	}
+	/**
+	 * @describe HTTP Method : DELETE
+	 * @param url
+	 * @param json
+	 * @param token
+	 * @return
+	 */
+	public static String delete(String url,String token)
+	{
+		String response = null;
+		int code =0;
+		client = getClient(true);
+		HttpDelete delete = new HttpDelete(url);
+		try {
+			if(token!=null)
+			{
+				delete.addHeader("Authorization", "Bearer "+token);
+			}
+			HttpResponse res = client.execute(delete);
+			code = res.getStatusLine().getStatusCode();
+			if (code >= 200 && code < 300) 
+			{
+				HttpEntity entity = res.getEntity();
+				response = EntityUtils.toString(entity);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
+		
+	}
+	/**
+	 * HTTP Method : GET
+	 * @param url
+	 * @param token
+	 * @return
+	 */
+	public static String get(String url,String token)
+	{
+		String response = null;
+		int code =0;
+		client = getClient(true);
+		HttpGet get = new HttpGet(url);
+		try {
+			if(token!=null)
+			{
+				get.addHeader("Authorization", "Bearer "+token);
+			}
+			HttpResponse res = client.execute(get);
+			code = res.getStatusLine().getStatusCode();
+			if (code >= 200 && code < 300) 
+			{
+				HttpEntity entity = res.getEntity();
+				response = EntityUtils.toString(entity);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
+		
+	}
 
 	/**
-	 * »·ÐÅ ·â×°µÄHttpClient
+	 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½×°ï¿½ï¿½HttpClient
 	 * 
 	 * @param isSSL
 	 * @return
