@@ -3,13 +3,74 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="Forum" extends="struts-default" >
+	<!-- new -->
+	
+		<!-- 删除模块-->
+		<action name="forumremoveOneType" class="forumAction" method="removeOneType" >
+		</action>
+		<!-- 删除小组-->
+		<action name="forumremoveTwoType" class="forumAction" method="removeTwoType" >
+		</action>
+		<!-- 更新小组-->
+		<action name="forumupdateTwoType" class="forumAction" method="updateTwoType" >
+		</action>
+		<!-- 更新模块-->
+		<action name="forumupdateOneType" class="forumAction" method="updateOneType" >
+		</action>
+		<!-- 添加小组-->
+		<action name="forumsaveTwoType" class="forumAction" method="saveTwoType" >
+		</action>
+		<!-- 查看论坛模块小组-->
+		<action name="forumlookOneTwoType" class="forumAction" method="lookOneTwoType" >
+		<result name="success">/SuperAdmin/AdminForum/ForumOneType/Forumlookone.jsp</result>
+		</action>
+		<!-- 添加模块-->
+		<action name="forumsaveOneType" class="forumAction" method="saveOneType" >
+		</action>
+		<!-- 查看论坛模块-->
+		<action name="forumgetOneTypeAll" class="forumAction" method="getOneTypeAll" >
+		<result name="success">/SuperAdmin/AdminForum/ForumOneType/Forumlook.jsp</result>
+		</action>
+		<!--查询论坛模块-->
+		<action name="forumgetForumOneTypeAll" class="forumAction" method="getForumOneTypeAll" >
+		
+		</action>
+		<!--添加赞-->
+		<action name="forumStandBy" class="forumAction" method="forumStandBy" >
+		
+		</action>
+		<!--取消赞-->
+		<action name="forumRemoveStandBy" class="forumAction" method="forumRemoveStandBy" >
+		
+		</action>
+		<!--取消关注-->
+		<action name="forumRemoveAttention" class="forumAction" method="forumRemoveAttention" >
+		
+		</action>
+		<!--添加关注-->
+		<action name="forumAttention" class="forumAction" method="forumAttention" >
+		
+		</action>
+		
+		<!--我的关注-->
+		<action name="forumMeAttention" class="forumAction" method="forumMeAttention" >
+		
+		</action>
+	<!-- new -->
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 	
 		<!-- 管理区域 -->
 		
-		
+			
 		
 		<!-- admin删除评论 回复-->
 		<action name="webAdminRemoveForumThree" class="forumAction" method="webAdminRemoveForumThree" >
@@ -73,31 +134,7 @@
 		
 		<!-- app用的 -->
 		
-		<!--查询论坛模块-->
-		<action name="forumgetForumOneTypeAll" class="forumAction" method="getForumOneTypeAll" >
-		
-		</action>
-		<!--添加赞-->
-		<action name="forumStandBy" class="forumAction" method="forumStandBy" >
-		
-		</action>
-		<!--取消赞-->
-		<action name="forumRemoveStandBy" class="forumAction" method="forumRemoveStandBy" >
-		
-		</action>
-		<!--取消关注-->
-		<action name="forumRemoveAttention" class="forumAction" method="forumRemoveAttention" >
-		
-		</action>
-		<!--添加关注-->
-		<action name="forumAttention" class="forumAction" method="forumAttention" >
-		
-		</action>
-		
-		<!--我的关注-->
-		<action name="forumMeAttention" class="forumAction" method="forumMeAttention" >
-		
-		</action>
+	
 		
 		
 		<!-- 用户查看论坛 通过id-->

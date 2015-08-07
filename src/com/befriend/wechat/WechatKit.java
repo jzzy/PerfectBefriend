@@ -59,24 +59,23 @@ public class WechatKit {
 				// �õ� Client
 				Client = HttpClients.createDefault();
 			}
-			// ָ�� url
+			
 			HttpGet get = new HttpGet(url);
 			try {
 
-				// ��ȡ resp
+				
 				resp = Client.execute(get);
 			} catch (Exception e) {
-				System.out.println("http resp��ȡ�쳣!" + e.getMessage());
+				
 			}
-			// ��ȡ code >=200 <300������
+		
 			int code = resp.getStatusLine().getStatusCode();
-			System.out.println(code);
+			System.out.println("WechatKit.sendGet code:" + code+",URL "+url);
 			if (code >= 200 && code < 300) {
 				System.out.println("code����" + code);
 				// ��ȡʵ��
 				HttpEntity entity = resp.getEntity();
 				if (entity != null) {
-					// ת��String
 					cont = EntityUtils.toString(entity);
 					System.out.println(cont);
 					return cont;
@@ -85,7 +84,6 @@ public class WechatKit {
 			}
 		} catch (Exception e) {
 
-			System.out.println("HttpClient�쳣:" + e.getMessage());
 			return null;
 		} finally {
 			if (resp != null) {
@@ -108,8 +106,8 @@ public class WechatKit {
 		try {
 			StringEntity s = new StringEntity(json==null?"":json.toString());
 			s.setContentEncoding("UTF-8");
-			s.setContentType("application/json");//: {��Content-Type��:��application/json��,��Authorization��:��Bearer ${token}��}
-			//post.addHeader("Content-Type", "application/json");
+			s.setContentType("application/json");
+
 			if(token!=null){
 			post.addHeader("Authorization", "Bearer "+token);
 			}
@@ -121,7 +119,6 @@ public class WechatKit {
 			if (code >= 200 && code < 300) {
 				HttpEntity entity = res.getEntity();
 				String charset = EntityUtils.toString(entity);
-				System.out.println("post���صĶ���:" +charset);
 				return charset;
 			}
 			
@@ -203,6 +200,7 @@ public class WechatKit {
 	 * @param isSSL
 	 * @return
 	 */
+
 	public static HttpClient getClient(boolean isSSL) {
 
 		HttpClient httpClient = new DefaultHttpClient();

@@ -10,13 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="support_forum")
+@Table(name="attention")
 
-public class Support_forum implements Serializable
+public class Attention implements Serializable
 {
-	/**
-	 * luntan dianzhan
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
@@ -24,37 +21,43 @@ public class Support_forum implements Serializable
 	private Integer id;
 	@Column(name="userid")
 	private int userid;
-	@Column(name="forumid")
-	private int forumid;
-	
+	@Column(name="objectid")
+	private int objectid;
+	@Column(name="comefrom")// 2 forum
+	private int comefrom;
 	@Column(name="time")
 	private String time;
 	public Integer getId() {
-	    return id;
+		return id;
 	}
 	public void setId(Integer id) {
-	    this.id = id;
+		this.id = id;
 	}
 	public int getUserid() {
-	    return userid;
+		return userid;
 	}
 	public void setUserid(int userid) {
-	    this.userid = userid;
+		this.userid = userid;
 	}
-	
-	
-	public int getForumid() {
-		return forumid;
+	public int getObjectid() {
+		return objectid;
 	}
-	public void setForumid(int forumid) {
-		this.forumid = forumid;
+	public void setObjectid(int objectid) {
+		this.objectid = objectid;
+	}
+	public int getComefrom() {
+		return comefrom;
+	}
+	public void setComefrom(int comefrom) {
+		this.comefrom = comefrom;
 	}
 	public String getTime() {
-	    return time;
+		return time;
 	}
 	public void setTime(String time) {
-	    this.time = time;
+		this.time = time;
 	}
+	
 	
 	
 

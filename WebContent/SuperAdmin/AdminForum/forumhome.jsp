@@ -26,7 +26,8 @@ if(admin==null){
 		<H3><a href="<%=request.getContextPath()%>/ForumLookalltype?model=4">查看中学论坛</a><br></H3>
 		<H3><a href="<%=request.getContextPath()%>/ForumLookalltype?model=5">查看地区论坛</a><br></H3>
 	<H3>	<a href="<%=request.getContextPath()%>/getUseradmin">查看管理</a><br></H3>	
-	<H3><a href="<%=request.getContextPath()%>/getUser">新增各地管理</a></H3>		
+	<H3><a href="<%=request.getContextPath()%>/getUser">新增各地管理</a></H3>	
+	<H3><a href="<%=request.getContextPath()%>/forumgetOneTypeAll">查看论坛板块</a></H3>			
 
 </body>
 </html>

@@ -32,9 +32,9 @@ public class InitListener implements ServletContextListener
 	 */
 	public void contextInitialized(ServletContextEvent event)
 	{
-		//启动  定时任务
+		
 		new Thread(new StasTime()).start();
-		System.out.println("日志启动了");
+		
 		ServerConfig.getServerConfig().initialize(event);
 		logger.debug(ServerConfig.getServerConfig().getRealPath() + "\n"
 				+ ServerConfig.getServerConfig().getContextpath());

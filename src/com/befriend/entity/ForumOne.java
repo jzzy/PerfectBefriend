@@ -28,10 +28,7 @@ public class ForumOne  implements Serializable {
 	
 	
 	private int type;
-	@Column(name = "types")
-	
-	
-	private int types;
+
 	@Column(name = "total")
 	
 	private int total;
@@ -87,13 +84,7 @@ public class ForumOne  implements Serializable {
 		this.type = type;
 	}
 
-	public int getTypes() {
-		return types;
-	}
 
-	public void setTypes(int types) {
-		this.types = types;
-	}
 
 	public String getImg() {
 		return img;

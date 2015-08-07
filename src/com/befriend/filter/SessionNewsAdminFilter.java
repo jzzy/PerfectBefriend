@@ -20,8 +20,7 @@ public class SessionNewsAdminFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		System.out.println("SessionNewsAdminFilter销毁了");
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -32,46 +31,40 @@ public class SessionNewsAdminFilter implements Filter {
 
 			@SuppressWarnings("static-access")
 			HttpSession session = util.request().getSession();
-			// 如果你想用将此过滤器在struts2过滤器之前使用，使用如下方法
-			// session = ((HttpServletRequest)request).getSession();
-			request.setCharacterEncoding("GBK");// 在请求里设置上指定的编码
-			System.out.println("SessionNewsAdminFilter过滤前");
-
+		
+		
+		
 			Admin admin = (Admin) session.getAttribute("admin");
 
 			if (admin == null) {
 				
-				// System.out.println("开始过滤！！！");
-				// 如果session中不存在登录者实体，则弹出框提示重新登录
-				// 设置request和response的字符集，防止乱码
+				
 				request.setCharacterEncoding("GBK");
 				response.setCharacterEncoding("GBK");
 				PrintWriter out = response.getWriter();
 				String loginPage = "/PerfectBefriend/SuperAdmin/SuperAdmin.jsp";
 				StringBuilder builder = new StringBuilder();
 				builder.append("<script type=\"text/javascript\">");
-				builder.append("alert('zhe xuyao xinwen admin quanxian');");
+				builder.append("alert('no2');");
 				builder.append("window.top.location.href='");
 				builder.append(loginPage);
 				builder.append("';");
 				builder.append("</script>");
 				out.print(builder.toString());
 			} else {
-				System.out.println("超级管理员session为：" + admin.getAdmin()
-						+ "-登入时间为：" + util.getNowTime());
-				//判断管理员级别 1是 最高管理 2是新闻 管理 3是论坛管理
+				
 				if(admin.getLevel()==1||admin.getLevel()==2){
-					 chain.doFilter(request, response);//放行。让其走到下个链或目标资源中
+					 chain.doFilter(request, response);
 					
 				}else{
-					System.out.println("你不是新闻管理!");
-					util.Out().println("你不是新闻管理!");
+				
+					util.Out().println("no2");
 				}
 			
 
 			}
 
-			// System.out.println("过滤时间"+util.getNowTime());
+		
 		} catch (Exception e) {
 			util.Out().println(e.getMessage());
 
@@ -81,8 +74,7 @@ public class SessionNewsAdminFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		System.out.println("SessionNewsAdminFilter初始化了");
+
 		this.filterConfig = filterConfig;
 
 	}

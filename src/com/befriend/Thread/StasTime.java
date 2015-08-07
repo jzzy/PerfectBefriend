@@ -20,8 +20,7 @@ public class StasTime implements Runnable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			System.out.println(OpeFunction.getNowTime());
-				System.out.println("StasTime定时任务执行了");
+			
 				try {
 					
 					Thread.sleep(3600000);

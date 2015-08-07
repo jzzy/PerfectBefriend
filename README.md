@@ -1,4 +1,4 @@
-Befriend
+PerfectBefriend
 =======
 
-The server of Befriend co.ltd
+The server of PerfectBefriend co.ltd

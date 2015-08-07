@@ -1,5 +1,4 @@
 package com.befriend.dao.impl;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,13 +8,11 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.ForumDAO;
-import com.befriend.entity.Attention_Forum;
 import com.befriend.entity.ForumOne;
 import com.befriend.entity.ForumOneType;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
-import com.befriend.entity.Support_forum;
-
+import com.befriend.entity.ForumTwoType;
 @Transactional
 public class ForumDAOImpl implements ForumDAO {
 	@PersistenceContext
@@ -210,13 +207,12 @@ public class ForumDAOImpl implements ForumDAO {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ForumOne> getForumOneALL(int type) {
-		// TODO ��ֹsqlע��
 		Query query = entityManager.createQuery("select f from ForumOne f"
 				+ " where f.type=:type order" + " by f.time desc");
 		query.setParameter("type", type);
-
 		return query.getResultList();
 	}
 
@@ -365,97 +361,10 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 
-	@Override
-	public List<Support_forum> stAllF(int forumid) {
-		Query query = entityManager.createQuery("select u from Support_forum u where"
-				+ " u.forumid=:forumid order by u.time desc");
 
-		query.setParameter("forumid", forumid);
-		return query.getResultList();
-	}
+	
 
-	@Override
-	public List<Support_forum> stAllU(int userid) {
-		Query query = entityManager.createQuery("select u from Support_forum u where"
-				+ " u.userid=:userid order by u.time desc");
-
-		query.setParameter("userid", userid);
-		return query.getResultList();
-	}
-
-	@Override
-	public void save(Support_forum st) {
-		// TODO Auto-generated method stub
-		entityManager.persist(st);
-	}
-
-	@Override
-	public Support_forum sufid(int userid, int forumid) {
-
-		Query query = entityManager.createQuery("select u from Support_forum u where"
-				+ " u.userid=:userid and u.forumid=:forumid");
-		query.setMaxResults(1);
-		query.setParameter("userid", userid);
-		query.setParameter("forumid", forumid);
-		@SuppressWarnings("unchecked")
-		List<Support_forum> Support = query.getResultList();
-		if (Support.size() > 0)
-			return Support.get(0);
-		return null;
-	}
-
-	@Override
-	public void remove(Support_forum st) {
-		// TODO Auto-generated method stub
-		entityManager.remove(st);
-
-	}
-
-	@Override
-	public List<Attention_Forum> atAllF(int forutypeid) {
-		Query query = entityManager.createQuery("select u from Attention_Forum u where"
-				+ " u.forutypeid=:forutypeid order by u.time desc");
-
-		query.setParameter("forutypeid", forutypeid);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Attention_Forum> atAllU(int userid) {
-		Query query = entityManager.createQuery("select u from Attention_Forum u where"
-				+ " u.userid=:userid order by u.time desc");
-
-		query.setParameter("userid", userid);
-		return query.getResultList();
-	}
-
-	@Override
-	public void save(Attention_Forum at) {
-		// TODO Auto-generated method stub
-		entityManager.persist(at);		
-		
-	}
-
-	@Override
-	public Attention_Forum aufid(int userid, int forutypeid) {
-		Query query = entityManager.createQuery("select u from Attention_Forum u where"
-				+ " u.userid=:userid and u.forutypeid=:forutypeid");
-		query.setMaxResults(1);
-		query.setParameter("userid", userid);
-		query.setParameter("forutypeid", forutypeid);
-		@SuppressWarnings("unchecked")
-		List<Attention_Forum> Support = query.getResultList();
-		if (Support.size() > 0)
-			return Support.get(0);
-		return null;
-	}
-
-	@Override
-	public void remove(Attention_Forum at) {
-		// TODO Auto-generated method stub
-		entityManager.remove(at);
-		
-	}
+	
 
 	@Override
 	public ForumOneType getByIdForumOneType(int id) {
@@ -477,5 +386,56 @@ public class ForumDAOImpl implements ForumDAO {
 		Query query = entityManager.createQuery("select u from ForumOneType u order by u.id asc");		
 		return query.getResultList();
 		
+	}
+
+	@Override
+	public void save(ForumOneType fot) {
+		// TODO Auto-generated method stub
+		entityManager.persist(fot);
+	}
+
+	@Override
+	public ForumTwoType getByIdForumTwoType(int id) {
+		Query query = entityManager.createQuery("select u from ForumTwoType u where"
+				+ " u.id=:id order by u.id desc");
+		query.setMaxResults(1);
+		query.setParameter("id", id);
+		
+		@SuppressWarnings("unchecked")
+		List<ForumTwoType> Support = query.getResultList();
+		if (Support.size() > 0)
+			return Support.get(0);
+		return null;
+	}
+
+	@Override
+	public void save(ForumTwoType ftt) {
+		// TODO Auto-generated method stub
+		entityManager.persist(ftt);
+	}
+
+	@Override
+	public void Remove(ForumOneType fot) {
+		// TODO Auto-generated method stub
+		entityManager.remove(fot);
+	}
+
+	@Override
+	public void Remove(ForumTwoType ftt) {
+		// TODO Auto-generated method stub
+		entityManager.remove(ftt);
+	}
+
+	@Override
+	public void update(ForumOneType fot) {
+		// TODO Auto-generated method stub
+		entityManager.merge(fot);
+		
+	}
+
+	@Override
+	public void update(ForumTwoType ftt) {
+		// TODO Auto-generated method stub
+		entityManager.merge(ftt);
 	}
 }

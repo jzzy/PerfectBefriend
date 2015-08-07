@@ -23,9 +23,7 @@ public class SessionSuperAdminFilter implements Filter {
     public OpeFunction util;
     @Override
     public void destroy() {
-	System.out.println("SessionSuperAdminFilter销毁了");
-	// TODO Auto-generated method stub
-	
+
     }
 
     @Override
@@ -36,38 +34,33 @@ public class SessionSuperAdminFilter implements Filter {
 	
 	@SuppressWarnings("static-access")
 	HttpSession session=util.request().getSession();
-	// 如果你想用将此过滤器在struts2过滤器之前使用，使用如下方法
 
-	 request.setCharacterEncoding("UTF-8");// 在请求里设置上指定的编码   
-	 System.out.println("SessionSuperAdminFilter过滤前");
+
 	 Admin admin=(Admin)session.getAttribute("admin");
 
 	if(admin==null){
+	
 		
-		//System.out.println("开始过滤！！！");
-		// 如果session中不存在登录者实体，则弹出框提示重新登录
-		// 设置request和response的字符集，防止乱码
 		request.setCharacterEncoding("GBK");
 		response.setCharacterEncoding("GBK");
 		PrintWriter out = response.getWriter();
 		String loginPage = "/PerfectBefriend/SuperAdmin/SuperAdmin.jsp";
 		StringBuilder builder = new StringBuilder();
 		builder.append("<script type=\"text/javascript\">");
-		builder.append("alert('这需要系统超级管理员权限！！请您重新登入！');");
+		builder.append("alert('no3');");
 		builder.append("window.top.location.href='");
 		builder.append(loginPage);
 		builder.append("';");
 		builder.append("</script>");
 		out.print(builder.toString());
 	}else{
-		System.out.println("超级管理员session为："+admin.getAdmin()+"-登入时间为："+util.getNowTime());
-		//判断管理员级别 1是 最高管理 2是新闻 管理 3是论坛管理
+	
 		if(admin.getLevel()==1){
-			 chain.doFilter(request, response);//放行。让其走到下个链或目标资源中
+			 chain.doFilter(request, response);
 			
 		}else{
-			System.out.println("你不是admin管理!");
-			util.Out().print("你不是admin管理!");
+			
+			util.Out().print("no3");
 		}
 	
 	 
@@ -81,13 +74,12 @@ public class SessionSuperAdminFilter implements Filter {
 	
     }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-	// TODO Auto-generated method stub
-	 System.out.println("SessionSuperAdminFilter初始化了");
-	 this.filterConfig = filterConfig;
-	
-    }
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+
+		this.filterConfig = filterConfig;
+
+	}
 
 	}
 
