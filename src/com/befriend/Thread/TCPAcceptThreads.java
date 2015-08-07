@@ -58,8 +58,9 @@ public class TCPAcceptThreads implements Runnable {
 				System.out.println("TCP���յ�:" + st + "   "
 						+ OpeFunction.getNowTime());
 				try {
-					Type user = (Type) new User();
-					u = OpeFunction.fromJson(st, user);
+
+					u = OpeFunction.fromJson(st, User.class);
+
 
 					// ����ģʽ
 					if (u != null) {

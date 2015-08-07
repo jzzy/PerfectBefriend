@@ -3,14 +3,17 @@ package com.befriend.wechat;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -41,13 +44,19 @@ public class WechatKit {
 	private static CloseableHttpResponse resp = null;
 	private static HttpClient client=null;
 
-	
+	/**
+	 * ����get����
+	 * 
+	 * @param url
+	 * @return
+	 * @throws IOException
+	 */
 	public static String sendGet(String url) throws IOException {
 		try {
 			String cont = null;
 
 			if (Client == null) {
-			
+				// �õ� Client
 				Client = HttpClients.createDefault();
 			}
 			
@@ -63,11 +72,10 @@ public class WechatKit {
 			int code = resp.getStatusLine().getStatusCode();
 			System.out.println("WechatKit.sendGet code:" + code+",URL "+url);
 			if (code >= 200 && code < 300) {
-			
-				
+				System.out.println("code����" + code);
+				// ��ȡʵ��
 				HttpEntity entity = resp.getEntity();
 				if (entity != null) {
-					
 					cont = EntityUtils.toString(entity);
 					System.out.println(cont);
 					return cont;
@@ -76,7 +84,6 @@ public class WechatKit {
 			}
 		} catch (Exception e) {
 
-		
 			return null;
 		} finally {
 			if (resp != null) {
@@ -85,17 +92,22 @@ public class WechatKit {
 		}
 		return null;
 	}
-	
+	/**
+	 * ͨ��post����!
+	 * @param url
+	 * @param json
+	 * @return
+	 */
 	public static String post(String url, JSONObject json,String token) {
 		
 		client = getClient(true);
-		
 		HttpPost post = new HttpPost(url);
 		int code =0;
 		try {
-			StringEntity s = new StringEntity(json.toString());
+			StringEntity s = new StringEntity(json==null?"":json.toString());
 			s.setContentEncoding("UTF-8");
 			s.setContentType("application/json");
+
 			if(token!=null){
 			post.addHeader("Authorization", "Bearer "+token);
 			}
@@ -116,8 +128,79 @@ public class WechatKit {
 		}
 		return null;
 	}
+	/**
+	 * @describe HTTP Method : DELETE
+	 * @param url
+	 * @param json
+	 * @param token
+	 * @return
+	 */
+	public static String delete(String url,String token)
+	{
+		String response = null;
+		int code =0;
+		client = getClient(true);
+		HttpDelete delete = new HttpDelete(url);
+		try {
+			if(token!=null)
+			{
+				delete.addHeader("Authorization", "Bearer "+token);
+			}
+			HttpResponse res = client.execute(delete);
+			code = res.getStatusLine().getStatusCode();
+			if (code >= 200 && code < 300) 
+			{
+				HttpEntity entity = res.getEntity();
+				response = EntityUtils.toString(entity);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
+		
+	}
+	/**
+	 * HTTP Method : GET
+	 * @param url
+	 * @param token
+	 * @return
+	 */
+	public static String get(String url,String token)
+	{
+		String response = null;
+		int code =0;
+		client = getClient(true);
+		HttpGet get = new HttpGet(url);
+		try {
+			if(token!=null)
+			{
+				get.addHeader("Authorization", "Bearer "+token);
+			}
+			HttpResponse res = client.execute(get);
+			code = res.getStatusLine().getStatusCode();
+			if (code >= 200 && code < 300) 
+			{
+				HttpEntity entity = res.getEntity();
+				response = EntityUtils.toString(entity);
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
+		
+	}
 
-	
+	/**
+	 * ���� ��װ��HttpClient
+	 * 
+	 * @param isSSL
+	 * @return
+	 */
+
 	public static HttpClient getClient(boolean isSSL) {
 
 		HttpClient httpClient = new DefaultHttpClient();

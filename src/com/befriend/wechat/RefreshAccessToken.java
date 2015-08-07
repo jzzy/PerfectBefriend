@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import com.befriend.util.OpeFunction;
 
 public class RefreshAccessToken {
+	public static final String BASE_URL = "https://a1.easemob.com/topLong/parentsfriend";
 	public static String access_token ="YWMt1h3C2DwgEeWAqSkS5NjStgAAAVA3apU8AkJ4pRa53rACTmIPH4-YUrnibqs";
 	public static int Second=0;
 	public RefreshAccessToken(int second) {
