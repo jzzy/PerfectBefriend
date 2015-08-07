@@ -35,6 +35,11 @@
 		<action name="forumgetForumOneTypeAll" class="forumAction" method="getForumOneTypeAll" >
 		
 		</action>
+		
+		<!--我赞的论坛-->
+		<action name="forumLookStandBy" class="forumAction" method="LookStandBy" >
+		
+		</action>
 		<!--添加赞-->
 		<action name="forumStandBy" class="forumAction" method="forumStandBy" >
 		
@@ -56,6 +61,24 @@
 		<action name="forumMeAttention" class="forumAction" method="forumMeAttention" >
 		
 		</action>
+		<!-- 通过用户id查询最新评论-->
+		<action name="Fuseid" class="forumAction" method="Fuseid">
+		
+		</action>
+		<!-- 通过用户id查询我的论坛-->
+		<action name="ForumoneTouseid" class="forumAction" method="ForumoneTouseid">
+		
+		</action>
+		
+		<!-- 通过用户id查询我搜藏的论坛-->
+		<action name="Folook" class="forumAction" method="Folook">
+		
+		</action>
+		<!-- 通过用户id查 回复点赞收藏关注发表-->
+		<action name="Forumsyncretic5" class="forumAction" method="syncretic5">
+		
+		</action>
+		
 	<!-- new -->
 	
 	
@@ -154,18 +177,8 @@
 		<action name="Forumthreesappadd" class="forumAction" method="Forumthreesappadd">
 		
 		</action>
-		<!-- 通过用户id查询我的论坛-->
-		<action name="ForumoneTouseid" class="forumAction" method="ForumoneTouseid">
 		
-		</action>
-		<!-- 通过用户id 查询我评论过的 论坛-->
-		<action name="Fuseid" class="forumAction" method="Fuseid">
 		
-		</action>
-			<!-- 通过用户id 查询我搜藏过的 论坛-->
-		<action name="Folook" class="forumAction" method="Folook">
-		
-		</action>
 			<!-- 查看全部论坛 -->
 		<action name="Forumall" class="forumAction" method="Forumall">
 		

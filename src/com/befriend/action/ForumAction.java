@@ -4,15 +4,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.util.ServletContextAware;
+
 import com.befriend.dao.CollectDAO;
 import com.befriend.dao.FollectDAO;
 import com.befriend.dao.ForumDAO;
@@ -29,6 +32,7 @@ import com.befriend.entity.Support;
 import com.befriend.entity.User;
 import com.befriend.util.JsonUtil;
 import com.befriend.util.OpeFunction;
+import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.Action;
 
 @SuppressWarnings("static-access")
@@ -89,8 +93,24 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	ForumOneType fot = new ForumOneType();
 	ForumTwoType ftt = new ForumTwoType();
 
-	public void test() throws IOException {
+	public void syncretic5() throws IOException {
+			String url = "http://127.0.0.1"+request.getContextPath() +"/forumLookStandBy?userid="+userid;
+			String forumLookStandBy=WechatKit.sendGet(url);
+			url = "http://127.0.0.1"+request.getContextPath() +"/forumMeAttention?userid="+userid;
+			String forumMeAttention=WechatKit.sendGet(url);
+			url = "http://127.0.0.1"+request.getContextPath() +"/ForumoneTouseid?userid="+userid;
+			String ForumoneTouseid=WechatKit.sendGet(url);
+			url = "http://127.0.0.1"+request.getContextPath() +"/Fuseid?userid="+userid;
+			String Fuseid=WechatKit.sendGet(url);
+			url = "http://127.0.0.1"+request.getContextPath() +"/Folook?userid="+userid;
+			String Folook=WechatKit.sendGet(url);
+			String result = "{\"forumLookStandBy\":" + util.ToJson(forumLookStandBy) + 
+					",\"forumMeAttention\":"+ util.ToJson(forumMeAttention) 
+					+ ",\"ForumoneTouseid\":" + util.ToJson(ForumoneTouseid)+ 
+					",\"Fuseid\":"+ util.ToJson(Fuseid)+ 
+					",\"Folook\":"+ util.ToJson(Folook) + "}";
 
+			util.Out().print(result);
 	}
 
 	public void removeOneType() throws IOException {
@@ -216,7 +236,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 			util.Out().print(util.ToJson(afl));
 
 		} else {
-			util.Out().print(false);
+			util.Out().print("null");
 		}
 	}
 
@@ -244,6 +264,17 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	}
 
+	public void LookStandBy() throws IOException {
+		List<Support> sl = cdao.ILikeToo(comefrom, userid);
+		for (int i = 0; i < sl.size(); i++) {
+			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
+		}
+		if (fones.size() > 0) {
+			util.Out().print(fones);
+		} else {
+			util.Out().print("null");
+		}
+	}
 	public void forumRemoveStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 		st = cdao.Whether(comefrom, userid, forumid);
@@ -1103,12 +1134,6 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void Fuseid() throws IOException {
-
-		if (userid <= 0) {
-			util.Out().print("null");
-			return;
-
-		}
 		ftwos = forumdao.getFuserALL(userid);
 		List<Integer> l = new ArrayList<Integer>();
 		List<ForumTwo> fow = new ArrayList<ForumTwo>();
@@ -1158,11 +1183,6 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	public void ForumoneTouseid() throws IOException {
 
-		if (userid <= 0) {
-			util.Out().print("null");
-			return;
-
-		}
 		fones = forumdao.getUseridForumOne(userid);
 		for (int i = 0; i < fones.size(); i++) {
 
@@ -1172,7 +1192,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 		}
 
-		if (fones.size() != 0) {
+		if (fones.size() > 0) {
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
 					+ util.ToJson(us) + "}";

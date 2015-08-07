@@ -24,26 +24,19 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
-
 import com.befriend.email.MailSenderInfo;
 import com.befriend.email.SimpleMailSender;
-import com.befriend.entity.User;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionContext;
-
 /**
- * ������
- * 
+ * Util
  * @author Administrator
  *
  */
@@ -68,33 +61,36 @@ public class OpeFunction {
 		builder.append("</script>");
 		out.print(builder.toString());
 	}
+
 	/**
 	 * 
 	 * null=true
 	 * 
 	 * not null=false
+	 * 
 	 * @param rstart
 	 * @param rend
 	 * @return
 	 */
-	public static boolean isEmpty(String string){
-		
-		if(string!=null){
-			if(StringUtils.isEmpty(string.trim())){
+	public static boolean isEmpty(String string) {
+
+		if (string != null) {
+			if (StringUtils.isEmpty(string.trim())) {
 				System.out.println("��");
 				return true;
-			}else{
+			} else {
 				System.out.println("����");
 				return false;
 			}
-		}else{
+		} else {
 			System.out.println("��");
 			return true;
 		}
 	}
-	
+
 	/**
 	 * 两个日期内的随机时间
+	 * 
 	 * @param rstart
 	 * @param rend
 	 * @return
@@ -120,12 +116,13 @@ public class OpeFunction {
 
 			b = false;
 		}
-	
+
 		return format.format(new Date(rtn));
 
 	}
+
 	/**
-	 *添加img 的属性
+	 * 添加img 的属性
 	 * 
 	 * @param content
 	 * @return
@@ -140,16 +137,17 @@ public class OpeFunction {
 		m_image = p_image.matcher(content);
 
 		while (m_image.find()) {
-			
+
 			images.add(m_image.group(1));
-			//��дд�� 
-			String reg = "<img src=\""+m_image.group(1)+"\" .*?>";
-			content = content.replaceAll(reg, "<img src=\""+m_image.group(1)+"\" width=\"100%\" />");
+			String reg = "<img src=\"" + m_image.group(1) + "\" .*?>";
+			content = content.replaceAll(reg, "<img src=\"" + m_image.group(1)
+					+ "\" width=\"100%\" />");
 
 		}
-		System.out.println("content=="+content);
+		System.out.println("content==" + content);
 		return content;
 	}
+
 	/**
 	 *
 	 * 
@@ -166,16 +164,15 @@ public class OpeFunction {
 		m_image = p_image.matcher(content);
 
 		while (m_image.find()) {
-			
+
 			images.add(m_image.group(1));
-			//��дд�� 
-			//m_image.replaceAll("<img src=\""+m_image.group(1)+"\" with=\"100%\" />");
+			// ��дд��
+			// m_image.replaceAll("<img src=\""+m_image.group(1)+"\" with=\"100%\" />");
 
 		}
 
 		return images;
 	}
-
 
 	/**
 	 * 
@@ -209,37 +206,29 @@ public class OpeFunction {
 								.toString();
 			}
 			break;
-		
+
 		case 2:
 			if (cal.get(Calendar.HOUR) + 1 < 10) {
-				name = name
-						+ "0"
-						+ Integer.valueOf(cal.get(Calendar.HOUR))
-								.toString();
+				name = name + "0"
+						+ Integer.valueOf(cal.get(Calendar.HOUR)).toString();
 			} else {
 				name = name
 						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
 								.toString();
 			}
 			if (cal.get(Calendar.MINUTE) < 10) {
-				name = name
-						+ "0"
-						+ Integer.valueOf(cal.get(Calendar.MINUTE))
-								.toString();
+				name = name + "0"
+						+ Integer.valueOf(cal.get(Calendar.MINUTE)).toString();
 			} else {
 				name = name
-						+ Integer.valueOf(cal.get(Calendar.MINUTE))
-								.toString();
+						+ Integer.valueOf(cal.get(Calendar.MINUTE)).toString();
 			}
 			if (cal.get(Calendar.SECOND) < 10) {
-				name = name
-						+ "0"
-						+ Integer.valueOf(cal.get(Calendar.SECOND))
-								.toString();
+				name = name + "0"
+						+ Integer.valueOf(cal.get(Calendar.SECOND)).toString();
 			} else {
 				name = name
-						+ Integer.valueOf(cal.get(Calendar.SECOND) )
-								.toString();
+						+ Integer.valueOf(cal.get(Calendar.SECOND)).toString();
 			}
 			break;
 		default:
@@ -260,16 +249,14 @@ public class OpeFunction {
 	}
 
 	/**
-	 * json转实体类
-	 * T可为实体类或集合
+	 * json转实体类 T可为实体类或集合
+	 * 
 	 * @param json
-	 * @param type 
-	 * 		  Type.class
-	 *        TypeToken<List<Type>>(){}.getType()
+	 * @param type
+	 *        Type.class TypeToken<List<Type>>(){}.getType()
 	 * @return
 	 */
-	public static <T> T fromJson(String json,Type type)
-	{
+	public static <T> T fromJson(String json, Type type) {
 		Gson gson = new Gson();
 		return gson.fromJson(json, type);
 	}
@@ -287,7 +274,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ����sha1����
+	 * sha1
 	 * 
 	 * @throws NoSuchAlgorithmException
 	 */
@@ -295,13 +282,13 @@ public class OpeFunction {
 		try {
 
 			StringBuffer sb = new StringBuffer();
-			// ѡ��sha1����
+			
 			MessageDigest digest = MessageDigest.getInstance("SHA-1");
-			// ����sha1����
+			
 			digest.update(str.getBytes());
-			// byte����
+			
 			byte[] digbyte = digest.digest();
-			// ����byte����
+			
 			for (byte b : digbyte) {
 				sb.append(String.format("%02x", b));
 			}
@@ -312,11 +299,8 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * 
-	 *
-	 */
-	public static String ufileToServer(String path, File file,String fileType) throws IOException {
+	public static String ufileToServer(String path, File file, String fileType)
+			throws IOException {
 
 		String realpath = ServletActionContext.getServletContext().getRealPath(
 				path);
@@ -326,7 +310,7 @@ public class OpeFunction {
 				savedir.getParentFile().mkdirs();
 			File saveFile;
 			saveFile = new File(savedir, java.util.UUID.randomUUID() + "."
-						+ fileType);
+					+ fileType);
 
 			FileUtils.copyFile(file, saveFile);
 			return path + "/" + saveFile.getName();
@@ -336,10 +320,6 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * ɾ���ļ�
-	 *
-	 */
 	public static Boolean fileRemove(String path) throws IOException {
 		Boolean b = true;
 		File file = new File(ServletActionContext.getServletContext()
@@ -350,23 +330,19 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * �ļ��ϴ���������
-	 *
-	 */
 	public static String fileToServer(String path, File file, String fileName,
 			String fileType, boolean reName) throws IOException {
 
 		String realpath = ServletActionContext.getServletContext().getRealPath(
-				path);// ������·��
+				path);
 		if (file != null) {
-			File savedir = new File(realpath);// ����Ŀ¼
+			File savedir = new File(realpath);
 			if (!savedir.getParentFile().exists())
 				savedir.getParentFile().mkdirs();
 			File saveFile;
 			fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-			// �������� ��������
+			
 			if (reName) {
 
 				saveFile = new File(savedir, java.util.UUID.randomUUID() + "."
@@ -387,9 +363,9 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ��ȡ�ļ��Ĵ�С ��λΪKB,������λС��
 	 * 
-	 * @param file
+	 * 
+	 * @param fileSize
 	 * @return
 	 * @throws IOException
 	 */
@@ -403,13 +379,6 @@ public class OpeFunction {
 		return f1;
 	}
 
-	/**
-	 * ��ȡ�ļ��Ĵ�С ��λΪMB�� ,������λС��
-	 * 
-	 * @param file
-	 * @return
-	 * @throws IOException
-	 */
 	public static float fileSizem(File file) throws IOException {
 
 		FileInputStream fis = new FileInputStream(file);
@@ -420,11 +389,7 @@ public class OpeFunction {
 		return f1;
 	}
 
-	/**
-	 * ��ñ���ʱ��
-	 * 
-	 * @return
-	 */
+	
 	public static String getNowTime() {
 
 		Date dt = new Date();
@@ -433,11 +398,7 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * ��ñ���ʱ��
-	 * 
-	 * @return
-	 */
+	
 	public static String getSFMTime() {
 		//
 		Date dt = new Date();
@@ -446,7 +407,6 @@ public class OpeFunction {
 
 	}
 
-	
 	public static String getNumTime(int day) {
 
 		Calendar calendar = Calendar.getInstance();
@@ -457,27 +417,16 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * ����1 ʱ��
-	 * 
-	 * @param date
-	 * @return
-	 */
+	
 	public static String getMondayOfWeek1() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		cal.add(Calendar.WEEK_OF_MONTH, -1);
-		cal.set(Calendar.DAY_OF_WEEK, 2); // ��ȡ����һ������
+		cal.set(Calendar.DAY_OF_WEEK, 2);
 
 		return df.format(cal.getTime());
 	}
 
-	/**
-	 * ������ ʱ��
-	 * 
-	 * @param date
-	 * @return
-	 */
 	public static String getMondayOfWeek7() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -487,12 +436,6 @@ public class OpeFunction {
 		return df.format(cal.getTime());
 	}
 
-	/**
-	 * ��װresponse
-	 * 
-	 * @return
-	 * @throws IOException
-	 */
 	public static PrintWriter Out() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setContentType("application/json");
@@ -503,7 +446,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * ��װGson to Json
+	 * Gson to Json
 	 * 
 	 * @param object
 	 * @return
@@ -518,24 +461,13 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * ��ȡ session
-	 * 
-	 * @return
-	 * @throws UnsupportedEncodingException
-	 */
 	public static Object getsession() {
 
 		return ActionContext.getContext().getSession();
 
 	}
 
-	/**
-	 * ��ȡ request
-	 * 
-	 * @return
-	 * @throws UnsupportedEncodingException
-	 */
+
 	public static HttpServletRequest request()
 			throws UnsupportedEncodingException {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -545,11 +477,7 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * ��ȡ response
-	 * 
-	 * @return
-	 */
+	
 	public static <HHttpServletResponse> HHttpServletResponse response() {
 		HHttpServletResponse response = (HHttpServletResponse) ServletActionContext
 				.getResponse();
@@ -558,39 +486,30 @@ public class OpeFunction {
 
 	}
 
-	/**
-	 * gyn �����ʼ����Ͷ��� ��ҪEmail
-	 */
+	
 	public static void Email(String Email, String information)
 			throws IOException {
-		// �����ʼ�
+		
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		mailInfo.setMailServerHost("smtp.chaimiyouxi.com");
 		mailInfo.setMailServerPort("25");
 		mailInfo.setValidate(true);
 		mailInfo.setUserName("system@chaimiyouxi.com");
-		mailInfo.setPassword("nandayong11");// ��������
+		mailInfo.setPassword("nandayong11");
 		mailInfo.setFromAddress("system@chaimiyouxi.com");
-		// ���͵ĵ�ַ
 		mailInfo.setToAddress(Email);
-		// ����
-		mailInfo.setSubject("�ҳ�����û����鷴����Ϣ");
-		// ʱ��
+	
+		mailInfo.setSubject("title");
+		
 
 		mailInfo.setContent("<h1 style='color: red;'>" + getNowTime() + "<br>"
 				+ information + "<h1>");
-		// �������Ҫ�������ʼ�
+	
 		SimpleMailSender sms = new SimpleMailSender();
-		// sms.sendTextMail(mailInfo);//���������ʽ
-		sms.sendHtmlMail(mailInfo);// ����html��ʽ
+		// sms.sendTextMail(mailInfo);
+		sms.sendHtmlMail(mailInfo);
 	}
 
-	/**
-	 * ��ȡ�ͻ���ip
-	 * 
-	 * @param request
-	 * @return
-	 */
 	public static String getRemortIP(HttpServletRequest request) {
 		if (request.getHeader("x-forwarded-for") == null) {
 			return request.getRemoteAddr();
@@ -598,16 +517,13 @@ public class OpeFunction {
 		return request.getHeader("x-forwarded-for");
 	}
 
-	/**
-	 * ���ֻ��ŷ�����Ϣ
-	 */
+
 	public static void setphone(String phone, String textp) {
 		try {
 			String account = "cf_wcsk_jztd";// �û��� cf_wcsk_jztd
 			String pwd = "wcsk1212";// ���� wcsk1212
 			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// ��ַ
-			// ����Ҫ���͵���Ϣ
-			// String content = new String(textp+"!");
+
 			URL url = new URL(postUrl);
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
@@ -644,24 +560,21 @@ public class OpeFunction {
 	public static void main(String[] args) throws ParseException {
 		System.out.println(getDayTime(1));
 		System.out.println(getDayTime(2));
-		
-		      }  
-	public static class SSSS  implements Comparator<Integer>{
+
+	}
+
+	public static class SSSS implements Comparator<Integer> {
 
 		@Override
 		public int compare(Integer o1, Integer o2) {
-			if(o1>o2)
+			if (o1 > o2)
 				return 1;
+			else if (o1 < o2)
+				return -1;
 			else
-				if(o1<o2)
-					return -1;
-				else
-					return 0;
+				return 0;
 		}
 
-		
-		
 	}
-	
 
 }

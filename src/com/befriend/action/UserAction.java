@@ -94,7 +94,7 @@ public class UserAction {
 
 	public String ViewStatistics() throws IOException {
 
-		String url = "http://127.0.0.1/PerfectBefriend/aStas";
+		String url = "http://127.0.0.1"+request.getContextPath() +"/aStas";
 		WechatKit.sendGet(url);
 		List<Stas> ios = adao.StasTime("all", "ios");
 		List<Stas> android = adao.StasTime("all", "android");
@@ -1163,7 +1163,6 @@ public class UserAction {
 	@SuppressWarnings("static-access")
 	public void Login() throws IOException {
 		try {
-			System.out.println(username+ password);
 			if(util.isEmpty(username)||util.isEmpty(password)){
 
 				util.Out().print("null");
@@ -1193,10 +1192,10 @@ public class UserAction {
 			time = util.getNumTime(0);
 			String url = "";
 			if (province != null) {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os
 						+ "&province=" + province;
 			} else {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os;
 			}
 			WechatKit.sendGet(url);
 
@@ -1268,8 +1267,6 @@ public class UserAction {
 			u.setOs("syn");
 
 			userdao.update(u);
-			// u.setPassword(pd.getPassword());
-			// ���������û�����
 			time = util.getNumTime(0);
 
 			session.setAttribute("u", u);
@@ -1278,10 +1275,10 @@ public class UserAction {
 					.getContextPath() + "/webNewsA10");
 			String url = "";
 			if (u.getAddress() != null) {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os
 						+ "&province=" + u.getAddress();
 			} else {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os;
 			}
 			WechatKit.sendGet(url);
 		}
@@ -1329,10 +1326,10 @@ public class UserAction {
 
 			String url = "";
 			if (u.getAddress() != null) {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os
 						+ "&province=" + u.getAddress();
 			} else {
-				url = "http://127.0.0.1/PerfectBefriend/aStas?os=" + os;
+				url = "http://127.0.0.1"+request.getContextPath() +"/aStas?os=" + os;
 			}
 			WechatKit.sendGet(url);
 		}
@@ -1542,7 +1539,7 @@ public class UserAction {
 						RefreshAccessToken.access_token);
 
 				util.Out().print(util.ToJson(u));
-				String url = "http://127.0.0.1/PerfectBefriend/aStas?province="
+				String url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
 						+ address + "&os=" + os;
 				WechatKit.sendGet(url);
 				return;
@@ -1578,8 +1575,8 @@ public class UserAction {
 		// u.setOs(os);
 		u.setOnline(1);
 		u.setTime(time);
-		u.setCompetence(0);// ��ͨ�û�
-		u.setGag(0);// ���Դ�����̳
+		u.setCompetence(0);
+		u.setGag(0);
 		User macU = userdao.byIdMac();
 		if (macU != null) {
 			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
@@ -1605,16 +1602,12 @@ public class UserAction {
 
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
-			// �û�id
 			json.put("password", "123456");
-			// �û�����
 			String w = WechatKit.post(url, json,
 					RefreshAccessToken.access_token);
-
 			u.setPassword(accnumno.toString());
-
 			util.Out().print(util.ToJson(u));
-			String url = "http://127.0.0.1/PerfectBefriend/aStas?province="
+			String url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
 					+ address + "&os=" + os;
 			WechatKit.sendGet(url);
 			return;
