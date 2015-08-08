@@ -13,5 +13,7 @@
 		<action name="deleteFriend" class="friendAction" method="deleteFriend"></action>
 		<action name="addToBlackList" class="friendAction" method="addToBlackList"></action>
 		<action name="moveFromBlckList" class="friendAction" method="moveFromBlckList"></action>
+		<action name="inviteContacts" class="friendAction" method="inviteContacts"></action>
+		<action name="getUserInfo" class="friendAction" method="getUserInfo"></action>
 	</package>
 </struts>
