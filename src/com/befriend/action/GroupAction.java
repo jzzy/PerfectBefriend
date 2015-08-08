@@ -2,18 +2,22 @@ package com.befriend.action;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.core.net.server.UdpSocketServer;
+
+
+
+
+
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.mapping.Array;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,8 +33,10 @@ import com.befriend.udp.UDPServer;
 import com.befriend.util.OpeFunction;
 import com.befriend.wechat.RefreshAccessToken;
 import com.befriend.wechat.WechatKit;
-
+@SuppressWarnings("static-access")
 public class GroupAction {
+
+	@SuppressWarnings("unused")
 	private UDPServer udp;// 自建工具类
 	private OpeFunction util;// 自建工具类
 	private GroupDAO gdao;// 群聊dao
@@ -482,6 +488,7 @@ public class GroupAction {
 	 * 
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	public void GroupJointion() throws IOException {
 		System.out.println(time);
 		// 代表 0等待审核 1 是成员
@@ -501,6 +508,7 @@ public class GroupAction {
 			return;
 		}
 		// 用于存用户list
+		@SuppressWarnings("rawtypes")
 		List listlu = new ArrayList();
 		// 用于存 群对象
 		List<GroupChat> listgroupchat = new ArrayList<GroupChat>();
@@ -715,6 +723,7 @@ public class GroupAction {
 	 * 
 	 * @throws IOException
 	 */
+	
 	public void groupSend() throws IOException {
 		try {
 			System.out.println(util.request().getContextPath());
