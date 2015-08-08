@@ -1,8 +1,10 @@
 package com.befriend.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import com.befriend.dao.UserGroupDAO;
 import com.befriend.entity.GroupFriend;
 import com.befriend.entity.User;
 import com.befriend.entity.UserGroup;
+import com.befriend.util.Contact;
 import com.befriend.util.JsonUtil;
 import com.befriend.util.Message;
 import com.befriend.util.OpeFunction;
@@ -44,6 +47,7 @@ public class FriendAction extends BaseAction
 	private String groupName;
 	private String orderNum;
 	private String type;
+	private String phones;
 
 	/**
 	 * @param userId
@@ -670,6 +674,92 @@ public class FriendAction extends BaseAction
 		
 	}
 	
+	/**
+	 * @param phones
+	 * @throws IOException 
+	 */
+	public void inviteContacts() throws IOException
+	{
+		String [] userPhones = phones.split(",|\\,");
+		List<Contact> contacts = new ArrayList<Contact>();
+		for (String phone : userPhones) 
+		{
+			Contact contact = new Contact();
+			User user = userDAO.byUsernameAccnumnoPhone(phone);
+			if(user != null)
+			{
+				contact.setPhone(phone);
+				contact.setExist(true);
+				contact.setUserId(user.getId());
+				contact.setUserName(user.getUsername());
+				contact.setImg(user.getImg());
+				
+				String url = RefreshAccessToken.BASE_URL+"/users/"+user.getId()+"/status";
+				String result = WechatKit.get(url, RefreshAccessToken.access_token);
+				if(result != null)
+				{
+					try {
+						JSONObject jsonObject = new JSONObject(result);
+						JSONObject data = jsonObject.getJSONObject("data");
+						String stliu = (String) data.get("stliu");
+						if(stliu!=null&&stliu.equalsIgnoreCase("online"))
+						{
+							contact.setStatus(Contact.ONLINE);
+						}
+						else
+						{
+							contact.setStatus(Contact.ONLINE);
+						}
+					} catch (JSONException e) {
+						contact.setStatus(Contact.ONLINE);
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+					contact.setStatus(Contact.ONLINE);
+				}
+			}
+			else
+			{
+				contact.setPhone(phone);
+				contact.setExist(false);
+			}
+			contacts.add(contact);
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(contacts));
+	}
+	
+	/**
+	 * @param userId
+	 * @throws IOException 
+	 */
+	public void getUserInfo() throws IOException
+	{
+		Message msg = new Message();
+		if(StringUtils.isNumeric(userId))
+		{
+			User user = userDAO.byid(Integer.valueOf(userId));
+			if(user != null)
+			{
+				msg.setCode(Message.SUCCESS);
+				msg.setStatement("success");
+				msg.setContent(user);
+			}
+			else
+			{
+				msg.setCode(Message.NULL);
+				msg.setStatement("user is not exist");
+			}
+		}
+		else
+		{
+			msg.setCode(Message.ERROR);
+			msg.setStatement("parameter error");
+		}
+		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+	}
+	
 	public FriendAction(UserDAO userDAO, UserGroupDAO userGroupDAO, GroupFriendDAO groupFriendDAO) {
 		super();
 		this.userDAO = userDAO;
@@ -747,6 +837,14 @@ public class FriendAction extends BaseAction
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getPhones() {
+		return phones;
+	}
+
+	public void setPhones(String phones) {
+		this.phones = phones;
 	}
 	
 }
