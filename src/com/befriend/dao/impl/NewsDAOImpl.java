@@ -12,27 +12,27 @@ import org.springframework.transaction.annotation.Transactional;
 import com.befriend.dao.NewsDAO;
 import com.befriend.entity.News;
 import com.befriend.entity.NewsLabel;
-
+@SuppressWarnings("unchecked")
 @Transactional
 public class NewsDAOImpl implements NewsDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	// ²éÑ¯È«²¿ÐÂÎÅ°´ÕÕ ÊÕ²Ø ÆÀÂÛÊý ·¢²¼Ê±¼ä ÅÅÐò
+	// ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ï¿½ ï¿½Õ²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<News> All() {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.collectnum desc,u.reviews desc,u.time desc");
 		query.setMaxResults(10);
 		return query.getResultList();
 	}
 
-	// ²éÑ¯numÐÂÎÅ°´ÕÕ ÊÕ²Ø ÆÀÂÛÊý ·¢²¼Ê±¼ä ÅÅÐò
+	// ï¿½ï¿½Ñ¯numï¿½ï¿½ï¿½Å°ï¿½ï¿½ï¿½ ï¿½Õ²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<News> Hottest(int num) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.collectnum desc,u.reviews desc,u.time desc");
 
@@ -50,7 +50,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public News byid(int newsid) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 
 		Query query = entityManager
 				.createQuery("select u from News u where u.id=:newsid");
@@ -64,7 +64,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> news(int num) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.time desc");
 		query.setMaxResults(num);
@@ -73,11 +73,11 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> Hottime(int num) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select u from News u  where "
 				+ " u.type!=:type and u.type!=:type1 order by u.time desc ");
-		query.setParameter("type", "ÇáËÉæäÕ¾");
-		query.setParameter("type1", "½¡¿µµ¼º½");
+		query.setParameter("type", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾");
+		query.setParameter("type1", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		if (num != 0) {
 			query.setMaxResults(num);
 		}
@@ -86,7 +86,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> Hotarea(int num, String area) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.area=:area  order"
 						+ " by u.time desc");
@@ -107,7 +107,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> type(int num, int type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 
 		Query query = entityManager
 				.createQuery("select u from News u where u.type=:type order"
@@ -122,7 +122,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> types(String type) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.types=:types order"
 						+ " by u.time desc");
@@ -133,12 +133,12 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> cah(int num, String time, String qtime) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select n from  News n where"
 				+ " n.time>=:qtime and n.time<=:time and n.type!=:type"
 				+ " and n.type!=:type1 " + " order by n.cah desc,n.time desc");
-		query.setParameter("type", "ÇáËÉæäÕ¾");
-		query.setParameter("type1", "½¡¿µµ¼º½");
+		query.setParameter("type", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾");
+		query.setParameter("type1", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		query.setParameter("time", time);
 		query.setParameter("qtime", qtime);
 
@@ -150,7 +150,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> area(String area, int num) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.area=:area"
 						+ " order" + " by u.time desc");
@@ -167,14 +167,14 @@ public class NewsDAOImpl implements NewsDAO {
 		Query query = entityManager
 				.createQuery("select u from News u order by u.id desc");
 		// query.setMaxResults(4);
-		// currentPageÒ³Êý
+		// currentPageÒ³ï¿½ï¿½
 		int startRow = (currentPage - 1) * pageSize;
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -199,7 +199,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> type(int num, int type, int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.type=:type order"
 						+ " by u.time desc,u.collectnum desc,u.reviews desc");
@@ -209,9 +209,9 @@ public class NewsDAOImpl implements NewsDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		if (num != 0) {
@@ -223,20 +223,20 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> cah(int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.type!=:type and u.type!=:type1 order"
 						+ " by u.cah desc,u.time desc");
-		query.setParameter("type", "ÇáËÉæäÕ¾");
-		query.setParameter("type1", "½¡¿µµ¼º½");
+		query.setParameter("type", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾");
+		query.setParameter("type1", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		int startRow = (currentPage - 1) * pageSize;
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -244,7 +244,7 @@ public class NewsDAOImpl implements NewsDAO {
 	@Override
 	public List<News> Hotarea(String area, String areas, int pageSize,
 			int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.area=:area and u.areas=:areas order"
 						+ " by u.time desc");
@@ -255,9 +255,9 @@ public class NewsDAOImpl implements NewsDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
@@ -265,13 +265,13 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> cah(int num) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select n from   News n  where  "
 						+ " n.type!=:type" + " and n.type!=:type1 "
 						+ " order by n.cah desc,n.time desc");
-		query.setParameter("type", "ÇáËÉæäÕ¾");
-		query.setParameter("type1", "½¡¿µµ¼º½");
+		query.setParameter("type", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾");
+		query.setParameter("type1", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		if (num != 0) {
 			query.setMaxResults(num);
@@ -281,7 +281,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> area(String area) {
-		// TODO ·ÀÖ¹sql×¢Èë ²éÑ¯ ±¾µØ »ñÈ¡ °Ë´óÀà ÀïÃæ Îª×¨¼ÒµÄ ÐÂÎÅ
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½ ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¡ ï¿½Ë´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Îª×¨ï¿½Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where (u.area=:area or u.area is null)"
 						+ " and u.expert=1 order" + " by u.time desc");
@@ -292,7 +292,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	@Override
 	public List<News> types(String type, int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.types=:type order"
 						+ " by u.time desc,u.collectnum desc,u.reviews desc");
@@ -302,32 +302,32 @@ public class NewsDAOImpl implements NewsDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hottest(int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.collectnum desc,u.reviews desc,u.time desc");
 		int startRow = (currentPage - 1) * pageSize;
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<News> Hotarea(String area, int pageSize, int currentPage) {
-		// TODO ·ÀÖ¹sql×¢Èë
+		// TODO ï¿½ï¿½Ö¹sql×¢ï¿½ï¿½
 		Query query = entityManager
 				.createQuery("select u from News u where u.area=:area  order"
 						+ " by u.time desc");
@@ -338,16 +338,17 @@ public class NewsDAOImpl implements NewsDAO {
 		if (startRow < 0) {
 			startRow = 0;
 		}
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 
 		return query.getResultList();
 	}
 
+	
 	@Override
-	public List<News> n2ews() {
+	public List<News> maxNewsId() {
 		Query query = entityManager.createQuery("select u from News u order"
 				+ " by u.id desc");
 
@@ -358,7 +359,6 @@ public class NewsDAOImpl implements NewsDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<News> getThreeByDay(String day) {
 		Query query = entityManager
@@ -374,15 +374,15 @@ public class NewsDAOImpl implements NewsDAO {
 		Query query = entityManager
 				.createQuery("select u from News u where admin=:admin order by u.id desc");
 		// query.setMaxResults(4);
-		// currentPageÒ³Êý
+		// currentPageÒ³ï¿½ï¿½
 		int startRow = (currentPage - 1) * pageSize;
 		if (startRow < 0) {
 			startRow = 0;
 		}
 		query.setParameter("admin", admin);
-		// µÚ¼¸Ò³
+		// ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		// Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
@@ -399,7 +399,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<News> getRecentlyNews(int type, int pageSize, int currentPage) {
 		Query query = entityManager
@@ -420,7 +420,7 @@ public class NewsDAOImpl implements NewsDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 
 
@@ -439,7 +439,7 @@ public class NewsDAOImpl implements NewsDAO {
 			return new ArrayList<News>();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<News> getRecentlyNews(int type,String province, String city, int pageSize,
 			int currentPage)
@@ -460,7 +460,7 @@ public class NewsDAOImpl implements NewsDAO {
 			return new ArrayList<News>();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<News> getRecentlyNewsByTime(String startTime, String endTime)
 	{

@@ -92,8 +92,9 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	private final static int comefrom = 2;
 	ForumOneType fot = new ForumOneType();
 	ForumTwoType ftt = new ForumTwoType();
-
-	public void syncretic5() throws IOException {
+	List<ForumTwoType> fttl = new ArrayList<ForumTwoType>();
+	List<ForumOneType> fotl = new ArrayList<ForumOneType>();
+	public  void syncretic5() throws IOException {
 			String url = "http://127.0.0.1"+request.getContextPath() +"/forumLookStandBy?userid="+userid;
 			String forumLookStandBy=WechatKit.sendGet(url);
 			url = "http://127.0.0.1"+request.getContextPath() +"/forumMeAttention?userid="+userid;
@@ -232,8 +233,18 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	public void forumMeAttention() throws IOException {
 		afl = cdao.ILikeToo_A(comefrom, userid);
+		for (int i = 0; i < afl.size(); i++) {
+			af=afl.get(i);
+			if(af!=null){
+				fttl.add(forumdao.getByIdForumTwoType(af.getObjectid()));
+			}else{
+				fttl.add(null);
+			}
+		}
+		String result = "{\"afl\":" + util.ToJson(afl) + ",\"fttl\":"
+				+ JsonUtil.toJsonExpose(fttl) +"}";
 		if (afl.size() > 0) {
-			util.Out().print(util.ToJson(afl));
+			util.Out().print(result);
 
 		} else {
 			util.Out().print("null");
@@ -241,9 +252,12 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void forumRemoveAttention() throws IOException {
+		ftt = forumdao.getByIdForumTwoType(forutypeid);
 		af = cdao.Whether_A(comefrom, userid, forutypeid);
-		if (af != null) {
+		if (af != null && ftt != null) {
 			cdao.remove(af);
+			ftt.setAttentions(cdao.Frequency_A(comefrom, forutypeid).size());
+			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
 			util.Out().print(false);
@@ -251,12 +265,16 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void forumAttention() throws IOException {
-		if (cdao.Whether_A(comefrom, userid, forutypeid) == null) {
+			
+			ftt=forumdao.getByIdForumTwoType(forutypeid);
+		if (cdao.Whether_A(comefrom, userid, forutypeid) == null&&userid>0&&forutypeid>0&&ftt!=null) {
+			ftt.setAttentions(cdao.Frequency_A(comefrom, forutypeid).size());
 			af.setUserid(userid);
 			af.setComefrom(comefrom);
 			af.setTime(time);
-			af.setObjectid(forumid);
+			af.setObjectid(forutypeid);
 			cdao.save(af);
+			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
 			util.Out().print(false);

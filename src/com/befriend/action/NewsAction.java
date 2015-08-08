@@ -227,7 +227,7 @@ public class NewsAction {
 	}
 
 	public void newNewsId() throws IOException {
-		nl = ndao.n2ews();
+		nl = ndao.maxNewsId();
 		if (nl.size() > 0) {
 
 			OpeFunction.Out().print(nl.get(0).getId());
@@ -888,11 +888,7 @@ public class NewsAction {
 		}
 	}
 
-	/**
-	 * ��ҳ ��ѯ �˴���type
-	 * 
-	 * @throws IOException
-	 */
+	
 	public void newtype() throws IOException {
 		try {
 			if (pageSize <= 0) {
@@ -900,12 +896,10 @@ public class NewsAction {
 
 			}
 			if (tp <= 0) {
-				OpeFunction.Out().print("tp==null��");
+				OpeFunction.Out().print("null");
 				return;
 			}
 
-			System.out.println("����newtype");
-			System.out.println("����" + tp);
 
 			int a = ndao.type(0, tp).size();
 
@@ -921,9 +915,6 @@ public class NewsAction {
 				currentPage = 1;
 			}
 
-			System.out.println(" -��" + a + "ҳ");
-			System.out.println("ÿҳ������-" + pageSize);
-			System.out.println("��-" + currentPage + "-ҳ");
 			nl = ndao.type(0, tp, pageSize, currentPage);
 			List<Boolean> scb = new ArrayList<Boolean>();
 			List<Boolean> plb = new ArrayList<Boolean>();
@@ -931,19 +922,19 @@ public class NewsAction {
 
 			for (int i = 0; i < nl.size(); i++) {
 				n = nl.get(i);
-				// �Ƿ��ղع�
+			
 				if (cdao.unid(userid, n.getId()) != null) {
 					scb.add(true);
 				} else {
 					scb.add(false);
 				}
-				// �Ƿ��޹�
+				
 				if (cdao.Whether(comefrom, userid, n.getId()) != null) {
 					zb.add(true);
 				} else {
 					zb.add(false);
 				}
-				// �Ƿ����۹�
+				
 				if (rdao.unid(userid, n.getId()).size() > 0) {
 					plb.add(true);
 				} else {
@@ -952,7 +943,7 @@ public class NewsAction {
 
 			}
 
-			System.out.println(type);
+			
 			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":"
 					+ a + ",\"currentPage\":" + currentPage + ",\"plb\":"
 					+ OpeFunction.ToJson(plb) + ",\"zb\":"
@@ -965,7 +956,7 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		e.printStackTrace();
 		}
 
 	}

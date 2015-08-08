@@ -151,6 +151,8 @@
 		<constructor-arg ref="newsDAO"></constructor-arg>
 		<constructor-arg ref="userDAO"></constructor-arg>
 		<constructor-arg ref="behaviorDAO"></constructor-arg>
+		<constructor-arg ref="collectDAO"></constructor-arg>
+		<constructor-arg ref="reviewDAO"></constructor-arg>
 	</bean>	
 	<bean id="statisticsAction" class="com.befriend.action.StatisticsAction" scope="prototype">
 		<constructor-arg ref="behaviorDAO"></constructor-arg>

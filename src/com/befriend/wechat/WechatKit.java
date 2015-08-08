@@ -1,15 +1,11 @@
 package com.befriend.wechat;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -22,7 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-import org.springframework.http.HttpStatus;
+
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -31,26 +27,17 @@ import javax.net.ssl.X509TrustManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
-import com.befriend.util.OpeFunction;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
+@SuppressWarnings("deprecation")
 public class WechatKit {
 
 	private static CloseableHttpClient Client = null;
 	private static CloseableHttpResponse resp = null;
 	private static HttpClient client=null;
 
-	/**
-	 * ����get����
-	 * 
-	 * @param url
-	 * @return
-	 * @throws IOException
-	 */
+
 	public static String sendGet(String url) throws IOException {
 		try {
 			String cont = null;
@@ -91,12 +78,7 @@ public class WechatKit {
 		}
 		return null;
 	}
-	/**
-	 * ͨ��post����!
-	 * @param url
-	 * @param json
-	 * @return
-	 */
+	
 	public static String post(String url, JSONObject json,String token) {
 		
 		client = getClient(true);
@@ -127,13 +109,7 @@ public class WechatKit {
 		}
 		return null;
 	}
-	/**
-	 * @describe HTTP Method : DELETE
-	 * @param url
-	 * @param json
-	 * @param token
-	 * @return
-	 */
+	
 	public static String delete(String url,String token)
 	{
 		String response = null;
@@ -193,13 +169,9 @@ public class WechatKit {
 		
 	}
 
-	/**
-	 * ���� ��װ��HttpClient
-	 * 
-	 * @param isSSL
-	 * @return
-	 */
+	
 
+	
 	public static HttpClient getClient(boolean isSSL) {
 
 		HttpClient httpClient = new DefaultHttpClient();

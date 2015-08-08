@@ -7,7 +7,7 @@ import com.befriend.entity.NewsLabel;
 
 public interface NewsDAO {
 
-	public List<News> n2ews();
+	public List<News> maxNewsId();
 
 	public void rm(News n);
 

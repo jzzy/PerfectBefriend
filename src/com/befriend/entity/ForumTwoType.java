@@ -42,14 +42,24 @@ public class ForumTwoType  implements Serializable {
 	private String img;
 
 	@Column(name="supports")
-	//被赞次数
+	
 	@Expose
 	private int supports;
+	@Column(name="attentions")
+	@Expose
+	private int attentions;
+	
 	@Transient
 	@Expose
 	private Boolean AttentionB=false;
 	
 	
+	public int getAttentions() {
+		return attentions;
+	}
+	public void setAttentions(int attentions) {
+		this.attentions = attentions;
+	}
 	public Boolean getAttentionB() {
 		return AttentionB;
 	}

@@ -11,7 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.befriend.base.BaseAction;
 import com.befriend.dao.BehaviorDAO;
+import com.befriend.dao.CollectDAO;
 import com.befriend.dao.NewsDAO;
+import com.befriend.dao.ReviewDAO;
 import com.befriend.dao.UserDAO;
 import com.befriend.entity.Behavior;
 import com.befriend.entity.News;
@@ -33,10 +35,12 @@ public class AppPushAction extends BaseAction
 	private static final int BEHAVIOR_NUM = 10;// 统计的行为数
 	private static final int NEWS_TYPE_NUM = 5;// 新闻分类数
 	private static final float deviation = 0.03f;//舍6进7
-
+	private final static int comefrom = 1;
 	private NewsDAO newsDAO;
 	private UserDAO userDAO;
 	private BehaviorDAO behaviorDAO;
+	private CollectDAO cdao;
+	private ReviewDAO rdao;
 
 	private int currentPage = 1;
 	private int pageSize = 10;
@@ -69,7 +73,37 @@ public class AppPushAction extends BaseAction
 				if (news.size() > 0)
 				{
 					msg.setCode(Message.SUCCESS);
-					msg.setContent(news);
+					List<Boolean> scb = new ArrayList<Boolean>();
+					List<Boolean> plb = new ArrayList<Boolean>();
+					List<Boolean> zb = new ArrayList<Boolean>();
+					for (int i = 0; i < news.size(); i++) {
+						News n = news.get(i);
+					
+						if (cdao.unid(Integer.valueOf(userId), n.getId()) != null) {
+							scb.add(true);
+						} else {
+							scb.add(false);
+						}
+						
+						if (cdao.Whether(comefrom, Integer.valueOf(userId), n.getId()) != null) {
+							zb.add(true);
+						} else {
+							zb.add(false);
+						}
+						
+						if (rdao.unid(Integer.valueOf(userId), n.getId()).size() > 0) {
+							plb.add(true);
+						} else {
+							plb.add(false);
+						}
+
+					}
+					String result = "{\"news\":" + OpeFunction.ToJson(news) +
+							",\"currentPage\":" + currentPage + ",\"plb\":"
+							+ OpeFunction.ToJson(plb) + ",\"zb\":"
+							+ OpeFunction.ToJson(zb) + ",\"scb\":"
+							+ OpeFunction.ToJson(scb) + "}";
+					msg.setContent(result);
 				}
 				else
 				{
@@ -311,7 +345,37 @@ public class AppPushAction extends BaseAction
 						if (news.size() > 0)
 						{
 							msg.setCode(Message.SUCCESS);
-							msg.setContent(news);
+							List<Boolean> scb = new ArrayList<Boolean>();
+							List<Boolean> plb = new ArrayList<Boolean>();
+							List<Boolean> zb = new ArrayList<Boolean>();
+							for (int i = 0; i < news.size(); i++) {
+								News n = news.get(i);
+							
+								if (cdao.unid(Integer.valueOf(userId), n.getId()) != null) {
+									scb.add(true);
+								} else {
+									scb.add(false);
+								}
+								
+								if (cdao.Whether(comefrom, Integer.valueOf(userId), n.getId()) != null) {
+									zb.add(true);
+								} else {
+									zb.add(false);
+								}
+								
+								if (rdao.unid(Integer.valueOf(userId), n.getId()).size() > 0) {
+									plb.add(true);
+								} else {
+									plb.add(false);
+								}
+
+							}
+							String result = "{\"news\":" + OpeFunction.ToJson(news) +
+									",\"currentPage\":" + currentPage + ",\"plb\":"
+									+ OpeFunction.ToJson(plb) + ",\"zb\":"
+									+ OpeFunction.ToJson(zb) + ",\"scb\":"
+									+ OpeFunction.ToJson(scb) + "}";
+							msg.setContent(result);
 						}
 						else
 						{
@@ -394,13 +458,18 @@ public class AppPushAction extends BaseAction
 	}
 
 	
-	public AppPushAction(NewsDAO newsDAO, UserDAO userDAO, BehaviorDAO behaviorDAO) {
+	
+
+
+	public AppPushAction(NewsDAO newsDAO, UserDAO userDAO,
+			BehaviorDAO behaviorDAO, CollectDAO cdao, ReviewDAO rdao) {
 		super();
 		this.newsDAO = newsDAO;
 		this.userDAO = userDAO;
 		this.behaviorDAO = behaviorDAO;
+		this.cdao = cdao;
+		this.rdao = rdao;
 	}
-
 
 	public int getCurrentPage()
 	{
