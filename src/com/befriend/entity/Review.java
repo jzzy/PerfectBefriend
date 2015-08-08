@@ -13,22 +13,30 @@ import javax.persistence.Table;
 @Table(name="review")
 public class Review implements Serializable
 {
-	/**
-	 * 新闻评论
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="userid")//用户名
+	@Column(name="userid")
 	private Integer userid;
-	@Column(name="newsid")//新闻id
+	@Column(name="newsid")
 	private int newsid;
-	@Column(name="review")//评论内容
+	@Column(name="supports")
+	private int supports;
+	@Column(name="review")
 	private String review;
-	@Column(name="time")//评论时间
+	@Column(name="time")
 	private String time;
+	
+	
+	public int getSupports() {
+		return supports;
+	}
+	public void setSupports(int supports) {
+		this.supports = supports;
+	}
 	public Integer getId()
 	{
 		return id;

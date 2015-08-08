@@ -12,7 +12,7 @@ import com.befriend.dao.CollectDAO;
 import com.befriend.entity.Attention;
 import com.befriend.entity.Collect;
 import com.befriend.entity.Support;
-
+@SuppressWarnings("unchecked")
 @Transactional
 public class CollectDAOImpl implements CollectDAO {
 
@@ -51,7 +51,6 @@ public class CollectDAOImpl implements CollectDAO {
 		query.setMaxResults(1);
 		query.setParameter("userid", userid);
 		query.setParameter("newsid", newsid);
-		@SuppressWarnings("unchecked")
 		List<Collect> collect = query.getResultList();
 		if (collect.size() > 0)
 			return collect.get(0);
@@ -143,6 +142,7 @@ public class CollectDAOImpl implements CollectDAO {
 
 	}
 
+	
 	@Override
 	public Attention Whether_A(int comefrom, int userid, int objectid) {
 		// TODO Auto-generated method stub
@@ -164,6 +164,12 @@ public class CollectDAOImpl implements CollectDAO {
 	public void remove(Attention at) {
 		// TODO Auto-generated method stub
 		entityManager.remove(at);
+	}
+
+	@Override
+	public void update(Collect collect) {
+		// TODO Auto-generated method stub
+		entityManager.merge(collect);
 	}
 
 }

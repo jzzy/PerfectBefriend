@@ -89,7 +89,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	Support st = new Support();
 	Attention af = new Attention();
 	List<Attention> afl = new ArrayList<Attention>();
-	private int comefrom = 2;
+	private final static int comefrom = 2;
 	ForumOneType fot = new ForumOneType();
 	ForumTwoType ftt = new ForumTwoType();
 
@@ -270,7 +270,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
 		}
 		if (fones.size() > 0) {
-			util.Out().print(fones);
+			util.Out().print(util.ToJson(fones));
 		} else {
 			util.Out().print("null");
 		}
@@ -291,7 +291,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 
-		if (cdao.Whether(comefrom, touserid, forumid) == null && fone != null) {
+		if (cdao.Whether(comefrom, userid, forumid) == null && fone != null) {
 			st.setComefrom(comefrom);
 			st.setTime(time);
 			st.setUserid(userid);

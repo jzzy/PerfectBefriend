@@ -63,7 +63,7 @@ public class NewsAction {
 
 	private String area;
 	private String areas;
-
+	private String time=OpeFunction.getNowTime();
 	private File imgFile1;
 	private File imgFile2;
 	private File imgFile3;
@@ -86,16 +86,26 @@ public class NewsAction {
 	private String city;
 	public File xlsxFile;
 	private String xlsxFileFileName;
-	private int comefrom = 1;
+	private final static int comefrom = 1;
+	private final static int comefromreview = 3;
+	public void supportRsave() throws IOException {
+		r=rdao.byid(reviewid);
+		if(cdao.Whether(comefromreview, userid, reviewid)==null&&r!=null){
+			st.setComefrom(comefromreview);
+			st.setObjectid(reviewid);
+			st.setTime(time);
+			st.setUserid(userid);
+			cdao.save(st);
+			r.setSupports(cdao.Frequency(comefromreview, reviewid).size());
+			rdao.update(r);
+			OpeFunction.Out().print(true);
+		}else{
+			OpeFunction.Out().print(false);
+		}
 
-	public String getXlsxFileFileName() {
-		return xlsxFileFileName;
+		
 	}
-
-	public void setXlsxFileFileName(String xlsxFileFileName) {
-		this.xlsxFileFileName = xlsxFileFileName;
-	}
-
+	
 	public void Recommendation() throws IOException {
 		n = ndao.byid(newsid);
 		if (n == null) {
@@ -1796,7 +1806,6 @@ public class NewsAction {
 				n.setCollectnum(n1);
 
 				ndao.Upnews(n);
-				System.out.println("�ղسɹ�!");
 				OpeFunction.Out().print(true);
 			}
 		} catch (Exception e) {
@@ -2113,7 +2122,7 @@ public class NewsAction {
 	public void RemoveR() throws IOException {
 		try {
 
-			r = rdao.byid(reviewid, userid);
+			r = rdao.byid(reviewid);
 			if (r == null) {
 				OpeFunction.Out().print("null");
 
@@ -2504,5 +2513,13 @@ public class NewsAction {
 	public void setXlsxFile(File xlsxFile) {
 		this.xlsxFile = xlsxFile;
 	}
+	public String getXlsxFileFileName() {
+		return xlsxFileFileName;
+	}
+
+	public void setXlsxFileFileName(String xlsxFileFileName) {
+		this.xlsxFileFileName = xlsxFileFileName;
+	}
+
 
 }

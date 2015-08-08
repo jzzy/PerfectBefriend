@@ -13,7 +13,7 @@ public interface CollectDAO {
 	public List<Collect> Allu(int userid);
 
 	public void save(Collect collect);
-
+	public void update(Collect collect);
 	public Collect unid(int userid, int newsid);
 
 	public void remove(Collect collect);

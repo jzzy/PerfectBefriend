@@ -15,7 +15,7 @@ public interface ReviewDAO {
 
    
     public void save(Review review);
-
+    public void update(Review review);
 
     public List<Review> unid(int userid, int newsid);
 
@@ -23,5 +23,5 @@ public interface ReviewDAO {
     public void remove(Review review);
 
   
-    public Review byid(int reviewid,int userid);
+    public Review byid(int reviewid);
 }

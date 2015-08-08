@@ -24,7 +24,7 @@ public class Support implements Serializable
 	private int userid;
 	@Column(name="objectid")
 	private int objectid;
-	@Column(name="comefrom")//1 news 2 forum
+	@Column(name="comefrom")//1 news 2 forum 3 newsreview
 	private int comefrom;
 	@Column(name="time")
 	private String time;

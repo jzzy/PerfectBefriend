@@ -4,6 +4,9 @@
 <struts>
 	<package name="News" extends="struts-default" >
 
+		<!-- 对新闻评论点赞-->
+		<action name="supportRsave" class="newsAction" method="supportRsave">
+		</action>
 		<!-- 相关阅读 15天以内-->
 		<action name="NewsRecommendation" class="newsAction" method="Recommendation">
 		</action>

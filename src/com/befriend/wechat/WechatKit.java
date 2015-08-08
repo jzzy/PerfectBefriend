@@ -72,8 +72,7 @@ public class WechatKit {
 			int code = resp.getStatusLine().getStatusCode();
 			System.out.println("WechatKit.sendGet code:" + code+",URL "+url);
 			if (code >= 200 && code < 300) {
-				System.out.println("code����" + code);
-				// ��ȡʵ��
+				
 				HttpEntity entity = resp.getEntity();
 				if (entity != null) {
 					cont = EntityUtils.toString(entity);
