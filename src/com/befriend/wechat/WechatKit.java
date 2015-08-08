@@ -93,7 +93,6 @@ public class WechatKit {
 			post.addHeader("Authorization", "Bearer "+token);
 			}
 			post.setEntity(s);
-
 			HttpResponse res = client.execute(post);
 			code = res.getStatusLine().getStatusCode();
 			System.out.println("postcode:"+code);

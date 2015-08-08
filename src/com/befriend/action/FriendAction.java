@@ -202,6 +202,7 @@ public class FriendAction extends BaseAction
 	 * @param friendId initiative
 	 * @param groupId passive
 	 * @param remark choice
+	 * @param agree
 	 * @throws IOException 
 	 * @describe user deal with the invitation his or her got
 	 */
@@ -236,6 +237,7 @@ public class FriendAction extends BaseAction
 						 */
 						String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/contacts/users/"+friendId;
 						String result = WechatKit.post(url, null, RefreshAccessToken.access_token);
+						System.out.println("the result of handleInvitation:"+result);
 						try {
 							JSONObject jsonObject = new JSONObject(result);
 							JSONArray entities = jsonObject.getJSONArray("entities");
@@ -611,6 +613,7 @@ public class FriendAction extends BaseAction
 				JSONObject jsonObject = new JSONObject();
 				String [] usernames = {friendId};
 				jsonObject.put("usernames", Arrays.toString(usernames));
+				System.out.println(Arrays.toString(usernames));
 				WechatKit.post(url,jsonObject, RefreshAccessToken.access_token);
 				GroupFriend groupFriend = groupFriendDAO.find(Integer.valueOf(userId), Integer.valueOf(friendId));
 				if(groupFriend != null)

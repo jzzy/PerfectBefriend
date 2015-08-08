@@ -38,7 +38,7 @@ public class UserGroup implements Serializable
 	@Expose
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)        
+	@ManyToOne(cascade=CascadeType.REFRESH)        
 	@JoinColumn(name="user_id") //这是数据库里面的，这个字段是关联外键
 	@Expose(serialize=false)
 	private User user;//与这里对应，这里表示一

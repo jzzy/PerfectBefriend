@@ -36,7 +36,7 @@ public class GroupFriend implements Serializable
 	@Expose
 	private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)        
+	@ManyToOne(cascade=CascadeType.REFRESH)        
 	@JoinColumn(name="user_group_id") 
 	@Expose(serialize=false)
 	private UserGroup userGroup;
