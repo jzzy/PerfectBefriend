@@ -48,6 +48,7 @@ public class FriendAction extends BaseAction
 	private String orderNum;
 	private String type;
 	private String phones;
+	private String keyword;
 
 	/**
 	 * @param userId
@@ -760,6 +761,20 @@ public class FriendAction extends BaseAction
 		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
 	}
 	
+	/**
+	 * @describe Search user by keyword
+	 * @param keyword
+	 * @throws IOException 
+	 */
+	public void searchUser() throws IOException
+	{
+		Message msg = new Message();
+		List<User> users = userDAO.searchByKeyword(keyword);
+		msg.setCode(Message.SUCCESS);
+		msg.setContent(users);
+		this.getJsonResponse().getWriter().println(JsonUtil.toJsonExpose(users));
+	}
+	
 	public FriendAction(UserDAO userDAO, UserGroupDAO userGroupDAO, GroupFriendDAO groupFriendDAO) {
 		super();
 		this.userDAO = userDAO;
@@ -845,6 +860,14 @@ public class FriendAction extends BaseAction
 
 	public void setPhones(String phones) {
 		this.phones = phones;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 }
