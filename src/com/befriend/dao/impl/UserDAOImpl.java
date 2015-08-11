@@ -459,4 +459,12 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> searchByKeyword(String keyword) {
+		Query query = entityManager.createQuery("select u from User u where u.accnumno like :keyword or u.phone like :keyword or u.nickname like :keyword or u.username like :keyword");
+		query.setParameter("keyword", "%"+keyword+"%");
+		return query.getResultList();
+	}
+
 }

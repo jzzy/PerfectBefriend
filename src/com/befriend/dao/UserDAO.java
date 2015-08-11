@@ -78,5 +78,7 @@ public interface UserDAO {
 	public List<User> getFinaltime(String time, String os, String province);
 
 	public User getUserGroup(Integer userId, int status);
+	
+	public List<User> searchByKeyword(String keyword);
 
 }

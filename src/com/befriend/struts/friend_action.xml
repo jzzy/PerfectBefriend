@@ -15,5 +15,6 @@
 		<action name="moveFromBlckList" class="friendAction" method="moveFromBlckList"></action>
 		<action name="inviteContacts" class="friendAction" method="inviteContacts"></action>
 		<action name="getUserInfo" class="friendAction" method="getUserInfo"></action>
+		<action name="searchUser" class="friendAction" method="searchUser"></action>
 	</package>
 </struts>
