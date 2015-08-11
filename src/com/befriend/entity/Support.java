@@ -11,10 +11,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="support")
-
+@SuppressWarnings("all")
 public class Support implements Serializable
 {
-	
+	/**
+	 * forum
+	 */
+	public final static int comeFrom = 2;
+	/**
+	 * comefromFtwos
+	 */
+	public final static int comeFromFtwos = 4;
+	/**
+	 * news
+	 */
+	public final static int comeFromNews = 1;
+	/**
+	 * newsreview
+	 */
+	public final static int comeFromNewsReview = 3;
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
@@ -24,8 +39,8 @@ public class Support implements Serializable
 	private int userid;
 	@Column(name="objectid")
 	private int objectid;
-	@Column(name="comefrom")//1 news 2 forum 3 newsreview
-	private int comefrom;
+	@Column(name="comefrom")
+	private int comefrom=2;
 	@Column(name="time")
 	private String time;
 	public Integer getId() {

@@ -5,7 +5,7 @@
 	<package name="News" extends="struts-default" >
 
 		<!-- 对新闻评论点赞-->
-		<action name="supportRsave" class="newsAction" method="supportRsave">
+		<action name="supportReviewRsave" class="newsAction" method="supportReviewRsave">
 		</action>
 		<!-- 相关阅读 15天以内-->
 		<action name="NewsRecommendation" class="newsAction" method="Recommendation">
@@ -197,13 +197,19 @@
 		<result name="success">/SimulationApp/metopinglun.jsp</result>
 		</action>
 		<!--添加赞通过 用户id 新闻id-->
-		<action name="supportSave" class="newsAction" method="supportSave">
+		<action name="supporNewstSave" class="newsAction" method="supporNewstSave">
 		
 		</action>
 		<!--取消赞通过 用户id 新闻id-->
-		<action name="removeSupport" class="newsAction" method="removeSupport">
+		<action name="removeNewsSupport" class="newsAction" method="removeNewsSupport">
 		
 		</action>
+		<!--取消赞通过 用户id 评论id -->
+		<action name="removeReviewSupport" class="newsAction" method="removeReviewSupport">
+		
+		</action>
+		
+		
 		<!--新闻查看 被谁赞过 通过过新闻id-->
 		<action name="newsLookSupport" class="newsAction" method="newsLookSupport">
 		

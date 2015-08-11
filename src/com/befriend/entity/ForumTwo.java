@@ -8,38 +8,55 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-//��̳������Ϣ��
+import javax.persistence.Transient;
+@SuppressWarnings("all")
 @Entity
 @Table(name = "forumtwo")
 public class ForumTwo  implements Serializable {
 
-    /**
-     * ������̳���� tow
-     */
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "userid")
-    // �û�id
+
     private int userid;
     @Column(name = "reply")
-    // ��������
+
     private String reply;
     @Column(name = "time")
-    // ����ʱ��
+  
     private String time;
     @Column(name = "forumid")
-    // ��̳id
+ 
     private int forumid;
     @Column(name = "touserid")
-    // ¥��id
-    private int touserid;
    
+    private int touserid;
+    @Column(name = "supports")
+    private Integer supports;
+    @Transient
+    private Boolean b=false;
+    
 
-    public Integer getId() {
+	public Boolean getB() {
+		return b;
+	}
+
+	public void setB(Boolean b) {
+		this.b = b;
+	}
+
+	public Integer getSupports() {
+		return supports;
+	}
+
+	public void setSupports(Integer supports) {
+		this.supports = supports;
+	}
+
+	public Integer getId() {
 	return id;
     }
 

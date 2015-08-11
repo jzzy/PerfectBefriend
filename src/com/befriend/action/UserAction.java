@@ -32,7 +32,7 @@ import com.befriend.util.OpeFunction;
 import com.befriend.wechat.RefreshAccessToken;
 import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.Action;
-
+@SuppressWarnings("all")
 public class UserAction {
 	private User u = new User();
 	public OpeFunction util;

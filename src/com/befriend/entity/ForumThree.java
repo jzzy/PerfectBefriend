@@ -9,38 +9,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//��̳������Ϣ��
 @Entity
 @Table(name="forumthree")
 public class ForumThree  implements Serializable {
 
 
-	/**
-	 * С������
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="userid")//�û�id
+	@Column(name="userid")
 	private int userid;
-	@Column(name="touserid")//to�û�id
+	@Column(name="touserid")
 	private int touserid;
-	@Column(name="reply")//�ظ�����
+	@Column(name="reply")
 	private String reply;
-	@Column(name="time")//����ʱ��
+	@Column(name="time")
 	private String time;
     @Column(name = "forumid")
-	// ��̳id
+
 	private int forumid;
     @Column(name = "forumtwoid")
-    // ����id
+ 
     private int forumtwoid;
 	
-
+    private Integer supports;
 	
 	
+	public Integer getSupports() {
+		return supports;
+	}
+	public void setSupports(Integer supports) {
+		this.supports = supports;
+	}
 	public int getForumtwoid() {
 		return forumtwoid;
 	}

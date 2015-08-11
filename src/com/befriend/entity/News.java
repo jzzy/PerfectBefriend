@@ -66,7 +66,7 @@ public class News implements Serializable {
     private int types;
 
     @Column(name = "hits")
- // 新闻点击数
+    // 新闻点击数
     private Integer hits;
     @Column(name = "cah")
     // 点击数+收藏数

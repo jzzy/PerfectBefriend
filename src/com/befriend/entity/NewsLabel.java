@@ -1,20 +1,17 @@
 package com.befriend.entity;
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+@SuppressWarnings("all")
 @Entity
 @Table(name="label")
 public class NewsLabel  implements Serializable {
 	
 	
-		/**
-		 * ���ű�ǩ��
-		 */
 		
 		@Id
 		@Column(name="id")

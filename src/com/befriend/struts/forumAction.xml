@@ -78,6 +78,34 @@
 		<action name="Forumsyncretic5" class="forumAction" method="syncretic5">
 		
 		</action>
+		<!--通过论坛id查看论坛-->
+		<action name="ForumLookusers" class="forumAction" method="ForumLookusers">
+		
+		</action>
+		<!-- 根据 类型 分页查看论坛-->
+		<action name="ForumApptype" class="forumAction" method="ForumApptype">
+		
+		</action>
+		<!-- 添加论坛-->
+		<action name="Forumonesaveapp" class="forumAction" method="Forumonesaveapp">
+		
+		</action>
+		<!-- 用户删除论坛-->
+		<action name="webUserForumRemove" class="forumAction" method="webUserForumRemove">
+		
+		</action>
+		<!--取消论坛赞通过 用户id 评论id -->
+		<action name="forumTwosRemoveStandBy" class="newsAction" method="forumTwosRemoveStandBy">
+		
+		</action>
+		<!--赞  论坛回复通过 用户id 评论id -->
+		<action name="forumTwosStandBy" class="newsAction" method="forumTwosStandBy">
+		
+		</action>
+		<!--取消论坛回复赞 通过 用户id 评论id -->
+		<action name="forumTwosRemoveStandBy" class="newsAction" method="forumTwosRemoveStandBy">
+		
+		</action>
 		
 	<!-- new -->
 	
@@ -160,10 +188,7 @@
 	
 		
 		
-		<!-- 用户查看论坛 通过id-->
-		<action name="ForumLookusers" class="forumAction" method="ForumLookusers">
 		
-		</action>
 		
 		<!-- 添加用户回回复楼主-->
 		<action name="Forumtwosaveapp" class="forumAction" method="Forumtwosaveapp">
@@ -199,18 +224,7 @@
 		<action name="FolR" class="forumAction" method="FolR">
 		
 		</action>
-				<!-- 根据 类型 分页查看论坛-->
-		<action name="ForumApptype" class="forumAction" method="ForumApptype">
-		
-		</action>
-				<!-- 添加论坛-->
-		<action name="Forumonesaveapp" class="forumAction" method="Forumonesaveapp">
-		
-		</action>
-		<!-- 用户删除论坛-->
-		<action name="webUserForumRemove" class="forumAction" method="webUserForumRemove">
-		
-		</action>
+			
 		<!-- 管理员删除论坛-->
 		<action name="webForumRemove" class="forumAction" method="webForumRemove">
 		

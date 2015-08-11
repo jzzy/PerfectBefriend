@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -65,8 +66,17 @@ public class ForumOne  implements Serializable {
 	private int frs;
 	@Column(name="supports")
 	private int supports;
+	@Transient
+	private Boolean b=false;
 	
-	
+
+	public Boolean getB() {
+		return b;
+	}
+
+	public void setB(Boolean b) {
+		this.b = b;
+	}
 
 	public int getSupports() {
 		return supports;

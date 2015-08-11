@@ -35,7 +35,7 @@ import com.befriend.util.OpeFunction;
 import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.Action;
 
-@SuppressWarnings("static-access")
+@SuppressWarnings("all")
 public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		ServletContextAware {
 
@@ -89,11 +89,49 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	Support st = new Support();
 	Attention af = new Attention();
 	List<Attention> afl = new ArrayList<Attention>();
-	private final static int comefrom = 2;
+	
 	ForumOneType fot = new ForumOneType();
 	ForumTwoType ftt = new ForumTwoType();
 	List<ForumTwoType> fttl = new ArrayList<ForumTwoType>();
 	List<ForumOneType> fotl = new ArrayList<ForumOneType>();
+	
+	
+	
+	
+	public void forumTwosRemoveStandBy() throws IOException {
+		ftwo = forumdao.getForumTwoid(id);
+		st=cdao.Whether(Support.comeFromFtwos, userid, id);
+		if ( st!= null && ftwo != null) {	
+			cdao.remove(st);
+			ftwo.setSupports(cdao.Frequency(Support.comeFromFtwos, id).size());
+			forumdao.update(ftwo);
+			util.Out().print(true);
+		} else {
+			util.Out().print(false);
+		}
+	}
+
+	public void forumTwosStandBy() throws IOException {
+		ftwo = forumdao.getForumTwoid(id);
+
+		if (cdao.Whether(Support.comeFromFtwos, userid, id) == null && ftwo != null) {
+			st.setComefrom(Support.comeFromFtwos);
+			st.setTime(time);
+			st.setUserid(userid);
+			st.setObjectid(id);
+			cdao.save(st);
+			ftwo.setSupports(cdao.Frequency(Support.comeFromFtwos, id).size());
+			forumdao.update(ftwo);
+			util.Out().print(true);
+		} else {
+			util.Out().print(false);
+		}
+	}
+	
+	
+	
+	
+	
 	public  void syncretic5() throws IOException {
 			String url = "http://127.0.0.1"+request.getContextPath() +"/forumLookStandBy?userid="+userid;
 			String forumLookStandBy=WechatKit.sendGet(url);
@@ -219,7 +257,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 			for (int j = 0; j < fttl.size(); j++) {
 				ForumTwoType ft = fttl.get(j);
-				if (cdao.Whether_A(comefrom, userid, fttl.get(i).getId()) != null) {
+				if (cdao.Whether_A(Support.comeFrom, userid, fttl.get(i).getId()) != null) {
 					ft.setAttentionB(true);
 				}
 				fttl.set(i, ft);
@@ -232,7 +270,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void forumMeAttention() throws IOException {
-		afl = cdao.ILikeToo_A(comefrom, userid);
+		afl = cdao.ILikeToo_A(Support.comeFrom, userid);
 		for (int i = 0; i < afl.size(); i++) {
 			af=afl.get(i);
 			if(af!=null){
@@ -253,10 +291,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	public void forumRemoveAttention() throws IOException {
 		ftt = forumdao.getByIdForumTwoType(forutypeid);
-		af = cdao.Whether_A(comefrom, userid, forutypeid);
+		af = cdao.Whether_A(Support.comeFrom, userid, forutypeid);
 		if (af != null && ftt != null) {
 			cdao.remove(af);
-			ftt.setAttentions(cdao.Frequency_A(comefrom, forutypeid).size());
+			ftt.setAttentions(cdao.Frequency_A(Support.comeFrom, forutypeid).size());
 			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
@@ -267,10 +305,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumAttention() throws IOException {
 			
 			ftt=forumdao.getByIdForumTwoType(forutypeid);
-		if (cdao.Whether_A(comefrom, userid, forutypeid) == null&&userid>0&&forutypeid>0&&ftt!=null) {
-			ftt.setAttentions(cdao.Frequency_A(comefrom, forutypeid).size());
+		if (cdao.Whether_A(st.comeFrom, userid, forutypeid) == null&&userid>0&&forutypeid>0&&ftt!=null) {
+			ftt.setAttentions(cdao.Frequency_A(st.comeFrom, forutypeid).size());
 			af.setUserid(userid);
-			af.setComefrom(comefrom);
+			af.setComefrom(Support.comeFrom);
 			af.setTime(time);
 			af.setObjectid(forutypeid);
 			cdao.save(af);
@@ -283,7 +321,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void LookStandBy() throws IOException {
-		List<Support> sl = cdao.ILikeToo(comefrom, userid);
+		List<Support> sl = cdao.ILikeToo(Support.comeFrom, userid);
 		for (int i = 0; i < sl.size(); i++) {
 			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
 		}
@@ -295,10 +333,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 	public void forumRemoveStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
-		st = cdao.Whether(comefrom, userid, forumid);
+		st = cdao.Whether(Support.comeFrom, userid, forumid);
 		if (st != null && fone != null) {
 			cdao.remove(st);
-			fone.setSupports(cdao.Frequency(comefrom, forumid).size());
+			fone.setSupports(cdao.Frequency(Support.comeFrom, forumid).size());
 			forumdao.update(fone);
 			util.Out().print(true);
 		} else {
@@ -309,13 +347,13 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 
-		if (cdao.Whether(comefrom, userid, forumid) == null && fone != null) {
-			st.setComefrom(comefrom);
+		if (cdao.Whether(Support.comeFrom, userid, forumid) == null && fone != null) {
+			st.setComefrom(Support.comeFrom);
 			st.setTime(time);
 			st.setUserid(userid);
 			st.setObjectid(forumid);
 			cdao.save(st);
-			fone.setSupports(cdao.Frequency(comefrom, forumid).size());
+			fone.setSupports(cdao.Frequency(Support.comeFrom, forumid).size());
 			forumdao.update(fone);
 			util.Out().print(true);
 		} else {
@@ -1242,8 +1280,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 			ftwo.setTime(time);
 			ftwo.setTouserid(fone.getUserid());
 			ftwo.setUserid(userid);
-			int g = fone.getTotal() + 1;
-			fone.setTotal(g);
+			fone.setTotal(forumdao.getForumTwoALL(fone.getId()).size());
 			fone.setFrs(fone.getFrs() + 1);
 			forumdao.update(fone);
 			forumdao.save(ftwo);
@@ -1254,83 +1291,79 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void ForumLookusers() throws IOException {
-		try {
 
-			if (id > 0) {
-				fone = forumdao.getForumOne(id);
-				if (fone == null) {
-					util.Out().print("û�������̳!");
-					return;
-				}
-				fone.setfHits(fone.getfHits() + 1);
+		fone = forumdao.getForumOne(id);
+		if (fone == null) {
+			util.Out().print("null");
+			return;
+		}
+		fone.setfHits(fone.getfHits() + 1);
 
-				ftwos = forumdao.getForumTwoALL(id);
-				User user = userdao.byid(fone.getUserid());
+		ftwos = forumdao.getForumTwoALL(id);
+		User user = userdao.byid(fone.getUserid());
+		fone.setTotal(forumdao.getForumTwoALL(fone.getId()).size());
+		fone.setSupports(cdao.Frequency(Support.comeFrom, fone.getId()).size());
+		fone.setB(cdao.Whether(Support.comeFrom, touserid, fone.getId()) != null);
+		forumdao.update(fone);
+		List fl = new ArrayList();
+		List fu = new ArrayList();
+		List fut = new ArrayList();
+		forumid = id;
 
-				forumdao.update(fone);
+		for (int i = 0; i < ftwos.size(); i++) {
+			ftwo = ftwos.get(i);
+			if (ftwo == null) {
+				continue;
+			}
+			userid = ftwo.getUserid();
 
-				List fl = new ArrayList();
-				List fu = new ArrayList();
-				List fut = new ArrayList();
+			forumtwoid = ftwo.getId();
 
-				forumid = id;
+			ftwo.setB(cdao.Whether(Support.comeFromFtwos, touserid, forumtwoid) != null);
 
-				for (int i = 0; i < ftwos.size(); i++) {
+			ftwos.set(i, ftwo);
+			User u = userdao.byid(userid);
+			us.add(u);
+			fehrees = forumdao.getForumThreeALL(forumid, forumtwoid);
 
-					userid = ftwos.get(i).getUserid();
-
-					forumtwoid = ftwos.get(i).getId();
-					User u = userdao.byid(userid);
-					us.add(u);
-					fehrees = forumdao.getForumThreeALL(forumid, forumtwoid);
-
-					if (fehrees.size() == 0) {
-						fl.add(null);
-						fut.add(null);
-						fu.add(null);
-					} else {
-
-						List<User> userz = new ArrayList<User>();
-						List<User> touser = new ArrayList<User>();
-
-						for (int p = 0; p < fehrees.size(); p++) {
-
-							int uid = fehrees.get(p).getUserid();
-							int touid = fehrees.get(p).getTouserid();
-							User uf = userdao.byid(uid);
-
-							User utr = userdao.byid(touid);
-
-							userz.add(uf);
-							touser.add(utr);
-
-						}
-
-						fut.add(touser);
-
-						fu.add(userz);
-
-						fl.add(fehrees);
-					}
-
-				}
-
-				String result = "{\"fone\":" + util.ToJson(fone)
-						+ ",\"ftwos\":" + util.ToJson(ftwos) + ",\"fl\":"
-						+ util.ToJson(fl) + ",\"fu\":" + util.ToJson(fu)
-						+ ",\"fut\":" + util.ToJson(fut) + ",\"us\":"
-						+ util.ToJson(us) + ",\"u\":" + util.ToJson(user) + "}";
-				util.Out().print(result);
-
+			if (fehrees.size() == 0) {
+				fl.add(null);
+				fut.add(null);
+				fu.add(null);
 			} else {
-				util.Out().print("null");
+
+				List<User> userz = new ArrayList<User>();
+				List<User> touser = new ArrayList<User>();
+
+				for (int p = 0; p < fehrees.size(); p++) {
+
+					int uid = fehrees.get(p).getUserid();
+					int touid = fehrees.get(p).getTouserid();
+					User uf = userdao.byid(uid);
+
+					User utr = userdao.byid(touid);
+
+					userz.add(uf);
+					touser.add(utr);
+
+				}
+
+				fut.add(touser);
+
+				fu.add(userz);
+
+				fl.add(fehrees);
 			}
 
-		} catch (Exception e) {
-			util.Out().print(e.getMessage());
 		}
+
+		String result = "{\"fone\":" + util.ToJson(fone) + ",\"ftwos\":"
+				+ util.ToJson(ftwos) + ",\"fl\":" + util.ToJson(fl)
+				+ ",\"fu\":" + util.ToJson(fu) + ",\"fut\":" + util.ToJson(fut)
+				+ ",\"us\":" + util.ToJson(us) + ",\"u\":" + util.ToJson(user)
+				+ "}";
+		util.Out().print(result);
 
 	}
 

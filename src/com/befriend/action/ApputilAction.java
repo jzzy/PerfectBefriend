@@ -24,7 +24,7 @@ import com.befriend.util.OpeFunction;
 import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
-
+@SuppressWarnings("all")
 public class ApputilAction {
 	public OpeFunction util;// ������
 	private ApputilDAO audao;// ApputilDAO
