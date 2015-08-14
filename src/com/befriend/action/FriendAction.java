@@ -84,6 +84,7 @@ public class FriendAction extends BaseAction
 						User friend = userDAO.byid(groupFriend.getUserId());
 						if (friend != null)
 						{
+							groupFriend.setAccnumno(friend.getAccnumno());
 							groupFriend.setUsername(friend.getUsername());
 							groupFriend.setNickname(friend.getNickname());
 							groupFriend.setImg(friend.getImg());
