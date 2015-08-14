@@ -67,6 +67,14 @@ if(fot!=null){
 <td><input type="text"  name="title"></td>
 </tr>
 <tr>
+<td>论坛板块Mini图片 :  </td>
+<td><input type="file" name="file" ></td>
+</tr>
+<tr>
+<td>论坛板块Max图片 :  </td>
+<td><input type="file" name="fileMax" ></td>
+</tr>
+<tr>
 <td>
 <input type="text" name="id" value="<%=fot.getId()%>" style="display: none">
 <input type="submit" onclick="return cka();" value="确定添加小组"></td>

@@ -6,6 +6,9 @@
 	<!-- new -->
 	
 		<!-- 删除模块-->
+		<action name="forumlikeForum" class="forumAction" method="forumlikeForum" >
+		</action>
+		<!-- 删除模块-->
 		<action name="forumremoveOneType" class="forumAction" method="removeOneType" >
 		</action>
 		<!-- 删除小组-->
@@ -95,15 +98,15 @@
 		
 		</action>
 		<!--取消论坛赞通过 用户id 评论id -->
-		<action name="forumTwosRemoveStandBy" class="newsAction" method="forumTwosRemoveStandBy">
+		<action name="forumTwosRemoveStandBy" class="forumAction" method="forumTwosRemoveStandBy">
 		
 		</action>
 		<!--赞  论坛回复通过 用户id 评论id -->
-		<action name="forumTwosStandBy" class="newsAction" method="forumTwosStandBy">
+		<action name="forumTwosStandBy" class="forumAction" method="forumTwosStandBy">
 		
 		</action>
 		<!--取消论坛回复赞 通过 用户id 评论id -->
-		<action name="forumTwosRemoveStandBy" class="newsAction" method="forumTwosRemoveStandBy">
+		<action name="forumTwosRemoveStandBy" class="forumAction" method="forumTwosRemoveStandBy">
 		
 		</action>
 		

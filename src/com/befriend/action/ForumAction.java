@@ -36,8 +36,7 @@ import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.Action;
 
 @SuppressWarnings("all")
-public class ForumAction implements ServletRequestAware, ServletResponseAware,
-		ServletContextAware {
+public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 	OpeFunction util;
 	private UserDAO userdao;
@@ -56,8 +55,6 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	@SuppressWarnings("unused")
-	private ServletContext context;
 
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
@@ -83,25 +80,36 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	private int touserid = 0;
 	private int forumtwoid = 0;
 	private int forutypeid = 0;
-	private int pageSize = 0;
-	private int currentPage = 0;
+	private int pageSize = 10;
+	private int currentPage = 1;
 	private int cpe = 0;
+	private File fileMax;
+	private String fileMaxFileName;
 	Support st = new Support();
 	Attention af = new Attention();
 	List<Attention> afl = new ArrayList<Attention>();
-	
+
 	ForumOneType fot = new ForumOneType();
 	ForumTwoType ftt = new ForumTwoType();
 	List<ForumTwoType> fttl = new ArrayList<ForumTwoType>();
 	List<ForumOneType> fotl = new ArrayList<ForumOneType>();
-	
-	
-	
-	
+	public void forumlikeForum() throws IOException{
+		cpe=forumdao.getForumOne(title);
+		fones=forumdao.getForumOne(pageSize,currentPage,title);
+		String result = "{\"pageSize\":"
+				+ pageSize + ",\"currentPage\":"
+				+ currentPage + ",\"title\":"
+				+ title + ",\"fones\":"
+				+ util.ToJson(fones) + ",\"cpe\":" + cpe
+				+ "}";
+
+		util.Out().print(result);
+		
+	}
 	public void forumTwosRemoveStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
-		st=cdao.Whether(Support.comeFromFtwos, userid, id);
-		if ( st!= null && ftwo != null) {	
+		st = cdao.Whether(Support.comeFromFtwos, userid, id);
+		if (st != null && ftwo != null) {
 			cdao.remove(st);
 			ftwo.setSupports(cdao.Frequency(Support.comeFromFtwos, id).size());
 			forumdao.update(ftwo);
@@ -114,7 +122,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumTwosStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
 
-		if (cdao.Whether(Support.comeFromFtwos, userid, id) == null && ftwo != null) {
+		if (cdao.Whether(Support.comeFromFtwos, userid, id) == null&& ftwo != null) {
 			st.setComefrom(Support.comeFromFtwos);
 			st.setTime(time);
 			st.setUserid(userid);
@@ -127,29 +135,31 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 			util.Out().print(false);
 		}
 	}
-	
-	
-	
-	
-	
-	public  void syncretic5() throws IOException {
-			String url = "http://127.0.0.1"+request.getContextPath() +"/forumLookStandBy?userid="+userid;
-			String forumLookStandBy=WechatKit.sendGet(url);
-			url = "http://127.0.0.1"+request.getContextPath() +"/forumMeAttention?userid="+userid;
-			String forumMeAttention=WechatKit.sendGet(url);
-			url = "http://127.0.0.1"+request.getContextPath() +"/ForumoneTouseid?userid="+userid;
-			String ForumoneTouseid=WechatKit.sendGet(url);
-			url = "http://127.0.0.1"+request.getContextPath() +"/Fuseid?userid="+userid;
-			String Fuseid=WechatKit.sendGet(url);
-			url = "http://127.0.0.1"+request.getContextPath() +"/Folook?userid="+userid;
-			String Folook=WechatKit.sendGet(url);
-			String result = "{\"forumLookStandBy\":" + util.ToJson(forumLookStandBy) + 
-					",\"forumMeAttention\":"+ util.ToJson(forumMeAttention) 
-					+ ",\"ForumoneTouseid\":" + util.ToJson(ForumoneTouseid)+ 
-					",\"Fuseid\":"+ util.ToJson(Fuseid)+ 
-					",\"Folook\":"+ util.ToJson(Folook) + "}";
 
-			util.Out().print(result);
+	public void syncretic5() throws IOException {
+		String url = "http://127.0.0.1" + request.getContextPath()
+				+ "/forumLookStandBy?userid=" + userid;
+		String forumLookStandBy = WechatKit.sendGet(url);
+		url = "http://127.0.0.1" + request.getContextPath()
+				+ "/forumMeAttention?userid=" + userid;
+		String forumMeAttention = WechatKit.sendGet(url);
+		url = "http://127.0.0.1" + request.getContextPath()
+				+ "/ForumoneTouseid?userid=" + userid;
+		String ForumoneTouseid = WechatKit.sendGet(url);
+		url = "http://127.0.0.1" + request.getContextPath() + "/Fuseid?userid="
+				+ userid;
+		String Fuseid = WechatKit.sendGet(url);
+		url = "http://127.0.0.1" + request.getContextPath() + "/Folook?userid="
+				+ userid;
+		String Folook = WechatKit.sendGet(url);
+		String result = "{\"forumLookStandBy\":"
+				+ util.ToJson(forumLookStandBy) + ",\"forumMeAttention\":"
+				+ util.ToJson(forumMeAttention) + ",\"ForumoneTouseid\":"
+				+ util.ToJson(ForumoneTouseid) + ",\"Fuseid\":"
+				+ util.ToJson(Fuseid) + ",\"Folook\":" + util.ToJson(Folook)
+				+ "}";
+
+		util.Out().print(result);
 	}
 
 	public void removeOneType() throws IOException {
@@ -198,7 +208,16 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void saveTwoType() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		fot = forumdao.getByIdForumOneType(id);
-		if (!OpeFunction.isEmpty(title) && admin != null && fot != null) {
+		if (!OpeFunction.isEmpty(title) && admin != null && fot != null&&file!=null&&fileMax!=null) {
+			String path="/IMG/ForumTypeImg/" + OpeFunction.getDayTime(1);
+			if (file != null) {
+				img = util.ufileToServer(path, file, "jpg");
+				ftt.setImg(img);
+			}
+			if (fileMax != null) {
+				img = util.ufileToServer(path, fileMax, "jpg");
+				ftt.setImgmax(img);
+			}
 			ftt.setTitle(title);
 			ftt.setTime(time);
 			ftt.setAdminname(admin.getAdmin());
@@ -257,10 +276,11 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 			for (int j = 0; j < fttl.size(); j++) {
 				ForumTwoType ft = fttl.get(j);
-				if (cdao.Whether_A(Support.comeFrom, userid, fttl.get(i).getId()) != null) {
+				if (cdao.Whether_A(Support.comeFrom, userid, fttl.get(i)
+						.getId()) != null) {
 					ft.setAttentionB(true);
 				}
-				fttl.set(i, ft);
+				fttl.set(j, ft);
 				System.out.println("2:" + fttl.get(j).getTitle());
 			}
 
@@ -272,15 +292,16 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumMeAttention() throws IOException {
 		afl = cdao.ILikeToo_A(Support.comeFrom, userid);
 		for (int i = 0; i < afl.size(); i++) {
-			af=afl.get(i);
-			if(af!=null){
+			af = afl.get(i);
+			if (af != null) {
 				fttl.add(forumdao.getByIdForumTwoType(af.getObjectid()));
-			}else{
+			} else {
 				fttl.add(null);
 			}
 		}
 		String result = "{\"afl\":" + util.ToJson(afl) + ",\"fttl\":"
-				+ JsonUtil.toJsonExpose(fttl) +"}";
+				+ JsonUtil.toJsonExpose(fttl) + ",\"aflsize\":"
+						+ afl.size()+ "}";
 		if (afl.size() > 0) {
 			util.Out().print(result);
 
@@ -291,10 +312,11 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 	public void forumRemoveAttention() throws IOException {
 		ftt = forumdao.getByIdForumTwoType(forutypeid);
-		af = cdao.Whether_A(Support.comeFrom, userid, forutypeid);
+		af = cdao.Whether_A(Attention.comeFrom, userid, forutypeid);
 		if (af != null && ftt != null) {
 			cdao.remove(af);
-			ftt.setAttentions(cdao.Frequency_A(Support.comeFrom, forutypeid).size());
+			ftt.setAttentions(cdao.Frequency_A(Attention.comeFrom, forutypeid)
+					.size());
 			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
@@ -303,15 +325,17 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void forumAttention() throws IOException {
+
+		ftt = forumdao.getByIdForumTwoType(forutypeid);
+		if (cdao.Whether_A(Attention.comeFrom, userid, forutypeid) == null
+				&& userid > 0 && forutypeid > 0 && ftt != null) {
 			
-			ftt=forumdao.getByIdForumTwoType(forutypeid);
-		if (cdao.Whether_A(st.comeFrom, userid, forutypeid) == null&&userid>0&&forutypeid>0&&ftt!=null) {
-			ftt.setAttentions(cdao.Frequency_A(st.comeFrom, forutypeid).size());
 			af.setUserid(userid);
-			af.setComefrom(Support.comeFrom);
+			af.setComefrom(Attention.comeFrom);
 			af.setTime(time);
 			af.setObjectid(forutypeid);
 			cdao.save(af);
+			ftt.setAttentions(cdao.Frequency_A(Attention.comeFrom, forutypeid).size());
 			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
@@ -326,11 +350,14 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
 		}
 		if (fones.size() > 0) {
-			util.Out().print(util.ToJson(fones));
+			String result = "{\"sl\":" + util.ToJson(sl) + ",\"slsize\":"
+					+ sl.size() + "}";
+			util.Out().print(result);
 		} else {
 			util.Out().print("null");
 		}
 	}
+
 	public void forumRemoveStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 		st = cdao.Whether(Support.comeFrom, userid, forumid);
@@ -347,7 +374,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	public void forumStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 
-		if (cdao.Whether(Support.comeFrom, userid, forumid) == null && fone != null) {
+		if (cdao.Whether(Support.comeFrom, userid, forumid) == null
+				&& fone != null) {
 			st.setComefrom(Support.comeFrom);
 			st.setTime(time);
 			st.setUserid(userid);
@@ -990,7 +1018,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		}
 
 		String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-				+ util.ToJson(us) + "}";
+				+ util.ToJson(us)+ ",\"count\":"
+						+ fones.size()+  "}";
 		util.Out().print(result);
 
 	}
@@ -1227,7 +1256,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		if (fones.size() > 0) {
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-					+ util.ToJson(us) + ",\"ftwos\":" + util.ToJson(fow) + "}";
+					+ util.ToJson(us) + ",\"ftwos\":" + util.ToJson(fow) + ",\"count\":"
+							+ ftwos.size() +"}";
 
 			util.Out().print(result);
 
@@ -1251,7 +1281,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		if (fones.size() > 0) {
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-					+ util.ToJson(us) + "}";
+					+ util.ToJson(us) + ",\"count\":"
+							+ fones.size()+ "}";
 			util.Out().print(result);
 		} else {
 			util.Out().print("null");
@@ -1380,7 +1411,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	public void Forumthreesappadd() throws IOException, ServletException {
-
+		
 		if (forumid <= 0) {
 			util.Out().print(false);
 			return;
@@ -1408,16 +1439,13 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		}
 		fone = forumdao.getForumOne(forumid);
 		if (fone != null) {
-			if (fone.getType() == 1 && u.getCompetence() != 4) {
-				util.Out().print(false);
-				return;
-			}
 			fehree.setForumid(forumid);
 			fehree.setReply(reply);
 			fehree.setTime(time);
 			fehree.setTouserid(touserid);
 			fehree.setUserid(userid);
 			fehree.setForumtwoid(forumtwoid);
+			fehree.setSupports(0);
 			forumdao.save(fehree);
 			util.Out().print(true);
 			return;
@@ -1429,43 +1457,37 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 
 		if (model <= 0) {
 
-			util.Out().print("null");
+			util.Out().print("mnull");
 			return;
 
 		}
 		if (userid <= 0) {
 
-			util.Out().print("null");
+			util.Out().print("unull");
 			return;
 
 		}
 		if (area == null) {
 
-			util.Out().print("null");
+			util.Out().print("anull");
 			return;
 
 		}
 		if (areas == null) {
 
-			util.Out().print("null");
+			util.Out().print("asnull");
 			return;
 
 		}
 		if (content == null) {
 
-			util.Out().print("null");
+			util.Out().print("cnull");
 			return;
 
 		}
 		if (title == null) {
 
-			util.Out().print("null");
-			return;
-
-		}
-		if (types <= 0) {
-
-			util.Out().print("null");
+			util.Out().print("titnull");
 			return;
 
 		}
@@ -2259,12 +2281,6 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 	}
 
 	@Override
-	public void setServletContext(ServletContext arg0) {
-		// TODO Auto-generated method stub
-		this.context = arg0;
-	}
-
-	@Override
 	public void setServletResponse(HttpServletResponse arg0) {
 		// TODO Auto-generated method stub
 		this.response = arg0;
@@ -2275,6 +2291,38 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware,
 		// TODO Auto-generated method stub
 		this.request = arg0;
 
+	}
+
+	public File getFileMax() {
+		return fileMax;
+	}
+
+	public void setFileMax(File fileMax) {
+		this.fileMax = fileMax;
+	}
+
+	public String getFileMaxFileName() {
+		return fileMaxFileName;
+	}
+
+	public void setFileMaxFileName(String fileMaxFileName) {
+		this.fileMaxFileName = fileMaxFileName;
+	}
+
+	public int getTypes() {
+		return types;
+	}
+
+	public void setTypes(int types) {
+		this.types = types;
+	}
+
+	public int getForutypeid() {
+		return forutypeid;
+	}
+
+	public void setForutypeid(int forutypeid) {
+		this.forutypeid = forutypeid;
 	}
 
 }

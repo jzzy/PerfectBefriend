@@ -1,6 +1,9 @@
 package com.befriend.dao.impl;
 import java.util.List;
 
+
+
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +16,7 @@ import com.befriend.entity.ForumOneType;
 import com.befriend.entity.ForumThree;
 import com.befriend.entity.ForumTwo;
 import com.befriend.entity.ForumTwoType;
+@SuppressWarnings("all")
 @Transactional
 public class ForumDAOImpl implements ForumDAO {
 	@PersistenceContext
@@ -397,7 +401,7 @@ public class ForumDAOImpl implements ForumDAO {
 	@Override
 	public ForumTwoType getByIdForumTwoType(int id) {
 		Query query = entityManager.createQuery("select u from ForumTwoType u where"
-				+ " u.id=:id order by u.id desc");
+				+ " u.id=:id");
 		query.setMaxResults(1);
 		query.setParameter("id", id);
 		
@@ -437,5 +441,28 @@ public class ForumDAOImpl implements ForumDAO {
 	public void update(ForumTwoType ftt) {
 		// TODO Auto-generated method stub
 		entityManager.merge(ftt);
+	}
+
+	@Override
+	public int getForumOne(String title) {
+		Query query = entityManager
+				.createQuery("select f from ForumOne f where f.title like :title  order by f.time desc");
+		query.setParameter("title","%"+ title+"%");
+		return (int)(long)query.getSingleResult();
+			}
+
+	@Override
+	public List<ForumOne> getForumOne(int pageSize, int currentPage,
+			String title) {
+		Query query = entityManager
+				.createQuery("select f from ForumOne f where f.title like :title  order by f.time desc");
+		query.setParameter("title","%"+ title+"%");
+		int startRow = (currentPage - 1) * pageSize;
+		if (startRow < 0) {
+			startRow = 0;
+		}
+		query.setFirstResult(startRow);
+		query.setMaxResults(pageSize);
+		return query.getResultList();
 	}
 }

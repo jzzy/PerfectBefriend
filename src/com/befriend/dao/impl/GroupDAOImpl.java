@@ -13,7 +13,7 @@ import com.befriend.entity.Cis;
 import com.befriend.entity.GroupChat;
 import com.befriend.entity.GroupMembers;
 import com.befriend.entity.Profile;
-
+@SuppressWarnings("all")
 @Transactional
 public class GroupDAOImpl implements GroupDAO {
 	@PersistenceContext
@@ -355,6 +355,19 @@ public class GroupDAOImpl implements GroupDAO {
 		query.setParameter("groupid", GroupChatid);
 		query.setParameter("userid", userid);
 		return query.getResultList();
+	}
+
+	@Override
+	public GroupChat maxGroupno() {
+		Query query = entityManager.createQuery("select c from GroupChat c order"
+				+ " by c.groupno desc ");
+		query.setMaxResults(1);
+		 List<GroupChat> gc=query.getResultList();
+		 if(gc.size()>0){
+			 
+			 return gc.get(0);
+		 }
+		 return null;
 	}
 
 }

@@ -8,8 +8,8 @@
 		<!--  同步到环信上-->
 		<action name="synchrGroup" class="groupAction" method="synchrGroup">
 		</action>
-		<!--  老师添加加群-->
-		<action name="TEdificatora" class="groupAction" method="TEdificatora">
+		<!--  创建群-->
+		<action name="saveGroup" class="groupAction" method="saveGroup">
 		</action>
 		
 		<!--   审核群进群用户 查询这个群的用户 查询被踢的用户-->
@@ -30,6 +30,8 @@
 		<!-- 修改群资料 -->
 		<action name="GroupModification" class="groupAction" method="GroupModification">
 		</action>
+		
+	
 		
 		<!-- 查询用户 创建的班级 和 加入的-->
 		<action name="Idtgroup" class="groupAction" method="Idtgroup">

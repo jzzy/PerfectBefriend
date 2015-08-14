@@ -40,6 +40,9 @@ public class ForumTwoType  implements Serializable {
 	@Column(name = "img")
 	@Expose
 	private String img;
+	@Column(name = "imgmax")
+	@Expose
+	private String imgmax;
 
 	@Column(name="supports")
 	
@@ -73,6 +76,13 @@ public class ForumTwoType  implements Serializable {
 	@JoinColumn(name="fotid") //这是数据库里面的，这个字段是关联外键
 	@Expose(serialize=false)
 	private ForumOneType FOT;//与这里对应，这里表示一
+	
+	public String getImgmax() {
+		return imgmax;
+	}
+	public void setImgmax(String imgmax) {
+		this.imgmax = imgmax;
+	}
 	public Integer getId() {
 		return id;
 	}

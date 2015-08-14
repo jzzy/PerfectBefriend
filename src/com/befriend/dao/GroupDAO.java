@@ -9,12 +9,12 @@ import com.befriend.entity.Profile;
 
 public interface GroupDAO {
 	/**
-	 * ÈºÁÄdao
+	 * Èºï¿½ï¿½dao
 	 * 
 	 * @param
 	 */
 	/**
-	 *  Í¨¹ý userid ²éÑ¯ÎÒ ½¨µÄÈº
+	 *  Í¨ï¿½ï¿½ userid ï¿½ï¿½Ñ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Èº
 	 * @param userid
 	 * @return
 	 */
@@ -23,49 +23,50 @@ public interface GroupDAO {
 	
 	
 	/**
-	 * Èº×ÊÁÏ
+	 * Èºï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param groupchat
 	 */
 	/**
-	 * Ìí¼ÓÈº×ÊÁÏ
+	 * ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½
 	 * @param groupchat
 	 */
 	public void save(GroupChat groupchat);
 
 	/**
-	 *  É¾³ýÈº×ÊÁÏ
+	 *  É¾ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½
 	 * @param groupchat
 	 */
 	public void Remove(GroupChat groupchat);
 
 	/**
-	 * ¸üÐÂÈº×ÊÁÏ
+	 * ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½
 	 * @param groupchat
 	 */
 	public void Update(GroupChat groupchat);
 
 	/**
-	 *  Í¨¹ýid²éÑ¯Èº×ÊÁÏ
+	 *  Í¨ï¿½ï¿½idï¿½ï¿½Ñ¯Èºï¿½ï¿½ï¿½ï¿½
 	 * @param groupid
 	 * @return
 	 */
 	public GroupChat Findbyid(int groupid);
 
 	/**
-	 *  Í¨¹ý userid ²éÑ¯ÎÒ ½¨µÄÈº
+	 *  Í¨ï¿½ï¿½ userid ï¿½ï¿½Ñ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Èº
 	 * @param userid
 	 * @return
 	 */
 	public List<GroupChat> Findbyuserid(int userid);
 	/**
-	 *  Í¨¹ý groupno ²éÑ¯Èº
+	 *  Í¨ï¿½ï¿½ groupno ï¿½ï¿½Ñ¯Èº
 	 * @param groupno
 	 * @return
 	 */
 	public GroupChat Findbygroupno(int groupno);
+	public GroupChat maxGroupno();
 	/**
-	 *  Í¨¹ý groupno ²éÑ¯Èº
+	 *  Í¨ï¿½ï¿½ groupno ï¿½ï¿½Ñ¯Èº
 	 * @param groupno
 	 * @return
 	 */
@@ -76,43 +77,43 @@ public interface GroupDAO {
 	
 	
 	/**
-	 * Èº ¸öÈË×ÊÁÏ
+	 * Èº ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	/**
-	 *  Ìí¼Ó×ÊÁÏ
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param Profile
 	 */
 	public void save(Profile Profile);
 
 	/**
-	 *  É¾³ý×ÊÁÏ
+	 *  É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param Profile
 	 */
 	public void Remove(Profile Profile);
 
 	/**
-	 *  ¸üÐÂ×ÊÁÏ
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param Profile
 	 */
 	public void Update(Profile Profile);
 
 	
 	/**
-	 *  Í¨¹ý Èº id ÓÃ»§id ²éÑ¯×ÊÁÏ
+	 *  Í¨ï¿½ï¿½ Èº id ï¿½Ã»ï¿½id ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @param GroupChatid
 	 * @return
 	 */
 	public Profile FindProfilebyid(int GroupChatid,int userid);
 	
 	/**
-	 *  Í¨¹ý Èº id  ²éÑ¯×ÊÁÏ
+	 *  Í¨ï¿½ï¿½ Èº id  ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	 * @param GroupChatid
 	 * @return
 	 */
 	public List<Profile> FindProfilebyid(int GroupChatid);
 	
 	/**
-	 *  Í¨¹ý Èº id ºÍ urp ²éÑ¯  0µÈ´ýÉóºË  1ÊÇ³ÉÔ± 2 ·ÇÈº³ÉÔ±
+	 *  Í¨ï¿½ï¿½ Èº id ï¿½ï¿½ urp ï¿½ï¿½Ñ¯  0ï¿½È´ï¿½ï¿½ï¿½ï¿½  1ï¿½Ç³ï¿½Ô± 2 ï¿½ï¿½Èºï¿½ï¿½Ô±
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
@@ -125,42 +126,42 @@ public interface GroupDAO {
 	
 	
 	/**
-	 * Èº¹ØÏµ×ÊÁÏ
+	 * Èºï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 	 */
 	/**
-	 *  Ìí¼ÓÈº¹ØÏµ×ÊÁÏ
+	 *  ï¿½ï¿½ï¿½Èºï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 	 * @param GroupMembers
 	 */
 	public void save(GroupMembers GroupMembers);
 
 	/**
-	 *  É¾³ýÈº¹ØÏµ×ÊÁÏ
+	 *  É¾ï¿½ï¿½Èºï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 	 * @param GroupMembers
 	 */
 	public void Remove(GroupMembers GroupMembers);
 
 	/**
-	 *  ¸üÐÂÈº¹ØÏµ×ÊÁÏ
+	 *  ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 	 * @param GroupMembers
 	 */
 	public void Update(GroupMembers GroupMembers);
 
 	/**
-	 *  Í¨¹ý Èºid ºÍurp 0 µÈ´ýÉóºË 1ÊÇ Èº³ÉÔ± 2ÊÇ ±»Ìß³öÈ¥µÄ ²éÑ¯ ÈºÓÃ»§
+	 *  Í¨ï¿½ï¿½ Èºid ï¿½ï¿½urp 0 ï¿½È´ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ Èºï¿½ï¿½Ô± 2ï¿½ï¿½ ï¿½ï¿½ï¿½ß³ï¿½È¥ï¿½ï¿½ ï¿½ï¿½Ñ¯ Èºï¿½Ã»ï¿½
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
 	 */
 	public List<GroupMembers> FindGroupMembersbyid(int GroupChatid, int urp);
 	/**
-	 *  Í¨¹ý Èºid  ²éÑ¯ ÈºÓÃ»§
+	 *  Í¨ï¿½ï¿½ Èºid  ï¿½ï¿½Ñ¯ Èºï¿½Ã»ï¿½
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
 	 */
 	public List<GroupMembers> FindGroupMembersbyid(int GroupChatid);
 	/**
-	 *  Í¨¹ý Èºid  ²éÑ¯ ÈºÓÃ»§
+	 *  Í¨ï¿½ï¿½ Èºid  ï¿½ï¿½Ñ¯ Èºï¿½Ã»ï¿½
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
@@ -168,7 +169,7 @@ public interface GroupDAO {
 	public List<GroupMembers> FindGroupMembersbyurp(int GroupChatid,int urp);
 
 	/**
-	 *  Í¨¹ý Èºid ºÍ userid 
+	 *  Í¨ï¿½ï¿½ Èºid ï¿½ï¿½ userid 
 	 * @param GroupChatid
 	 * @param 
 	 * @return
@@ -176,14 +177,14 @@ public interface GroupDAO {
 	public  List<GroupMembers> FindGroupMembersbygiduidAll(int GroupChatid,int userid);
 	
 	/**
-	 *  Í¨¹ý Èºid ºÍurp userid 0 µÈ´ýÉóºË 1ÊÇ Èº³ÉÔ± ²éÑ¯ ÎÒÊÇ·ñ¼ÓÈë¹ý 
+	 *  Í¨ï¿½ï¿½ Èºid ï¿½ï¿½urp userid 0 ï¿½È´ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ Èºï¿½ï¿½Ô± ï¿½ï¿½Ñ¯ ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
 	 */
 	public GroupMembers FindGroupMembersbygiduidurp(int GroupChatid,int userid, int urp);
 	/**
-	 *  Í¨¹ý Èºid ºÍuserid ²éÑ¯ËûÊÇ·ñÔø¾­¼ÓÈë¹ý
+	 *  Í¨ï¿½ï¿½ Èºid ï¿½ï¿½userid ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param GroupChatid
 	 * @param urp
 	 * @return
@@ -191,7 +192,7 @@ public interface GroupDAO {
 	public GroupMembers FindGroupMembersbygiduidurp(int GroupChatid,int userid);
 
 	/**
-	 *  Í¨¹ý Èºuserid ºÍurp 0 µÈ´ýÉóºË 1ÊÇ Èº³ÉÔ± 2ÊÇ ±»Ìß³öÈ¥µÄ ²éÑ¯ÎÒ ¼ÓÈëµÄÈº ÎÒ ÉêÇë¼ÓÈëµÄÈº ÌßÎÒµÄÈº
+	 *  Í¨ï¿½ï¿½ Èºuserid ï¿½ï¿½urp 0 ï¿½È´ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ Èºï¿½ï¿½Ô± 2ï¿½ï¿½ ï¿½ï¿½ï¿½ß³ï¿½È¥ï¿½ï¿½ ï¿½ï¿½Ñ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Èº ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Èº ï¿½ï¿½ï¿½Òµï¿½Èº
 	 * @param userid
 	 * @param urp
 	 * @return
@@ -204,49 +205,49 @@ public interface GroupDAO {
 	
 	
 	/**
-	 * ÈºÁÄÌì×ÊÁÏ Cis
+	 * Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Cis
 	 */
 
 	/**
-	 *  Ìí¼ÓÁÄÌì
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param Cis
 	 */
 	public void save(Cis cis);
 
 	/**
-	 *  É¾³ý
+	 *  É¾ï¿½ï¿½
 	 * @param Cis
 	 */
 	public void Remove(Cis cis);
 
 	/**
-	 *  ¸üÐÂÈº¹ØÏµ×ÊÁÏ
+	 *  ï¿½ï¿½ï¿½ï¿½Èºï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½
 	 * @param Cis
 	 */
 	public void Update(Cis cis);
 	/**
-	 * Í¨¹ýÈºid  ÓÃ»§id ²éÑ¯ ÈºµÄÁÄÌì¼ÇÂ¼
+	 * Í¨ï¿½ï¿½Èºid  ï¿½Ã»ï¿½id ï¿½ï¿½Ñ¯ Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param GroupChatid
 	 * @param userid
 	 * @return
 	 */
 	public List<Cis>  FindbyGroupChatiduseridCis(int GroupChatid,int userid);
 	/**
-	 * Í¨¹ýÈºid  ÓÃ»§id ²éÑ¯ ÈºµÄÁÄÌì¼ÇÂ¼  Èç¹û±¾µØÓÐÊý¾Ý  ²éÑ¯  ¸ÄCisid ÒÔºóµÄÐÅÏ¢
+	 * Í¨ï¿½ï¿½Èºid  ï¿½Ã»ï¿½id ï¿½ï¿½Ñ¯ Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½Ñ¯  ï¿½ï¿½Cisid ï¿½Ôºï¿½ï¿½ï¿½ï¿½Ï¢
 	 * @param GroupChatid
 	 * @param userid
 	 * @return
 	 */
 	public List<Cis>  Cisid(int GroupChatid,int Cisid);
 	/**
-	 * Í¨¹ýÈºid  ÓÃ»§id cisid²éÑ¯ ÈºµÄÁÄÌì¼ÇÂ¼  
+	 * Í¨ï¿½ï¿½Èºid  ï¿½Ã»ï¿½id cisidï¿½ï¿½Ñ¯ Èºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼  
 	 * @param GroupChatid
 	 * @param userid
 	 * @return
 	 */
 	public Cis  Cisid(int Groupid,int Cisid,int Uid);
 	/**
-	 * Í¨¹ýÓÃ»§id²é¿´ Î´¶ÁÏûÏ¢
+	 * Í¨ï¿½ï¿½ï¿½Ã»ï¿½idï¿½é¿´ Î´ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * @param Cisid
 	 * @return
 	 */
@@ -255,7 +256,7 @@ public interface GroupDAO {
 	
 	
 	/**
-	 * Èç¹ûÃ»ÓÐCisid¾Í²éÑ¯×î½ü50ÌõµÄ
+	 * ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Cisidï¿½Í²ï¿½Ñ¯ï¿½ï¿½ï¿½50ï¿½ï¿½ï¿½ï¿½
 	 * @param GroupChatid
 	 * @return
 	 */

@@ -1529,6 +1529,9 @@ public class UserAction {
 				} else {
 
 				}
+				String url = "http://127.0.0.1"+request.getContextPath() +"/createDefaultGroup?userId="+u.getId();
+				WechatKit.sendGet(url);
+				
 
 				JSONObject json = new JSONObject();
 				json.put("username", u.getId());
@@ -1539,7 +1542,7 @@ public class UserAction {
 						RefreshAccessToken.access_token);
 
 				util.Out().print(util.ToJson(u));
-				String url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
+				 url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
 						+ address + "&os=" + os;
 				WechatKit.sendGet(url);
 				return;

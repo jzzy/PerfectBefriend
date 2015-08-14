@@ -35,152 +35,53 @@ import com.befriend.wechat.RefreshAccessToken;
 import com.befriend.wechat.WechatKit;
 @SuppressWarnings("static-access")
 public class GroupAction {
-
 	@SuppressWarnings("unused")
-	private UDPServer udp;// 自建工具类
-	private OpeFunction util;// 自建工具类
-	private GroupDAO gdao;// 群聊dao
-	private UserDAO udao;// 用户dao
-
-	private int id = 0;// id
-
-	User u = new User();// 用户对象
-	GroupChat groupchat = new GroupChat();// 群资料
-	Profile profile = new Profile();// 群 用户资料表
-	GroupMembers groupMembers = new GroupMembers();// 群与用户 关系表
-	Cis cis = new Cis();// 用户聊天表
-	List<User> lu = new ArrayList<User>();// 用户对象
-	List<GroupMembers> lgroupMembers = new ArrayList<GroupMembers>();// 群与用户 关系表
-	List<GroupChat> lgroupchat = new ArrayList<GroupChat>();// 群资料
-	List<Profile> lprofile = new ArrayList<Profile>();// 群 用户资料表
-	List<Cis> lcis = new ArrayList<Cis>();// 群 用户聊天资料表
-	/**
-	 * GroupChat 表 群资料表
-	 */
-	/**
-	 * 群名称
-	 */
+	private UDPServer udp;
+	private OpeFunction util;
+	private GroupDAO gdao;
+	private UserDAO udao;
+	private int id = 0;
+	User u = new User();
+	GroupChat groupchat = new GroupChat();
+	Profile profile = new Profile();
+	GroupMembers groupMembers = new GroupMembers();
+	Cis cis = new Cis();
+	List<User> lu = new ArrayList<User>();
+	List<GroupMembers> lgroupMembers = new ArrayList<GroupMembers>();
+	List<GroupChat> lgroupchat = new ArrayList<GroupChat>();
+	List<Profile> lprofile = new ArrayList<Profile>();
+	List<Cis> lcis = new ArrayList<Cis>();
 	private String name;
-	/**
-	 * 群创建者
-	 */
 	private int userid;
-	/**
-	 * 群图标 群图标 /IMG/Group 在班级中我的头像 /IMG/Group/Userimg
-	 */
 	private String img;
-	/**
-	 * 学校名称
-	 */
 	private String schoolname;
-	/**
-	 * 学校地址
-	 */
 	private String schooladdress;
-	/**
-	 * 年级
-	 */
 	private String grade;
-	/**
-	 * 班级
-	 */
 	private String gclass;
-	/**
-	 * 班主任姓名
-	 */
 	private String headteachername;
-	/**
-	 * 群号
-	 */
 	private int groupno;
-	/**
-	 * 初始是 true
-	 */
 	private Boolean b = true;
-	/**
-	 * 班级图片文件
-	 */
 	private File file;
-	/**
-	 * 文件名
-	 */
 	private String fileFileName;
-	/**
-	 * 文件类型
-	 */
 	private String fileContentType;
-
-	/**
-	 * GroupMembers 群关系表
-	 * 
-	 */
-	/**
-	 * 代表 0等待审核 1 是成员 2 被踢的 3是群主
-	 */
 	private int urp;
-	/**
-	 * 审核信息
-	 */
 	private String authentication;
-	/**
-	 * ip地址
-	 */
 	private String ip;
-
-	/**
-	 * 用户群资料表 Profile 家长独有
-	 */
-	/**
-	 * 学生姓名
-	 */
 	private String sdname;
-
-	/**
-	 * 亲属关系
-	 */
 	private String kip;
-	/**
-	 * 共有
-	 */
-	/**
-	 * 电话
-	 */
 	private String phone;
-
-	/**
-	 * 消息免打扰 0是接收 1是不接收
-	 */
 	private int ddb = -1;
-
-	/**
-	 * 0是家长 1是老师
-	 */
 	private int judge;
-	/**
-	 * 老师负责的科目
-	 */
 	private String rsbs;
-
-	/**
-	 * 发送者的id
-	 */
 	private int senduserid;
-	/**
-	 * 发送的 消息
-	 */
 	private String information;
-	/**
-	 * 时间
-	 */
 	private String time = util.getNowTime();
-	/**
-	 * 群id
-	 */
 	private int groupid;
-	/**
-	 * 环信 群id
-	 */
 	private String hxgroupid;
+	private int condtion;
+	private String area;
+	private String areas;
+	private String gclassintroduction;
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
 	/**
@@ -262,64 +163,65 @@ public class GroupAction {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	public void TEdificatora() throws IOException, InterruptedException {
+	public void saveGroup() throws IOException, InterruptedException {
 		System.out.println("创建群!");
 		System.out.println("gclass" + gclass);
 		System.out.println("grade" + grade);
 		System.out.println("headteachername" + headteachername);
-		System.out.println("uid" + id);
+		System.out.println("userid" + userid);
 		System.out.println("phone" + phone);
 		System.out.println("name" + name);
 		System.out.println("schooladdress" + schooladdress);
 		System.out.println("hxgroupid" + hxgroupid);
 		System.out.println("schoolname" + schoolname);
-
-		u = udao.byid(id);
-
+		System.out.println("condtion" + condtion);
+		System.out.println("gclassintroduction" + gclassintroduction);
+		u = udao.byid(userid);
 		// 判断 是否有这个用户 name == null
 		if (u != null) {
+			util.Out().print("unull");
+			return;
+		}
 			// 这些数据等于空 不能添加
 			if (gclass == null || grade == null || headteachername == null
 					|| phone == null || schoolname == null
-					|| schooladdress == null || hxgroupid == null) {
+					|| schooladdress == null || hxgroupid == null||gclassintroduction==null||condtion<=0) {
 				util.Out().print("null");
 				return;
 			}
-
-			// 判断生成群号 会不会和以前冲突
-			while (b) {
-				// 随机生成8位随机数 作为 群号
-				groupno = (int) ((Math.random() * 9 + 1) * 10000000);
-				if (gdao.Findbygroupno(groupno) == null) {
-					b = false;
-				}
-
-			}
-
 			// 上传群头像
 			if (file != null) {
 
-				img = "/IMG/Groupimg/" + groupno;
+				img = "/IMG/Groupimg/" + OpeFunction.getDayTime(1);
 				img = util.ufileToServer(img, file,"jpg");
 				System.out.println(img);
 				groupchat.setImg(img);// 群图标
-				System.out.println(file.getPath());
 				System.out.println("头像上传成功");
 			}
 			/**
 			 * 添加群信息
 			 */
+			groupchat.setArea(area);
+			groupchat.setAreas(areas);
 			groupchat.setGroupid(hxgroupid);// 环信 群id
-			groupchat.setGroupno(groupno);// 群号
+			groupchat.setJoincondition(condtion);
 			groupchat.setGclass(gclass);// 班级
 			groupchat.setGrade(grade);// 年级
 			groupchat.setHeadteachername(headteachername);// 班主任名字
-			groupchat.setUserid(id);// 群创建者
+			groupchat.setUserid(userid);// 群创建者
+			groupchat.setGclassintroduction(gclassintroduction);//班级简介
 			groupchat.setHtphone(phone);// 班主任电话
 			groupchat.setSchoolname(schoolname);// 学校名字
 			groupchat.setName(name);// 群名字
 			groupchat.setSchooladdress(schooladdress);// 学校地址
 			groupchat.setTime(time);// 时间
+			GroupChat grpc=gdao.maxGroupno();
+			if(grpc==null){
+				groupchat.setGroupno(10000000);// 群号
+			}else{
+				groupchat.setGroupno(grpc.getGroupno());// 群号
+			}
+			
 			gdao.save(groupchat);// 添加群
 			System.out.println("创建成功!");
 			// 通过群号查询群
@@ -335,17 +237,12 @@ public class GroupAction {
 			 * 代表 0等待审核 1 是成员 2 被踢的 3是群主
 			 */
 			groupMembers.setUrp(3);
-			groupMembers.setUserid(id);
-
+			groupMembers.setUserid(userid);
 			groupMembers.setTime(time);
 			// 添加群关系 群主也是这个群的
 			gdao.save(groupMembers);
 			util.Out().print(util.ToJson(groupchat));
 			System.out.println("成功返回群信息!");
-		} else {
-			util.Out().print(false);
-			System.out.println("用户为空!");
-		}
 
 	}
 
@@ -1405,6 +1302,22 @@ public class GroupAction {
 
 	public void setHxgroupid(String hxgroupid) {
 		this.hxgroupid = hxgroupid;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public String getAreas() {
+		return areas;
+	}
+
+	public void setAreas(String areas) {
+		this.areas = areas;
 	}
 
 }

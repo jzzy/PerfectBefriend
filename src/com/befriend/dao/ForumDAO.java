@@ -67,6 +67,10 @@ public interface ForumDAO {
 
 
 	public ForumOne getForumOne(int id);
+	public int getForumOne(String title);
+	public List<ForumOne> getForumOne(int pageSize, int currentPage,
+			String title);
+
 
 	
 	public List<ForumOne> getUseridForumOne(int id);

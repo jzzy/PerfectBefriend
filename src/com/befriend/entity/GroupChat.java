@@ -12,41 +12,77 @@ import javax.persistence.Table;
 @Entity
 @Table(name="groupchat")
 public class GroupChat implements Serializable{
-  	/**
-	 * 群概要表
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="groupno")//群号
-	private int groupno;
-	@Column(name="groupid")//环信 的群id
+	@Column(name="groupid")
 	private String groupid;
-	@Column(name="name")//群名称
+	@Column(name="groupno")
+	private int groupno;
+	
+	@Column(name="joincondition")
+	private int joincondition;
+	@Column(name="name")
 	private String name;
-	@Column(name="userid")//群创建者
+	@Column(name="area")
+	private String area;
+	@Column(name="areas")
+	private String areas;
+	@Column(name="userid")
 	private int userid;
-	@Column(name="img")//群图标
+	@Column(name="img")
 	private String img;
-	@Column(name="schoolname")//学校名称
+	@Column(name="schoolname")
 	private String schoolname;
-	@Column(name="schooladdress")//学校地址
+	@Column(name="schooladdress")
 	private String schooladdress;
-	@Column(name="grade")//年级
+	@Column(name="grade")
 	private String grade;
-	@Column(name="gclass")//班级
+	@Column(name="gclass")
 	private String gclass;
-	@Column(name="headteachername")//班主任姓名
+	@Column(name="gclassintroduction")
+	private String gclassintroduction;
+	@Column(name="headteachername")
 	private String headteachername;
-	@Column(name="htphone")//班主任电话
+	@Column(name="htphone")
 	private String htphone;
-	@Column(name="time")//群名称
+	@Column(name="time")
 	private String time;
 	
 
+	
+	public String getGclassintroduction() {
+		return gclassintroduction;
+	}
+	public void setGclassintroduction(String gclassintroduction) {
+		this.gclassintroduction = gclassintroduction;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	public String getAreas() {
+		return areas;
+	}
+	public void setAreas(String areas) {
+		this.areas = areas;
+	}
+	public int getJoincondition() {
+		return joincondition;
+	}
+	public void setJoincondition(int joincondition) {
+		this.joincondition = joincondition;
+	}
+	public int getGroupno() {
+		return groupno;
+	}
+	public void setGroupno(int groupno) {
+		this.groupno = groupno;
+	}
 	public String getGroupid() {
 		return groupid;
 	}
@@ -59,12 +95,7 @@ public class GroupChat implements Serializable{
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public int getGroupno() {
-		return groupno;
-	}
-	public void setGroupno(int groupno) {
-		this.groupno = groupno;
-	}
+	
 	public Integer getId() {
 		return id;
 	}

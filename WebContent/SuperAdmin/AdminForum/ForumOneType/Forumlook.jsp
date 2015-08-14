@@ -33,6 +33,10 @@ function cka(){
 <td><input type="text" name="title"></td>
 </tr>
 <tr>
+<td>论坛板块图片 :  </td>
+<td><input type="file"></td>
+</tr>
+<tr>
 <td><input type="submit" onclick="return cka();" value="确定"></td>
 </tr>
 </table>
