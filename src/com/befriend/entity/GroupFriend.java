@@ -56,7 +56,9 @@ public class GroupFriend implements Serializable
 	@Column(name="create_time")
 	@Expose
 	private String createTime;
-	
+	@Transient
+	@Expose
+	private String accnumno;
 	@Transient
 	@Expose
 	private String username;
@@ -130,6 +132,13 @@ public class GroupFriend implements Serializable
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	public String getAccnumno() {
+		return accnumno;
+	}
+	public void setAccnumno(String accnumno) {
+		this.accnumno = accnumno;
 	}
 	@Override
 	public String toString() {
