@@ -1,6 +1,7 @@
 package com.befriend.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.befriend.entity.Cis;
 import com.befriend.entity.GroupChat;
@@ -64,6 +65,7 @@ public interface GroupDAO {
 	 * @return
 	 */
 	public GroupChat Findbygroupno(int groupno);
+	public List<GroupChat> likeGroupChat(int classgroup,String all,Map<String,String> paras);
 	public GroupChat maxGroupno();
 	/**
 	 *  ͨ�� groupno ��ѯȺ

@@ -3,21 +3,11 @@ package com.befriend.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-
-
-
-
-
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
-
-
-
-
-
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONException;
@@ -445,19 +435,29 @@ public class GroupAction {
 	}
 
 	/**
-	 * 通过群号查询群
+	 * 查询群
 	 * 
 	 * @throws IOException
 	 */
-	public void Groupquiry() throws IOException {
+	public void likeGroupquiry() throws IOException {
 
 		// 查询到群
-		groupchat = gdao.Findbygroupno(groupno);
-		if (groupchat == null) {
-			util.Out().print("null");
-			return;
+		Map<String, String> paras = new HashMap<String, String>();
+		if (!OpeFunction.isEmpty(area)) {
+			paras.put("area", area);
 		}
-		util.Out().print(util.ToJson(groupchat));
+		if (!OpeFunction.isEmpty(areas)) {
+			paras.put("areas", areas);
+		}
+		if (!OpeFunction.isEmpty(gclass)) {
+			paras.put("gclass", gclass);
+		}
+		if (!OpeFunction.isEmpty(schoolname)) {
+			paras.put("schoolname", schoolname);
+		}
+
+		List<GroupChat> gl = gdao.likeGroupChat(classgroup, name,paras);
+		util.Out().print(util.ToJson(gl));
 
 	}
 

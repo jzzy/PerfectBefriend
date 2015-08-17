@@ -1,6 +1,7 @@
 package com.befriend.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -369,6 +370,19 @@ public class GroupDAOImpl implements GroupDAO {
 			 return gc.get(0);
 		 }
 		 return null;
+	}
+
+	@Override
+	public List<GroupChat> likeGroupChat(int classgroup,String all,Map<String,String> paras) {
+		String sql="select c from GroupChat c where c.classgroup=:classgroup and  "
+				+ "(c.phone like :all or c.groupno like :all or c.schoolname like :all or c.gclass like :all) ";
+		for (String key : paras.keySet()) {
+			sql+= "and c."+key+" like '%"+paras.get(key)+"%'";
+		}
+		Query query = entityManager.createQuery(sql);
+		query.setParameter("all",  "%"+all+"%");
+		query.setParameter("classgroup",  classgroup);
+		return query.getResultList();
 	}
 
 }

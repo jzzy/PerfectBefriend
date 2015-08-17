@@ -24,7 +24,7 @@
 		</action>
 		
 		<!--  通过群号查询群-->
-		<action name="Groupquiry" class="groupAction" method="Groupquiry">
+		<action name="likeGroupquiry" class="groupAction" method="likeGroupquiry">
 		</action>
 		
 		<!-- 修改群资料 -->
