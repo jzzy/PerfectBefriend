@@ -15,21 +15,9 @@ import javax.persistence.Table;
 public class Attention implements Serializable
 {
 	/**
-	 * forumtwotype
+	 * 关注论坛小组
 	 */
-	public final static int comeFrom = 2;
-	/**
-	 * comefromFtwos
-	 */
-	public final static int comeFromFtwos = 4;
-	/**
-	 * news
-	 */
-	public final static int comeFromNews = 1;
-	/**
-	 * newsreview
-	 */
-	public final static int comeFromNewsReview = 3;
+	public final static int COME_FROM = 2;
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")

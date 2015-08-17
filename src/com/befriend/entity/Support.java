@@ -15,21 +15,21 @@ import javax.persistence.Table;
 public class Support implements Serializable
 {
 	/**
-	 * forum
+	 * 论坛点赞 
 	 */
-	public final static int comeFrom = 2;
+	public final static int COME_FROM = 2;
 	/**
-	 * comefromFtwos
+	 * 论坛评论点赞
 	 */
-	public final static int comeFromFtwos = 4;
+	public final static int COME_FROM_F_TWOS = 4;
 	/**
-	 * news
+	 * 新闻点赞
 	 */
-	public final static int comeFromNews = 1;
+	public final static int  COME_FROM_NEWS = 1;
 	/**
-	 * newsreview
+	 * 新闻评论点赞
 	 */
-	public final static int comeFromNewsReview = 3;
+	public final static int COME_FROM_NEWS_REVIEW = 3;
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")

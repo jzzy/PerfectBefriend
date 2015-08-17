@@ -108,10 +108,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	}
 	public void forumTwosRemoveStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
-		st = cdao.Whether(Support.comeFromFtwos, userid, id);
+		st = cdao.Whether(Support.COME_FROM_F_TWOS, userid, id);
 		if (st != null && ftwo != null) {
 			cdao.remove(st);
-			ftwo.setSupports(cdao.Frequency(Support.comeFromFtwos, id).size());
+			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id).size());
 			forumdao.update(ftwo);
 			util.Out().print(true);
 		} else {
@@ -122,13 +122,13 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	public void forumTwosStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
 
-		if (cdao.Whether(Support.comeFromFtwos, userid, id) == null&& ftwo != null) {
-			st.setComefrom(Support.comeFromFtwos);
+		if (cdao.Whether(Support.COME_FROM_F_TWOS, userid, id) == null&& ftwo != null) {
+			st.setComefrom(Support.COME_FROM_F_TWOS);
 			st.setTime(time);
 			st.setUserid(userid);
 			st.setObjectid(id);
 			cdao.save(st);
-			ftwo.setSupports(cdao.Frequency(Support.comeFromFtwos, id).size());
+			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id).size());
 			forumdao.update(ftwo);
 			util.Out().print(true);
 		} else {
@@ -276,7 +276,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 			for (int j = 0; j < fttl.size(); j++) {
 				ForumTwoType ft = fttl.get(j);
-				if (cdao.Whether_A(Support.comeFrom, userid, fttl.get(i)
+				if (cdao.Whether_A(Support.COME_FROM, userid, fttl.get(i)
 						.getId()) != null) {
 					ft.setAttentionB(true);
 				}
@@ -290,7 +290,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	}
 
 	public void forumMeAttention() throws IOException {
-		afl = cdao.ILikeToo_A(Support.comeFrom, userid);
+		afl = cdao.ILikeToo_A(Support.COME_FROM, userid);
 		for (int i = 0; i < afl.size(); i++) {
 			af = afl.get(i);
 			if (af != null) {
@@ -312,10 +312,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 	public void forumRemoveAttention() throws IOException {
 		ftt = forumdao.getByIdForumTwoType(forutypeid);
-		af = cdao.Whether_A(Attention.comeFrom, userid, forutypeid);
+		af = cdao.Whether_A(Attention.COME_FROM, userid, forutypeid);
 		if (af != null && ftt != null) {
 			cdao.remove(af);
-			ftt.setAttentions(cdao.Frequency_A(Attention.comeFrom, forutypeid)
+			ftt.setAttentions(cdao.Frequency_A(Attention.COME_FROM, forutypeid)
 					.size());
 			forumdao.update(ftt);
 			util.Out().print(true);
@@ -327,15 +327,15 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	public void forumAttention() throws IOException {
 
 		ftt = forumdao.getByIdForumTwoType(forutypeid);
-		if (cdao.Whether_A(Attention.comeFrom, userid, forutypeid) == null
+		if (cdao.Whether_A(Attention.COME_FROM, userid, forutypeid) == null
 				&& userid > 0 && forutypeid > 0 && ftt != null) {
 			
 			af.setUserid(userid);
-			af.setComefrom(Attention.comeFrom);
+			af.setComefrom(Attention.COME_FROM);
 			af.setTime(time);
 			af.setObjectid(forutypeid);
 			cdao.save(af);
-			ftt.setAttentions(cdao.Frequency_A(Attention.comeFrom, forutypeid).size());
+			ftt.setAttentions(cdao.Frequency_A(Attention.COME_FROM, forutypeid).size());
 			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
@@ -345,7 +345,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	}
 
 	public void LookStandBy() throws IOException {
-		List<Support> sl = cdao.ILikeToo(Support.comeFrom, userid);
+		List<Support> sl = cdao.ILikeToo(Support.COME_FROM, userid);
 		for (int i = 0; i < sl.size(); i++) {
 			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
 		}
@@ -360,10 +360,10 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 	public void forumRemoveStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
-		st = cdao.Whether(Support.comeFrom, userid, forumid);
+		st = cdao.Whether(Support.COME_FROM, userid, forumid);
 		if (st != null && fone != null) {
 			cdao.remove(st);
-			fone.setSupports(cdao.Frequency(Support.comeFrom, forumid).size());
+			fone.setSupports(cdao.Frequency(Support.COME_FROM, forumid).size());
 			forumdao.update(fone);
 			util.Out().print(true);
 		} else {
@@ -374,14 +374,14 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	public void forumStandBy() throws IOException {
 		fone = forumdao.getForumOne(forumid);
 
-		if (cdao.Whether(Support.comeFrom, userid, forumid) == null
+		if (cdao.Whether(Support.COME_FROM, userid, forumid) == null
 				&& fone != null) {
-			st.setComefrom(Support.comeFrom);
+			st.setComefrom(Support.COME_FROM);
 			st.setTime(time);
 			st.setUserid(userid);
 			st.setObjectid(forumid);
 			cdao.save(st);
-			fone.setSupports(cdao.Frequency(Support.comeFrom, forumid).size());
+			fone.setSupports(cdao.Frequency(Support.COME_FROM, forumid).size());
 			forumdao.update(fone);
 			util.Out().print(true);
 		} else {
@@ -1334,8 +1334,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		ftwos = forumdao.getForumTwoALL(id);
 		User user = userdao.byid(fone.getUserid());
 		fone.setTotal(forumdao.getForumTwoALL(fone.getId()).size());
-		fone.setSupports(cdao.Frequency(Support.comeFrom, fone.getId()).size());
-		fone.setB(cdao.Whether(Support.comeFrom, touserid, fone.getId()) != null);
+		fone.setSupports(cdao.Frequency(Support.COME_FROM, fone.getId()).size());
+		fone.setB(cdao.Whether(Support.COME_FROM, touserid, fone.getId()) != null);
 		forumdao.update(fone);
 		List fl = new ArrayList();
 		List fu = new ArrayList();
@@ -1351,7 +1351,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 			forumtwoid = ftwo.getId();
 
-			ftwo.setB(cdao.Whether(Support.comeFromFtwos, touserid, forumtwoid) != null);
+			ftwo.setB(cdao.Whether(Support.COME_FROM_F_TWOS, touserid, forumtwoid) != null);
 
 			ftwos.set(i, ftwo);
 			User u = userdao.byid(userid);

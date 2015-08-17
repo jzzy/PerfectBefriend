@@ -89,13 +89,13 @@ public class NewsAction {
 	
 	public void supportReviewRsave() throws IOException {
 		r=rdao.byid(reviewid);
-		if(cdao.Whether(Support.comeFromNewsReview, userid, reviewid)==null&&r!=null){
-			st.setComefrom(Support.comeFromNewsReview);
+		if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid)==null&&r!=null){
+			st.setComefrom(Support.COME_FROM_NEWS_REVIEW);
 			st.setObjectid(reviewid);
 			st.setTime(time);
 			st.setUserid(userid);
 			cdao.save(st);
-			r.setSupports(cdao.Frequency(Support.comeFromNewsReview, reviewid).size());
+			r.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW, reviewid).size());
 			rdao.update(r);
 			OpeFunction.Out().print(true);
 		}else{
@@ -919,7 +919,7 @@ public class NewsAction {
 					scb.add(false);
 				}
 				
-				if (cdao.Whether(Support.comeFromNews, userid, n.getId()) != null) {
+				if (cdao.Whether(Support.COME_FROM_NEWS, userid, n.getId()) != null) {
 					zb.add(true);
 				} else {
 					zb.add(false);
@@ -1795,7 +1795,7 @@ public class NewsAction {
 	}
 
 	public void supporNewstSave() throws IOException {
-		if (cdao.Whether(Support.comeFromNews, userid, newsid) != null) {
+		if (cdao.Whether(Support.COME_FROM_NEWS, userid, newsid) != null) {
 
 			OpeFunction.Out().print(false);
 		} else {
@@ -1806,11 +1806,11 @@ public class NewsAction {
 			}
 			st.setObjectid(newsid);
 			st.setUserid(userid);
-			st.setComefrom(Support.comeFromNews);
+			st.setComefrom(Support.COME_FROM_NEWS);
 			st.setTime(OpeFunction.getNowTime());
 			cdao.save(st);
 			n = ndao.byid(newsid);
-			n.setSupports(cdao.Frequency(Support.comeFromNews, newsid).size());
+			n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS, newsid).size());
 			ndao.Upnews(n);
 			OpeFunction.Out().print(true);
 		}
@@ -2017,12 +2017,12 @@ public class NewsAction {
 	}
 
 	public void removeNewsSupport() throws IOException {
-		st = cdao.Whether(Support.comeFromNews, userid, newsid);
+		st = cdao.Whether(Support.COME_FROM_NEWS, userid, newsid);
 		if (st != null) {
 			cdao.remove(st);
 			n = ndao.byid(newsid);
 			if (n != null) {
-				n.setSupports(cdao.Frequency(Support.comeFromNews, newsid).size());
+				n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS, newsid).size());
 				ndao.Upnews(n);
 				OpeFunction.Out().print(true);
 				return;
@@ -2037,12 +2037,12 @@ public class NewsAction {
 	}
 	public void removeReviewSupport() throws IOException {
 		
-		st = cdao.Whether(Support.comeFromNewsReview, userid, reviewid);
+		st = cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid);
 		if (st != null) {
 			
 			n = ndao.byid(st.getObjectid());
 			if (n != null) {
-				n.setSupports(cdao.Frequency(Support.comeFromNewsReview, st.getObjectid()).size());
+				n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW, st.getObjectid()).size());
 				ndao.Upnews(n);
 			}
 			cdao.remove(st);
@@ -2054,7 +2054,7 @@ public class NewsAction {
 	}
 
 	public void newsLookSupport() throws IOException {
-		sl = cdao.Frequency(Support.comeFromNews, newsid);
+		sl = cdao.Frequency(Support.COME_FROM_NEWS, newsid);
 		for (int i = 0; i < sl.size(); i++) {
 			st = sl.get(i);
 			if (st != null) {
@@ -2176,7 +2176,7 @@ public class NewsAction {
 			User u1 = userdao.byid((rl.get(i).getUserid()));
 			ul.add(u1);
 			Review r1 = rl.get(i);
-			if (cdao.Whether(Support.comeFromNewsReview, userid, r1.getId()) != null) {
+			if (cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, r1.getId()) != null) {
 				r1.setB(true);
 			} else {
 				r1.setB(false);
@@ -2196,7 +2196,7 @@ public class NewsAction {
 			rl=rdao.Allu(userid);
 			for (int ri = 0; ri < rl.size(); ri++) {
 				Review r1=rl.get(ri);
-				if(cdao.Whether(Support.comeFromNewsReview, userid, r1.getId())!=null){
+				if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, r1.getId())!=null){
 					r1.setB(true);
 				}else{
 					r1.setB(false);
