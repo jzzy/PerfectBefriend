@@ -53,10 +53,10 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<GroupChat> Findbyuserid(int userid) {
+	public List<GroupChat> Findbyuserid(int userid,int classgroup) {
 		Query query = entityManager.createQuery("select c from GroupChat c"
-				+ " where c.userid=:userid  order" + " by c.time desc");
-
+				+ " where c.userid=:userid and c.classgroup=:classgroup  order" + " by c.time desc");
+		query.setParameter("classgroup", classgroup);
 		query.setParameter("userid", userid);
 		return query.getResultList();
 
@@ -116,11 +116,12 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp) {
+	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp,int classgroup) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
-				+ " where c.urp=:urp and c.userid=:userid order"
+				+ " where c.urp=:urp and c.userid=:userid and c.classgroup=:classgroup order"
 				+ " by c.time desc");
 		query.setParameter("urp", urp);
+		query.setParameter("classgroup", classgroup);
 		query.setParameter("userid", userid);
 		return query.getResultList();
 		

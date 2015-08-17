@@ -1556,7 +1556,7 @@ public class UserAction {
 	}
 
 	/**
-	 * ���û�ע�� ͨ��mac ����Ϊ����ID
+	 * ID
 	 * 
 	 * @throws IOException
 	 * @throws JSONException

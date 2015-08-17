@@ -40,7 +40,7 @@ public class Support implements Serializable
 	@Column(name="objectid")
 	private int objectid;
 	@Column(name="comefrom")
-	private int comefrom=2;
+	private int comefrom;
 	@Column(name="time")
 	private String time;
 	public Integer getId() {

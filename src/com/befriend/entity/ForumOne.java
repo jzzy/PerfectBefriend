@@ -23,51 +23,51 @@ public class ForumOne  implements Serializable {
 	private Integer id;
 	@Column(name = "title")
 	
-	private String title;
+	private String title;//标题
 
 	@Column(name = "type")
 	
 	
-	private int type;
+	private int type;//类型
 
 	@Column(name = "total")
 	
-	private int total;
+	private int total;//回复次数
 
 	@Column(name = "userid")
 	
-	private int userid;
+	private int userid;//用户id
 	@Column(name = "time")
 	
-	private String time;
+	private String time;//创建时间
 
 	@Column(name = "content")
 	
 	private String content;
 
-	@Column(name = "area")
+	@Column(name = "area")//省
 	
 	private String area;
 	@Column(name = "areas")
 	
-	private String areas;
+	private String areas;//市
 	@Column(name = "img")
 	
-	private String img;
+	private String img;//图片
 	@Column(name = "follectnum")
 	
-	private int follectnum;
+	private int follectnum;//被收藏次数
 	@Column(name = "fHits")
 	
-	private int fHits;
+	private int fHits;//点击次数
 
 	@Column(name = "frs")
 	
-	private int frs;
+	private int frs;//论坛总回复数
 	@Column(name="supports")
-	private int supports;
+	private int supports;//点赞总数
 	@Transient
-	private Boolean b=false;
+	private Boolean b=false;// 用户 是否赞过
 	
 
 	public Boolean getB() {

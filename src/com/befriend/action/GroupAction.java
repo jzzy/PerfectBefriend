@@ -10,7 +10,9 @@ import java.util.List;
 
 
 
+
 import javax.servlet.http.HttpSession;
+
 
 
 
@@ -79,8 +81,10 @@ public class GroupAction {
 	private int groupid;
 	private String hxgroupid;
 	private int condtion;
+	private int type;
 	private String area;
 	private String areas;
+	private int classgroup;
 	private String gclassintroduction;
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
@@ -184,7 +188,7 @@ public class GroupAction {
 		}
 			// 这些数据等于空 不能添加
 			if (gclass == null || grade == null || headteachername == null
-					|| phone == null || schoolname == null
+					|| /**phone == null ||*/ schoolname == null
 					|| schooladdress == null || hxgroupid == null||gclassintroduction==null||condtion<=0) {
 				util.Out().print("null");
 				return;
@@ -201,25 +205,28 @@ public class GroupAction {
 			/**
 			 * 添加群信息
 			 */
-			groupchat.setArea(area);
-			groupchat.setAreas(areas);
+			groupchat.setClassgroup(classgroup);//1群 2班级
+			groupchat.setType(type);//类别
+			groupchat.setArea(area);//地区省
+			groupchat.setAreas(areas);//地区市
 			groupchat.setGroupid(hxgroupid);// 环信 群id
-			groupchat.setJoincondition(condtion);
+			groupchat.setJoincondition(condtion);//
 			groupchat.setGclass(gclass);// 班级
 			groupchat.setGrade(grade);// 年级
 			groupchat.setHeadteachername(headteachername);// 班主任名字
 			groupchat.setUserid(userid);// 群创建者
 			groupchat.setGclassintroduction(gclassintroduction);//班级简介
-			groupchat.setHtphone(phone);// 班主任电话
+			groupchat.setPhone(phone);// 班主任电话
 			groupchat.setSchoolname(schoolname);// 学校名字
 			groupchat.setName(name);// 群名字
 			groupchat.setSchooladdress(schooladdress);// 学校地址
 			groupchat.setTime(time);// 时间
 			GroupChat grpc=gdao.maxGroupno();
-			if(grpc==null){
-				groupchat.setGroupno(10000000);// 群号
+			if(grpc!=null){
+				groupchat.setGroupno(grpc.getGroupno()+1);// 群号
+				
 			}else{
-				groupchat.setGroupno(grpc.getGroupno());// 群号
+				groupchat.setGroupno(10000000);// 群号
 			}
 			
 			gdao.save(groupchat);// 添加群
@@ -399,7 +406,7 @@ public class GroupAction {
 			util.Out().print("null");
 			return;
 		}
-		lgroupchat = gdao.Findbyuserid(u.getId());
+		lgroupchat = gdao.Findbyuserid(u.getId(),classgroup);
 		if (lgroupchat.size() == 0) {
 			util.Out().print("null");
 			return;
@@ -514,7 +521,7 @@ public class GroupAction {
 		}
 
 		if (phone != null) {
-			groupchat.setHtphone(phone);// 班主任电话
+			groupchat.setPhone(phone);// 班主任电话
 		}
 
 		if (name != null) {
@@ -523,6 +530,18 @@ public class GroupAction {
 
 		if (schooladdress != null) {
 			groupchat.setSchooladdress(schooladdress);// 学校地址
+		}
+		if(gclassintroduction!=null){
+			groupchat.setGclassintroduction(gclassintroduction);
+		}
+		if(area!=null){
+			groupchat.setArea(area);
+		}
+		if(areas!=null){
+			groupchat.setAreas(areas);
+		}
+		if(type>0){
+		groupchat.setType(type);
 		}
 		// 更新
 		gdao.Update(groupchat);
@@ -538,9 +557,9 @@ public class GroupAction {
 		// userid = 81;
 		urp = 1;// 通过审核
 		// 我加入的群
-		lgroupMembers = gdao.FindUseridGroupbyid(userid, urp);
+		lgroupMembers = gdao.FindUseridGroupbyid(userid, urp,classgroup);
 		// 我创建的群
-		lgroupchat = gdao.Findbyuserid(userid);
+		lgroupchat = gdao.Findbyuserid(userid,classgroup);
 
 		int lg = lgroupchat.size();
 		// System.out.println(userid+"有" + lg + "个群");
@@ -570,7 +589,7 @@ public class GroupAction {
 		// userid=81;
 		System.out.println("进入查询我 userid" + userid);
 		u = udao.byid(userid);
-		lgroupchat = gdao.Findbyuserid(userid);
+		lgroupchat = gdao.Findbyuserid(userid,classgroup);
 		// 判断是否为空
 		if (lgroupchat.size() == 0 || u == null) {
 			util.Out().print("null");
@@ -1318,6 +1337,22 @@ public class GroupAction {
 
 	public void setAreas(String areas) {
 		this.areas = areas;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getClassgroup() {
+		return classgroup;
+	}
+
+	public void setClassgroup(int classgroup) {
+		this.classgroup = classgroup;
 	}
 
 }

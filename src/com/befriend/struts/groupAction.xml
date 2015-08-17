@@ -33,7 +33,7 @@
 		
 	
 		
-		<!-- 查询用户 创建的班级 和 加入的-->
+		<!-- 查询用户 创建的群 和 加入的-->
 		<action name="Idtgroup" class="groupAction" method="Idtgroup">
 		</action>
 		

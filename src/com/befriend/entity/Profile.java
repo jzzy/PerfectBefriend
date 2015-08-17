@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="profile")
 public class Profile  implements Serializable{
 	/**
-	 * 家长群资料
+	 * 群个人资料
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id

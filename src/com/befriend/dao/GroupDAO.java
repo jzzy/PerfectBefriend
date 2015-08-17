@@ -57,7 +57,7 @@ public interface GroupDAO {
 	 * @param userid
 	 * @return
 	 */
-	public List<GroupChat> Findbyuserid(int userid);
+	public List<GroupChat> Findbyuserid(int userid,int classgroup);
 	/**
 	 *  ͨ�� groupno ��ѯȺ
 	 * @param groupno
@@ -197,7 +197,7 @@ public interface GroupDAO {
 	 * @param urp
 	 * @return
 	 */
-	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp);
+	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp,int classgroup);
 
 	
 	
