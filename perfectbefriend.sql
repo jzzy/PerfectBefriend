@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50703
 File Encoding         : 65001
 
-Date: 2015-08-11 22:22:19
+Date: 2015-08-17 14:25:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -121,15 +121,11 @@ CREATE TABLE `attention` (
   PRIMARY KEY (`id`),
   KEY `user_sup` (`userid`),
   CONSTRAINT `attention_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of attention
 -- ----------------------------
-INSERT INTO `attention` VALUES ('1', '677', '1868', '0', '2015-07-31  15:45:28');
-INSERT INTO `attention` VALUES ('2', '677', '1873', '0', '2015-07-31  15:45:53');
-INSERT INTO `attention` VALUES ('4', '677', '1864', '0', '2015-07-31  15:46:12');
-INSERT INTO `attention` VALUES ('6', '570', '28', '2', '2015-07-31  15:46:12');
 
 -- ----------------------------
 -- Table structure for behavior
@@ -142,7 +138,7 @@ CREATE TABLE `behavior` (
   `type` tinyint(4) NOT NULL,
   `count` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4478 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4524 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
@@ -4349,33 +4345,33 @@ INSERT INTO `behavior` VALUES ('00000004199', '0', '互联网', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004200', '0', '优秀', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004201', '0', '政策', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004202', '0', '支持', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004203', '570', '1', '1', '4');
+INSERT INTO `behavior` VALUES ('00000004203', '570', '1', '1', '7');
 INSERT INTO `behavior` VALUES ('00000004204', '570', '2', '1', '26');
 INSERT INTO `behavior` VALUES ('00000004205', '570', '3', '1', '2');
 INSERT INTO `behavior` VALUES ('00000004206', '570', '4', '1', '1');
-INSERT INTO `behavior` VALUES ('00000004207', '570', '5', '1', '6');
-INSERT INTO `behavior` VALUES ('00000004208', '570', '女', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004207', '570', '5', '1', '10');
+INSERT INTO `behavior` VALUES ('00000004208', '570', '女', '2', '12');
 INSERT INTO `behavior` VALUES ('00000004209', '570', '学区房', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004210', '570', '经验', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004211', '570', '少年', '2', '9');
-INSERT INTO `behavior` VALUES ('00000004212', '570', '小学一年级', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004213', '570', '北京', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004211', '570', '少年', '2', '12');
+INSERT INTO `behavior` VALUES ('00000004212', '570', '小学一年级', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004213', '570', '北京', '2', '7');
 INSERT INTO `behavior` VALUES ('00000004214', '570', '自觉', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004215', '570', '中小学', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004215', '570', '中小学', '2', '12');
 INSERT INTO `behavior` VALUES ('00000004216', '570', '政府', '2', '25');
 INSERT INTO `behavior` VALUES ('00000004217', '570', '条件', '2', '7');
-INSERT INTO `behavior` VALUES ('00000004218', '570', '小学', '2', '10');
-INSERT INTO `behavior` VALUES ('00000004219', '570', '初中', '2', '10');
+INSERT INTO `behavior` VALUES ('00000004218', '570', '小学', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004219', '570', '初中', '2', '14');
 INSERT INTO `behavior` VALUES ('00000004220', '570', '子女', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004221', '570', '全面', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004221', '570', '全面', '2', '12');
 INSERT INTO `behavior` VALUES ('00000004222', '570', '监督', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004223', '570', '个人', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004224', '570', '机会', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004225', '570', '地区', '2', '10');
-INSERT INTO `behavior` VALUES ('00000004226', '570', '培训', '2', '10');
+INSERT INTO `behavior` VALUES ('00000004225', '570', '地区', '2', '13');
+INSERT INTO `behavior` VALUES ('00000004226', '570', '培训', '2', '13');
 INSERT INTO `behavior` VALUES ('00000004227', '570', '承诺', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004228', '570', '平台', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004229', '570', '加强', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004229', '570', '加强', '2', '13');
 INSERT INTO `behavior` VALUES ('00000004230', '570', '证书', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004231', '570', '政策', '2', '25');
 INSERT INTO `behavior` VALUES ('00000004232', '570', '资源', '2', '7');
@@ -4384,116 +4380,116 @@ INSERT INTO `behavior` VALUES ('00000004234', '570', '校规', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004235', '570', '网站', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004236', '570', '面试', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004237', '570', '入学', '2', '7');
-INSERT INTO `behavior` VALUES ('00000004238', '570', '入园', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004239', '570', '介绍', '2', '12');
+INSERT INTO `behavior` VALUES ('00000004238', '570', '入园', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004239', '570', '介绍', '2', '16');
 INSERT INTO `behavior` VALUES ('00000004240', '570', '登记', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004241', '570', '方法', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004242', '570', '新生', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004243', '570', '鼓励', '2', '28');
+INSERT INTO `behavior` VALUES ('00000004241', '570', '方法', '2', '15');
+INSERT INTO `behavior` VALUES ('00000004242', '570', '新生', '2', '15');
+INSERT INTO `behavior` VALUES ('00000004243', '570', '鼓励', '2', '32');
 INSERT INTO `behavior` VALUES ('00000004244', '570', '重复', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004245', '570', '一年', '2', '10');
-INSERT INTO `behavior` VALUES ('00000004246', '570', '教育', '2', '29');
-INSERT INTO `behavior` VALUES ('00000004247', '570', '行为', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004248', '570', '工作', '2', '14');
-INSERT INTO `behavior` VALUES ('00000004249', '570', '表示', '2', '15');
-INSERT INTO `behavior` VALUES ('00000004250', '570', '安排', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004245', '570', '一年', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004246', '570', '教育', '2', '33');
+INSERT INTO `behavior` VALUES ('00000004247', '570', '行为', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004248', '570', '工作', '2', '20');
+INSERT INTO `behavior` VALUES ('00000004249', '570', '表示', '2', '22');
+INSERT INTO `behavior` VALUES ('00000004250', '570', '安排', '2', '12');
 INSERT INTO `behavior` VALUES ('00000004251', '570', '周岁', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004252', '570', '阶段', '2', '12');
-INSERT INTO `behavior` VALUES ('00000004253', '570', '父母', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004252', '570', '阶段', '2', '16');
+INSERT INTO `behavior` VALUES ('00000004253', '570', '父母', '2', '13');
 INSERT INTO `behavior` VALUES ('00000004254', '570', '儿童', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004255', '570', '提前', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004256', '570', '幼儿园', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004257', '570', '幼儿', '2', '11');
-INSERT INTO `behavior` VALUES ('00000004258', '570', '家长', '2', '15');
-INSERT INTO `behavior` VALUES ('00000004259', '570', '孩子', '2', '15');
+INSERT INTO `behavior` VALUES ('00000004255', '570', '提前', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004256', '570', '幼儿园', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004257', '570', '幼儿', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004258', '570', '家长', '2', '22');
+INSERT INTO `behavior` VALUES ('00000004259', '570', '孩子', '2', '22');
 INSERT INTO `behavior` VALUES ('00000004260', '570', '主动', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004261', '570', '了解', '2', '12');
-INSERT INTO `behavior` VALUES ('00000004262', '570', '负责', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004261', '570', '了解', '2', '16');
+INSERT INTO `behavior` VALUES ('00000004262', '570', '负责', '2', '20');
 INSERT INTO `behavior` VALUES ('00000004263', '570', '出生', '2', '6');
-INSERT INTO `behavior` VALUES ('00000004264', '570', '相关', '2', '10');
-INSERT INTO `behavior` VALUES ('00000004265', '570', '通过', '2', '10');
+INSERT INTO `behavior` VALUES ('00000004264', '570', '相关', '2', '13');
+INSERT INTO `behavior` VALUES ('00000004265', '570', '通过', '2', '13');
 INSERT INTO `behavior` VALUES ('00000004266', '570', '提供', '2', '7');
-INSERT INTO `behavior` VALUES ('00000004267', '570', '时间', '2', '14');
-INSERT INTO `behavior` VALUES ('00000004268', '570', '校园', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004269', '570', '足球', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004270', '570', '11岁', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004271', '570', '升学', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004272', '570', '3月', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004273', '570', '4月', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004274', '570', '5月', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004275', '570', '7月', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004276', '570', '教师', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004277', '570', '上学', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004278', '570', '规定', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004279', '570', '全国', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004280', '570', '担心', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004281', '570', '课间', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004282', '570', '校长', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004283', '570', '安全', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004284', '570', '老师', '2', '8');
-INSERT INTO `behavior` VALUES ('00000004285', '570', '依靠', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004286', '570', '年纪', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004287', '570', '精神', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004288', '570', '自信', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004289', '570', '传统', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004290', '570', '误区', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004291', '570', '相处', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004292', '570', '缺乏', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004293', '570', '爱', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004294', '570', '学习成绩', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004295', '570', '教学', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004296', '570', '程度', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004297', '570', '培养', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004298', '570', '心理', '2', '8');
-INSERT INTO `behavior` VALUES ('00000004299', '570', '调查', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004300', '570', '参加', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004301', '570', '问题', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004302', '570', '良好', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004303', '570', '重点', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004304', '570', '同学', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004305', '570', '职业', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004306', '570', '人格', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004307', '570', '青少年', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004308', '570', '距离', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004309', '570', '努力', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004310', '570', '勇敢', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004311', '570', '安全问题', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004312', '570', '会议', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004313', '570', '高中', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004314', '570', '之初', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004315', '570', '园里', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004316', '570', '名校', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004317', '570', '器材', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004318', '570', '考试', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004319', '570', '方案', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004320', '570', '学习', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004321', '570', '训练', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004322', '570', '非常', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004323', '570', '耽误', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004324', '570', '兴趣', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004325', '570', '日常', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004326', '570', '困难', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004327', '570', '速度', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004328', '570', '不足', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004329', '570', '1岁', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004330', '570', '发展', '2', '27');
-INSERT INTO `behavior` VALUES ('00000004331', '570', '身心', '2', '8');
-INSERT INTO `behavior` VALUES ('00000004332', '570', '爸爸', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004333', '570', '运动', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004334', '570', '影响', '2', '27');
-INSERT INTO `behavior` VALUES ('00000004335', '570', '活动', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004336', '570', '会影响', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004337', '570', '抗体', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004338', '570', '发现', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004339', '570', '促进', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004340', '570', '完善', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004341', '570', '提高', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004342', '570', '重要的', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004343', '570', '形成', '2', '4');
-INSERT INTO `behavior` VALUES ('00000004344', '570', '健康', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004345', '570', '重要', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004346', '570', '身体', '2', '3');
-INSERT INTO `behavior` VALUES ('00000004347', '570', '作用', '2', '3');
+INSERT INTO `behavior` VALUES ('00000004267', '570', '时间', '2', '21');
+INSERT INTO `behavior` VALUES ('00000004268', '570', '校园', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004269', '570', '足球', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004270', '570', '11岁', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004271', '570', '升学', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004272', '570', '3月', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004273', '570', '4月', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004274', '570', '5月', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004275', '570', '7月', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004276', '570', '教师', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004277', '570', '上学', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004278', '570', '规定', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004279', '570', '全国', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004280', '570', '担心', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004281', '570', '课间', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004282', '570', '校长', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004283', '570', '安全', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004284', '570', '老师', '2', '15');
+INSERT INTO `behavior` VALUES ('00000004285', '570', '依靠', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004286', '570', '年纪', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004287', '570', '精神', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004288', '570', '自信', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004289', '570', '传统', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004290', '570', '误区', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004291', '570', '相处', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004292', '570', '缺乏', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004293', '570', '爱', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004294', '570', '学习成绩', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004295', '570', '教学', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004296', '570', '程度', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004297', '570', '培养', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004298', '570', '心理', '2', '15');
+INSERT INTO `behavior` VALUES ('00000004299', '570', '调查', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004300', '570', '参加', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004301', '570', '问题', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004302', '570', '良好', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004303', '570', '重点', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004304', '570', '同学', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004305', '570', '职业', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004306', '570', '人格', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004307', '570', '青少年', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004308', '570', '距离', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004309', '570', '努力', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004310', '570', '勇敢', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004311', '570', '安全问题', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004312', '570', '会议', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004313', '570', '高中', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004314', '570', '之初', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004315', '570', '园里', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004316', '570', '名校', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004317', '570', '器材', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004318', '570', '考试', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004319', '570', '方案', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004320', '570', '学习', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004321', '570', '训练', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004322', '570', '非常', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004323', '570', '耽误', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004324', '570', '兴趣', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004325', '570', '日常', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004326', '570', '困难', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004327', '570', '速度', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004328', '570', '不足', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004329', '570', '1岁', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004330', '570', '发展', '2', '33');
+INSERT INTO `behavior` VALUES ('00000004331', '570', '身心', '2', '14');
+INSERT INTO `behavior` VALUES ('00000004332', '570', '爸爸', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004333', '570', '运动', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004334', '570', '影响', '2', '33');
+INSERT INTO `behavior` VALUES ('00000004335', '570', '活动', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004336', '570', '会影响', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004337', '570', '抗体', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004338', '570', '发现', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004339', '570', '促进', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004340', '570', '完善', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004341', '570', '提高', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004342', '570', '重要的', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004343', '570', '形成', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004344', '570', '健康', '2', '7');
+INSERT INTO `behavior` VALUES ('00000004345', '570', '重要', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004346', '570', '身体', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004347', '570', '作用', '2', '6');
 INSERT INTO `behavior` VALUES ('00000004348', '696', '1', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004349', '696', '2', '1', '2');
 INSERT INTO `behavior` VALUES ('00000004350', '696', '3', '1', '1');
@@ -4562,68 +4558,114 @@ INSERT INTO `behavior` VALUES ('00000004412', '696', '时间', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004413', '570', '初中一年级', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004414', '570', '小学六年级', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004415', '570', '缓解', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004416', '570', '学前', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004416', '570', '学前', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004417', '570', '特别', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004418', '570', '生活', '2', '6');
+INSERT INTO `behavior` VALUES ('00000004418', '570', '生活', '2', '10');
 INSERT INTO `behavior` VALUES ('00000004419', '570', '主要', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004420', '570', '择校', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004421', '570', '小升初', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004422', '570', '关注', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004423', '570', '合理', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004424', '570', '建议', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004424', '570', '建议', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004425', '570', '9月', '2', '19');
 INSERT INTO `behavior` VALUES ('00000004426', '570', '经济', '2', '19');
 INSERT INTO `behavior` VALUES ('00000004427', '570', '互联网', '2', '19');
 INSERT INTO `behavior` VALUES ('00000004428', '570', '优秀', '2', '19');
 INSERT INTO `behavior` VALUES ('00000004429', '570', '支持', '2', '19');
-INSERT INTO `behavior` VALUES ('00000004430', '570', '引导', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004431', '570', '教子', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004432', '570', '开学', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004433', '570', '新学期', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004434', '570', '面对', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004435', '570', '正确', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004436', '570', '习惯', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004437', '570', '独立', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004438', '570', '早教', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004439', '570', '朋友', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004440', '570', '一般', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004441', '570', '克服', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004442', '570', '交往', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004443', '570', '陌生', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004444', '570', '听话', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004445', '570', '沟通', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004446', '570', '回家', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004447', '570', '安慰', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004448', '570', '一阶段', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004449', '570', '小玩具', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004450', '570', '行为习惯', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004451', '570', '效果', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004452', '570', '反应', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004453', '570', '恐惧', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004454', '570', '家人', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004455', '570', '理解', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004456', '570', '能力', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004457', '570', '环境', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004458', '570', '同龄', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004459', '570', '有利于', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004460', '570', '有利', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004461', '570', '表现', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004462', '570', '3岁', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004463', '570', '刺激', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004464', '570', '玩具', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004465', '570', '利于', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004466', '570', '哭闹', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004467', '570', '经常', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004468', '570', '喜欢', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004469', '570', '帮助', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004470', '570', '正常', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004471', '570', '意识', '2', '5');
-INSERT INTO `behavior` VALUES ('00000004472', '570', '物质', '2', '5');
+INSERT INTO `behavior` VALUES ('00000004430', '570', '引导', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004431', '570', '教子', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004432', '570', '开学', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004433', '570', '新学期', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004434', '570', '面对', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004435', '570', '正确', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004436', '570', '习惯', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004437', '570', '独立', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004438', '570', '早教', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004439', '570', '朋友', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004440', '570', '一般', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004441', '570', '克服', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004442', '570', '交往', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004443', '570', '陌生', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004444', '570', '听话', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004445', '570', '沟通', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004446', '570', '回家', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004447', '570', '安慰', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004448', '570', '一阶段', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004449', '570', '小玩具', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004450', '570', '行为习惯', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004451', '570', '效果', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004452', '570', '反应', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004453', '570', '恐惧', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004454', '570', '家人', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004455', '570', '理解', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004456', '570', '能力', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004457', '570', '环境', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004458', '570', '同龄', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004459', '570', '有利于', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004460', '570', '有利', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004461', '570', '表现', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004462', '570', '3岁', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004463', '570', '刺激', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004464', '570', '玩具', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004465', '570', '利于', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004466', '570', '哭闹', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004467', '570', '经常', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004468', '570', '喜欢', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004469', '570', '帮助', '2', '9');
+INSERT INTO `behavior` VALUES ('00000004470', '570', '正常', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004471', '570', '意识', '2', '8');
+INSERT INTO `behavior` VALUES ('00000004472', '570', '物质', '2', '8');
 INSERT INTO `behavior` VALUES ('00000004473', '695', '1', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004474', '695', '2', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004475', '695', '3', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004476', '695', '4', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004477', '695', '5', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004478', '570', '高考', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004479', '570', '暑假', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004480', '570', '优点', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004481', '570', '高一', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004482', '570', '以免', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004483', '570', '信心', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004484', '570', '记忆力', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004485', '570', '记忆', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004486', '570', '允许', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004487', '570', '交流', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004488', '570', '鼓励孩子', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004489', '570', '必要', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004490', '570', '应学', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004491', '570', '初期', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004492', '570', '小朋友', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004493', '570', '玩耍', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004494', '570', '熟悉', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004495', '570', '课堂', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004496', '570', '打骂', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004497', '570', '期望', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004498', '570', '中学生', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004499', '570', '离家出走', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004500', '570', '心理障碍', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004501', '570', '警惕', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004502', '570', '严重', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004503', '570', '氛围', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004504', '570', '自然', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004505', '570', '状态', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004506', '570', '专家', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004507', '570', '注重', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004508', '570', '重视', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004509', '570', '增加', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004510', '570', '造成', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004511', '570', '游戏', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004512', '570', '注意', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004513', '570', '科学', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004514', '570', '关系', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004515', '570', '相互', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004516', '570', '时候', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004517', '570', '肚子', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004518', '570', '症状', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004519', '675', '1', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004520', '675', '2', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004521', '675', '3', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004522', '675', '4', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004523', '675', '5', '1', '1');
 
 -- ----------------------------
 -- Table structure for cis
@@ -6790,7 +6832,7 @@ CREATE TABLE `collect` (
   `time` varchar(255) DEFAULT NULL,
   `newstitle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=411 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=412 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of collect
@@ -6937,6 +6979,7 @@ INSERT INTO `collect` VALUES ('398', '686', '1829', '2015-08-04 21:01:58', null)
 INSERT INTO `collect` VALUES ('406', '570', '5', '2015-08-11 16:57:48', null);
 INSERT INTO `collect` VALUES ('407', '570', '3', '2015-08-11 16:57:52', null);
 INSERT INTO `collect` VALUES ('410', '570', '1864', '2015-08-11 19:43:51', null);
+INSERT INTO `collect` VALUES ('411', '570', '1863', '2015-08-12 19:56:23', null);
 
 -- ----------------------------
 -- Table structure for feedback
@@ -6997,7 +7040,6 @@ CREATE TABLE `follect` (
 -- ----------------------------
 INSERT INTO `follect` VALUES ('282', '586', '194', '2015-05-29 19:27:22');
 INSERT INTO `follect` VALUES ('251', '570', '151', '2015-05-15 14:53:39');
-INSERT INTO `follect` VALUES ('252', '570', '152', '2015-05-15 14:53:43');
 INSERT INTO `follect` VALUES ('253', '570', '150', '2015-05-15 14:53:47');
 INSERT INTO `follect` VALUES ('256', '570', '133', '2015-05-15 14:54:04');
 INSERT INTO `follect` VALUES ('279', '94', '166', '2015-05-22 11:44:19');
@@ -7031,7 +7073,6 @@ DROP TABLE IF EXISTS `forumone`;
 CREATE TABLE `forumone` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
-  `type` int(11) DEFAULT '0',
   `total` int(11) DEFAULT '0',
   `userid` int(11) DEFAULT '0',
   `time` varchar(255) DEFAULT NULL,
@@ -7043,43 +7084,48 @@ CREATE TABLE `forumone` (
   `fHits` int(11) DEFAULT '0',
   `img` varchar(255) DEFAULT NULL,
   `supports` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8;
+  `type` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `forum_type_twotype_id` (`type`),
+  CONSTRAINT `forum_type_twotype_id` FOREIGN KEY (`type`) REFERENCES `forum_twotype` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forumone
 -- ----------------------------
-INSERT INTO `forumone` VALUES ('57', '看电视多会不会近视啊？', '2', '6', '464', '2015-04-15 15:57:36', '孩子一起床就看电视，每天看5个小时', '北京', '海淀区', '2', '6', '85', '/IMG/Forumimg/2b604a8a-7764-4520-8038-9c3c2be88865.jpg', '0');
-INSERT INTO `forumone` VALUES ('59', '孩子总是顶嘴怎么办？', '2', '1', '469', '2015-04-16 15:26:19', '发现孩子最近越来越不听话了，还老跟我顶嘴，实在头疼，不知道大家有没有什么比较好的办法？', '北京', '海淀区', '0', '1', '48', null, '0');
-INSERT INTO `forumone` VALUES ('61', '多关注孩子心里健康', '2', '0', '464', '2015-04-17 11:34:04', '1.情感投资，让孩子天天快乐\n2.以礼相待，让孩子感到父母可亲可敬\n3.循循善诱，让孩子认识自我', '北京', '朝阳区', '0', '0', '29', '/IMG/Forumimg/a87dffcc-25b6-4a7b-b53e-d9871317fffb.jpg', '0');
-INSERT INTO `forumone` VALUES ('65', '买玩具没够', '2', '11', '464', '2015-04-20 17:09:22', '孩子一出门就要买玩具，不买就哭闹，真是头疼', '北京', '朝阳区', '0', '11', '179', '/IMG/Forumimg/78347556-2891-49ae-ac09-b54a476a815e.jpg', '0');
-INSERT INTO `forumone` VALUES ('106', '孩子今年8', '1', '2', '406', '2015-05-05 10:27:19', '孩子今年8岁 三年级 这段时间老师反应这孩子什么都好，很聪明，接受能力很强。就是上课爱说话，影响其他同学。我还怎么办。', '上海', '普陀', '0', '3', '176', null, '0');
-INSERT INTO `forumone` VALUES ('109', '孩子挑食，不爱吃饭怎么办呢？', '1', '1', '469', '2015-05-06 13:44:06', '孩子挑食，不爱吃饭怎么办呢？', '北京', '海淀区', '2', '1', '43', null, '0');
-INSERT INTO `forumone` VALUES ('120', '孩子不喜欢', '1', '1', '470', '2015-05-11 15:33:56', '孩子不喜欢上幼儿园怎么办？', '北京', '海淀区', '0', '1', '29', null, '4');
-INSERT INTO `forumone` VALUES ('121', '小宝宝喜欢', '1', '1', '71', '2015-05-11 15:39:59', '小宝宝喜欢吃手怎么办？', '湖南', '长沙', '0', '1', '35', null, '0');
-INSERT INTO `forumone` VALUES ('122', '孩子不会说', '1', '0', '78', '2015-05-11 15:42:55', '孩子不会说话怎么办？', '湖南', '常德', '0', '0', '16', null, '0');
-INSERT INTO `forumone` VALUES ('123', '宝宝流汗的', '1', '0', '93', '2015-05-11 15:46:23', '宝宝流汗的情况特别严重，是怎么回事啊？', '北京', '朝阳区', '0', '0', '23', null, '0');
-INSERT INTO `forumone` VALUES ('124', '孩子缺乏想', '1', '0', '85', '2015-05-11 15:47:58', '孩子缺乏想象力怎么办？', '湖南', '长沙', '0', '0', '36', null, '0');
-INSERT INTO `forumone` VALUES ('126', '孩子胆子小', '1', '0', '81', '2015-05-11 15:54:44', '孩子胆子小在学校老是被欺负怎么办？', '北京', '朝阳区', '0', '0', '44', null, '1');
-INSERT INTO `forumone` VALUES ('127', '孩子上课老', '1', '2', '406', '2015-05-11 15:57:16', '孩子上课老走神怎么办？', '上海', '普陀', '0', '2', '100', null, '0');
-INSERT INTO `forumone` VALUES ('130', '小孩玩游戏好不好', '1', '1', '383', '2015-05-12 09:38:09', '循循善诱，找到孩子的兴趣点去培养，转移他们的注意力才是最好的，要知道百分之99.9以上的孩子兴趣人生发展点绝对不是游戏，只是因为游戏玩起来很痛快，所以人们沉迷当中。', '湖南', '长沙', '0', '1', '87', '/IMG/Forumimg/f6c426c2-dbf5-466c-9949-f41122ce670f.jpg', '0');
-INSERT INTO `forumone` VALUES ('131', '孩子写作业磨蹭怎么办？', '2', '5', '549', '2015-05-12 09:55:45', '写作业一个小时站起来10回，总找点其他的事情做。', '北京', '海淀区', '0', '5', '66', '/IMG/Forumimg/dff4124e-86f5-4d86-9a60-981e5fd096bc.jpg', '0');
-INSERT INTO `forumone` VALUES ('132', '孩子写作业', '1', '0', '549', '2015-05-12 23:14:30', '孩子写作业磨蹭，不好好写怎么办呢？', '北京', '朝阳区', '0', '1', '55', null, '0');
-INSERT INTO `forumone` VALUES ('133', '夏天到了，孩子爱上火', '2', '7', '549', '2015-05-12 23:16:04', '孩子不爱喝水，经常小便黄上火，怎么办啊？', '北京', '朝阳区', '1', '7', '64', null, '0');
-INSERT INTO `forumone` VALUES ('134', '北京这么大，我想去转转', '2', '20', '549', '2015-05-13 14:49:30', '清爽的5月，周末想带孩子参加一些户外活动，不知道有什么好玩的地方吗？\n', '北京', '朝阳区', '1', '20', '63', null, '0');
-INSERT INTO `forumone` VALUES ('144', '大家小心咸猪手', '2', '9', '563', '2015-05-14 10:45:00', '夏天来了，家里有女儿的上学坐车要小心了，', '北京', '海淀区', '3', '9', '66', null, '0');
-INSERT INTO `forumone` VALUES ('145', '半夜孩子老', '1', '3', '563', '2015-05-14 10:48:05', '半夜孩子老哭不知道什么原因？', '北京', '海淀区', '0', '1', '75', null, '0');
-INSERT INTO `forumone` VALUES ('146', '孩子太淘气了 怎么办好?', '2', '11', '578', '2015-05-14 10:48:48', '孩子太淘气了 管不住.怎么办好呢', '北京', '海淀区', '2', '11', '93', null, '0');
-INSERT INTO `forumone` VALUES ('150', '孩子是左撇子', '2', '11', '579', '2015-05-15 14:16:01', '孩子现在惯用左手，各位家长支支招，这个是给他扳过来好呢还是顺其自然好？', '北京', '海淀区', '2', '11', '48', null, '0');
-INSERT INTO `forumone` VALUES ('151', '孩子特别喜欢数学', '2', '11', '586', '2015-05-15 14:17:29', '孩子特别喜欢数学，但是其它的科目不喜欢，这怎么好呢？', '北京', '海淀区', '6', '11', '90', null, '0');
-INSERT INTO `forumone` VALUES ('152', '养宠物可以培养孩子的爱心吗', '2', '20', '570', '2015-05-15 14:26:24', '孩子一直想要个猫，不知对于培养爱心有帮助不？', '北京', '海淀区', '7', '20', '180', null, '0');
-INSERT INTO `forumone` VALUES ('166', '孩子性格懦弱怎么办', '3', '20', '406', '2015-05-15 17:44:33', '孩子在学校性格懦弱，经常被欺负 ，回来也不说 怎么让孩子勇敢起来', '北京', '昌平', '8', '20', '267', null, '0');
-INSERT INTO `forumone` VALUES ('187', '怎样发挥孩子的兴趣特长', '2', '5', '577', '2015-05-25 14:40:04', '孩子现在上初一，文化课一直处于中游偏上。但是他非常喜欢画画，而且画的很好。可是学校里并没有相对应的特长专业，现在我是支持他作画还是制止', '北京', '西城区', '4', '5', '34', null, '0');
-INSERT INTO `forumone` VALUES ('192', '孩子怕黑', '2', '11', '579', '2015-05-29 16:35:32', '我儿子已经四岁了，但是还是不敢自己睡，因为怕黑，各位家长支支招，怎么才能让他胆子大一点儿呢？', '北京', '海淀区', '5', '9', '53', null, '0');
-INSERT INTO `forumone` VALUES ('193', '孩子特别偏科', '3', '7', '579', '2015-05-29 16:37:18', '孩子现在上四年级，偏科偏的厉害，只喜欢美术和音乐，对数学、英语和语文都不感兴趣，成绩也不好，怎么办呢？', '北京', '海淀区', '6', '7', '22', null, '0');
-INSERT INTO `forumone` VALUES ('194', '孩子成绩上不来', '2', '19', '579', '2015-05-29 16:39:36', '儿子明年就要参加中考了，但是现在他的考试成绩在班里一直属于中等偏下，也给他报了培训班，买了辅导书，但是效果不太理想，大家有什么好办法吗？', '北京', '海淀区', '6', '19', '50', null, '0');
-INSERT INTO `forumone` VALUES ('195', '111111', '2', '2', '71', '2015-06-30  14:29:18', '111111111111111111111111', '湖南', '长沙', '0', '2', '76', null, '0');
-INSERT INTO `forumone` VALUES ('196', 'rqweq', '2', '0', '71', '2015-06-30  18:21:00', 'qweqweqw', '湖南', '长沙', '0', '0', '4', null, '0');
+INSERT INTO `forumone` VALUES ('57', '看电视多会不会近视啊？', '8', '464', '2015-04-15 15:57:36', '孩子一起床就看电视，每天看5个小时', '北京', '海淀区', '2', '9', '91', '/IMG/Forumimg/2b604a8a-7764-4520-8038-9c3c2be88865.jpg', '0', '29');
+INSERT INTO `forumone` VALUES ('59', '孩子总是顶嘴怎么办？', '1', '469', '2015-04-16 15:26:19', '发现孩子最近越来越不听话了，还老跟我顶嘴，实在头疼，不知道大家有没有什么比较好的办法？', '北京', '海淀区', '0', '1', '48', null, '0', '29');
+INSERT INTO `forumone` VALUES ('61', '多关注孩子心里健康', '0', '464', '2015-04-17 11:34:04', '1.情感投资，让孩子天天快乐\n2.以礼相待，让孩子感到父母可亲可敬\n3.循循善诱，让孩子认识自我', '北京', '朝阳区', '0', '0', '29', '/IMG/Forumimg/a87dffcc-25b6-4a7b-b53e-d9871317fffb.jpg', '0', '29');
+INSERT INTO `forumone` VALUES ('65', '买玩具没够', '11', '464', '2015-04-20 17:09:22', '孩子一出门就要买玩具，不买就哭闹，真是头疼', '北京', '朝阳区', '0', '11', '179', '/IMG/Forumimg/78347556-2891-49ae-ac09-b54a476a815e.jpg', '0', '29');
+INSERT INTO `forumone` VALUES ('106', '孩子今年8', '1', '406', '2015-05-05 10:27:19', '孩子今年8岁 三年级 这段时间老师反应这孩子什么都好，很聪明，接受能力很强。就是上课爱说话，影响其他同学。我还怎么办。', '上海', '普陀', '0', '3', '182', null, '0', '29');
+INSERT INTO `forumone` VALUES ('109', '孩子挑食，不爱吃饭怎么办呢？', '2', '469', '2015-05-06 13:44:06', '孩子挑食，不爱吃饭怎么办呢？', '北京', '海淀区', '2', '1', '45', null, '0', '29');
+INSERT INTO `forumone` VALUES ('120', '孩子不喜欢', '2', '470', '2015-05-11 15:33:56', '孩子不喜欢上幼儿园怎么办？', '北京', '海淀区', '0', '1', '30', null, '0', '29');
+INSERT INTO `forumone` VALUES ('121', '小宝宝喜欢', '14', '71', '2015-05-11 15:39:59', '小宝宝喜欢吃手怎么办？', '湖南', '长沙', '0', '13', '123', null, '1', '29');
+INSERT INTO `forumone` VALUES ('122', '孩子不会说', '1', '78', '2015-05-11 15:42:55', '孩子不会说话怎么办？', '湖南', '常德', '0', '0', '19', null, '0', '29');
+INSERT INTO `forumone` VALUES ('123', '宝宝流汗的', '3', '93', '2015-05-11 15:46:23', '宝宝流汗的情况特别严重，是怎么回事啊？', '北京', '朝阳区', '0', '2', '39', null, '1', '29');
+INSERT INTO `forumone` VALUES ('124', '孩子缺乏想', '0', '85', '2015-05-11 15:47:58', '孩子缺乏想象力怎么办？', '湖南', '长沙', '0', '0', '36', null, '0', '29');
+INSERT INTO `forumone` VALUES ('126', '孩子胆子小', '0', '81', '2015-05-11 15:54:44', '孩子胆子小在学校老是被欺负怎么办？', '北京', '朝阳区', '0', '0', '44', null, '1', '29');
+INSERT INTO `forumone` VALUES ('127', '孩子上课老', '2', '406', '2015-05-11 15:57:16', '孩子上课老走神怎么办？', '上海', '普陀', '0', '2', '100', null, '0', '29');
+INSERT INTO `forumone` VALUES ('130', '小孩玩游戏好不好', '1', '383', '2015-05-12 09:38:09', '循循善诱，找到孩子的兴趣点去培养，转移他们的注意力才是最好的，要知道百分之99.9以上的孩子兴趣人生发展点绝对不是游戏，只是因为游戏玩起来很痛快，所以人们沉迷当中。', '湖南', '长沙', '0', '1', '87', '/IMG/Forumimg/f6c426c2-dbf5-466c-9949-f41122ce670f.jpg', '0', '29');
+INSERT INTO `forumone` VALUES ('131', '孩子写作业磨蹭怎么办？', '5', '549', '2015-05-12 09:55:45', '写作业一个小时站起来10回，总找点其他的事情做。', '北京', '海淀区', '0', '5', '66', '/IMG/Forumimg/dff4124e-86f5-4d86-9a60-981e5fd096bc.jpg', '0', '29');
+INSERT INTO `forumone` VALUES ('132', '孩子写作业', '0', '549', '2015-05-12 23:14:30', '孩子写作业磨蹭，不好好写怎么办呢？', '北京', '朝阳区', '0', '1', '55', null, '0', '29');
+INSERT INTO `forumone` VALUES ('133', '夏天到了，孩子爱上火', '7', '549', '2015-05-12 23:16:04', '孩子不爱喝水，经常小便黄上火，怎么办啊？', '北京', '朝阳区', '1', '7', '64', null, '0', '29');
+INSERT INTO `forumone` VALUES ('134', '北京这么大，我想去转转', '20', '549', '2015-05-13 14:49:30', '清爽的5月，周末想带孩子参加一些户外活动，不知道有什么好玩的地方吗？\n', '北京', '朝阳区', '1', '20', '63', null, '0', '29');
+INSERT INTO `forumone` VALUES ('144', '大家小心咸猪手', '9', '563', '2015-05-14 10:45:00', '夏天来了，家里有女儿的上学坐车要小心了，', '北京', '海淀区', '3', '9', '66', null, '0', '29');
+INSERT INTO `forumone` VALUES ('145', '半夜孩子老', '3', '563', '2015-05-14 10:48:05', '半夜孩子老哭不知道什么原因？', '北京', '海淀区', '0', '1', '75', null, '0', '29');
+INSERT INTO `forumone` VALUES ('146', '孩子太淘气了 怎么办好?', '11', '578', '2015-05-14 10:48:48', '孩子太淘气了 管不住.怎么办好呢', '北京', '海淀区', '2', '11', '93', null, '0', '29');
+INSERT INTO `forumone` VALUES ('150', '孩子是左撇子', '11', '579', '2015-05-15 14:16:01', '孩子现在惯用左手，各位家长支支招，这个是给他扳过来好呢还是顺其自然好？', '北京', '海淀区', '2', '11', '48', null, '0', '29');
+INSERT INTO `forumone` VALUES ('151', '孩子特别喜欢数学', '11', '586', '2015-05-15 14:17:29', '孩子特别喜欢数学，但是其它的科目不喜欢，这怎么好呢？', '北京', '海淀区', '6', '11', '90', null, '0', '29');
+INSERT INTO `forumone` VALUES ('152', '养宠物可以培养孩子的爱心吗', '11', '570', '2015-05-15 14:26:24', '孩子一直想要个猫，不知对于培养爱心有帮助不？', '北京', '海淀区', '6', '20', '191', null, '0', '29');
+INSERT INTO `forumone` VALUES ('166', '孩子性格懦弱怎么办', '20', '406', '2015-05-15 17:44:33', '孩子在学校性格懦弱，经常被欺负 ，回来也不说 怎么让孩子勇敢起来', '北京', '昌平', '8', '20', '267', null, '0', '29');
+INSERT INTO `forumone` VALUES ('187', '怎样发挥孩子的兴趣特长', '5', '577', '2015-05-25 14:40:04', '孩子现在上初一，文化课一直处于中游偏上。但是他非常喜欢画画，而且画的很好。可是学校里并没有相对应的特长专业，现在我是支持他作画还是制止', '北京', '西城区', '4', '5', '34', null, '0', '29');
+INSERT INTO `forumone` VALUES ('192', '孩子怕黑', '11', '579', '2015-05-29 16:35:32', '我儿子已经四岁了，但是还是不敢自己睡，因为怕黑，各位家长支支招，怎么才能让他胆子大一点儿呢？', '北京', '海淀区', '5', '9', '53', null, '0', '29');
+INSERT INTO `forumone` VALUES ('193', '孩子特别偏科', '7', '579', '2015-05-29 16:37:18', '孩子现在上四年级，偏科偏的厉害，只喜欢美术和音乐，对数学、英语和语文都不感兴趣，成绩也不好，怎么办呢？', '北京', '海淀区', '6', '7', '22', null, '0', '29');
+INSERT INTO `forumone` VALUES ('194', '孩子成绩上不来', '19', '579', '2015-05-29 16:39:36', '儿子明年就要参加中考了，但是现在他的考试成绩在班里一直属于中等偏下，也给他报了培训班，买了辅导书，但是效果不太理想，大家有什么好办法吗？', '北京', '海淀区', '6', '19', '50', null, '0', '29');
+INSERT INTO `forumone` VALUES ('195', '111111', '2', '71', '2015-06-30  14:29:18', '111111111111111111111111', '湖南', '长沙', '0', '2', '76', null, '0', '29');
+INSERT INTO `forumone` VALUES ('196', 'rqweq', '0', '71', '2015-06-30  18:21:00', 'qweqweqw', '湖南', '长沙', '0', '0', '4', null, '0', '29');
+INSERT INTO `forumone` VALUES ('198', '莫咯哦咯JOJO哦咯lol', '0', '570', '2015-08-13 18:43:26', '莫咯哦咯JOJO哦咯lol', '北京', '海淀区', '0', '0', '21', null, '1', '27');
+INSERT INTO `forumone` VALUES ('201', '哦尼我会哦咯哦咯你摸咯JOJO', '1', '570', '2015-08-14 14:14:45', '哦尼我会哦咯哦咯你摸咯JOJO', '北京', '海淀区', '0', '1', '8', null, '0', '27');
 
 -- ----------------------------
 -- Table structure for forumthree
@@ -7095,7 +7141,7 @@ CREATE TABLE `forumthree` (
   `forumtwoid` int(11) DEFAULT NULL,
   `supports` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forumthree
@@ -7112,6 +7158,17 @@ INSERT INTO `forumthree` VALUES ('63', '577', '406', '多加引导', '2015-05-22
 INSERT INTO `forumthree` VALUES ('64', '71', '568', '1213', '2015-06-25  17:58:53', '152', '480', '0');
 INSERT INTO `forumthree` VALUES ('65', '71', '71', '1111111111111', '2015-06-30  14:29:31', '195', '622', '0');
 INSERT INTO `forumthree` VALUES ('66', '71', '71', '111111111111111111111111111111', '2015-06-30  14:29:36', '195', '622', '0');
+INSERT INTO `forumthree` VALUES ('68', '570', '570', 'adfasdfasdfsdf', '2015-08-12 15:24:04', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('70', '570', '570', 'adfasdfasdfsdf', '2015-08-12 15:33:28', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('71', '570', '570', 'adfasdfasdfsdf', '2015-08-12 15:35:52', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('72', '570', '570', 'adfasdfasdfsdf', '2015-08-12 15:37:01', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('73', '570', '570', '楼梯考虑默默无语', '2015-08-12 15:40:03', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('74', '570', '570', 'adfasdfasdfsdf', '2015-08-12 16:25:37', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('75', '570', '570', '阿奎罗哦咯莫咯', '2015-08-12 16:33:00', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('76', '570', '570', '的玩LOL莫咯loll', '2015-08-12 16:33:21', '121', '633', '0');
+INSERT INTO `forumthree` VALUES ('77', '570', '570', '哦哦JOJO哦咯JOJO哦咯JOJO', '2015-08-13 17:45:09', '123', '637', '0');
+INSERT INTO `forumthree` VALUES ('78', '570', '570', '改名爹红米明', '2015-08-13 17:45:23', '123', '637', '0');
+INSERT INTO `forumthree` VALUES ('79', '570', '570', 'mmww哦哦哦Mook', '2015-08-14 14:23:27', '201', '641', '0');
 
 -- ----------------------------
 -- Table structure for forumtwo
@@ -7125,137 +7182,156 @@ CREATE TABLE `forumtwo` (
   `forumid` int(11) DEFAULT NULL,
   `touserid` int(11) DEFAULT NULL,
   `supports` int(11) DEFAULT '0',
+  `total` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=624 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=642 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forumtwo
 -- ----------------------------
-INSERT INTO `forumtwo` VALUES ('162', '464', '捉急，大家有什么办法', '2015-04-15 15:58:41', '57', '464', null);
-INSERT INTO `forumtwo` VALUES ('163', '407', '看来父母需要采取点儿强制措施了！', '2015-04-15 16:02:27', '57', '464', null);
-INSERT INTO `forumtwo` VALUES ('170', '75', '很容易近视，小孩尤其要少看电视', '2015-04-15 17:51:29', '57', '464', null);
-INSERT INTO `forumtwo` VALUES ('171', '466', '做游戏，多在小区逛逛', '2015-04-16 13:30:34', '57', '464', null);
-INSERT INTO `forumtwo` VALUES ('172', '464', '现在的孩子都喜欢各种高科技，都不像我那小时候跳皮筋啊扔沙包的多健康拉', '2015-04-16 13:36:21', '57', '464', null);
-INSERT INTO `forumtwo` VALUES ('174', '464', '先顺着孩子说，然后再慢慢跟他讲其中的道理，应该会有效果的，你可以试试', '2015-04-16 15:46:49', '59', '469', null);
-INSERT INTO `forumtwo` VALUES ('181', '94', '应该该让孩子索取任何东西都要付出代价 而不是哭闹就能得到的  ', '2015-04-20 17:53:39', '65', '464', null);
-INSERT INTO `forumtwo` VALUES ('183', '503', '适当引导，让孩子自己做选择', '2015-04-29 13:53:04', '65', '464', null);
-INSERT INTO `forumtwo` VALUES ('197', '306', '引导', '2015-04-30 17:36:35', '65', '464', null);
-INSERT INTO `forumtwo` VALUES ('211', '71', '1.\r\n\r\n让孩子知道上课的纪律。\r\n\r\n \r\n\r\n  \r\n\r\n针对孩子暂时还未适应小学的学习特点，我们家长需要配合老师给孩子讲一讲上课的纪律，让他知\r\n\r\n道上课应该怎么做，如果说话或者有其他动作，会影响到其他同学的学习的。同时，家长朋友也可\r\n\r\n以多一些耐心，不要吵孩子。随着对新的学习环境的适应，他会逐渐学会听课。\r\n\r\n \r\n\r\n  \r\n\r\n2.\r\n\r\n教给孩子一些小技巧，来延长孩子的注意力集中时间。\r\n\r\n \r\n\r\n  \r\n\r\n比如，让孩子看着老师的脸，这样能通过动作提醒自己跟着老师的节奏来听课；桌上不要放与学习\r\n\r\n无关的东西，也不要放太花哨的学习用具，等。\r\n', '2015-05-05 10:30:51', '106', '406', null);
-INSERT INTO `forumtwo` VALUES ('216', '71', '   厌食是7岁以下儿童的常见症状。不良的饮食习惯、家长溺爱和缺乏微量元素是引起儿童厌食的主要原因。长期厌食多伴有体重不增或减轻，导致营养不良，影响儿童生长发育。那么，怎样增进孩子的食欲呢？\r\n\r\n1、改善饮食习惯。建立规律的生活制度，每天按时就餐，孩子吃饭时要和家庭其他人员一块吃。\r\n\r\n2、注重饮食的花色品种，吸引孩子的食欲。同时讲究烹调技术。孩子不吃肉，可以做成水饺或馄饨；不吃豆腐，就做成卤干；不吃鱼，可做成鱼丸；尽可能使孩子膳食营养达到粗细荤素搭配的“均衡饮食”。\r\n\r\n3、给孩子提供多样的食物，并把各种荤素食物混在一起，逐渐培养孩子粗食杂粮都吃的习惯，这样可以纠正孩子挑食和偏食的坏毛病；\r\n\r\n4、要让吃饭时间成为安静快乐的时刻。家长不要采取哄骗、恐吓等手段强迫孩子进食，更不能在吃饭时教训小孩子--孩子越紧张，吃得越少。\r\n\r\n5、孩子吃得好的时候，对他要多加注意，适当表扬；而他拒食的时候则要对他少加注意，有时孩子想要以绝食来赢得关注。\r\n\r\n6、不要给孩子吃放过多调料或过多盐分的食物，尽量少给孩子吃零食，不要在吃饭前用饮料填满孩子的肚子。\r\n\r\n7、补充适量微量元素和维生素。国内调查资料表明，厌食儿童多伴有不同程度的缺铁和缺锌。因此，对厌食儿童应常规检测头发中铁、锌和血液中铁、锌的含量；若这两项指标偏低，需要给孩子服用铁锌制剂，一般连用1-2个月，随着缺铁和缺锌的纠正，孩子的食欲就会大为改善。\r\n\r\n8、不宜滥用“营养滋补品”。儿童保健专家认为，健康儿童一般不需服营养滋补品，这是因为经常给小儿服营养滋补品会养成一种不平衡的饮食习惯，影响正常均衡饮食中营养物质的摄取，这样孩子就不可能得到长身体所需的各种营养成分，从而可能引起食欲不振、生长发育迟缓，患上贫血及佝偻病等疾病。某些营养滋补品能产生跟激素一样的作用，长期大量服用可造成儿童肥胖症和性早熟等不良后果。\r\n\r\n9、使用“开胃”药的目的在于促进食物消化和增加胃动力。临床医生观察到，胃潴留、蠕动减弱的患儿服用吗丁啉后，常有饥饿感从而起到增进食欲作用。此外，中成药饮片或溶液制剂也有较好的健脾开胃作用，可在儿科医生指导下选用。 \r\n', '2015-05-08 17:39:44', '109', '469', null);
-INSERT INTO `forumtwo` VALUES ('236', '71', ' 孩子不肯上学的情况，若发生在开学初期，那是很正常的现象，主要是孩子还未能适应离开母亲的怀抱，到一个陌生的地方生活，所以许多幼儿园在开学之初，每天只上1—2小时的课，甚至可以让家长陪同上课。一般来说，不出一个星期，孩子就可以适应幼儿园的生活了；有些较“外向”的孩子，可能只须一天时间，已经很享受幼儿园的群体生活了。 \r\n\r\n    至于开学了一段日子，孩子突然不愿意去了，则有以下原因： \r\n\r\n* 孩子追不上学习进度 \r\n\r\n    现在的幼儿园课程，内容也颇为艰深，有些较为“慢热”的孩子未必追得上；特别是有些健康较差的，有时身体不舒服，父母便任由孩子不去上课，缺席得多了，更加追不上进度，于是对返园更加抗拒了。因此，父母要经常关注孩子的学习情况，以免他落后于人，而产生消极的情绪。 \r\n\r\n* 与同伴相处有问题 \r\n\r\n    有些孩子，由于性格内向或其他原因，在园内未能与其他同伴融洽相处，甚至受到“排挤”，便会感到闷闷不乐。这种情绪若不能得到纾解，便会产生讨厌返园的念头。 \r\n\r\n    因此，您若见孩子突然间很抗拒返园，便要与教师接触，探求原因，或者与孩子谈谈，了解他的内心世界，以便及时帮助孩子。 \r\n\r\n* 长假期后不愿返园 \r\n\r\n    这是最常见的情况，有时，幼儿园放完一个长假（少则3、4天，多则一、两个星期），许多孩子都不愿意返园，因为在假期中，家长可能会安排许多活动，又或者带孩子去外地旅游，孩子玩到心都野了，自然不愿意上学，受规律生活的约束。 \r\n\r\n    此外，在假期中，家长或者会容许孩子迟睡，第二天早上自然不愿早起床，到假期结束后，要孩子一早起床去上学，当然会感到分外辛苦。 \r\n\r\n    因此，每次放长假期时，家长都要留意，不要安排太密的活动，以免孩子玩得太疯。而在假期临结束前的一、两日，最好不要出外游玩，尽量留在家中休息。同时，要孩子早点上床睡觉，使他恢复返园时的规律生活。这样，孩\r\n', '2015-05-11 15:39:21', '120', '470', null);
-INSERT INTO `forumtwo` VALUES ('237', '71', '婴儿出生后第一年成为“口腔期“，是人格发展的第一个基础阶段。他们强烈需要一种安全感，吸吮需求很强烈，尤其在就寝时间更为明显。对于刚出生的宝宝而言，吸手指是很正常的。\r\n\r\n    这种行为之所以持续一方面能给宝宝带来舒服感，缓解焦虑；另一方面，宝宝本来就有吸吮的反射和需求，而吸手指带来的满足感和吃母乳的感觉是不一样的，所以即使吃饱了，宝宝还会吸手指。下面具体介绍下。\r\n\r\n    1. 智力发展的信号\r\n\r\n    宝宝慢慢长大，手指功能开始分化，初期手眼协调功能也出现。2—3个月宝宝就开始出现吃手的动作。当宝宝真正能把手放在嘴巴里啃的时候，说明宝宝的运动肌群与肌肉控制能力已经相互配合、相互协调。这是宝宝智力发展的信号。\r\n\r\n    2. 需要满足感\r\n\r\n    宝宝2—3个月，正处于口腔敏感期，此时的宝宝喜欢含妈妈的乳头或者是小手睡觉。有东西放嘴里会很有安全感，而一旦吸吮、舔啃的需要得不到满足就会让他们不安，产生暴躁、抑郁的不良情绪，所以就易出现吃手的习惯。\r\n\r\n    3. 快乐的需要\r\n\r\n    著名心理学家弗洛伊德和埃里克森认为，宝宝吃手的活动包含了人类性快感需要的自然反映。这里的人类性快感只是一种近似于成人的情绪，吃手可以消除宝宝的不安、烦躁和紧张情绪，具有镇静作用。\r\n\r\n    宝宝吃手父母怎么办？\r\n\r\n    1. 营造好的环境\r\n\r\n    一旦发现宝宝吃手指头，就要多关心宝宝身心的发展，努力营造可让他安心成长及游戏的环境。\r\n\r\n    2. 用糖果及饼干代替\r\n\r\n    专业人士建议，如果宝宝吃手已成习惯，可以用糖果及饼干取代，让宝宝戒掉。\r\n\r\n    3. 转移注意力\r\n\r\n    家长可利用转移宝宝注意力的方式，例如：陪宝宝玩玩具、画画等，这都是可让宝宝戒掉吃手的好方法。给宝宝一些关爱与照顾，相信你的宝宝会很快忘了吃手的癖好。 \r\n', '2015-05-11 15:40:24', '121', '71', null);
-INSERT INTO `forumtwo` VALUES ('238', '71', '可以注意在对宝宝说话有影响的几个方面找一下原因。一是宝宝的构音环境是否有问题。这是指宝宝有无绊舌，声带、咽喉等方面是否存在问题，如果这些方面都没有问题，讲话是迟早的事。二是宝宝生活的语言环境是否复杂，家长有的说普通话，有些说方言，几种语言会造成宝宝在学习语言的时候发生障碍。三是家长教宝宝说话没耐心。教宝宝说话的时候，一句话一个词需要不断重复，还要和宝宝交流。四是家长不要代替宝宝说话。很多宝宝明白家长的意思，但是不愿意开口。用点头或摇头表达自己的意思，家长看着宝宝知道点头摇头，觉得宝宝懂了就不再教宝宝。男宝宝说话比女宝宝说话会晚一点，叠字学的快一点，发音复杂一点的，学得慢一点。所以家长不要着急，每天教一个词、一句话，逐渐增加词汇量，宝宝进步就会很快。\r\n \r\n', '2015-05-11 15:43:14', '122', '78', null);
-INSERT INTO `forumtwo` VALUES ('239', '71', '宝宝出汗是常见的,并非都是体质虚弱、身体有病的症状。不少家长认为是因为孩子体质虚弱,因而虚汗不断.其实,有相当部分的小孩是生理性多汗,另外有一部分是病理性出汗。\r\n\r\n指导意见：\r\n    1.生理性出汗,孩子因为大脑神经系统发育尚不完善,而且又处于生长发育时期,机体的代谢非常旺盛,再加上过热的刺激,只有通过出汗来蒸发体内的热量和调节正常的体温。\r\n    2.病理性出汗是在小儿安静状态下出现的,与缺钙有关，只要及时补充维生素D和钙,就可以得到控制,出汗也就会自己停止。 \r\n', '2015-05-11 15:46:43', '123', '93', null);
-INSERT INTO `forumtwo` VALUES ('240', '71', '培养宝宝的想象力，可以从以下几个方面入手：\r\n1.让大自然成为孩子想象的资源宝库。\r\n\r\n    孩子降生到大千世界中来，从无到有地认识和感受天地间万物。自从有了主观意识之后，自然界诸多的事物就开始引发他的浓厚兴趣，促进丰富想象力的发展。日出日落、蓝天白云、夜幕星空、风雨雷电、山川河流、植物的花开花落、动物昆虫的繁衍活动等等，都可以成为启发和丰富宝宝想象力的宝贵资源。可以经常带孩子去接触大自然，看一看精彩纷呈的天地万物。\r\n\r\n2.保护和激发宝宝的好奇心。\r\n\r\n    宝宝对周围的一切事物都充满了好奇心，怀着一种要发现世界奥秘的愿望，去观察、去想象，不停地发问。而好奇心，正是创造性想象力的源头。对于宝宝因为好奇而提出的各种各样、稀奇古怪的问题，要耐心解答，即使遇上不懂的，也要以温和的方式对待，保护孩子的好奇心，珍惜孩子对于问题穷究到底的态度，从而使孩子的想象处于活跃状态。\r\n\r\n3.鼓励孩子多想敢想。\r\n\r\n    敢于别出心裁、敢于与众不同的孩子，往往想象力丰富、创造力强，成年以后才智方面能有所超越。因此，家庭教育中要多鼓励宝宝敢想、多想，充分发挥想象力因素来解决问题，每当孩子表现出新颖、独创的想象，应当及时发现、及时肯定和鼓励。日常生活中遇到各种各样的问题，要启发孩子尽可能多想，找到解决问题的途径。孩子能想到的办法越多，越要给予鼓励。\r\n\r\n4.引导想象的目的性。\r\n\r\n    想象的目的和方向，决定想象力与实施可能性的正确与否，不能让孩子的想象力停滞在胡思乱想的阶段上。训练孩子想象，采取提出问题、假设场景、亲身参与等方式，因地制宜地结合日常生活环境中的问题，让孩子充分发挥想象力的同时，明白想象力与解决问题的目标结合的重要性。\r\n\r\n5.引导想象的方式。\r\n\r\n    可以通过讲故事、做游戏等方式，启发和引导孩子的想象，既可以培养和启迪宝宝的艺术发展，又能调动其亲身参与体验，发展手、眼、腿等身体各部位和大脑的协调能力，一举多得。\r\n\r\n6.丰富表象经验。\r\n\r\n表象，是人类在知觉基础上形成的感觉形象，表象储存越丰富、产生想象的材料越多，想象力就越丰富。宝宝表象材料的积累，主要在于多参加实践和认识世界的活动，增加各种感性材料。感性认识丰富多彩，表象就更加丰富，想象才能更加开阔，想象也就会更加生动多样化。多带孩子外出参与各种游园、观展、接触动植物、欣赏文学艺术作品的活动，才能够令孩子达到“见多识广”的丰富感性积累。\r\n \r\n', '2015-05-11 15:48:25', '124', '85', null);
-INSERT INTO `forumtwo` VALUES ('243', '71', '对于欺负你的宝宝的小朋友，家长可以与他们交流和沟通，要查明原因，要说服教育，千万不要打骂小朋友，同时也要与小朋友的家长沟通，双管齐下来规范孩子的行为，只要方法恰当、处理正确，宝宝受欺负的现象一定会消失的。孩子胆小、恐惧、内向、害羞、怕生、不喜欢与陌生人说话是与多种因素有关的。\r\n1、与家庭环境有关。有的孩子生活范围很小，平时只生活在自己的家庭里，很少出去玩，接触外人少，依赖性较强，不能独立的适应环境，这样的孩子见生人就躲藏，如果到新的环境，适应比较慢。\r\n2、家庭教育方法不当。有些孩子不听家长的话，如果哭闹或不听话、不好好的吃饭时，家长用孩子害怕的语言吓唬他，如说：\"你再哭我把你扔到外边让老虎吃了你\",如果宝宝想玩泥，家长怕弄脏衣服，说“泥里有虫子咬你的手”等，恐吓孩子，从而孩子失去了安全感，形成胆小、内向、怯懦的性格。\r\n3、家长在日常生活中对孩子限制过多，造成孩子不敢尝试在实践中获得知识、取得经验，这也会造成孩子胆小、内向、怯懦的性格。\r\n\r\n对于胆小、恐惧、内向、害羞、怕生、不爱说话的孩子，怎么办呢？\r\n1、给孩子创造一个和谐、轻松的环境。\r\n   孩子在和谐轻松的环境中，容易形成自信、平稳的性格。家长之间有事多商量，不要在孩子面前大吵大闹。\r\n2、不用过于生硬、恐吓的手段教育孩子。\r\n    家长如果恐吓孩子，用一种极端的方法，如有的家长在孩子不听话时，就罚孩子蹲黑屋子；有的说孩子不听话，妖精就会把孩子抓走；这样的方法就容易造成孩子胆小、怯弱的习性。因此家长在教育孩子时，要心平气和、循循善诱。\r\n3、在家长的帮助下，鼓励孩子做一些挑战极限的事情或参与挑战的刺激性活动。\r\n4、培养孩子自尊心和自信心，充分放权，鼓励孩子独立。平常应该让孩子自己做一些事情。\r\n5、让父亲影响孩子。在中国的传统观念中，男性是阳刚、勇敢、自信的代表，多让父亲带孩子玩耍、做游戏，有利于培养宝宝的良好的品行。\r\n    总之，随着宝宝的增长，要让孩子多接触外界事物、多认识世界、多与小朋友交往，鼓励孩子去探索与尝试，从实践中培养孩子的勇敢精神。 \r\n', '2015-05-11 15:55:05', '126', '81', null);
-INSERT INTO `forumtwo` VALUES ('245', '549', '当孩子出现了做作业磨蹭的现象，首先不能一味催促甚至责骂孩子，应采取一些巧妙的方法，帮助孩子改正这一不良的学习习惯。', '2015-05-12 09:58:33', '131', '549', null);
-INSERT INTO `forumtwo` VALUES ('246', '549', '首先，家长给孩子树立学习的榜样，做到“言必行，行必果”。', '2015-05-12 09:59:51', '131', '549', null);
-INSERT INTO `forumtwo` VALUES ('247', '549', '其次，不要总是批评孩子。最有效的措施是要想办法提高孩子对学习的兴趣。', '2015-05-12 10:32:10', '131', '549', null);
-INSERT INTO `forumtwo` VALUES ('249', '469', '可以榨点儿蔬菜汁或者水果汁，小孩儿一般都爱喝带点儿味儿的水，而且这样可以同时解决孩子不爱吃蔬菜水果的问题，还有营养，一举多得！', '2015-05-13 10:50:38', '133', '549', null);
-INSERT INTO `forumtwo` VALUES ('250', '549', '这个办法不错，回头试一下', '2015-05-13 11:08:47', '133', '549', null);
-INSERT INTO `forumtwo` VALUES ('256', '571', '北京的怀柔和密云有好多风景区，有山有水，环境很好，而且可以避暑。', '2015-05-14 10:38:03', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('257', '563', '迪斯尼冰雪世界可以去看看', '2015-05-14 10:38:19', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('258', '563', '多吃点水果吧', '2015-05-14 10:39:50', '133', '549', null);
-INSERT INTO `forumtwo` VALUES ('259', '577', '适当引导 发现孩子特长 ', '2015-05-14 10:49:33', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('260', '564', '淘气的孩子聪明', '2015-05-14 11:16:23', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('261', '564', '太可恶了，', '2015-05-14 11:17:22', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('262', '566', '户外采摘挺不错的', '2015-05-14 11:31:34', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('263', '566', '骑自行车带孩子去上学', '2015-05-14 11:32:16', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('266', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:37', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('267', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:37', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('268', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:38', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('277', '567', '同上。。。。', '2015-05-14 11:48:49', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('278', '567', '被我抓住，给他好看。不过自己也要当心，不行就大声喊叫', '2015-05-14 11:49:54', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('279', '567', '是吧，快可以采摘樱桃了，有兴趣一起去吧！', '2015-05-14 11:50:56', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('286', '569', '我孩子也是，气死人了', '2015-05-14 12:00:13', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('287', '569', '家有女儿就是多操心啊', '2015-05-14 12:00:46', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('291', '569', '冰雪不错，天热去那凉快点', '2015-05-14 12:03:16', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('305', '571', '现在孩子太累人，有的时候四个看一个都看不住！', '2015-05-14 13:09:08', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('306', '571', '现在社会太乱，尤其女孩儿容易受欺负！', '2015-05-14 13:10:04', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('309', '572', '有些时候是家长惯的，以前过于溺爱，孩子就会比较淘', '2015-05-14 13:17:27', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('310', '572', '要教会孩子自我保护，不然会吃亏！', '2015-05-14 13:17:53', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('317', '579', '孩子不懂事儿，家长必要的时候要给他讲道理，不能由着他性子来！', '2015-05-14 13:37:19', '146', '578', null);
-INSERT INTO `forumtwo` VALUES ('318', '579', '这种人抓到应该重判，连小女孩儿都不放过！', '2015-05-14 13:37:57', '144', '563', null);
-INSERT INTO `forumtwo` VALUES ('320', '579', '可以去一些水上乐园，会凉快一些！', '2015-05-14 13:38:41', '134', '549', null);
-INSERT INTO `forumtwo` VALUES ('471', '586', '左撇子聪明啊，是好事', '2015-05-15 14:19:43', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('472', '579', '爸爸妈妈可以在家里跟孩子玩儿一些角色扮演的游戏，跟语文或者英语课文有关的，这样孩子会慢慢产生兴趣的！', '2015-05-15 14:19:59', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('473', '570', '楼上正解，，，', '2015-05-15 14:22:39', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('474', '572', '每次当孩子数学考试得了一个好成绩，就要赶紧表扬他，同时可以给他奖励，然后告诉他，如果以后语文和英语也能得这么好的成绩，就更棒了！', '2015-05-15 14:22:57', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('475', '570', '右手也要锻炼用的，不然以后比较麻烦', '2015-05-15 14:23:16', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('476', '572', '还是顺其自然比较好！', '2015-05-15 14:24:16', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('478', '569', '其它科目一样重要哦，在生活中无处不用呢', '2015-05-15 14:30:09', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('479', '569', '最好两只手都可以使用自如', '2015-05-15 14:31:05', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('480', '568', '还可以培养责任感呢', '2015-05-15 14:33:26', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('481', '568', '我从小也有点偏科，没关系，过段时间就好了', '2015-05-15 14:34:37', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('482', '568', '左撇子是遗传的吗？那可不好改了', '2015-05-15 14:35:14', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('483', '567', '别养了，多不卫生', '2015-05-15 14:36:46', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('484', '567', '培养爱心可以从很多方面', '2015-05-15 14:37:24', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('485', '567', '不一定非得养动物', '2015-05-15 14:37:47', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('486', '567', '是男孩子吧？正常', '2015-05-15 14:38:22', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('487', '567', '不用改，多难受', '2015-05-15 14:38:42', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('488', '566', '就是，也可以参加一些爱心捐助', '2015-05-15 14:40:02', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('489', '566', '还可以帮助有需要的人', '2015-05-15 14:40:22', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('490', '566', '多花点时间给孩子讲讲成语故事', '2015-05-15 14:41:25', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('491', '566', '应该有效果', '2015-05-15 14:41:53', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('492', '566', '各有各的好处，不用强求', '2015-05-15 14:42:51', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('493', '566', '天生的就自然舒服', '2015-05-15 14:43:17', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('494', '565', '养只金鱼也不错，省事，其实孩子玩不了多久就腻了', '2015-05-15 14:46:23', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('495', '565', '一般理科都是很聪明的孩子', '2015-05-15 14:47:41', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('496', '565', '左手不方便，现在大多东西的功能都是为习惯右手的人做的，还是纠正一下吧！', '2015-05-15 14:49:24', '150', '579', null);
-INSERT INTO `forumtwo` VALUES ('500', '570', '意见很不统一呀', '2015-05-15 14:53:14', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('516', '577', '适当引导 偏科也是现在孩子的通病', '2015-05-15 17:20:04', '151', '586', null);
-INSERT INTO `forumtwo` VALUES ('525', '577', '胆子小 有很多原因，释放带孩子参加集体活动', '2015-05-15 17:47:05', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('526', '406', '谢谢您', '2015-05-15 17:48:18', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('545', '93', '意见挺好', '2015-05-15 18:57:48', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('549', '94', '意见统一', '2015-05-15 19:23:32', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('553', '406', '好感动', '2015-05-15 20:01:55', '152', '570', null);
-INSERT INTO `forumtwo` VALUES ('555', '406', '这个问题能解决吗！', '2015-05-15 20:10:09', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('557', '71', '上课走神有两种可能： 第一是因为一些外在因素的干扰，比如说家庭或生活中的烦恼，这种一般是短暂性的，问题解决后就可以恢复了。对付这类走神的办法就是放平心态，以积极的态度面对一切问题，不要被外界所影响； 第二个原因是因为自身的原因，比如说睡眠不足，营养不足等。有些人会觉得自己下课后精力充沛，怎么会是营养不足呢。事实上有些人应该深有体会：极力想认真听讲却老是会心不在焉，这就说明体内缺乏营养，导致脑内营养不足。针对第二个原因，我有以下几点建议： 1.注意饮食。尤其是早餐，早餐的质量影响到整天营养的50%，早饭没吃好的话，之后再想补救就会收效甚微了。送给大家一句话：早餐吃的象皇帝，中午吃的象王子，晚餐吃的像乞丐。（还有，少吃垃圾食品，它们不仅对身体无益，而且会消耗掉体内有用的元素，排放出有害的元素，这些有害的元素随血液流入脑内后也会使人精力不集中，使人昏昏欲睡。）2.注意睡眠。要注意，晚上不要吃高热量的食品，最好以蔬菜和鱼类为主，因为晚上内脏也是需要休息的，否则第二天感觉自己睡了很久，事实上内脏已经累了一天。 3.对于学生来说，课间要好好休息。课间休息相当于给自己充电，充满了电下节课才能跑的更快，否则，下节课可能要睡着了哦。\r\n', '2015-05-18 10:44:18', '127', '406', null);
-INSERT INTO `forumtwo` VALUES ('560', '94', '这个问题解决了OK？？？？好吧真的全是解决了好的偶可', '2015-05-20 15:55:59', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('564', '577', '问题都是解决了，锻炼孩子的心理，性格懦弱，多半跟父母的教育有关，是孩子的自卑心理造成的，比如说，敢打架的孩子家庭条件相对优越，穷人家孩子被家长教育不要打架，因为赔不起，无论是谁受伤都会花钱，孩子懂事，也就不惹事，还是自卑，多从自己身上找原因，孩子没错', '2015-05-21 18:14:47', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('567', '609', '第一是家长性格 可能爸爸书生气 也可能是太严厉 骂的多了 性子就弱了', '2015-05-24 08:45:39', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('575', '577', '赞一个', '2015-05-28 13:29:16', '131', '549', null);
-INSERT INTO `forumtwo` VALUES ('576', '75', '送武术学校锻炼有好处', '2015-05-29 07:55:57', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('577', '85', '必须支持 培养兴趣特长', '2015-05-29 09:41:45', '187', '577', null);
-INSERT INTO `forumtwo` VALUES ('578', '625', '嗯嗯', '2015-05-29 18:37:12', '166', '406', null);
-INSERT INTO `forumtwo` VALUES ('579', '586', '晚上睡觉时可以开一盏小夜灯', '2015-05-29 19:26:04', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('580', '586', '不会影响孩子睡觉，还可以有一点光', '2015-05-29 19:26:55', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('581', '586', '有时候也分阶段的，可以循循善诱一下', '2015-05-29 19:28:46', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('582', '586', '不要给孩子太大压力哦，轻松环境里效果更好', '2015-05-29 19:29:50', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('583', '565', '别着急，多问问孩子，是什么原因，成绩不理想的', '2015-05-29 19:41:53', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('584', '565', '哈哈，以后可以考特长生了', '2015-05-29 19:43:13', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('585', '565', '可以告诉孩子，不要怕，爸爸妈妈会保护他的，黑暗并不可怕', '2015-05-29 19:45:04', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('586', '566', '你可以试试陪孩子一起学习', '2015-05-29 19:46:51', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('587', '566', '让孩子发现其他科目有意思的地方，激发学习兴趣', '2015-05-29 19:48:19', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('588', '566', '孩子还小，再陪他', '2015-05-29 19:49:02', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('589', '566', '一段时间吧', '2015-05-29 19:49:38', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('590', '566', '支持啊', '2015-05-29 19:50:10', '187', '577', null);
-INSERT INTO `forumtwo` VALUES ('591', '567', '现在孩子真辛苦', '2015-05-29 19:52:54', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('592', '567', '很有艺术细胞嘛', '2015-05-29 19:53:41', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('593', '567', '给他讲个很长的故事就睡着了', '2015-05-29 19:54:35', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('594', '569', '中考很重要，一定要抓紧', '2015-05-29 19:57:15', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('595', '569', '平时带孩子参加一些户外相关活动吧', '2015-05-29 19:58:33', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('596', '569', '给孩子睡觉前喝点牛奶，可以安眠的', '2015-05-29 19:59:36', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('597', '569', '支持', '2015-05-29 19:59:58', '187', '577', null);
-INSERT INTO `forumtwo` VALUES ('598', '570', '小时候的成绩好坏，并不影响孩子以后', '2015-05-29 20:01:45', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('599', '570', '慢慢心烦吧', '2015-05-29 20:02:16', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('600', '570', '引导吧', '2015-05-29 20:02:31', '193', '579', null);
-INSERT INTO `forumtwo` VALUES ('601', '570', '白天多玩会，晚上累的厉害就睡着了', '2015-05-29 20:03:12', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('602', '570', '支持', '2015-05-29 20:03:36', '187', '577', null);
-INSERT INTO `forumtwo` VALUES ('605', '85', '把课本看好即可考上', '2015-05-30 18:38:58', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('606', '411', '平时不要用关黑屋来吓唬他的淘气。', '2015-05-30 21:29:20', '192', '579', null);
-INSERT INTO `forumtwo` VALUES ('607', '93', '现在孩子是挺辛苦', '2015-06-02 14:46:03', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('608', '635', '劳逸结合', '2015-06-02 14:52:34', '194', '579', null);
-INSERT INTO `forumtwo` VALUES ('611', '71', '121212', '2015-06-24  16:11:22', '132', '549', null);
-INSERT INTO `forumtwo` VALUES ('612', '71', 'eqweqwe', '2015-06-24  16:17:53', '130', '383', null);
-INSERT INTO `forumtwo` VALUES ('613', '71', 'qweqweqw', '2015-06-24  16:18:03', '127', '406', null);
-INSERT INTO `forumtwo` VALUES ('614', '71', 'sddasdasd', '2015-06-24  16:19:20', '127', '406', null);
-INSERT INTO `forumtwo` VALUES ('617', '71', '121231', '2015-06-24  16:58:56', '145', '563', null);
-INSERT INTO `forumtwo` VALUES ('618', '71', 'dasdasd', '2015-06-24  17:08:20', '109', '469', null);
-INSERT INTO `forumtwo` VALUES ('619', '71', 'qweqwe', '2015-06-24  17:08:44', '120', '470', null);
-INSERT INTO `forumtwo` VALUES ('621', '71', '0.0', '2015-06-24  17:17:29', '121', '71', null);
-INSERT INTO `forumtwo` VALUES ('622', '71', '1111111', '2015-06-30  14:29:26', '195', '71', null);
-INSERT INTO `forumtwo` VALUES ('623', '71', 'hah1', '2015-06-30  17:02:30', '195', '71', null);
+INSERT INTO `forumtwo` VALUES ('162', '464', '捉急，大家有什么办法', '2015-04-15 15:58:41', '57', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('163', '407', '看来父母需要采取点儿强制措施了！', '2015-04-15 16:02:27', '57', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('170', '75', '很容易近视，小孩尤其要少看电视', '2015-04-15 17:51:29', '57', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('171', '466', '做游戏，多在小区逛逛', '2015-04-16 13:30:34', '57', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('172', '464', '现在的孩子都喜欢各种高科技，都不像我那小时候跳皮筋啊扔沙包的多健康拉', '2015-04-16 13:36:21', '57', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('174', '464', '先顺着孩子说，然后再慢慢跟他讲其中的道理，应该会有效果的，你可以试试', '2015-04-16 15:46:49', '59', '469', '0', '0');
+INSERT INTO `forumtwo` VALUES ('181', '94', '应该该让孩子索取任何东西都要付出代价 而不是哭闹就能得到的  ', '2015-04-20 17:53:39', '65', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('183', '503', '适当引导，让孩子自己做选择', '2015-04-29 13:53:04', '65', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('197', '306', '引导', '2015-04-30 17:36:35', '65', '464', '0', '0');
+INSERT INTO `forumtwo` VALUES ('211', '71', '1.\r\n\r\n让孩子知道上课的纪律。\r\n\r\n \r\n\r\n  \r\n\r\n针对孩子暂时还未适应小学的学习特点，我们家长需要配合老师给孩子讲一讲上课的纪律，让他知\r\n\r\n道上课应该怎么做，如果说话或者有其他动作，会影响到其他同学的学习的。同时，家长朋友也可\r\n\r\n以多一些耐心，不要吵孩子。随着对新的学习环境的适应，他会逐渐学会听课。\r\n\r\n \r\n\r\n  \r\n\r\n2.\r\n\r\n教给孩子一些小技巧，来延长孩子的注意力集中时间。\r\n\r\n \r\n\r\n  \r\n\r\n比如，让孩子看着老师的脸，这样能通过动作提醒自己跟着老师的节奏来听课；桌上不要放与学习\r\n\r\n无关的东西，也不要放太花哨的学习用具，等。\r\n', '2015-05-05 10:30:51', '106', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('216', '71', '   厌食是7岁以下儿童的常见症状。不良的饮食习惯、家长溺爱和缺乏微量元素是引起儿童厌食的主要原因。长期厌食多伴有体重不增或减轻，导致营养不良，影响儿童生长发育。那么，怎样增进孩子的食欲呢？\r\n\r\n1、改善饮食习惯。建立规律的生活制度，每天按时就餐，孩子吃饭时要和家庭其他人员一块吃。\r\n\r\n2、注重饮食的花色品种，吸引孩子的食欲。同时讲究烹调技术。孩子不吃肉，可以做成水饺或馄饨；不吃豆腐，就做成卤干；不吃鱼，可做成鱼丸；尽可能使孩子膳食营养达到粗细荤素搭配的“均衡饮食”。\r\n\r\n3、给孩子提供多样的食物，并把各种荤素食物混在一起，逐渐培养孩子粗食杂粮都吃的习惯，这样可以纠正孩子挑食和偏食的坏毛病；\r\n\r\n4、要让吃饭时间成为安静快乐的时刻。家长不要采取哄骗、恐吓等手段强迫孩子进食，更不能在吃饭时教训小孩子--孩子越紧张，吃得越少。\r\n\r\n5、孩子吃得好的时候，对他要多加注意，适当表扬；而他拒食的时候则要对他少加注意，有时孩子想要以绝食来赢得关注。\r\n\r\n6、不要给孩子吃放过多调料或过多盐分的食物，尽量少给孩子吃零食，不要在吃饭前用饮料填满孩子的肚子。\r\n\r\n7、补充适量微量元素和维生素。国内调查资料表明，厌食儿童多伴有不同程度的缺铁和缺锌。因此，对厌食儿童应常规检测头发中铁、锌和血液中铁、锌的含量；若这两项指标偏低，需要给孩子服用铁锌制剂，一般连用1-2个月，随着缺铁和缺锌的纠正，孩子的食欲就会大为改善。\r\n\r\n8、不宜滥用“营养滋补品”。儿童保健专家认为，健康儿童一般不需服营养滋补品，这是因为经常给小儿服营养滋补品会养成一种不平衡的饮食习惯，影响正常均衡饮食中营养物质的摄取，这样孩子就不可能得到长身体所需的各种营养成分，从而可能引起食欲不振、生长发育迟缓，患上贫血及佝偻病等疾病。某些营养滋补品能产生跟激素一样的作用，长期大量服用可造成儿童肥胖症和性早熟等不良后果。\r\n\r\n9、使用“开胃”药的目的在于促进食物消化和增加胃动力。临床医生观察到，胃潴留、蠕动减弱的患儿服用吗丁啉后，常有饥饿感从而起到增进食欲作用。此外，中成药饮片或溶液制剂也有较好的健脾开胃作用，可在儿科医生指导下选用。 \r\n', '2015-05-08 17:39:44', '109', '469', '0', '0');
+INSERT INTO `forumtwo` VALUES ('236', '71', ' 孩子不肯上学的情况，若发生在开学初期，那是很正常的现象，主要是孩子还未能适应离开母亲的怀抱，到一个陌生的地方生活，所以许多幼儿园在开学之初，每天只上1—2小时的课，甚至可以让家长陪同上课。一般来说，不出一个星期，孩子就可以适应幼儿园的生活了；有些较“外向”的孩子，可能只须一天时间，已经很享受幼儿园的群体生活了。 \r\n\r\n    至于开学了一段日子，孩子突然不愿意去了，则有以下原因： \r\n\r\n* 孩子追不上学习进度 \r\n\r\n    现在的幼儿园课程，内容也颇为艰深，有些较为“慢热”的孩子未必追得上；特别是有些健康较差的，有时身体不舒服，父母便任由孩子不去上课，缺席得多了，更加追不上进度，于是对返园更加抗拒了。因此，父母要经常关注孩子的学习情况，以免他落后于人，而产生消极的情绪。 \r\n\r\n* 与同伴相处有问题 \r\n\r\n    有些孩子，由于性格内向或其他原因，在园内未能与其他同伴融洽相处，甚至受到“排挤”，便会感到闷闷不乐。这种情绪若不能得到纾解，便会产生讨厌返园的念头。 \r\n\r\n    因此，您若见孩子突然间很抗拒返园，便要与教师接触，探求原因，或者与孩子谈谈，了解他的内心世界，以便及时帮助孩子。 \r\n\r\n* 长假期后不愿返园 \r\n\r\n    这是最常见的情况，有时，幼儿园放完一个长假（少则3、4天，多则一、两个星期），许多孩子都不愿意返园，因为在假期中，家长可能会安排许多活动，又或者带孩子去外地旅游，孩子玩到心都野了，自然不愿意上学，受规律生活的约束。 \r\n\r\n    此外，在假期中，家长或者会容许孩子迟睡，第二天早上自然不愿早起床，到假期结束后，要孩子一早起床去上学，当然会感到分外辛苦。 \r\n\r\n    因此，每次放长假期时，家长都要留意，不要安排太密的活动，以免孩子玩得太疯。而在假期临结束前的一、两日，最好不要出外游玩，尽量留在家中休息。同时，要孩子早点上床睡觉，使他恢复返园时的规律生活。这样，孩\r\n', '2015-05-11 15:39:21', '120', '470', '0', '0');
+INSERT INTO `forumtwo` VALUES ('237', '71', '婴儿出生后第一年成为“口腔期“，是人格发展的第一个基础阶段。他们强烈需要一种安全感，吸吮需求很强烈，尤其在就寝时间更为明显。对于刚出生的宝宝而言，吸手指是很正常的。\r\n\r\n    这种行为之所以持续一方面能给宝宝带来舒服感，缓解焦虑；另一方面，宝宝本来就有吸吮的反射和需求，而吸手指带来的满足感和吃母乳的感觉是不一样的，所以即使吃饱了，宝宝还会吸手指。下面具体介绍下。\r\n\r\n    1. 智力发展的信号\r\n\r\n    宝宝慢慢长大，手指功能开始分化，初期手眼协调功能也出现。2—3个月宝宝就开始出现吃手的动作。当宝宝真正能把手放在嘴巴里啃的时候，说明宝宝的运动肌群与肌肉控制能力已经相互配合、相互协调。这是宝宝智力发展的信号。\r\n\r\n    2. 需要满足感\r\n\r\n    宝宝2—3个月，正处于口腔敏感期，此时的宝宝喜欢含妈妈的乳头或者是小手睡觉。有东西放嘴里会很有安全感，而一旦吸吮、舔啃的需要得不到满足就会让他们不安，产生暴躁、抑郁的不良情绪，所以就易出现吃手的习惯。\r\n\r\n    3. 快乐的需要\r\n\r\n    著名心理学家弗洛伊德和埃里克森认为，宝宝吃手的活动包含了人类性快感需要的自然反映。这里的人类性快感只是一种近似于成人的情绪，吃手可以消除宝宝的不安、烦躁和紧张情绪，具有镇静作用。\r\n\r\n    宝宝吃手父母怎么办？\r\n\r\n    1. 营造好的环境\r\n\r\n    一旦发现宝宝吃手指头，就要多关心宝宝身心的发展，努力营造可让他安心成长及游戏的环境。\r\n\r\n    2. 用糖果及饼干代替\r\n\r\n    专业人士建议，如果宝宝吃手已成习惯，可以用糖果及饼干取代，让宝宝戒掉。\r\n\r\n    3. 转移注意力\r\n\r\n    家长可利用转移宝宝注意力的方式，例如：陪宝宝玩玩具、画画等，这都是可让宝宝戒掉吃手的好方法。给宝宝一些关爱与照顾，相信你的宝宝会很快忘了吃手的癖好。 \r\n', '2015-05-11 15:40:24', '121', '71', '1', '0');
+INSERT INTO `forumtwo` VALUES ('238', '71', '可以注意在对宝宝说话有影响的几个方面找一下原因。一是宝宝的构音环境是否有问题。这是指宝宝有无绊舌，声带、咽喉等方面是否存在问题，如果这些方面都没有问题，讲话是迟早的事。二是宝宝生活的语言环境是否复杂，家长有的说普通话，有些说方言，几种语言会造成宝宝在学习语言的时候发生障碍。三是家长教宝宝说话没耐心。教宝宝说话的时候，一句话一个词需要不断重复，还要和宝宝交流。四是家长不要代替宝宝说话。很多宝宝明白家长的意思，但是不愿意开口。用点头或摇头表达自己的意思，家长看着宝宝知道点头摇头，觉得宝宝懂了就不再教宝宝。男宝宝说话比女宝宝说话会晚一点，叠字学的快一点，发音复杂一点的，学得慢一点。所以家长不要着急，每天教一个词、一句话，逐渐增加词汇量，宝宝进步就会很快。\r\n \r\n', '2015-05-11 15:43:14', '122', '78', '0', '0');
+INSERT INTO `forumtwo` VALUES ('239', '71', '宝宝出汗是常见的,并非都是体质虚弱、身体有病的症状。不少家长认为是因为孩子体质虚弱,因而虚汗不断.其实,有相当部分的小孩是生理性多汗,另外有一部分是病理性出汗。\r\n\r\n指导意见：\r\n    1.生理性出汗,孩子因为大脑神经系统发育尚不完善,而且又处于生长发育时期,机体的代谢非常旺盛,再加上过热的刺激,只有通过出汗来蒸发体内的热量和调节正常的体温。\r\n    2.病理性出汗是在小儿安静状态下出现的,与缺钙有关，只要及时补充维生素D和钙,就可以得到控制,出汗也就会自己停止。 \r\n', '2015-05-11 15:46:43', '123', '93', '1', '0');
+INSERT INTO `forumtwo` VALUES ('240', '71', '培养宝宝的想象力，可以从以下几个方面入手：\r\n1.让大自然成为孩子想象的资源宝库。\r\n\r\n    孩子降生到大千世界中来，从无到有地认识和感受天地间万物。自从有了主观意识之后，自然界诸多的事物就开始引发他的浓厚兴趣，促进丰富想象力的发展。日出日落、蓝天白云、夜幕星空、风雨雷电、山川河流、植物的花开花落、动物昆虫的繁衍活动等等，都可以成为启发和丰富宝宝想象力的宝贵资源。可以经常带孩子去接触大自然，看一看精彩纷呈的天地万物。\r\n\r\n2.保护和激发宝宝的好奇心。\r\n\r\n    宝宝对周围的一切事物都充满了好奇心，怀着一种要发现世界奥秘的愿望，去观察、去想象，不停地发问。而好奇心，正是创造性想象力的源头。对于宝宝因为好奇而提出的各种各样、稀奇古怪的问题，要耐心解答，即使遇上不懂的，也要以温和的方式对待，保护孩子的好奇心，珍惜孩子对于问题穷究到底的态度，从而使孩子的想象处于活跃状态。\r\n\r\n3.鼓励孩子多想敢想。\r\n\r\n    敢于别出心裁、敢于与众不同的孩子，往往想象力丰富、创造力强，成年以后才智方面能有所超越。因此，家庭教育中要多鼓励宝宝敢想、多想，充分发挥想象力因素来解决问题，每当孩子表现出新颖、独创的想象，应当及时发现、及时肯定和鼓励。日常生活中遇到各种各样的问题，要启发孩子尽可能多想，找到解决问题的途径。孩子能想到的办法越多，越要给予鼓励。\r\n\r\n4.引导想象的目的性。\r\n\r\n    想象的目的和方向，决定想象力与实施可能性的正确与否，不能让孩子的想象力停滞在胡思乱想的阶段上。训练孩子想象，采取提出问题、假设场景、亲身参与等方式，因地制宜地结合日常生活环境中的问题，让孩子充分发挥想象力的同时，明白想象力与解决问题的目标结合的重要性。\r\n\r\n5.引导想象的方式。\r\n\r\n    可以通过讲故事、做游戏等方式，启发和引导孩子的想象，既可以培养和启迪宝宝的艺术发展，又能调动其亲身参与体验，发展手、眼、腿等身体各部位和大脑的协调能力，一举多得。\r\n\r\n6.丰富表象经验。\r\n\r\n表象，是人类在知觉基础上形成的感觉形象，表象储存越丰富、产生想象的材料越多，想象力就越丰富。宝宝表象材料的积累，主要在于多参加实践和认识世界的活动，增加各种感性材料。感性认识丰富多彩，表象就更加丰富，想象才能更加开阔，想象也就会更加生动多样化。多带孩子外出参与各种游园、观展、接触动植物、欣赏文学艺术作品的活动，才能够令孩子达到“见多识广”的丰富感性积累。\r\n \r\n', '2015-05-11 15:48:25', '124', '85', '0', '0');
+INSERT INTO `forumtwo` VALUES ('243', '71', '对于欺负你的宝宝的小朋友，家长可以与他们交流和沟通，要查明原因，要说服教育，千万不要打骂小朋友，同时也要与小朋友的家长沟通，双管齐下来规范孩子的行为，只要方法恰当、处理正确，宝宝受欺负的现象一定会消失的。孩子胆小、恐惧、内向、害羞、怕生、不喜欢与陌生人说话是与多种因素有关的。\r\n1、与家庭环境有关。有的孩子生活范围很小，平时只生活在自己的家庭里，很少出去玩，接触外人少，依赖性较强，不能独立的适应环境，这样的孩子见生人就躲藏，如果到新的环境，适应比较慢。\r\n2、家庭教育方法不当。有些孩子不听家长的话，如果哭闹或不听话、不好好的吃饭时，家长用孩子害怕的语言吓唬他，如说：\"你再哭我把你扔到外边让老虎吃了你\",如果宝宝想玩泥，家长怕弄脏衣服，说“泥里有虫子咬你的手”等，恐吓孩子，从而孩子失去了安全感，形成胆小、内向、怯懦的性格。\r\n3、家长在日常生活中对孩子限制过多，造成孩子不敢尝试在实践中获得知识、取得经验，这也会造成孩子胆小、内向、怯懦的性格。\r\n\r\n对于胆小、恐惧、内向、害羞、怕生、不爱说话的孩子，怎么办呢？\r\n1、给孩子创造一个和谐、轻松的环境。\r\n   孩子在和谐轻松的环境中，容易形成自信、平稳的性格。家长之间有事多商量，不要在孩子面前大吵大闹。\r\n2、不用过于生硬、恐吓的手段教育孩子。\r\n    家长如果恐吓孩子，用一种极端的方法，如有的家长在孩子不听话时，就罚孩子蹲黑屋子；有的说孩子不听话，妖精就会把孩子抓走；这样的方法就容易造成孩子胆小、怯弱的习性。因此家长在教育孩子时，要心平气和、循循善诱。\r\n3、在家长的帮助下，鼓励孩子做一些挑战极限的事情或参与挑战的刺激性活动。\r\n4、培养孩子自尊心和自信心，充分放权，鼓励孩子独立。平常应该让孩子自己做一些事情。\r\n5、让父亲影响孩子。在中国的传统观念中，男性是阳刚、勇敢、自信的代表，多让父亲带孩子玩耍、做游戏，有利于培养宝宝的良好的品行。\r\n    总之，随着宝宝的增长，要让孩子多接触外界事物、多认识世界、多与小朋友交往，鼓励孩子去探索与尝试，从实践中培养孩子的勇敢精神。 \r\n', '2015-05-11 15:55:05', '126', '81', '0', '0');
+INSERT INTO `forumtwo` VALUES ('245', '549', '当孩子出现了做作业磨蹭的现象，首先不能一味催促甚至责骂孩子，应采取一些巧妙的方法，帮助孩子改正这一不良的学习习惯。', '2015-05-12 09:58:33', '131', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('246', '549', '首先，家长给孩子树立学习的榜样，做到“言必行，行必果”。', '2015-05-12 09:59:51', '131', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('247', '549', '其次，不要总是批评孩子。最有效的措施是要想办法提高孩子对学习的兴趣。', '2015-05-12 10:32:10', '131', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('249', '469', '可以榨点儿蔬菜汁或者水果汁，小孩儿一般都爱喝带点儿味儿的水，而且这样可以同时解决孩子不爱吃蔬菜水果的问题，还有营养，一举多得！', '2015-05-13 10:50:38', '133', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('250', '549', '这个办法不错，回头试一下', '2015-05-13 11:08:47', '133', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('256', '571', '北京的怀柔和密云有好多风景区，有山有水，环境很好，而且可以避暑。', '2015-05-14 10:38:03', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('257', '563', '迪斯尼冰雪世界可以去看看', '2015-05-14 10:38:19', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('258', '563', '多吃点水果吧', '2015-05-14 10:39:50', '133', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('259', '577', '适当引导 发现孩子特长 ', '2015-05-14 10:49:33', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('260', '564', '淘气的孩子聪明', '2015-05-14 11:16:23', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('261', '564', '太可恶了，', '2015-05-14 11:17:22', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('262', '566', '户外采摘挺不错的', '2015-05-14 11:31:34', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('263', '566', '骑自行车带孩子去上学', '2015-05-14 11:32:16', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('266', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:37', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('267', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:37', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('268', '566', '带他去做运动，把力气都使完了', '2015-05-14 11:34:38', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('277', '567', '同上。。。。', '2015-05-14 11:48:49', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('278', '567', '被我抓住，给他好看。不过自己也要当心，不行就大声喊叫', '2015-05-14 11:49:54', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('279', '567', '是吧，快可以采摘樱桃了，有兴趣一起去吧！', '2015-05-14 11:50:56', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('286', '569', '我孩子也是，气死人了', '2015-05-14 12:00:13', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('287', '569', '家有女儿就是多操心啊', '2015-05-14 12:00:46', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('291', '569', '冰雪不错，天热去那凉快点', '2015-05-14 12:03:16', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('305', '571', '现在孩子太累人，有的时候四个看一个都看不住！', '2015-05-14 13:09:08', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('306', '571', '现在社会太乱，尤其女孩儿容易受欺负！', '2015-05-14 13:10:04', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('309', '572', '有些时候是家长惯的，以前过于溺爱，孩子就会比较淘', '2015-05-14 13:17:27', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('310', '572', '要教会孩子自我保护，不然会吃亏！', '2015-05-14 13:17:53', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('317', '579', '孩子不懂事儿，家长必要的时候要给他讲道理，不能由着他性子来！', '2015-05-14 13:37:19', '146', '578', '0', '0');
+INSERT INTO `forumtwo` VALUES ('318', '579', '这种人抓到应该重判，连小女孩儿都不放过！', '2015-05-14 13:37:57', '144', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('320', '579', '可以去一些水上乐园，会凉快一些！', '2015-05-14 13:38:41', '134', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('471', '586', '左撇子聪明啊，是好事', '2015-05-15 14:19:43', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('472', '579', '爸爸妈妈可以在家里跟孩子玩儿一些角色扮演的游戏，跟语文或者英语课文有关的，这样孩子会慢慢产生兴趣的！', '2015-05-15 14:19:59', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('473', '570', '楼上正解，，，', '2015-05-15 14:22:39', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('474', '572', '每次当孩子数学考试得了一个好成绩，就要赶紧表扬他，同时可以给他奖励，然后告诉他，如果以后语文和英语也能得这么好的成绩，就更棒了！', '2015-05-15 14:22:57', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('475', '570', '右手也要锻炼用的，不然以后比较麻烦', '2015-05-15 14:23:16', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('476', '572', '还是顺其自然比较好！', '2015-05-15 14:24:16', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('478', '569', '其它科目一样重要哦，在生活中无处不用呢', '2015-05-15 14:30:09', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('479', '569', '最好两只手都可以使用自如', '2015-05-15 14:31:05', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('480', '568', '还可以培养责任感呢', '2015-05-15 14:33:26', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('481', '568', '我从小也有点偏科，没关系，过段时间就好了', '2015-05-15 14:34:37', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('482', '568', '左撇子是遗传的吗？那可不好改了', '2015-05-15 14:35:14', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('483', '567', '别养了，多不卫生', '2015-05-15 14:36:46', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('484', '567', '培养爱心可以从很多方面', '2015-05-15 14:37:24', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('485', '567', '不一定非得养动物', '2015-05-15 14:37:47', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('486', '567', '是男孩子吧？正常', '2015-05-15 14:38:22', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('487', '567', '不用改，多难受', '2015-05-15 14:38:42', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('488', '566', '就是，也可以参加一些爱心捐助', '2015-05-15 14:40:02', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('489', '566', '还可以帮助有需要的人', '2015-05-15 14:40:22', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('490', '566', '多花点时间给孩子讲讲成语故事', '2015-05-15 14:41:25', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('491', '566', '应该有效果', '2015-05-15 14:41:53', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('492', '566', '各有各的好处，不用强求', '2015-05-15 14:42:51', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('493', '566', '天生的就自然舒服', '2015-05-15 14:43:17', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('494', '565', '养只金鱼也不错，省事，其实孩子玩不了多久就腻了', '2015-05-15 14:46:23', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('495', '565', '一般理科都是很聪明的孩子', '2015-05-15 14:47:41', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('496', '565', '左手不方便，现在大多东西的功能都是为习惯右手的人做的，还是纠正一下吧！', '2015-05-15 14:49:24', '150', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('500', '570', '意见很不统一呀', '2015-05-15 14:53:14', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('516', '577', '适当引导 偏科也是现在孩子的通病', '2015-05-15 17:20:04', '151', '586', '0', '0');
+INSERT INTO `forumtwo` VALUES ('525', '577', '胆子小 有很多原因，释放带孩子参加集体活动', '2015-05-15 17:47:05', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('526', '406', '谢谢您', '2015-05-15 17:48:18', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('545', '93', '意见挺好', '2015-05-15 18:57:48', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('549', '94', '意见统一', '2015-05-15 19:23:32', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('553', '406', '好感动', '2015-05-15 20:01:55', '152', '570', '0', '0');
+INSERT INTO `forumtwo` VALUES ('555', '406', '这个问题能解决吗！', '2015-05-15 20:10:09', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('557', '71', '上课走神有两种可能： 第一是因为一些外在因素的干扰，比如说家庭或生活中的烦恼，这种一般是短暂性的，问题解决后就可以恢复了。对付这类走神的办法就是放平心态，以积极的态度面对一切问题，不要被外界所影响； 第二个原因是因为自身的原因，比如说睡眠不足，营养不足等。有些人会觉得自己下课后精力充沛，怎么会是营养不足呢。事实上有些人应该深有体会：极力想认真听讲却老是会心不在焉，这就说明体内缺乏营养，导致脑内营养不足。针对第二个原因，我有以下几点建议： 1.注意饮食。尤其是早餐，早餐的质量影响到整天营养的50%，早饭没吃好的话，之后再想补救就会收效甚微了。送给大家一句话：早餐吃的象皇帝，中午吃的象王子，晚餐吃的像乞丐。（还有，少吃垃圾食品，它们不仅对身体无益，而且会消耗掉体内有用的元素，排放出有害的元素，这些有害的元素随血液流入脑内后也会使人精力不集中，使人昏昏欲睡。）2.注意睡眠。要注意，晚上不要吃高热量的食品，最好以蔬菜和鱼类为主，因为晚上内脏也是需要休息的，否则第二天感觉自己睡了很久，事实上内脏已经累了一天。 3.对于学生来说，课间要好好休息。课间休息相当于给自己充电，充满了电下节课才能跑的更快，否则，下节课可能要睡着了哦。\r\n', '2015-05-18 10:44:18', '127', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('560', '94', '这个问题解决了OK？？？？好吧真的全是解决了好的偶可', '2015-05-20 15:55:59', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('564', '577', '问题都是解决了，锻炼孩子的心理，性格懦弱，多半跟父母的教育有关，是孩子的自卑心理造成的，比如说，敢打架的孩子家庭条件相对优越，穷人家孩子被家长教育不要打架，因为赔不起，无论是谁受伤都会花钱，孩子懂事，也就不惹事，还是自卑，多从自己身上找原因，孩子没错', '2015-05-21 18:14:47', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('567', '609', '第一是家长性格 可能爸爸书生气 也可能是太严厉 骂的多了 性子就弱了', '2015-05-24 08:45:39', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('575', '577', '赞一个', '2015-05-28 13:29:16', '131', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('576', '75', '送武术学校锻炼有好处', '2015-05-29 07:55:57', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('577', '85', '必须支持 培养兴趣特长', '2015-05-29 09:41:45', '187', '577', '0', '0');
+INSERT INTO `forumtwo` VALUES ('578', '625', '嗯嗯', '2015-05-29 18:37:12', '166', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('579', '586', '晚上睡觉时可以开一盏小夜灯', '2015-05-29 19:26:04', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('580', '586', '不会影响孩子睡觉，还可以有一点光', '2015-05-29 19:26:55', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('581', '586', '有时候也分阶段的，可以循循善诱一下', '2015-05-29 19:28:46', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('582', '586', '不要给孩子太大压力哦，轻松环境里效果更好', '2015-05-29 19:29:50', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('583', '565', '别着急，多问问孩子，是什么原因，成绩不理想的', '2015-05-29 19:41:53', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('584', '565', '哈哈，以后可以考特长生了', '2015-05-29 19:43:13', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('585', '565', '可以告诉孩子，不要怕，爸爸妈妈会保护他的，黑暗并不可怕', '2015-05-29 19:45:04', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('586', '566', '你可以试试陪孩子一起学习', '2015-05-29 19:46:51', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('587', '566', '让孩子发现其他科目有意思的地方，激发学习兴趣', '2015-05-29 19:48:19', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('588', '566', '孩子还小，再陪他', '2015-05-29 19:49:02', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('589', '566', '一段时间吧', '2015-05-29 19:49:38', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('590', '566', '支持啊', '2015-05-29 19:50:10', '187', '577', '0', '0');
+INSERT INTO `forumtwo` VALUES ('591', '567', '现在孩子真辛苦', '2015-05-29 19:52:54', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('592', '567', '很有艺术细胞嘛', '2015-05-29 19:53:41', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('593', '567', '给他讲个很长的故事就睡着了', '2015-05-29 19:54:35', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('594', '569', '中考很重要，一定要抓紧', '2015-05-29 19:57:15', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('595', '569', '平时带孩子参加一些户外相关活动吧', '2015-05-29 19:58:33', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('596', '569', '给孩子睡觉前喝点牛奶，可以安眠的', '2015-05-29 19:59:36', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('597', '569', '支持', '2015-05-29 19:59:58', '187', '577', '0', '0');
+INSERT INTO `forumtwo` VALUES ('598', '570', '小时候的成绩好坏，并不影响孩子以后', '2015-05-29 20:01:45', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('599', '570', '慢慢心烦吧', '2015-05-29 20:02:16', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('600', '570', '引导吧', '2015-05-29 20:02:31', '193', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('601', '570', '白天多玩会，晚上累的厉害就睡着了', '2015-05-29 20:03:12', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('602', '570', '支持', '2015-05-29 20:03:36', '187', '577', '0', '0');
+INSERT INTO `forumtwo` VALUES ('605', '85', '把课本看好即可考上', '2015-05-30 18:38:58', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('606', '411', '平时不要用关黑屋来吓唬他的淘气。', '2015-05-30 21:29:20', '192', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('607', '93', '现在孩子是挺辛苦', '2015-06-02 14:46:03', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('608', '635', '劳逸结合', '2015-06-02 14:52:34', '194', '579', '0', '0');
+INSERT INTO `forumtwo` VALUES ('611', '71', '121212', '2015-06-24  16:11:22', '132', '549', '0', '0');
+INSERT INTO `forumtwo` VALUES ('612', '71', 'eqweqwe', '2015-06-24  16:17:53', '130', '383', '0', '0');
+INSERT INTO `forumtwo` VALUES ('613', '71', 'qweqweqw', '2015-06-24  16:18:03', '127', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('614', '71', 'sddasdasd', '2015-06-24  16:19:20', '127', '406', '0', '0');
+INSERT INTO `forumtwo` VALUES ('617', '71', '121231', '2015-06-24  16:58:56', '145', '563', '0', '0');
+INSERT INTO `forumtwo` VALUES ('618', '71', 'dasdasd', '2015-06-24  17:08:20', '109', '469', '0', '0');
+INSERT INTO `forumtwo` VALUES ('619', '71', 'qweqwe', '2015-06-24  17:08:44', '120', '470', '0', '0');
+INSERT INTO `forumtwo` VALUES ('621', '71', '0.0', '2015-06-24  17:17:29', '121', '71', '1', '0');
+INSERT INTO `forumtwo` VALUES ('622', '71', '1111111', '2015-06-30  14:29:26', '195', '71', '0', '0');
+INSERT INTO `forumtwo` VALUES ('623', '71', 'hah1', '2015-06-30  17:02:30', '195', '71', '0', '0');
+INSERT INTO `forumtwo` VALUES ('624', '570', '???????', '2015-08-12 14:54:28', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('625', '570', '???????', '2015-08-12 14:54:31', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('626', '570', '???????', '2015-08-12 14:54:31', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('627', '570', '???????', '2015-08-12 14:54:32', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('628', '570', '???????', '2015-08-12 14:54:32', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('629', '570', '???????', '2015-08-12 14:54:32', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('630', '570', '???????', '2015-08-12 14:54:32', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('631', '570', '???????', '2015-08-12 14:54:33', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('632', '570', '�����ŶŶ����look��', '2015-08-12 15:03:41', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('633', '570', '头像个小时候车啊！', '2015-08-12 15:04:50', '121', '71', '0', '0');
+INSERT INTO `forumtwo` VALUES ('634', '570', '哦哦哦玩LOL我了', '2015-08-12 16:33:46', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('635', '570', 'only哦咯哦咯哦咯look哦咯哦lol', '2015-08-12 16:36:27', '121', '71', null, '0');
+INSERT INTO `forumtwo` VALUES ('636', '570', '弄弄们咯咯JOJO哦尼墨迹', '2015-08-13 17:44:57', '123', '93', null, '0');
+INSERT INTO `forumtwo` VALUES ('637', '570', '额敏哦lol哦哦JOJO', '2015-08-13 17:45:02', '123', '93', '1', '0');
+INSERT INTO `forumtwo` VALUES ('638', '570', '哦你只JOJO咯啦咯啦咯', '2015-08-14 14:00:47', '57', '464', null, '0');
+INSERT INTO `forumtwo` VALUES ('639', '570', '哦哦lolYY咯lz咯了', '2015-08-14 14:00:59', '57', '464', null, '0');
+INSERT INTO `forumtwo` VALUES ('640', '570', '额咯哦咯OK了咯了', '2015-08-14 14:01:08', '57', '464', null, '0');
+INSERT INTO `forumtwo` VALUES ('641', '570', '考虑裸图哦哦哦Mook', '2015-08-14 14:23:19', '201', '570', null, '0');
 
 -- ----------------------------
 -- Table structure for forum_onetype
@@ -7285,6 +7361,7 @@ CREATE TABLE `forum_twotype` (
   `title` varchar(255) DEFAULT NULL,
   `adminname` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT NULL,
+  `imgmax` varchar(255) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
   `supports` int(11) DEFAULT '0',
   `fotid` int(11) NOT NULL,
@@ -7292,13 +7369,14 @@ CREATE TABLE `forum_twotype` (
   PRIMARY KEY (`id`),
   KEY `forum_twotype_fotid` (`fotid`),
   CONSTRAINT `forum_twotype_fotid` FOREIGN KEY (`fotid`) REFERENCES `forum_onetype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forum_twotype
 -- ----------------------------
-INSERT INTO `forum_twotype` VALUES ('27', '完美家长1', 'admin', '2015-08-07 17:14:40', null, '0', '15', '0');
-INSERT INTO `forum_twotype` VALUES ('28', '完美家长2', 'admin', '2015-08-07 17:14:45', null, '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('27', '完美家长1', 'admin', '2015-08-07 17:14:40', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('28', '123', '123', '123', '11', '11', '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('29', '为什么', 'admin', '2015-08-13 16:50:26', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '0');
 
 -- ----------------------------
 -- Table structure for groupchat
@@ -7307,53 +7385,29 @@ DROP TABLE IF EXISTS `groupchat`;
 CREATE TABLE `groupchat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '我的班级',
-  `userid` int(255) DEFAULT '1234',
+  `userid` int(11) DEFAULT '1234',
   `img` varchar(255) DEFAULT NULL,
   `schoolname` varchar(255) DEFAULT NULL,
   `schooladdress` varchar(255) DEFAULT NULL,
   `grade` varchar(255) DEFAULT NULL,
   `gclass` varchar(255) DEFAULT NULL,
   `headteachername` varchar(255) DEFAULT NULL,
-  `htphone` varchar(255) DEFAULT NULL,
-  `groupno` int(11) DEFAULT '0',
+  `phone` varchar(255) DEFAULT NULL,
   `time` varchar(255) DEFAULT '2014-02-11 16:52:30',
   `groupid` varchar(255) DEFAULT NULL,
+  `groupno` int(11) DEFAULT NULL,
+  `joincondition` int(11) DEFAULT '1',
+  `area` varchar(255) DEFAULT NULL,
+  `areas` varchar(255) DEFAULT NULL,
+  `gclassintroduction` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT '0',
+  `classgroup` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000004 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groupchat
 -- ----------------------------
-INSERT INTO `groupchat` VALUES ('5', null, '85', '/Groupimg/febd0e84-74a1-4302-a970-50ef1d0acfd2.jpg', '北京', '北京市海淀区', '一年级', '一班', '逢冉', '13911107880', '62382465', '2015-03-02 21:00:29', '0000');
-INSERT INTO `groupchat` VALUES ('7', null, '403', '/Groupimg/4a2c53f1-d2ff-47dc-8792-f8bd38f01efa.jpg', '哈哈镜', '噶', '因', '回家', '哈', '13565478965', '72859503', '2015-03-02 21:36:00', '0000');
-INSERT INTO `groupchat` VALUES ('8', null, '81', '/IMG/Group/Groupimg/639323e1-2ac6-4520-bb8e-e27110b01469.jpg', 'Ghh', 'Ghhh', 'Ghh', 'Ghh', 'Fgg', '13141454546', '18319505', '2015-03-02 22:20:59', '0000');
-INSERT INTO `groupchat` VALUES ('9', null, '85', '/IMG/Group/Groupimg/60649ad8-1a87-4768-be00-7c3b8d5897b7.jpg', '北京101中学', '京北', '一年级', '三班', '逢冉', '13911107880', '55844212', '2015-03-02 22:42:24', '0000');
-INSERT INTO `groupchat` VALUES ('10', null, '403', '/Groupimg/30bff990-9180-4d32-9221-fef035ee4819.jpg', '北京101中学', '上地', '一年', '一班', '李', '13567896314', '39226148', '2015-03-02 22:51:39', '0000');
-INSERT INTO `groupchat` VALUES ('11', null, '94', '/Groupimg/82b07d4f-ca5a-47b1-8ebe-c1fddfc11285.jpg', '蓝翔技校', '小白青岛', '一年', '八班', '挖掘机', '13699997777', '42702844', '2015-03-02 23:58:57', '0000');
-INSERT INTO `groupchat` VALUES ('12', null, '94', '/IMG/Group/Groupimg/7698da9c-f666-49e8-8dc1-2a001603fd06.jpg', '摄影学校', '北京', '二年有', '一班', '111', '13699999999', '36372347', '2015-03-03 00:03:13', '0000');
-INSERT INTO `groupchat` VALUES ('19', null, '406', '/Groupimg/798cfa7b-f85e-4bdc-a242-f765402cc6e1.jpg', '种族学校', '蔚蓝星系', '蓝血族一班', '战舰指挥', '结结巴巴', '13698563288', '53144558', '2015-03-10 13:27:15', '0000');
-INSERT INTO `groupchat` VALUES ('20', null, '432', '/Groupimg/826918ba-a20c-47cd-92c2-1d799dc3bbd4.jpg', '茂丰教育', '常德华京大酒店对面', '大班', '快乐班', '陈茂', '15080661788', '54937837', '2015-03-15 20:52:20', '0000');
-INSERT INTO `groupchat` VALUES ('21', null, '78', '/Groupimg/be33ef33-6f2a-43c6-b5f2-a8d8ed10e0d8.jpg', 'haha', 'haha', 'hshs', 'hsha', 'haha', '13555717863', '44473479', '2015-04-20 17:25:51', '0000');
-INSERT INTO `groupchat` VALUES ('22', null, '406', '/Groupimg/3cf71a39-2b74-4c59-b7bd-cafcc54a6131.jpg', '北京', '北极', '一年级', '一般', '还理解', '13245464546', '30778579', '2015-04-24 17:25:41', '0000');
-INSERT INTO `groupchat` VALUES ('23', null, '493', '/Groupimg/cf987836-ceb3-4221-ab2c-f511951085e9.jpg', '湾田小学', '坪塘小学', '五年级', '一班', '盛白玉', '13135321651', '39216113', '2015-04-28 10:41:05', '0000');
-INSERT INTO `groupchat` VALUES ('25', null, '499', '/Groupimg/3e55c58a-4f06-4379-8e9d-b874bbd4924c.jpg', '湾田小学', '坪塘镇', '三年级', '一班', '彭老师', '13574824065', '98585253', '2015-04-28 15:13:34', '0000');
-INSERT INTO `groupchat` VALUES ('27', null, '406', '/Groupimg/63665787-35a9-469e-9373-28b03c0d9247.jpg', 'ss', 'ss', 'ss', 'ss', null, '13111111111', '73513115', '2015-05-09 10:30:33', '0000');
-INSERT INTO `groupchat` VALUES ('28', null, '406', '/Groupimg/2b72965a-4924-49a8-a7f5-bfe59f7f43fd.jpg', 'rtt', 'hjkhjk', 'iojk', 'hkjhjk', null, '13100000000', '48179371', '2015-05-09 10:37:05', '0000');
-INSERT INTO `groupchat` VALUES ('31', null, '406', '/Groupimg/8c755399-ddd4-4981-bf9b-c21e6a5177ad.jpg', 'qq', 'qq', 'qq', 'qq', 'qqq', '13111111111', '56516448', '2015-05-09 12:00:36', '0000');
-INSERT INTO `groupchat` VALUES ('32', null, '406', '/Groupimg/e1aec48b-c8e5-4292-be6b-d3df4ad53b15.jpg', 'ttt', 'tt', 'tt', 'tt', 'ttt', '15632115795', '89712741', '2015-05-09 12:02:11', '0000');
-INSERT INTO `groupchat` VALUES ('37', null, '406', '/Groupimg/6746a2f7-5132-49bf-8d8d-2ea1239818c7.jpg', '高规格', '这么', '在于我们', '一些', '骨灰盒', '13105433445', '29928000', '2015-05-11 23:30:08', '0000');
-INSERT INTO `groupchat` VALUES ('38', null, '94', '/Groupimg/845be690-cac9-43e3-a911-b98d8e65080a.jpg', '123', '321', '1', '22', '大山', '13456981253', '11300562', '2015-05-14 10:09:29', '0000');
-INSERT INTO `groupchat` VALUES ('39', null, '577', '/Groupimg/3e2b1aae-4d7c-4b53-876d-8d991ebb5971.jpg', '国防建设学校', '地球村181号', '星际毁灭', '毁灭1班', '拉布拉多', '18245698736', '17407111', '2015-05-14 10:29:42', '0000');
-INSERT INTO `groupchat` VALUES ('40', null, '462', '/Groupimg/724e8e17-cdee-480b-8dc0-beb2584bf04b.jpg', '11', '1', '1', '1', '1', '15011553858', '62083275', '2015-05-14 11:20:36', '0000');
-INSERT INTO `groupchat` VALUES ('41', null, '537', '/Groupimg/788ac97e-cbb7-495e-9ae6-3682f3b74390.jpg', '坪头山中学', '湖南省浏阳市永安镇', '六年级', '162班', '卜曙辉', '13549641989', '70005175', '2015-05-15 18:00:17', '0000');
-INSERT INTO `groupchat` VALUES ('42', null, '577', '/Groupimg/e79849dc-8a00-43c2-ab02-ddeff65750e0.jpg', 'the ', 'the ', 'the ', 'the ', 'the ', '13122222222', '35852719', '2015-05-22 10:28:18', '0000');
-INSERT INTO `groupchat` VALUES ('49', null, '93', '/IMG/Group/Groupimg/3541b8b2-fd2d-4f24-93e2-247653f4febb.jpg', '好好', '北京市朝阳区', '06级', '06级3班', '李愧', '15011553858', '57107341', '2015-05-25 17:01:55', '0000');
-INSERT INTO `groupchat` VALUES ('50', null, '621', '/Groupimg/965cf7e5-87e2-4399-b507-4c263b4c4717.jpg', '浏阳一中', '浏阳市', '高二', 'C1305班', '胡琼宜', '15874985179', '69632523', '2015-05-26 19:27:13', '0000');
-INSERT INTO `groupchat` VALUES ('52', null, '577', '/Groupimg/37c45948-50fa-4bb4-9e68-59b6d357f12c.jpg', '北京第101中学', '长安街', '二年纪', '2班', '习主席', '13452369856', '28054019', '2015-05-28 16:55:15', '0000');
-INSERT INTO `groupchat` VALUES ('53', null, '71', '/IMG/Groupimg/62763238/4fa3ae10-1a53-428e-b4e5-9f0df9c948c7.jpg', 'asd', 'asda', 'sd', 'asd', 'asd', '15643333333', '62763238', '2015-06-11 14:24:05', '0000');
-INSERT INTO `groupchat` VALUES ('54', null, '71', '/IMG/Groupimg/60455973/67e38187-8790-4eb6-8da3-b7b37ae0f6e7.jpg', 'erwer', 'werwerw', 'erwerwer', 'werwerwe', 'rwerwerwe', '13244444444', '60455973', '2015-06-11 15:23:12', '1434007397585');
-INSERT INTO `groupchat` VALUES ('55', null, '650', '/IMG/Groupimg/41186752/1e4a458b-6729-4a76-86b6-520c04b54b98.jpg', 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', 'iuhkj', 'jhkj', 'jhjk', '15643444445', '41186752', '2015-07-10  17:59:03', '1436522346070');
-INSERT INTO `groupchat` VALUES ('56', null, '406', '/IMG/Groupimg/52062971/7eaa9e7e-f61c-44a1-9d93-53909119cd0e.jpg', '和世界杯赛半身不遂吧那大男大女那大男大女电脑那大男大女', '话说是不是并不是不能少男少女奶奶巴登巴登吧半身不遂吧那些内心暖', '话说是不是', '还是不上班', '半身不遂吧', '13266777777', '52062971', '2015-07-10  18:03:25', '1436522607332');
 
 -- ----------------------------
 -- Table structure for groupmembers
@@ -7365,67 +7419,68 @@ CREATE TABLE `groupmembers` (
   `groupid` int(11) DEFAULT '0',
   `urp` int(1) DEFAULT '0',
   `time` varchar(255) DEFAULT '2015-00-00 00:00:00',
+  `message` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groupmembers
 -- ----------------------------
-INSERT INTO `groupmembers` VALUES ('6', '85', '5', '3', '2015-03-02 21:00:29');
-INSERT INTO `groupmembers` VALUES ('10', '403', '7', '3', '2015-03-02 21:36:00');
-INSERT INTO `groupmembers` VALUES ('12', '81', '8', '3', '2015-03-02 22:20:59');
-INSERT INTO `groupmembers` VALUES ('13', '81', '5', '1', '2015-03-02 22:39:30');
-INSERT INTO `groupmembers` VALUES ('14', '85', '9', '3', '2015-03-02 22:42:24');
-INSERT INTO `groupmembers` VALUES ('17', '403', '10', '3', '2015-03-02 22:51:39');
-INSERT INTO `groupmembers` VALUES ('18', '94', '11', '3', '2015-03-02 23:58:57');
-INSERT INTO `groupmembers` VALUES ('19', '94', '12', '3', '2015-03-03 00:03:13');
-INSERT INTO `groupmembers` VALUES ('20', '85', '11', '1', '2015-03-03 00:07:31');
-INSERT INTO `groupmembers` VALUES ('23', '93', '11', '2', '2015-05-14 10:14:00');
-INSERT INTO `groupmembers` VALUES ('27', '411', '9', '1', '2015-03-04 15:22:08');
-INSERT INTO `groupmembers` VALUES ('34', '406', '19', '3', '2015-03-10 13:27:15');
-INSERT INTO `groupmembers` VALUES ('40', '81', '19', '1', '2015-03-11 15:23:27');
-INSERT INTO `groupmembers` VALUES ('41', '432', '20', '3', '2015-03-15 20:52:20');
-INSERT INTO `groupmembers` VALUES ('42', '383', '20', '1', '2015-03-19 15:02:01');
-INSERT INTO `groupmembers` VALUES ('43', '383', '20', '1', '2015-03-19 15:02:02');
-INSERT INTO `groupmembers` VALUES ('44', '78', '21', '3', '2015-04-20 17:25:51');
-INSERT INTO `groupmembers` VALUES ('45', '406', '11', '1', '2015-04-20 17:32:29');
-INSERT INTO `groupmembers` VALUES ('61', '78', '11', '1', '2015-04-20 17:35:50');
-INSERT INTO `groupmembers` VALUES ('62', '406', '22', '3', '2015-04-24 17:25:41');
-INSERT INTO `groupmembers` VALUES ('63', '493', '23', '3', '2015-04-28 10:41:05');
-INSERT INTO `groupmembers` VALUES ('65', '499', '25', '3', '2015-04-28 15:13:34');
-INSERT INTO `groupmembers` VALUES ('80', '306', '19', '1', '2015-04-30 17:38:54');
-INSERT INTO `groupmembers` VALUES ('81', '306', '22', '1', '2015-04-30 17:39:59');
-INSERT INTO `groupmembers` VALUES ('82', '93', '19', '1', '2015-05-08 15:12:01');
-INSERT INTO `groupmembers` VALUES ('84', '85', '19', '1', '2015-05-08 16:03:53');
-INSERT INTO `groupmembers` VALUES ('85', '71', '19', '2', '2015-05-08 16:23:57');
-INSERT INTO `groupmembers` VALUES ('89', '93', '12', '1', '2015-05-08 19:25:19');
-INSERT INTO `groupmembers` VALUES ('90', '85', '12', '1', '2015-05-08 19:25:22');
-INSERT INTO `groupmembers` VALUES ('91', '81', '12', '1', '2015-05-08 19:29:13');
-INSERT INTO `groupmembers` VALUES ('93', '81', '11', '1', '2015-05-08 19:40:13');
-INSERT INTO `groupmembers` VALUES ('95', '406', '27', '3', '2015-05-09 10:30:33');
-INSERT INTO `groupmembers` VALUES ('96', '406', '28', '3', '2015-05-09 10:37:05');
-INSERT INTO `groupmembers` VALUES ('99', '406', '31', '3', '2015-05-09 12:00:36');
-INSERT INTO `groupmembers` VALUES ('100', '406', '32', '3', '2015-05-09 12:02:11');
-INSERT INTO `groupmembers` VALUES ('105', '406', '37', '3', '2015-05-11 23:30:08');
-INSERT INTO `groupmembers` VALUES ('106', '94', '38', '3', '2015-05-14 10:09:29');
-INSERT INTO `groupmembers` VALUES ('107', '577', '39', '3', '2015-05-14 10:29:42');
-INSERT INTO `groupmembers` VALUES ('108', '578', '39', '1', '2015-05-14 11:12:49');
-INSERT INTO `groupmembers` VALUES ('109', '577', '11', '1', '2015-05-14 11:16:45');
-INSERT INTO `groupmembers` VALUES ('110', '462', '11', '1', '2015-05-14 11:18:23');
-INSERT INTO `groupmembers` VALUES ('111', '462', '40', '3', '2015-05-14 11:20:36');
-INSERT INTO `groupmembers` VALUES ('112', '577', '40', '2', '2015-05-14 11:21:35');
-INSERT INTO `groupmembers` VALUES ('113', '537', '41', '3', '2015-05-15 18:00:17');
-INSERT INTO `groupmembers` VALUES ('114', '577', '42', '3', '2015-05-22 10:28:18');
-INSERT INTO `groupmembers` VALUES ('115', '577', '12', '1', '2015-05-22 18:25:36');
-INSERT INTO `groupmembers` VALUES ('122', '93', '49', '3', '2015-05-25 17:01:55');
-INSERT INTO `groupmembers` VALUES ('123', '621', '50', '3', '2015-05-26 19:27:13');
-INSERT INTO `groupmembers` VALUES ('125', '577', '52', '3', '2015-05-28 16:55:15');
-INSERT INTO `groupmembers` VALUES ('126', '71', '53', '3', '2015-06-11 14:24:05');
-INSERT INTO `groupmembers` VALUES ('127', '81', '53', '1', '2015-06-11 14:26:59');
-INSERT INTO `groupmembers` VALUES ('129', '71', '54', '3', '2015-06-11 15:23:12');
-INSERT INTO `groupmembers` VALUES ('130', '71', '12', '1', '2015-06-11 15:25:44');
-INSERT INTO `groupmembers` VALUES ('131', '650', '55', '3', '2015-07-10  17:59:03');
-INSERT INTO `groupmembers` VALUES ('132', '406', '56', '3', '2015-07-10  18:03:25');
+INSERT INTO `groupmembers` VALUES ('6', '85', '5', '3', '2015-03-02 21:00:29', null);
+INSERT INTO `groupmembers` VALUES ('10', '403', '7', '3', '2015-03-02 21:36:00', null);
+INSERT INTO `groupmembers` VALUES ('12', '81', '8', '3', '2015-03-02 22:20:59', null);
+INSERT INTO `groupmembers` VALUES ('13', '81', '5', '1', '2015-03-02 22:39:30', null);
+INSERT INTO `groupmembers` VALUES ('14', '85', '9', '3', '2015-03-02 22:42:24', null);
+INSERT INTO `groupmembers` VALUES ('17', '403', '10', '3', '2015-03-02 22:51:39', null);
+INSERT INTO `groupmembers` VALUES ('18', '94', '11', '3', '2015-03-02 23:58:57', null);
+INSERT INTO `groupmembers` VALUES ('19', '94', '12', '3', '2015-03-03 00:03:13', null);
+INSERT INTO `groupmembers` VALUES ('20', '85', '11', '1', '2015-03-03 00:07:31', null);
+INSERT INTO `groupmembers` VALUES ('23', '93', '11', '2', '2015-05-14 10:14:00', null);
+INSERT INTO `groupmembers` VALUES ('27', '411', '9', '1', '2015-03-04 15:22:08', null);
+INSERT INTO `groupmembers` VALUES ('34', '406', '19', '3', '2015-03-10 13:27:15', null);
+INSERT INTO `groupmembers` VALUES ('40', '81', '19', '1', '2015-03-11 15:23:27', null);
+INSERT INTO `groupmembers` VALUES ('41', '432', '20', '3', '2015-03-15 20:52:20', null);
+INSERT INTO `groupmembers` VALUES ('42', '383', '20', '1', '2015-03-19 15:02:01', null);
+INSERT INTO `groupmembers` VALUES ('43', '383', '20', '1', '2015-03-19 15:02:02', null);
+INSERT INTO `groupmembers` VALUES ('44', '78', '21', '3', '2015-04-20 17:25:51', null);
+INSERT INTO `groupmembers` VALUES ('45', '406', '11', '1', '2015-04-20 17:32:29', null);
+INSERT INTO `groupmembers` VALUES ('61', '78', '11', '1', '2015-04-20 17:35:50', null);
+INSERT INTO `groupmembers` VALUES ('62', '406', '22', '3', '2015-04-24 17:25:41', null);
+INSERT INTO `groupmembers` VALUES ('63', '493', '23', '3', '2015-04-28 10:41:05', null);
+INSERT INTO `groupmembers` VALUES ('65', '499', '25', '3', '2015-04-28 15:13:34', null);
+INSERT INTO `groupmembers` VALUES ('80', '306', '19', '1', '2015-04-30 17:38:54', null);
+INSERT INTO `groupmembers` VALUES ('81', '306', '22', '1', '2015-04-30 17:39:59', null);
+INSERT INTO `groupmembers` VALUES ('82', '93', '19', '1', '2015-05-08 15:12:01', null);
+INSERT INTO `groupmembers` VALUES ('84', '85', '19', '1', '2015-05-08 16:03:53', null);
+INSERT INTO `groupmembers` VALUES ('85', '71', '19', '2', '2015-05-08 16:23:57', null);
+INSERT INTO `groupmembers` VALUES ('89', '93', '12', '1', '2015-05-08 19:25:19', null);
+INSERT INTO `groupmembers` VALUES ('90', '85', '12', '1', '2015-05-08 19:25:22', null);
+INSERT INTO `groupmembers` VALUES ('91', '81', '12', '1', '2015-05-08 19:29:13', null);
+INSERT INTO `groupmembers` VALUES ('93', '81', '11', '1', '2015-05-08 19:40:13', null);
+INSERT INTO `groupmembers` VALUES ('95', '406', '27', '3', '2015-05-09 10:30:33', null);
+INSERT INTO `groupmembers` VALUES ('96', '406', '28', '3', '2015-05-09 10:37:05', null);
+INSERT INTO `groupmembers` VALUES ('99', '406', '31', '3', '2015-05-09 12:00:36', null);
+INSERT INTO `groupmembers` VALUES ('100', '406', '32', '3', '2015-05-09 12:02:11', null);
+INSERT INTO `groupmembers` VALUES ('105', '406', '37', '3', '2015-05-11 23:30:08', null);
+INSERT INTO `groupmembers` VALUES ('106', '94', '38', '3', '2015-05-14 10:09:29', null);
+INSERT INTO `groupmembers` VALUES ('107', '577', '39', '3', '2015-05-14 10:29:42', null);
+INSERT INTO `groupmembers` VALUES ('108', '578', '39', '1', '2015-05-14 11:12:49', null);
+INSERT INTO `groupmembers` VALUES ('109', '577', '11', '1', '2015-05-14 11:16:45', null);
+INSERT INTO `groupmembers` VALUES ('110', '462', '11', '1', '2015-05-14 11:18:23', null);
+INSERT INTO `groupmembers` VALUES ('111', '462', '40', '3', '2015-05-14 11:20:36', null);
+INSERT INTO `groupmembers` VALUES ('112', '577', '40', '2', '2015-05-14 11:21:35', null);
+INSERT INTO `groupmembers` VALUES ('113', '537', '41', '3', '2015-05-15 18:00:17', null);
+INSERT INTO `groupmembers` VALUES ('114', '577', '42', '3', '2015-05-22 10:28:18', null);
+INSERT INTO `groupmembers` VALUES ('115', '577', '12', '1', '2015-05-22 18:25:36', null);
+INSERT INTO `groupmembers` VALUES ('122', '93', '49', '3', '2015-05-25 17:01:55', null);
+INSERT INTO `groupmembers` VALUES ('123', '621', '50', '3', '2015-05-26 19:27:13', null);
+INSERT INTO `groupmembers` VALUES ('125', '577', '52', '3', '2015-05-28 16:55:15', null);
+INSERT INTO `groupmembers` VALUES ('126', '71', '53', '3', '2015-06-11 14:24:05', null);
+INSERT INTO `groupmembers` VALUES ('127', '81', '53', '1', '2015-06-11 14:26:59', null);
+INSERT INTO `groupmembers` VALUES ('129', '71', '54', '3', '2015-06-11 15:23:12', null);
+INSERT INTO `groupmembers` VALUES ('130', '71', '12', '1', '2015-06-11 15:25:44', null);
+INSERT INTO `groupmembers` VALUES ('131', '650', '55', '3', '2015-07-10  17:59:03', null);
+INSERT INTO `groupmembers` VALUES ('132', '406', '56', '3', '2015-07-10  18:03:25', null);
 
 -- ----------------------------
 -- Table structure for group_friend
@@ -9583,9 +9638,9 @@ INSERT INTO `news` VALUES ('1859', '档案找不到先问问学校', null, '<p a
 INSERT INTO `news` VALUES ('1860', '儿童性教育如何更“靠谱”？令人尴尬的性教育', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165659_765.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“孩子，凡是被衣服遮住的地方都不能被别人碰，即便老师和隔壁叔叔也不可以……”幽默的语言、轻快的节奏，近日一组《一分钟儿童性教育短片》爆红网络。三段每段虽然只有1分钟的短片，却被网友直呼“靠谱”，走红背后折射出当前我国儿童性教育的缺失。家长着急，专家支招，面对孩子，我们到底能做些什么？\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>那些年，令人“尴尬”的性教育</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“你是从垃圾站里捡来的。”当面对孩子们“我从哪里来？”的提问时，过去很多中国家长会半开玩笑地应付孩子们的问题，或者含混解答。家长们认为自己就是这么过来的，孩子不需要特殊的教育，讲了反倒会诱发模仿心理。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	中国儿童和青少年性健康教育专家胡萍认为，中华传统文化对性的概念还是停留在色情，对性的重要性了解不够，“观念阻碍了性教育的发展”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	得不到答案或被搪塞过去，孩子们便会寻求其他方式。“我侄女最近很反常，站着尿尿，而且还有意无意把手和脚放在我老公的那个地方。”在武汉晚报宝贝俱乐部QQ群里，东东妈妈说。缺少有效教导，孩子的异常表现让家长无奈又着急。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	而已经开展的性教育又因方法不当，适得其反。前几年某地一学校为普及相关知识，向学生播放孕妇剖腹产现场画面，由于镜头过于血腥，效果并不理想。网友@好奇害死猫吐槽说：“这种教育方式还不如不教。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	此前由中国几位性教育学专家编写的教材《成长的脚步》由于内容过于真实，也曾遭到许多家长的质疑。“这项教育开展举步维艰，主要是传统的反性观念，家长的阻碍非常大。”中国社会科学院社会学所研究员李银河介绍，“中国的儿童性教育基本上没有开展起来，政府虽然有文件，但是推进比较慢，教育方式方法也缺少规范。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>儿童性侵案频发，是教育的缺失？</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	2011年，国务院印发的《中国儿童发展纲要（2011－－2020年）》明确提出“将性与生殖健康教育纳入义务教育课程体系”，让孩子明白“内衣覆盖的地方，不容侵犯”。但调查显示，当前儿童对于“触摸隐私部位是侵犯者的错”，“将此事告知成人”等意识仍旧匮乏。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	山东青岛，幼儿园保安猥亵儿童；河南桐柏，54岁教师猥亵女生；广东雷州，小学校长多次诱骗两女生，实施性侵……\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	2013年以来，经媒体报道的儿童性侵案多达几十起。更可怕的是犯罪过程中受害儿童所表现出的无知。某案件中，受害儿童特别喜欢狗，一个“叔叔”说，你把裤子脱了，我给你看狗，小孩就照做了。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年9月，中国儿童少年基金会、<a class=\"a-tips-Article-QQ\" href=\"http://data.edu.qq.com/college_info/6/index.shtml\" target=\"_blank\">北京师范大学</a>(<span class=\"infoMblog\"><a class=\"a-tips-Article-QQ\" href=\"http://t.qq.com/bnuxwzx%20#pref=qqcom.keyword\" target=\"_blank\">微博</a></span>)联合发布的《女童保护研究报告》中认为，除监护不力外，受害人及其家人的防范意识和防范知识不足是导致性侵案件频发的重要原因，部分受害者并不是监护缺失的群体，大量案件发生在邻里之间、师生之间，这与受害人缺乏自我保护意识及有关知识直接相关。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“国外一些国家在这方面做得就不错。在被陌生人侵犯时告诉孩子可以摔东西，可以跑，答应的事情也可以不履行，讲解得非常细致且实用。”李银河说。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	她同时表示，在未成年人强奸案件中，性教育缺失也是导致犯罪的因素之一，“当前很多未成年人强奸案便源于性教育的缺失”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	此外胡萍认为，日前出台的《关于依法惩治性侵害未成年人犯罪的意见》，被指将成为保护未成年人权益的利器，但依然没有建构一个系统，帮助受到性侵的孩子和家庭。“可以说儿童没有得到自我保护教育，被伤害后又没有得到有效弥补，很可怜。”她说。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>早期性教育，我们能做的还很多</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	三段《一分钟儿童性教育短片》以诙谐好玩的形式将一个严肃的问题呈现在家长和孩子面前，内容不露骨，容易接受，被网友评价“靠谱”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	要让我们的青少年早期性教育做得更“靠谱”，还需要从多方面努力。胡萍表示：“儿童性教育涉及法律教育、情感教育等多方面，单纯的生育知识介绍，并不能构成有效的教育体系。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	李银河认为，教育的开展首先要争取家长支持，从改变观念入手，不要受到伤害后才后悔莫及。对于孩子的疑问要适时解答，此外学校可以在这方面安排一定的课时，保证教育时长，分年龄层讲解，“还要安排受过正规培训的老师，要用有专家论证过的教材”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	李银河介绍说，当前中国性教育学会已经有了性教育师培训机制，将儿童性教育资格化，“这在某种程度上就是将性教育纳入了正规”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“社会与民间还可以通过沙龙讲座的形式，学校也可以开设父母课堂，自上而下地进行教育。形式也可以吸纳漫画、画图、视频等多种形式。”胡萍坦言，当前国内的儿童性教育短片储备不足，“我的教学素材都是十多年来一点一点积累的。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	胡萍建议学校要立即行动起来，“不仅需要知识性的，还要有责任观的教育，如何对待情感的教育。相关的儿童机构和妇联也要带头建立起社区家庭教育的指导机构。国家在宏观指导上也可以将其法规化、强制化，性教育实施才能有所保障。”\r\n</p>', '/kindeditor/attached/image/20150726/20150726165659_765.jpg,', '2014-05-11 03:59:36', '1', '0', '北京', '', '5', '0', '0', '2', '郑成帅', '1', '女,性教育,9月,4岁,教师,少年,生育,北京,政府,校长,小学,成年,老师,特别,传统,家庭教育,幽默,隐私,缺乏,面对,观念,教学,家庭,程度,心理,调查,自我,行动,无意,问题,性观念,内衣,主要,早期,女生,课堂,构成,老公,教导,国外,青少年,培训,陌生人,陌生,努力,应付,孕妇,师范大学,文化,介绍,报告,非常,方法,伤害,真实,效果,异常,特殊,模仿,教育专家,教育,家人,概念,成人,不足,表示,宝贝,安排,研究,年龄,父母,发展,儿童,保证,专家,幼儿园,幼儿,表现,建议,家长,孩子,了解,科学,大量,成长,相关,喜欢,通过,保护,帮助,支持,意识,妈妈,健康,重要,', '1');
 INSERT INTO `news` VALUES ('1861', '14588人考上“985”“211”院校', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165747_489.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	7月24日，我省今年高招本一批的招生录取工作全部结束。省教育考试院昨日召开新闻发布会通报，今年全省34933名考生被本一批院校录取，其中被“985”重点大学录取的考生有5497人，在重点高校招生计划缩减的情况下，这些高校仍在<a href=\"http://news.hexun.com/fujiang/index.html\" target=\"_blank\">福建</a>增招了587人。 本报记者赖劲松\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“985”重点大学录取5497人\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165738_907.png\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	每年高招的本一批录取都备受关注，因为在这个批次招生的院校大都是“985”、“211”等重点高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	据统计，今年我省本一批共有招生院校263所，计划招生33505人，占本科招生计划总数的28.8%，实际录取34933人，常规志愿满足率达96%。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年“985”、“211”高校在我省计划招生13436人，实际录取14588人，增招1152人，增幅达8.6%。其中：“985”高校计划招生4910人、实际录取5497人、增招587人，增幅达12%。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	从录取结果来看，“985”高校录取分数最高，“211”高校居其次，再次是省属重点院校。今年39所“985”高校的文史、理工类录取最低分的平均值均为625分；117所“211”高校的文史、理工类录取最低分的平均值分别为603分、605分；其他本一批高校文史、理工类录取最低分的平均值分别为572、562分。理工类录取最低分高于本一线100分的高校有36所，文史类录取最低分高于本一线50分的高校有49所，这些高校大多数是“985”高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	数据显示，<a href=\"http://news.hexun.com/beijing/index.html\" target=\"_blank\">北京</a>大学、清华大学、<a href=\"http://news.hexun.com/2013/shanghai1/index.html\" target=\"_blank\">上海</a>交大、复旦大学、<a href=\"http://news.hexun.com/zhejiang/index.html\" target=\"_blank\">浙江</a>大学、中国科技大学、中国人民大学、南京大学、上海财经大学、北京航天航空大学这10所高校的理工类最低录取分均高出本一线125分以上，也就是说，考生分数至少要达到650分以上才有被录取的机会。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	财经、医学类院校相对热门\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	每年的招生中，院校间的生源也是冷热不均，这与院校所处地域和高校的专业类型有很大的关系。今年，这样的局面同样存在，考生更乐意报考本省、中东部大城市以及周边经济发达、交通便利省份的招生高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	从院校类型来看，财经、医学类院校相对热门，农林类院校相对冷门。从各校录取专业情况看，财经、临床与口腔医学、建筑学等专业依然是最热门专业，绝大多数为本校的录取最高分专业；农林类、地矿、护理、社会工作、软件工程等专业相对冷门，大多是本校录取的最低分专业，其中少数专业还需要通过征求志愿才能完成招生计划。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	省内高校生源 质量总体较好\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年省内有12所院校安排在本一批招生，除少数中外合作、闽台合作办学以及民族班项目外，均完成招生计划。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	厦门大学、福州大学、华侨大学的理科录取最低分高出本一线105分、69分、47分。厦门理工学院、福建工程学院理工类专业的录取最低分分别超过本一线12分、10分，今年这两所学校新列入本一批招生的专业均在本一线上完成招生计划。省内院校中外合作办学项目生源情况总体较好，厦门大学、福州大学在常规志愿就完成招生计划，录取分数分别高于本一线85分、56分，个别高校有少量招生计划没有完成。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	另外，今年我省特殊类型招生如国家农村专项计划、自主招生、保送生、高水平运动队等项目，合计录取1871人。艺术类本科A批招生也于7月21日顺利结束，本批次招生院校61所，计划招生2268人、录取2271人。其中美术类录取1460人，音乐类录取525人，编导类录取130人，播音主持录取79人，舞蹈类录取69人，服装表演录取8人。&nbsp;<a href=\"http://www.hexun.com/?from=hxlogo\" target=\"_blank\"><img src=\"http://img.hexun.com/home/hx.gif\" /></a>&nbsp;<a href=\"http://stock.hexun.com/2014/hxcjxwapp/\" target=\"_blank\"><img src=\"http://img.hexun.com/2010/img/tel.gif\" /></a>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>', '/kindeditor/attached/image/20150726/20150726165747_489.jpg,/kindeditor/attached/image/20150726/20150726165738_907.png,http://img.hexun.com/home/hx.gif,http://img.hexun.com/2010/img/tel.gif,', '2014-09-06 08:35:51', '0', '0', '北京', '顺义区', '1', '0', '0', '0', '许海东', '1', '7月,统计,经济,交通,北京,同样,重点,机会,科技,大城市,招生,护理,考试,满足,关注,特殊,医学,教育,工作,安排,音乐,超过,有很大,运动,关系,通过,', '0');
 INSERT INTO `news` VALUES ('1862', '123456', null, '<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_806.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_956.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_370.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_976.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_867.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_831.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_925.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_202.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_430.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_851.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_634.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_969.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_827.jpg\" alt=\"\" />', '/kindeditor/attached/image/20150726/20150726165622_806.jpg,/kindeditor/attached/image/20150726/20150726165622_956.png,/kindeditor/attached/image/20150726/20150726165622_370.png,/kindeditor/attached/image/20150726/20150726165622_976.png,/kindeditor/attached/image/20150726/20150726165622_867.jpg,/kindeditor/attached/image/20150726/20150726165623_831.jpg,/kindeditor/attached/image/20150726/20150726165623_925.png,/kindeditor/attached/image/20150726/20150726165623_202.png,/kindeditor/attached/image/20150726/20150726165623_430.jpg,/kindeditor/attached/image/20150726/20150726165623_851.png,/kindeditor/attached/image/20150726/20150726165623_634.jpg,/kindeditor/attached/image/20150726/20150726165623_969.jpg,/kindeditor/attached/image/20150726/20150726165623_827.jpg,', '2015-07-26 03:41:58', '0', '0', null, null, '1', '0', '3', '3', 'admin', '1', '', '0');
-INSERT INTO `news` VALUES ('1863', '新入园宝宝哭闹 正常 妈妈心疼领回家 错了！', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165815_722.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	新学期幼儿园开学已有两周，第一次离开家人的呵护、第一次过集体生活、第一次独立学会与他人沟通……孩子们被送到幼儿园后，多数会出现哭闹情况，令家长们手足无措。童童童早教负责人雷霞表示，新生入园哭闹是“分离焦虑”的一种正常表现，家长只要运用正确方法引导，很快便能帮助孩子度过这一阶段。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	雷霞介绍，进入幼儿园，孩子们第一次独自面对陌生的人和环境，承受的压力大，哭闹是一种正常反应。幼儿的个体之间存在一定差异，每个孩子适应幼儿园生活的时间也不同。一般来说，新入园幼儿一周至半个月左右便能适应。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	孩子到幼儿园最初几天，常会有家长在送完孩子后，站在门外徘徊观望，不愿离去；有的家长还会大声呵斥不愿入园的孩子；还有家长因为孩子哭闹而终止送园。雷霞提醒，这些都是不正确的做法，帮助孩子克服“分离焦虑”，方法要得当。教子有方\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>家长可以这么做</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>坚持送孩子入园</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	有的家长一见到孩子哭便心疼，决定不送了，带着下次再送的心理回家，甚至还有少数家长会把干脆把孩子领回家，暂时不去幼儿园了。对此，雷霞表示，把孩子领回家的做法，对孩子的身心发展可能产生不利的影响。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>适当奖励效果佳</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	买些孩子喜欢的小奖品，当做去幼儿园的奖励，用一定的物质刺激让孩子喜欢上幼儿园。入园时，还可以带一些平时孩子喜欢的小玩具，给孩子一个心理寄托，使孩子适应的过程更加顺利。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>轻声安慰勿吓唬</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	千万不能用上幼儿园来吓唬孩子。比如对孩子说：“不听话送你上幼儿园。”这会让孩子觉得上幼儿园是不好的。更不要对孩子说：“你哭，我就不来接你了。”3岁左右的孩子理解能力有限，但他们会记住一些话，从而加剧对去幼儿园的恐惧。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>与老师经常沟通</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	把孩子的行为习惯及时反馈给老师，使老师更了解孩子，便于老师开展工作。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>帮孩子多交朋友</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	家长平时要多带孩子和同龄孩子接触，并有意识地教给孩子一些交朋友的方法，扩大孩子的社交范围，让孩子逐渐习惯如何与人接触，如何与人交往，也有利于帮助孩子克服“分离焦虑”。（\r\n</p>', '/kindeditor/attached/image/20150726/20150726165815_722.jpg,', '2015-07-26 03:41:58', '4', '0', '北京', '', '5', '0', '2', '10', '郑成帅', '1', '引导,教子,开学,新学期,老师,面对,正确,习惯,独立,心理,早教,生活,朋友,一般,克服,交往,陌生,听话,沟通,回家,安慰,一阶段,小玩具,入园,介绍,行为习惯,方法,新生,效果,反应,行为,恐惧,家人,工作,表示,理解,能力,阶段,环境,发展,同龄,身心,幼儿园,幼儿,有利于,有利,表现,3岁,影响,家长,孩子,刺激,玩具,利于,了解,哭闹,经常,负责,喜欢,时间,帮助,正常,意识,物质,', '3');
+INSERT INTO `news` VALUES ('1863', '新入园宝宝哭闹 正常 妈妈心疼领回家 错了！', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165815_722.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	新学期幼儿园开学已有两周，第一次离开家人的呵护、第一次过集体生活、第一次独立学会与他人沟通……孩子们被送到幼儿园后，多数会出现哭闹情况，令家长们手足无措。童童童早教负责人雷霞表示，新生入园哭闹是“分离焦虑”的一种正常表现，家长只要运用正确方法引导，很快便能帮助孩子度过这一阶段。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	雷霞介绍，进入幼儿园，孩子们第一次独自面对陌生的人和环境，承受的压力大，哭闹是一种正常反应。幼儿的个体之间存在一定差异，每个孩子适应幼儿园生活的时间也不同。一般来说，新入园幼儿一周至半个月左右便能适应。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	孩子到幼儿园最初几天，常会有家长在送完孩子后，站在门外徘徊观望，不愿离去；有的家长还会大声呵斥不愿入园的孩子；还有家长因为孩子哭闹而终止送园。雷霞提醒，这些都是不正确的做法，帮助孩子克服“分离焦虑”，方法要得当。教子有方\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>家长可以这么做</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>坚持送孩子入园</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	有的家长一见到孩子哭便心疼，决定不送了，带着下次再送的心理回家，甚至还有少数家长会把干脆把孩子领回家，暂时不去幼儿园了。对此，雷霞表示，把孩子领回家的做法，对孩子的身心发展可能产生不利的影响。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>适当奖励效果佳</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	买些孩子喜欢的小奖品，当做去幼儿园的奖励，用一定的物质刺激让孩子喜欢上幼儿园。入园时，还可以带一些平时孩子喜欢的小玩具，给孩子一个心理寄托，使孩子适应的过程更加顺利。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>轻声安慰勿吓唬</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	千万不能用上幼儿园来吓唬孩子。比如对孩子说：“不听话送你上幼儿园。”这会让孩子觉得上幼儿园是不好的。更不要对孩子说：“你哭，我就不来接你了。”3岁左右的孩子理解能力有限，但他们会记住一些话，从而加剧对去幼儿园的恐惧。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>与老师经常沟通</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	把孩子的行为习惯及时反馈给老师，使老师更了解孩子，便于老师开展工作。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>帮孩子多交朋友</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	家长平时要多带孩子和同龄孩子接触，并有意识地教给孩子一些交朋友的方法，扩大孩子的社交范围，让孩子逐渐习惯如何与人接触，如何与人交往，也有利于帮助孩子克服“分离焦虑”。（\r\n</p>', '/kindeditor/attached/image/20150726/20150726165815_722.jpg,', '2015-07-26 03:41:58', '5', '3', '北京', '', '5', '0', '2', '12', '郑成帅', '1', '引导,教子,开学,新学期,老师,面对,正确,习惯,独立,心理,早教,生活,朋友,一般,克服,交往,陌生,听话,沟通,回家,安慰,一阶段,小玩具,入园,介绍,行为习惯,方法,新生,效果,反应,行为,恐惧,家人,工作,表示,理解,能力,阶段,环境,发展,同龄,身心,幼儿园,幼儿,有利于,有利,表现,3岁,影响,家长,孩子,刺激,玩具,利于,了解,哭闹,经常,负责,喜欢,时间,帮助,正常,意识,物质,', '1');
 INSERT INTO `news` VALUES ('1864', '上海发布国内首个互联网教育政策', null, '<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　上海发布国内首个互联网教育政策\r\n</p>\r\n<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　9月27日，为期两天的2014年全球互联网教育创业大会在上海落下帷幕。从会上获悉，为了鼓励创业者、吸引优秀人才，作为此次大赛主办方之一的上海市杨浦区政府出台了涵盖九条细则的《杨浦区支持互联网教育产业发展若干政策（试行）》（以下简称“杨浦九条”），这是首个官方出台的互联网教育政策。\r\n</p>\r\n<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　“杨浦九条”显示，杨浦区将建立互联网教育产业创新创业基地，每年投入资金不低于3000万元，从奖金、补贴、租金、税收、落户等方面给予扶持。对于入驻企业，给予最高300万元的办公用房补贴，以及经营性奖励、绩效奖励等政策支持；对区域经济发展做出重大贡献或在国际国内具有较高影响力的互联网教育龙头企业，经认定为总部企业，给予最高500万元的开办费和1000万元办公用房补贴，以及经营性奖励和高管奖励等政策支持。\r\n</p>', '', '2015-07-26 03:41:58', '5', '3', '上海', '', '2', '0', '2', '12', '南大勇', '1', '9月,经济,政府,互联网,优秀,政策,鼓励,教育,发展,影响,支持,', '1');
-INSERT INTO `news` VALUES ('1865', '湖北投5000万扶持青少年足球 3年建700足球学校', null, '<h1 style=\"font-size:26px;font-weight:normal;font-family:微软雅黑;color:#000000;font-style:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165841_114.jpg\" alt=\"\" />\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“只要下决心发展校园足球，办法永远比困难多！”湖北省校园足球相关负责人表示，针对校园足球发展中普遍存在的问题，相应的解决方案已有所准备。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“足球进校园”一直是热议话题，今年3月，国务院召开青少年校园足球工作电视电话会议，推出一系列措施推动校园足球进入升级版。为此，湖北校园足球振兴计划全面启动。7月20日，作为湖北校园足球振兴计划举措之一的全省校园足球高中联赛开幕，35支男女代表队目前正在交战。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		湖北校园足球振兴计划启动至今，校园足球发生了哪些变化，遇到那些困难与阻力？近日，长江商报记者对此进行了调查，我省校园足球计划启动以来，各地校园足球呈现可喜的局面，但师资、球场、资金及安全等老问题依旧存在。此外，农村发展速度远远不及城市。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>计划</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>3年建700所足球特色学校</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年3月，国务院办公厅印发了《中国足球改革发展总体方案》（以下简称《方案》），就足球改革进行部署，其中发展校园足球成为重点。《方案》明确规定，各地中小学把足球列入体育课教学内容，加大学时比重。全国中小学校园足球特色学校在现有5000多所基础上，2020年达到2万所，2025年达到5万所，其中开展女子足球的学校占一定比例。同时，到2020年，完成对5万名校园足球专、兼职足球教师的一轮培训。这为将来校园足球发展给出了清晰的时间表。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		长江商报记者从湖北省教育厅获悉，湖北将筹措5000万元经费，用3年时间，建设700个左右的校园足球学校，努力构建具有湖北特色的“校园足球”格局。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉市共有校园足球试点学校194所。该市计划在年内将校园足球试点学校发展到300所。除此之外，今年武汉将安排1000万元校园足球专项经费，用于校园足球训练、比赛活动的开展、器材购置、教练员补贴等。武汉市还将完善市、区、校园三级足球联赛机制。同时，武汉市还将组织青少年足球冬令营、夏令营，通过专业系统的训练，对青少年进行体能培养，加强校园足球骨干团队建设，形成班队、年级队、校队等各个层面的足球队伍，引领校园足球活动的开展。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		襄阳市则计划把足球纳入体育课必修内容，通过三年时间，力争达到50%的小学开设足球课，60%的学生参加过校园足球活动。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>样板</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>每个班都有自己的足球队</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉作为全国五大足球试点城市之一，校园足球发展相对较好，在一些学校，甚至每个班都有自己的足球队，足球成为孩子们喜爱的运动。光谷五小就是这样一所学校，19个班每个班都有自己的足球队，学校每周都开展班级联赛。他们按每两个年级为一组的方式，又组建了高中低三支校级队伍，目前已经形成了良好的发展梯队。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		如今的光谷五小足球队，队员达到近百人，三名教练都是踢过职业足球的退役球员。该小学除了参加市校园足球联赛，队员们还得参加他们自己的班级联赛。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		不少学生通过在足球场上的拼搏，建立了自信，由此促进了学习的提升。廖梓权今年11岁，是光谷五小五年级学生。一年前他随父母，从天门老家定居武汉，转校进入了位于东湖高新区的光谷五小。刚入校时，小廖由于学习基础差，老师上课提问时常回答不上来，对学习的兴趣不浓，在校园里也少有玩伴。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年上半年，在老师的鼓励下，参加了班上的足球队。由于光谷五小距武汉卓尔训练基地仅百余米距离，光谷五小足球队成立之初，学校通过与武汉足球俱乐部合作，常去观看武汉队训练，或请职业队员过来指导，不时组织有足球兴趣的学生前去当球童。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		小廖则是这些小球童中的一员，他通过近距离接触职业足球，而渐渐地对足球产生了较为浓厚的兴趣。小廖在经学校定期组织的日常训练，及代表班级参加学校里举办的年纪联赛，逐渐成为了班上足球队的核心球员，并在同学们中聚集起了“小粉丝”。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		原本还担心小廖因为踢球耽误学习的廖爸爸发现，自从小廖踢球后，其身上出现了诸多实实在在的变化：不仅性格变得开朗，人变得更加自信，与同学相处也很融洽，更重要的是学习成绩提升了不少。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		与光谷五小一江之隔的对岸，武汉市还有一所先后走出34名国字号足球队员的老牌足球学校—新合村小学。这所全日制普通小学坐落在汉口新合村的一处拥挤的居民区内，学校场地也不大，可是足球作为一项学校的传统，在有限的场地里却坚持了40多年，“读好书、踢好球、做好人”则是新合村小学的校训。走进学校，会发现这里的孩子们大多穿着球衣、带着足球来上学；课间活动，同学们涌向操场，大多也在踢球嬉戏；甚至连课间操，老师和同学们也做的是足球啦啦队操。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>问题</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>多地缺乏专业足球教师</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“校园足球发展普遍面临着足球专业教师队伍不足、基层学校领导干部对校园足球认识不深、足球险建立及全面的覆盖、升学渠道畅通、经费紧张等问题。”襄阳市教育局体育办主任方守才对长江商报记者说，足球有别于其他运动，足球运动所具备的竞争性、团队性和促进身心全面发展的作用，是其他很多运动所无法替代的。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		以湖北某地市为例，该市现有中小学977所，现有专业的足球教师仅有50人左右。专业足球教师缺乏问题不仅是该地市存在，湖北各地市州均有不同程度的缺口。方守才说，在襄阳市直高中、部分初中因设有足球专业队，而配备有专业的足球教师，部分县市中小学因各种因素的影响，足球专业老师很是缺乏。由于缺口数目太大，仅依靠事业单位考试的分配、招聘很难解决现有困难。专业足球教师缺乏不仅是该地区的问题，目前全省各地都存在。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		除开师资外，场地也是一大难点，一些城市学校因为地处城市中心，校园面积小，根本无法开展足球运动，而大多数农村学校，目前也根本没有足球场，“我们没有场地，没办法开展足球运动，”黄石市阳新县洋港镇黄龙小学校长柯美强说，虽然学校很多孩子们也向往足球，但在农村受场地限制无法开展，目前全镇能够开展足球运动的学校都非常少。在他看来，如果要推广校园足球，要切实考虑广大农村地区的实际，加大对农村学校体育设施的投入。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		记者在基层探访发现，一些学校对校园足球认识不足，担心开展足球会影响其教学，或陷入竞赛核心、球队核心、金牌核心、球星核心的误区。但方守才认为，校园足球的开展可提高孩子们的身体素质，塑造勇敢拼搏的精神，是对孩子心理人格的健康培养。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		此外，足球作为一项竞技对抗体育项目，难免会出现一些磕磕碰碰。安全问题也是许多家长老师担心的问题，这需要进一步提升校园足球安全保障水平，解决学校、学生和家长的后顾之忧。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		针对这些问题，省校园足球相关负责人表示，相应的解决方案正在准备中，有的已经出台。如师资问题，湖北已经开始培训足球教师。一些地方也已开始培训足球教师，“襄阳分别已于今年4月、5月对中小学足球教师进行培养，确保中心小学以上学校，每校都至少有一名体育老师参加过足球专业培训。”方守才说。\r\n	</p>\r\n</h1>', '/kindeditor/attached/image/20150726/20150726165841_114.jpg,', '2015-07-26 03:41:58', '0', '0', '吉林', '舒兰市', '1', '0', '0', '0', '许海东', '1', '校园,足球,11岁,女,升学,3月,4月,5月,7月,教师,少年,上学,规定,全国,担心,中小学,课间,校长,小学,初中,安全,老师,依靠,年纪,精神,自信,传统,误区,相处,缺乏,爱,学习成绩,全面,教学,程度,培养,心理,调查,参加,问题,良好,重点,同学,职业,人格,地区,青少年,培训,距离,努力,勇敢,安全问题,加强,会议,高中,之初,园里,名校,器材,考试,方案,学习,训练,非常,耽误,兴趣,日常,鼓励,困难,一年,速度,教育,工作,不足,表示,安排,1岁,父母,发展,身心,爸爸,运动,影响,家长,孩子,活动,会影响,抗体,负责,发现,促进,相关,完善,通过,提高,时间,重要的,形成,健康,重要,身体,作用,', '0');
+INSERT INTO `news` VALUES ('1865', '湖北投5000万扶持青少年足球 3年建700足球学校', null, '<h1 style=\"font-size:26px;font-weight:normal;font-family:微软雅黑;color:#000000;font-style:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165841_114.jpg\" alt=\"\" />\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“只要下决心发展校园足球，办法永远比困难多！”湖北省校园足球相关负责人表示，针对校园足球发展中普遍存在的问题，相应的解决方案已有所准备。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“足球进校园”一直是热议话题，今年3月，国务院召开青少年校园足球工作电视电话会议，推出一系列措施推动校园足球进入升级版。为此，湖北校园足球振兴计划全面启动。7月20日，作为湖北校园足球振兴计划举措之一的全省校园足球高中联赛开幕，35支男女代表队目前正在交战。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		湖北校园足球振兴计划启动至今，校园足球发生了哪些变化，遇到那些困难与阻力？近日，长江商报记者对此进行了调查，我省校园足球计划启动以来，各地校园足球呈现可喜的局面，但师资、球场、资金及安全等老问题依旧存在。此外，农村发展速度远远不及城市。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>计划</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>3年建700所足球特色学校</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年3月，国务院办公厅印发了《中国足球改革发展总体方案》（以下简称《方案》），就足球改革进行部署，其中发展校园足球成为重点。《方案》明确规定，各地中小学把足球列入体育课教学内容，加大学时比重。全国中小学校园足球特色学校在现有5000多所基础上，2020年达到2万所，2025年达到5万所，其中开展女子足球的学校占一定比例。同时，到2020年，完成对5万名校园足球专、兼职足球教师的一轮培训。这为将来校园足球发展给出了清晰的时间表。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		长江商报记者从湖北省教育厅获悉，湖北将筹措5000万元经费，用3年时间，建设700个左右的校园足球学校，努力构建具有湖北特色的“校园足球”格局。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉市共有校园足球试点学校194所。该市计划在年内将校园足球试点学校发展到300所。除此之外，今年武汉将安排1000万元校园足球专项经费，用于校园足球训练、比赛活动的开展、器材购置、教练员补贴等。武汉市还将完善市、区、校园三级足球联赛机制。同时，武汉市还将组织青少年足球冬令营、夏令营，通过专业系统的训练，对青少年进行体能培养，加强校园足球骨干团队建设，形成班队、年级队、校队等各个层面的足球队伍，引领校园足球活动的开展。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		襄阳市则计划把足球纳入体育课必修内容，通过三年时间，力争达到50%的小学开设足球课，60%的学生参加过校园足球活动。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>样板</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>每个班都有自己的足球队</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉作为全国五大足球试点城市之一，校园足球发展相对较好，在一些学校，甚至每个班都有自己的足球队，足球成为孩子们喜爱的运动。光谷五小就是这样一所学校，19个班每个班都有自己的足球队，学校每周都开展班级联赛。他们按每两个年级为一组的方式，又组建了高中低三支校级队伍，目前已经形成了良好的发展梯队。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		如今的光谷五小足球队，队员达到近百人，三名教练都是踢过职业足球的退役球员。该小学除了参加市校园足球联赛，队员们还得参加他们自己的班级联赛。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		不少学生通过在足球场上的拼搏，建立了自信，由此促进了学习的提升。廖梓权今年11岁，是光谷五小五年级学生。一年前他随父母，从天门老家定居武汉，转校进入了位于东湖高新区的光谷五小。刚入校时，小廖由于学习基础差，老师上课提问时常回答不上来，对学习的兴趣不浓，在校园里也少有玩伴。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年上半年，在老师的鼓励下，参加了班上的足球队。由于光谷五小距武汉卓尔训练基地仅百余米距离，光谷五小足球队成立之初，学校通过与武汉足球俱乐部合作，常去观看武汉队训练，或请职业队员过来指导，不时组织有足球兴趣的学生前去当球童。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		小廖则是这些小球童中的一员，他通过近距离接触职业足球，而渐渐地对足球产生了较为浓厚的兴趣。小廖在经学校定期组织的日常训练，及代表班级参加学校里举办的年纪联赛，逐渐成为了班上足球队的核心球员，并在同学们中聚集起了“小粉丝”。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		原本还担心小廖因为踢球耽误学习的廖爸爸发现，自从小廖踢球后，其身上出现了诸多实实在在的变化：不仅性格变得开朗，人变得更加自信，与同学相处也很融洽，更重要的是学习成绩提升了不少。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		与光谷五小一江之隔的对岸，武汉市还有一所先后走出34名国字号足球队员的老牌足球学校—新合村小学。这所全日制普通小学坐落在汉口新合村的一处拥挤的居民区内，学校场地也不大，可是足球作为一项学校的传统，在有限的场地里却坚持了40多年，“读好书、踢好球、做好人”则是新合村小学的校训。走进学校，会发现这里的孩子们大多穿着球衣、带着足球来上学；课间活动，同学们涌向操场，大多也在踢球嬉戏；甚至连课间操，老师和同学们也做的是足球啦啦队操。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>问题</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>多地缺乏专业足球教师</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“校园足球发展普遍面临着足球专业教师队伍不足、基层学校领导干部对校园足球认识不深、足球险建立及全面的覆盖、升学渠道畅通、经费紧张等问题。”襄阳市教育局体育办主任方守才对长江商报记者说，足球有别于其他运动，足球运动所具备的竞争性、团队性和促进身心全面发展的作用，是其他很多运动所无法替代的。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		以湖北某地市为例，该市现有中小学977所，现有专业的足球教师仅有50人左右。专业足球教师缺乏问题不仅是该地市存在，湖北各地市州均有不同程度的缺口。方守才说，在襄阳市直高中、部分初中因设有足球专业队，而配备有专业的足球教师，部分县市中小学因各种因素的影响，足球专业老师很是缺乏。由于缺口数目太大，仅依靠事业单位考试的分配、招聘很难解决现有困难。专业足球教师缺乏不仅是该地区的问题，目前全省各地都存在。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		除开师资外，场地也是一大难点，一些城市学校因为地处城市中心，校园面积小，根本无法开展足球运动，而大多数农村学校，目前也根本没有足球场，“我们没有场地，没办法开展足球运动，”黄石市阳新县洋港镇黄龙小学校长柯美强说，虽然学校很多孩子们也向往足球，但在农村受场地限制无法开展，目前全镇能够开展足球运动的学校都非常少。在他看来，如果要推广校园足球，要切实考虑广大农村地区的实际，加大对农村学校体育设施的投入。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		记者在基层探访发现，一些学校对校园足球认识不足，担心开展足球会影响其教学，或陷入竞赛核心、球队核心、金牌核心、球星核心的误区。但方守才认为，校园足球的开展可提高孩子们的身体素质，塑造勇敢拼搏的精神，是对孩子心理人格的健康培养。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		此外，足球作为一项竞技对抗体育项目，难免会出现一些磕磕碰碰。安全问题也是许多家长老师担心的问题，这需要进一步提升校园足球安全保障水平，解决学校、学生和家长的后顾之忧。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		针对这些问题，省校园足球相关负责人表示，相应的解决方案正在准备中，有的已经出台。如师资问题，湖北已经开始培训足球教师。一些地方也已开始培训足球教师，“襄阳分别已于今年4月、5月对中小学足球教师进行培养，确保中心小学以上学校，每校都至少有一名体育老师参加过足球专业培训。”方守才说。\r\n	</p>\r\n</h1>', '/kindeditor/attached/image/20150726/20150726165841_114.jpg,', '2015-07-26 03:41:58', '0', '0', '吉林', '舒兰市', '1', '0', '0', '0', '许海东', '1', '校园,足球,11岁,女,升学,3月,4月,5月,7月,教师,少年,上学,规定,全国,担心,中小学,课间,校长,小学,初中,安全,老师,依靠,年纪,精神,自信,传统,误区,相处,缺乏,爱,学习成绩,全面,教学,程度,培养,心理,调查,参加,问题,良好,重点,同学,职业,人格,地区,青少年,培训,距离,努力,勇敢,安全问题,加强,会议,高中,之初,园里,名校,器材,考试,方案,学习,训练,非常,耽误,兴趣,日常,鼓励,困难,一年,速度,教育,工作,不足,表示,安排,1岁,父母,发展,身心,爸爸,运动,影响,家长,孩子,活动,会影响,抗体,负责,发现,促进,相关,完善,通过,提高,时间,重要的,形成,健康,重要,身体,作用,', '1');
 INSERT INTO `news` VALUES ('1866', '一年级新生警惕“开学综合症” 家长引导分压', null, '<p>\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165924_548.jpg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	北京一中学生留下“出门散心”字条，带着500元就离家出走了；更有学生一提到开学，就头痛肚子痛……新学期开始了，可学生们似乎还留恋着暑假的闲适，遭遇“心理不适期”而产生了“开学综合症”。专家提醒，开学初，家长、老师要多用科学方法帮助孩子尽快调整状态，尤其是初高中、小学一年级的新生们，尤其要警惕。\r\n</p>\r\n<p>\r\n	广州市第一人民医院神经内科主任医师潘小平表示，刚来学校，老师还不熟悉所有的孩子，不了解孩子们的特性，像一些“小霸王”式的孩子，在家里听惯了表扬，初来学校还是要以多鼓励少批评为主，循序渐进对其进行引导教育。\r\n</p>\r\n<p>\r\n	据潘小平介绍，人际沟通往往是新生的弱点，这关系到孩子能不能适应学校环境、能不能安心学习的问题。而“适应障碍”往往带来注意力不集中、记忆力减退、浑身疲劳，有的还会头痛、胃痛等躯体不适应症状。“家长一定要提前辅导，引导孩子接受新环境，多交新朋友，尽快融入到集体之中。”潘小平说。\r\n</p>\r\n<p>\r\n	此外，高一新生往往会出现“学习恐惧”。高中的学习强度比初中显著增加，所学知识也更概括、更抽象、更难于理解。而且往往一进高中，就有一种紧张的<a class=\"a-tips-Article-QQ\" href=\"http://gaokao.qq.com/\">高考</a><span class=\"infoMblog\">(<a class=\"a-tips-Article-QQ\" href=\"http://t.qq.com/qqgaokao#pref=qqcom.keyword\" target=\"_blank\">微博</a>)</span>氛围，同学间你追我赶的竞争态势给新生带来压力。因此，高中新生要提前对其进行“抗压”和“抗挫”教育，家长不要一味追求分数，也要关心孩子的心理健康，帮助其分担压力，以免造成严重的心理障碍。\r\n</p>\r\n<p>\r\n	而一些孩子在暑假长时间玩游戏，被父母制止竟然以“不上学”相威胁。对这样的孩子，潘小平建议父母不要随意打骂孩子，也不要强行制止，而是多多引导。“让孩子给自己设定一个玩游戏的阶段性小目标，比如过了某一关就要封存起来，接下来很快不就有中秋假和国庆长假了吗？我们到那时候再接着通完所有的关！”\r\n</p>\r\n<p>\r\n	<strong>专家支招规避“开学综合症”</strong>\r\n</p>\r\n<p>\r\n	■链接\r\n</p>\r\n<p>\r\n	家长：家长在开学前要帮助孩子制定科学可行的作息时间表，最好与学校生活接近，用循序渐进的方法帮助孩子找回学生的角色；多鼓励孩子与人交往，多带孩子到社区和其他小朋友玩耍，培养孩子的合群性；在开学初期降低对孩子的期望值，允许孩子有个适应和转变的过程。\r\n</p>\r\n<p>\r\n	老师：老师要注重情感关怀，当孩子有小进步、小优点时，老师要及时表扬，增强其自信心，进而增加其对集体生活的热爱；学校在开学初期适当开展各类活动，做好从休闲放松到紧张学习的自然过渡，把学生的注意力转移到校园和课堂学习中来，并重视新生的适应性问题，积极开展多种形式的教学活动和心理健康教育。\r\n</p>\r\n<p>\r\n	自己：同学们要学会容忍和接纳别人，加强相互沟通和交流，增强适应环境的能力，学会积极面对环境压力、学习压力和人际压力。面对即将开始的新阶段学习，制定新计划、树立新目标是十分必要的，但也要结合实际情况，客观地制定学习计划。记者 赵兵辉　通讯员 魏星\r\n</p>', '/kindeditor/attached/image/20150726/20150726165924_548.jpg,', '2015-07-26 03:41:58', '0', '0', '北京', '', '5', '0', '0', '0', '郑成帅', '1', '引导,校园,高考,暑假,优点,高一,小学一年级,上学,开学,北京,以免,学前,新学期,信心,小学,记忆力,初中,老师,记忆,自信,面对,允许,爱,交流,鼓励孩子,教学,培养,心理,必要,应学,问题,生活,初期,小朋友,玩耍,熟悉,朋友,课堂,同学,打骂,期望,交往,中学生,离家出走,沟通,心理障碍,加强,高中,介绍,警惕,学习,方法,新生,鼓励,一年,严重,教育,恐惧,表示,理解,能力,阶段,环境,父母,氛围,提前,自然,状态,专家,注重,重视,增加,造成,游戏,建议,家长,孩子,注意,活动,了解,科学,关系,相互,时间,时候,肚子,帮助,症状,健康,', '0');
 INSERT INTO `news` VALUES ('1867', '“上海暑期学校”学员体验中国文化', null, '<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726170042_908.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	“诸位老师/诸位同学/大家好/我的名字叫白雪/我来自埃及……”埃及姑娘Sandra坐在上海外国语大学的教室里，一笔一划地用中文写下自我介绍，还没有学习标点符号的她只会用斜线断句。这个爱上中国文化的女孩儿兴奋地告诉记者，她十分喜欢老师给起她的中文名，还期待明年大学毕业后来中国念硕士。\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">今年夏天，23位像白雪这样的外国学生沿着千古丝路而来，加入由上海市教委主办的2015“上海暑期学校”（Shanghai Summer School, 简称“3S项目”）项目之一——“一带一路”项目班，见证中国的传统与现代，亲身感受“一带一路”战略为区域经济文化发展带来的机遇。</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\"><strong>学生：爱学习 爱交流 爱中国文化</strong></span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">在书法教室里，吉尔吉斯斯坦女孩古丽扎特在老师的指导下，写下一竖：“中国书法看上去很简单，但写的时候发现起笔很难。”19岁的古丽扎特曾在本国大学里学过一年中文，此次中国之行中，她始终坚持和同学们用中文交流。她的汉语说得很慢，但吐字清晰：“我在中国，我就要用中文说话。”</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">据上海外国语大学国际交流学院院长张艳莉介绍，外国学生在学习期间，除接受汉语与中国文化课程学习外，还将参加以中国传统文化为主题的多个体验项目，听取中国经济、文化、社会等专家讲座，了解中国“一带一路”战略构想和背景，赴上海及长三角地区古镇参观，观赏与学习中国传统戏曲、书法、剪纸等，并走进上海市民家庭，实地体验上海市民的日常生活。</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">让人意外的是，古丽扎特对“一带一路”一点都不陌生。“我知道2013年中国主席习近平在哈萨克斯坦提出‘一带一路’，邀请丝路旁的国家一起学习、一起发展。”古丽扎特解释说，古丝路的路线贯穿她的国家，中国的历史和当代发展与吉尔吉斯斯坦息息相关，“来到这里，我不仅了解了中国过去什么样、现在什么样、以后会变成什么样，我还和一起学习的同学交朋友，了解了他们国家的历史和文化，我们也相互学习。”</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">据了解，今年上外承办的“上海暑期学校”项目包括“一带一路”国家项目、西班牙语国家项目、中东国家项目和俄罗斯项目共4个项目，招收了来自吉尔吉斯斯坦、乌兹别克斯坦、印度、土耳其、以色列、墨西哥、厄瓜多尔、秘鲁、西班牙、沙特阿拉伯、埃及、摩洛哥、伊朗、希腊、波兰、法国、突尼斯、越南、韩国等22个国家的83名外国留学生，其中“一带一路”国家项目招收外国学生23名。</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\"><strong>首设“一带一路”国家、围棋项目</strong></span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">自6月以来，由上海市教委主办的2015“上海暑期学校”在复旦大学、上海外国大学等上海14所高校共21个项目先后开班。“上海暑期学校”从2008年开始实施，依托沪上各高校选拔优秀外国留学生，通过不同主题安排这些具有不同的语言和文化背景的青年学生，进行为期一个月左右的汉语学习和文化体验活动，项目主题包括中国传统服饰、中国民乐、中国戏曲、武术、乒乓球、中医、中国围棋等等。</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">经过7年的发展，“上海暑期学校”已成为上海城市的一张教育名片和上海教育的品牌项目，今年新增“一带一路”国家和围棋项目。此外，“上海暑期学校”还为驻沪外交使领馆开设了“外交官班”，深受使领馆工作人员的欢迎。&nbsp;</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">作为国际大都市，上海近年来吸引了越来越多的外国留学生。2014年，本市共有来自187个国家和地区的56027名外国留学生在本市招收外国留学生的37所高校（科研机构）就读，比2010年的43016名增加13011人，增长比例为30%。其中，硕士生与博士生分别为4200人和1100人，比2010年的2853人和667人分别增加了47.2%和64.9%。学习期限超过6个月的长期生为39372名，占总数的70.3%,比2010年的30530人增加了29%。</span>\r\n</p>\r\n<p style=\"font-size:16px;text-indent:2em;color:#454545;font-family:Arial, Helvetica, sans-serif;font-style:normal;font-weight:normal;text-align:start;background-color:#FFFFFF;\">\r\n	<span style=\"line-height:1.5;\">据悉，对中国文化感兴趣的国外青年学生可以通过“留学上海”中英文网站（www.study-shanghai.org）了解活动详情，并向承办高校进行申请。</span>\r\n</p>', '/kindeditor/attached/image/20150726/20150726170042_908.jpg,', '2015-07-26 03:41:58', '0', '0', '吉林', '舒兰市', '1', '0', '1', '1', '许海东', '0', '乒乓球,女,6月,9岁,经济,青年,爱学习,外国,意外,老师,传统,爱,交流,家庭,参加,自我,生活,日常生活,朋友,女孩,同学,地区,国外,陌生,优秀,工作人员,暑期,网站,文化,介绍,学习,感兴,博士生,感受,兴趣,日常,一年,教育,行为,兴奋,工作,安排,期间,增长,发展,超过,专家,增加,活动,长期,了解,简单,发现,相互,相关,喜欢,通过,时候,', '0');
 INSERT INTO `news` VALUES ('1868', '2015年上海义务教育招生入学政策出炉！遏制学区房有新招', null, '<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	<strong><span style=\"font-size:14px;\">2</span></strong><strong><span style=\"font-size:14px;\">月<span style=\"font-size:14px;\">4</span>日，上海市教委公布了《<span style=\"font-size:14px;\">2015</span>年本市义务教育阶段学校招生入学工作的实施意见》。据“文汇教育”报道，继北京去年开通义务教育入学服务平台，今年上海也将首次启用“上海市义务教育入学报名系统”，在统一平台上对全市入学报名工作进行全程监督和管理。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">据介绍，为遏制学区房炒作，上海市教委有关负责人还表示，鼓励、倡导区县结合自己的实际情况，参照静安区去年试点经验——“每户地址五年内只享有一次同校对口入学机会”。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">另外，今年上海还进一步规范民办中小学的招生行为。</span></strong><strong><span style=\"font-size:14px;\">每个适龄儿童、少年可填报<span style=\"font-size:14px;\">2</span>所民办小学或者<span style=\"font-size:14px;\">3</span>所民办初中。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　义务教育入学报名系统\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市启用</span><span style=\"font-size:14px;\">“</span><span style=\"font-size:14px;\">上海市义务教育入学报名系统</span><span style=\"font-size:14px;\">”</span><span style=\"font-size:14px;\">，为全市适龄儿童、少年的家长以及区县招生工作提供便利的服务。适龄儿童、少年的家长可通过入学报名系统，及时了解市、区县教育部门公布的招生政策和实施办法，查询子女入学相关信息，获取公办小学入学通知、民办中小学面谈以及录取通知等。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　小学一年级新生入学信息登记\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市试行小学一年级新生入学信息登记办法。年满</span><span style=\"font-size:14px;\">6</span><span style=\"font-size:14px;\">周岁（</span><span style=\"font-size:14px;\">2008</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">9</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">1</span><span style=\"font-size:14px;\">日——</span><span style=\"font-size:14px;\">2009</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">8</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">31</span><span style=\"font-size:14px;\">日出生）本市户籍的适龄儿童和符合条件的非本市户籍的适龄儿童，均须先进行入学信息登记，再按招生范围办理入学报名手续，由区县教育行政部门根据“免试就近入学”的原则，统筹安排其进入小学就读。每位适龄儿童只需在一个区县登记入学信息，不必重复登记。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">入学信息登记有两种方式：一是在园适龄儿童，家长可在幼儿园为孩子进行入学信息登记，获取《上海市小学入学信息登记表》；二是未入园适龄儿童，家长可前往各区县指定地点为孩子进行入学信息登记，获取《上海市小学入学信息登记表》。本市户籍人户分离的适龄儿童在进行入学信息登记时，家长可选择并确定在户籍地就读还是在居住地就读的意愿。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">全市适龄儿童入学信息登记时间：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">11</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　本市户籍人户分离适龄儿童、少年入学\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市全面试行本市户籍人户分离适龄儿童、少年居住地登记入学工作。具有本市户籍的适龄儿童、少年可凭《本市户籍人户分离人员居住登记申请回执》在居住地登记入学，区县教育行政部门结合本地区实际制定实施细则，先安排户籍地与实际居住地一致的适龄儿童、少年就近入学，再根据登记入学人数和学校资源分布情况在区域内统筹安排“人户分离”适龄儿童、少年入学。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">全市公办小学报名日为</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">5</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">23</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">5</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">24</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　随迁子女义务教育阶段招生入学\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年按照《上海市居住证管理办法》，继续做好来沪人员随迁子女义务教育阶段招生入学工作。来沪人员适龄随迁子女需在本市接受义务教育的，适龄儿童须持有有效期内《上海市临时居住证》，父母一方须持有有效期内《上海市居住证》；或者父母一方持有有效期内《上海市临时居住证》（从首次发证日起截止到</span><span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">7</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">30</span><span style=\"font-size:14px;\">日）满</span><span style=\"font-size:14px;\">3</span><span style=\"font-size:14px;\">年，且连续</span><span style=\"font-size:14px;\">2</span><span style=\"font-size:14px;\">年在街镇社区事务受理服务中心办妥灵活就业登记（从首次登记日起截止到</span><span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">7</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">30</span><span style=\"font-size:14px;\">日）。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">各区县教育部门办理随迁子女入学手续截止日为：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">7</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　民办中小学校招生\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市民办中小学校招生在“统一报名时间、统一面谈时间、统一录取时间”的基础上，继续实行网上报名办法。对于有意愿选择民办中、小学校就读的学生，家长可登陆“上海市义务教育入学报名系统”（</span><span style=\"font-size:14px;\">http://www.shrxbm.cn</span><span style=\"font-size:14px;\">），点击“民办小学报名”或“民办初中报名”进行网上报名，每个适龄儿童、少年可填报</span><span style=\"font-size:14px;\">2</span><span style=\"font-size:14px;\">所民办小学或者</span><span style=\"font-size:14px;\">3</span><span style=\"font-size:14px;\">所民办初中。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">《实施意见》强调：要进一步规范民办中小学招生行为，没有寄宿条件的民办中小学不得跨区县招生。民办学校的招生简章要向社会公开，承诺学校招生不收取各种特制的学生个人简历及各类获奖证书、招生录取不与社会任何教育培训机构挂钩、不提前开展报名和登记工作等。同时，进一步规范民办学校面谈程序和方法，面谈过程要向市和区县两级教育行政、督导、监察部门以及学校家委会代表等公开，自觉接受社会监督。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">民办小学网上报名时间：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">25</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">27</span></strong><strong><span style=\"font-size:14px;\">日；</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">28</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日接受民办初中报名。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">《实施意见》要求：各区县教育行政部门与各中小学校，要通过政府网站、学校网站、招生通告等多种形式主动向社会公开义务教育阶段学校招生入学工作信息，加大招生政策的宣传力度。市、区县教育督导部门要加强对义务教育阶段学校规范招生工作的专项督导，各区县教育行政、监察部门要依法依纪查处招生入学工作过程中的违纪违规事件，确保义务教育阶段学校招生入学工作规范有序进行。</span>\r\n</p>', '', '2015-07-26 03:41:58', '2', '2', '上海', '', '2', '0', '0', '4', '南大勇', '1', '女,学区房,经验,少年,小学一年级,北京,自觉,中小学,政府,条件,小学,初中,子女,全面,监督,个人,机会,地区,培训,承诺,平台,加强,证书,政策,资源,招生,校规,网站,面试,入学,入园,介绍,登记,方法,新生,鼓励,重复,一年,教育,行为,工作,表示,安排,周岁,阶段,父母,儿童,提前,幼儿园,幼儿,家长,孩子,主动,了解,负责,出生,相关,通过,提供,时间,', '1');
@@ -10309,7 +10364,7 @@ CREATE TABLE `review` (
   PRIMARY KEY (`id`),
   KEY `user_re` (`userid`),
   CONSTRAINT `user_re` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of review
@@ -10320,6 +10375,9 @@ INSERT INTO `review` VALUES ('3', '685', '1864', '��ͷĿ�þӶ�����
 INSERT INTO `review` VALUES ('4', '676', '1868', '啦咯啦咯啦咯啦咯啦咯了啦咯啦咯啦咯啦咯啦咯了', '2015-08-04 17:48:00', '1');
 INSERT INTO `review` VALUES ('5', '685', '1864', '弄哦敏敏民工敏敏Mook哦哦look哦咯know磨破您lookMook哦咯OK呀咯OK呀咯lol哦哦JOJO咯啦咯也破做最切也破也破也破做最切也破7www我做最做最我啦咯了哦哦哦lolYY咯lol我lolonly哦咯lol我摸摸弄哦哦JOJO咯look哦look陌陌owl下咯了在真咯我了我了我魔怔了我了我了在真咯我了在真咯我了我了我了我了我了我了我在真咯我了我了在真咯我了我了我了在真咯我了我了我女女魔头木木木虐喝可乐饿了阿帕奇啦咯人快怕咯是啦咯啦说快人老咯别给飞嗯咯哦咯JOJO莫咯JOJO咯look哦咯咯look磨破莫咯look哦咯OK哦lzlzlzlzlzX5X5我lzlz', '2015-08-04 19:57:53', '1');
 INSERT INTO `review` VALUES ('6', '692', '1843', 'gjjnbbbhhjkkkkjfw', '2015-08-06 17:26:14', '1');
+INSERT INTO `review` VALUES ('7', '570', '1863', '445566766554', '2015-08-12 20:01:49', '0');
+INSERT INTO `review` VALUES ('8', '570', '1863', '6654333322222', '2015-08-12 20:02:42', '0');
+INSERT INTO `review` VALUES ('9', '570', '1863', 'Uhsus iiiidff', '2015-08-12 20:04:20', '0');
 
 -- ----------------------------
 -- Table structure for stas
@@ -10336,7 +10394,7 @@ CREATE TABLE `stas` (
   `os` varchar(255) DEFAULT NULL,
   `province` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of stas
@@ -10464,6 +10522,22 @@ INSERT INTO `stas` VALUES ('198', '0', '0', '0', '0', '0', '2015-08-11', 'web', 
 INSERT INTO `stas` VALUES ('199', '0', '0', '0', '0', '0', '2015-08-11', 'android', 'all');
 INSERT INTO `stas` VALUES ('200', '0', '0', '0', '0', '0', '2015-08-11', 'ios', 'all');
 INSERT INTO `stas` VALUES ('201', '0', '0', '0', '0', '0', '2015-08-11', 'syn', 'all');
+INSERT INTO `stas` VALUES ('202', '0', '0', '0', '0', '0', '2015-08-12', 'web', 'all');
+INSERT INTO `stas` VALUES ('203', '0', '0', '0', '0', '0', '2015-08-12', 'android', 'all');
+INSERT INTO `stas` VALUES ('204', '0', '0', '0', '0', '0', '2015-08-12', 'ios', 'all');
+INSERT INTO `stas` VALUES ('205', '0', '0', '0', '0', '0', '2015-08-12', 'syn', 'all');
+INSERT INTO `stas` VALUES ('206', '0', '0', '0', '0', '0', '2015-08-13', 'web', 'all');
+INSERT INTO `stas` VALUES ('207', '0', '0', '0', '0', '0', '2015-08-13', 'android', 'all');
+INSERT INTO `stas` VALUES ('208', '0', '0', '0', '0', '0', '2015-08-13', 'ios', 'all');
+INSERT INTO `stas` VALUES ('209', '0', '0', '0', '0', '0', '2015-08-13', 'syn', 'all');
+INSERT INTO `stas` VALUES ('210', '0', '0', '0', '0', '0', '2015-08-14', 'web', 'all');
+INSERT INTO `stas` VALUES ('211', '0', '0', '0', '0', '0', '2015-08-14', 'android', 'all');
+INSERT INTO `stas` VALUES ('212', '0', '0', '0', '0', '0', '2015-08-14', 'ios', 'all');
+INSERT INTO `stas` VALUES ('213', '0', '0', '0', '0', '0', '2015-08-14', 'syn', 'all');
+INSERT INTO `stas` VALUES ('214', '0', '0', '0', '0', '0', '2015-08-17', 'web', 'all');
+INSERT INTO `stas` VALUES ('215', '0', '0', '0', '0', '0', '2015-08-17', 'android', 'all');
+INSERT INTO `stas` VALUES ('216', '0', '0', '0', '0', '0', '2015-08-17', 'ios', 'all');
+INSERT INTO `stas` VALUES ('217', '0', '0', '0', '0', '0', '2015-08-17', 'syn', 'all');
 
 -- ----------------------------
 -- Table structure for support
@@ -10478,29 +10552,21 @@ CREATE TABLE `support` (
   PRIMARY KEY (`id`),
   KEY `user_sup` (`userid`),
   CONSTRAINT `support_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of support
 -- ----------------------------
-INSERT INTO `support` VALUES ('1', '677', '1868', '0', '2015-07-31  15:45:28');
-INSERT INTO `support` VALUES ('2', '677', '1873', '0', '2015-07-31  15:45:53');
-INSERT INTO `support` VALUES ('4', '677', '1864', '0', '2015-07-31  15:46:12');
-INSERT INTO `support` VALUES ('5', '695', '1825', '1', '2015-08-08 15:02:48');
-INSERT INTO `support` VALUES ('6', '685', '1825', '1', '2015-08-08 15:03:53');
-INSERT INTO `support` VALUES ('7', '685', '6', '3', '2015-08-08 15:08:54');
-INSERT INTO `support` VALUES ('8', '685', '120', '2', '2015-08-08 15:12:35');
-INSERT INTO `support` VALUES ('9', '685', '120', '2', '2015-08-08 15:12:37');
-INSERT INTO `support` VALUES ('10', '685', '120', '2', '2015-08-08 15:12:40');
-INSERT INTO `support` VALUES ('11', '685', '126', '2', '2015-08-08 15:14:52');
-INSERT INTO `support` VALUES ('13', '570', '120', '2', '2015-08-08 15:23:29');
-INSERT INTO `support` VALUES ('14', '696', '1868', '1', '2015-08-10 15:47:02');
-INSERT INTO `support` VALUES ('15', '570', '1864', '1', '2015-08-11 17:23:38');
-INSERT INTO `support` VALUES ('23', '570', '3', '3', '2015-08-11 19:43:55');
-INSERT INTO `support` VALUES ('24', '570', '1', '3', '2015-08-11 19:43:57');
-INSERT INTO `support` VALUES ('25', '570', '5', '3', '2015-08-11 19:43:58');
-INSERT INTO `support` VALUES ('26', '570', '4', '3', '2015-08-11 19:44:18');
-INSERT INTO `support` VALUES ('27', '570', '2', '3', '2015-08-11 19:44:21');
+INSERT INTO `support` VALUES ('41', '570', '237', '4', '2015-08-12 11:48:51');
+INSERT INTO `support` VALUES ('43', '570', '121', '2', '2015-08-12 14:38:38');
+INSERT INTO `support` VALUES ('44', '570', '621', '4', '2015-08-12 14:38:41');
+INSERT INTO `support` VALUES ('46', '570', '1863', '1', '2015-08-12 20:00:47');
+INSERT INTO `support` VALUES ('47', '570', '1865', '1', '2015-08-12 20:02:48');
+INSERT INTO `support` VALUES ('54', '570', '239', '4', '2015-08-13 17:44:53');
+INSERT INTO `support` VALUES ('55', '570', '637', '4', '2015-08-13 17:45:38');
+INSERT INTO `support` VALUES ('56', '570', '200', '2', '2015-08-14 11:32:33');
+INSERT INTO `support` VALUES ('57', '570', '198', '2', '2015-08-14 11:32:43');
+INSERT INTO `support` VALUES ('58', '570', '123', '2', '2015-08-14 11:32:47');
 
 -- ----------------------------
 -- Table structure for users
@@ -10535,7 +10601,7 @@ CREATE TABLE `users` (
   `childrensex` varchar(11) DEFAULT '',
   `age` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=697 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=698 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
@@ -10559,8 +10625,9 @@ INSERT INTO `users` VALUES ('691', null, null, null, null, null, null, null, nul
 INSERT INTO `users` VALUES ('692', null, null, null, null, null, null, null, null, '2015-08-05 16:29:12', null, '0', '0', '0', '2015-08-05 16:29:12', null, '0', '1', '10000016', null, null, '352315054578550', null, null, null, null, null);
 INSERT INTO `users` VALUES ('693', '123456', null, '无所谓', '18600157870', '小学 一年级', '杀人学校', null, null, '2015-08-05 21:12:33', null, '0', '0', '0', '2015-08-05 21:12:33', null, '0', '1', '10000017', null, 'web', null, '男', null, '5', '男', '27');
 INSERT INTO `users` VALUES ('694', '111111', null, 'bhjkk', '15931117354', '高中 一年级', 'hhhh', null, null, '2015-08-06 10:50:36', '/IMG/Userimg/20150806/850562015/694/b373b553-f46b-4e54-b669-2a43886d9a43.jpg', '0', '0', '0', '2015-08-06 10:50:36', null, '0', '1', '10000018', null, 'web', null, '男', null, '4', '男', '4');
-INSERT INTO `users` VALUES ('695', null, null, null, null, null, null, null, null, '2015-08-06 17:23:16', null, '0', '0', '0', '2015-08-06 17:23:16', null, '0', '1', '10000019', null, null, '358022057063895', null, null, null, null, null);
+INSERT INTO `users` VALUES ('695', null, null, null, null, null, null, null, null, '2015-08-06 17:23:16', '/IMG/Userimg/20150812/0752432015/695/29aa7c84-3a42-4c54-9c56-26d1f08637d6.jpg', '0', '0', '0', '2015-08-06 17:23:16', null, '0', '1', '10000019', null, null, null, null, null, null, null, null);
 INSERT INTO `users` VALUES ('696', null, null, null, null, null, null, null, null, '2015-08-10 15:40:01', null, '0', '0', '0', '2015-08-10 15:40:01', null, '0', '1', '10000020', null, null, '355848064713657', null, null, null, null, null);
+INSERT INTO `users` VALUES ('697', null, null, null, null, null, null, null, null, '2015-08-12 19:53:01', null, '0', '0', '0', '2015-08-12 19:53:01', null, '0', '1', '10000021', null, null, '358022057063895', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for user_group
@@ -10576,7 +10643,7 @@ CREATE TABLE `user_group` (
   PRIMARY KEY (`id`),
   KEY `user_group_user_id` (`user_id`),
   CONSTRAINT `user_group_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_group
@@ -10589,6 +10656,10 @@ INSERT INTO `user_group` VALUES ('5', '672', '好友', '0', '2015-08-03 20:45:57
 INSERT INTO `user_group` VALUES ('8', '672', '黑名单', '0', '2015-08-03 20:50:18', '2');
 INSERT INTO `user_group` VALUES ('9', '673', '好友', '0', '2015-08-03 20:51:26', '1');
 INSERT INTO `user_group` VALUES ('10', '673', '黑名单', '0', '2015-08-03 20:51:26', '2');
+INSERT INTO `user_group` VALUES ('11', '675', '的咯咯JOJO', '0', '2015-08-14 15:23:56', '0');
+INSERT INTO `user_group` VALUES ('19', '675', '哦哦look', '0', '2015-08-14 17:40:24', '0');
+INSERT INTO `user_group` VALUES ('20', '675', '哦哦JOJO哦咯', '0', '2015-08-14 17:40:29', '0');
+INSERT INTO `user_group` VALUES ('21', '675', '嗯咯JOJO哦咯', '0', '2015-08-14 17:40:33', '0');
 
 -- ----------------------------
 -- Table structure for visitor
