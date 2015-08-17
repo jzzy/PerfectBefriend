@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="GroupAll" extends="struts-default">
+	<package name="group" extends="struts-default"  namespace="/group">
 
 
 		<!--  同步到环信上-->
