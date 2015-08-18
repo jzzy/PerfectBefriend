@@ -25,8 +25,9 @@ import com.befriend.udp.UDPServer;
 import com.befriend.util.OpeFunction;
 import com.befriend.wechat.RefreshAccessToken;
 import com.befriend.wechat.WechatKit;
-@SuppressWarnings("static-access")
-public class GroupAction {
+import com.opensymphony.xwork2.ActionSupport;
+@SuppressWarnings("all")
+public class GroupAction{
 	@SuppressWarnings("unused")
 	private UDPServer udp;
 	private OpeFunction util;
@@ -170,23 +171,25 @@ public class GroupAction {
 		System.out.println("schoolname" + schoolname);
 		System.out.println("condtion" + condtion);
 		System.out.println("gclassintroduction" + gclassintroduction);
+		System.out.println("classgroup" + classgroup);
+		
 		u = udao.byid(userid);
 		// 判断 是否有这个用户 name == null
-		if (u != null) {
+		if (u == null) {
 			util.Out().print("unull");
 			return;
 		}
 			// 这些数据等于空 不能添加
 			if (gclass == null || grade == null || headteachername == null
 					|| /**phone == null ||*/ schoolname == null
-					|| schooladdress == null || hxgroupid == null||gclassintroduction==null||condtion<=0) {
+					|| schooladdress == null || /**hxgroupid == null||*/gclassintroduction==null||condtion<=0) {
 				util.Out().print("null");
 				return;
 			}
 			// 上传群头像
 			if (file != null) {
 
-				img = "/IMG/Groupimg/" + OpeFunction.getDayTime(1);
+				img = "/IMG/Groupimg/" + OpeFunction.getNameDayTime();
 				img = util.ufileToServer(img, file,"jpg");
 				System.out.println(img);
 				groupchat.setImg(img);// 群图标
@@ -200,7 +203,7 @@ public class GroupAction {
 			groupchat.setArea(area);//地区省
 			groupchat.setAreas(areas);//地区市
 			groupchat.setGroupid(hxgroupid);// 环信 群id
-			groupchat.setJoincondition(condtion);//
+			groupchat.setJoincondition(condtion);// 1 允许任何人 2 需要验证信息 3不允许任何人
 			groupchat.setGclass(gclass);// 班级
 			groupchat.setGrade(grade);// 年级
 			groupchat.setHeadteachername(headteachername);// 班主任名字
@@ -213,9 +216,11 @@ public class GroupAction {
 			groupchat.setTime(time);// 时间
 			GroupChat grpc=gdao.maxGroupno();
 			if(grpc!=null){
-				groupchat.setGroupno(grpc.getGroupno()+1);// 群号
+				groupno=grpc.getGroupno()+1;
+				groupchat.setGroupno(groupno);// 群号
 				
 			}else{
+				groupno=10000000;
 				groupchat.setGroupno(10000000);// 群号
 			}
 			
@@ -249,9 +254,11 @@ public class GroupAction {
 	 * @throws IOException
 	 */
 	public void GroupCheck() throws IOException {
-
+		if(urp==0){
+			urp=1;
+		}
 		// 通过群id 和 代表 0等待审核 1 是成员 2 被踢的 3是群主查询群成员或者 等待审核的
-		lgroupMembers = gdao.FindGroupMembersbyid(groupid, 1);
+		lgroupMembers = gdao.FindGroupMembersbyid(groupid, urp);
 		// 等于0 没有 审核信息或者 没有群成员
 		if (lgroupMembers.size() == 0) {
 			util.Out().print("null");
@@ -303,7 +310,7 @@ public class GroupAction {
 	}
 
 	/**
-	 * 申请进群 判断是否加入过 judge==0 是家长加入 judge==1 是老师加入
+	 * 申请进群  judge==0 是家长加入 judge==1 是老师加入
 	 * 
 	 * @throws IOException
 	 */
@@ -319,27 +326,34 @@ public class GroupAction {
 		System.out.println("用户id" + userid);
 
 		urp = 1;// 等于0是进入审核
+		u = udao.byid(userid);
+		if (u == null) {
+			util.Out().print("unull");
+			return;
+		}
 		// 通过群号查询群
+		
 		groupchat = gdao.Findbygroupno(groupno);
 		if (groupchat == null) {
 			util.Out().print("gnull");
 			System.out.println("没有该群");
 			return;
 		}
+		if(groupchat.getJoincondition()==1){
+			urp=1;
+		}else if(groupchat.getJoincondition()==2){
+			urp=0;
+		}else if(groupchat.getJoincondition()==3){
+			util.Out().print("no");
+			return;
+		}
 		groupid = groupchat.getId();
-		// 查询资料
-		Profile pe = gdao.FindProfilebyid(groupid, userid);
-		if (pe != null) {
+		// 获取群关系
+		groupMembers = gdao.FindGroupMembersbygiduidAll(groupid, userid);
+		if(groupMembers!=null){
 			util.Out().print(false);
-			System.out.println("已经加入过");
 			return;
-
-		}
-		u = udao.byid(userid);
-		if (u == null) {
-			util.Out().print("unull");
-			return;
-		}
+		}	
 		profile.setName(name);// 名字 通
 		profile.setGroupid(groupid);// 群id 通
 		profile.setPhone(phone);// 电话 通
@@ -359,20 +373,13 @@ public class GroupAction {
 		profile.setRsbs(rsbs);// 负责科目
 		gdao.save(profile);
 		System.out.println("添加群 个人质料成功");
-		// 获取群关系 删除掉
-		lgroupMembers = gdao.FindGroupMembersbygiduidAll(groupid, userid);
-		for (int i = 0; i < lgroupMembers.size(); i++) {
-			if (lgroupMembers.get(i) != null) {
-				gdao.Remove(lgroupMembers.get(i));
-			}
-		}
+		groupMembers=new GroupMembers();
 		// 新增关系
 		groupMembers.setGroupid(groupid);
-		groupMembers.setUrp(1);
+		groupMembers.setUrp(urp);
 		groupMembers.setUserid(userid);
 		groupMembers.setTime(time);
 		gdao.save(groupMembers);
-
 		System.out.println("添加群与个人关系成功 环信群id:" + groupchat.getGroupid());
 		util.Out().print(groupchat.getGroupid());
 	}
@@ -382,27 +389,14 @@ public class GroupAction {
 	 * 
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
 	public void GroupJointion() throws IOException {
-		System.out.println(time);
-		// 代表 0等待审核 1 是成员
-		if (urp == 0) {
-			urp = 0;// 等于0是进入审核
-		}
-
 		// 通过id查询用户
-		u = udao.byid(userid);
-		if (u == null) {
-			util.Out().print("null");
-			return;
-		}
-		lgroupchat = gdao.Findbyuserid(u.getId(),classgroup);
+		lgroupchat = gdao.Findbyuserid(userid,classgroup);
 		if (lgroupchat.size() == 0) {
 			util.Out().print("null");
 			return;
 		}
 		// 用于存用户list
-		@SuppressWarnings("rawtypes")
 		List listlu = new ArrayList();
 		// 用于存 群对象
 		List<GroupChat> listgroupchat = new ArrayList<GroupChat>();
@@ -557,7 +551,7 @@ public class GroupAction {
 		// userid = 81;
 		urp = 1;// 通过审核
 		// 我加入的群
-		lgroupMembers = gdao.FindUseridGroupbyid(userid, urp,classgroup);
+		lgroupMembers = gdao.FindUseridGroupbyid(userid, urp);
 		// 我创建的群
 		lgroupchat = gdao.Findbyuserid(userid,classgroup);
 
@@ -862,17 +856,13 @@ public class GroupAction {
 			return;
 
 		}
-		lgroupMembers = gdao.FindGroupMembersbygiduidAll(groupid, userid);
+		groupMembers = gdao.FindGroupMembersbygiduidAll(groupid, userid);
 		// 等于空 说明他和这个群没关系
-		if (lgroupMembers.size() <= 0) {
-			System.out.println("改用户非群成员 不能解除群关系");
+		if (groupMembers!=null) {
+			gdao.Remove(groupMembers);
+		}else{
 			util.Out().print(false);
 			return;
-		}
-		for (int i = 0; i < lgroupMembers.size(); i++) {
-			if (lgroupMembers.get(i) != null) {
-				gdao.Remove(lgroupMembers.get(i));
-			}
 		}
 
 		// 获取到该用户在该群的聊天记录
@@ -890,6 +880,9 @@ public class GroupAction {
 		// 不等于null删除
 		if (profile != null) {
 			gdao.Remove(profile);
+		}else{
+			util.Out().print(false);
+			return;
 		}
 		util.Out().print(groupchat.getGroupid());
 		System.out.println("退群成功! 环信群id" + groupchat.getGroupid());
@@ -1353,6 +1346,22 @@ public class GroupAction {
 
 	public void setClassgroup(int classgroup) {
 		this.classgroup = classgroup;
+	}
+
+	public int getCondtion() {
+		return condtion;
+	}
+
+	public void setCondtion(int condtion) {
+		this.condtion = condtion;
+	}
+
+	public String getGclassintroduction() {
+		return gclassintroduction;
+	}
+
+	public void setGclassintroduction(String gclassintroduction) {
+		this.gclassintroduction = gclassintroduction;
 	}
 
 }

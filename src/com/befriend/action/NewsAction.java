@@ -8,15 +8,20 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
+
 import com.befriend.dao.CollectDAO;
 import com.befriend.dao.NewsDAO;
 import com.befriend.dao.ReviewDAO;
@@ -33,6 +38,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 public class NewsAction {
+	Log log = LogFactory.getLog(NewsAction.class);
 	private UserDAO userdao;
 	private NewsDAO ndao;
 	private CollectDAO cdao;
@@ -88,6 +94,8 @@ public class NewsAction {
 	private String xlsxFileFileName;
 	
 	public void supportReviewRsave() throws IOException {
+		log.info("info");
+		log.debug("bug");
 		r=rdao.byid(reviewid);
 		if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid)==null&&r!=null){
 			st.setComefrom(Support.COME_FROM_NEWS_REVIEW);
@@ -1483,9 +1491,7 @@ public class NewsAction {
 		String rt = "";
 
 		System.out.println("�������ϴ�����UPtext");
-		savePath = "/Newsimg" + "/" + OpeFunction.getDayTime(1) + "/"
-				+ OpeFunction.getDayTime(2) + "/" + OpeFunction.getDayTime(1)
-				+ OpeFunction.getDayTime(2) + OpeFunction.getDayTime(3);
+		savePath = "/Newsimg/" + OpeFunction.getNameDayTime();
 		Admin admin = (Admin) session.getAttribute("admin");
 		if (admin == null) {
 			OpeFunction.Out().print("ϵͳ�����û�е��룡�����µ������ԣ�");

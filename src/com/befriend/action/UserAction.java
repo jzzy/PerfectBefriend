@@ -1817,9 +1817,7 @@ public class UserAction {
 				if (path != null) {
 					util.fileRemove(path);
 				}
-				path = "/IMG/Userimg/" + OpeFunction.getDayTime(1) + "/"
-						+ OpeFunction.getDayTime(2) + OpeFunction.getDayTime(3)
-						+ "/" + u.getId();
+				path = "/IMG/Userimg/" + OpeFunction.getNameDayTime()+ "/" + u.getId();
 				path = util.ufileToServer(path, file, "jpg");
 
 				u.setImg(path);

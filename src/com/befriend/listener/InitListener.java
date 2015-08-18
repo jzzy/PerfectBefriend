@@ -19,7 +19,6 @@ public class InitListener implements ServletContextListener
 {
 
 	private static final Log logger = LogFactory.getLog(InitListener.class);
-
 	/**
 	 * Default constructor.
 	 */
@@ -41,6 +40,12 @@ public class InitListener implements ServletContextListener
 		logger.debug("RealPath:" + event.getServletContext().getRealPath("/"));
 		logger.debug("Contextpath:"
 				+ event.getServletContext().getContextPath());
+		 // 记录debug级别的信息  
+        logger.debug("This is debug message.");  
+        // 记录info级别的信息  
+        logger.info("This is info message.");  
+        // 记录error级别的信息  
+        logger.error("This is error message.");  
 				
 	}
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50703
 File Encoding         : 65001
 
-Date: 2015-08-17 14:25:03
+Date: 2015-08-18 11:51:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -121,11 +121,12 @@ CREATE TABLE `attention` (
   PRIMARY KEY (`id`),
   KEY `user_sup` (`userid`),
   CONSTRAINT `attention_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of attention
 -- ----------------------------
+INSERT INTO `attention` VALUES ('1', '696', '27', '2', '2015-08-17 17:15:47');
 
 -- ----------------------------
 -- Table structure for behavior
@@ -138,7 +139,7 @@ CREATE TABLE `behavior` (
   `type` tinyint(4) NOT NULL,
   `count` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4524 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4617 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of behavior
@@ -4494,7 +4495,7 @@ INSERT INTO `behavior` VALUES ('00000004348', '696', '1', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004349', '696', '2', '1', '2');
 INSERT INTO `behavior` VALUES ('00000004350', '696', '3', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004351', '696', '4', '1', '1');
-INSERT INTO `behavior` VALUES ('00000004352', '696', '5', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004352', '696', '5', '1', '2');
 INSERT INTO `behavior` VALUES ('00000004353', '696', '女', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004354', '696', '学区房', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004355', '696', '经验', '2', '1');
@@ -4525,36 +4526,36 @@ INSERT INTO `behavior` VALUES ('00000004379', '696', '校规', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004380', '696', '网站', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004381', '696', '面试', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004382', '696', '入学', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004383', '696', '入园', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004384', '696', '介绍', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004383', '696', '入园', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004384', '696', '介绍', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004385', '696', '登记', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004386', '696', '方法', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004387', '696', '新生', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004386', '696', '方法', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004387', '696', '新生', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004388', '696', '鼓励', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004389', '696', '重复', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004390', '696', '一年', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004391', '696', '教育', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004392', '696', '行为', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004393', '696', '工作', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004394', '696', '表示', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004392', '696', '行为', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004393', '696', '工作', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004394', '696', '表示', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004395', '696', '安排', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004396', '696', '周岁', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004397', '696', '阶段', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004397', '696', '阶段', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004398', '696', '父母', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004399', '696', '儿童', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004400', '696', '提前', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004401', '696', '幼儿园', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004402', '696', '幼儿', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004403', '696', '家长', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004404', '696', '孩子', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004401', '696', '幼儿园', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004402', '696', '幼儿', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004403', '696', '家长', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004404', '696', '孩子', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004405', '696', '主动', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004406', '696', '了解', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004407', '696', '负责', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004406', '696', '了解', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004407', '696', '负责', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004408', '696', '出生', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004409', '696', '相关', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004410', '696', '通过', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004411', '696', '提供', '2', '1');
-INSERT INTO `behavior` VALUES ('00000004412', '696', '时间', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004412', '696', '时间', '2', '2');
 INSERT INTO `behavior` VALUES ('00000004413', '570', '初中一年级', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004414', '570', '小学六年级', '2', '1');
 INSERT INTO `behavior` VALUES ('00000004415', '570', '缓解', '2', '1');
@@ -4666,6 +4667,99 @@ INSERT INTO `behavior` VALUES ('00000004520', '675', '2', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004521', '675', '3', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004522', '675', '4', '1', '1');
 INSERT INTO `behavior` VALUES ('00000004523', '675', '5', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004524', '696', '引导', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004525', '696', '教子', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004526', '696', '开学', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004527', '696', '新学期', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004528', '696', '老师', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004529', '696', '面对', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004530', '696', '正确', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004531', '696', '习惯', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004532', '696', '独立', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004533', '696', '心理', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004534', '696', '早教', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004535', '696', '生活', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004536', '696', '朋友', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004537', '696', '一般', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004538', '696', '克服', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004539', '696', '交往', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004540', '696', '陌生', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004541', '696', '听话', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004542', '696', '沟通', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004543', '696', '回家', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004544', '696', '安慰', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004545', '696', '一阶段', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004546', '696', '小玩具', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004547', '696', '行为习惯', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004548', '696', '效果', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004549', '696', '反应', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004550', '696', '恐惧', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004551', '696', '家人', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004552', '696', '理解', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004553', '696', '能力', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004554', '696', '环境', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004555', '696', '发展', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004556', '696', '同龄', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004557', '696', '身心', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004558', '696', '有利于', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004559', '696', '有利', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004560', '696', '表现', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004561', '696', '3岁', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004562', '696', '影响', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004563', '696', '刺激', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004564', '696', '玩具', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004565', '696', '利于', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004566', '696', '哭闹', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004567', '696', '经常', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004568', '696', '喜欢', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004569', '696', '帮助', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004570', '696', '正常', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004571', '696', '意识', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004572', '696', '物质', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004573', '698', '1', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004574', '698', '2', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004575', '698', '3', '1', '3');
+INSERT INTO `behavior` VALUES ('00000004576', '698', '4', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004577', '698', '5', '1', '1');
+INSERT INTO `behavior` VALUES ('00000004578', '698', '免费', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004579', '698', '中考', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004580', '698', '小学', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004581', '698', '实验', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004582', '698', '初中', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004583', '698', '痛苦', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004584', '698', '教学', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004585', '698', '重点', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004586', '698', '越来越强', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004587', '698', '适合', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004588', '698', '专家分析', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004589', '698', '超越', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004590', '698', '政策', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004591', '698', '资源', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004592', '698', '小升初', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004593', '698', '名校', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004594', '698', '考试', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004595', '698', '学习', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004596', '698', '教育', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004597', '698', '专家', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004598', '698', '增加', '2', '2');
+INSERT INTO `behavior` VALUES ('00000004599', '698', '孩子', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004600', '698', '升学', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004601', '698', '2月', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004602', '698', '4月', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004603', '698', '排队', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004604', '698', '北京', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004605', '698', '中小学', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004606', '698', '特别', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004607', '698', '必要', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004608', '698', '主要', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004609', '698', '北京市', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004610', '698', '解读', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004611', '698', '关注', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004612', '698', '尊重', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004613', '698', '表示', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004614', '698', '阶段', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004615', '698', '家长', '2', '1');
+INSERT INTO `behavior` VALUES ('00000004616', '698', '正常', '2', '1');
 
 -- ----------------------------
 -- Table structure for cis
@@ -7125,7 +7219,7 @@ INSERT INTO `forumone` VALUES ('194', '孩子成绩上不来', '19', '579', '201
 INSERT INTO `forumone` VALUES ('195', '111111', '2', '71', '2015-06-30  14:29:18', '111111111111111111111111', '湖南', '长沙', '0', '2', '76', null, '0', '29');
 INSERT INTO `forumone` VALUES ('196', 'rqweq', '0', '71', '2015-06-30  18:21:00', 'qweqweqw', '湖南', '长沙', '0', '0', '4', null, '0', '29');
 INSERT INTO `forumone` VALUES ('198', '莫咯哦咯JOJO哦咯lol', '0', '570', '2015-08-13 18:43:26', '莫咯哦咯JOJO哦咯lol', '北京', '海淀区', '0', '0', '21', null, '1', '27');
-INSERT INTO `forumone` VALUES ('201', '哦尼我会哦咯哦咯你摸咯JOJO', '1', '570', '2015-08-14 14:14:45', '哦尼我会哦咯哦咯你摸咯JOJO', '北京', '海淀区', '0', '1', '8', null, '0', '27');
+INSERT INTO `forumone` VALUES ('201', '哦尼我会哦咯哦咯你摸咯JOJO', '1', '570', '2015-08-14 14:14:45', '哦尼我会哦咯哦咯你摸咯JOJO', '北京', '海淀区', '0', '1', '9', null, '0', '27');
 
 -- ----------------------------
 -- Table structure for forumthree
@@ -7369,14 +7463,15 @@ CREATE TABLE `forum_twotype` (
   PRIMARY KEY (`id`),
   KEY `forum_twotype_fotid` (`fotid`),
   CONSTRAINT `forum_twotype_fotid` FOREIGN KEY (`fotid`) REFERENCES `forum_onetype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forum_twotype
 -- ----------------------------
-INSERT INTO `forum_twotype` VALUES ('27', '完美家长1', 'admin', '2015-08-07 17:14:40', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '0');
-INSERT INTO `forum_twotype` VALUES ('28', '123', '123', '123', '11', '11', '0', '15', '0');
-INSERT INTO `forum_twotype` VALUES ('29', '为什么', 'admin', '2015-08-13 16:50:26', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('27', '完美家长1', 'admin', '2015-08-07 17:14:40', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '1');
+INSERT INTO `forum_twotype` VALUES ('28', '完美家长2', 'admin', '2015-08-13 16:50:26', '/IMG/ForumTypeImg/20150817/24971853-cadf-43c5-b63b-9adf13071825.jpg', '/IMG/ForumTypeImg/20150817/24971853-cadf-43c5-b63b-9adf13071825.jpg', '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('29', '完美家长3', 'admin', '2015-08-13 16:50:26', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '/IMG/ForumTypeImg/20150813/941838c7-7bcb-4499-8377-d14bb4ac79f5.jpg', '0', '15', '0');
+INSERT INTO `forum_twotype` VALUES ('30', '完美家长4', 'admin', '2015-08-17 17:17:30', '/IMG/ForumTypeImg/20150817/24971853-cadf-43c5-b63b-9adf13071825.jpg', '/IMG/ForumTypeImg/20150817/24971853-cadf-43c5-b63b-9adf13071825.jpg', '0', '15', '0');
 
 -- ----------------------------
 -- Table structure for groupchat
@@ -7403,11 +7498,15 @@ CREATE TABLE `groupchat` (
   `type` int(11) DEFAULT '0',
   `classgroup` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10000004 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10000009 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groupchat
 -- ----------------------------
+INSERT INTO `groupchat` VALUES ('10000004', '1', '1234', '1', '哈哈', null, null, '你好', null, null, '2014-02-11 16:52:30', null, '10000000', '1', null, null, null, '0', '1');
+INSERT INTO `groupchat` VALUES ('10000006', null, '675', '/IMG/Groupimg/20150817/f5ada49b-c9d3-4fec-9e8a-bb7ed1db97c6.jpg', '哦owl我JOJO', 'OMG我咯', 'zoology', '陌陌了', '莫lol喔咯牙家', null, '2015-08-17 17:51:18', null, '10000001', '1', '北京', '东城区', '邓飞', '0', '2');
+INSERT INTO `groupchat` VALUES ('10000007', null, '675', '/IMG/Groupimg/20150817/061517/8823cb9d-614b-4054-84a5-1a4d351223d6.jpg', 'only咯咙', '哦名模咯', '莫咯哦咯', '安咯咯', '莫JOJO龙', null, '2015-08-17 18:15:17', null, '10000002', '1', '北京', '东城区', '莫咯咙', '0', '2');
+INSERT INTO `groupchat` VALUES ('10000008', null, '675', '/IMG/Groupimg/20150817/061804/da2085ab-6286-4d7f-ad2f-21cc99150c4a.jpg', 'only咯哦JOJO', '莫咯look哦咯', '你魔龙', '嗯咯look哦', '莫lol喔JOJO', null, '2015-08-17 18:18:04', null, '10000003', '1', '北京', '东城区', '嗯咯look哦JOJO', '0', '2');
 
 -- ----------------------------
 -- Table structure for groupmembers
@@ -7421,7 +7520,7 @@ CREATE TABLE `groupmembers` (
   `time` varchar(255) DEFAULT '2015-00-00 00:00:00',
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groupmembers
@@ -7481,6 +7580,9 @@ INSERT INTO `groupmembers` VALUES ('129', '71', '54', '3', '2015-06-11 15:23:12'
 INSERT INTO `groupmembers` VALUES ('130', '71', '12', '1', '2015-06-11 15:25:44', null);
 INSERT INTO `groupmembers` VALUES ('131', '650', '55', '3', '2015-07-10  17:59:03', null);
 INSERT INTO `groupmembers` VALUES ('132', '406', '56', '3', '2015-07-10  18:03:25', null);
+INSERT INTO `groupmembers` VALUES ('133', '675', '10000006', '3', '2015-08-17 17:51:18', null);
+INSERT INTO `groupmembers` VALUES ('134', '675', '10000007', '3', '2015-08-17 18:15:17', null);
+INSERT INTO `groupmembers` VALUES ('135', '675', '10000008', '3', '2015-08-17 18:18:04', null);
 
 -- ----------------------------
 -- Table structure for group_friend
@@ -7496,7 +7598,7 @@ CREATE TABLE `group_friend` (
   PRIMARY KEY (`id`),
   KEY `group_friend_user_group` (`user_group_id`),
   CONSTRAINT `group_friend_user_group` FOREIGN KEY (`user_group_id`) REFERENCES `user_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of group_friend
@@ -7506,6 +7608,11 @@ INSERT INTO `group_friend` VALUES ('2', '1', '674', null, '2015-07-31 19:12:52',
 INSERT INTO `group_friend` VALUES ('3', '2', '673', null, '2015-07-31 19:13:06', '3');
 INSERT INTO `group_friend` VALUES ('4', '1', '672', null, '2015-08-03 19:13:03', '3');
 INSERT INTO `group_friend` VALUES ('5', '4', '675', '给你个备注', '2015-08-03 19:13:03', '3');
+INSERT INTO `group_friend` VALUES ('6', '2', '676', null, '2015-08-18 10:43:34', '1');
+INSERT INTO `group_friend` VALUES ('7', '2', '570', null, '2015-08-18 10:43:57', '1');
+INSERT INTO `group_friend` VALUES ('8', '2', '675', null, '2015-08-18 10:46:13', '1');
+INSERT INTO `group_friend` VALUES ('9', '2', '675', null, '2015-08-18 10:46:38', '1');
+INSERT INTO `group_friend` VALUES ('10', '2', '675', null, '2015-08-18 10:53:04', '1');
 
 -- ----------------------------
 -- Table structure for label
@@ -9637,7 +9744,7 @@ INSERT INTO `news` VALUES ('1858', '家长必读：透析孩子门最不能容�
 INSERT INTO `news` VALUES ('1859', '档案找不到先问问学校', null, '<p align=\"center\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165625_773.jpg\" alt=\"\" height=\"215\" width=\"426\" /> \r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	毕业生从学校毕业以后，找到工作，学校会拿到用人单位的接收函，就会把个人档案寄送到相对应的人才中心，但是没有收到接收函的学校，则会直接寄往江苏省高校就业指导中心，记者从该中心了解到，每年仅仅是从省外高校寄来的档案就有一万六千多份，虽然每年都有档案转出，但是目前该中心已存有六万多份学生档案，很大一部分都是来了以后没有动过了。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	工作人员介绍，“目前我们也在做一些清理工作，比如联系本人，来取走档案。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	不少大学生工作几年后，突然遇到一个需要档案的单位，都会临时抓瞎。潘俊臣介绍，“这个时候不用急，一般个人档案是不会丢失的。找不到个人档案了，首先要去问问学校，当时把档案寄存到哪里了，然后去相应的地方找。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	潘俊臣提醒，“如果用人单位没有保管个人档案的资质，一定要提醒单位将档案委托相关机构保管。换工作时，也一定要带着个人档案一起走。档案不能由本人保管。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	（原标题：档案找不到先问问学校）\r\n</p>', '/kindeditor/attached/image/20150726/20150726165625_773.jpg,', '2014-10-18 11:25:02', '0', '0', '北京', '海淀区', '1', '0', '0', '0', '许海东', '1', '个人,一般,工作人员,介绍,大一,突然,工作,了解,相关,时候,', '0');
 INSERT INTO `news` VALUES ('1860', '儿童性教育如何更“靠谱”？令人尴尬的性教育', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165659_765.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“孩子，凡是被衣服遮住的地方都不能被别人碰，即便老师和隔壁叔叔也不可以……”幽默的语言、轻快的节奏，近日一组《一分钟儿童性教育短片》爆红网络。三段每段虽然只有1分钟的短片，却被网友直呼“靠谱”，走红背后折射出当前我国儿童性教育的缺失。家长着急，专家支招，面对孩子，我们到底能做些什么？\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>那些年，令人“尴尬”的性教育</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“你是从垃圾站里捡来的。”当面对孩子们“我从哪里来？”的提问时，过去很多中国家长会半开玩笑地应付孩子们的问题，或者含混解答。家长们认为自己就是这么过来的，孩子不需要特殊的教育，讲了反倒会诱发模仿心理。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	中国儿童和青少年性健康教育专家胡萍认为，中华传统文化对性的概念还是停留在色情，对性的重要性了解不够，“观念阻碍了性教育的发展”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	得不到答案或被搪塞过去，孩子们便会寻求其他方式。“我侄女最近很反常，站着尿尿，而且还有意无意把手和脚放在我老公的那个地方。”在武汉晚报宝贝俱乐部QQ群里，东东妈妈说。缺少有效教导，孩子的异常表现让家长无奈又着急。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	而已经开展的性教育又因方法不当，适得其反。前几年某地一学校为普及相关知识，向学生播放孕妇剖腹产现场画面，由于镜头过于血腥，效果并不理想。网友@好奇害死猫吐槽说：“这种教育方式还不如不教。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	此前由中国几位性教育学专家编写的教材《成长的脚步》由于内容过于真实，也曾遭到许多家长的质疑。“这项教育开展举步维艰，主要是传统的反性观念，家长的阻碍非常大。”中国社会科学院社会学所研究员李银河介绍，“中国的儿童性教育基本上没有开展起来，政府虽然有文件，但是推进比较慢，教育方式方法也缺少规范。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>儿童性侵案频发，是教育的缺失？</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	2011年，国务院印发的《中国儿童发展纲要（2011－－2020年）》明确提出“将性与生殖健康教育纳入义务教育课程体系”，让孩子明白“内衣覆盖的地方，不容侵犯”。但调查显示，当前儿童对于“触摸隐私部位是侵犯者的错”，“将此事告知成人”等意识仍旧匮乏。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	山东青岛，幼儿园保安猥亵儿童；河南桐柏，54岁教师猥亵女生；广东雷州，小学校长多次诱骗两女生，实施性侵……\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	2013年以来，经媒体报道的儿童性侵案多达几十起。更可怕的是犯罪过程中受害儿童所表现出的无知。某案件中，受害儿童特别喜欢狗，一个“叔叔”说，你把裤子脱了，我给你看狗，小孩就照做了。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年9月，中国儿童少年基金会、<a class=\"a-tips-Article-QQ\" href=\"http://data.edu.qq.com/college_info/6/index.shtml\" target=\"_blank\">北京师范大学</a>(<span class=\"infoMblog\"><a class=\"a-tips-Article-QQ\" href=\"http://t.qq.com/bnuxwzx%20#pref=qqcom.keyword\" target=\"_blank\">微博</a></span>)联合发布的《女童保护研究报告》中认为，除监护不力外，受害人及其家人的防范意识和防范知识不足是导致性侵案件频发的重要原因，部分受害者并不是监护缺失的群体，大量案件发生在邻里之间、师生之间，这与受害人缺乏自我保护意识及有关知识直接相关。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“国外一些国家在这方面做得就不错。在被陌生人侵犯时告诉孩子可以摔东西，可以跑，答应的事情也可以不履行，讲解得非常细致且实用。”李银河说。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	她同时表示，在未成年人强奸案件中，性教育缺失也是导致犯罪的因素之一，“当前很多未成年人强奸案便源于性教育的缺失”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	此外胡萍认为，日前出台的《关于依法惩治性侵害未成年人犯罪的意见》，被指将成为保护未成年人权益的利器，但依然没有建构一个系统，帮助受到性侵的孩子和家庭。“可以说儿童没有得到自我保护教育，被伤害后又没有得到有效弥补，很可怜。”她说。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>早期性教育，我们能做的还很多</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	三段《一分钟儿童性教育短片》以诙谐好玩的形式将一个严肃的问题呈现在家长和孩子面前，内容不露骨，容易接受，被网友评价“靠谱”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	要让我们的青少年早期性教育做得更“靠谱”，还需要从多方面努力。胡萍表示：“儿童性教育涉及法律教育、情感教育等多方面，单纯的生育知识介绍，并不能构成有效的教育体系。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	李银河认为，教育的开展首先要争取家长支持，从改变观念入手，不要受到伤害后才后悔莫及。对于孩子的疑问要适时解答，此外学校可以在这方面安排一定的课时，保证教育时长，分年龄层讲解，“还要安排受过正规培训的老师，要用有专家论证过的教材”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	李银河介绍说，当前中国性教育学会已经有了性教育师培训机制，将儿童性教育资格化，“这在某种程度上就是将性教育纳入了正规”。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“社会与民间还可以通过沙龙讲座的形式，学校也可以开设父母课堂，自上而下地进行教育。形式也可以吸纳漫画、画图、视频等多种形式。”胡萍坦言，当前国内的儿童性教育短片储备不足，“我的教学素材都是十多年来一点一点积累的。”\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	胡萍建议学校要立即行动起来，“不仅需要知识性的，还要有责任观的教育，如何对待情感的教育。相关的儿童机构和妇联也要带头建立起社区家庭教育的指导机构。国家在宏观指导上也可以将其法规化、强制化，性教育实施才能有所保障。”\r\n</p>', '/kindeditor/attached/image/20150726/20150726165659_765.jpg,', '2014-05-11 03:59:36', '1', '0', '北京', '', '5', '0', '0', '2', '郑成帅', '1', '女,性教育,9月,4岁,教师,少年,生育,北京,政府,校长,小学,成年,老师,特别,传统,家庭教育,幽默,隐私,缺乏,面对,观念,教学,家庭,程度,心理,调查,自我,行动,无意,问题,性观念,内衣,主要,早期,女生,课堂,构成,老公,教导,国外,青少年,培训,陌生人,陌生,努力,应付,孕妇,师范大学,文化,介绍,报告,非常,方法,伤害,真实,效果,异常,特殊,模仿,教育专家,教育,家人,概念,成人,不足,表示,宝贝,安排,研究,年龄,父母,发展,儿童,保证,专家,幼儿园,幼儿,表现,建议,家长,孩子,了解,科学,大量,成长,相关,喜欢,通过,保护,帮助,支持,意识,妈妈,健康,重要,', '1');
 INSERT INTO `news` VALUES ('1861', '14588人考上“985”“211”院校', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165747_489.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	7月24日，我省今年高招本一批的招生录取工作全部结束。省教育考试院昨日召开新闻发布会通报，今年全省34933名考生被本一批院校录取，其中被“985”重点大学录取的考生有5497人，在重点高校招生计划缩减的情况下，这些高校仍在<a href=\"http://news.hexun.com/fujiang/index.html\" target=\"_blank\">福建</a>增招了587人。 本报记者赖劲松\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	“985”重点大学录取5497人\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165738_907.png\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	每年高招的本一批录取都备受关注，因为在这个批次招生的院校大都是“985”、“211”等重点高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	据统计，今年我省本一批共有招生院校263所，计划招生33505人，占本科招生计划总数的28.8%，实际录取34933人，常规志愿满足率达96%。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年“985”、“211”高校在我省计划招生13436人，实际录取14588人，增招1152人，增幅达8.6%。其中：“985”高校计划招生4910人、实际录取5497人、增招587人，增幅达12%。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	从录取结果来看，“985”高校录取分数最高，“211”高校居其次，再次是省属重点院校。今年39所“985”高校的文史、理工类录取最低分的平均值均为625分；117所“211”高校的文史、理工类录取最低分的平均值分别为603分、605分；其他本一批高校文史、理工类录取最低分的平均值分别为572、562分。理工类录取最低分高于本一线100分的高校有36所，文史类录取最低分高于本一线50分的高校有49所，这些高校大多数是“985”高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	数据显示，<a href=\"http://news.hexun.com/beijing/index.html\" target=\"_blank\">北京</a>大学、清华大学、<a href=\"http://news.hexun.com/2013/shanghai1/index.html\" target=\"_blank\">上海</a>交大、复旦大学、<a href=\"http://news.hexun.com/zhejiang/index.html\" target=\"_blank\">浙江</a>大学、中国科技大学、中国人民大学、南京大学、上海财经大学、北京航天航空大学这10所高校的理工类最低录取分均高出本一线125分以上，也就是说，考生分数至少要达到650分以上才有被录取的机会。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	财经、医学类院校相对热门\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	每年的招生中，院校间的生源也是冷热不均，这与院校所处地域和高校的专业类型有很大的关系。今年，这样的局面同样存在，考生更乐意报考本省、中东部大城市以及周边经济发达、交通便利省份的招生高校。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	从院校类型来看，财经、医学类院校相对热门，农林类院校相对冷门。从各校录取专业情况看，财经、临床与口腔医学、建筑学等专业依然是最热门专业，绝大多数为本校的录取最高分专业；农林类、地矿、护理、社会工作、软件工程等专业相对冷门，大多是本校录取的最低分专业，其中少数专业还需要通过征求志愿才能完成招生计划。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	省内高校生源 质量总体较好\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	今年省内有12所院校安排在本一批招生，除少数中外合作、闽台合作办学以及民族班项目外，均完成招生计划。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	厦门大学、福州大学、华侨大学的理科录取最低分高出本一线105分、69分、47分。厦门理工学院、福建工程学院理工类专业的录取最低分分别超过本一线12分、10分，今年这两所学校新列入本一批招生的专业均在本一线上完成招生计划。省内院校中外合作办学项目生源情况总体较好，厦门大学、福州大学在常规志愿就完成招生计划，录取分数分别高于本一线85分、56分，个别高校有少量招生计划没有完成。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	另外，今年我省特殊类型招生如国家农村专项计划、自主招生、保送生、高水平运动队等项目，合计录取1871人。艺术类本科A批招生也于7月21日顺利结束，本批次招生院校61所，计划招生2268人、录取2271人。其中美术类录取1460人，音乐类录取525人，编导类录取130人，播音主持录取79人，舞蹈类录取69人，服装表演录取8人。&nbsp;<a href=\"http://www.hexun.com/?from=hxlogo\" target=\"_blank\"><img src=\"http://img.hexun.com/home/hx.gif\" /></a>&nbsp;<a href=\"http://stock.hexun.com/2014/hxcjxwapp/\" target=\"_blank\"><img src=\"http://img.hexun.com/2010/img/tel.gif\" /></a>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>', '/kindeditor/attached/image/20150726/20150726165747_489.jpg,/kindeditor/attached/image/20150726/20150726165738_907.png,http://img.hexun.com/home/hx.gif,http://img.hexun.com/2010/img/tel.gif,', '2014-09-06 08:35:51', '0', '0', '北京', '顺义区', '1', '0', '0', '0', '许海东', '1', '7月,统计,经济,交通,北京,同样,重点,机会,科技,大城市,招生,护理,考试,满足,关注,特殊,医学,教育,工作,安排,音乐,超过,有很大,运动,关系,通过,', '0');
-INSERT INTO `news` VALUES ('1862', '123456', null, '<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_806.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_956.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_370.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_976.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_867.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_831.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_925.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_202.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_430.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_851.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_634.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_969.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_827.jpg\" alt=\"\" />', '/kindeditor/attached/image/20150726/20150726165622_806.jpg,/kindeditor/attached/image/20150726/20150726165622_956.png,/kindeditor/attached/image/20150726/20150726165622_370.png,/kindeditor/attached/image/20150726/20150726165622_976.png,/kindeditor/attached/image/20150726/20150726165622_867.jpg,/kindeditor/attached/image/20150726/20150726165623_831.jpg,/kindeditor/attached/image/20150726/20150726165623_925.png,/kindeditor/attached/image/20150726/20150726165623_202.png,/kindeditor/attached/image/20150726/20150726165623_430.jpg,/kindeditor/attached/image/20150726/20150726165623_851.png,/kindeditor/attached/image/20150726/20150726165623_634.jpg,/kindeditor/attached/image/20150726/20150726165623_969.jpg,/kindeditor/attached/image/20150726/20150726165623_827.jpg,', '2015-07-26 03:41:58', '0', '0', null, null, '1', '0', '3', '3', 'admin', '1', '', '0');
+INSERT INTO `news` VALUES ('1862', '123456', null, '<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_806.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_956.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_370.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_976.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165622_867.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_831.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_925.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_202.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_430.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_851.png\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_634.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_969.jpg\" alt=\"\" /><img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165623_827.jpg\" alt=\"\" />', '/kindeditor/attached/image/20150726/20150726165622_806.jpg,/kindeditor/attached/image/20150726/20150726165622_956.png,/kindeditor/attached/image/20150726/20150726165622_370.png,/kindeditor/attached/image/20150726/20150726165622_976.png,/kindeditor/attached/image/20150726/20150726165622_867.jpg,/kindeditor/attached/image/20150726/20150726165623_831.jpg,/kindeditor/attached/image/20150726/20150726165623_925.png,/kindeditor/attached/image/20150726/20150726165623_202.png,/kindeditor/attached/image/20150726/20150726165623_430.jpg,/kindeditor/attached/image/20150726/20150726165623_851.png,/kindeditor/attached/image/20150726/20150726165623_634.jpg,/kindeditor/attached/image/20150726/20150726165623_969.jpg,/kindeditor/attached/image/20150726/20150726165623_827.jpg,', '2015-07-26 03:41:58', '0', '0', null, null, '1', '0', '4', '4', 'admin', '1', '', '0');
 INSERT INTO `news` VALUES ('1863', '新入园宝宝哭闹 正常 妈妈心疼领回家 错了！', null, '<p style=\"text-indent:2em;\">\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165815_722.jpg\" alt=\"\" />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<br />\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	新学期幼儿园开学已有两周，第一次离开家人的呵护、第一次过集体生活、第一次独立学会与他人沟通……孩子们被送到幼儿园后，多数会出现哭闹情况，令家长们手足无措。童童童早教负责人雷霞表示，新生入园哭闹是“分离焦虑”的一种正常表现，家长只要运用正确方法引导，很快便能帮助孩子度过这一阶段。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	雷霞介绍，进入幼儿园，孩子们第一次独自面对陌生的人和环境，承受的压力大，哭闹是一种正常反应。幼儿的个体之间存在一定差异，每个孩子适应幼儿园生活的时间也不同。一般来说，新入园幼儿一周至半个月左右便能适应。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	孩子到幼儿园最初几天，常会有家长在送完孩子后，站在门外徘徊观望，不愿离去；有的家长还会大声呵斥不愿入园的孩子；还有家长因为孩子哭闹而终止送园。雷霞提醒，这些都是不正确的做法，帮助孩子克服“分离焦虑”，方法要得当。教子有方\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>家长可以这么做</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>坚持送孩子入园</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	有的家长一见到孩子哭便心疼，决定不送了，带着下次再送的心理回家，甚至还有少数家长会把干脆把孩子领回家，暂时不去幼儿园了。对此，雷霞表示，把孩子领回家的做法，对孩子的身心发展可能产生不利的影响。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>适当奖励效果佳</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	买些孩子喜欢的小奖品，当做去幼儿园的奖励，用一定的物质刺激让孩子喜欢上幼儿园。入园时，还可以带一些平时孩子喜欢的小玩具，给孩子一个心理寄托，使孩子适应的过程更加顺利。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>轻声安慰勿吓唬</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	千万不能用上幼儿园来吓唬孩子。比如对孩子说：“不听话送你上幼儿园。”这会让孩子觉得上幼儿园是不好的。更不要对孩子说：“你哭，我就不来接你了。”3岁左右的孩子理解能力有限，但他们会记住一些话，从而加剧对去幼儿园的恐惧。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>与老师经常沟通</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	把孩子的行为习惯及时反馈给老师，使老师更了解孩子，便于老师开展工作。\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	<strong>帮孩子多交朋友</strong>\r\n</p>\r\n<p style=\"text-indent:2em;\">\r\n	家长平时要多带孩子和同龄孩子接触，并有意识地教给孩子一些交朋友的方法，扩大孩子的社交范围，让孩子逐渐习惯如何与人接触，如何与人交往，也有利于帮助孩子克服“分离焦虑”。（\r\n</p>', '/kindeditor/attached/image/20150726/20150726165815_722.jpg,', '2015-07-26 03:41:58', '5', '3', '北京', '', '5', '0', '2', '12', '郑成帅', '1', '引导,教子,开学,新学期,老师,面对,正确,习惯,独立,心理,早教,生活,朋友,一般,克服,交往,陌生,听话,沟通,回家,安慰,一阶段,小玩具,入园,介绍,行为习惯,方法,新生,效果,反应,行为,恐惧,家人,工作,表示,理解,能力,阶段,环境,发展,同龄,身心,幼儿园,幼儿,有利于,有利,表现,3岁,影响,家长,孩子,刺激,玩具,利于,了解,哭闹,经常,负责,喜欢,时间,帮助,正常,意识,物质,', '1');
 INSERT INTO `news` VALUES ('1864', '上海发布国内首个互联网教育政策', null, '<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　上海发布国内首个互联网教育政策\r\n</p>\r\n<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　9月27日，为期两天的2014年全球互联网教育创业大会在上海落下帷幕。从会上获悉，为了鼓励创业者、吸引优秀人才，作为此次大赛主办方之一的上海市杨浦区政府出台了涵盖九条细则的《杨浦区支持互联网教育产业发展若干政策（试行）》（以下简称“杨浦九条”），这是首个官方出台的互联网教育政策。\r\n</p>\r\n<p style=\"color:#333333;text-align:left;text-indent:0px;\">\r\n	　　“杨浦九条”显示，杨浦区将建立互联网教育产业创新创业基地，每年投入资金不低于3000万元，从奖金、补贴、租金、税收、落户等方面给予扶持。对于入驻企业，给予最高300万元的办公用房补贴，以及经营性奖励、绩效奖励等政策支持；对区域经济发展做出重大贡献或在国际国内具有较高影响力的互联网教育龙头企业，经认定为总部企业，给予最高500万元的开办费和1000万元办公用房补贴，以及经营性奖励和高管奖励等政策支持。\r\n</p>', '', '2015-07-26 03:41:58', '5', '3', '上海', '', '2', '0', '2', '12', '南大勇', '1', '9月,经济,政府,互联网,优秀,政策,鼓励,教育,发展,影响,支持,', '1');
 INSERT INTO `news` VALUES ('1865', '湖北投5000万扶持青少年足球 3年建700足球学校', null, '<h1 style=\"font-size:26px;font-weight:normal;font-family:微软雅黑;color:#000000;font-style:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726165841_114.jpg\" alt=\"\" />\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“只要下决心发展校园足球，办法永远比困难多！”湖北省校园足球相关负责人表示，针对校园足球发展中普遍存在的问题，相应的解决方案已有所准备。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“足球进校园”一直是热议话题，今年3月，国务院召开青少年校园足球工作电视电话会议，推出一系列措施推动校园足球进入升级版。为此，湖北校园足球振兴计划全面启动。7月20日，作为湖北校园足球振兴计划举措之一的全省校园足球高中联赛开幕，35支男女代表队目前正在交战。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		湖北校园足球振兴计划启动至今，校园足球发生了哪些变化，遇到那些困难与阻力？近日，长江商报记者对此进行了调查，我省校园足球计划启动以来，各地校园足球呈现可喜的局面，但师资、球场、资金及安全等老问题依旧存在。此外，农村发展速度远远不及城市。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>计划</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>3年建700所足球特色学校</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年3月，国务院办公厅印发了《中国足球改革发展总体方案》（以下简称《方案》），就足球改革进行部署，其中发展校园足球成为重点。《方案》明确规定，各地中小学把足球列入体育课教学内容，加大学时比重。全国中小学校园足球特色学校在现有5000多所基础上，2020年达到2万所，2025年达到5万所，其中开展女子足球的学校占一定比例。同时，到2020年，完成对5万名校园足球专、兼职足球教师的一轮培训。这为将来校园足球发展给出了清晰的时间表。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		长江商报记者从湖北省教育厅获悉，湖北将筹措5000万元经费，用3年时间，建设700个左右的校园足球学校，努力构建具有湖北特色的“校园足球”格局。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉市共有校园足球试点学校194所。该市计划在年内将校园足球试点学校发展到300所。除此之外，今年武汉将安排1000万元校园足球专项经费，用于校园足球训练、比赛活动的开展、器材购置、教练员补贴等。武汉市还将完善市、区、校园三级足球联赛机制。同时，武汉市还将组织青少年足球冬令营、夏令营，通过专业系统的训练，对青少年进行体能培养，加强校园足球骨干团队建设，形成班队、年级队、校队等各个层面的足球队伍，引领校园足球活动的开展。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		襄阳市则计划把足球纳入体育课必修内容，通过三年时间，力争达到50%的小学开设足球课，60%的学生参加过校园足球活动。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>样板</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>每个班都有自己的足球队</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		武汉作为全国五大足球试点城市之一，校园足球发展相对较好，在一些学校，甚至每个班都有自己的足球队，足球成为孩子们喜爱的运动。光谷五小就是这样一所学校，19个班每个班都有自己的足球队，学校每周都开展班级联赛。他们按每两个年级为一组的方式，又组建了高中低三支校级队伍，目前已经形成了良好的发展梯队。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		如今的光谷五小足球队，队员达到近百人，三名教练都是踢过职业足球的退役球员。该小学除了参加市校园足球联赛，队员们还得参加他们自己的班级联赛。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		不少学生通过在足球场上的拼搏，建立了自信，由此促进了学习的提升。廖梓权今年11岁，是光谷五小五年级学生。一年前他随父母，从天门老家定居武汉，转校进入了位于东湖高新区的光谷五小。刚入校时，小廖由于学习基础差，老师上课提问时常回答不上来，对学习的兴趣不浓，在校园里也少有玩伴。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		今年上半年，在老师的鼓励下，参加了班上的足球队。由于光谷五小距武汉卓尔训练基地仅百余米距离，光谷五小足球队成立之初，学校通过与武汉足球俱乐部合作，常去观看武汉队训练，或请职业队员过来指导，不时组织有足球兴趣的学生前去当球童。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		小廖则是这些小球童中的一员，他通过近距离接触职业足球，而渐渐地对足球产生了较为浓厚的兴趣。小廖在经学校定期组织的日常训练，及代表班级参加学校里举办的年纪联赛，逐渐成为了班上足球队的核心球员，并在同学们中聚集起了“小粉丝”。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		原本还担心小廖因为踢球耽误学习的廖爸爸发现，自从小廖踢球后，其身上出现了诸多实实在在的变化：不仅性格变得开朗，人变得更加自信，与同学相处也很融洽，更重要的是学习成绩提升了不少。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		与光谷五小一江之隔的对岸，武汉市还有一所先后走出34名国字号足球队员的老牌足球学校—新合村小学。这所全日制普通小学坐落在汉口新合村的一处拥挤的居民区内，学校场地也不大，可是足球作为一项学校的传统，在有限的场地里却坚持了40多年，“读好书、踢好球、做好人”则是新合村小学的校训。走进学校，会发现这里的孩子们大多穿着球衣、带着足球来上学；课间活动，同学们涌向操场，大多也在踢球嬉戏；甚至连课间操，老师和同学们也做的是足球啦啦队操。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>问题</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		<strong>多地缺乏专业足球教师</strong>\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		“校园足球发展普遍面临着足球专业教师队伍不足、基层学校领导干部对校园足球认识不深、足球险建立及全面的覆盖、升学渠道畅通、经费紧张等问题。”襄阳市教育局体育办主任方守才对长江商报记者说，足球有别于其他运动，足球运动所具备的竞争性、团队性和促进身心全面发展的作用，是其他很多运动所无法替代的。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		以湖北某地市为例，该市现有中小学977所，现有专业的足球教师仅有50人左右。专业足球教师缺乏问题不仅是该地市存在，湖北各地市州均有不同程度的缺口。方守才说，在襄阳市直高中、部分初中因设有足球专业队，而配备有专业的足球教师，部分县市中小学因各种因素的影响，足球专业老师很是缺乏。由于缺口数目太大，仅依靠事业单位考试的分配、招聘很难解决现有困难。专业足球教师缺乏不仅是该地区的问题，目前全省各地都存在。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		除开师资外，场地也是一大难点，一些城市学校因为地处城市中心，校园面积小，根本无法开展足球运动，而大多数农村学校，目前也根本没有足球场，“我们没有场地，没办法开展足球运动，”黄石市阳新县洋港镇黄龙小学校长柯美强说，虽然学校很多孩子们也向往足球，但在农村受场地限制无法开展，目前全镇能够开展足球运动的学校都非常少。在他看来，如果要推广校园足球，要切实考虑广大农村地区的实际，加大对农村学校体育设施的投入。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		记者在基层探访发现，一些学校对校园足球认识不足，担心开展足球会影响其教学，或陷入竞赛核心、球队核心、金牌核心、球星核心的误区。但方守才认为，校园足球的开展可提高孩子们的身体素质，塑造勇敢拼搏的精神，是对孩子心理人格的健康培养。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		此外，足球作为一项竞技对抗体育项目，难免会出现一些磕磕碰碰。安全问题也是许多家长老师担心的问题，这需要进一步提升校园足球安全保障水平，解决学校、学生和家长的后顾之忧。\r\n	</p>\r\n	<p style=\"color:#000000;font-family:宋体, Arial, sans-serif;font-size:15.9995994567871px;font-style:normal;font-weight:normal;text-align:start;text-indent:2em;background-color:#FFFFFF;\">\r\n		针对这些问题，省校园足球相关负责人表示，相应的解决方案正在准备中，有的已经出台。如师资问题，湖北已经开始培训足球教师。一些地方也已开始培训足球教师，“襄阳分别已于今年4月、5月对中小学足球教师进行培养，确保中心小学以上学校，每校都至少有一名体育老师参加过足球专业培训。”方守才说。\r\n	</p>\r\n</h1>', '/kindeditor/attached/image/20150726/20150726165841_114.jpg,', '2015-07-26 03:41:58', '0', '0', '吉林', '舒兰市', '1', '0', '0', '0', '许海东', '1', '校园,足球,11岁,女,升学,3月,4月,5月,7月,教师,少年,上学,规定,全国,担心,中小学,课间,校长,小学,初中,安全,老师,依靠,年纪,精神,自信,传统,误区,相处,缺乏,爱,学习成绩,全面,教学,程度,培养,心理,调查,参加,问题,良好,重点,同学,职业,人格,地区,青少年,培训,距离,努力,勇敢,安全问题,加强,会议,高中,之初,园里,名校,器材,考试,方案,学习,训练,非常,耽误,兴趣,日常,鼓励,困难,一年,速度,教育,工作,不足,表示,安排,1岁,父母,发展,身心,爸爸,运动,影响,家长,孩子,活动,会影响,抗体,负责,发现,促进,相关,完善,通过,提高,时间,重要的,形成,健康,重要,身体,作用,', '1');
@@ -9646,630 +9753,12 @@ INSERT INTO `news` VALUES ('1867', '“上海暑期学校”学员体验中国�
 INSERT INTO `news` VALUES ('1868', '2015年上海义务教育招生入学政策出炉！遏制学区房有新招', null, '<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	<strong><span style=\"font-size:14px;\">2</span></strong><strong><span style=\"font-size:14px;\">月<span style=\"font-size:14px;\">4</span>日，上海市教委公布了《<span style=\"font-size:14px;\">2015</span>年本市义务教育阶段学校招生入学工作的实施意见》。据“文汇教育”报道，继北京去年开通义务教育入学服务平台，今年上海也将首次启用“上海市义务教育入学报名系统”，在统一平台上对全市入学报名工作进行全程监督和管理。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">据介绍，为遏制学区房炒作，上海市教委有关负责人还表示，鼓励、倡导区县结合自己的实际情况，参照静安区去年试点经验——“每户地址五年内只享有一次同校对口入学机会”。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">另外，今年上海还进一步规范民办中小学的招生行为。</span></strong><strong><span style=\"font-size:14px;\">每个适龄儿童、少年可填报<span style=\"font-size:14px;\">2</span>所民办小学或者<span style=\"font-size:14px;\">3</span>所民办初中。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　义务教育入学报名系统\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市启用</span><span style=\"font-size:14px;\">“</span><span style=\"font-size:14px;\">上海市义务教育入学报名系统</span><span style=\"font-size:14px;\">”</span><span style=\"font-size:14px;\">，为全市适龄儿童、少年的家长以及区县招生工作提供便利的服务。适龄儿童、少年的家长可通过入学报名系统，及时了解市、区县教育部门公布的招生政策和实施办法，查询子女入学相关信息，获取公办小学入学通知、民办中小学面谈以及录取通知等。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　小学一年级新生入学信息登记\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市试行小学一年级新生入学信息登记办法。年满</span><span style=\"font-size:14px;\">6</span><span style=\"font-size:14px;\">周岁（</span><span style=\"font-size:14px;\">2008</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">9</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">1</span><span style=\"font-size:14px;\">日——</span><span style=\"font-size:14px;\">2009</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">8</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">31</span><span style=\"font-size:14px;\">日出生）本市户籍的适龄儿童和符合条件的非本市户籍的适龄儿童，均须先进行入学信息登记，再按招生范围办理入学报名手续，由区县教育行政部门根据“免试就近入学”的原则，统筹安排其进入小学就读。每位适龄儿童只需在一个区县登记入学信息，不必重复登记。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">入学信息登记有两种方式：一是在园适龄儿童，家长可在幼儿园为孩子进行入学信息登记，获取《上海市小学入学信息登记表》；二是未入园适龄儿童，家长可前往各区县指定地点为孩子进行入学信息登记，获取《上海市小学入学信息登记表》。本市户籍人户分离的适龄儿童在进行入学信息登记时，家长可选择并确定在户籍地就读还是在居住地就读的意愿。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">全市适龄儿童入学信息登记时间：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">11</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　本市户籍人户分离适龄儿童、少年入学\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市全面试行本市户籍人户分离适龄儿童、少年居住地登记入学工作。具有本市户籍的适龄儿童、少年可凭《本市户籍人户分离人员居住登记申请回执》在居住地登记入学，区县教育行政部门结合本地区实际制定实施细则，先安排户籍地与实际居住地一致的适龄儿童、少年就近入学，再根据登记入学人数和学校资源分布情况在区域内统筹安排“人户分离”适龄儿童、少年入学。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">全市公办小学报名日为</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">5</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">23</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">5</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">24</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　随迁子女义务教育阶段招生入学\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年按照《上海市居住证管理办法》，继续做好来沪人员随迁子女义务教育阶段招生入学工作。来沪人员适龄随迁子女需在本市接受义务教育的，适龄儿童须持有有效期内《上海市临时居住证》，父母一方须持有有效期内《上海市居住证》；或者父母一方持有有效期内《上海市临时居住证》（从首次发证日起截止到</span><span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">7</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">30</span><span style=\"font-size:14px;\">日）满</span><span style=\"font-size:14px;\">3</span><span style=\"font-size:14px;\">年，且连续</span><span style=\"font-size:14px;\">2</span><span style=\"font-size:14px;\">年在街镇社区事务受理服务中心办妥灵活就业登记（从首次登记日起截止到</span><span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年</span><span style=\"font-size:14px;\">7</span><span style=\"font-size:14px;\">月</span><span style=\"font-size:14px;\">30</span><span style=\"font-size:14px;\">日）。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">各区县教育部门办理随迁子女入学手续截止日为：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">7</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　民办中小学校招生\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">2015</span><span style=\"font-size:14px;\">年本市民办中小学校招生在“统一报名时间、统一面谈时间、统一录取时间”的基础上，继续实行网上报名办法。对于有意愿选择民办中、小学校就读的学生，家长可登陆“上海市义务教育入学报名系统”（</span><span style=\"font-size:14px;\">http://www.shrxbm.cn</span><span style=\"font-size:14px;\">），点击“民办小学报名”或“民办初中报名”进行网上报名，每个适龄儿童、少年可填报</span><span style=\"font-size:14px;\">2</span><span style=\"font-size:14px;\">所民办小学或者</span><span style=\"font-size:14px;\">3</span><span style=\"font-size:14px;\">所民办初中。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">《实施意见》强调：要进一步规范民办中小学招生行为，没有寄宿条件的民办中小学不得跨区县招生。民办学校的招生简章要向社会公开，承诺学校招生不收取各种特制的学生个人简历及各类获奖证书、招生录取不与社会任何教育培训机构挂钩、不提前开展报名和登记工作等。同时，进一步规范民办学校面谈程序和方法，面谈过程要向市和区县两级教育行政、督导、监察部门以及学校家委会代表等公开，自觉接受社会监督。</span>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<strong><span style=\"font-size:14px;\">民办小学网上报名时间：</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">25</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">27</span></strong><strong><span style=\"font-size:14px;\">日；</span></strong><strong><span style=\"font-size:14px;\">2015</span></strong><strong><span style=\"font-size:14px;\">年</span></strong><strong><span style=\"font-size:14px;\">4</span></strong><strong><span style=\"font-size:14px;\">月</span></strong><strong><span style=\"font-size:14px;\">28</span></strong><strong><span style=\"font-size:14px;\">日—</span></strong><strong><span style=\"font-size:14px;\">30</span></strong><strong><span style=\"font-size:14px;\">日接受民办初中报名。</span></strong>\r\n</p>\r\n<p style=\"color:#000000;background-color:#ffffff;text-indent:0px;\">\r\n	　　<span style=\"font-size:14px;\">《实施意见》要求：各区县教育行政部门与各中小学校，要通过政府网站、学校网站、招生通告等多种形式主动向社会公开义务教育阶段学校招生入学工作信息，加大招生政策的宣传力度。市、区县教育督导部门要加强对义务教育阶段学校规范招生工作的专项督导，各区县教育行政、监察部门要依法依纪查处招生入学工作过程中的违纪违规事件，确保义务教育阶段学校招生入学工作规范有序进行。</span>\r\n</p>', '', '2015-07-26 03:41:58', '2', '2', '上海', '', '2', '0', '0', '4', '南大勇', '1', '女,学区房,经验,少年,小学一年级,北京,自觉,中小学,政府,条件,小学,初中,子女,全面,监督,个人,机会,地区,培训,承诺,平台,加强,证书,政策,资源,招生,校规,网站,面试,入学,入园,介绍,登记,方法,新生,鼓励,重复,一年,教育,行为,工作,表示,安排,周岁,阶段,父母,儿童,提前,幼儿园,幼儿,家长,孩子,主动,了解,负责,出生,相关,通过,提供,时间,', '1');
 INSERT INTO `news` VALUES ('1869', '2015徐汇区义务教育政策小升初部分', null, '<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>初中招生</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>（一）招生原则</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	根据“相对就近、免试入学”的原则，今年继续实行按学生户籍性质，分别采用小学对口入学、划块电脑派位入学或对口入学和划块电脑派位入学相结合的方法，班额为45人。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>（二）关于特长生招生</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	1．经市、区教育行政部门批准的中小学体育传统特色项目学校、艺术教育特色学校可以按教育局核定的项目和人数招收体育、艺术特长生。严禁学校以招收体育、艺术特长生为名招收择校生。体育、艺术特长生招收数原则上不超过本年级学生总数的5%。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	2．本区就读的具有体育、艺术类特长的五年级学生（不含体育传统学校、少体校及位育体校等业余集中训练运动员），<strong>在2015年3月 31日</strong>到就读小学领取并填写《徐汇区初中特长生报名表》<strong>（只能选报一校一项）</strong>。学生在<strong>2015年4月2日前</strong>，将报名表交给小学，同时提供能反映其专业特长的相关证明材料复印件。在外区（县）、外省市就读的徐汇区户籍（或居住在徐汇区，须提供人户分离证明）具有体育、艺术类特长的五年级学生（不含在体育传统学校、少体校等校就读的学生），<strong>在2015年3月29日周日（上午8:30——11:00，下午1:30——3:30）到百色支路28号徐汇区教育局招生考试中心</strong>领取并填写《徐汇区初中特长生报名表》（只能选报一校一项）。报名时请带好户口本原件和复印件，同时提供能反映其专业特长的相关证明材料原件和复印件。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	3．各学校录取学生前，应先向家长发出录取意向书，在取得家长确认后方可视作正式录取。学校应在规定日期内确定体育、艺术类特长学生的录取名单并报教育局科艺体卫科。被录取的学生不再参加其它学校（包括民办学校）的录取和对口入学或划块电脑派位入学。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	4．招生学校除对报考学生进行相关特长测试外，不得进行其它任何内容的测试选拔。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>（三）关于民办初中招生</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	1．本区民办初中的招生，按照《中华人民共和国民办教育促进法》精神，统一纳入我区招生工作实施方案，有寄宿条件的民办初中可跨区县招生。学校自主招生办法、招生广告及招生简章须于2015年3月31日前向区教育局申报备案，经审核通过并向社会公布后方可实施。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	2．想进入民办初中就读的五年级学生，家长可在<strong>4月28日-4月30日</strong>登录“上海市义务教育入学报名系统”（<a href=\"http://www.shrxbm.cn/\" target=\"_blank\">www.shrxbm.cn</a>）填报志愿，每个学生<strong>限报3所民办初中</strong>。报名后获取网上报名表，作为参加学校面谈和录取的依据。各民办初中一律不得借组织学生校园体验、报名登记之名，擅自提前进行招生；一律不得收取学生家长所提供的奥数成绩、英语星级考等各类竞赛获奖证书、各类等级考试证书，拒收各种特制的学生个人简历；一律不得与社会举办的“小五班”及教育培训班挂钩。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	3．民办初中要规范招生程序和方法。报名人数超过学校招生计划数时，学校应采取面谈的方式招收新生，学校面谈应结合本校办学理念与办学特点，通过活动考察、面谈交流等环节，从行为习惯、学习习惯、团队合作、实践能力、身心素质、兴趣爱好、家庭教育等方面，选择符合条件的学生。严禁学校利用面谈进行任何形式的学科知识考试和测试。民办初中的面谈过程向市和区县两级教育行政、督导、监察部门以及学校家委会代表等公开，自觉接受社会监督。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	4．参加面谈的学生须携带网上报名表及相关身份证件和《上海市小学生成长记录手册》，学校不得向学生收取报名费和面谈费。<strong>民办初中面谈时间为2015年5月9—10日。</strong>\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	5．民办初中应于<strong>2015年5月22日前完成招生录取</strong>工作。学生家长应在规定时间前往录取学校，将入学告知书交给学校，完成确认工作。未被民办初中录取，在外区（县）就读但要求到徐汇区居住地入学（须提供人户分离证明）的学生由区招生考试中心在区域范围内统筹安排入学。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>（四）关于随班就读学生的入学</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	五年级随班就读的学生，按市教委“随班就读”的原则，可直接升入我区相应学校的六年级继续随班就读。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	<strong>（五）关于非本市户籍、跨区(县)和区内跨地块就读学生的入学</strong>\r\n</div>\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	1．对外区（县）户籍在本区就读的五年级学生，可根据实际情况选择回户籍所在区（县）或居住地所在区（县）就读初中或继续申请在本区就读初中。各小学应认真做好学生的户籍核查工作，并在2015年4月30日以前，为回户籍所在地或居住地就读的学生办好登记手续。对回外区（县）就读确实有困难，需继续在本区就读且符合条件的五年级学生，应在2015年4月30日以前填写《就读申请表》，经审核通过后由区招生考试中心统筹安排入学。徐汇区户籍在外区（县）就读的五年级学生，若需回本区就读初中，应在2015年4月30日前在原就读小学办理转区入学手续，待学生材料转入本区后，由区招生考试中心统筹安排入学。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	2. 对在本区外块就读的五年级学生，需回户籍所在地升学的，应在2015年4月30日以前向原就读小学提出书面申请,由就读小学统计汇总并报区招生考试中心。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	3. 在本区就读的非本市户籍的五年级学生，回外省市就读确实有困难，需继续在本区就读且符合条件的，应在2015年4月30日以前填写《就读申请表》，经审核通过后由区招生考试中心统筹安排入学。同时须填写完成义务教育后按相关规定和政策报考高中阶段学校的《就读承诺书》，承诺书留存学生学籍档案。徐汇区户籍在外省市就读的小学毕业生，若需回本区就读初中，应在2015年6月9日周二（上午8:30——11:00，下午1:30——3:30）到区招生考试中心填表登记，由区招生考试中心统筹安排入学。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	4．符合人户分离政策，要求到徐汇区居住地入学（须提供人户分离证明）的在外区（县）就读的五年级学生，应在2015年4月30日以前向就读学校提出书面申请，由就读小学汇总后报就读学校所在区（县）招生考试中心，待学生材料转入本区后，由区招生考试中心在区域范围内统筹安排入学。\r\n</div>\r\n<br />\r\n<div style=\"color:#444444;margin:0px;background-color:#fdfdfd;\" align=\"left\">\r\n	5．港澳人士、台湾籍人士和外籍人士的子女入学由区招生考试中心统筹安排。\r\n</div>', '', '2015-07-26 03:41:58', '1', '0', '上海', '徐汇区', '2', '0', '0', '2', '南大勇', '1', '台湾,校园,女,升学,中招,特长生,3月,4月,5月,6月,统计,规定,自觉,中小学,条件,小学,初中,认真,精神,传统,子女,家庭教育,爱,习惯,交流,监督,家庭,个人,爱好,参加,应学,电脑,培训,承诺,理念,高中,证书,政策,择校,招生,英语,手册,入学,考试,登记,登录,方案,行为习惯,学习,奥数,材料,训练,方法,新生,兴趣,特点,困难,教育,行为,工作,采取,安排,能力,阶段,动员,超过,提前,身心,运动员,长发,运动,家长,活动,促进,成长,相关,通过,提供,时间,', '1');
 INSERT INTO `news` VALUES ('1870', '静安区教育局关于2015年本区义务教育阶段学校招生入学工作的实施意见', null, '<span style=\"color:#444444;background-color:#fdfdfd;\">各义务教育阶段学校：</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">根据《中华人民共和国义务教育法》等法律法规，静安区2015年义务教育阶段学校招生入学工作继续贯彻依法办学，全面实施素质教育，整体提升教育教学质量，大力推进区域义务教育优质均衡发展和课程改革，不断促进教育内涵发展，深入推进精品教育建设。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">为进一步规范静安区义务教育阶段学校的招生入学工作，根据《上海市教育委员会关于2015年本市义务教育阶段学校招生入学工作的实施意见》（沪教委基〔2015〕10号）有关精神，结合区域实际，特制定静安区2015年义务教育阶段学校招生入学工作实施意见。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">一、指导思想和基本原则</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">1.坚持以国家和上海市的有关法律法规为依据，以推进义务教育均衡发展，办好每一所学校为目标；以构建面向每一位适龄儿童、少年的教育服务体系，切实维护中小学生的合法权益，规范办学行为为原则，依法实施义务教育阶段学校招生入学工作。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2.根据本区“十二五”期间教育发展规划和常住人口的变化，进一步强化政府义务教育责任，充分运用本市实有人口信息管理系统数据做好辖区内生源摸底预测工作，优化均衡配置教育资源，合理设点布局，落实义务教育阶段学生免试就近入学，确保本区内符合规定的适龄学生都有相应的学位。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">3.进一步规范义务教育招生入学工作管理，强化服务意识，改革招生入学方法。2015年，根据市教委有关要求，实行“上海市义务教育入学报名系统”，试行小学一年级新生入学信息登记、义务教育阶段民办中小学网上报名等办法，利用现代信息技术实施招生入学工作管理，切实贯彻就近入学原则，严禁义务教育阶段学校在招生计划之外自行招收学生。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">4.合理确定静安区义务教育阶段学校班级规模，班额原则控制在35人左右，最大班额严格控制在40人以内。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">5.本区各类学校在招生过程中不得以创办特色为名举办重点班、实验班；不得以任何形式进行文化测试选拔学生并按照测试成绩分班；一律拒收学生所提供的奥数成绩、各类竞赛获奖证书及各类等级考试证书，拒收各种特制的学生个人简历等材料。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">6.坚持公开、公平、公正的原则，及时向社会公布本区义务教育阶段学校招生入学工作的各项相关信息，进一步加强教育部门、中小学校和家庭、社会的相互沟通和交流。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">二、具体实施细则</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">（一）公办学校招生</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">1.2015年小学招生入学对象为：2008年9月1日-2009年8月31日出生，年满6周岁的儿童，残疾儿童可适当推迟一年入学。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2.小学一年级新生信息登记工作时间为4月11日-4月30日。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">本区各级各类幼儿园在园适龄儿童家长应在幼儿园登记儿童入学信息，获取《小学入学信息登记表》；未入园适龄儿童家长可在本区指定地点登记儿童入学信息，获取《小学入学信息登记表》。本市户籍人户分离的适龄儿童在进行入学信息登记时，家长应明确作出在户籍地就读或居住地就读的选择结果。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">信息登记时，家长需对提供的相关人口信息和灵活就业信息进行比对确认，如与实际情况不符，应先到有关部门补办或更正信息，再到本区指定地点进行入学信息登记。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">3.区教育局根据当年度学校资源配置和生源分布的实际情况，按照就近入学的原则，采取地块（居委）对口的方法，划定公办小学的对口入学范围。如对口人数超过对口学校容纳数可由电脑派位等方法统筹安排。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">公办小学的上述对口入学对象为儿童和父母户籍在静安区对口地块一年以上、房屋户主和产权人或承租人为儿童父或母、能适应正常学习生活的适龄儿童。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">本区户籍其余适龄儿童，由区教育局根据区内各学校的招生情况，采取就近入学的办法在本区范围内统一安排公办小学就读。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">区教育局从2014年开始，在本区各公办小学统一建立对口入学新生数据库。自2014年起，静安区每户地址五年内只享有一次同校对口入学机会。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">4.公办初中学校招生采用和相对就近小学对口或部分电脑派位的方法，小学毕业生免试入学。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">跨区县就读的小学五年级学生，应在就读学校参加小学毕业考试。小学毕业后可根据实际情况选择回户籍地或实际居住地所在区县就读初中，或在本区就读初中，办理回户籍地或实际居住地就读初中手续的截止日期为2015年4月30日。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">5.本区义务教育阶段学校应按照区教育局确定的就近入学招生范围和招生计划安排符合对口入学条件的适龄儿童、少年入学；学校不得拒绝接收具有接受普通教育能力的残疾适龄儿童、少年随班就读。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">6.根据本市有关文件规定，2015年静安区全面实行本市户籍人户分离适龄儿童居住地登记入学工作。具有本市户籍、实际居住静安区的适龄儿童，在新生信息登记选择居住地就读的前提下，可凭《小学入学信息登记表》和《本市户籍人户分离人员居住登记申请回执》等材料，按规定时间到区教育局指定的地点办理入学报名手续。具体情况可参见《2015年静安区“人户分离”适龄儿童、少年居住地登记入学工作实施细则》。</span><br />\r\n<span style=\"background-color:#fdfdfd;\"><br />\r\n本区集体户籍（社区公共户）适龄儿童参照人户分离登记入学办法就读。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">7.根据上海市政府《上海市居住证管理办法》等有关文件精神，切实做好进城务工人员随迁子女招生入学工作，将随迁子女招生纳入本区义务教育招生计划，加强对随迁子女入学条件的审核工作。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2015年，进城务工人员适龄随迁子女需在本市接受义务教育的，适龄儿童须持有效期内《上海市临时居住证》和《小学入学信息登记表》，父母一方须持有效期内《上海市居住证》；或者父母一方持有效期内《上海市临时居住证》满3年（从首次发证日起至2015年7月30日），且连续2年（从首次登记日起至2015年7月30日）在街镇社区事务受理服务中心办妥灵活就业登记。2015年，受理随迁子女办理入学手续截止日为7月30日，2016年起，所有新生办理入学手续截止日统一为6月30日。具体情况可参见《2015年静安区告非本市户籍进城务工适龄随迁子女家长书》</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">区教育局和学校将对进城务工适龄随迁子女的申请材料予以验证和审核。验证和审核通过的，区教育局将根据适龄儿童、少年的实际居住地和学校学额情况在区县范围内统筹安排；验证信息有误或审核不通过的，不予接受入学。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">进城务工人员随迁子女本区小学毕业学生凭上述有关材料统一安排至本区公办初中就读。初中学校应告知学生及家长完成义务教育后报考高中阶段学校的相关规定和政策。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">8.进一步加强对体育、艺术特色项目学校的整体规划和招生工作管理。经批准的中小学体育传统特色项目学校、艺术教育特色学校可以按有关规定招收批准项目与计划的体育、艺术特长生。学校要严格执行体育、艺术类特长生招生办法的有关规定，不得以招收体育、艺术特长生为名对学生进行学科类内容的考试或测试。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">9.义务教育阶段学校在招生过程中，不得将招生入学工作与学生奥数等各类竞赛证书挂钩，以获奖证书为依据选拔和录取学生；严禁义务教育阶段学校在招生计划之外自行招收学生，各类初中学校不得招收无学籍材料的学生。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">（二）民办学校招生</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">1.民办学校招生，须依照有关法律法规，制定自主招生办法；民办学校自主招生办法须向区教育局申报备案，由区教育局审核并向社会公布后方可实施。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2.2015年，本区民办初中、小学全部实行网上报名和招生录取工作。4月25日-27日，报名就读民办小学的学生可在“上海市义务教育入学报名系统”填报志愿，每个适龄儿童限填报2所民办小学。4月28日-30日，报名就读民办初中的学生可在“上海市义务教育入学报名系统”填报志愿，每个学生限填报3所民办初中，报名后获取网上报名表，作为参加面谈和录取的依据。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">本区民办学校招生方案请参见《2015年静安区义务教育阶段各民办学校招生方案》。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">3.民办学校要继续规范招生程序和方法。报名人数超过学校招生计划数时，学校将采取电脑派位或面谈的方式招收新生；学校不得向学生收取报名费和面谈费；面谈程序要规范，面谈内容不应涉及学科文化知识，可以从行为习惯、学习习惯、团队合作、实践能力、身心素质、兴趣爱好、家庭教育等方面，有所侧重地选择符合条件的学生；录取学生时不得进行其他任何形式的学科考试和测试，同时不得提前开展报名和登记工作。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">4.民办学校要在2015年5月22日前完成招生录取工作，向家长发放录取通知书，学生家长应在规定的时间内前往录取学校，完成确认工作。学校将新生录取名单通过网络上报区教育局。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">三、工作程序和有关日程安排</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">1.4月8日，静安区义务教育阶段学校招生政策和信息向社会公布和上网公示。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2.4月11日-30日小学适龄儿童进行网上入学信息登记。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">（1）在本区各级各类幼儿园就读的适龄儿童，在幼儿园进行网上入学信息登记。其余在本区实际居住的适龄儿童在区指定登记点登记</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">（2）静安区指定登记点：静安招生考试服务中心（新丰路588号）</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\"> 开放时间：4月21日-24日</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">3.4月25日-27日，民办小学网上报名；</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\"> 4月28日-30日，民办初中网上报名。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">4.4月30日为全市统一的义务教育阶段小学、初中学校招生对象的统计日。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">5.5月23日，本区户籍适龄儿童到公办小学正式报名；申请“人户分离”登记入学的适龄儿童和少年入学报名登记。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">6.6月16日，本区进城务工随迁适龄随迁子女入学报名登记。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">7.6月30日，全区公办小学受理就近入学适龄儿童入学手续截止日。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">8.7月30日，全区受理进城务工适龄随迁子女入学手续截止日。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">9.8月15日前，本区公办学校向义务教育适龄儿童的父母或指定监护人发放入学通知书。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">四、进一步加强管理和监督</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">1.根据本市基础教育管理体制，静安区教育局负责本区义务教育阶段学校招生入学工作的管理和实施。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">根据市教委中小学学籍管理工作有关要求，静安区将建立义务教育阶段学生学年注册制度。自2015学年起，先在小学一年级新生中试行：由区教育局和学校向新生家长发放学生学年注册告知书，明确注册对相关证件核对的要求，随迁子女及家长要关注持有证件的有效期，及时到相关部门续签或补证，对不能提供有效证件的，暂不予以学籍注册，学校应向家长告知不能注册学籍所产生的后果，家长须向学校承诺及时前往有关部门办理相关证件，确保所持证件的有效性。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">2.区教育行政监察部门将进一步完善招生监察工作机制，监督招生入学有关政策和工作要求的贯彻落实，依法依纪查处招生入学工作过程中的违纪违规事件，协助解决本区中小学招生工作中出现的突出问题，确保义务教育阶段学校招生入学工作规范有序进行。区教育督导室重点对均衡配置教育资源，保障适龄儿童、少年义务教育权利，义务教育阶段学校规范招生等工作进行专项督导。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">3.公办学校在招生过程中若存在违规招生行为的，区教育局将根据有关规定给予有关责任人处分；民办学校的督查结果则作为民办学校办学等级评估的重要内容之一，并成为区教育局下一年核准学校招生数的重要依据。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">4.进一步坚持政府信息公开，规范公开内容。加强对义务教育阶段学校招生入学工作的宣传和协调指导，向社会公布学校招生入学的咨询、监督电话以及来访咨询接待的时间、地点。</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">咨询电话：62790802*134</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">监督电话：62790802*122</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">接待地点：静安区教育局&nbsp; &nbsp; 南阳路215号</span><br />\r\n<br />\r\n<span style=\"color:#444444;background-color:#fdfdfd;\">接待时间：周一、周四上午8：30-11：30</span><br />', '', '2015-07-26 03:41:58', '0', '0', '上海', '静安区', '1', '0', '6', '6', '南大勇', '0', '女,特长生,4月,5月,6月,7月,8月,9月,统计,少年,大班,小学一年级,小学五年级,规定,中小学,政府,条件,学年,小学,实验,初中,精神,传统,子女,家庭教育,爱,习惯,交流,全面,教学,监督,家庭,个人,爱好,参加,问题,生活,重点,机会,电脑,沟通,咨询,放学,承诺,按规定,加强,技术,高中,证书,政策,注册,资源,招生,校规,文化,入学,入园,考试,登记,方案,行为习惯,学习,奥数,材料,方法,新生,兴趣,关注,一年,教育,行为,控制,工作,采取,安排,生时,期间,周岁,能力,均衡,阶段,合理,父母,发展,儿童,超过,协调,提前,身心,幼儿园,幼儿,长发,家长,负责,促进,出生,相互,相关,维护,完善,通过,提供,时间,正常,意识,重要,最大,', '0');
-INSERT INTO `news` VALUES ('1871', '哪种孩子最易遭受性侵犯 如何远离', null, '<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;<img width=\"512\" height=\"362\" title=\"\" align=\"\" alt=\"\" src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726170618_925.png\" />\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今年，多起儿童性侵犯案件为我们敲响警钟。近日，教育部、公安部等四部门共同发布《做好预防少年儿童遭受性侵工作意见》，提出保护中小学生的工作机制。但是，对于家长来说，平时的性教育和防范教育相对更加重要。\r\n</p>\r\n<p>\r\n	3个年龄段最危险\r\n</p>\r\n<p>\r\n	儿童性侵犯已成为全球公害。美国、英国、瑞典、澳大利亚、波兰等多国调查显示，在中学生里，每20人就有1人受过性侵犯。国内儿童遭受性侵犯的特点，则主要表现为被害人年龄越来越小。北京青少年法律援助与研究中心调查发现，性侵案中，熟人作案比例占68%，场所多在家庭和学校。美国一项调查也证实，大部分受害儿童是被认识和信任的人所侵犯的。大多数性侵犯没有使用暴力，而是以\"给你检查身体\"或\"我们来玩一个游戏\"等诱骗孩子。遗憾的是，被侵犯后，有些父母不相信孩子的话，认为孩子是在幻想或编造与人发生性接触，从而让更多性侵案石沉大海。\r\n</p>\r\n<p>\r\n	容易被性侵犯的年龄段主要有3个：\r\n</p>\r\n<p>\r\n	1.学龄前：这个年龄抵御伤害能力小，防范意识薄弱。专家曾做过一个试验：给女孩红纸，让她们贴到玩具小熊身体不能被触摸的部分，结果7岁以前的孩子大都贴到了鞋子和眼睛上。这说明他们并不知道私密的地方在哪里。\r\n</p>\r\n<p>\r\n	2.小学三年级：由于开始上学，活动范围比以前更大了，风险随之升高。\r\n</p>\r\n<p>\r\n	3.初中阶段：已经逐步开始性发育，女孩性特征逐渐显现，让心态不端的人有了作案动机。性侵害是有明显季节规律的，专家总结为：较为平安三月三，四月五月往上蹿;夏天多发强奸案，冬季侵财到峰巅。\r\n</p>\r\n<p>\r\n	尊重是最好的安抚\r\n</p>\r\n<p>\r\n	如果遭遇性侵害的孩子未能得到及时的心理安抚和干预，将造成严重心理创伤。比如青春期回避异性，患上焦虑症、抑郁症等。首先，家长要让孩子信任自己。要明确告诉孩子，即使对性侵犯没能说\"不\"，也不是他的错。家长要在语言上、态度上让孩子接受你，不要给孩子留下灰色的记忆。其次，避免二次伤害。可以告诉孩子：\"我会尽我所能确保这件事情不再发生。我们需要和一些人，如心理医生和警察谈一谈，他们能够帮助我保证你的安全。\"在没有孩子同意的情况下不要有太多的人看望，哪怕是爷爷奶奶等至亲。不要责怪孩子，\"你怎么不喊救命\"，\"你怎么不逃走\"等话语一定不要乱说，更不能急于向孩子了解\"发生了什么\"，这会给孩子带来二次创伤。再次，让孩子知道父母是坚定不移的保护者。一个在放学途中遭受过性侵害的孩子，可能对上下学的那条路有恐惧心理，家长应该先护送一段日子，缓解他的恐惧心理，让他感觉到被保护。最后，要充分尊重孩子的意愿，孩子说不想上学，就和老师商量暂时不上学。这不是纵容孩子，因为遭遇创伤很难短期恢复。这时候家长一定要理解和接纳孩子任何可能的情绪表现和异常行为。家长对孩子心理的关注，不一定仅表现在语言上，有时可能给孩子一个亲切的眼神，对孩子生活的关注，都会让孩子感觉到你在关心他。\r\n</p>\r\n<p>\r\n	别忌讳和孩子谈性\r\n</p>\r\n<p>\r\n	中国人对性讳莫如深，很少有家长懂得如何对孩子进行性教育。网易亲子频道一项调查显示，44%的学校没有开设预防性侵害教育。《知心姐姐》杂志社一项调查显示，只有41%的学生表示\"爸爸妈妈对我说过遇到性侵害时该怎么办\"。\"什么是性侵犯?\"\"遇到熟人对自己毛手毛脚怎么办?\"如果这些问题都不了解，就会让孩子在受侵害时不知所措。父母是性教育的主角。首先，要让孩子学会区分好和坏的身体接触。生活中，亲友会用身体接触来表达对孩子的喜爱，这是好的接触;如果在身体接触时，某些部位(手、生殖器)在孩子隐私部位反复触摸或者摩擦，就是坏的接触，要立即离开这个人，并把事情告诉父母。其次，结合已有案件教会孩子什么是性侵害，如把孩子带到隐秘地方，叫孩子脱下衣服或裤子，摸孩子的胸部或生殖器部位，或者让孩子摸他的身体等。\r\n</p>\r\n<p>\r\n	同时，家长还要有意识地用具体事例培养孩子的防范意识。比如，如果孩子看见地上有一个书包，一定会先去打开看看，如果是钱，就交给老师，这是中华民族提倡的拾金不昧，出发点是好的，但在现代社会却很危险。同样一件事，在英国，孩子看见这个包，首先会保持镇定，然后报警，绝不会伸手去摸，因为很可能里面是爆炸物。有的家长担心，把这些可怕的事讲给孩子听，会使孩子不信任社会。其实，告诉孩子谨慎防范等同于打疫苗，让孩子知道，周围除了鲜花，也有大灰狼。再次，父母要告诉孩子，一旦遭遇性侵害，要尽快冷静下来，想办法机智地离开。如果自身力量无法与侵害者抗衡，也没有机会逃离，在万般无奈的情况下要先顺从罪犯，避免生命危险，被侵害后立即告诉爸妈。\r\n</p>\r\n<p>\r\n	如遇到坏人尾随记住5个步骤：1.夜间行路，面向三十度行走，即略侧身行走。2.三步一回头，及时观察后边。3.发现可疑陌生人尾随，走到马路对面去。4.可疑陌生人尾随，再走回来。5.喊一二三，立刻跑走。\r\n</p>\r\n<p>\r\n	如何判断遭受性侵\r\n</p>\r\n<p>\r\n	判断孩子是否遭遇性侵犯，家长可留意以下7种异常行为。\r\n</p>\r\n<p>\r\n	1.突然出现有性特征的行为：如突然触摸自己或其他人的身体。\r\n</p>\r\n<p>\r\n	2.突然出现恐惧感：如害怕某些人。\r\n</p>\r\n<p>\r\n	3.性格突然变化：从文静到好斗，从爱出去玩到孤僻、安静。\r\n</p>\r\n<p>\r\n	4.冲动性行为：如突然欺凌弱小。\r\n</p>\r\n<p>\r\n	5.睡眠失调。\r\n</p>\r\n<p>\r\n	6.饮食没有规律：频繁受到性侵犯的女孩可能会暴饮暴食，希望自己不再具有吸引力。\r\n</p>\r\n<p>\r\n	7.生理变化：如生殖器区域的疼痛、瘀伤，无法解释的伤口或擦伤，身体上不寻常的痕迹。\r\n</p>\r\n<p>\r\n	确认孩子遭受性侵，王大伟建议要及时进行三大救助。一是生理救助，即赶紧带孩子去看医生，治疗性侵犯造成的生理伤害，检查是否感染性病，防止怀孕;月经已来潮的女孩要找妇产科医生采取紧急避孕措施。二是法律救助，及时留下毛发、精斑、抓痕、体液、现场遗留物等证据，以便惩治犯罪。在询问孩子时可能会发现侵害人是熟人、亲戚，此时不要瞻前顾后，怕伤和气，一定要报警并协助抓获犯罪者。还要指导孩子如何保护名誉权、隐私权。三是心理救助。家长要及时带孩子寻求专业心理咨询师的帮助。\r\n</p>', '', '2015-07-26 03:41:58', '0', '0', null, null, '1', '0', '2', '2', '逢冉', '1', '防止,暴力,女,性教育,7岁,少年,学龄前,小学三年级,上学,缓解,担心,北京,中小学,饮食,小学,美国,避免,初中,安全,老师,记忆,隐私,亲子,危险,爱,家庭,个人,培养,纵容,态度,心理,调查,问题,同样,生活,机会,主要,女孩,性行为,知心,孤僻,中学生,青少年,青春期,陌生人,陌生,咨询,医生,放学,不信任,怀孕,力量,恐惧感,特点,伤害,关注,尊重孩子,尊重,异常,眼睛,严重,突然,特征,情绪,教育,行为,恐惧,观察,工作,采取,表示,安静,感觉,理解,研究,年龄,能力,阶段,父母,儿童,性发育,升高,夜间,保证,爸妈,爸爸妈妈,爸爸妈,爸爸,专家,周围,造成,预防,游戏,表现,建议,家长,孩子,睡眠,玩具,活动,希望,了解,发现,相信,体液,使用,时候,生命,保护,帮助,意识,妈妈,发育,规律,重要,身体,', '1');
+INSERT INTO `news` VALUES ('1871', '哪种孩子最易遭受性侵犯 如何远离', null, '<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;<img width=\"512\" height=\"362\" title=\"\" align=\"\" alt=\"\" src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726170618_925.png\" />\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今年，多起儿童性侵犯案件为我们敲响警钟。近日，教育部、公安部等四部门共同发布《做好预防少年儿童遭受性侵工作意见》，提出保护中小学生的工作机制。但是，对于家长来说，平时的性教育和防范教育相对更加重要。\r\n</p>\r\n<p>\r\n	3个年龄段最危险\r\n</p>\r\n<p>\r\n	儿童性侵犯已成为全球公害。美国、英国、瑞典、澳大利亚、波兰等多国调查显示，在中学生里，每20人就有1人受过性侵犯。国内儿童遭受性侵犯的特点，则主要表现为被害人年龄越来越小。北京青少年法律援助与研究中心调查发现，性侵案中，熟人作案比例占68%，场所多在家庭和学校。美国一项调查也证实，大部分受害儿童是被认识和信任的人所侵犯的。大多数性侵犯没有使用暴力，而是以\"给你检查身体\"或\"我们来玩一个游戏\"等诱骗孩子。遗憾的是，被侵犯后，有些父母不相信孩子的话，认为孩子是在幻想或编造与人发生性接触，从而让更多性侵案石沉大海。\r\n</p>\r\n<p>\r\n	容易被性侵犯的年龄段主要有3个：\r\n</p>\r\n<p>\r\n	1.学龄前：这个年龄抵御伤害能力小，防范意识薄弱。专家曾做过一个试验：给女孩红纸，让她们贴到玩具小熊身体不能被触摸的部分，结果7岁以前的孩子大都贴到了鞋子和眼睛上。这说明他们并不知道私密的地方在哪里。\r\n</p>\r\n<p>\r\n	2.小学三年级：由于开始上学，活动范围比以前更大了，风险随之升高。\r\n</p>\r\n<p>\r\n	3.初中阶段：已经逐步开始性发育，女孩性特征逐渐显现，让心态不端的人有了作案动机。性侵害是有明显季节规律的，专家总结为：较为平安三月三，四月五月往上蹿;夏天多发强奸案，冬季侵财到峰巅。\r\n</p>\r\n<p>\r\n	尊重是最好的安抚\r\n</p>\r\n<p>\r\n	如果遭遇性侵害的孩子未能得到及时的心理安抚和干预，将造成严重心理创伤。比如青春期回避异性，患上焦虑症、抑郁症等。首先，家长要让孩子信任自己。要明确告诉孩子，即使对性侵犯没能说\"不\"，也不是他的错。家长要在语言上、态度上让孩子接受你，不要给孩子留下灰色的记忆。其次，避免二次伤害。可以告诉孩子：\"我会尽我所能确保这件事情不再发生。我们需要和一些人，如心理医生和警察谈一谈，他们能够帮助我保证你的安全。\"在没有孩子同意的情况下不要有太多的人看望，哪怕是爷爷奶奶等至亲。不要责怪孩子，\"你怎么不喊救命\"，\"你怎么不逃走\"等话语一定不要乱说，更不能急于向孩子了解\"发生了什么\"，这会给孩子带来二次创伤。再次，让孩子知道父母是坚定不移的保护者。一个在放学途中遭受过性侵害的孩子，可能对上下学的那条路有恐惧心理，家长应该先护送一段日子，缓解他的恐惧心理，让他感觉到被保护。最后，要充分尊重孩子的意愿，孩子说不想上学，就和老师商量暂时不上学。这不是纵容孩子，因为遭遇创伤很难短期恢复。这时候家长一定要理解和接纳孩子任何可能的情绪表现和异常行为。家长对孩子心理的关注，不一定仅表现在语言上，有时可能给孩子一个亲切的眼神，对孩子生活的关注，都会让孩子感觉到你在关心他。\r\n</p>\r\n<p>\r\n	别忌讳和孩子谈性\r\n</p>\r\n<p>\r\n	中国人对性讳莫如深，很少有家长懂得如何对孩子进行性教育。网易亲子频道一项调查显示，44%的学校没有开设预防性侵害教育。《知心姐姐》杂志社一项调查显示，只有41%的学生表示\"爸爸妈妈对我说过遇到性侵害时该怎么办\"。\"什么是性侵犯?\"\"遇到熟人对自己毛手毛脚怎么办?\"如果这些问题都不了解，就会让孩子在受侵害时不知所措。父母是性教育的主角。首先，要让孩子学会区分好和坏的身体接触。生活中，亲友会用身体接触来表达对孩子的喜爱，这是好的接触;如果在身体接触时，某些部位(手、生殖器)在孩子隐私部位反复触摸或者摩擦，就是坏的接触，要立即离开这个人，并把事情告诉父母。其次，结合已有案件教会孩子什么是性侵害，如把孩子带到隐秘地方，叫孩子脱下衣服或裤子，摸孩子的胸部或生殖器部位，或者让孩子摸他的身体等。\r\n</p>\r\n<p>\r\n	同时，家长还要有意识地用具体事例培养孩子的防范意识。比如，如果孩子看见地上有一个书包，一定会先去打开看看，如果是钱，就交给老师，这是中华民族提倡的拾金不昧，出发点是好的，但在现代社会却很危险。同样一件事，在英国，孩子看见这个包，首先会保持镇定，然后报警，绝不会伸手去摸，因为很可能里面是爆炸物。有的家长担心，把这些可怕的事讲给孩子听，会使孩子不信任社会。其实，告诉孩子谨慎防范等同于打疫苗，让孩子知道，周围除了鲜花，也有大灰狼。再次，父母要告诉孩子，一旦遭遇性侵害，要尽快冷静下来，想办法机智地离开。如果自身力量无法与侵害者抗衡，也没有机会逃离，在万般无奈的情况下要先顺从罪犯，避免生命危险，被侵害后立即告诉爸妈。\r\n</p>\r\n<p>\r\n	如遇到坏人尾随记住5个步骤：1.夜间行路，面向三十度行走，即略侧身行走。2.三步一回头，及时观察后边。3.发现可疑陌生人尾随，走到马路对面去。4.可疑陌生人尾随，再走回来。5.喊一二三，立刻跑走。\r\n</p>\r\n<p>\r\n	如何判断遭受性侵\r\n</p>\r\n<p>\r\n	判断孩子是否遭遇性侵犯，家长可留意以下7种异常行为。\r\n</p>\r\n<p>\r\n	1.突然出现有性特征的行为：如突然触摸自己或其他人的身体。\r\n</p>\r\n<p>\r\n	2.突然出现恐惧感：如害怕某些人。\r\n</p>\r\n<p>\r\n	3.性格突然变化：从文静到好斗，从爱出去玩到孤僻、安静。\r\n</p>\r\n<p>\r\n	4.冲动性行为：如突然欺凌弱小。\r\n</p>\r\n<p>\r\n	5.睡眠失调。\r\n</p>\r\n<p>\r\n	6.饮食没有规律：频繁受到性侵犯的女孩可能会暴饮暴食，希望自己不再具有吸引力。\r\n</p>\r\n<p>\r\n	7.生理变化：如生殖器区域的疼痛、瘀伤，无法解释的伤口或擦伤，身体上不寻常的痕迹。\r\n</p>\r\n<p>\r\n	确认孩子遭受性侵，王大伟建议要及时进行三大救助。一是生理救助，即赶紧带孩子去看医生，治疗性侵犯造成的生理伤害，检查是否感染性病，防止怀孕;月经已来潮的女孩要找妇产科医生采取紧急避孕措施。二是法律救助，及时留下毛发、精斑、抓痕、体液、现场遗留物等证据，以便惩治犯罪。在询问孩子时可能会发现侵害人是熟人、亲戚，此时不要瞻前顾后，怕伤和气，一定要报警并协助抓获犯罪者。还要指导孩子如何保护名誉权、隐私权。三是心理救助。家长要及时带孩子寻求专业心理咨询师的帮助。\r\n</p>', '', '2015-07-26 03:41:58', '0', '0', null, null, '1', '0', '3', '3', '逢冉', '1', '防止,暴力,女,性教育,7岁,少年,学龄前,小学三年级,上学,缓解,担心,北京,中小学,饮食,小学,美国,避免,初中,安全,老师,记忆,隐私,亲子,危险,爱,家庭,个人,培养,纵容,态度,心理,调查,问题,同样,生活,机会,主要,女孩,性行为,知心,孤僻,中学生,青少年,青春期,陌生人,陌生,咨询,医生,放学,不信任,怀孕,力量,恐惧感,特点,伤害,关注,尊重孩子,尊重,异常,眼睛,严重,突然,特征,情绪,教育,行为,恐惧,观察,工作,采取,表示,安静,感觉,理解,研究,年龄,能力,阶段,父母,儿童,性发育,升高,夜间,保证,爸妈,爸爸妈妈,爸爸妈,爸爸,专家,周围,造成,预防,游戏,表现,建议,家长,孩子,睡眠,玩具,活动,希望,了解,发现,相信,体液,使用,时候,生命,保护,帮助,意识,妈妈,发育,规律,重要,身体,', '1');
 INSERT INTO `news` VALUES ('1872', '“你不来学校看看 我们就自杀”', null, '<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	美国总统奥巴马访问肯尼亚，老家人都想弄啥嘞？\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	<br />\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	<br />\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	奥巴马（资料图）\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	美国总统贝拉克·奥巴马定于本周末访问非洲——24日至26日的第一站是他父亲的老家肯尼亚。这位“肯尼亚孩子”即将来访，肯尼亚民众兴奋了，有的甚至有点兴奋过度。\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	据悉，在送给美国驻肯尼亚使馆的一封信中，首都内罗毕大学学生会说，该校18名男生宣布，如果奥巴马不来这所学校看看，他们就打算自杀。信中说，还有31名女生威胁说，如果奥巴马不来，她们就要到奥巴马2006年到访时栽下的树边撒尿。奥巴马2006年曾以参议员身份访问过内罗毕大学，还栽了一棵树。\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	一个反同性恋团体就打算组织5000人在内罗毕搞裸体示威活动，以抗议奥巴马公开支持同性恋婚姻。 抗议活动定于22日至23日在内罗毕的独立公园举行。这一团体在一份声明中说，举行裸体抗议的目的是为了让奥巴马“了解男人和女人之间的区别”。\r\n</p>\r\n<p style=\"color:#2D2D2D;font-family:宋体;font-size:14px;font-style:normal;font-weight:normal;text-align:left;text-indent:0px;background-color:#F6F6F6;\">\r\n	当然也有比较正常的欢迎活动。肯尼亚一家全国性的报纸近日就刊登整版广告，宣传一个向奥巴马致敬的展览会，以欢迎这名“肯尼亚的孩子回家”。新华\r\n</p>', '/Newsimg/2015/07/20150726/e516165f-a28d-4319-a14b-90a33e5e28e0.jpg,/Newsimg/2015/07/20150726/e13badff-ac69-4622-8864-c3e6b8b1064f.jpg,/Newsimg/2015/07/20150726/b712d67d-0f8b-4834-892f-3a7355478116.jpg,', '2015-07-26 03:41:58', '0', '0', '北京', '长沙', '1', '0', '0', '0', '许海东', '1', '公园,女,全国,首都,美国,独立,区别,女生,男生,目的,回家,会说,兴奋,家人,孩子,活动,了解,支持,正常,', '0');
 INSERT INTO `news` VALUES ('1873', '2015南京中考第二批次学校录取分数线', null, '　　第二批次录取工作已于7月9日正式开始，14日结束。该批次学校计划招收普通高中6442人，中高职3+3分段培养专业班1910人，综合高中班1670人，五年制高职班5209人，技师班和高级技工班2600人。<br />\r\n<br />\r\n　　根据第一批次学校录取结束后考生志愿的情况，对职业学校的投档控制线做适当调整，其中：综合高中班450分，五年制高职专业班（其中江苏联合职业技术学院分院及办学点按学院文件执行）、中高职3+3专业班、技师班和高级技工班投档控制线420分。<br />\r\n<br />\r\n　　第一志愿投出后，可完成招生计划的学校和国际班投档控制线为：<br />\r\n<br />\r\n　　1.原市区普通高中：玄武高级中学569分，文枢中学549分，南大附中566分，栖霞中学546分。人民中学等其他7所普通高中一志愿540分，需招收第二志愿的考生。出现尾数同分时，增加招生计划由学校全部录取。<br />\r\n<br />\r\n　　2.国际班：金陵中学河西分校国际班573分，十三中中加班567分，雨花台高中国际班546分，田家炳高中中日班561分。南大附中中加班一志愿540分，需招收第二志愿的考生。出现尾数同分时，普通高中国际班需按排序规则录取。<br />\r\n<br />\r\n　　3.综合高中：南京商校476分，新港中专校471分，浦口中专校519分，六合中专校477分。其他学校一志愿450分，需招收第二志愿的考生。<br />\r\n<br />\r\n　　4.中高职3+3分段培养专业班：莫愁中专校430分，金陵中专校458分，鼓楼中专校422分，浦口中专校474分，江宁中专校444分，六合中专校441分，高淳中专校439分。其他学校一志愿420分，需招收第二志愿的考生。<br />\r\n<br />\r\n　　5.五年制高职班：江苏联合职业技术学院工程高职校489分、南京高职校535分、南京财经学校523分、莫愁中专校488分、金陵中专校472分、新闻出版学校503分、广播电视学校490分、南京卫生学校537分、司法警官高职校509分，南京城市职业学院浦口办学点435分、建邺办学点445分、玄武办学点455分、鼓楼办学点445分，江苏建康职业学院511分，苏州工艺美院474分。其他学校需招收第二志愿的考生。<br />\r\n<br />\r\n　　6.技师班和高级技工班：一志愿投出后，没有学校完成计划，需招收第二志愿的考生。<br />\r\n<br />\r\n　　出现尾数同分时，各类职业学校需按排序规则录取。如遇考生为所报考专业的低分又不服从调剂会被退档。<br />\r\n<br />\r\n　　10日下午将投放第二志愿档案。如招收第二志愿仍不能完成计划的学校将征求志愿，征求志愿仍不能完成计划的学校将适当降分。根据事先公布的规则，普通高中国际班在规定的控制线上无论是否完成计划，不予降分。<br />\r\n<br />\r\n　　本批次第一、第二志愿投出后，为提高招生计划完成率，仍安排符合条件的未被录取的考生征求志愿，各有关学校具体缺额将在7月12日公布，征求志愿时间是7月13日上午9时至11时，考生和监护人携带相关证件到报名所在区招办补填征求志愿，正式投档时按照考生志愿顺序和中考成绩从高分到低分录取。', '', '2015-07-26  17:05:56', '0', '0', '南京', '', '2', '0', '0', '0', '南大勇', '0', '中考,7月,中班,规定,条件,卫生,培养,职业,技术,高中,招生,分校,控制,工作,安排,增加,相关,提高,时间,', '1');
 INSERT INTO `news` VALUES ('1874', '2015年南京中考招生已录取3.47万人', null, '　　从南京市中招录取现场了解到，参加第二批次录取的有普通高中、普通高中国际课程班、综合高中班、中高职3+3分段培养专业班、五年制高职班、技师班和高级技工班等，截至7月11日第二批次第二志愿投档结束，全市已经累计录取3.47万名考生。考生可从7月12日8时起，在南京招生信息网（www.njzb.net）上进行录取信息查询，并在近日注意查收市招生办统一印制、市邮政局免费特快专递的《录取通知书》。<br />\r\n<br />\r\n　　尚未完成招生计划的普通高中和职业学校缺额，将公布在南京招生信息网上。<br />\r\n<br />\r\n　　凡在7月12日8时后未查到自己被录取的信息又愿意补填志愿的考生，请于7月13日9时至11时到本人报名所在区招生办，查看征求志愿的学校信息，并补填征求志愿表，每人可以填报两个志愿。<br />\r\n<br />\r\n　　录取时按征求志愿从高分到低分依次投档录取，如出现尾数同分时，普通高中统招生由招生学校全部录取，普通高中国际班学生和职业学校需按排序规则录取。<br />\r\n<br />\r\n　　据市招生办介绍，第二批次学校录取工作将在7月14日下午结束。第三批次学校录取工作将于7月15日开始，当天结束。全市录取工作也将在7月15日结束。<br />\r\n<br />\r\n　　南京市第二批次招生学校录取工作即将结束，部分在投档控制线上的考生未被录取，可以按照公布的招生范围，填报征求志愿：<br />\r\n<br />\r\n　　1.原市区总分在540分以上愿意就读普通高中的考生；<br />\r\n<br />\r\n　　2.江宁区、六合区、高淳区在本区普通高中投档控制线以上愿意就读普通高中的考生；<br />\r\n<br />\r\n　　3.参加原市区普通高中美术加试合格且总分在490分以上愿意就读美术类高中的考生；<br />\r\n<br />\r\n　　4.全市总分在540分以上愿意就读国际班的考生；<br />\r\n<br />\r\n　　5.全市总分在450分以上愿意就读综合高中班的考生；<br />\r\n<br />\r\n　　6.全市总分在420分以上愿意就读中高职3+3分段培养专业班、五年制高职班（其中江苏联合职业技术学院分院及办学点投档控制线按学院文件执行）、技师班和高级技工班的考生。', '', '2015-07-26  17:08:51', '0', '0', '南京', '', '2', '0', '1', '1', '南大勇', '0', '免费,中招,7月,中班,培养,参加,职业,技术,高中,招生,介绍,控制,工作,注意,了解,合格,', '0');
 INSERT INTO `news` VALUES ('1875', '新初一心理生理双重变化 做独立思考的初中生', null, '<p>\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726170913_729.jpg\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	初一孩子正处于青春期，也被称为“青春断乳期”，初中三年对于塑造学生各方面生活学习习惯是非常关键的时期，同时，中考也是非常重要的转折点。能否顺利度过这个阶段对一个孩子的未来发展至关重要。专家表示，新初一学生往往自律性差，独立思考问题的能力也比较弱，因此新初一学生首要的就是要学会独立思考，学会用更严格的要求去要求自己。\r\n</p>\r\n<p>\r\n	<strong>分析</strong>\r\n</p>\r\n<p>\r\n	<strong>新初一面临心理生理双重变化</strong>\r\n</p>\r\n<p>\r\n	北京五中分校副校长于铁浩提到，对于刚从小学升入初中的孩子来说，需要完成习惯适应和心理适应两个过程。小学与初中的要求不同、标准各异，软、硬件的差别更给一些孩子带来适应上的困扰。刚从小学毕业的学生，往往对学习方法还没有概念，只有逐渐养成良好的学习习惯和方法，才有利于循序渐进，更好地适应中学生活。\r\n</p>\r\n<p>\r\n	此外，一些孩子学习成绩优异，升入初中后出现成绩滑落的情况，这一现象也很普遍。在这种情况下，家长需要适当引导学生，找准自己的位置，重新开始，而不能过于急躁和焦虑，在新的起点上逐渐成长、进步，就非常值得肯定。\r\n</p>\r\n<p>\r\n	巨人聚优1对1专家级教师王杭州也提到，初一新生在生理、心理上都表现出了一些很明显的特点。例如自尊心增强、独立意识增强，有了一定的评价能力，也开始注意塑造自己的形象，例如大多数初一学生照镜子的频率有所增加。但他们对自己的情绪和行为的控制能力不是很强，很容易受外界影响等。这时家长要时刻关注孩子的各方面变化，积极与之沟通，尊重孩子的意见。\r\n</p>\r\n<p>\r\n	其次是在生活方面，心理上的变化直接影响学生生活上的变化，这时候最易出现的就是叛逆的心理，学生不再接受简单奖励式的学习或是其他方面，家长更多的应该做的是深入学生的心里去讲道理。学生到初一进入新的生活环境，这时候也不单单是小学时的简单的玩伴，所以家长也要帮助学生去处理学生的人际关系，如何与学生、老师沟通，如何更快地适应新的环境，为中学学习打破第一层障碍。\r\n</p>\r\n<p>\r\n	此外，新初一学生还要面临学习内容逐步深化、学科知识逐步系统化、学习的课程门类逐渐增加等变化，例如语文、数学、<a class=\"a-tips-Article-QQ\" href=\"http://edu.qq.com/en/\">英语</a>由直观的、感性的、零碎的知识点变成了更为完整、系统的知识体系，并更加突出能力要求；物理、化学等课程也相继开设。这也就直接影响了第三：学习习惯的变化。小学生主要是被家长老师牵着鼻子走，到了初中必须要求学生锻炼主动学习、主动归纳总结的能力。\r\n</p>\r\n<p>\r\n	<strong>支招</strong>\r\n</p>\r\n<p>\r\n	<strong>1</strong>\r\n</p>\r\n<p>\r\n	<strong>培养学生自律意识和独立思考</strong>\r\n</p>\r\n<p>\r\n	五中分校副校长于铁浩表示，不少学生在小学阶段以“他律”为主，在生活、学习上听从家长和老师的引导。但是到了中学，就要逐渐学会自我管理。从他律到自律的过程是痛苦的，因此更需要做好心理上的准备。\r\n</p>\r\n<p>\r\n	北京市立新学校校长、特级教师曾军良表示，自律意识也表现在做作业时养成独立思考、独立完成的习惯，不要看完题目就去寻找答案，不要看完题目就去问别人，不要借助计算器来完成作业，久而久之，就会形成条件反射，限制自身能力的发展。要尽自己的最大努力去挑战性完成作业，不要轻易放弃作业，把经过挑战还不能解决的问题记录好，再想方设法去解决问题。如果抓住了作业环节，学习成绩也就会不断提升。\r\n</p>\r\n<p>\r\n	<strong>支招</strong>\r\n</p>\r\n<p>\r\n	<strong>2</strong>\r\n</p>\r\n<p>\r\n	<strong>注重听课效率 为终生学习奠基</strong>\r\n</p>\r\n<p>\r\n	学生每天的大部分时间都是在课堂度过的，课堂是实施素质教育的主阵地，立新学校校长曾军良认为，学生应该特别重视课堂的学习效率，努力做好课前一切准备。同时热情、积极参与课堂思考与合作研讨；要眼、手、脑、耳并用，充分调动多个器官参与；要学会抓关键、抓重点、记录好的思考方法与疑难问题，课外及时延伸、拓展与解决。当学生牢牢抓住了课堂，学习也就抓住了根本。\r\n</p>\r\n<p>\r\n	曾军良校长表示，中学时代，是学习的黄金时期，是培养终身学习能力的重要时期，也是人生观、价值观、世界观形成的关键时期。学好知识、打好基础、练就本领是同学们的主要任务。\r\n</p>\r\n<p>\r\n	<strong>支招</strong>\r\n</p>\r\n<p>\r\n	<strong>3</strong>\r\n</p>\r\n<p>\r\n	<strong>找到适合自己的学习方法</strong>\r\n</p>\r\n<p>\r\n	专家表示，初中对于学生理解能力要求较高，而这些主要是以概念、性质为主，所以要求学生夯实基础，做到这一点必须提前预习，课后巩固。清楚认识自己的软肋。比如有的学生几何学的不好，比如有的学生语文作文不好，这时要花费比别人更多的时间，攻下自己的软肋。学生应当有“三个本”，分别是课堂笔记本、错题记录本及重难点摘抄本。无论做作业还是考试前快速翻阅，养成一个固定的习惯，对于快速提高成绩有很大的帮助。挑战特色例题。有的学生做题很多但是成效却不显著，这是进入了题海的盲区，此时要挑题去做，做有技巧，出方法的题目。精选复习资料。\r\n</p>', '/kindeditor/attached/image/20150726/20150726170913_729.jpg,', '2015-07-26  17:00:28', '0', '0', '北京', '', '5', '0', '1', '1', '郑成帅', '0', '引导,语文,物理,化学,中考,学习方法,初一,教师,北京,条件,校长,自律,效率,小学,初中,处理,思考,老师,特别,学习能力,双重,道理,自尊,学习成绩,习惯,痛苦,精选,独立,培养,心理,理学,自我,问题,世界,生活,良好,重点,适合,困扰,主要,课外,课堂,同学,听课,中学生,青春期,叛逆,沟通,努力,终身,人生,北京市,英语,数学,提高成绩,未来发,叛逆的,入学,考试,控制能力,翻阅,分校,学习,非常重要,非常,方法,新生,特点,锻炼,关注,尊重孩子,尊重,本领,现象,明显的,情绪,教育,行为,控制,关键,概念,表示,理解,能力,阶段,环境,发展,提前,养成,专家表示,专家,注重,重视,增加,有利于,有利,有很大,表现,影响,家长,孩子,注意,主动,利于,快速,简单,关系,成长,挑战,提高,时期,时间,时候,标准,帮助,意识,重要的,形成,器官,重要,最大,', '0');
 INSERT INTO `news` VALUES ('1876', '学习压力大初一娃患抑郁症 给娃治病先治家长', null, '<p>\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726171902_115.png\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<img src=\"/PerfectBefriend/kindeditor/attached/image/20150726/20150726171919_682.png\" alt=\"\" />\r\n</p>\r\n<p>\r\n	<p style=\"text-indent:2em;\">\r\n		开学第一天，不少低年级学生也到医院进行心理咨询；专家称，家长对孩子期望值太高，亲朋好友对成绩关注过多，孩子产生紧张感\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		昨天，福州中小学开学的第一天。当许多学生欢欢喜喜上学堂时，有些学生因为各种压力导致患上了焦虑症、抑郁症。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		昨日，记者走访了福州多家医院的心理门诊发现，这段时间到医院进行心理咨询的学生增多，大多是因学习压力过大引起的焦虑。据医生介绍，以往初三、高三的毕业班学生在学习紧张时，会产生焦虑、抑郁，可现在不少小学生也出现了这样的情况。专家称，家长对孩子期望值太高，亲朋好友对成绩关注过多，孩子产生紧张感。给孩子治病，先要治家长。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		<strong>【案例一】初一女孩严重抑郁需服药</strong>\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		“刚上初一，这个学期又是年段第一。”说起孩子的成绩，春节从山东回长乐过年的陈女士很是自豪，女儿小乐（化名）从小学到现在，每次考试都是第一。但是，让她担心的是，女儿今年回来过年时，亲戚朋友只要提到学习，或者问她在学校的情况，她就大发脾气，不让问。有时候整晚不睡觉做各种习题，不吃饭，几天见不到她笑一下。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		日前，陈女士带女儿到福州的医院问诊，没想到医生诊断出，小乐给自己的压力太大，患上抑郁症，需要服药调理。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		小乐说，如果不能拿第一，上学就没意思。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		<strong>【案例二】十岁女娃嚷着要跳楼割腕</strong>\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		“医生，我们实在拿她没办法了，这才三年级啊。”昨日，记者在福州儿童医院见到，一位王女士正在向医生倒苦水。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		王女士的女儿小萌（化名）今年上三年级。王女士说，她和爱人在外面做生意，孩子寄在姑姑家生活。小萌从上小学一年级开始，脾气逐渐升级。在家里，稍不满足就打人、摔东西。一说要做作业，就威胁要割腕。上学期期末，小萌没有做作业，去学校后，老师让小萌把作业做完交上来，小萌竟爬到窗户上说要跳楼。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		王女士说，女儿才十岁，可是全家人已经不知道该怎么招架了。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		<strong>分析 孩子惧怕失败引发抑郁</strong>\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		记者走访了福州第四医院、市青少年心理咨询中心等机构，发现最近来做心理咨询的学生明显增多，都是由家长陪伴而来。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		福州儿童医院心理门诊薛漳主任介绍，临近开学前来做心理咨询的学生和家长逐渐增多，不少是对学习产生焦虑情绪，严重的还出现了抑郁。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		“出现焦虑的孩子大部分是因为压力。”薛漳主任说，有的孩子一到考试就出现失眠、做噩梦，是家长对孩子的期望值高，而孩子惧怕失败引起的。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		<strong>对策 给孩子治病，先要治家长</strong>\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		薛漳主任说，孩子的焦虑和抑郁，主要问题还是出在家长身上。给孩子治疗，应先给家长做辅导。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		福州青少年心理咨询中心主任林涌超建议，家长对待孩子应以鼓励为主，不要对他们施加太多的压力。多留心孩子行为和言语上的变化，要了解孩子内心世界，多从孩子的角度考虑问题。\r\n	</p>\r\n	<p style=\"text-indent:2em;\">\r\n		林主任也表示，不要在孩子本身情绪不好的时候教育他们，这样会导致气氛僵持，要用一种轻松的方式，旁敲侧击地引导\r\n	</p>\r\n</p>', '/kindeditor/attached/image/20150726/20150726171902_115.png,/kindeditor/attached/image/20150726/20150726171919_682.png,', '2015-07-26  17:11:43', '0', '0', null, null, '5', '0', '7', '7', '郑成帅', '0', '引导,女,初一,初三,高三,少年,小学一年级,上学,开学,担心,中小学,学前,小学,老师,气氛,爱,心理,问题,世界,生活,朋友,主要,女孩,陪伴,期望,青少年,咨询,医生,内心,介绍,考试,学习,满足,鼓励,本身,关注,一年,严重,情绪,教育,行为,家人,表示,儿童,吃饭,专家,建议,家长,孩子,了解,发现,睡觉,时间,时候,', '0');
-INSERT INTO `news` VALUES ('1885', '213123123', null, '<p>\r\n	12312312312312312<img src=\"/PerfectBefriend/kindeditor/attached/image/20150728/20150728165709_246.jpg\" width=\"100%\" /> \r\n</p>\r\n<p>\r\n	23123123123123\r\n</p>\r\n<p>\r\n	123123123<img src=\"/PerfectBefriend/kindeditor/attached/image/20150728/20150728165729_855.jpg\" width=\"100%\" /> \r\n</p>', '/PerfectBefriend/kindeditor/attached/image/20150728/20150728165709_246.jpg,/PerfectBefriend/kindeditor/attached/image/20150728/20150728165729_855.jpg', '2014-07-24 01:23:55', '0', '0', '北京', '西城区', '1', '0', '6', '6', 'wmjz', '1', '', '0');
-INSERT INTO `news` VALUES ('1886', '213123123123123123', null, '<img src=\"/PerfectBefriend/kindeditor/attached/image/20150728/20150728194128_841.jpg\" width=\"100%\" />', '/kindeditor/attached/image/20150728/20150728194128_841.jpg,', '2014-04-20 10:58:00', '0', '0', '辽宁', '沈阳', '1', '0', '3', '3', 'wmjz', '1', '', '0');
-INSERT INTO `news` VALUES ('1887', '123123123', null, '123123<img src=\"/PerfectBefriend/kindeditor/attached/image/20150811/20150811145629_844.png\" width=\"100%\" />', '/kindeditor/attached/image/20150811/20150811145629_844.png,', '2014-03-15 12:24:56', '0', '0', '江苏', '南京', '1', '0', '1', '1', 'admin', '1', '', '0');
-
--- ----------------------------
--- Table structure for password
--- ----------------------------
-DROP TABLE IF EXISTS `password`;
-CREATE TABLE `password` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(255) DEFAULT NULL,
-  `uid` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=601 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of password
--- ----------------------------
-INSERT INTO `password` VALUES ('1', '123456', '638');
-INSERT INTO `password` VALUES ('2', 'xiang0949', '637');
-INSERT INTO `password` VALUES ('3', '005213', '636');
-INSERT INTO `password` VALUES ('4', '123456', '635');
-INSERT INTO `password` VALUES ('5', '166861', '630');
-INSERT INTO `password` VALUES ('6', '414939', '628');
-INSERT INTO `password` VALUES ('7', '5890608', '627');
-INSERT INTO `password` VALUES ('8', '123456', '626');
-INSERT INTO `password` VALUES ('9', '13555717521', '625');
-INSERT INTO `password` VALUES ('10', '740304', '624');
-INSERT INTO `password` VALUES ('11', '111111', '623');
-INSERT INTO `password` VALUES ('12', 'zst1026', '622');
-INSERT INTO `password` VALUES ('13', '123456', '621');
-INSERT INTO `password` VALUES ('14', '127212wzyzt', '620');
-INSERT INTO `password` VALUES ('15', 'qzw730822', '619');
-INSERT INTO `password` VALUES ('16', 'A141303', '618');
-INSERT INTO `password` VALUES ('17', '123456', '617');
-INSERT INTO `password` VALUES ('18', '1656814828', '616');
-INSERT INTO `password` VALUES ('19', 'll1999615', '615');
-INSERT INTO `password` VALUES ('20', '15274824718', '614');
-INSERT INTO `password` VALUES ('21', '18874051038', '613');
-INSERT INTO `password` VALUES ('22', '15111168091', '612');
-INSERT INTO `password` VALUES ('23', '13548749330', '611');
-INSERT INTO `password` VALUES ('24', '6520448', '610');
-INSERT INTO `password` VALUES ('25', 'szw10086', '609');
-INSERT INTO `password` VALUES ('26', 'hehua19731211', '608');
-INSERT INTO `password` VALUES ('27', '18207488133', '607');
-INSERT INTO `password` VALUES ('28', 'baiyun83608559', '606');
-INSERT INTO `password` VALUES ('29', 'zzh13467362189', '605');
-INSERT INTO `password` VALUES ('30', '1435585640', '604');
-INSERT INTO `password` VALUES ('31', 'wang19790306', '603');
-INSERT INTO `password` VALUES ('32', 'y13826076193', '602');
-INSERT INTO `password` VALUES ('33', '19850529pinfan', '601');
-INSERT INTO `password` VALUES ('34', '13467503163', '600');
-INSERT INTO `password` VALUES ('35', '123456', '599');
-INSERT INTO `password` VALUES ('36', '13467634691', '598');
-INSERT INTO `password` VALUES ('37', '83781163', '597');
-INSERT INTO `password` VALUES ('38', '13787042306', '596');
-INSERT INTO `password` VALUES ('39', 'xs1070124666', '595');
-INSERT INTO `password` VALUES ('40', '940602990', '594');
-INSERT INTO `password` VALUES ('41', '1758033043', '593');
-INSERT INTO `password` VALUES ('42', 'as12345', '592');
-INSERT INTO `password` VALUES ('43', '111111', '591');
-INSERT INTO `password` VALUES ('44', '111111', '590');
-INSERT INTO `password` VALUES ('45', 'dennis', '589');
-INSERT INTO `password` VALUES ('46', '111111', '588');
-INSERT INTO `password` VALUES ('47', '761031', '587');
-INSERT INTO `password` VALUES ('48', '123456', '586');
-INSERT INTO `password` VALUES ('49', '123456', '585');
-INSERT INTO `password` VALUES ('50', '1111111', '584');
-INSERT INTO `password` VALUES ('51', '18900740335', '583');
-INSERT INTO `password` VALUES ('52', '173971980', '581');
-INSERT INTO `password` VALUES ('53', '670326', '580');
-INSERT INTO `password` VALUES ('54', '670326', '579');
-INSERT INTO `password` VALUES ('55', '111111', '578');
-INSERT INTO `password` VALUES ('56', '123456', '577');
-INSERT INTO `password` VALUES ('57', 'ZH20130215', '576');
-INSERT INTO `password` VALUES ('58', 'liukelai123', '575');
-INSERT INTO `password` VALUES ('59', 'zsh410015', '574');
-INSERT INTO `password` VALUES ('60', '18711027537', '573');
-INSERT INTO `password` VALUES ('61', '123456', '572');
-INSERT INTO `password` VALUES ('62', '111111', '571');
-INSERT INTO `password` VALUES ('63', '123456', '570');
-INSERT INTO `password` VALUES ('64', '123456', '569');
-INSERT INTO `password` VALUES ('65', '123456', '568');
-INSERT INTO `password` VALUES ('66', '123456', '567');
-INSERT INTO `password` VALUES ('67', '123456', '566');
-INSERT INTO `password` VALUES ('68', '123456', '565');
-INSERT INTO `password` VALUES ('69', '111111', '564');
-INSERT INTO `password` VALUES ('70', '111111', '563');
-INSERT INTO `password` VALUES ('71', '5201984', '562');
-INSERT INTO `password` VALUES ('72', 'l13975890818', '561');
-INSERT INTO `password` VALUES ('73', '9323953341', '560');
-INSERT INTO `password` VALUES ('74', '111111', '559');
-INSERT INTO `password` VALUES ('75', '13467658071', '558');
-INSERT INTO `password` VALUES ('76', 'aall111', '557');
-INSERT INTO `password` VALUES ('77', '2003/04/07', '556');
-INSERT INTO `password` VALUES ('78', '820501', '555');
-INSERT INTO `password` VALUES ('79', '123456789', '554');
-INSERT INTO `password` VALUES ('80', 'wph05012216', '553');
-INSERT INTO `password` VALUES ('81', 'zy20020803', '552');
-INSERT INTO `password` VALUES ('82', '4367816534', '551');
-INSERT INTO `password` VALUES ('83', '13469463360', '550');
-INSERT INTO `password` VALUES ('84', '111111', '549');
-INSERT INTO `password` VALUES ('85', 'a197333', '548');
-INSERT INTO `password` VALUES ('86', 'xy19830920', '547');
-INSERT INTO `password` VALUES ('87', '768276', '546');
-INSERT INTO `password` VALUES ('88', 'su83215902', '545');
-INSERT INTO `password` VALUES ('89', '123456', '544');
-INSERT INTO `password` VALUES ('90', '2345678', '543');
-INSERT INTO `password` VALUES ('91', 'ly888888', '542');
-INSERT INTO `password` VALUES ('92', '123456wenjuan', '541');
-INSERT INTO `password` VALUES ('93', '123456qwennjuan', '540');
-INSERT INTO `password` VALUES ('94', '7221772267', '539');
-INSERT INTO `password` VALUES ('95', '18774083732', '538');
-INSERT INTO `password` VALUES ('96', '888888', '537');
-INSERT INTO `password` VALUES ('97', '194354wdox', '536');
-INSERT INTO `password` VALUES ('98', 'dxw5201314', '535');
-INSERT INTO `password` VALUES ('99', '1234567890123dcl', '534');
-INSERT INTO `password` VALUES ('100', '123456789.', '533');
-INSERT INTO `password` VALUES ('101', '198211', '532');
-INSERT INTO `password` VALUES ('102', '15802530087', '531');
-INSERT INTO `password` VALUES ('103', '13507402993', '530');
-INSERT INTO `password` VALUES ('104', 'renpi999', '529');
-INSERT INTO `password` VALUES ('105', '13397414342', '528');
-INSERT INTO `password` VALUES ('106', '1017211', '527');
-INSERT INTO `password` VALUES ('107', '123456', '526');
-INSERT INTO `password` VALUES ('108', '18974814825', '525');
-INSERT INTO `password` VALUES ('109', '631532', '524');
-INSERT INTO `password` VALUES ('110', 'xyh761121', '523');
-INSERT INTO `password` VALUES ('111', '070323', '522');
-INSERT INTO `password` VALUES ('112', 'qiao61608yu', '521');
-INSERT INTO `password` VALUES ('113', 'ccyy1002', '520');
-INSERT INTO `password` VALUES ('114', '123456', '519');
-INSERT INTO `password` VALUES ('115', '888888', '518');
-INSERT INTO `password` VALUES ('116', '6836748', '517');
-INSERT INTO `password` VALUES ('117', 'aaa683674', '516');
-INSERT INTO `password` VALUES ('118', 'abc', '515');
-INSERT INTO `password` VALUES ('119', '1978078lyc', '514');
-INSERT INTO `password` VALUES ('120', '13332512860', '513');
-INSERT INTO `password` VALUES ('121', '88815130', '512');
-INSERT INTO `password` VALUES ('122', '123', '511');
-INSERT INTO `password` VALUES ('123', 'aaa6836748', '510');
-INSERT INTO `password` VALUES ('124', '20030814', '509');
-INSERT INTO `password` VALUES ('125', '123456', '508');
-INSERT INTO `password` VALUES ('126', 'GPF0811', '507');
-INSERT INTO `password` VALUES ('127', 'CHENYU813', '506');
-INSERT INTO `password` VALUES ('128', 'CHENYU813', '505');
-INSERT INTO `password` VALUES ('129', 'zhangshun888', '504');
-INSERT INTO `password` VALUES ('130', 'qazxsw', '503');
-INSERT INTO `password` VALUES ('131', '13207411451', '502');
-INSERT INTO `password` VALUES ('132', '825290', '501');
-INSERT INTO `password` VALUES ('133', 'pjh3439881', '500');
-INSERT INTO `password` VALUES ('134', '12345678', '499');
-INSERT INTO `password` VALUES ('135', 'testjean', '498');
-INSERT INTO `password` VALUES ('136', '888888', '497');
-INSERT INTO `password` VALUES ('137', '13723858639', '496');
-INSERT INTO `password` VALUES ('138', '1234567a', '495');
-INSERT INTO `password` VALUES ('139', '991528', '494');
-INSERT INTO `password` VALUES ('140', '120013', '493');
-INSERT INTO `password` VALUES ('141', 'chen1989520love', '492');
-INSERT INTO `password` VALUES ('142', '111111', '491');
-INSERT INTO `password` VALUES ('143', 'lj998179', '490');
-INSERT INTO `password` VALUES ('144', '700419SSS', '489');
-INSERT INTO `password` VALUES ('145', '15274922883', '488');
-INSERT INTO `password` VALUES ('146', '011213', '487');
-INSERT INTO `password` VALUES ('147', '15700737377', '486');
-INSERT INTO `password` VALUES ('148', '123456789', '485');
-INSERT INTO `password` VALUES ('149', '769702005', '484');
-INSERT INTO `password` VALUES ('150', 'q123456', '483');
-INSERT INTO `password` VALUES ('151', '636363SSS', '482');
-INSERT INTO `password` VALUES ('152', '8062', '481');
-INSERT INTO `password` VALUES ('153', '123456', '480');
-INSERT INTO `password` VALUES ('154', '549017', '479');
-INSERT INTO `password` VALUES ('155', '123456789', '478');
-INSERT INTO `password` VALUES ('156', 'x123456789', '477');
-INSERT INTO `password` VALUES ('157', '1234567890', '476');
-INSERT INTO `password` VALUES ('158', '15973127506', '475');
-INSERT INTO `password` VALUES ('159', 'wwwwwwww', '474');
-INSERT INTO `password` VALUES ('160', 'wang', '473');
-INSERT INTO `password` VALUES ('161', '123456', '472');
-INSERT INTO `password` VALUES ('162', '123456', '471');
-INSERT INTO `password` VALUES ('163', 'dennis', '470');
-INSERT INTO `password` VALUES ('164', '111111', '469');
-INSERT INTO `password` VALUES ('165', '111111', '468');
-INSERT INTO `password` VALUES ('166', '13787179686', '466');
-INSERT INTO `password` VALUES ('167', '13787179686', '467');
-INSERT INTO `password` VALUES ('168', 'admin123', '465');
-INSERT INTO `password` VALUES ('169', '111111', '464');
-INSERT INTO `password` VALUES ('170', 'zhang1234', '463');
-INSERT INTO `password` VALUES ('171', '11111111', '462');
-INSERT INTO `password` VALUES ('172', '19871223', '461');
-INSERT INTO `password` VALUES ('173', '18684695213', '460');
-INSERT INTO `password` VALUES ('174', '13873659760', '459');
-INSERT INTO `password` VALUES ('175', '13308449956', '458');
-INSERT INTO `password` VALUES ('176', 'lg1390589773', '457');
-INSERT INTO `password` VALUES ('177', '324330', '456');
-INSERT INTO `password` VALUES ('178', 'jcjyck421', '455');
-INSERT INTO `password` VALUES ('179', 'zjy13773511550', '454');
-INSERT INTO `password` VALUES ('180', 'gggiuggdh', '453');
-INSERT INTO `password` VALUES ('181', '060529', '452');
-INSERT INTO `password` VALUES ('182', 'zw123456', '451');
-INSERT INTO `password` VALUES ('183', '111111', '450');
-INSERT INTO `password` VALUES ('184', '111111', '449');
-INSERT INTO `password` VALUES ('185', '541215', '448');
-INSERT INTO `password` VALUES ('186', '13237380108', '447');
-INSERT INTO `password` VALUES ('187', '123456789', '446');
-INSERT INTO `password` VALUES ('188', '123456789', '445');
-INSERT INTO `password` VALUES ('189', '12281968', '444');
-INSERT INTO `password` VALUES ('190', 'hgf1597685299', '443');
-INSERT INTO `password` VALUES ('191', '136888', '442');
-INSERT INTO `password` VALUES ('192', '4566541234567', '441');
-INSERT INTO `password` VALUES ('193', 'A820501', '440');
-INSERT INTO `password` VALUES ('194', 'vivo8888', '439');
-INSERT INTO `password` VALUES ('195', '123456', '438');
-INSERT INTO `password` VALUES ('196', 'lwf787920', '437');
-INSERT INTO `password` VALUES ('197', 'sxd0000000', '436');
-INSERT INTO `password` VALUES ('198', '1234567890', '435');
-INSERT INTO `password` VALUES ('199', 'lzg123456', '434');
-INSERT INTO `password` VALUES ('200', 'YZM19910404', '433');
-INSERT INTO `password` VALUES ('201', '123456', '432');
-INSERT INTO `password` VALUES ('202', '19781113', '431');
-INSERT INTO `password` VALUES ('203', 'kht1988324', '430');
-INSERT INTO `password` VALUES ('204', '111111', '429');
-INSERT INTO `password` VALUES ('205', '15045712597', '428');
-INSERT INTO `password` VALUES ('206', '17842', '427');
-INSERT INTO `password` VALUES ('207', 'yaohuabin665507', '426');
-INSERT INTO `password` VALUES ('208', '0510520', '425');
-INSERT INTO `password` VALUES ('209', 'jgtyjgtyjgtyp', '424');
-INSERT INTO `password` VALUES ('210', '19890328', '423');
-INSERT INTO `password` VALUES ('211', '123456789', '422');
-INSERT INTO `password` VALUES ('212', 'abcdef', '421');
-INSERT INTO `password` VALUES ('213', '13467360177', '420');
-INSERT INTO `password` VALUES ('214', '770808', '419');
-INSERT INTO `password` VALUES ('215', '20120703tyx', '418');
-INSERT INTO `password` VALUES ('216', 'xwy810720', '417');
-INSERT INTO `password` VALUES ('217', 'dudu12', '416');
-INSERT INTO `password` VALUES ('218', '15115688448', '415');
-INSERT INTO `password` VALUES ('219', '15016152298', '414');
-INSERT INTO `password` VALUES ('220', '102033', '413');
-INSERT INTO `password` VALUES ('221', 'zy000314418', '412');
-INSERT INTO `password` VALUES ('222', '111111', '411');
-INSERT INTO `password` VALUES ('223', 'hjb18175672977', '410');
-INSERT INTO `password` VALUES ('224', '13637366634', '409');
-INSERT INTO `password` VALUES ('225', '271175', '408');
-INSERT INTO `password` VALUES ('226', '1234567890', '407');
-INSERT INTO `password` VALUES ('227', '222222', '406');
-INSERT INTO `password` VALUES ('228', 'pzh020504', '405');
-INSERT INTO `password` VALUES ('229', '20071223', '404');
-INSERT INTO `password` VALUES ('230', '123', '403');
-INSERT INTO `password` VALUES ('231', 'zhanghui520.zh', '402');
-INSERT INTO `password` VALUES ('232', 'wrh886425', '401');
-INSERT INTO `password` VALUES ('233', '790618', '400');
-INSERT INTO `password` VALUES ('234', '132258', '399');
-INSERT INTO `password` VALUES ('235', '123456789', '398');
-INSERT INTO `password` VALUES ('236', '20010601h1', '397');
-INSERT INTO `password` VALUES ('237', '2002122', '396');
-INSERT INTO `password` VALUES ('238', '123456', '395');
-INSERT INTO `password` VALUES ('239', '123456', '394');
-INSERT INTO `password` VALUES ('240', '041008', '393');
-INSERT INTO `password` VALUES ('241', '041008', '392');
-INSERT INTO `password` VALUES ('242', 'hgx272808', '391');
-INSERT INTO `password` VALUES ('243', 'hgx272808', '390');
-INSERT INTO `password` VALUES ('244', '2001716', '389');
-INSERT INTO `password` VALUES ('245', 'wangweiqiong', '388');
-INSERT INTO `password` VALUES ('246', '999999', '387');
-INSERT INTO `password` VALUES ('247', '200815', '386');
-INSERT INTO `password` VALUES ('248', 'Ff7788', '385');
-INSERT INTO `password` VALUES ('249', '214328', '384');
-INSERT INTO `password` VALUES ('250', '697377', '383');
-INSERT INTO `password` VALUES ('251', '12liuhui', '382');
-INSERT INTO `password` VALUES ('252', '12liuhui', '381');
-INSERT INTO `password` VALUES ('253', 'a20040720', '380');
-INSERT INTO `password` VALUES ('254', '123456', '379');
-INSERT INTO `password` VALUES ('255', '01234567890', '378');
-INSERT INTO `password` VALUES ('256', '13397660588asd', '377');
-INSERT INTO `password` VALUES ('257', 'xier634900', '376');
-INSERT INTO `password` VALUES ('258', 'ldhandly2001', '375');
-INSERT INTO `password` VALUES ('259', '123456', '374');
-INSERT INTO `password` VALUES ('260', 'dm1118', '373');
-INSERT INTO `password` VALUES ('261', '1999319', '372');
-INSERT INTO `password` VALUES ('262', '727620', '371');
-INSERT INTO `password` VALUES ('263', '002727', '370');
-INSERT INTO `password` VALUES ('264', '123456789', '369');
-INSERT INTO `password` VALUES ('265', '13875131381', '368');
-INSERT INTO `password` VALUES ('266', '1055014911', '367');
-INSERT INTO `password` VALUES ('267', '794381567', '366');
-INSERT INTO `password` VALUES ('268', 'cwl2002101700000000', '365');
-INSERT INTO `password` VALUES ('269', 'cr19810823', '364');
-INSERT INTO `password` VALUES ('270', 'wlf20000830', '363');
-INSERT INTO `password` VALUES ('271', '318026', '362');
-INSERT INTO `password` VALUES ('272', '318026', '361');
-INSERT INTO `password` VALUES ('273', 'lhj20000804', '360');
-INSERT INTO `password` VALUES ('274', '788118', '359');
-INSERT INTO `password` VALUES ('275', '518818', '358');
-INSERT INTO `password` VALUES ('276', '222', '357');
-INSERT INTO `password` VALUES ('277', '1314520', '356');
-INSERT INTO `password` VALUES ('278', '010606', '355');
-INSERT INTO `password` VALUES ('279', '20001124', '354');
-INSERT INTO `password` VALUES ('280', '224685', '353');
-INSERT INTO `password` VALUES ('281', '18173676910mxm', '352');
-INSERT INTO `password` VALUES ('282', '1977158322', '351');
-INSERT INTO `password` VALUES ('283', '618719', '350');
-INSERT INTO `password` VALUES ('284', '123456', '349');
-INSERT INTO `password` VALUES ('285', '12345678', '348');
-INSERT INTO `password` VALUES ('286', '123456', '347');
-INSERT INTO `password` VALUES ('287', '520520', '346');
-INSERT INTO `password` VALUES ('288', '756899', '345');
-INSERT INTO `password` VALUES ('289', '189888', '344');
-INSERT INTO `password` VALUES ('290', 'xyr060417', '343');
-INSERT INTO `password` VALUES ('291', '1581938', '342');
-INSERT INTO `password` VALUES ('292', '2023654801', '341');
-INSERT INTO `password` VALUES ('293', 'zxz2616', '340');
-INSERT INTO `password` VALUES ('294', '07606679084', '339');
-INSERT INTO `password` VALUES ('295', '13617420332hwh', '338');
-INSERT INTO `password` VALUES ('296', '112233', '337');
-INSERT INTO `password` VALUES ('297', '112233', '336');
-INSERT INTO `password` VALUES ('298', '309704', '335');
-INSERT INTO `password` VALUES ('299', '0137099288', '334');
-INSERT INTO `password` VALUES ('300', '13548852436', '333');
-INSERT INTO `password` VALUES ('301', '123456', '332');
-INSERT INTO `password` VALUES ('302', '790823', '331');
-INSERT INTO `password` VALUES ('303', '568838', '330');
-INSERT INTO `password` VALUES ('304', '13973620828', '329');
-INSERT INTO `password` VALUES ('305', 'xiangcao520', '328');
-INSERT INTO `password` VALUES ('306', 'cjlCCW437078', '327');
-INSERT INTO `password` VALUES ('307', 'cjlCCW437078', '326');
-INSERT INTO `password` VALUES ('308', '303948', '325');
-INSERT INTO `password` VALUES ('309', '2517599070', '324');
-INSERT INTO `password` VALUES ('310', '123456789', '323');
-INSERT INTO `password` VALUES ('311', '070606', '322');
-INSERT INTO `password` VALUES ('312', '751102', '321');
-INSERT INTO `password` VALUES ('313', '123456', '320');
-INSERT INTO `password` VALUES ('314', 'lusiping', '319');
-INSERT INTO `password` VALUES ('315', '20080312', '318');
-INSERT INTO `password` VALUES ('316', '005925', '317');
-INSERT INTO `password` VALUES ('317', 'zhangchaojun520', '316');
-INSERT INTO `password` VALUES ('318', '388000', '315');
-INSERT INTO `password` VALUES ('319', 'qweasdzxc1', '314');
-INSERT INTO `password` VALUES ('320', 'qweasdzxc1', '313');
-INSERT INTO `password` VALUES ('321', '198012301567', '312');
-INSERT INTO `password` VALUES ('322', '666343', '311');
-INSERT INTO `password` VALUES ('323', '131420', '310');
-INSERT INTO `password` VALUES ('324', '20040806000', '309');
-INSERT INTO `password` VALUES ('325', '20031128', '308');
-INSERT INTO `password` VALUES ('326', 'cly750426', '307');
-INSERT INTO `password` VALUES ('327', 'p99248915', '306');
-INSERT INTO `password` VALUES ('328', '1986217', '305');
-INSERT INTO `password` VALUES ('329', '123456', '304');
-INSERT INTO `password` VALUES ('330', '1111', '303');
-INSERT INTO `password` VALUES ('331', '123456f', '302');
-INSERT INTO `password` VALUES ('332', '888ayy666', '301');
-INSERT INTO `password` VALUES ('333', 'zhaoziqi1220', '300');
-INSERT INTO `password` VALUES ('334', '8023lj..', '299');
-INSERT INTO `password` VALUES ('335', '580858', '298');
-INSERT INTO `password` VALUES ('336', '888889', '297');
-INSERT INTO `password` VALUES ('337', 'g11z000q823', '296');
-INSERT INTO `password` VALUES ('338', '521888', '295');
-INSERT INTO `password` VALUES ('339', '12533280w7', '294');
-INSERT INTO `password` VALUES ('340', 'YBJ200310', '293');
-INSERT INTO `password` VALUES ('341', '1234567890', '292');
-INSERT INTO `password` VALUES ('342', 'lllll11111', '291');
-INSERT INTO `password` VALUES ('343', '841203', '290');
-INSERT INTO `password` VALUES ('344', '102201', '289');
-INSERT INTO `password` VALUES ('345', 'cnhk606899', '288');
-INSERT INTO `password` VALUES ('346', 'QQQ1231hj', '287');
-INSERT INTO `password` VALUES ('347', '717501', '286');
-INSERT INTO `password` VALUES ('348', '760122', '285');
-INSERT INTO `password` VALUES ('349', '217415', '284');
-INSERT INTO `password` VALUES ('350', 'ww5767', '283');
-INSERT INTO `password` VALUES ('351', '123456', '282');
-INSERT INTO `password` VALUES ('352', '050902', '281');
-INSERT INTO `password` VALUES ('353', '050902', '280');
-INSERT INTO `password` VALUES ('354', 'qwertyuiop', '279');
-INSERT INTO `password` VALUES ('355', '140920', '278');
-INSERT INTO `password` VALUES ('356', '200245', '277');
-INSERT INTO `password` VALUES ('357', '200245', '276');
-INSERT INTO `password` VALUES ('358', 'ty', '275');
-INSERT INTO `password` VALUES ('359', '200349', '274');
-INSERT INTO `password` VALUES ('360', '20050630', '273');
-INSERT INTO `password` VALUES ('361', '15115792180', '272');
-INSERT INTO `password` VALUES ('362', '1122334qq', '271');
-INSERT INTO `password` VALUES ('363', '513141125w', '270');
-INSERT INTO `password` VALUES ('364', 'zl19800115', '269');
-INSERT INTO `password` VALUES ('365', 'll771203', '268');
-INSERT INTO `password` VALUES ('366', '031020', '267');
-INSERT INTO `password` VALUES ('367', 'sehun0412', '266');
-INSERT INTO `password` VALUES ('368', '18907361228', '265');
-INSERT INTO `password` VALUES ('369', '1282498430ysj', '264');
-INSERT INTO `password` VALUES ('370', 'pandinmin198210', '263');
-INSERT INTO `password` VALUES ('371', '?666707', '262');
-INSERT INTO `password` VALUES ('372', '731215', '261');
-INSERT INTO `password` VALUES ('373', '687603', '260');
-INSERT INTO `password` VALUES ('374', '88520', '259');
-INSERT INTO `password` VALUES ('375', 'l19780120', '258');
-INSERT INTO `password` VALUES ('376', '20080614', '257');
-INSERT INTO `password` VALUES ('377', '189319', '256');
-INSERT INTO `password` VALUES ('378', 'qingbing1230', '255');
-INSERT INTO `password` VALUES ('379', '123456', '254');
-INSERT INTO `password` VALUES ('380', '1314520', '253');
-INSERT INTO `password` VALUES ('381', '0726', '252');
-INSERT INTO `password` VALUES ('382', '15211213028', '251');
-INSERT INTO `password` VALUES ('383', '221119', '250');
-INSERT INTO `password` VALUES ('384', 'yx13637364077', '249');
-INSERT INTO `password` VALUES ('385', '13170233023...', '248');
-INSERT INTO `password` VALUES ('386', '512615', '247');
-INSERT INTO `password` VALUES ('387', '0173001161', '246');
-INSERT INTO `password` VALUES ('388', '123456', '245');
-INSERT INTO `password` VALUES ('389', 'wangsong', '244');
-INSERT INTO `password` VALUES ('390', 'H19821125', '243');
-INSERT INTO `password` VALUES ('391', '19871128Q', '242');
-INSERT INTO `password` VALUES ('392', '876543210', '241');
-INSERT INTO `password` VALUES ('393', 'zm20150116', '240');
-INSERT INTO `password` VALUES ('394', 'wangye25', '239');
-INSERT INTO `password` VALUES ('395', '1982418', '238');
-INSERT INTO `password` VALUES ('396', 'q1314520', '237');
-INSERT INTO `password` VALUES ('397', 'hongxia5784555', '236');
-INSERT INTO `password` VALUES ('398', 'wu258258', '235');
-INSERT INTO `password` VALUES ('399', 'zlj13807366018', '234');
-INSERT INTO `password` VALUES ('400', '123123', '233');
-INSERT INTO `password` VALUES ('401', '19760709qy', '232');
-INSERT INTO `password` VALUES ('402', '168168', '231');
-INSERT INTO `password` VALUES ('403', '319067', '230');
-INSERT INTO `password` VALUES ('404', '13762668793', '229');
-INSERT INTO `password` VALUES ('405', 'zhou', '228');
-INSERT INTO `password` VALUES ('406', 'phs20040521', '227');
-INSERT INTO `password` VALUES ('407', '13875021570', '226');
-INSERT INTO `password` VALUES ('408', '123456', '225');
-INSERT INTO `password` VALUES ('409', '13786683053', '224');
-INSERT INTO `password` VALUES ('410', '20031007TLH88', '223');
-INSERT INTO `password` VALUES ('411', 'lyb980925', '222');
-INSERT INTO `password` VALUES ('412', '13787886745', '221');
-INSERT INTO `password` VALUES ('413', '15973640044', '220');
-INSERT INTO `password` VALUES ('414', 'll918ff314', '219');
-INSERT INTO `password` VALUES ('415', '18973641567czh', '218');
-INSERT INTO `password` VALUES ('416', 'zjw20051218', '217');
-INSERT INTO `password` VALUES ('417', '1399999999', '216');
-INSERT INTO `password` VALUES ('418', '12279250', '215');
-INSERT INTO `password` VALUES ('419', 'ss4304042', '214');
-INSERT INTO `password` VALUES ('420', 'liyiqiang518', '213');
-INSERT INTO `password` VALUES ('421', '200656', '212');
-INSERT INTO `password` VALUES ('422', '198311', '211');
-INSERT INTO `password` VALUES ('423', 'yxy20040914', '210');
-INSERT INTO `password` VALUES ('424', 'xc888888', '209');
-INSERT INTO `password` VALUES ('425', 'lplyl252892', '208');
-INSERT INTO `password` VALUES ('426', 'wy5201314', '207');
-INSERT INTO `password` VALUES ('427', '13974201701', '206');
-INSERT INTO `password` VALUES ('428', '758099', '205');
-INSERT INTO `password` VALUES ('429', 'weilai720110', '204');
-INSERT INTO `password` VALUES ('430', '48881972', '203');
-INSERT INTO `password` VALUES ('431', 'jcw050313', '202');
-INSERT INTO `password` VALUES ('432', 'oyzhzx198210', '201');
-INSERT INTO `password` VALUES ('433', 'oyzhzx198210', '200');
-INSERT INTO `password` VALUES ('434', '221219', '199');
-INSERT INTO `password` VALUES ('435', 'P15581032180', '198');
-INSERT INTO `password` VALUES ('436', '15273696722ab', '197');
-INSERT INTO `password` VALUES ('437', '030705', '196');
-INSERT INTO `password` VALUES ('438', '123456', '195');
-INSERT INTO `password` VALUES ('439', '1001', '194');
-INSERT INTO `password` VALUES ('440', '4230117', '193');
-INSERT INTO `password` VALUES ('441', '199857', '192');
-INSERT INTO `password` VALUES ('442', '13487650212', '191');
-INSERT INTO `password` VALUES ('443', '6av66430cd01', '190');
-INSERT INTO `password` VALUES ('444', 'x010115', '189');
-INSERT INTO `password` VALUES ('445', '15274233670', '188');
-INSERT INTO `password` VALUES ('446', 'sx188', '187');
-INSERT INTO `password` VALUES ('447', '123456789', '186');
-INSERT INTO `password` VALUES ('448', '15200608624', '185');
-INSERT INTO `password` VALUES ('449', '920822', '184');
-INSERT INTO `password` VALUES ('450', '88888888', '183');
-INSERT INTO `password` VALUES ('451', '134691', '182');
-INSERT INTO `password` VALUES ('452', '19911226wang', '181');
-INSERT INTO `password` VALUES ('453', '19800629', '180');
-INSERT INTO `password` VALUES ('454', 'zhl111111', '179');
-INSERT INTO `password` VALUES ('455', '516171', '178');
-INSERT INTO `password` VALUES ('456', 'HZF930720HZF', '177');
-INSERT INTO `password` VALUES ('457', '15073648118', '176');
-INSERT INTO `password` VALUES ('458', 'gyxxt', '175');
-INSERT INTO `password` VALUES ('459', '123456', '174');
-INSERT INTO `password` VALUES ('460', '15274233670', '173');
-INSERT INTO `password` VALUES ('461', 'gcl2883222', '172');
-INSERT INTO `password` VALUES ('462', 'shenglei', '171');
-INSERT INTO `password` VALUES ('463', '13875145938', '170');
-INSERT INTO `password` VALUES ('464', 'llkkwwgg77924251', '169');
-INSERT INTO `password` VALUES ('465', '1472182318', '168');
-INSERT INTO `password` VALUES ('466', '081113', '167');
-INSERT INTO `password` VALUES ('467', 'zxcvbnm', '166');
-INSERT INTO `password` VALUES ('468', '207823021102@@', '165');
-INSERT INTO `password` VALUES ('469', '20080618', '164');
-INSERT INTO `password` VALUES ('470', '15973681117', '163');
-INSERT INTO `password` VALUES ('471', '650322', '162');
-INSERT INTO `password` VALUES ('472', 'w12345678', '161');
-INSERT INTO `password` VALUES ('473', 'z2861996', '160');
-INSERT INTO `password` VALUES ('474', 'c000000008', '159');
-INSERT INTO `password` VALUES ('475', '20051002', '158');
-INSERT INTO `password` VALUES ('476', '20070427', '157');
-INSERT INTO `password` VALUES ('477', '15886648380', '156');
-INSERT INTO `password` VALUES ('478', '524013', '155');
-INSERT INTO `password` VALUES ('479', '18975607675', '154');
-INSERT INTO `password` VALUES ('480', 'yylzxbcyx781017', '153');
-INSERT INTO `password` VALUES ('481', '761023', '152');
-INSERT INTO `password` VALUES ('482', '20070413', '151');
-INSERT INTO `password` VALUES ('483', 'huyoujia0701', '150');
-INSERT INTO `password` VALUES ('484', '1314520', '149');
-INSERT INTO `password` VALUES ('485', 'lisiya', '148');
-INSERT INTO `password` VALUES ('486', '20040716', '147');
-INSERT INTO `password` VALUES ('487', 'hdf197823', '146');
-INSERT INTO `password` VALUES ('488', 'zhuyunman', '145');
-INSERT INTO `password` VALUES ('489', '15367795874', '144');
-INSERT INTO `password` VALUES ('490', 'zhx215', '143');
-INSERT INTO `password` VALUES ('491', '818623', '142');
-INSERT INTO `password` VALUES ('492', 'mfkjeg', '141');
-INSERT INTO `password` VALUES ('493', 'a20080205', '140');
-INSERT INTO `password` VALUES ('494', '6642953lei', '139');
-INSERT INTO `password` VALUES ('495', 'hurong', '138');
-INSERT INTO `password` VALUES ('496', '75635276', '137');
-INSERT INTO `password` VALUES ('497', '20070914', '136');
-INSERT INTO `password` VALUES ('498', '123456', '135');
-INSERT INTO `password` VALUES ('499', 'chu771210', '134');
-INSERT INTO `password` VALUES ('500', '2851054', '133');
-INSERT INTO `password` VALUES ('501', 'yuanmln', '132');
-INSERT INTO `password` VALUES ('502', '1979927maomao', '131');
-INSERT INTO `password` VALUES ('503', '2867861', '130');
-INSERT INTO `password` VALUES ('504', '15140125', '129');
-INSERT INTO `password` VALUES ('505', 'x04311', '128');
-INSERT INTO `password` VALUES ('506', '00000000', '127');
-INSERT INTO `password` VALUES ('507', '1111', '126');
-INSERT INTO `password` VALUES ('508', '123456789', '125');
-INSERT INTO `password` VALUES ('509', 'zccgg888888', '124');
-INSERT INTO `password` VALUES ('510', '520789', '123');
-INSERT INTO `password` VALUES ('511', 'bo797163', '122');
-INSERT INTO `password` VALUES ('512', '111111', '121');
-INSERT INTO `password` VALUES ('513', '198266', '120');
-INSERT INTO `password` VALUES ('514', '1234567890', '119');
-INSERT INTO `password` VALUES ('515', 'zsp070522', '118');
-INSERT INTO `password` VALUES ('516', '86613184', '117');
-INSERT INTO `password` VALUES ('517', '532628abc', '116');
-INSERT INTO `password` VALUES ('518', '123456789', '115');
-INSERT INTO `password` VALUES ('519', '1235789', '114');
-INSERT INTO `password` VALUES ('520', '01237x', '113');
-INSERT INTO `password` VALUES ('521', '20050727', '112');
-INSERT INTO `password` VALUES ('522', '19781122', '111');
-INSERT INTO `password` VALUES ('523', '125791', '110');
-INSERT INTO `password` VALUES ('524', '0889088', '109');
-INSERT INTO `password` VALUES ('525', 'lsx13637366839', '108');
-INSERT INTO `password` VALUES ('526', '2853137', '107');
-INSERT INTO `password` VALUES ('527', '780216', '106');
-INSERT INTO `password` VALUES ('528', '695555yr', '105');
-INSERT INTO `password` VALUES ('529', '780520', '104');
-INSERT INTO `password` VALUES ('530', '75209972mn', '103');
-INSERT INTO `password` VALUES ('531', '416125', '102');
-INSERT INTO `password` VALUES ('532', '20030504wyh', '101');
-INSERT INTO `password` VALUES ('533', 'p13342560232', '100');
-INSERT INTO `password` VALUES ('534', '101423', '99');
-INSERT INTO `password` VALUES ('535', '790723', '98');
-INSERT INTO `password` VALUES ('536', 'wjl.1272646746', '97');
-INSERT INTO `password` VALUES ('537', '760703', '96');
-INSERT INTO `password` VALUES ('538', 'z780918yh', '95');
-INSERT INTO `password` VALUES ('539', '111111', '94');
-INSERT INTO `password` VALUES ('540', '123456', '93');
-INSERT INTO `password` VALUES ('541', 'funem6612', '92');
-INSERT INTO `password` VALUES ('542', 'cb430725', '91');
-INSERT INTO `password` VALUES ('543', '173971980', '90');
-INSERT INTO `password` VALUES ('544', '1978221711', '89');
-INSERT INTO `password` VALUES ('545', 'lhm12345678', '88');
-INSERT INTO `password` VALUES ('546', '123456', '78');
-INSERT INTO `password` VALUES ('547', '93111403211', '87');
-INSERT INTO `password` VALUES ('548', '19980818ly', '86');
-INSERT INTO `password` VALUES ('549', '123456', '85');
-INSERT INTO `password` VALUES ('550', '15399777877', '84');
-INSERT INTO `password` VALUES ('551', '20060406', '83');
-INSERT INTO `password` VALUES ('552', '2268889', '82');
-INSERT INTO `password` VALUES ('553', '123456', '81');
-INSERT INTO `password` VALUES ('554', 'gaohua13579', '80');
-INSERT INTO `password` VALUES ('555', 'hh2006', '77');
-INSERT INTO `password` VALUES ('556', 'wjh12344321', '76');
-INSERT INTO `password` VALUES ('557', '111111', '75');
-INSERT INTO `password` VALUES ('558', '111111', '72');
-INSERT INTO `password` VALUES ('559', '111111', '71');
-INSERT INTO `password` VALUES ('560', '697377', '70');
-INSERT INTO `password` VALUES ('561', '123456', '639');
-INSERT INTO `password` VALUES ('562', '123456', '640');
-INSERT INTO `password` VALUES ('563', '456', '641');
-INSERT INTO `password` VALUES ('564', '111111', '642');
-INSERT INTO `password` VALUES ('565', '111111', '643');
-INSERT INTO `password` VALUES ('566', '111111', '644');
-INSERT INTO `password` VALUES ('567', '111111', '645');
-INSERT INTO `password` VALUES ('568', '1111111', '646');
-INSERT INTO `password` VALUES ('569', '12312313', '647');
-INSERT INTO `password` VALUES ('570', '123456', '648');
-INSERT INTO `password` VALUES ('571', '123456', '649');
-INSERT INTO `password` VALUES ('572', '123456', '650');
-INSERT INTO `password` VALUES ('573', '111111', '651');
-INSERT INTO `password` VALUES ('574', '87736844', '653');
-INSERT INTO `password` VALUES ('575', '15496920', '654');
-INSERT INTO `password` VALUES ('576', '49085233', '655');
-INSERT INTO `password` VALUES ('577', '54656256', '656');
-INSERT INTO `password` VALUES ('578', '40333100', '657');
-INSERT INTO `password` VALUES ('579', '111111', '658');
-INSERT INTO `password` VALUES ('580', '86009651', '659');
-INSERT INTO `password` VALUES ('581', '52127768', '660');
-INSERT INTO `password` VALUES ('582', '86762475', '661');
-INSERT INTO `password` VALUES ('583', '66067318', '662');
-INSERT INTO `password` VALUES ('584', '123456789', '663');
-INSERT INTO `password` VALUES ('585', '80368665', '664');
-INSERT INTO `password` VALUES ('586', '48329977', '665');
-INSERT INTO `password` VALUES ('587', '38830895', '666');
-INSERT INTO `password` VALUES ('588', '66179136', '667');
-INSERT INTO `password` VALUES ('589', '27940354', '668');
-INSERT INTO `password` VALUES ('590', '19229205', '669');
-INSERT INTO `password` VALUES ('591', '10000004', '674');
-INSERT INTO `password` VALUES ('592', '10000005', '675');
-INSERT INTO `password` VALUES ('593', 'aaaaaa', '676');
-INSERT INTO `password` VALUES ('594', '10000007', '677');
-INSERT INTO `password` VALUES ('595', '10000008', '678');
-INSERT INTO `password` VALUES ('596', '10000009', '679');
-INSERT INTO `password` VALUES ('597', '10000010', '680');
-INSERT INTO `password` VALUES ('598', '123456', '681');
-INSERT INTO `password` VALUES ('599', '10000012', '682');
-INSERT INTO `password` VALUES ('600', '111111', '683');
 
 -- ----------------------------
 -- Table structure for profile
@@ -10394,7 +9883,7 @@ CREATE TABLE `stas` (
   `os` varchar(255) DEFAULT NULL,
   `province` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of stas
@@ -10538,6 +10027,10 @@ INSERT INTO `stas` VALUES ('214', '0', '0', '0', '0', '0', '2015-08-17', 'web', 
 INSERT INTO `stas` VALUES ('215', '0', '0', '0', '0', '0', '2015-08-17', 'android', 'all');
 INSERT INTO `stas` VALUES ('216', '0', '0', '0', '0', '0', '2015-08-17', 'ios', 'all');
 INSERT INTO `stas` VALUES ('217', '0', '0', '0', '0', '0', '2015-08-17', 'syn', 'all');
+INSERT INTO `stas` VALUES ('218', '0', '0', '1', '1', '0', '2015-08-18', 'web', 'all');
+INSERT INTO `stas` VALUES ('219', '0', '0', '0', '0', '0', '2015-08-18', 'android', 'all');
+INSERT INTO `stas` VALUES ('220', '0', '0', '0', '0', '0', '2015-08-18', 'ios', 'all');
+INSERT INTO `stas` VALUES ('221', '0', '0', '0', '0', '0', '2015-08-18', 'syn', 'all');
 
 -- ----------------------------
 -- Table structure for support
@@ -10601,7 +10094,7 @@ CREATE TABLE `users` (
   `childrensex` varchar(11) DEFAULT '',
   `age` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=698 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=699 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
@@ -10617,8 +10110,8 @@ INSERT INTO `users` VALUES ('677', null, 'ghjjkk', null, null, '未填写', '未
 INSERT INTO `users` VALUES ('684', null, null, 'jjjfhhhf', '', 'δ��д', null, null, null, '2015-08-04 13:26:33', null, '0', '0', '0', '2015-08-04 13:26:33', null, '0', '1', '10000008', null, 'web', null, null, null, null, '男', null);
 INSERT INTO `users` VALUES ('685', '111111', 'nkkkfbjbjnf', 'hjn', '15131117354', '小学 六年级', 'jjjjf', '内蒙古', '呼和浩特', '2015-08-04 13:33:57', '/IMG/Userimg/20150806/838212015/685/de563484-2e10-42ff-9139-ccae5371d13e.jpg', '0', '0', '138', '2015-08-06 10:49:08', null, '0', '1', '10000009', null, 'web', null, '女', 'nkmf', '27', '女', '23');
 INSERT INTO `users` VALUES ('686', null, '', null, null, null, null, '北京', '东城区', '2015-08-04 15:50:40', null, '0', '0', '0', '2015-08-04 15:50:40', null, '0', '1', '10000010', null, null, null, null, null, null, null, null);
-INSERT INTO `users` VALUES ('687', '987654', 'gundan', '什么玩意', '18514236114', '小学 六年级', '陈经纶学校', '北京', '东城区', '2015-08-04 17:08:07', '/IMG/Userimg/687/5f91f7d4-3f43-43a7-9ad0-e7e2777c5e0e.jpg', '0', '0', '15', '2015-08-04 20:58:57', null, '0', '1', '10000011', null, 'web', null, '男', '别惹我，逼急了我连自己都不认', '9', '男', '25');
-INSERT INTO `users` VALUES ('688', 'aaaaaa', 'skaeodyd', 'Ska123', '15011553858', null, null, null, null, '2015-08-04 20:33:22', null, '0', '0', '6', '2015-08-04 20:43:36', null, '0', '1', '10000012', null, 'web', null, null, null, null, null, null);
+INSERT INTO `users` VALUES ('687', '987654', 'gundan', '什么玩意', null, '小学 六年级', '陈经纶学校', '北京', '东城区', '2015-08-04 17:08:07', '/IMG/Userimg/687/5f91f7d4-3f43-43a7-9ad0-e7e2777c5e0e.jpg', '0', '0', '15', '2015-08-04 20:58:57', null, '0', '1', '10000011', null, 'web', null, '男', '别惹我，逼急了我连自己都不认', '9', '男', '25');
+INSERT INTO `users` VALUES ('688', 'aaaaaa', 'skaeodyd', 'Ska123', null, null, null, null, null, '2015-08-04 20:33:22', null, '0', '0', '6', '2015-08-04 20:43:36', null, '0', '1', '10000012', null, 'web', null, null, null, null, null, null);
 INSERT INTO `users` VALUES ('689', null, null, null, null, null, null, '北京', '顺义区', '2015-08-04 20:35:34', null, '0', '0', '0', '2015-08-04 20:35:34', null, '0', '1', '10000013', null, null, null, null, null, null, null, null);
 INSERT INTO `users` VALUES ('690', null, null, null, null, null, null, null, null, '2015-08-04 20:43:57', null, '0', '0', '0', '2015-08-04 20:43:57', null, '0', '1', '10000014', null, null, '864260022521053', null, null, null, null, null);
 INSERT INTO `users` VALUES ('691', null, null, null, null, null, null, null, null, '2015-08-04 20:52:19', null, '0', '0', '0', '2015-08-04 20:52:19', null, '0', '1', '10000015', null, null, '355218060459756', null, null, null, null, null);
@@ -10628,6 +10121,7 @@ INSERT INTO `users` VALUES ('694', '111111', null, 'bhjkk', '15931117354', '高�
 INSERT INTO `users` VALUES ('695', null, null, null, null, null, null, null, null, '2015-08-06 17:23:16', '/IMG/Userimg/20150812/0752432015/695/29aa7c84-3a42-4c54-9c56-26d1f08637d6.jpg', '0', '0', '0', '2015-08-06 17:23:16', null, '0', '1', '10000019', null, null, null, null, null, null, null, null);
 INSERT INTO `users` VALUES ('696', null, null, null, null, null, null, null, null, '2015-08-10 15:40:01', null, '0', '0', '0', '2015-08-10 15:40:01', null, '0', '1', '10000020', null, null, '355848064713657', null, null, null, null, null);
 INSERT INTO `users` VALUES ('697', null, null, null, null, null, null, null, null, '2015-08-12 19:53:01', null, '0', '0', '0', '2015-08-12 19:53:01', null, '0', '1', '10000021', null, null, '358022057063895', null, null, null, null, null);
+INSERT INTO `users` VALUES ('698', '111111', 'zzzzzz', null, null, null, null, null, null, '2015-08-17 17:22:01', null, '0', '0', '1', '2015-08-18 11:30:37', '0:0:0:0:0:0:0:1', '0', '1', '10000022', null, 'web', '864587025479750', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for user_group
@@ -10643,7 +10137,7 @@ CREATE TABLE `user_group` (
   PRIMARY KEY (`id`),
   KEY `user_group_user_id` (`user_id`),
   CONSTRAINT `user_group_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_group
@@ -10660,6 +10154,10 @@ INSERT INTO `user_group` VALUES ('11', '675', '的咯咯JOJO', '0', '2015-08-14 
 INSERT INTO `user_group` VALUES ('19', '675', '哦哦look', '0', '2015-08-14 17:40:24', '0');
 INSERT INTO `user_group` VALUES ('20', '675', '哦哦JOJO哦咯', '0', '2015-08-14 17:40:29', '0');
 INSERT INTO `user_group` VALUES ('21', '675', '嗯咯JOJO哦咯', '0', '2015-08-14 17:40:33', '0');
+INSERT INTO `user_group` VALUES ('22', '570', '哦咯lol', '0', '2015-08-18 10:48:26', '0');
+INSERT INTO `user_group` VALUES ('23', '570', 'ML喔玩LOL喔', '0', '2015-08-18 10:48:33', '0');
+INSERT INTO `user_group` VALUES ('24', '570', 'asdf', '0', '2015-08-18 10:52:28', '0');
+INSERT INTO `user_group` VALUES ('25', '570', 'asdfadfa', '0', '2015-08-18 10:53:15', '0');
 
 -- ----------------------------
 -- Table structure for visitor

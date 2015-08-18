@@ -29,7 +29,7 @@ public class Support implements Serializable
 	/**
 	 * 新闻评论点赞
 	 */
-	public final static int COME_FROM_NEWS_REVIEW = 3;
+	public final static  int COME_FROM_NEWS_REVIEW = 3;
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")

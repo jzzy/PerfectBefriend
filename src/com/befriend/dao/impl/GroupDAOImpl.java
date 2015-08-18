@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.GroupDAO;
@@ -17,6 +19,7 @@ import com.befriend.entity.Profile;
 @SuppressWarnings("all")
 @Transactional
 public class GroupDAOImpl implements GroupDAO {
+	Log log = LogFactory.getLog(GroupDAOImpl.class);
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -56,9 +59,10 @@ public class GroupDAOImpl implements GroupDAO {
 	@Override
 	public List<GroupChat> Findbyuserid(int userid,int classgroup) {
 		Query query = entityManager.createQuery("select c from GroupChat c"
-				+ " where c.userid=:userid and c.classgroup=:classgroup  order" + " by c.time desc");
+				+ " where c.userid=:userid and c.classgroup=:classgroup   order" + " by c.time desc");
 		query.setParameter("classgroup", classgroup);
 		query.setParameter("userid", userid);
+
 		return query.getResultList();
 
 	}
@@ -107,22 +111,22 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<GroupMembers> FindGroupMembersbyid(int GroupChatid, int urp) {
+	public List<GroupMembers> FindGroupMembersbyid(int groupid, int urp) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
 				+ " where c.groupid=:groupid and (c.urp=:urp or c.urp=3) order"
 				+ " by c.time desc");
 		query.setParameter("urp", urp);
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp,int classgroup) {
+	public List<GroupMembers> FindUseridGroupbyid(int userid, int urp) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
-				+ " where c.urp=:urp and c.userid=:userid and c.classgroup=:classgroup order"
+				+ " where c.urp=:urp and c.userid=:userid  order"
 				+ " by c.time desc");
 		query.setParameter("urp", urp);
-		query.setParameter("classgroup", classgroup);
+
 		query.setParameter("userid", userid);
 		return query.getResultList();
 		
@@ -151,13 +155,13 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<Cis> FindbyGroupChatiduseridCis(int GroupChatid, int userid) {
+	public List<Cis> FindbyGroupChatiduseridCis(int groupid, int userid) {
 
 		Query query = entityManager.createQuery("select c from Cis c"
-				+ " where c.groupid=:GroupChatid and c.userid=:userid order"
+				+ " where c.groupid=:groupid and c.userid=:userid order"
 				+ " by c.time desc");
 		query.setParameter("userid", userid);
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		return query.getResultList();
 
 	}
@@ -178,47 +182,47 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<Profile> FindProfilebyids(int GroupChatid, int urp) {
+	public List<Profile> FindProfilebyids(int groupid, int urp) {
 		Query query = entityManager.createQuery("select c from Profile c"
-				+ " where c.groupid=:GroupChatid and c.urp=:urp order"
+				+ " where c.groupid=:groupid and c.urp=:urp order"
 				+ " by c.time desc");
 
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("urp", urp);
 		return query.getResultList();
 
 	}
 
 	@Override
-	public List<Cis> Cisid(int GroupChatid, int Cisid) {
+	public List<Cis> Cisid(int groupid, int Cisid) {
 		Query query = entityManager.createQuery("select c from Cis c"
-				+ " where c.groupid=:GroupChatid and c.id>:Cisid order"
+				+ " where c.groupid=:groupid and c.id>:Cisid order"
 				+ " by c.time asc");
 
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("Cisid", Cisid);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Cis> Cisid(int GroupChatid) {
+	public List<Cis> Cisid(int groupid) {
 		Query query = entityManager.createQuery("select c from Cis c"
-				+ " where c.groupid=:GroupChatid  order"
+				+ " where c.groupid=:groupid  order"
 				+ " by c.time asc");
 
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		
 		query.setMaxResults(50);
 		return query.getResultList();
 	}
 
 	@Override
-	public GroupMembers FindGroupMembersbygiduidurp(int GroupChatid,
+	public GroupMembers FindGroupMembersbygiduidurp(int groupid,
 			int userid, int urp) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
 				+ " where c.groupid=:groupid and c.urp=:urp and c.userid=:userid");
 		query.setParameter("urp", urp);
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("userid", userid);
 		
 		List<GroupMembers> g = query.getResultList();
@@ -230,11 +234,11 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public Profile FindProfilebyid(int GroupChatid, int userid) {
+	public Profile FindProfilebyid(int groupid, int userid) {
 		Query query = entityManager.createQuery("select c from Profile c"
-				+ " where c.groupid=:GroupChatid and c.userid=:userid");
+				+ " where c.groupid=:groupid and c.userid=:userid");
 
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("userid", userid);
 		
 		List<Profile> g = query.getResultList();
@@ -246,12 +250,12 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public GroupMembers FindGroupMembersbygiduidurp(int GroupChatid, int userid) {
+	public GroupMembers FindGroupMembersbygiduidurp(int groupid, int userid) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
 				+ " where c.groupid=:groupid and c.userid=:userid order"
 				+ " by c.time desc");
 		
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("userid", userid);
 		
 		List<GroupMembers> g = query.getResultList();
@@ -263,22 +267,22 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<GroupMembers> FindGroupMembersbyid(int GroupChatid) {
+	public List<GroupMembers> FindGroupMembersbyid(int groupid) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
 				+ " where c.groupid=:groupid  order"
 				+ " by c.time desc");
 		
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Profile> FindProfilebyid(int GroupChatid) {
+	public List<Profile> FindProfilebyid(int groupid) {
 		Query query = entityManager.createQuery("select c from Profile c"
-				+ " where c.groupid=:GroupChatid order"
+				+ " where c.groupid=:groupid order"
 				+ " by c.time desc");
 
-		query.setParameter("GroupChatid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		
 		
 		return query.getResultList();
@@ -337,26 +341,30 @@ public class GroupDAOImpl implements GroupDAO {
 	}
 
 	@Override
-	public List<GroupMembers> FindGroupMembersbyurp(int GroupChatid, int urp) {
+	public List<GroupMembers> FindGroupMembersbyurp(int groupid, int urp) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
 				+ " where c.groupid=:groupid and c.urp=:urp order"
 				+ " by c.time desc");
 		
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("urp", urp);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<GroupMembers> FindGroupMembersbygiduidAll(int GroupChatid,
+	public GroupMembers FindGroupMembersbygiduidAll(int groupid,
 			int userid) {
 		Query query = entityManager.createQuery("select c from GroupMembers c"
-				+ " where c.groupid=:groupid and c.userid=:userid order"
-				+ " by c.time desc");
+				+ " where c.groupid=:groupid and c.userid=:userid");
 		
-		query.setParameter("groupid", GroupChatid);
+		query.setParameter("groupid", groupid);
 		query.setParameter("userid", userid);
-		return query.getResultList();
+		 List<GroupMembers> gc=query.getResultList();
+		 if(gc.size()>0){
+			 
+			 return gc.get(0);
+		 }
+		 return null;
 	}
 
 	@Override

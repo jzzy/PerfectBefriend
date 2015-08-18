@@ -177,13 +177,11 @@ public class OpeFunction {
 	/**
 	 * 
 	 * 
-	 * @param 1年月日 2时分秒
+	 * @param 年月日/时分秒
 	 */
-	public static String getDayTime(int reg) {
+	public static String getNameDayTime() {
 		Calendar cal = Calendar.getInstance();
-		String name = "";
-		switch (reg) {
-		case 1:
+		String name = "/";
 			name = Integer.valueOf(cal.get(Calendar.YEAR)).toString();
 			if (cal.get(Calendar.MONTH) + 1 < 10) {
 				name = name
@@ -205,9 +203,7 @@ public class OpeFunction {
 						+ Integer.valueOf(cal.get(Calendar.DAY_OF_MONTH))
 								.toString();
 			}
-			break;
-
-		case 2:
+			name+="/";
 			if (cal.get(Calendar.HOUR) + 1 < 10) {
 				name = name + "0"
 						+ Integer.valueOf(cal.get(Calendar.HOUR)).toString();
@@ -230,11 +226,7 @@ public class OpeFunction {
 				name = name
 						+ Integer.valueOf(cal.get(Calendar.SECOND)).toString();
 			}
-			break;
-		default:
-			name = Integer.valueOf(cal.get(Calendar.YEAR)).toString();
-			break;
-		}
+		
 		return name;
 	}
 
@@ -558,8 +550,8 @@ public class OpeFunction {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		System.out.println(getDayTime(1));
-		System.out.println(getDayTime(2));
+		System.out.println(getNameDayTime());
+
 
 	}
 

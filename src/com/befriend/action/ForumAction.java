@@ -209,7 +209,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		Admin admin = (Admin) session.getAttribute("admin");
 		fot = forumdao.getByIdForumOneType(id);
 		if (!OpeFunction.isEmpty(title) && admin != null && fot != null&&file!=null&&fileMax!=null) {
-			String path="/IMG/ForumTypeImg/" + OpeFunction.getDayTime(1);
+			String path="/IMG/ForumTypeImg/" + OpeFunction.getNameDayTime();
 			if (file != null) {
 				img = util.ufileToServer(path, file, "jpg");
 				ftt.setImg(img);
@@ -1500,8 +1500,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 		if (file != null) {
 
-			img = "/IMG/Forumimg/" + util.getDayTime(1) + "/"
-					+ util.getDayTime(2) + util.getDayTime(3) + "/" + userid;
+			img = "/IMG/Forumimg/" + OpeFunction.getNameDayTime() + "/" + userid;
 			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);

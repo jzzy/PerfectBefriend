@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.AppDAO;
 import com.befriend.entity.App;
-import com.befriend.entity.AppUp;
-import com.befriend.entity.Feedback;
 @Transactional
 public class AppDAOImpl implements AppDAO {
 
@@ -56,14 +54,14 @@ public class AppDAOImpl implements AppDAO {
 	public List<App> FAll(int currentPage, int pageSize) {
 		Query query = entityManager.createQuery("select u from App u order by u.sequence desc");
 		//query.setMaxResults(4);
-		//currentPageÒ³Êý
+		//currentPageÒ³ï¿½ï¿½
 		int startRow = (currentPage-1)*pageSize;
 		if(startRow<0){
 			startRow=0;
 		}
-		//µÚ¼¸Ò³
+		//ï¿½Ú¼ï¿½Ò³
 		query.setFirstResult(startRow);
-		//Ã¿Ò³ÏÔÊ¾¼¸ÌõÊý¾Ý
+		//Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setMaxResults(pageSize);
 		return query.getResultList();
 	}
