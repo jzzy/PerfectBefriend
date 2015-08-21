@@ -70,9 +70,31 @@ public class FriendAction extends BaseAction
 			User user = userDAO.getUserGroup(Integer.valueOf(userId),GroupFriend.FRIEND);
 			if (user != null)
 			{
-				 
-				Set<UserGroup> userGroups = new HashSet<UserGroup>();
-				for (UserGroup userGroup : user.getUserGroup())
+				Set<UserGroup> userGroups = user.getUserGroup();
+				UserGroup myFriend = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.FRIEND_DEFAULT);
+				UserGroup blacklist = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.BLACKLIST_DEFAULT);
+				if(myFriend == null)
+				{
+					myFriend = new UserGroup();
+					myFriend.setUser(user);
+					myFriend.setName(UserGroup.MY_FRIEND);
+					myFriend.setIsDefault(UserGroup.FRIEND_DEFAULT);
+					myFriend.setCreateTime(OpeFunction.getNowTime());
+					userGroupDAO.save(myFriend);
+					userGroups.add(myFriend);
+				}
+				if(blacklist == null)
+				{
+					blacklist = new UserGroup();
+					blacklist.setUser(user);
+					blacklist.setName(UserGroup.MY_BLACKLIST);
+					blacklist.setIsDefault(UserGroup.BLACKLIST_DEFAULT);
+					blacklist.setCreateTime(OpeFunction.getNowTime());
+					userGroupDAO.save(blacklist);
+					userGroups.add(blacklist);
+				}
+				
+				for (UserGroup userGroup : userGroups)
 				{
 
 					Set<GroupFriend> groupFriends = new HashSet<GroupFriend>();
