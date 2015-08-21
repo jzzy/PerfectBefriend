@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 
 
 /**
- * 消息实体类
+ * 
  * @author STerOTto
  *
  */
@@ -18,11 +18,11 @@ public class Message implements Serializable
 	public static final Integer NULL = -1;
 	public static final Integer ERROR = -2;
 	@Expose
-	private Integer code;//状态吗
+	private Integer code;
 	@Expose
-	private String statement;//备注
+	private String statement;
 	@Expose
-	private Object content;//请求内容
+	private Object content;
 	
 	public Integer getCode()
 	{

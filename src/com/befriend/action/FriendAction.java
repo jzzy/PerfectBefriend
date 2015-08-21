@@ -227,7 +227,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**
@@ -337,7 +337,7 @@ public class FriendAction extends BaseAction
 						msg.setStatement("you has be refused");
 					}
 				}
-				this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+				this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 		}
 	}
 	/**
@@ -386,7 +386,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter is error");
 		}
-		this.getJsonResponse().getWriter().println(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().println(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**
@@ -438,7 +438,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter is error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**
@@ -490,7 +490,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	/**
 	 * @param groupId
@@ -557,7 +557,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**
@@ -622,7 +622,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 
 	/**
@@ -667,7 +667,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**
@@ -756,7 +756,7 @@ public class FriendAction extends BaseAction
 			}
 			contacts.add(contact);
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(contacts));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(contacts));
 	}
 	
 	/**
@@ -786,7 +786,7 @@ public class FriendAction extends BaseAction
 			msg.setCode(Message.ERROR);
 			msg.setStatement("parameter error");
 		}
-		this.getJsonResponse().getWriter().print(JsonUtil.toJson(msg));
+		this.getJsonResponse().getWriter().print(JsonUtil.toJsonExpose(msg));
 	}
 	
 	/**

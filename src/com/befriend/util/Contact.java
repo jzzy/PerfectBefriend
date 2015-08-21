@@ -1,14 +1,22 @@
 package com.befriend.util;
 
+import com.google.gson.annotations.Expose;
+
 public class Contact 
 {
 	public static int ONLINE = 1;
 	public static int OFFLINE = 0;
+	@Expose
 	private String phone;
+	@Expose
 	private boolean exist = false;
+	@Expose
 	private int userId;
+	@Expose
 	private int status = 0;
+	@Expose
 	private String userName;
+	@Expose
 	private String img;
 	
 	public String getPhone() {

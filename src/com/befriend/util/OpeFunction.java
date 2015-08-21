@@ -181,6 +181,7 @@ public class OpeFunction {
 	 * 
 	 * 
 	 * @param 年月日/时分秒
+	 * 命名
 	 */
 	public static String getNameDayTime() {
 		Calendar cal = Calendar.getInstance();
@@ -294,6 +295,15 @@ public class OpeFunction {
 
 	}
 
+	/**
+	 * 重新定义文件格式
+	 * 
+	 * @param path
+	 * @param file
+	 * @param fileType
+	 * @return
+	 * @throws IOException
+	 */
 	public static String ufileToServer(String path, File file, String fileType)
 			throws IOException {
 
@@ -314,7 +324,12 @@ public class OpeFunction {
 		return null;
 
 	}
-
+/**
+ * 删除文件
+ * @param path
+ * @return
+ * @throws IOException
+ */
 	public static Boolean fileRemove(String path) throws IOException {
 		Boolean b = true;
 		File file = new File(ServletActionContext.getServletContext()
@@ -513,15 +528,15 @@ public class OpeFunction {
 
 	public static void setphone(String phone, String textp) {
 		try {
-			String account = "cf_wcsk_jztd";// �û��� cf_wcsk_jztd
-			String pwd = "wcsk1212";// ���� wcsk1212
-			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";// ��ַ
+			String account = "cf_wcsk_jztd";
+			String pwd = "wcsk1212";
+			String postUrl = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
 
 			URL url = new URL(postUrl);
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
-			connection.setDoOutput(true);// ���������ύ��Ϣ
-			connection.setRequestMethod("POST");// ��ҳ�ύ��ʽ��GET������POST��
+			connection.setDoOutput(true);
+			connection.setRequestMethod("POST");
 			connection.setRequestProperty("Content-Type",
 					"application/x-www-form-urlencoded");
 			connection.setRequestProperty("Connection", "Keep-Alive");
@@ -529,7 +544,7 @@ public class OpeFunction {
 			sb.append("&account=" + account);
 			sb.append("&password=" + pwd);
 			sb.append("&content=" + textp);
-			sb.append("&mobile=" + phone);// Ҫ���͵��ֻ���
+			sb.append("&mobile=" + phone);
 			OutputStream os = connection.getOutputStream();
 			os.write(sb.toString().getBytes());
 			os.close();
