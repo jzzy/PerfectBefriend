@@ -1,12 +1,15 @@
 package com.befriend.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 
 @SuppressWarnings("all")
 @Entity
@@ -16,42 +19,62 @@ public class GroupChat implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name = "groupid")
+	@Expose
 	private String groupid;// 环信id
 	@Column(name = "type")
+	@Expose
 	private int type;// 群类别
+	
 	@Column(name = "classgroup")
+	@Expose
 	private int classgroup;// 1群 2班级
 	@Column(name = "groupno")
+	@Expose
 	private int groupno;// 群号
 	@Column(name = "joincondition")
+	@Expose
 	private int joincondition;// 1 允许任何人 2 需要验证信息 3不允许任何人
 	@Column(name = "name")
+	@Expose
 	private String name;// 群名字
 	@Column(name = "area")
+	@Expose
 	private String area;// 省
 	@Column(name = "areas")
+	@Expose
 	private String areas;// 市
 	@Column(name = "userid")
+	@Expose
 	private int userid;// 用户id
 	@Column(name = "img")
+	@Expose
 	private String img;// 头像
 	@Column(name = "schoolname")
+	@Expose
 	private String schoolname;// 学校名字
 	@Column(name = "schooladdress")
+	@Expose
 	private String schooladdress;// 学校地址
 	@Column(name = "grade")
+	@Expose
 	private String grade;// 年级
 	@Column(name = "gclass")
+	@Expose
 	private String gclass;// 班级
 	@Column(name = "gclassintroduction")
+	@Expose
 	private String gclassintroduction;// 班级简介
 	@Column(name = "headteachername")
+	@Expose
 	private String headteachername;// 班主任名字
 	@Column(name = "phone")
+	@Expose
 	private String phone;// 手机号
 	@Column(name = "time")
+	@Expose
 	private String time;// 时间
 
 	public int getClassgroup() {

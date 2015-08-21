@@ -1,11 +1,14 @@
 package com.befriend.entity;
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 @SuppressWarnings("all")
 @Entity
 @Table(name="label")
@@ -16,12 +19,15 @@ public class NewsLabel  implements Serializable {
 		@Id
 		@Column(name="id")
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		@Expose
 		private Integer id;
 		
 		@Column(name="label")
-		private String label;//��ǩ
+		@Expose
+		private String label;
 		@Column(name="time")
-		private String time;//ʱ��
+		@Expose
+		private String time;
 
 		public String getTime() {
 			return time;

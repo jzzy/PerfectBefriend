@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="forumthree")
 public class ForumThree  implements Serializable {
@@ -18,22 +20,27 @@ public class ForumThree  implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="userid")
+	@Expose
 	private int userid;
 	@Column(name="touserid")
+	@Expose
 	private int touserid;
 	@Column(name="reply")
+	@Expose
 	private String reply;
 	@Column(name="time")
+	@Expose
 	private String time;
     @Column(name = "forumid")
-
+    @Expose
 	private int forumid;
     @Column(name = "forumtwoid")
- 
+    @Expose
     private int forumtwoid;
-	
+    @Expose
     private Integer supports;
 	
 	

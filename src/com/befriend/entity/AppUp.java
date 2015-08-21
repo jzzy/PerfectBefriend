@@ -9,29 +9,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="appup")
 public class AppUp implements Serializable
 {
 
 	/**
-	 * ¸üÐÂapp
+	 * ï¿½ï¿½ï¿½ï¿½app
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
-	@Column(name="apptv")//°æ±¾ºÅ
+	@Column(name="apptv")//ï¿½æ±¾ï¿½ï¿½
+	@Expose
 	private int apptv;
-	@Column(name="time")//×îºó¸üÐÂÊ±¼ä
+	@Column(name="time")//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	@Expose
 	private String time;
-	@Column(name="path")//°²×°°üµØÖ·
+	@Column(name="path")//ï¿½ï¿½
+	@Expose
 	private String path;
 	
-	@Column(name="updates")//¸üÐÂÄÚÈÝ
+	@Column(name="updates")//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@Expose
 	private String updates;
-	@Column(name="upnum")//ÓÐ¶àÉÙÈË  Ñ¡ÔñÁËÉý¼¶
+	@Column(name="upnum")//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½  Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	@Expose
 	private int upnum;
 	
 	public int getUpnum() {

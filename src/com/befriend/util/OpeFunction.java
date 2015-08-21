@@ -26,14 +26,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
+
 import com.befriend.email.MailSenderInfo;
 import com.befriend.email.SimpleMailSender;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionContext;
 /**
  * Util
@@ -443,12 +447,10 @@ public class OpeFunction {
 	 * @return
 	 */
 	public static <T> String ToJson(T entity) {
-		Gson gson = new Gson();
-		if (entity != null) {
-			return gson.toJson(entity);
-		} else {
-			return null;
-		}
+		String result = "";
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		result = gson.toJson(entity);
+		return result;
 
 	}
 

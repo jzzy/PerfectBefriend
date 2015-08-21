@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="app")
 public class App  implements Serializable {
@@ -21,40 +23,55 @@ public class App  implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="name")//app����
+	@Expose
 	private String name;
 	@Column(name="summary")//app��Ҫ
+	@Expose
 	private String summary;
 	
 	@Column(name="time")//app�ϴ�ʱ��
+	@Expose
 	private String time;
 	
-	@Column(name="pathapk")//appapk�ϴ���ַ
+	@Column(name="pathapk")//appapk�ϴ���
+	@Expose
 	private String pathapk;
-	@Column(name="pathimg")//applogoͼƬ��ַ
+	@Column(name="pathimg")//applogoͼƬ��
+	@Expose
 	private String pathimg;
 	@Column(name="pathimg1")//Ӧ�ý�ͼ1��ַ
+	@Expose
 	private String pathimg1;
 	@Column(name="pathimg2")//Ӧ�ý�ͼ2��ַ
+	@Expose
 	private String pathimg2;
 	@Column(name="pathimg3")//Ӧ�ý�ͼ3��ַ
+	@Expose
 	private String pathimg3;
 	@Column(name="sequence")//app����
+	@Expose
 	private int sequence;
 	@Column(name="type")//app���
+	@Expose
 	private String type;
 	@Column(name="vnum")//app�汾��
+	@Expose
 	private String vnum;
 	@Column(name="dpt")//Ӧ������
+	@Expose
 	private String dpt;
 	
 	@Column(name="downloads")//app���ش���
+	@Expose
 	private int downloads;
 	@Column(name="realds")//app��ʵ���ش���
+	@Expose
 	private int realds;
 	@Column(name="appsize")//app��СMB
-	
+	@Expose
 	private double appsize;
 
 	public double getAppsize() {

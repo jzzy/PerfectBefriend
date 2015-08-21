@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="attention")
 
@@ -22,14 +24,19 @@ public class Attention implements Serializable
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="userid")
+	@Expose
 	private int userid;
 	@Column(name="objectid")
+	@Expose
 	private int objectid;
 	@Column(name="comefrom")// 2 forum
+	@Expose
 	private int comefrom;
 	@Column(name="time")
+	@Expose
 	private String time;
 	public Integer getId() {
 		return id;

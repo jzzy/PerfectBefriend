@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 //�û�������
 @Entity
 @Table(name="feedback")
@@ -20,12 +22,16 @@ public class Feedback  implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="username")//�û�id
+	@Expose
 	private String username;
 	@Column(name="information")//�û�������Ϣ
+	@Expose
 	private String information;
 	@Column(name="time")//�û�����ʱ��
+	@Expose
 	private String time;
 	
 	public Integer getId() {

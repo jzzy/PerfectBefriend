@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="behavior")
 public class Behavior implements Serializable
@@ -20,17 +22,24 @@ public class Behavior implements Serializable
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false)
+	@Expose
 	private Integer id;
 	@Column(name="user_id",nullable=false)
+	@Expose
 	private Integer userId;
 	@Column(name="keyword",nullable=false)
+	@Expose
 	private String keyword;
 	@Column(name="type",nullable=false)
+	@Expose
 	private int type;
 	@Column(name="count",nullable=false)
+	@Expose
 	private long count;
 	@Transient
+	@Expose
 	private int occupy;
+	@Expose
 	@Transient
 	private double weight;
 

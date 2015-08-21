@@ -9,32 +9,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="stas")
 public class Stas  implements Serializable {
-	/**
-	 * ÿ���¼  ͳ��
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
-	@Column(name="vored")//ÿ�������ο�����
+	@Column(name="vored")
+	@Expose
 	private int vored;
-	@Column(name="usersaved")//ÿ�������û�����
+	@Column(name="usersaved")
+	@Expose
 	private int usersaved;
-	@Column(name="userlogined")//ÿ������û�����
+	@Column(name="userlogined")
+	@Expose
 	private int userlogined;
-	@Column(name="usersyned")//ÿ��ͬʱ����(�۷�)�û�����
+	@Column(name="usersyned")
+	@Expose
 	private int usersyned;
-	@Column(name="downloaded")//ÿ��ͻ���������
+	@Column(name="downloaded")
+	@Expose
 	private int downloaded;
-	@Column(name="time")//ʱ�� 2005-05-05
+	@Column(name="time")
+	@Expose
 	private String time;
-	@Column(name="os")// ���Ե�ϵͳ
+	@Column(name="os")
+	@Expose
 	private String os;
-	@Column(name="province")// ���Եĵ�ʡ
+	@Column(name="province")
+	@Expose
 	private String province;
 	
 	public String getProvince() {

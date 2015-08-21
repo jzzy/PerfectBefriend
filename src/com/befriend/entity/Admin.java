@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="admin")
 public class Admin implements Serializable {
@@ -19,12 +21,16 @@ public class Admin implements Serializable {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="admin")//管理员名
+	@Expose
 	private String admin;
 	@Column(name="pwd")//管理员密码
+	@Expose
 	private String pwd;
 	@Column(name="level")//管理员级别
+	@Expose
 	private int level;
 	public Integer getId() {
 	    return id;

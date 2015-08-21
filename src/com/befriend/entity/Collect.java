@@ -9,26 +9,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="collect")
 
 public class Collect implements Serializable
 {
-	/**
-	 * 收藏新闻
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
-	@Column(name="userid")//用户id
+	@Column(name="userid")//锟矫伙拷id
+	@Expose
 	private int userid;
-	@Column(name="newsid")//新闻id
+	@Column(name="newsid")//锟斤拷锟斤拷id
+	@Expose
 	private int newsid;
-	@Column(name="newstitle")//新闻标题
+	@Column(name="newstitle")//锟斤拷锟脚憋拷锟斤拷
+	@Expose
 	private String newstitle;
-	@Column(name="time")//收藏时间
+	@Column(name="time")//锟秸诧拷时锟斤拷
+	@Expose
 	private String time;
 	public Integer getId() {
 	    return id;

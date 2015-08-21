@@ -1163,6 +1163,7 @@ public class UserAction {
 	@SuppressWarnings("static-access")
 	public void Login() throws IOException {
 		try {
+			System.out.println("Login username:"+username+",password:"+password);
 			if(util.isEmpty(username)||util.isEmpty(password)){
 
 				util.Out().print("null");

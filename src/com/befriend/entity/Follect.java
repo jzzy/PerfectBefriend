@@ -9,25 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="follect")
 
 public class Follect implements Serializable
 {
 	/**
-	 * ÊÕ²ØÂÛÌ³
+	 * ï¿½Õ²ï¿½ï¿½ï¿½Ì³
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
-	@Column(name="userid")//ÓÃ»§id
+	@Column(name="userid")//ï¿½Ã»ï¿½id
+	@Expose
 	private int userid;
-	@Column(name="forumid")//ÂÛÌ³id
+	@Column(name="forumid")//ï¿½ï¿½Ì³id
+	@Expose
 	private int forumid;
 	
-	@Column(name="time")//ÊÕ²ØÊ±¼ä
+	@Column(name="time")//ï¿½Õ²ï¿½Ê±ï¿½ï¿½
+	@Expose
 	private String time;
 
 	public Integer getId() {

@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "cis")
 /**
- * 群聊天信息表
+ * 群锟斤拷锟斤拷锟斤拷息锟斤拷
  */
 public class Cis implements Serializable {
 
@@ -20,43 +22,29 @@ public class Cis implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name = "senduserid")
-	/**
-	 * 发信息的用户id
-	 */
+	@Expose
 	private int senduserid;
 	@Column(name = "groupid")
-	/**
-	 * 群id
-	 */
+	@Expose
 	private int groupid;
 	@Column(name = "information")
-	/**
-	 * 发送的 消息
-	 */
+	@Expose
 	private String information;
 	@Column(name = "time")
-	/**
-	 * 发送的 时间
-	 */
+	@Expose
 	private String time;
 	@Column(name = "userid")
-	/**
-	 * 我的用户id 如果我当时 没接受到 就会把我的  用户id  存起来 我收到以后 会删除掉
-	 */
+	@Expose
 	private int userid;
 	@Column(name = "online")
-	/**
-	 * 0未读 1已读
-	 */
+	@Expose
 	private Integer online;
 	@Column(name = "ip")
-	/**
-	 * 客户端ip
-	 */
+	@Expose
 	private String ip;
-
 	public String getIp() {
 		return ip;
 	}

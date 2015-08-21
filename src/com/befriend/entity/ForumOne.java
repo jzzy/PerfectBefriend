@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.Expose;
+
 
 @Entity
 @Table(name = "forumone")
@@ -20,53 +22,56 @@ public class ForumOne  implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name = "title")
-	
+	@Expose
 	private String title;//标题
 
 	@Column(name = "type")
 	
-	
+	@Expose
 	private int type;//类型
 
 	@Column(name = "total")
-	
+	@Expose
 	private int total;//回复次数
 
 	@Column(name = "userid")
-	
+	@Expose
 	private int userid;//用户id
 	@Column(name = "time")
-	
+	@Expose
 	private String time;//创建时间
 
 	@Column(name = "content")
-	
+	@Expose
 	private String content;
 
 	@Column(name = "area")//省
-	
+	@Expose
 	private String area;
 	@Column(name = "areas")
-	
+	@Expose
 	private String areas;//市
 	@Column(name = "img")
-	
+	@Expose
 	private String img;//图片
 	@Column(name = "follectnum")
-	
+	@Expose
 	private int follectnum;//被收藏次数
 	@Column(name = "fHits")
-	
+	@Expose
 	private int fHits;//点击次数
 
 	@Column(name = "frs")
-	
+	@Expose
 	private int frs;//论坛总回复数
 	@Column(name="supports")
+	@Expose
 	private int supports;//点赞总数
 	@Transient
+	@Expose
 	private Boolean b=false;// 用户 是否赞过
 	
 

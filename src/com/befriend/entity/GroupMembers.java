@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "groupmembers")
 public class GroupMembers implements Serializable {
@@ -19,22 +21,28 @@ public class GroupMembers implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name = "userid")
 	// 用户id
+	@Expose
 	private int userid;
 	@Column(name = "groupid")
 	// 群id
+	@Expose
 	private int groupid;
 	@Column(name = "urp")
 	// 用户 与群的关系 0等待审核 1 是群成员 2 被群主 请出的用户 3是群主
+	@Expose
 	private int urp;
 	@Column(name = "time")
 	// 时间
+	@Expose
 	private String time;
 
 	@Column(name = "message")
 	// 验证消息
+	@Expose
 	private String message;
 
 	public String getMessage() {

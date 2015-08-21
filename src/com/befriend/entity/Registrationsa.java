@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.google.gson.annotations.Expose;
 @Entity
 @Table(name="registration")
 /**
- * 统计用户注册量
+ * 统锟斤拷锟矫伙拷注锟斤拷锟斤拷
  */
 public class Registrationsa  implements Serializable{
 		
@@ -19,49 +21,34 @@ public class Registrationsa  implements Serializable{
 		@Id
 		@Column(name="id")
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		@Expose
 		private Integer id;
 		
 		@Column(name="address")
-		/**
-		 * 用户所在省份
-		 */
+		@Expose
 		private String address;
 
 		@Column(name="time")
-		/**
-		 * 数据统计时间
-		 */
+		@Expose
 		private String time;
 		@Column(name="addcity")
-		/**
-		 * 用户所在市
-		 */
+		@Expose
 		private String addcity;
 		@Column(name="note7")
-		/**
-		 *该地区7天内注册量
-		 */
+		@Expose
 		private int note7;
 		@Column(name="note30")
-		/**
-		 *该地区30天内注册量
-		 */
+		@Expose
 		private int note30;
 		@Column(name="note365")
-		/**
-		 *该地区365天内注册量
-		 */
+		@Expose
 		private int note365;
 		@Column(name="note")
-		/**
-		 *该地区当天天内注册量
-		 */
+		@Expose
 		
 		private int note;
 		@Column(name="noteall")
-		/**
-		 *该地区全部注册量
-		 */
+		@Expose
 		
 		private int noteall;
 		

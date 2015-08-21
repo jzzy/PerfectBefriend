@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.google.gson.annotations.Expose;
 @SuppressWarnings("all")
 @Entity
 @Table(name = "forumtwo")
@@ -18,27 +20,31 @@ public class ForumTwo  implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer id;
     @Column(name = "userid")
-
+    @Expose
     private int userid;
     @Column(name = "reply")
-
+    @Expose
     private String reply;
     @Column(name = "time")
-  
+    @Expose
     private String time;
     @Column(name = "forumid")
- 
+    @Expose
     private int forumid;
     @Column(name = "touserid")
-   
+    @Expose
     private int touserid;
     @Column(name = "supports")
+    @Expose
     private Integer supports;
     @Column(name = "total")
+    @Expose
 	private int total;
     @Transient
+    @Expose
     private Boolean b=false;
     
 

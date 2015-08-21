@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="review")
 public class Review implements Serializable
@@ -19,18 +21,25 @@ public class Review implements Serializable
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Expose
 	private Integer id;
 	@Column(name="userid")
+	@Expose
 	private Integer userid;
 	@Column(name="newsid")
+	@Expose
 	private int newsid;
 	@Column(name="supports")
+	@Expose
 	private int supports;
 	@Column(name="review")
+	@Expose
 	private String review;
 	@Column(name="time")
+	@Expose
 	private String time;
 	@Transient
+	@Expose
 	private Boolean b;
 	
 	public Boolean getB() {
