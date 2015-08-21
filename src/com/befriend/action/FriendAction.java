@@ -119,6 +119,7 @@ public class FriendAction extends BaseAction
 	 * @param userId
 	 * @param friendId
 	 * @param groupId
+	 * @param remark
 	 * @describe add someone to friend
 	 * check someone was friend
 	 * check has send invitation and the groupId has been changed
@@ -158,6 +159,10 @@ public class FriendAction extends BaseAction
 						{
 							friend.setUserGroup(userGroup);
 							friend.setStatus(GroupFriend.INVITE);
+							
+							if(!StringUtils.isEmpty(remark))
+								friend.setRemark(remark);
+							
 							groupFriendDAO.update(friend);
 							msg.setCode(Message.SUCCESS);
 							msg.setStatement("send a invitation success");

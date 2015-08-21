@@ -1,6 +1,8 @@
 package com.befriend.dao.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +11,7 @@ import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befriend.dao.UserDAO;
+import com.befriend.entity.GroupFriend;
 import com.befriend.entity.User;
 import com.befriend.entity.UserGroup;
 
@@ -436,11 +439,23 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getUserGroup(Integer userId,int status)
 	{
-		Query query = entityManager.createQuery("select u from User u inner join u.userGroup uGroup join uGroup.groupFriends gFriends where u.id = :userId");
+		Query query = entityManager.createQuery("select u from User u where u.id = :userId");
 		query.setParameter("userId", userId);
-		query.setParameter("status", status);
 		if(query.getResultList().size()>0)
-			return (User) query.getResultList().get(0);
+		{
+			User user = (User) query.getResultList().get(0);
+			Set<UserGroup> userGroups = new HashSet<UserGroup>();
+			for (UserGroup userGroup : user.getUserGroup()) {
+				Set<GroupFriend> groupFriends = userGroup.getGroupFriends();
+				for (GroupFriend groupFriend : groupFriends) {
+					if(groupFriend.getStatus() != status)
+						groupFriends.remove(groupFriend);
+				}
+				userGroups.add(userGroup);
+			}
+			user.setUserGroup(userGroups);
+			return user;
+		}
 		else
 			return null;
 	}
