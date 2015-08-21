@@ -76,14 +76,13 @@ public class OpeFunction {
 
 		if (string != null) {
 			if (StringUtils.isEmpty(string.trim())) {
-				System.out.println("��");
+			
 				return true;
 			} else {
-				System.out.println("����");
+				
 				return false;
 			}
 		} else {
-			System.out.println("��");
 			return true;
 		}
 	}

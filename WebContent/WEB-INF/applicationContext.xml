@@ -23,14 +23,14 @@
 		 
 		<!-- 本地 -->
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/perfectbefriend?useUnicode=true&amp;characterEncoding=utf8"></property>
+			value="jdbc:mysql://localhost:3306/perfectbefriend?useUnicode=true&amp;characterEncoding=UTF-8"></property>
 		<property name="password" value="root"></property>
 		<property name="username" value="root"></property>
 		
 	
 		<!--测试服数据库 
 		
-		<property name="url" value="jdbc:mysql://123.56.45.164:3306/befriend?useUnicode=true&amp;characterEncoding=utf8"></property> 
+		<property name="url" value="jdbc:mysql://123.56.45.164:3306/befriend?useUnicode=true&amp;characterEncoding=UTF-8"></property> 
 			<property name="username" value="root"></property> <property name="password" 
 			value="admin"></property> 
 			-->
@@ -46,6 +46,7 @@
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="database" value="MYSQL"></property>
 		<property name="showSql" value="false"></property>
+	
 	</bean>
 	<!-- 事务管理器配置, Hibernate单数据源事务 -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

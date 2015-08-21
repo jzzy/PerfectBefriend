@@ -68,7 +68,7 @@ if(fot!=null){
 </tr>
 <tr>
 <td>论坛板块Mini图片 :  </td>
-<td><input type="file" name="file" ></td>
+<td><input type="file" name="fileMax" ></td>
 </tr>
 <tr>
 <td>论坛板块Max图片 :  </td>

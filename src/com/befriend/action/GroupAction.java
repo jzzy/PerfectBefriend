@@ -28,7 +28,6 @@ import com.befriend.wechat.WechatKit;
 import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("all")
 public class GroupAction{
-	@SuppressWarnings("unused")
 	private UDPServer udp;
 	private OpeFunction util;
 	private GroupDAO gdao;
@@ -103,8 +102,7 @@ public class GroupAction{
 		for (int i = 0; i < lgroupchat.size(); i++) {
 
 			System.out.println("µÚ" + i + "¸öÈº!");
-			Thread.sleep(100);
-			
+			Thread.sleep(100);		
 			if (lgroupchat.get(i) == null
 					|| lgroupchat.get(i).getGroupid()!=null) {
 				continue;

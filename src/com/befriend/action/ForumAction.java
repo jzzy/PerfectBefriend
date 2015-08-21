@@ -83,8 +83,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	private int pageSize = 10;
 	private int currentPage = 1;
 	private int cpe = 0;
-	private File fileMax;
-	private String fileMaxFileName;
+	private File[] fileMax;
+	private String[] fileMaxFileName;
 	Support st = new Support();
 	Attention af = new Attention();
 	List<Attention> afl = new ArrayList<Attention>();
@@ -204,19 +204,22 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		OpeFunction.outjS(request.getContextPath() + "/forumlookOneTwoType?id="
 				+ id, "ok");
 	}
-
 	public void saveTwoType() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		fot = forumdao.getByIdForumOneType(id);
-		if (!OpeFunction.isEmpty(title) && admin != null && fot != null&&file!=null&&fileMax!=null) {
+		if (!OpeFunction.isEmpty(title) && admin != null && fot != null&&fileMax!=null&&fileMax.length==2) {
 			String path="/IMG/ForumTypeImg/" + OpeFunction.getNameDayTime();
-			if (file != null) {
-				img = util.ufileToServer(path, file, "jpg");
-				ftt.setImg(img);
-			}
-			if (fileMax != null) {
-				img = util.ufileToServer(path, fileMax, "jpg");
-				ftt.setImgmax(img);
+			for (int i = 0; i < fileMax.length; i++) {
+				if(fileMax[i]!=null){
+					if(i==0){
+						img = util.ufileToServer(path, fileMax[i], "jpg");
+						ftt.setImg(img);
+					}
+					if(i==1){
+						img = util.ufileToServer(path, fileMax[i], "jpg");
+						ftt.setImgmax(img);			
+					}
+				}
 			}
 			ftt.setTitle(title);
 			ftt.setTime(time);
@@ -2292,22 +2295,20 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 	}
 
-	public File getFileMax() {
+	
+
+	public File[] getFileMax() {
 		return fileMax;
 	}
-
-	public void setFileMax(File fileMax) {
+	public void setFileMax(File[] fileMax) {
 		this.fileMax = fileMax;
 	}
-
-	public String getFileMaxFileName() {
+	public String[] getFileMaxFileName() {
 		return fileMaxFileName;
 	}
-
-	public void setFileMaxFileName(String fileMaxFileName) {
+	public void setFileMaxFileName(String[] fileMaxFileName) {
 		this.fileMaxFileName = fileMaxFileName;
 	}
-
 	public int getTypes() {
 		return types;
 	}

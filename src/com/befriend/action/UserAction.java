@@ -1451,52 +1451,51 @@ public class UserAction {
 
 	}
 
-	public void save() throws IOException {
-		try {
+	public  void save() throws IOException, JSONException {
 
-			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
+		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 
-			if (!util.isEmpty(username)) {
-				if (!username.matches(reg)) {
-
-					util.Out().print(false);
-					return;
-				}
-			}
-
-			reg = "[A-Za-z0-9_]{6,18}";
-			if (password == null||!password.matches(reg)) {
+		if (!util.isEmpty(username)) {
+			if (!username.matches(reg)) {
 
 				util.Out().print(false);
 				return;
 			}
+		}
 
-			String regp = "[0-9]{11}";
-			if (phone == null||!phone.matches(regp)) {
+		reg = "[A-Za-z0-9_]{6,18}";
+		if (password == null || !password.matches(reg)) {
 
-				util.Out().print(false);
-				return;
-			}
+			util.Out().print(false);
+			return;
+		}
 
-			
-			if (!util.isEmpty(username)) {
-				u.setUsername(username);
-				u.setNickname(username);
-			}
-			if (!util.isEmpty(nickname)) {
-				u.setNickname(nickname);
-			}
+		String regp = "[0-9]{11}";
+		if (phone == null || !phone.matches(regp)) {
 
-			u.setAccnumno(accnumno);
-			u.setPhone(phone);
+			util.Out().print(false);
+			return;
+		}
 
-			u.setFinaltime(time);
+		if (!util.isEmpty(username)) {
+			u.setUsername(username);
+			u.setNickname(username);
+		}
+		if (!util.isEmpty(nickname)) {
+			u.setNickname(nickname);
+		}
 
-			u.setOs(os);
-			u.setOnline(1);
-			u.setTime(time);
-			u.setCompetence(0);
-			u.setGag(0);
+		u.setAccnumno(accnumno);
+		u.setPhone(phone);
+
+		u.setFinaltime(time);
+
+		u.setOs(os);
+		u.setOnline(1);
+		u.setTime(time);
+		u.setCompetence(0);
+		u.setGag(0);
+		synchronized (this) {
 			if (userdao.byUsernameAccnumnoPhone(phone) != null) {
 				util.Out().print(false);
 				return;
@@ -1517,42 +1516,40 @@ public class UserAction {
 			u.setPassword(password);
 			u.setAccnumno(accnumno);
 			userdao.save(u);
-
-			u = userdao.byUsernameAccnumnoPhone(phone);
-			if (u != null) {
-				if (file != null) {
-
-					String path = "/IMG/Userimg/" + u.getId();
-					String pah = util.ufileToServer(path, file, "jpg");
-					u.setImg(pah);
-					userdao.update(u);
-				} else {
-
-				}
-				String url = "http://127.0.0.1"+request.getContextPath() +"/createDefaultGroup?userId="+u.getId();
-				WechatKit.sendGet(url);
-				
-
-				JSONObject json = new JSONObject();
-				json.put("username", u.getId());
-
-				json.put("password", "123456");
-
-				String w = WechatKit.post(url, json,
-						RefreshAccessToken.access_token);
-
-				util.Out().print(util.ToJson(u));
-				 url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
-						+ address + "&os=" + os;
-				WechatKit.sendGet(url);
-				return;
-			} else {
-				util.Out().print("null");
-				return;
-			}
-
-		} catch (Exception e) {
 		}
+		u = userdao.byUsernameAccnumnoPhone(phone);
+		if (u != null) {
+			if (file != null) {
+
+				String path = "/IMG/Userimg/" + u.getId();
+				String pah = util.ufileToServer(path, file, "jpg");
+				u.setImg(pah);
+				userdao.update(u);
+			} else {
+
+			}
+			String url = "http://127.0.0.1" + request.getContextPath()
+					+ "/createDefaultGroup?userId=" + u.getId();
+			WechatKit.sendGet(url);
+
+			JSONObject json = new JSONObject();
+			json.put("username", u.getId());
+
+			json.put("password", "123456");
+
+			String w = WechatKit.post(url, json,
+					RefreshAccessToken.access_token);
+
+			util.Out().print(util.ToJson(u));
+			url = "http://127.0.0.1" + request.getContextPath()
+					+ "/aStas?province=" + address + "&os=" + os;
+			WechatKit.sendGet(url);
+			return;
+		} else {
+			util.Out().print("null");
+			return;
+		}
+
 	}
 
 	/**

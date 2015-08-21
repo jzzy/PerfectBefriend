@@ -13,7 +13,7 @@ import com.befriend.dao.FollectDAO;
 
 
 import com.befriend.entity.Follect;
-
+@SuppressWarnings("all")
 @Transactional
 public class FollectDAOImpl  implements FollectDAO {
 
