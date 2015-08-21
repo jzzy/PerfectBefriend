@@ -436,6 +436,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	
 	@Override
 	public User getUserGroup(Integer userId,int status)
 	{
