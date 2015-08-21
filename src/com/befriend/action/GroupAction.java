@@ -447,7 +447,7 @@ public class GroupAction{
 		if (!OpeFunction.isEmpty(schoolname)) {
 			paras.put("schoolname", schoolname);
 		}
-
+		
 		List<GroupChat> gl = gdao.likeGroupChat(classgroup, name,paras);
 		util.Out().print(util.ToJson(gl));
 

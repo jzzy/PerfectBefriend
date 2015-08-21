@@ -181,7 +181,7 @@ public class FriendAction extends BaseAction
 						{
 							friend.setUserGroup(userGroup);
 							friend.setStatus(GroupFriend.INVITE);
-							
+							System.out.println("remark:"+remark);
 							if(!StringUtils.isEmpty(remark))
 								friend.setRemark(remark);
 							

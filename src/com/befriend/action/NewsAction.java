@@ -7,13 +7,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -21,7 +18,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
-
 import com.befriend.dao.CollectDAO;
 import com.befriend.dao.NewsDAO;
 import com.befriend.dao.ReviewDAO;
@@ -35,8 +31,6 @@ import com.befriend.entity.Support;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
-
 public class NewsAction {
 	Log log = LogFactory.getLog(NewsAction.class);
 	private UserDAO userdao;
@@ -81,8 +75,8 @@ public class NewsAction {
 	private int currentPage = 1;
 	private int id;
 	private String username;
-	Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext()
-			.get("session");
+	//Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext()
+			//.get("session");
 	HttpServletRequest request = ServletActionContext.getRequest();
 
 	HttpSession session = ServletActionContext.getRequest().getSession();

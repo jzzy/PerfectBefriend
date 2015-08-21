@@ -17,7 +17,7 @@ public class App  implements Serializable {
 
 
 	/**
-	 * app��
+	 * app
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
