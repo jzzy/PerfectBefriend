@@ -38,6 +38,7 @@ import com.befriend.email.MailSenderInfo;
 import com.befriend.email.SimpleMailSender;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.opensymphony.xwork2.ActionContext;
 /**
  * Util
@@ -456,7 +457,7 @@ public class OpeFunction {
 	}
 
 	/**
-	 * Gson to Json
+	 * Gson to Json 需要 	@Expose
 	 * 
 	 * @param object
 	 * @return
@@ -469,11 +470,7 @@ public class OpeFunction {
 
 	}
 
-	public static Object getsession() {
-
-		return ActionContext.getContext().getSession();
-
-	}
+	
 
 
 	public static HttpServletRequest request()

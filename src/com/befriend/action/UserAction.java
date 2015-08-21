@@ -198,7 +198,7 @@ public class UserAction {
 				continue;
 			}
 
-			User macU = userdao.byIdMac();
+			User macU = userdao.byIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();
@@ -597,7 +597,7 @@ public class UserAction {
 			request.setAttribute("ue", username);
 			return Action.ERROR;
 		}
-		User macU = userdao.byIdMac();
+		User macU = userdao.byIdMax();
 		if (macU != null) {
 			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 			accnumno = ing.toString();
@@ -634,7 +634,6 @@ public class UserAction {
 	public String getUsermhh() throws IOException {
 
 		User ue = (User) session.getAttribute("useradmin");
-		Map session = (Map) util.getsession();// ���� map
 
 		if (ue == null) {
 			util.Out().print("�û�����Ϊ��");
@@ -1452,7 +1451,7 @@ public class UserAction {
 
 	}
 
-	public  void save() throws IOException, JSONException {
+	public synchronized  void save() throws IOException, JSONException {
 
 		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 
@@ -1507,7 +1506,7 @@ public class UserAction {
 				return;
 
 			}
-			User macU = userdao.byIdMac();
+			User macU = userdao.byIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();
@@ -1578,7 +1577,10 @@ public class UserAction {
 		u.setTime(time);
 		u.setCompetence(0);
 		u.setGag(0);
-		User macU = userdao.byIdMac();
+		synchronized (this) {
+			
+	
+		User macU = userdao.byIdMax();
 		if (macU != null) {
 			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 			accnumno = ing.toString();
@@ -1588,6 +1590,7 @@ public class UserAction {
 
 		u.setAccnumno(accnumno);
 		userdao.save(u);
+		}
 
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
 		if (u != null) {
@@ -1664,7 +1667,7 @@ public class UserAction {
 				return;
 
 			}
-			User macU = userdao.byIdMac();
+			User macU = userdao.byIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();
@@ -1908,7 +1911,6 @@ public class UserAction {
 	}
 
 	public String GetUserAll() throws IOException {
-		Map session = (Map) util.getsession();// ���� map
 		competence2 = userdao.getCount();// ȫ���û�����
 		int syn = userdao.getCountSyn();// ͬ�����û�����
 		List<User> ul = userdao.getOnline();// ��ѯ�����û�
