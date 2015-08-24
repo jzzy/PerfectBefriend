@@ -151,7 +151,7 @@ public class GroupAction{
 	}
 
 	/**
-	 * 老师创建群
+	 * 创建群
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -170,79 +170,87 @@ public class GroupAction{
 		System.out.println("condtion" + condtion);
 		System.out.println("gclassintroduction" + gclassintroduction);
 		System.out.println("classgroup" + classgroup);
-		
+
 		u = udao.byid(userid);
 		// 判断 是否有这个用户 name == null
 		if (u == null) {
 			util.Out().print("unull");
 			return;
 		}
-			// 这些数据等于空 不能添加
-			if (gclass == null || grade == null || headteachername == null
-					|| /**phone == null ||*/ schoolname == null
-					|| schooladdress == null || /**hxgroupid == null||*/gclassintroduction==null||condtion<=0) {
-				util.Out().print("null");
-				return;
-			}
-			// 上传群头像
-			if (file != null) {
 
-				img = "/IMG/Groupimg/" + OpeFunction.getNameDayTime();
-				img = util.ufileToServer(img, file,"jpg");
-				System.out.println(img);
-				groupchat.setImg(img);// 群图标
-				System.out.println("头像上传成功");
-			}
-			/**
-			 * 添加群信息
-			 */
-			groupchat.setClassgroup(classgroup);//1群 2班级
-			groupchat.setType(type);//类别
-			groupchat.setArea(area);//地区省
-			groupchat.setAreas(areas);//地区市
-			groupchat.setGroupid(hxgroupid);// 环信 群id
-			groupchat.setJoincondition(condtion);// 1 允许任何人 2 需要验证信息 3不允许任何人
-			groupchat.setGclass(gclass);// 班级
-			groupchat.setGrade(grade);// 年级
-			groupchat.setHeadteachername(headteachername);// 班主任名字
-			groupchat.setUserid(userid);// 群创建者
-			groupchat.setGclassintroduction(gclassintroduction);//班级简介
-			groupchat.setPhone(phone);// 班主任电话
-			groupchat.setSchoolname(schoolname);// 学校名字
-			groupchat.setName(name);// 群名字
-			groupchat.setSchooladdress(schooladdress);// 学校地址
-			groupchat.setTime(time);// 时间
-			GroupChat grpc=gdao.maxGroupno();
-			if(grpc!=null){
-				groupno=grpc.getGroupno()+1;
+		// 这些数据等于空 不能添加
+		// if (gclass == null || grade == null || headteachername == null
+		// || /**phone == null ||*/
+		// /**hxgroupid == null||*/gclassintroduction==null||condtion<=0) {
+		// util.Out().print("null");
+		// return;
+		// }
+		if (hxgroupid == null || condtion <= 0) {
+			util.Out().print("null");
+			return;
+		}
+		// 上传群头像
+		if (file != null) {
+
+			img = "/IMG/Groupimg/" + OpeFunction.getNameDayTime();
+			img = util.ufileToServer(img, file, "jpg");
+			System.out.println(img);
+			groupchat.setImg(img);// 群图标
+			System.out.println("头像上传成功");
+		}
+		/**
+		 * 添加群信息
+		 */
+		groupchat.setClassgroup(classgroup);// 1群 2班级
+		groupchat.setType(type);// 类别
+		groupchat.setArea(area);// 地区省
+		groupchat.setAreas(areas);// 地区市
+		groupchat.setGroupid(hxgroupid);// 环信 群id
+		groupchat.setJoincondition(condtion);// 1 允许任何人 2 需要验证信息 3不允许任何人
+		groupchat.setGclass(gclass);// 班级
+		groupchat.setGrade(grade);// 年级
+		groupchat.setHeadteachername(headteachername);// 班主任名字
+		groupchat.setUserid(userid);// 群创建者
+		groupchat.setGclassintroduction(gclassintroduction);// 班级简介
+		groupchat.setPhone(phone);// 班主任电话
+		groupchat.setSchoolname(schoolname);// 学校名字
+		groupchat.setName(name);// 群名字
+		groupchat.setSchooladdress(schooladdress);// 学校地址
+		groupchat.setTime(time);// 时间
+		synchronized (this) {
+
+			GroupChat grpc = gdao.maxGroupno();
+			if (grpc != null) {
+				groupno = grpc.getGroupno() + 1;
 				groupchat.setGroupno(groupno);// 群号
-				
-			}else{
-				groupno=10000000;
-				groupchat.setGroupno(10000000);// 群号
+
+			} else {
+				groupno = 10000000;
+				groupchat.setGroupno(groupno);// 群号
 			}
-			
+
 			gdao.save(groupchat);// 添加群
 			System.out.println("创建成功!");
-			// 通过群号查询群
-			groupchat = gdao.Findbygroupno(groupno);
-			if (groupchat == null) {
-				util.Out().print("gnull");
-				return;
-			}
+		}
+		// 通过群号查询群
+		groupchat = gdao.Findbygroupno(groupno);
+		if (groupchat == null) {
+			util.Out().print("gnull");
+			return;
+		}
 
-			// 获取群id
-			groupMembers.setGroupid(groupchat.getId());
-			/**
-			 * 代表 0等待审核 1 是成员 2 被踢的 3是群主
-			 */
-			groupMembers.setUrp(3);
-			groupMembers.setUserid(userid);
-			groupMembers.setTime(time);
-			// 添加群关系 群主也是这个群的
-			gdao.save(groupMembers);
-			util.Out().print(util.ToJson(groupchat));
-			System.out.println("成功返回群信息!");
+		// 获取群id
+		groupMembers.setGroupid(groupchat.getId());
+		/**
+		 * 代表 0等待审核 1 是成员 2 被踢的 3是群主
+		 */
+		groupMembers.setUrp(3);
+		groupMembers.setUserid(userid);
+		groupMembers.setTime(time);
+		// 添加群关系 群主也是这个群的
+		gdao.save(groupMembers);
+		util.Out().print(util.ToJson(groupchat));
+		System.out.println("成功返回群信息!");
 
 	}
 
@@ -425,15 +433,7 @@ public class GroupAction{
 		util.Out().print(result);
 
 	}
-
-	/**
-	 * 查询群
-	 * 
-	 * @throws IOException
-	 */
 	public void likeGroupquiry() throws IOException {
-
-		// 查询到群
 		Map<String, String> paras = new HashMap<String, String>();
 		if (!OpeFunction.isEmpty(area)) {
 			paras.put("area", area);
@@ -452,6 +452,12 @@ public class GroupAction{
 		util.Out().print(util.ToJson(gl));
 
 	}
+	public void Groupquiry() throws IOException {
+		groupchat = gdao.Findbyid(groupid);
+		util.Out().print(util.ToJson(groupchat));
+
+	}
+
 
 	/**
 	 * 修改群资料 groupid userid

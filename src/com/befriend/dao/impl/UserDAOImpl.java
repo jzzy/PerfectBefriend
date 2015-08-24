@@ -422,7 +422,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User byIdMax() {
+	public User byAccnumnoIdMax() {
 		Query query = entityManager
 				.createQuery("select u from User u order by u.accnumno desc");
 		

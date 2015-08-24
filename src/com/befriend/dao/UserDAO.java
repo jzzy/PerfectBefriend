@@ -10,7 +10,7 @@ public interface UserDAO {
 
 	public User byUsernameAccnumnoPhone(String uap);
 
-	public User byIdMax();
+	public User byAccnumnoIdMax();
 
 	public void save(User user);
 

@@ -198,7 +198,7 @@ public class UserAction {
 				continue;
 			}
 
-			User macU = userdao.byIdMax();
+			User macU = userdao.byAccnumnoIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();
@@ -597,7 +597,7 @@ public class UserAction {
 			request.setAttribute("ue", username);
 			return Action.ERROR;
 		}
-		User macU = userdao.byIdMax();
+		User macU = userdao.byAccnumnoIdMax();
 		if (macU != null) {
 			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 			accnumno = ing.toString();
@@ -1451,7 +1451,7 @@ public class UserAction {
 
 	}
 
-	public synchronized  void save() throws IOException, JSONException {
+	public void save() throws IOException, JSONException {
 
 		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 
@@ -1506,7 +1506,7 @@ public class UserAction {
 				return;
 
 			}
-			User macU = userdao.byIdMax();
+			User macU = userdao.byAccnumnoIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();
@@ -1561,7 +1561,8 @@ public class UserAction {
 	public void oneSave() throws IOException, JSONException {
 
 		u = userdao.byMac(mac);
-		if (u != null) {
+		System.out.println("oneSave Mac:" + mac);
+		if (u != null || util.isEmpty(mac)) {
 			util.Out().print(util.ToJson(u));
 			return;
 		}
@@ -1572,24 +1573,24 @@ public class UserAction {
 
 		u.setFinaltime(time);
 
-		// u.setOs(os);
+		u.setOs(os);
 		u.setOnline(1);
 		u.setTime(time);
 		u.setCompetence(0);
 		u.setGag(0);
 		synchronized (this) {
-			
-	
-		User macU = userdao.byIdMax();
-		if (macU != null) {
-			Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
-			accnumno = ing.toString();
-		} else {
-			accnumno = "10000000";
-		}
 
-		u.setAccnumno(accnumno);
-		userdao.save(u);
+			User macU = userdao.byAccnumnoIdMax();
+			if (macU != null) {
+				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
+				accnumno = ing.toString();
+			} else {
+				accnumno = "10000000";
+			}
+
+			u.setAccnumno(accnumno);
+			userdao.save(u);
+			System.out.println("oneSave accnumno ID:" + accnumno);
 		}
 
 		u = userdao.byUsernameAccnumnoPhone(accnumno);
@@ -1611,8 +1612,8 @@ public class UserAction {
 					RefreshAccessToken.access_token);
 			u.setPassword(accnumno.toString());
 			util.Out().print(util.ToJson(u));
-			String url = "http://127.0.0.1"+request.getContextPath() +"/aStas?province="
-					+ address + "&os=" + os;
+			String url = "http://127.0.0.1" + request.getContextPath()
+					+ "/aStas?province=" + address + "&os=" + os;
 			WechatKit.sendGet(url);
 			return;
 		} else {
@@ -1667,7 +1668,7 @@ public class UserAction {
 				return;
 
 			}
-			User macU = userdao.byIdMax();
+			User macU = userdao.byAccnumnoIdMax();
 			if (macU != null) {
 				Integer ing = Integer.parseInt(macU.getAccnumno()) + 1;
 				accnumno = ing.toString();

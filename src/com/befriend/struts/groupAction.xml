@@ -23,8 +23,11 @@
 		<action name="Jointionok" class="groupAction" method="Jointionok">
 		</action>
 		
-		<!--  通过群号查询群-->
+		<!-- 模糊查询群-->
 		<action name="likeGroupquiry" class="groupAction" method="likeGroupquiry">
+		</action>
+		<!-- 通过id查询群-->
+		<action name="Groupquiry" class="groupAction" method="Groupquiry">
 		</action>
 		
 		<!-- 修改群资料 -->

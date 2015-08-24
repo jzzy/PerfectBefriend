@@ -1,4 +1,6 @@
 package com.befriend.listener;
+import java.util.List;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -9,6 +11,11 @@ import org.apache.commons.logging.LogFactory;
 import com.befriend.Thread.StasTime;
 import com.befriend.Thread.TCPThread;
 import com.befriend.config.ServerConfig;
+import com.befriend.dao.NewsDAO;
+import com.befriend.dao.UserDAO;
+import com.befriend.entity.News;
+import com.befriend.entity.User;
+import com.befriend.util.ApplicationUtil;
 
 /**
  * Application Lifecycle Listener implementation class InitListener
@@ -46,6 +53,7 @@ public class InitListener implements ServletContextListener
         logger.info("This is info message.");  
         // 记录error级别的信息  
         logger.error("This is error message.");  
+       
 				
 	}
 

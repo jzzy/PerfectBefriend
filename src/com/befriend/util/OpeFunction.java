@@ -34,8 +34,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
+import com.befriend.dao.NewsDAO;
+import com.befriend.dao.UserDAO;
 import com.befriend.email.MailSenderInfo;
 import com.befriend.email.SimpleMailSender;
+import com.befriend.entity.News;
+import com.befriend.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
@@ -182,6 +186,7 @@ public class OpeFunction {
 	 * 
 	 * 
 	 * @param 年月日/时分秒
+	 * 20150824/024326
 	 * 命名
 	 */
 	public static String getNameDayTime() {
@@ -562,9 +567,9 @@ public class OpeFunction {
 
 	}
 
-	public static void main(String[] args) throws ParseException {
-		System.out.println(getNameDayTime());
 
+	public static void main(String[] args) throws ParseException {
+	
 
 	}
 
