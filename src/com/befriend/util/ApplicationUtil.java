@@ -1,17 +1,13 @@
 package com.befriend.util;
 
-import java.util.List;
+
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.befriend.dao.NewsDAO;
-import com.befriend.dao.UserDAO;
-import com.befriend.entity.News;
-import com.befriend.entity.User;
 
-public class ApplicationUtil implements ApplicationContextAware {
+public class  ApplicationUtil implements ApplicationContextAware {
 	private static ApplicationContext applicationContext;
 
 	@Override

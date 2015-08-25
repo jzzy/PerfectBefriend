@@ -43,39 +43,39 @@ public class GroupAction{
 	List<GroupChat> lgroupchat = new ArrayList<GroupChat>();
 	List<Profile> lprofile = new ArrayList<Profile>();
 	List<Cis> lcis = new ArrayList<Cis>();
-	private String name;
+	private String name=null;
 	private int userid;
-	private String img;
-	private String schoolname;
-	private String schooladdress;
-	private String grade;
-	private String gclass;
-	private String headteachername;
-	private int groupno;
+	private String img=null;
+	private String schoolname=null;
+	private String schooladdress=null;
+	private String grade=null;
+	private String gclass=null;
+	private String headteachername=null;
+	private int groupno=0;
 	private Boolean b = true;
-	private File file;
-	private String fileFileName;
-	private String fileContentType;
+	private File file=null;
+	private String fileFileName=null;
+	private String fileContentType=null;
 	private int urp;
-	private String authentication;
-	private String ip;
-	private String sdname;
-	private String kip;
-	private String phone;
+	private String authentication=null;
+	private String ip=null;
+	private String sdname=null;
+	private String kip=null;
+	private String phone=null;
 	private int ddb = -1;
 	private int judge;
 	private String rsbs;
 	private int senduserid;
-	private String information;
+	private String information=null;
 	private String time = util.getNowTime();
 	private int groupid;
-	private String hxgroupid;
+	private String hxgroupid=null;
 	private int condtion;
 	private int type;
-	private String area;
-	private String areas;
+	private String area=null;
+	private String areas=null;
 	private int classgroup;
-	private String gclassintroduction;
+	private String gclassintroduction=null;
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
 	/**
@@ -85,7 +85,7 @@ public class GroupAction{
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */
-	public void synchrGroup() throws JSONException, InterruptedException,
+	public synchronized void synchrGroup() throws JSONException, InterruptedException,
 			IOException {
 		Admin admin=(Admin)session.getAttribute("admin");
 		if(admin==null){
@@ -320,7 +320,7 @@ public class GroupAction{
 	 * 
 	 * @throws IOException
 	 */
-	public void Jointion() throws IOException {
+	public synchronized void Jointion() throws IOException {
 		System.out.println("用户添加群 ！ ");
 		System.out.println("群号: " + groupno);
 		System.out.println("老师家长名字" + name);
@@ -339,7 +339,7 @@ public class GroupAction{
 		}
 		// 通过群号查询群
 		
-		groupchat = gdao.Findbygroupno(groupno);
+		groupchat = gdao.Findbyid(groupid);
 		if (groupchat == null) {
 			util.Out().print("gnull");
 			System.out.println("没有该群");
@@ -348,7 +348,7 @@ public class GroupAction{
 		if(groupchat.getJoincondition()==1){
 			urp=1;
 		}else if(groupchat.getJoincondition()==2){
-			urp=0;
+			urp=1;
 		}else if(groupchat.getJoincondition()==3){
 			util.Out().print("no");
 			return;
@@ -387,7 +387,7 @@ public class GroupAction{
 		groupMembers.setTime(time);
 		gdao.save(groupMembers);
 		System.out.println("添加群与个人关系成功 环信群id:" + groupchat.getGroupid());
-		util.Out().print(groupchat.getGroupid());
+		util.Out().print(true);
 	}
 
 	/**

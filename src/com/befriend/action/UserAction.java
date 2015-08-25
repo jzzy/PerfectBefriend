@@ -36,60 +36,58 @@ import com.opensymphony.xwork2.Action;
 public class UserAction {
 	private User u = new User();
 	public OpeFunction util;
-	private ApputilDAO adao;// ApputilDAO
+	private ApputilDAO adao;
 	private UserDAO userdao;
 	private GroupDAO gdao;
 	private RegistrationDAO regdao;
 
 	List<User> us = new ArrayList<User>();
 	HttpServletRequest request = ServletActionContext.getRequest();
-	private String code;
+	private String code=null;
 	List<Cis> cis = new ArrayList<Cis>();
-	private String sex;
-	private String signature;
-	private String childrensex;
-	private String newpassword;// ������
+	private String sex=null;
+	private String signature=null;
+	private String childrensex=null;
+	private String newpassword=null;
 
-	private String childrenage;// ��������
-	private String mac;
-	private String phone;// �ֻ���
-	private String username;// �û���
-	private String password;// ����
-	private String newpwd;// ����������
-	private int id = -1;// �û�id
-	private String school;// ����ѧУ
-	private String stage;// �׶�
-	private String time = util.getNowTime();// ʱ��
-	private String nickname;// �ǳ�
-	private String address;// ��ַ ʡ��
-	private String os = "web";// ϵͳ
-	private String addcity;// ��ַ �м�
+	private String childrenage=null;
+	private String mac=null;
+	private String phone=null;
+	private String username=null;
+	private String password=null;
+	private String newpwd=null;
+	private int id = -1;
+	private String school=null;
+	private String stage=null;
+	private String time = util.getNowTime();
+	private String nickname=null;
+	private String address=null;
+	private String os =null;
+	private String addcity=null;
 
 	private HttpSession session = ServletActionContext.getRequest()
 			.getSession();
 
-	private int competence2 = -1;// �û�id competence �û�Ȩ�� 0-��ͨ�û�
-									// 1-�м���̳����Ա
-									// 2-ʡ����̳����Ա
-	private int gag = -1;// 0������ 1 �� ����
-	private int pageSize = 50;// ÿҳ��ʾ ����������
-	private int currentPage = 1;// ���ǵڶ���ҳ
+	private int competence2 = -1;
+	private int gag = -1;
+	private int pageSize = 50;
+	private int currentPage = 1;
 
-	private String timeq;// ��ѯ��ʼʱ��
+	private String timeq=null;
 
-	private String timeh;// ��ѯ����ʱ��
-	private File file;// logo img
-	private String fileFileName;// �ļ���
-	private String fileContentType;// �ļ�����
+	private String timeh=null;
+	private File file=null;
+	private String fileFileName=null;
+	private String fileContentType=null;
 
-	private String accnumno;//
-	private int port = -1;//
-	private String ip;// �û�ip
-	private String province;// ��ȡǰ�˵� ʡ��
-	private String city;// ��ȡǰ�˵� �м�
-	private String age;// ����
+	private String accnumno=null;
+	private int port = -1;
+	private String ip=null;
+	private String province=null;
+	private String city=null;
+	private String age=null;
 
-	// �����û�ע��
+	
 	private String url = "https://a1.easemob.com/topLong/wcfriend/users";
 
 	public String ViewStatistics() throws IOException {

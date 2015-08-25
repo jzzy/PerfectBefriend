@@ -3,9 +3,9 @@ package com.befriend.wechat;
 import java.io.IOException;
 
 
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -20,6 +20,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 
+
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -27,6 +28,9 @@ import javax.net.ssl.X509TrustManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
+
+
+import com.befriend.util.OpeFunction;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -57,7 +61,7 @@ public class WechatKit {
 			}
 		
 			int code = resp.getStatusLine().getStatusCode();
-			System.out.println("WechatKit.sendGet code:" + code+",URL "+url);
+			System.out.println(OpeFunction.getNowTime()+",64row WechatKit.sendGet code:" + code+",URL "+url);
 			if (code >= 200 && code < 300) {
 				
 				HttpEntity entity = resp.getEntity();

@@ -33,6 +33,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.annotations.Synchronize;
+
+import sun.misc.GC;
 
 import com.befriend.dao.NewsDAO;
 import com.befriend.dao.UserDAO;
@@ -527,7 +530,7 @@ public class OpeFunction {
 		return request.getHeader("x-forwarded-for");
 	}
 
-
+	
 	public static void setphone(String phone, String textp) {
 		try {
 			String account = "cf_wcsk_jztd";
@@ -568,9 +571,14 @@ public class OpeFunction {
 	}
 
 
-	public static void main(String[] args) throws ParseException {
-	
-
+	public static void main(String[] args) throws ParseException, InterruptedException {
+		while (true) {
+			Thread.sleep(1000);
+			System.out.println("回收内纯!");
+			System.gc();
+			
+		}
+		
 	}
 
 	public static class SSSS implements Comparator<Integer> {
