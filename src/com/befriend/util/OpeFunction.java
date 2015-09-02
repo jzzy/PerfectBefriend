@@ -572,12 +572,11 @@ public class OpeFunction {
 
 
 	public static void main(String[] args) throws ParseException, InterruptedException {
-		while (true) {
-			Thread.sleep(1000);
-			System.out.println("回收内纯!");
-			System.gc();
-			
+		for (int i = 0; i < args.length; i++) {
+			System.out.println(args[i]);
 		}
+		
+	
 		
 	}
 

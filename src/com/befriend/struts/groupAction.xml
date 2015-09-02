@@ -4,6 +4,12 @@
 <struts>
 	<package name="group" extends="struts-default"  namespace="/group">
 
+		<!-- 查看群信息  用户头像 昵称 -->
+		<action name="ViewGroupMembers" class="groupAction" method="ViewGroupMembers">
+		</action>
+		<!-- 查看个人的群资料 -->
+		<action name="ViewGMembers" class="groupAction" method="ViewGMembers">
+		</action>
 
 		<!--  同步到环信上-->
 		<action name="synchrGroup" class="groupAction" method="synchrGroup">
@@ -12,7 +18,7 @@
 		<action name="saveGroup" class="groupAction" method="saveGroup">
 		</action>
 		
-		<!--   审核群进群用户 查询这个群的用户 查询被踢的用户-->
+		<!--   审核  群进群用户 查询这个群的用户 查询被踢的用户-->
 		<action name="GroupCheck" class="groupAction" method="GroupCheck">
 		</action>
 		
@@ -72,12 +78,7 @@
 		<!-- 用户修改群资料 -->
 		<action name="ModifyGroupIn" class="groupAction" method="ModifyGroupIn">
 		</action>
-		<!-- 查看群信息  用户头像 昵称 -->
-		<action name="ViewGroupMembers" class="groupAction" method="ViewGroupMembers">
-		</action>
-		<!-- 查看个人的群资料 -->
-		<action name="ViewGMembers" class="groupAction" method="ViewGMembers">
-		</action>
+	
 		<!-- 删除群-->
 		<action name="RemoveGroup" class="groupAction" method="RemoveGroup">
 		</action>

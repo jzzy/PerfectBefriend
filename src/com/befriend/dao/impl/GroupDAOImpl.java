@@ -393,4 +393,18 @@ public class GroupDAOImpl implements GroupDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public GroupChat Findbyclassgroupid(int groupid, int classgroup) {
+		Query query = entityManager.createQuery("select c from GroupChat c"
+				+ " where c.id=:groupid and c.classgroup=:classgroup");
+		query.setParameter("classgroup", classgroup);
+		query.setParameter("groupid", groupid);
+		List<GroupChat> g = query.getResultList();
+		if (g.size() > 0) {
+			return g.get(0);
+		} else {
+			return null;
+		}
+	}
+
 }

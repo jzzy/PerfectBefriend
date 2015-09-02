@@ -255,7 +255,7 @@ public class GroupAction{
 	}
 
 	/**
-	 * 查看群成员！
+	 * 审核
 	 * 
 	 * @throws IOException
 	 */
@@ -565,7 +565,7 @@ public class GroupAction{
 			// 获取群id
 			id = lgroupMembers.get(i).getGroupid();
 			// 添加群
-			lgroupchat.add(gdao.Findbyid(id));
+			lgroupchat.add(gdao.Findbyclassgroupid(id,classgroup));
 		}
 
 		if (lgroupchat.size() <= 0) {
@@ -981,7 +981,6 @@ public class GroupAction{
 			lprofile.add(profile);
 
 		}
-		System.out.println(lu.size() + "==" + lprofile.size() + "应该一样多");
 
 		String result = "{\"lu\":" + util.ToJson(lu) + ",\"lprofile\":"
 				+ util.ToJson(lprofile) + "" + ",\"groupchat\":"

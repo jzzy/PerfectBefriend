@@ -19,6 +19,7 @@ public interface GroupDAO {
 	public void Update(GroupChat groupchat);
 
 	public GroupChat Findbyid(int groupid);
+	public GroupChat Findbyclassgroupid(int groupid,int classgroup);
 	/**
 	 * 查询我的班级或群
 	 * @param userid

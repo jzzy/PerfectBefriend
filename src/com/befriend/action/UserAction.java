@@ -88,7 +88,7 @@ public class UserAction {
 	private String age=null;
 
 	
-	private String url = "https://a1.easemob.com/topLong/wcfriend/users";
+	private final static String URL = "https://a1.easemob.com/topLong/parentsfriend/users";
 
 	public String ViewStatistics() throws IOException {
 
@@ -246,7 +246,7 @@ public class UserAction {
 
 				return;
 			}
-			String w = WechatKit.post(url, json,
+			String w = WechatKit.post(URL, json,
 					RefreshAccessToken.access_token);
 
 		}
@@ -621,7 +621,7 @@ public class UserAction {
 			json.put("username", u.getId());
 
 			json.put("password", "123456");
-			String w = WechatKit.post(url, json,
+			String w = WechatKit.post(URL, json,
 					RefreshAccessToken.access_token);
 		}
 
@@ -1101,6 +1101,9 @@ public class UserAction {
 	}
 
 	public void AdminLogin() throws IOException {
+		
+	
+		
 		try {
 			request.setAttribute("luntan", "UserAdmin.jsp");
 
@@ -1157,19 +1160,22 @@ public class UserAction {
 
 	}
 
-	@SuppressWarnings("static-access")
 	public void Login() throws IOException {
 		try {
 			System.out.println("Login username:"+username+",password:"+password);
 			if(util.isEmpty(username)||util.isEmpty(password)){
-
-				util.Out().print("null");
+				
+				util.Out().print(false);
 				return;
 			}
-			u = userdao.login(username, password);
+			 u = userdao.login(username, password);
 			if (u == null) {
-
-				util.Out().print("null");
+				if(userdao.byUsernameAccnumnoPhone(username)!=null){
+					util.Out().print(false);
+				}else{
+					util.Out().print("null");
+				}
+		
 				return;
 			}
 
@@ -1599,15 +1605,14 @@ public class UserAction {
 				String pah = util.ufileToServer(path, file, "jpg");
 				u.setImg(pah);
 				userdao.update(u);
-			} else {
-
-			}
+			} 
 
 			JSONObject json = new JSONObject();
 			json.put("username", u.getId());
 			json.put("password", "123456");
-			String w = WechatKit.post(url, json,
+			String w = WechatKit.post(URL, json,
 					RefreshAccessToken.access_token);
+			System.out.println("在环信注册 的返回值:"+w);
 			u.setPassword(accnumno.toString());
 			util.Out().print(util.ToJson(u));
 			String url = "http://127.0.0.1" + request.getContextPath()
@@ -1694,7 +1699,7 @@ public class UserAction {
 				// �û�id
 				json.put("password", "123456");
 				// �û�����
-				String w = WechatKit.post(url, json,
+				String w = WechatKit.post(URL, json,
 						RefreshAccessToken.access_token);
 
 				u.setPassword(password);

@@ -89,7 +89,6 @@ public class NewsAction {
 	
 	public void supportReviewRsave() throws IOException {
 		log.info("info");
-		log.debug("bug");
 		r=rdao.byid(reviewid);
 		if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid)==null&&r!=null){
 			st.setComefrom(Support.COME_FROM_NEWS_REVIEW);
