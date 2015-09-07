@@ -447,9 +447,10 @@ public class GroupAction{
 		if (!OpeFunction.isEmpty(schoolname)) {
 			paras.put("schoolname", schoolname);
 		}
-		
+		System.out.println("likeGroupquiry"+classgroup+name);
 		List<GroupChat> gl = gdao.likeGroupChat(classgroup, name,paras);
 		util.Out().print(util.ToJson(gl));
+		System.out.println(util.ToJson(gl));
 
 	}
 	public void Groupquiry() throws IOException {

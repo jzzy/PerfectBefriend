@@ -452,7 +452,7 @@ public class UserAction {
 			if (file != null) {
 
 				util.fileRemove(path);
-				path = "/IMG/Userimg/" + u.getId();
+				path = "/IMG/Userimg/" +OpeFunction.getNameDayTime();
 				String pah = util.ufileToServer(path, file, "jpg");
 				u.setImg(pah);
 
@@ -1416,12 +1416,12 @@ public class UserAction {
 			int num = (int) ((Math.random() * 9 + 1) * 100000);
 
 			session.setAttribute("app_code", String.valueOf(num));
-			session.setMaxInactiveInterval(90);
+			session.setMaxInactiveInterval(60*10);
 
 			String content = new String("您的验证码是：" + num
 					+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
 			util.setphone(phone, content);
-			System.out.println(content);
+			System.out.println(phone+" "+content);
 			util.Out().print(true);
 
 		} catch (Exception e) {
@@ -1444,7 +1444,11 @@ public class UserAction {
 			if (codes.equalsIgnoreCase(code)) {
 
 				util.Out().print(true);
-				session.invalidate();
+				/**
+				 * session.invalidate()是让当前浏览器的session销毁,也就是一个session被销毁
+				 * 而removeAttribute()可以指定销毁session中的某个属性
+				 */
+				session.removeAttribute("app_code");
 			} else {
 				util.Out().print(false);
 			}
@@ -1455,7 +1459,7 @@ public class UserAction {
 
 	}
 
-	public void save() throws IOException, JSONException {
+	public synchronized void save() throws IOException, JSONException {
 
 		String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 
@@ -1525,13 +1529,11 @@ public class UserAction {
 		if (u != null) {
 			if (file != null) {
 
-				String path = "/IMG/Userimg/" + u.getId();
+				String path = "/IMG/Userimg/" +OpeFunction.getNameDayTime();
 				String pah = util.ufileToServer(path, file, "jpg");
 				u.setImg(pah);
 				userdao.update(u);
-			} else {
-
-			}
+			} 
 			String url = "http://127.0.0.1" + request.getContextPath()
 					+ "/createDefaultGroup?userId=" + u.getId();
 			WechatKit.sendGet(url);
@@ -1541,9 +1543,9 @@ public class UserAction {
 
 			json.put("password", "123456");
 
-			String w = WechatKit.post(url, json,
+			String w = WechatKit.post(URL, json,
 					RefreshAccessToken.access_token);
-
+			System.out.println(w);
 			util.Out().print(util.ToJson(u));
 			url = "http://127.0.0.1" + request.getContextPath()
 					+ "/aStas?province=" + address + "&os=" + os;
@@ -1562,7 +1564,7 @@ public class UserAction {
 	 * @throws IOException
 	 * @throws JSONException
 	 */
-	public void oneSave() throws IOException, JSONException {
+	public synchronized void oneSave() throws IOException, JSONException {
 
 		u = userdao.byMac(mac);
 		System.out.println("oneSave Mac:" + mac);
@@ -1601,7 +1603,7 @@ public class UserAction {
 		if (u != null) {
 			if (file != null) {
 
-				String path = "/IMG/Userimg/" + u.getId();
+				String path = "/IMG/Userimg/" +OpeFunction.getNameDayTime();
 				String pah = util.ufileToServer(path, file, "jpg");
 				u.setImg(pah);
 				userdao.update(u);
@@ -1613,7 +1615,6 @@ public class UserAction {
 			String w = WechatKit.post(URL, json,
 					RefreshAccessToken.access_token);
 			System.out.println("在环信注册 的返回值:"+w);
-			u.setPassword(accnumno.toString());
 			util.Out().print(util.ToJson(u));
 			String url = "http://127.0.0.1" + request.getContextPath()
 					+ "/aStas?province=" + address + "&os=" + os;
@@ -1686,7 +1687,7 @@ public class UserAction {
 			if (u != null) {
 				if (file != null) {
 
-					String path = "/IMG/Userimg/" + u.getId();
+					String path = "/IMG/Userimg/"  +OpeFunction.getNameDayTime();
 					String pah = util.ufileToServer(path, file, "jpg");
 					u.setImg(pah);
 					userdao.update(u);
@@ -1822,7 +1823,7 @@ public class UserAction {
 				if (path != null) {
 					util.fileRemove(path);
 				}
-				path = "/IMG/Userimg/" + OpeFunction.getNameDayTime()+ "/" + u.getId();
+				path = "/IMG/Userimg/" + OpeFunction.getNameDayTime();
 				path = util.ufileToServer(path, file, "jpg");
 
 				u.setImg(path);

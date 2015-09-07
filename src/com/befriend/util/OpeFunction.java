@@ -194,8 +194,9 @@ public class OpeFunction {
 	 */
 	public static String getNameDayTime() {
 		Calendar cal = Calendar.getInstance();
-		String name = "/";
+		String name = "";
 			name = Integer.valueOf(cal.get(Calendar.YEAR)).toString();
+			name+="/";
 			if (cal.get(Calendar.MONTH) + 1 < 10) {
 				name = name
 						+ "0"
@@ -206,6 +207,7 @@ public class OpeFunction {
 						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
 								.toString();
 			}
+			name+="/";
 			if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
 				name = name
 						+ "0"
@@ -225,6 +227,7 @@ public class OpeFunction {
 						+ Integer.valueOf(cal.get(Calendar.MONTH) + 1)
 								.toString();
 			}
+			name+="/";
 			if (cal.get(Calendar.MINUTE) < 10) {
 				name = name + "0"
 						+ Integer.valueOf(cal.get(Calendar.MINUTE)).toString();
@@ -575,6 +578,7 @@ public class OpeFunction {
 		for (int i = 0; i < args.length; i++) {
 			System.out.println(args[i]);
 		}
+		System.out.println(getNameDayTime());
 		
 	
 		

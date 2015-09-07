@@ -1503,7 +1503,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 		if (file != null) {
 
-			img = "/IMG/Forumimg/" + OpeFunction.getNameDayTime() + "/" + userid;
+			img = "/IMG/Forumimg/" + OpeFunction.getNameDayTime();
 			img = util.ufileToServer(img, file, "jpg");
 			System.out.println(img);
 			fone.setImg(img);

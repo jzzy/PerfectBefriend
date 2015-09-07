@@ -96,8 +96,9 @@
 		 
 
 	<welcome-file-list>
+		
+		<!-- 设置默认显示页面 -->
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
