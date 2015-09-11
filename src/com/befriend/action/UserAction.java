@@ -1416,7 +1416,7 @@ public class UserAction {
 			int num = (int) ((Math.random() * 9 + 1) * 100000);
 
 			session.setAttribute("app_code", String.valueOf(num));
-			session.setMaxInactiveInterval(60*10);
+			session.setMaxInactiveInterval(600);
 
 			String content = new String("您的验证码是：" + num
 					+ "。请不要把验证码泄露给其他人。如非本人操作，可不用理会！");
@@ -1750,31 +1750,39 @@ public class UserAction {
 
 			String reg = "^[A-Za-z_][A-Za-z0-9]{5,17}";
 			String p = request.getParameter("p");
-			u = userdao.byUsernameAccnumnoPhone(accnumno);
-			if (u == null) {
-				util.Out().print("null");
-				return;
-			}
-
+			System.out.println("p "+p+" "+accnumno+" "+password);
 			if (p != null) {
-
+				
+				u = userdao.login(accnumno, password);
+				if (u == null) {
+					util.Out().print(false);
+					return;
+				}
 				if (!OpeFunction.isEmpty(newpassword)) {
 
 					reg = "[A-Za-z0-9_]{6,18}";
 					if (newpassword.matches(reg)) {
-						u.setPassword(password);
+						System.out.println("修改成功"+newpassword);
+						u.setPassword(newpassword);
 						userdao.update(u);
 
 						util.Out().print(true);
 						return;
 
 					} else {
-
+						System.out.println("修改失败"+newpassword);
 						util.Out().print("nfalse");
 						return;
 					}
 				}
 			}
+			u = userdao.byUsernameAccnumnoPhone(accnumno);
+			if (u == null) {
+				util.Out().print("null");
+				return;
+			}
+
+			
 
 			if (u.getCompetence() == 0) {
 				if (!util.isEmpty(addcity)) {

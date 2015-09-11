@@ -9,7 +9,6 @@ import com.befriend.entity.Support;
 public interface CollectDAO {
 
 	public List<Collect> Alln(int newsid);
-
 	public List<Collect> Allu(int userid);
 
 	public void save(Collect collect);

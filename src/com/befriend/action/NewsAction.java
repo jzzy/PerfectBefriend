@@ -31,6 +31,7 @@ import com.befriend.entity.Support;
 import com.befriend.entity.User;
 import com.befriend.util.OpeFunction;
 import com.opensymphony.xwork2.Action;
+
 public class NewsAction {
 	Log log = LogFactory.getLog(NewsAction.class);
 	private UserDAO userdao;
@@ -63,7 +64,7 @@ public class NewsAction {
 
 	private String area;
 	private String areas;
-	private String time=OpeFunction.getNowTime();
+	private String time = OpeFunction.getNowTime();
 	private File imgFile1;
 	private File imgFile2;
 	private File imgFile3;
@@ -75,8 +76,8 @@ public class NewsAction {
 	private int currentPage = 1;
 	private int id;
 	private String username;
-	//Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext()
-			//.get("session");
+	// Map<?, ?> Mapsession = (Map<?, ?>) ActionContext.getContext()
+	// .get("session");
 	HttpServletRequest request = ServletActionContext.getRequest();
 
 	HttpSession session = ServletActionContext.getRequest().getSession();
@@ -86,26 +87,26 @@ public class NewsAction {
 	private String city;
 	public File xlsxFile;
 	private String xlsxFileFileName;
-	
+
 	public void supportReviewRsave() throws IOException {
-		log.info("info");
-		r=rdao.byid(reviewid);
-		if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid)==null&&r!=null){
+		r = rdao.byid(reviewid);
+		if (cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid) == null
+				&& r != null) {
 			st.setComefrom(Support.COME_FROM_NEWS_REVIEW);
 			st.setObjectid(reviewid);
 			st.setTime(time);
 			st.setUserid(userid);
 			cdao.save(st);
-			r.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW, reviewid).size());
+			r.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW,
+					reviewid).size());
 			rdao.update(r);
 			OpeFunction.Out().print(true);
-		}else{
+		} else {
 			OpeFunction.Out().print(false);
 		}
 
-		
 	}
-	
+
 	public void Recommendation() throws IOException {
 		n = ndao.byid(newsid);
 		if (n == null) {
@@ -113,7 +114,7 @@ public class NewsAction {
 			return;
 		}
 		String nb = n.getLabel();
-		nl = ndao.getRecentlyNewsByTime(OpeFunction.getNumTime(15),
+		nl = ndao.getRecentlyNewsByTime(OpeFunction.getNumTime(999),
 				OpeFunction.getNowTime());
 		for (int i = 0; i < nl.size(); i++) {
 			double d = 0.0;
@@ -191,7 +192,7 @@ public class NewsAction {
 				continue;
 			}
 
-			for (int rowNum = 1; rowNum <=xssfSheet.getLastRowNum(); rowNum++) {
+			for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
 
 				XSSFRow xssfRow = xssfSheet.getRow(rowNum);
 				if (xssfRow == null) {
@@ -202,7 +203,6 @@ public class NewsAction {
 				if (xssfRow.getCell(0) != null
 						&& !OpeFunction.isEmpty(xssfRow.getCell(0).toString())) {
 					label = xssfRow.getCell(0).toString();
-
 					if (ndao.byNewsLabelName(label) != null) {
 
 						continue;
@@ -225,7 +225,6 @@ public class NewsAction {
 		out.print(builder.toString());
 
 	}
-	
 
 	public String webWeiXinHotarea() throws IOException {
 		if (pageSize <= 0) {
@@ -879,7 +878,6 @@ public class NewsAction {
 		}
 	}
 
-	
 	public void newtype() throws IOException {
 		try {
 			if (pageSize <= 0) {
@@ -890,7 +888,6 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 				return;
 			}
-
 
 			int a = ndao.type(0, tp).size();
 
@@ -913,19 +910,19 @@ public class NewsAction {
 
 			for (int i = 0; i < nl.size(); i++) {
 				n = nl.get(i);
-			
+				//是否收藏过
 				if (cdao.unid(userid, n.getId()) != null) {
 					scb.add(true);
 				} else {
 					scb.add(false);
 				}
-				
+				//是否点赞过
 				if (cdao.Whether(Support.COME_FROM_NEWS, userid, n.getId()) != null) {
 					zb.add(true);
 				} else {
 					zb.add(false);
 				}
-				
+				//是否评论过
 				if (rdao.unid(userid, n.getId()).size() > 0) {
 					plb.add(true);
 				} else {
@@ -934,7 +931,6 @@ public class NewsAction {
 
 			}
 
-			
 			String result = "{\"nl\":" + OpeFunction.ToJson(nl) + ",\"cpe\":"
 					+ a + ",\"currentPage\":" + currentPage + ",\"plb\":"
 					+ OpeFunction.ToJson(plb) + ",\"zb\":"
@@ -947,7 +943,7 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 			}
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
@@ -1816,7 +1812,6 @@ public class NewsAction {
 
 	}
 
-	
 	public String adminNewsId() throws IOException {
 
 		System.out.println("��̨����鿴��������ͨ��id��ѯ����" + id);
@@ -2021,7 +2016,8 @@ public class NewsAction {
 			cdao.remove(st);
 			n = ndao.byid(newsid);
 			if (n != null) {
-				n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS, newsid).size());
+				n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS, newsid)
+						.size());
 				ndao.Upnews(n);
 				OpeFunction.Out().print(true);
 				return;
@@ -2034,17 +2030,18 @@ public class NewsAction {
 		}
 
 	}
+
 	public void removeReviewSupport() throws IOException {
-		
+
 		st = cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, reviewid);
-		if (st != null) {
+		r=rdao.byid(reviewid);
+		if (st != null&&r!=null) {
+
 			
-			n = ndao.byid(st.getObjectid());
-			if (n != null) {
-				n.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW, st.getObjectid()).size());
-				ndao.Upnews(n);
-			}
 			cdao.remove(st);
+			r.setSupports(cdao.Frequency(Support.COME_FROM_NEWS_REVIEW,
+					reviewid).size());
+			rdao.update(r);
 			OpeFunction.Out().print(true);
 		} else {
 			OpeFunction.Out().print(false);
@@ -2088,8 +2085,36 @@ public class NewsAction {
 				OpeFunction.Out().print("null");
 				return;
 			}
+			List<Boolean> zb=new ArrayList<Boolean>();
+			List<Boolean> scb=new ArrayList<Boolean>();
+			List<Boolean> plb=new ArrayList<Boolean>();
+			
 			for (Collect c : cdao.Allu(userid)) {
 				n = ndao.byid(c.getNewsid());
+				List<Review> Reewl = rdao.Alln(c.getNewsid());
+				if (Reewl.size() >= 1) {
+					rl.add(Reewl.get(0));
+				} else {
+					rl.add(null);
+				}
+				//是否收藏过
+				if (cdao.unid(userid, c.getNewsid()) != null) {
+					scb.add(true);
+				} else {
+					scb.add(false);
+				}
+				//是否点赞过
+				if (cdao.Whether(Support.COME_FROM_NEWS, userid, c.getNewsid()) != null) {
+					zb.add(true);
+				} else {
+					zb.add(false);
+				}
+				//是否评论过
+				if (rdao.unid(userid, c.getNewsid()).size() > 0) {
+					plb.add(true);
+				} else {
+					plb.add(false);
+				}
 				nl.add(n);
 
 			}
@@ -2097,8 +2122,10 @@ public class NewsAction {
 			if (nl.size() == 0) {
 				OpeFunction.Out().print("null");
 			} else {
-
-				OpeFunction.Out().print(OpeFunction.ToJson(nl));
+				String result = "{\"nl\":" + OpeFunction.ToJson(nl)
+						+ ",\"rl\":" + OpeFunction.ToJson(rl) + ",\"zb\":" + OpeFunction.ToJson(zb) 
+						+ ",\"plb\":" + OpeFunction.ToJson(plb) + ",\"scb\":" + OpeFunction.ToJson(scb) +"}";
+				OpeFunction.Out().print(result);
 			}
 
 		} catch (Exception e) {
@@ -2189,19 +2216,17 @@ public class NewsAction {
 	}
 
 	public void Reviewsusername() throws IOException {
-		try {
+		
 
 			List<Integer> rn = new ArrayList<Integer>();
-			rl=rdao.Allu(userid);
+			List<Boolean> zb=new ArrayList<Boolean>();
+			List<Boolean> scb=new ArrayList<Boolean>();
+			List<Boolean> plb=new ArrayList<Boolean>();
+			
+			rl = rdao.Allu(userid);
+			List<Review> rel=new ArrayList<Review>();
 			for (int ri = 0; ri < rl.size(); ri++) {
-				Review r1=rl.get(ri);
-				if(cdao.Whether(Support.COME_FROM_NEWS_REVIEW, userid, r1.getId())!=null){
-					r1.setB(true);
-				}else{
-					r1.setB(false);
-				}
-				rl.set(ri, r1);
-
+				Review r1 = rl.get(ri);
 				Boolean b = true;
 
 				for (int i = 0; i < rn.size(); i++) {
@@ -2215,29 +2240,46 @@ public class NewsAction {
 				}
 
 				if (b) {
-
-					rl.add(rdao.unid(userid, r1.getNewsid()).get(0));
+					rel.add(r1);
 					nl.add(ndao.byid(r1.getNewsid()));
 
 					rn.add(r1.getNewsid());
+					//是否收藏过
+					if (cdao.unid(userid, r1.getNewsid()) != null) {
+						scb.add(true);
+					} else {
+						scb.add(false);
+					}
+					//是否点赞过
+					if (cdao.Whether(Support.COME_FROM_NEWS, userid, r1.getNewsid()) != null) {
+						zb.add(true);
+					} else {
+						zb.add(false);
+					}
+					//是否评论过
+					if (rdao.unid(userid, r1.getNewsid()).size() > 0) {
+						plb.add(true);
+					} else {
+						plb.add(false);
+					}
 				}
 
 			}
-			
+
 			String result = "{\"news\":" + OpeFunction.ToJson(nl)
-					+ ",\"review\":" + OpeFunction.ToJson(rl) + "}";
+					+ ",\"review\":" + OpeFunction.ToJson(rel) + ",\"zb\":" + OpeFunction.ToJson(zb)+ 
+					",\"plb\":" + OpeFunction.ToJson(plb)+
+					",\"scb\":" + OpeFunction.ToJson(scb)+"}";
 			if (nl.size() > 0 && rl.size() > 0) {
 				OpeFunction.Out().print(result);
 
 			} else {
 				OpeFunction.Out().print("null");
 			}
-		} catch (Exception e) {
-
-		}
+		
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("all")
 	private class NewsComparator implements Comparator<News> {
 		@Override
 		public int compare(News first, News second) {
@@ -2509,6 +2551,7 @@ public class NewsAction {
 	public void setXlsxFile(File xlsxFile) {
 		this.xlsxFile = xlsxFile;
 	}
+
 	public String getXlsxFileFileName() {
 		return xlsxFileFileName;
 	}
@@ -2516,6 +2559,5 @@ public class NewsAction {
 	public void setXlsxFileFileName(String xlsxFileFileName) {
 		this.xlsxFileFileName = xlsxFileFileName;
 	}
-
 
 }

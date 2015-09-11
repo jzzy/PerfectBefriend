@@ -103,7 +103,7 @@ public class News implements Serializable {
     @Transient
     @Expose
     private double similarity=0d;
-    
+   
  
     
    

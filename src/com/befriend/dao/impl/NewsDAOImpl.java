@@ -467,6 +467,7 @@ public class NewsDAOImpl implements NewsDAO {
 		Query query = entityManager.createQuery("select u from News u where u.time >= :startTime and u.time <= :endTime order by u.time desc");
 		query.setParameter("startTime", startTime);
 		query.setParameter("endTime", endTime);
+		query.setMaxResults(20);
 		return query.getResultList();
 	}
 

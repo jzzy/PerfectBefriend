@@ -30,26 +30,27 @@ public class User implements Serializable
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Expose
 	private Integer id;
-	@Column(name="username")//锟矫伙拷锟斤拷
+	@Column(name="username")
+	@Expose
 	private String username;
-	@Column(name="nickname")//锟角筹拷
+	@Column(name="nickname")
 	@Expose
 	private String nickname;
-	@Column(name="password")//锟斤拷锟斤拷
+	@Column(name="password")
 	private String password;
-	@Column(name="img")//锟矫伙拷头锟斤拷锟街�
+	@Column(name="img")//头像
 	@Expose
 	private String img;
 	
 	
-	@Column(name="stage")//锟斤拷锟接阶讹拷
+	@Column(name="stage")//孩子阶段
 	@Expose
 	private String stage;
 	public static final double STAGE = 2D;
-	@Column(name="time")//注锟斤拷时锟斤拷
+	@Column(name="time")//注册时间
 	@Expose
 	private String time;
-	@Column(name="address")//锟斤拷址 省锟斤拷
+	@Column(name="address")//地址省
 	/**
 	 * 锟斤拷址 省锟斤拷
 	 */
@@ -57,45 +58,45 @@ public class User implements Serializable
 	private String address;
 	public static final double PROVINCE = 3D;
 	
-	@Column(name="addcity")//锟斤拷址 锟叫硷拷
+	@Column(name="addcity")//地址市
 	@Expose
 	private String addcity;
 	public static final double CITY = 4D;
-	@Column(name="phone")//锟界话
+	@Column(name="phone")
 	@Expose
 	private String phone;
-	@Column(name="school")//学校
+	@Column(name="school")
 	@Expose
 	private String school;
 	public static final double SCHOOL = 5D;
 	
-	@Column(name="competence")//权锟斤拷  0 锟斤拷通锟矫伙拷  1 锟叫硷拷锟斤拷锟斤拷员 2省锟斤拷锟斤拷锟斤拷员 4锟角斤拷锟斤拷
+	@Column(name="competence")//管理员 0不是 1是
 	@Expose
 	private int competence;
-	@Column(name="gag")//锟斤拷锟斤拷锟斤拷坛权锟斤拷  0 锟斤拷锟皆达拷锟斤拷锟斤拷坛  1 锟斤拷锟斤拷锟斤拷  
+	@Column(name="gag")//
 	@Expose
 	private int gag;
 	
-	@Column(name="loginnum")//锟矫伙拷锟斤拷锟斤拷锟斤拷锟�
+	@Column(name="loginnum")//登入次数
 	@Expose
 	private int loginnum;
 	
-	@Column(name="finaltime")//锟矫伙拷锟斤拷锟斤拷锟斤拷时锟斤拷
+	@Column(name="finaltime")//最后登入时间
 	@Expose
 	private String finaltime;
-	@Column(name="ip")//锟矫伙拷ip
+	@Column(name="ip")
 	@Expose
 	private String ip;
-	@Column(name="port")//锟矫伙拷port
+	@Column(name="port")
 	@Expose
 	private int port;
-	@Column(name="online")//锟矫伙拷 锟矫伙拷锟斤拷锟斤拷状态 0锟斤拷锟斤拷锟斤拷 1锟斤拷锟斤拷
+	@Column(name="online")//在线状态 0不在 1在
 	@Expose
 	private int online;
-	@Column(name="accnumno")//锟斤拷锟斤拷ID 8位锟斤拷
+	@Column(name="accnumno")//完美ID
 	@Expose
 	private String accnumno;
-	@Column(name="come")// 锟斤拷锟斤拷null 锟斤拷锟斤拷锟斤拷锟皆硷拷锟斤拷锟矫伙拷 
+	@Column(name="come")// 来自哪里的账号
 	@Expose
 	private String come;
 	@Column(name="os")// 系统
@@ -104,20 +105,20 @@ public class User implements Serializable
 	@Column(name="mac")// mac
 	@Expose
 	private String mac;
-	@Column(name="sex")//锟皆憋拷  锟斤拷 女
+	@Column(name="sex")//性别
 	@Expose
 	private String sex;
-	@Column(name="signature")// 锟斤拷锟斤拷签锟斤拷
+	@Column(name="signature")// 个性签名
 	@Expose
 	private String signature;
-	@Column(name="childrenage")// 锟斤拷锟斤拷锟斤拷锟斤拷
+	@Column(name="childrenage")// 孩子年纪
 	@Expose
 	private String childrenage;
-	@Column(name="age")// 锟斤拷锟斤拷
+	@Column(name="age")// 我的年纪
 	@Expose
 	private String age;
 	public static final double CHILD_AGE = 4D;
-	@Column(name="childrensex")// 锟斤拷锟斤拷锟皆憋拷  锟斤拷 女
+	@Column(name="childrensex")// 孩子性别
 	@Expose
 	private String childrensex;
 	public static final double CHILD_SEX = 3D;

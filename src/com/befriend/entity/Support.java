@@ -23,7 +23,7 @@ public class Support implements Serializable
 	/**
 	 * 论坛评论点赞
 	 */
-	public final static int COME_FROM_F_TWOS = 1*4;
+	public final static int COME_FROM_F_TWOS = 4;
 	/**
 	 * 新闻点赞
 	 */

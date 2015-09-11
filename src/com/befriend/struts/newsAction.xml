@@ -45,7 +45,7 @@
 		</action>
 
 		
-		<!-- 根据newsid查询评论 有用户信息-->
+		<!-- 根据newsid查询所有评论 有用户信息-->
 		<action name="RI513" class="newsAction" method="ReviewsInquiry513">
 		</action>
 		

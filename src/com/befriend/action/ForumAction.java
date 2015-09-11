@@ -93,25 +93,25 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	ForumTwoType ftt = new ForumTwoType();
 	List<ForumTwoType> fttl = new ArrayList<ForumTwoType>();
 	List<ForumOneType> fotl = new ArrayList<ForumOneType>();
-	public void forumlikeForum() throws IOException{
-		cpe=forumdao.getForumOne(title);
-		fones=forumdao.getForumOne(pageSize,currentPage,title);
-		String result = "{\"pageSize\":"
-				+ pageSize + ",\"currentPage\":"
-				+ currentPage + ",\"title\":"
-				+ title + ",\"fones\":"
-				+ util.ToJson(fones) + ",\"cpe\":" + cpe
-				+ "}";
+
+	public void forumlikeForum() throws IOException {
+		cpe = forumdao.getForumOne(title);
+		fones = forumdao.getForumOne(pageSize, currentPage, title);
+		String result = "{\"pageSize\":" + pageSize + ",\"currentPage\":"
+				+ currentPage + ",\"title\":" + title + ",\"fones\":"
+				+ util.ToJson(fones) + ",\"cpe\":" + cpe + "}";
 
 		util.Out().print(result);
-		
+
 	}
+
 	public void forumTwosRemoveStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
 		st = cdao.Whether(Support.COME_FROM_F_TWOS, userid, id);
 		if (st != null && ftwo != null) {
 			cdao.remove(st);
-			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id).size());
+			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id)
+					.size());
 			forumdao.update(ftwo);
 			util.Out().print(true);
 		} else {
@@ -122,20 +122,21 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	public void forumTwosStandBy() throws IOException {
 		ftwo = forumdao.getForumTwoid(id);
 
-		if (cdao.Whether(Support.COME_FROM_F_TWOS, userid, id) == null&& ftwo != null) {
+		if (cdao.Whether(Support.COME_FROM_F_TWOS, userid, id) == null
+				&& ftwo != null) {
 			st.setComefrom(Support.COME_FROM_F_TWOS);
 			st.setTime(time);
 			st.setUserid(userid);
 			st.setObjectid(id);
 			cdao.save(st);
-			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id).size());
+			ftwo.setSupports(cdao.Frequency(Support.COME_FROM_F_TWOS, id)
+					.size());
 			forumdao.update(ftwo);
 			util.Out().print(true);
 		} else {
 			util.Out().print(false);
 		}
 	}
-
 	public void syncretic5() throws IOException {
 		String url = "http://127.0.0.1" + request.getContextPath()
 				+ "/forumLookStandBy?userid=" + userid;
@@ -204,20 +205,22 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		OpeFunction.outjS(request.getContextPath() + "/forumlookOneTwoType?id="
 				+ id, "ok");
 	}
+
 	public void saveTwoType() throws IOException {
 		Admin admin = (Admin) session.getAttribute("admin");
 		fot = forumdao.getByIdForumOneType(id);
-		if (!OpeFunction.isEmpty(title) && admin != null && fot != null&&fileMax!=null&&fileMax.length==2) {
-			String path="/IMG/ForumTypeImg/" + OpeFunction.getNameDayTime();
+		if (!OpeFunction.isEmpty(title) && admin != null && fot != null
+				&& fileMax != null && fileMax.length == 2) {
+			String path = "/IMG/ForumTypeImg/" + OpeFunction.getNameDayTime();
 			for (int i = 0; i < fileMax.length; i++) {
-				if(fileMax[i]!=null){
-					if(i==0){
+				if (fileMax[i] != null) {
+					if (i == 0) {
 						img = util.ufileToServer(path, fileMax[i], "jpg");
 						ftt.setImg(img);
 					}
-					if(i==1){
+					if (i == 1) {
 						img = util.ufileToServer(path, fileMax[i], "jpg");
-						ftt.setImgmax(img);			
+						ftt.setImgmax(img);
 					}
 				}
 			}
@@ -279,9 +282,11 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 			for (int j = 0; j < fttl.size(); j++) {
 				ForumTwoType ft = fttl.get(j);
-				if (cdao.Whether_A(Support.COME_FROM, userid, fttl.get(i)
-						.getId()) != null) {
+
+				if (cdao.Whether_A(Attention.COME_FROM, userid, ft.getId()) != null) {
 					ft.setAttentionB(true);
+				} else {
+					ft.setAttentionB(false);
 				}
 				fttl.set(j, ft);
 				System.out.println("2:" + fttl.get(j).getTitle());
@@ -293,7 +298,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	}
 
 	public void forumMeAttention() throws IOException {
-		afl = cdao.ILikeToo_A(Support.COME_FROM, userid);
+		afl = cdao.ILikeToo_A(Attention.COME_FROM, userid);
 		for (int i = 0; i < afl.size(); i++) {
 			af = afl.get(i);
 			if (af != null) {
@@ -303,8 +308,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 			}
 		}
 		String result = "{\"afl\":" + util.ToJson(afl) + ",\"fttl\":"
-				+ JsonUtil.toJsonExpose(fttl) + ",\"aflsize\":"
-						+ afl.size()+ "}";
+				+ JsonUtil.toJsonExpose(fttl) + ",\"aflsize\":" + afl.size()
+				+ "}";
 		if (afl.size() > 0) {
 			util.Out().print(result);
 
@@ -332,13 +337,14 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		ftt = forumdao.getByIdForumTwoType(forutypeid);
 		if (cdao.Whether_A(Attention.COME_FROM, userid, forutypeid) == null
 				&& userid > 0 && forutypeid > 0 && ftt != null) {
-			
+
 			af.setUserid(userid);
 			af.setComefrom(Attention.COME_FROM);
 			af.setTime(time);
 			af.setObjectid(forutypeid);
 			cdao.save(af);
-			ftt.setAttentions(cdao.Frequency_A(Attention.COME_FROM, forutypeid).size());
+			ftt.setAttentions(cdao.Frequency_A(Attention.COME_FROM, forutypeid)
+					.size());
 			forumdao.update(ftt);
 			util.Out().print(true);
 		} else {
@@ -353,7 +359,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 			fones.add(forumdao.getForumOne(sl.get(i).getObjectid()));
 		}
 		if (fones.size() > 0) {
-			String result = "{\"sl\":" + util.ToJson(sl) + ",\"slsize\":"
+			String result = "{\"fones\":" + util.ToJson(fones) + ",\"slsize\":"
 					+ sl.size() + "}";
 			util.Out().print(result);
 		} else {
@@ -1021,8 +1027,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		}
 
 		String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-				+ util.ToJson(us)+ ",\"count\":"
-						+ fones.size()+  "}";
+				+ util.ToJson(us) + ",\"count\":" + fones.size() + "}";
 		util.Out().print(result);
 
 	}
@@ -1259,8 +1264,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		if (fones.size() > 0) {
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-					+ util.ToJson(us) + ",\"ftwos\":" + util.ToJson(fow) + ",\"count\":"
-							+ ftwos.size() +"}";
+					+ util.ToJson(us) + ",\"ftwos\":" + util.ToJson(fow)
+					+ ",\"count\":" + fones.size() + "}";
 
 			util.Out().print(result);
 
@@ -1284,8 +1289,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 		if (fones.size() > 0) {
 
 			String result = "{\"fones\":" + util.ToJson(fones) + ",\"us\":"
-					+ util.ToJson(us) + ",\"count\":"
-							+ fones.size()+ "}";
+					+ util.ToJson(us) + ",\"count\":" + fones.size() + "}";
 			util.Out().print(result);
 		} else {
 			util.Out().print("null");
@@ -1354,7 +1358,8 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 			forumtwoid = ftwo.getId();
 
-			ftwo.setB(cdao.Whether(Support.COME_FROM_F_TWOS, touserid, forumtwoid) != null);
+			ftwo.setB(cdao.Whether(Support.COME_FROM_F_TWOS, touserid,
+					forumtwoid) != null);
 
 			ftwos.set(i, ftwo);
 			User u = userdao.byid(userid);
@@ -1414,7 +1419,7 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 	}
 
 	public void Forumthreesappadd() throws IOException, ServletException {
-		
+
 		if (forumid <= 0) {
 			util.Out().print(false);
 			return;
@@ -2295,20 +2300,22 @@ public class ForumAction implements ServletRequestAware, ServletResponseAware {
 
 	}
 
-	
-
 	public File[] getFileMax() {
 		return fileMax;
 	}
+
 	public void setFileMax(File[] fileMax) {
 		this.fileMax = fileMax;
 	}
+
 	public String[] getFileMaxFileName() {
 		return fileMaxFileName;
 	}
+
 	public void setFileMaxFileName(String[] fileMaxFileName) {
 		this.fileMaxFileName = fileMaxFileName;
 	}
+
 	public int getTypes() {
 		return types;
 	}

@@ -185,7 +185,7 @@ public class GroupAction{
 		// util.Out().print("null");
 		// return;
 		// }
-		if (hxgroupid == null || condtion <= 0) {
+		if (OpeFunction.isEmpty(hxgroupid)|| condtion <= 0) {
 			util.Out().print("null");
 			return;
 		}
@@ -201,11 +201,11 @@ public class GroupAction{
 		/**
 		 * 添加群信息
 		 */
+		groupchat.setGroupid(hxgroupid);
 		groupchat.setClassgroup(classgroup);// 1群 2班级
 		groupchat.setType(type);// 类别
 		groupchat.setArea(area);// 地区省
 		groupchat.setAreas(areas);// 地区市
-		groupchat.setGroupid(hxgroupid);// 环信 群id
 		groupchat.setJoincondition(condtion);// 1 允许任何人 2 需要验证信息 3不允许任何人
 		groupchat.setGclass(gclass);// 班级
 		groupchat.setGrade(grade);// 年级
@@ -564,9 +564,9 @@ public class GroupAction{
 		// System.out.println(userid+"有" + lg + "个群");
 		for (int i = 0; i < lgroupMembers.size(); i++) {
 			// 获取群id
-			id = lgroupMembers.get(i).getGroupid();
+			groupid = lgroupMembers.get(i).getGroupid();
 			// 添加群
-			lgroupchat.add(gdao.Findbyclassgroupid(id,classgroup));
+			lgroupchat.add(gdao.Findbyclassgroupid(groupid,classgroup));
 		}
 
 		if (lgroupchat.size() <= 0) {
