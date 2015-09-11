@@ -190,14 +190,14 @@ public class FriendAction extends BaseAction
 								friend.setRemark(remark);
 								if(fdebug)
 								{
-									log.debug("the remark is "+remark);
+									log.info("the remark is "+remark.toString());
 								}
 							}
 							else
 							{
 								if(fdebug)
 								{
-									log.debug("remark is null");
+									log.info("remark is null");
 								}
 							}
 							
@@ -221,6 +221,21 @@ public class FriendAction extends BaseAction
 					GroupFriend groupFriend = new GroupFriend();
 					groupFriend.setUserGroup(userGroup);
 					groupFriend.setUserId(Integer.valueOf(friendId));
+					if(!StringUtils.isEmpty(remark))
+					{
+						groupFriend.setRemark(remark);
+						if(fdebug)
+						{
+							log.info("the remark is "+remark.toString());
+						}
+					}
+					else
+					{
+						if(fdebug)
+						{
+							log.info("remark is null");
+						}
+					}
 					groupFriend.setStatus(GroupFriend.INVITE);
 					groupFriend.setCreateTime(OpeFunction.getNowTime());
 					/**
@@ -286,7 +301,6 @@ public class FriendAction extends BaseAction
 						 */
 						String url = RefreshAccessToken.BASE_URL+"/users/"+userId+"/contacts/users/"+friendId;
 						String result = WechatKit.post(url, null, RefreshAccessToken.access_token);
-						System.out.println("the result of handleInvitation:"+result);
 						try {
 							JSONObject jsonObject = new JSONObject(result);
 							JSONArray entities = jsonObject.getJSONArray("entities");
@@ -571,7 +585,7 @@ public class FriendAction extends BaseAction
 					 */
 					if(fdebug)
 					{
-						log.debug("the group friend's size is "+groupFriends==null?0:groupFriends.size());
+						log.info("the group friend's size is "+groupFriends==null?0:groupFriends.size());
 					}
 					for (GroupFriend groupFriend : groupFriends) 
 					{
@@ -579,7 +593,7 @@ public class FriendAction extends BaseAction
 						groupFriendDAO.update(groupFriend);
 						if(fdebug)
 						{
-							log.debug(groupFriend.getUsername()+"move to default group");
+							log.info(groupFriend.getUsername()+"move to default group");
 						}
 					}
 					userGroupDAO.remove(userGroup);
@@ -693,7 +707,6 @@ public class FriendAction extends BaseAction
 				JSONObject jsonObject = new JSONObject();
 				String [] usernames = {friendId};
 				jsonObject.put("usernames", Arrays.toString(usernames));
-				System.out.println(Arrays.toString(usernames));
 				WechatKit.post(url,jsonObject, RefreshAccessToken.access_token);
 				GroupFriend groupFriend = groupFriendDAO.find(Integer.valueOf(userId), Integer.valueOf(friendId));
 				if(groupFriend != null)

@@ -59,7 +59,7 @@ public class UserGroup implements Serializable
 	@Expose
 	private String createTime;
 	
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="userGroup")
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.PERSIST,mappedBy="userGroup")
 	@Expose
 	private Set<GroupFriend> groupFriends = new HashSet<GroupFriend>();
 	
