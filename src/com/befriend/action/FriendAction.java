@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +30,8 @@ import com.befriend.wechat.WechatKit;
 
 public class FriendAction extends BaseAction
 {
+	private static final boolean fdebug = true;
+	private static final Log log = LogFactory.getLog(FriendAction.class);
 	private static final long serialVersionUID = 1L;
 	public static final String YES = "y";
 	public static final String NO = "n";
@@ -181,9 +185,21 @@ public class FriendAction extends BaseAction
 						{
 							friend.setUserGroup(userGroup);
 							friend.setStatus(GroupFriend.INVITE);
-							System.out.println("remark:"+remark);
 							if(!StringUtils.isEmpty(remark))
+							{
 								friend.setRemark(remark);
+								if(fdebug)
+								{
+									log.debug("the remark is "+remark);
+								}
+							}
+							else
+							{
+								if(fdebug)
+								{
+									log.debug("remark is null");
+								}
+							}
 							
 							groupFriendDAO.update(friend);
 							msg.setCode(Message.SUCCESS);
@@ -557,6 +573,10 @@ public class FriendAction extends BaseAction
 					{
 						groupFriend.setUserGroup(defaultGroup);
 						groupFriendDAO.update(groupFriend);
+						if(fdebug)
+						{
+							log.debug(groupFriend.getUsername()+"move to default group");
+						}
 					}
 					userGroupDAO.remove(userGroup);
 					msg.setCode(Message.SUCCESS);
