@@ -124,7 +124,7 @@ public class UserGroup implements Serializable
 	}
 	@Override
 	public String toString() {
-		return "UserGroup [id=" + id + ", user=" + user + ", groupFriends=" + groupFriends + ", name=" + name
+		return "UserGroup [id=" + id + ", user=" + user  + ", name=" + name
 				+ ", orderNum=" + orderNum + ", createTime=" + createTime + "]";
 	}
 	

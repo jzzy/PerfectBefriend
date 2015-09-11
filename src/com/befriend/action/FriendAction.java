@@ -569,6 +569,10 @@ public class FriendAction extends BaseAction
 					/**
 					 * move the friends of the group to default group
 					 */
+					if(fdebug)
+					{
+						log.debug("the group friend's size is "+groupFriends==null?0:groupFriends.size());
+					}
 					for (GroupFriend groupFriend : groupFriends) 
 					{
 						groupFriend.setUserGroup(defaultGroup);
