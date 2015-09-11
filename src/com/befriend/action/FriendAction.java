@@ -520,7 +520,30 @@ public class FriendAction extends BaseAction
 						 * create a default group
 						 */
 						this.userId = userGroup.getUser().getId().toString();
-						createDefaultGroup();
+						User user = userDAO.byid(Integer.valueOf(userId));
+						if(user != null)
+						{
+							UserGroup myFriend = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.FRIEND_DEFAULT);
+							UserGroup blacklist = userGroupDAO.findDefault(Integer.valueOf(userId), UserGroup.BLACKLIST_DEFAULT);
+							if(myFriend == null)
+							{
+								myFriend = new UserGroup();
+								myFriend.setUser(user);
+								myFriend.setName(UserGroup.MY_FRIEND);
+								myFriend.setIsDefault(UserGroup.FRIEND_DEFAULT);
+								myFriend.setCreateTime(OpeFunction.getNowTime());
+								userGroupDAO.save(myFriend);
+							}
+							if(blacklist == null)
+							{
+								blacklist = new UserGroup();
+								blacklist.setUser(user);
+								blacklist.setName(UserGroup.MY_BLACKLIST);
+								blacklist.setIsDefault(UserGroup.BLACKLIST_DEFAULT);
+								blacklist.setCreateTime(OpeFunction.getNowTime());
+								userGroupDAO.save(blacklist);
+							}
+						}
 						/**
 						 * after insert default group 
 						 * get the default group
