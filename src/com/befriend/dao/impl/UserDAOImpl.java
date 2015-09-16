@@ -14,7 +14,7 @@ import com.befriend.dao.UserDAO;
 import com.befriend.entity.GroupFriend;
 import com.befriend.entity.User;
 import com.befriend.entity.UserGroup;
-
+@SuppressWarnings("all")
 @Transactional
 public class UserDAOImpl implements UserDAO {
 	@PersistenceContext

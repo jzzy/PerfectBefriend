@@ -310,7 +310,7 @@ public class GroupAction{
 			return;
 		}
 		util.Out().print(true);
-		System.out.println("你可以加入" + groupchat.getSchoolname());
+		System.out.println("你可以加入 - " + groupchat.getSchoolname());
 		return;
 
 	}
