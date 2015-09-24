@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>查看用户</title>
 
-<script type="text/javascript" src="/PerfectBefriend/Jquery/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="/PerfectBefriend/SuperAdmin/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" >
 
 $(document).ready(function(){

@@ -43,6 +43,9 @@ import com.befriend.email.MailSenderInfo;
 import com.befriend.email.SimpleMailSender;
 import com.befriend.entity.News;
 import com.befriend.entity.User;
+import com.befriend.listener.WechaToken;
+import com.befriend.wechat.RefreshAccessToken;
+import com.befriend.wechat.WechatKit;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
@@ -574,12 +577,18 @@ public class OpeFunction {
 	}
 
 
-	public static void main(String[] args) throws ParseException, InterruptedException {
-		for (int i = 0; i < args.length; i++) {
-			System.out.println(args[i]);
-		}
-		System.out.println(getNameDayTime());
+	public static void main(String[] args) throws ParseException, InterruptedException, IOException {
+//		for (int i = 0; i < args.length; i++) {
+//			System.out.println(args[i]);
+//		}
+//		System.out.println(getNameDayTime());
 		
+		while (true) {
+			//Thread.sleep(10);
+			
+		System.out.println(WechatKit.sendGet("http://www.baidu.com"));
+			
+		}
 	
 		
 	}

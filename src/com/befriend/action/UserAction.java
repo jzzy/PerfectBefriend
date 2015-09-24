@@ -989,8 +989,8 @@ public class UserAction {
 	}
 
 	public String getUsermh() throws IOException {
-
-		if (username.length() >= 1) {
+System.out.println(username+":username");
+		if (!OpeFunction.isEmpty(username)) {
 			us = userdao.likeusername(username);
 		}
 
