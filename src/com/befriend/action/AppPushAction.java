@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -287,6 +289,7 @@ public class AppPushAction extends BaseAction
 						
 						
 					}
+//					Collections.sort(recentlyNews, new NewsComparator());
 					recentlyNews.sort(new NewsComparator());
 					/**
 					 * 将最近新闻按照push规则进行排序
